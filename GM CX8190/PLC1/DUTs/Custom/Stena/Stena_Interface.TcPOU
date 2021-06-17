@@ -64,118 +64,118 @@ TimeChannelActive := TimeChannelActive OR ADS_Stena.Tags.Schedule3.Q;
 TimeChannel3(Settings := ADS_Stena.Tags.Schedule3);
 
 TimeChannelFallback(Settings := ADS_Stena.Tags.ScheduleFallback);
-WatchdogTOF(IN := (NOT ADS_Stena.Tags.Settings.LA02_WatchdogEnabled) OR (ADS_Stena.Tags.Settings.LA02_Watchdog <> LastWatchDog), PT := T#5M);
+WatchdogTOF(IN := (NOT ADS_Stena.Tags.Settings.WatchdogEnabled) OR (ADS_Stena.Tags.Settings.Watchdog <> LastWatchDog), PT := T#5M);
 
 IF WatchdogTOF.Q THEN
-	ENO := EN AND (ADS_Stena.Tags.Settings.LA02_RemoteStart > 0) AND TimeChannelEnabled AND TimeChannelActive;
+	ENO := EN AND (ADS_Stena.Tags.Settings.RemoteStart > 0) AND TimeChannelEnabled AND TimeChannelActive;
 ELSE
-	ENO := EN AND (ADS_Stena.Tags.Settings.LA02_RemoteStart > 0) AND TimeChannelFallback.Q;
+	ENO := EN AND (ADS_Stena.Tags.Settings.RemoteStart > 0) AND TimeChannelFallback.Q;
 END_IF
 
 IF EN AND Parameters.System.Operation.RemoteEN THEN
 	
-	Globals.IO.DOut.DO16 := ADS_Stena.Tags.Status.LA02_P2_CMD;
+	Globals.IO.DOut.DO16 := ADS_Stena.Tags.Status.P2_CMD;
 	
-	NightCooling := ADS_Stena.Tags.Settings.LA02_NightCooling_V;
+	NightCooling := ADS_Stena.Tags.Settings.NightCooling_V;
 	
 	// --------------------------------------------------------------------------------
 	// Transfer from Stena tags to settings
 	
-	Parameters.Alarm.Control.ResetAlarms := ADS_Stena.Tags.Settings.LA02_ResetAlarms;
-	Parameters.Regulation.Control.EN := ADS_Stena.Tags.Settings.LA02_VentilationEN;
-	Parameters.Regulation.Temperature.EN := ADS_Stena.Tags.Settings.LA02_TemperatureControlEN;
-	IF ADS_Stena.Tags.Settings.LA02_TemperatureControlPV = 0 THEN
+	Parameters.Alarm.Control.ResetAlarms := ADS_Stena.Tags.Settings.ResetAlarms;
+	Parameters.Regulation.Control.EN := ADS_Stena.Tags.Settings.VentilationEN;
+	Parameters.Regulation.Temperature.EN := ADS_Stena.Tags.Settings.TemperatureControlEN;
+	IF ADS_Stena.Tags.Settings.TemperatureControlPV = 0 THEN
 		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
-	ELSIF ADS_Stena.Tags.Settings.LA02_TemperatureControlPV = 1 THEN
+	ELSIF ADS_Stena.Tags.Settings.TemperatureControlPV = 1 THEN
 		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.F_BT1;
 	ELSE
 		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
 	END_IF
-	Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Stena.Tags.Settings.LA02_SetPointOffsetCurve; 
-	Parameters.Regulation.Temperature.Control.SP := ADS_Stena.Tags.Settings.LA02_Temperature_SP;
-	Parameters.Regulation.Temperature.Control.P := ADS_Stena.Tags.Settings.LA02_TemperatureControl_P;
-	Parameters.Regulation.Temperature.Control.I := ADS_Stena.Tags.Settings.LA02_TemperatureControl_I;
-	Parameters.Regulation.Temperature.Control.D := ADS_Stena.Tags.Settings.LA02_TemperatureControl_D;
-	Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_Stena.Tags.Settings.LA02_StartupHeatRecoveryTime;
-	Parameters.Regulation.Control.PostFireVentilationTime := ADS_Stena.Tags.Settings.LA02_PostFireVentilationTime;
-	Parameters.Regulation.SupplyAir.ControlMode := ADS_Stena.Tags.Settings.LA02_SupplyFanControlMode;
-	Parameters.Regulation.SupplyAir.Control.SP := ADS_Stena.Tags.Settings.LA02_SupplyFan_SP;
-	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.LA02_SupplyFanHighSpeed_SP;
-	Parameters.Regulation.SupplyAir.Control.P := ADS_Stena.Tags.Settings.LA02_SupplyFanControl_P;
-	Parameters.Regulation.SupplyAir.Control.I := ADS_Stena.Tags.Settings.LA02_SupplyFanControl_I;
-	Parameters.Regulation.ExtractAir.ControlMode := ADS_Stena.Tags.Settings.LA02_ExtractFanControlMode;
-	Parameters.Regulation.ExtractAir.Control.SP := ADS_Stena.Tags.Settings.LA02_ExtractFan_SP;
-	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.LA02_ExtractFanHighSpeed_SP;
-	Parameters.Regulation.ExtractAir.Control.P := ADS_Stena.Tags.Settings.LA02_ExtractFanControl_P;
-	Parameters.Regulation.ExtractAir.Control.I := ADS_Stena.Tags.Settings.LA02_ExtractFanControl_I;
+	Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Stena.Tags.Settings.SetPointOffsetCurve; 
+	Parameters.Regulation.Temperature.Control.SP := ADS_Stena.Tags.Settings.Temperature_SP;
+	Parameters.Regulation.Temperature.Control.P := ADS_Stena.Tags.Settings.TemperatureControl_P;
+	Parameters.Regulation.Temperature.Control.I := ADS_Stena.Tags.Settings.TemperatureControl_I;
+	Parameters.Regulation.Temperature.Control.D := ADS_Stena.Tags.Settings.TemperatureControl_D;
+	Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_Stena.Tags.Settings.StartupHeatRecoveryTime;
+	Parameters.Regulation.Control.PostFireVentilationTime := ADS_Stena.Tags.Settings.PostFireVentilationTime;
+	Parameters.Regulation.SupplyAir.ControlMode := ADS_Stena.Tags.Settings.SupplyFanControlMode;
+	Parameters.Regulation.SupplyAir.Control.SP := ADS_Stena.Tags.Settings.SupplyFan_SP;
+	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.SupplyFanHighSpeed_SP;
+	Parameters.Regulation.SupplyAir.Control.P := ADS_Stena.Tags.Settings.SupplyFanControl_P;
+	Parameters.Regulation.SupplyAir.Control.I := ADS_Stena.Tags.Settings.SupplyFanControl_I;
+	Parameters.Regulation.ExtractAir.ControlMode := ADS_Stena.Tags.Settings.ExtractFanControlMode;
+	Parameters.Regulation.ExtractAir.Control.SP := ADS_Stena.Tags.Settings.ExtractFan_SP;
+	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.ExtractFanHighSpeed_SP;
+	Parameters.Regulation.ExtractAir.Control.P := ADS_Stena.Tags.Settings.ExtractFanControl_P;
+	Parameters.Regulation.ExtractAir.Control.I := ADS_Stena.Tags.Settings.ExtractFanControl_I;
 	
 	// Status transfers
-	ADS_Stena.Tags.Status.LA02_CentralFire_AL := GM_XXL.DI.CentralFireAlarm;
-	ADS_Stena.Tags.Status.LA02_Fuse_AL := GM_XXL.DI.FuseAlarm;
-	ADS_Stena.Tags.Status.LA02_ServiceSupplyAir_AL := GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir;
-	ADS_Stena.Tags.Status.LA02_TF1_AL := GM_XXL.DI.T_GQ1_Alarm;
-	ADS_Stena.Tags.Status.LA02_FF1_AL := GM_XXL.DI.F_GQ1_Alarm;
-	ADS_Stena.Tags.Status.LA02_Fire_AL := GM_XXL.DI.FireAlarm;
-	ADS_Stena.Tags.Status.LA02_P1_V1 := GM_XXL.DI.H_GP1_Running;
-	ADS_Stena.Tags.Status.LA02_P1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
-	ADS_Stena.Tags.Status.LA02_P2_V1 := Globals.IO.DIn.DI22;
-	ADS_Stena.Tags.Status.LA02_P2_AL := Globals.IO.DIn.DI23;
+	ADS_Stena.Tags.Status.CentralFire_AL := GM_XXL.DI.CentralFireAlarm;
+	ADS_Stena.Tags.Status.Fuse_AL := GM_XXL.DI.FuseAlarm;
+	ADS_Stena.Tags.Status.ServiceSupplyAir_AL := GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir;
+	ADS_Stena.Tags.Status.TF1_AL := GM_XXL.DI.T_GQ1_Alarm;
+	ADS_Stena.Tags.Status.FF1_AL := GM_XXL.DI.F_GQ1_Alarm;
+	ADS_Stena.Tags.Status.Fire_AL := GM_XXL.DI.FireAlarm;
+	ADS_Stena.Tags.Status.P1_V1 := GM_XXL.DI.H_GP1_Running;
+	ADS_Stena.Tags.Status.P1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
+	ADS_Stena.Tags.Status.P2_V1 := Globals.IO.DIn.DI22;
+	ADS_Stena.Tags.Status.P2_AL := Globals.IO.DIn.DI23;
 	
-	ADS_Stena.Tags.Status.LA02_P1_CMD := Parameters.IO.DOut.H_GP1;
-	ADS_Stena.Tags.Status.LA02_P2_CMD := Parameters.System.Operation.EN;
-	ADS_Stena.Tags.Status.LA02_ST702_CMD := Parameters.IO.DOut.F_QM1;
-	ADS_Stena.Tags.Status.LA02_ST701_ST21_CMD := Parameters.IO.DOut.T_QM3;
+	ADS_Stena.Tags.Status.P1_CMD := Parameters.IO.DOut.H_GP1;
+	ADS_Stena.Tags.Status.P2_CMD := Parameters.System.Operation.EN;
+	ADS_Stena.Tags.Status.ST702_CMD := Parameters.IO.DOut.F_QM1;
+	ADS_Stena.Tags.Status.ST701_ST21_CMD := Parameters.IO.DOut.T_QM3;
 		
-	ADS_Stena.Tags.Status.LA02_GT42_V := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
-	ADS_Stena.Tags.Status.LA02_GT31_V := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
-	ADS_Stena.Tags.Status.LA02_GT41_V := LREAL_TO_REAL(GM_XXL.AI.T_BT3);
-	ADS_Stena.Tags.Status.LA02_GT81_V := LREAL_TO_REAL(GM_XXL.AI.H_BT1);
-	ADS_Stena.Tags.Status.LA02_GT11_V := LREAL_TO_REAL(GM_XXL.AI.T_BT1);
-	ADS_Stena.Tags.Status.LA02_GT43_V := LREAL_TO_REAL(GM_XXL.AI.F_BT2);
+	ADS_Stena.Tags.Status.GT42_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
+	ADS_Stena.Tags.Status.GT31_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
+	ADS_Stena.Tags.Status.GT41_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT3);
+	ADS_Stena.Tags.Status.GT81_PV := LREAL_TO_REAL(GM_XXL.AI.H_BT1);
+	ADS_Stena.Tags.Status.GT11_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT1);
+	ADS_Stena.Tags.Status.GT43_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT2);
 	
 	GT21(ProcessValue := AIn.AI09, ProcessError := AIn.AI09_Error);
-	ADS_Stena.Tags.Status.LA02_GT21_V := LREAL_TO_REAL(GT21.Value);
+	ADS_Stena.Tags.Status.GT21_PV := LREAL_TO_REAL(GT21.Value);
 	GT44(ProcessValue := AIn.AI10, ProcessError := AIn.AI10_Error);
-	ADS_Stena.Tags.Status.LA02_GT44_V := LREAL_TO_REAL(GT44.Value);
+	ADS_Stena.Tags.Status.GT44_PV := LREAL_TO_REAL(GT44.Value);
 	GT45(ProcessValue := AIn.AI11, ProcessError := AIn.AI11_Error);
-	ADS_Stena.Tags.Status.LA02_GT45_V := LREAL_TO_REAL(GT45.Value);
+	ADS_Stena.Tags.Status.GT45_PV := LREAL_TO_REAL(GT45.Value);
 	GT46(ProcessValue := AIn.AI12, ProcessError := AIn.AI12_Error);
-	ADS_Stena.Tags.Status.LA02_GT46_V := LREAL_TO_REAL(GT46.Value);
+	ADS_Stena.Tags.Status.GT46_PV := LREAL_TO_REAL(GT46.Value);
 	GT41(ProcessValue := AIn.AI13, ProcessError := AIn.AI13_Error);
-	ADS_Stena.Tags.Status.LA02_GT41_V := LREAL_TO_REAL(GT41.Value);
+	ADS_Stena.Tags.Status.GT41_PV := LREAL_TO_REAL(GT41.Value);
 	
 	IF NOT GM_XXL.AI2.T_BF1_Error THEN
-		ADS_Stena.Tags.Status.LA02_GF31_V := LREAL_TO_REAL((SQRT(GM_XXL.AI2.T_BF1) * Parameters.Regulation.SupplyAir.KFactor) / 3.6);
+		ADS_Stena.Tags.Status.GF31_PV := LREAL_TO_REAL((SQRT(GM_XXL.AI2.T_BF1) * Parameters.Regulation.SupplyAir.KFactor) / 3.6);
 	ELSE	
-		ADS_Stena.Tags.Status.LA02_GF31_V := 0;
+		ADS_Stena.Tags.Status.GF31_PV := 0;
 	END_IF
 	IF NOT GM_XXL.AI2.F_BF1_Error THEN
-		ADS_Stena.Tags.Status.LA02_GF41_V := LREAL_TO_REAL((SQRT(GM_XXL.AI2.F_BF1) * Parameters.Regulation.ExtractAir.KFactor) / 3.6);
+		ADS_Stena.Tags.Status.GF41_PV := LREAL_TO_REAL((SQRT(GM_XXL.AI2.F_BF1) * Parameters.Regulation.ExtractAir.KFactor) / 3.6);
 	ELSE	
-		ADS_Stena.Tags.Status.LA02_GF41_V := 0;
+		ADS_Stena.Tags.Status.GF41_PV := 0;
 	END_IF
-	ADS_Stena.Tags.Status.LA02_GP11_V := LREAL_TO_REAL(GM_XXL.AI2.T_BP1);
-	ADS_Stena.Tags.Status.LA02_GP12_V := LREAL_TO_REAL(GM_XXL.AI2.F_BP1);
-	ADS_Stena.Tags.Status.LA02_GP81_V := LREAL_TO_REAL(GM_XXL.AI2.T_BP2);
-	ADS_Stena.Tags.Status.LA02_GP82_V := LREAL_TO_REAL(GM_XXL.AI2.F_BP2);
-	ADS_Stena.Tags.Status.LA02_GP83_V := LREAL_TO_REAL(GM_XXL.AI2.F_BP3);
+	ADS_Stena.Tags.Status.GP11_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BP1);
+	ADS_Stena.Tags.Status.GP12_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP1);
+	ADS_Stena.Tags.Status.GP81_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BP2);
+	ADS_Stena.Tags.Status.GP82_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP2);
+	ADS_Stena.Tags.Status.GP83_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP3);
 	
-	ADS_Stena.Tags.Status.LA02_SV31_CMD := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1 * 100);
-	ADS_Stena.Tags.Status.LA02_SV21_CMD := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1 * 100);
-	ADS_Stena.Tags.Status.LA02_TF1_CMD := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1 * 100);
-	ADS_Stena.Tags.Status.LA02_FF1_CMD := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1 * 100);
+	ADS_Stena.Tags.Status.SV31_CMD := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1 * 100);
+	ADS_Stena.Tags.Status.SV21_CMD := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1 * 100);
+	ADS_Stena.Tags.Status.TF1_CMD := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1 * 100);
+	ADS_Stena.Tags.Status.FF1_CMD := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1 * 100);
 	
-	lrTemp := ADS_Stena.Tags.Status.LA02_GT42_V - ADS_Stena.Tags.Status.LA02_GT31_V;
+	lrTemp := ADS_Stena.Tags.Status.GT42_PV - ADS_Stena.Tags.Status.GT31_PV;
 	IF lrTemp <> 0 THEN
-		ADS_Stena.Tags.Status.LA02_Eff_V := LREAL_TO_REAL((ADS_Stena.Tags.Status.LA02_GT41_V - ADS_Stena.Tags.Status.LA02_GT31_V) / lrTemp);
+		ADS_Stena.Tags.Status.Eff_PV := LREAL_TO_REAL((ADS_Stena.Tags.Status.GT41_PV - ADS_Stena.Tags.Status.GT31_PV) / lrTemp);
 	ELSE
-		ADS_Stena.Tags.Status.LA02_Eff_V := 0;	
+		ADS_Stena.Tags.Status.Eff_PV := 0;	
 	END_IF
 	
-	Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Stena.Tags.Settings.LA02_TF1_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_TF1_MCMD / 100.0); 
-	Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Stena.Tags.Settings.LA02_FF1_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_FF1_MCMD / 100.0);
-	Main.GreenMasterAO.SetOverrideH_QN1(Override := ADS_Stena.Tags.Settings.LA02_SV21_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_SV21_MCMD / 100.0);
-	Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Stena.Tags.Settings.LA02_SV31_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_SV31_MCMD / 100.0);
+	Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Stena.Tags.Settings.TF1_M, OverrideValue := ADS_Stena.Tags.Settings.TF1_MCMD / 100.0); 
+	Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Stena.Tags.Settings.FF1_M, OverrideValue := ADS_Stena.Tags.Settings.FF1_MCMD / 100.0);
+	Main.GreenMasterAO.SetOverrideH_QN1(Override := ADS_Stena.Tags.Settings.SV21_M, OverrideValue := ADS_Stena.Tags.Settings.SV21_MCMD / 100.0);
+	Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Stena.Tags.Settings.SV31_M, OverrideValue := ADS_Stena.Tags.Settings.SV31_MCMD / 100.0);
 	PreEN := TRUE;
 ELSE
 	IF PreEN THEN

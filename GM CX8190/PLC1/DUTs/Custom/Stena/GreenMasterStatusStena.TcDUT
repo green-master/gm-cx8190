@@ -3,55 +3,55 @@
   <DUT Name="GreenMasterStatusStena" Id="{5be3c35b-ac1c-4679-8913-90a6862d092f}">
     <Declaration><![CDATA[TYPE GreenMasterStatusStena :
 STRUCT
-	LA02_ENO: BOOL; // The unit is operating
-	LA02_Auto: BOOL; // The unit is operating in Auto when true, Hand when false
-	LA02_CentralFire_AL: BOOL; // Central fire alarm activated
-	LA02_Fire_AL: BOOL; // Fire alarm activated
-	LA02_Fuse_AL: BOOL; // Fuse alarm activated
-	LA02_ServiceSupplyAir_AL: BOOL; // Service alarm for supply air sensors activated
-	LA02_TF1_AL: BOOL; // Supply air fan alarm
-	LA02_FF1_AL: BOOL; // Extract air fan alarm
-	LA02_P1_V1: BOOL; // Circulation pump running
-	LA02_P1_AL: BOOL; // Circulation pump alarm
-	LA02_P2_V1: BOOL; // Circulation pump running
-	LA02_P2_AL: BOOL; // Circulation pump alarm
-	LA02_HANDSTARTED_TF_AL: BOOL;
-	LA02_HANDSTOPPED_TF_AL: BOOL;
-	LA02_HANDSTARTED_FF_AL: BOOL;
-	LA02_HANDSTOPPED_FF_AL: BOOL;
-	LA02_BAD_DAMPER_POS_AL: BOOL;
+	ENO: BOOL; // The unit is operating
+	Auto: BOOL; // The unit is operating in Auto when true, Hand when false
+	CentralFire_AL: BOOL; // Central fire alarm activated
+	Fire_AL: BOOL; // Fire alarm activated
+	Fuse_AL: BOOL; // Fuse alarm activated
+	ServiceSupplyAir_AL: BOOL; // Service alarm for supply air sensors activated
+	TF1_AL: BOOL; // Supply air fan alarm
+	FF1_AL: BOOL; // Extract air fan alarm
+	P1_V1: BOOL; // Circulation pump running
+	P1_AL: BOOL; // Circulation pump alarm
+	P2_V1: BOOL; // Circulation pump running
+	P2_AL: BOOL; // Circulation pump alarm
+	HANDSTARTED_TF_AL: BOOL;
+	HANDSTOPPED_TF_AL: BOOL;
+	HANDSTARTED_FF_AL: BOOL;
+	HANDSTOPPED_FF_AL: BOOL;
+	BAD_DAMPER_POS_AL: BOOL;
 	
-	LA02_Eff_V: REAL; // Efficiency (GT41-GT31)/(GT42-GT31)
+	Eff_PV: REAL; // Efficiency (GT41-GT31)/(GT42-GT31)
 	
-	LA02_P1_CMD: BOOL; // Circulation pump activated
-	LA02_P2_CMD: BOOL; // Circulation pump activated
-	LA02_ST702_CMD: BOOL; // Extract air damper open
-	LA02_ST701_ST21_CMD: BOOL; // Supply air damper open 
+	P1_CMD: BOOL; // Circulation pump activated
+	P2_CMD: BOOL; // Circulation pump activated
+	ST702_CMD: BOOL; // Extract air damper open
+	ST701_ST21_CMD: BOOL; // Supply air damper open 
 		
-	LA02_GT42_V: REAL; // Extract air temperature
-	LA02_GT31_V: REAL; // Outdoor air temperature
-	LA02_GT81_V: REAL; // Freeze protection temperature
-	LA02_GT11_V: REAL; // Supply air (after heating)
-	LA02_GT43_V: REAL; // Exhaust air temperatur
+	GT42_PV: REAL; // Extract air temperature
+	GT31_PV: REAL; // Outdoor air temperature
+	GT81_PV: REAL; // Freeze protection temperature
+	GT11_PV: REAL; // Supply air (after heating)
+	GT43_PV: REAL; // Exhaust air temperatur
 	
-	LA02_GT21_V: REAL; // Recycling control
-	LA02_GT44_V: REAL; // Recycling control
-	LA02_GT45_V: REAL; // Recycling control
-	LA02_GT46_V: REAL; // Recycling control
-	LA02_GT41_V: REAL; // Recycling control
+	GT21_PV: REAL; // Recycling control
+	GT44_PV: REAL; // Recycling control
+	GT45_PV: REAL; // Recycling control
+	GT46_PV: REAL; // Recycling control
+	GT41_PV: REAL; // Recycling control
 	
-	LA02_GF31_V: REAL; // Supply air flow
-	LA02_GF41_V: REAL; // Extract air flow
-	LA02_GP11_V: REAL; // Supply air pressure
-	LA02_GP12_V: REAL; // Extract air pressure
-	LA02_GP81_V: REAL; // Supply air filter pressure
-	LA02_GP82_V: REAL; // Extract air filter pressure
-	LA02_GP83_V: REAL; // Heact exchanger pressure
+	GF31_PV: REAL; // Supply air flow
+	GF41_PV: REAL; // Extract air flow
+	GP11_PV: REAL; // Supply air pressure
+	GP12_PV: REAL; // Extract air pressure
+	GP81_PV: REAL; // Supply air filter pressure
+	GP82_PV: REAL; // Extract air filter pressure
+	GP83_PV: REAL; // Heact exchanger pressure
 	
-	LA02_SV31_CMD: REAL; // Recycling control valve
-	LA02_TF1_CMD: REAL; // Supply air fan control
-	LA02_FF1_CMD: REAL; // Extract air fan control
-	LA02_SV21_CMD: REAL; // Heat supply pump control
+	SV31_CMD: REAL; // Recycling control valve
+	TF1_CMD: REAL; // Supply air fan control
+	FF1_CMD: REAL; // Extract air fan control
+	SV21_CMD: REAL; // Heat supply pump control
 
 END_STRUCT
 END_TYPE

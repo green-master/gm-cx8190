@@ -173,17 +173,17 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 	ADS_CTH.Tags2.Status.LA02_ST702_CMD := Parameters.IO.DOut.F_QM1;
 	ADS_CTH.Tags2.Status.LA02_ST701_ST21_CMD := Parameters.IO.DOut.T_QM3;
 		
-	ADS_CTH.Tags2.Status.LA02_GT42_V := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
-	ADS_CTH.Tags2.Status.LA02_GT31_V := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
+	ADS_CTH.Tags2.Status.LA02_GT42_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
+	ADS_CTH.Tags2.Status.LA02_GT31_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
 	ADS_CTH.Tags2.Status.LA02_GT41_V := LREAL_TO_REAL(GM_XXL.AI.T_BT3);
-	ADS_CTH.Tags2.Status.LA02_GT81_V := LREAL_TO_REAL(GM_XXL.AI.H_BT1);
-	ADS_CTH.Tags2.Status.LA02_GT11_V := LREAL_TO_REAL(GM_XXL.AI.T_BT1);
-	ADS_CTH.Tags2.Status.LA02_GT43_V := LREAL_TO_REAL(GM_XXL.AI.F_BT2);
+	ADS_CTH.Tags2.Status.LA02_GT81_PV := LREAL_TO_REAL(GM_XXL.AI.H_BT1);
+	ADS_CTH.Tags2.Status.LA02_GT11_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT1);
+	ADS_CTH.Tags2.Status.LA02_GT43_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT2);
 	
 	GT21(ProcessValue := AIn.AI09, ProcessError := AIn.AI09_Error);
-	ADS_CTH.Tags2.Status.LA02_GT21_V := LREAL_TO_REAL(GT21.Value);
+	ADS_CTH.Tags2.Status.LA02_GT21_PV := LREAL_TO_REAL(GT21.Value);
 	GT44(ProcessValue := AIn.AI10, ProcessError := AIn.AI10_Error);
-	ADS_CTH.Tags2.Status.LA02_GT44_V := LREAL_TO_REAL(GT44.Value);
+	ADS_CTH.Tags2.Status.LA02_GT44_PV := LREAL_TO_REAL(GT44.Value);
 	GT45(ProcessValue := AIn.AI11, ProcessError := AIn.AI11_Error);
 	ADS_CTH.Tags2.Status.LA02_GT45_V := LREAL_TO_REAL(GT45.Value);
 	GT46(ProcessValue := AIn.AI12, ProcessError := AIn.AI12_Error);
@@ -212,11 +212,11 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 	ADS_CTH.Tags2.Status.LA02_TF1_CMD := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1 * 100);
 	ADS_CTH.Tags2.Status.LA02_FF1_CMD := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1 * 100);
 	
-	lrTemp := ADS_CTH.Tags2.Status.LA02_GT42_V - ADS_CTH.Tags2.Status.LA02_GT31_V;
+	lrTemp := ADS_CTH.Tags2.Status.LA02_GT42_PV - ADS_CTH.Tags2.Status.LA02_GT31_PV;
 	IF lrTemp <> 0 THEN
-		ADS_CTH.Tags2.Status.LA02_Eff_V := LREAL_TO_REAL((ADS_CTH.Tags2.Status.LA02_GT41_V - ADS_CTH.Tags2.Status.LA02_GT31_V) / lrTemp);
+		ADS_CTH.Tags2.Status.LA02_Eff_PV := LREAL_TO_REAL((ADS_CTH.Tags2.Status.LA02_GT41_V - ADS_CTH.Tags2.Status.LA02_GT31_PV) / lrTemp);
 	ELSE
-		ADS_CTH.Tags2.Status.LA02_Eff_V := 0;	
+		ADS_CTH.Tags2.Status.LA02_Eff_PV := 0;	
 	END_IF
 	
 	Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_CTH.Tags2.Settings.LA02_TF1_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_TF1_MCMD / 100.0); 
@@ -233,9 +233,7 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="CTH_Interface">
-      <LineId Id="1322" Count="24" />
-      <LineId Id="1519" Count="23" />
-      <LineId Id="1347" Count="135" />
+      <LineId Id="2880" Count="184" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
