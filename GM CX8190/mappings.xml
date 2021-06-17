@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<VarLinks>
+	<OwnerA Name="TIPC^PLC1^PLC1 Instance">
+		<OwnerB Name="TIID^Device CTH (CX-BK)^Box CTH (CX-BK)">
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AO 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AO 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AO 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02_Error" VarB="AO 2.1 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03" VarB="AO 2.1 (KL3208-0010-4)^Channel 3^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03_Error" VarB="AO 2.1 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04" VarB="AO 2.1 (KL3208-0010-4)^Channel 4^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04_Error" VarB="AO 2.1 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05" VarB="AO 2.2 (KL3208-0010-4)^Channel 1^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05_Error" VarB="AO 2.2 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06" VarB="AO 2.2 (KL3208-0010-4)^Channel 2^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06_Error" VarB="AO 2.2 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07" VarB="AO 2.2 (KL3208-0010-4)^Channel 3^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07_Error" VarB="AO 2.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08" VarB="AO 2.2 (KL3208-0010-4)^Channel 4^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08_Error" VarB="AO 2.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI09" VarB="AO 3.1 (KL3208-0010-4)^Channel 1^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI09_Error" VarB="AO 3.1 (KL3208-0010-4)^Channel 1^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI10" VarB="AO 3.1 (KL3208-0010-4)^Channel 2^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI10_Error" VarB="AO 3.1 (KL3208-0010-4)^Channel 2^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI11" VarB="AO 3.1 (KL3208-0010-4)^Channel 3^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI11_Error" VarB="AO 3.1 (KL3208-0010-4)^Channel 3^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI12" VarB="AO 3.1 (KL3208-0010-4)^Channel 4^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI12_Error" VarB="AO 3.1 (KL3208-0010-4)^Channel 4^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI13" VarB="AO 3.2 (KL3208-0010-4)^Channel 1^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI13_Error" VarB="AO 3.2 (KL3208-0010-4)^Channel 1^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI14" VarB="AO 3.2 (KL3208-0010-4)^Channel 2^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI14_Error" VarB="AO 3.2 (KL3208-0010-4)^Channel 2^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI15" VarB="AO 3.2 (KL3208-0010-4)^Channel 3^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI15_Error" VarB="AO 3.2 (KL3208-0010-4)^Channel 3^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI16" VarB="AO 3.2 (KL3208-0010-4)^Channel 4^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI16_Error" VarB="AO 3.2 (KL3208-0010-4)^Channel 4^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17" VarB="AO 4.1 (KL3468-4)^Channel 1^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17_Error" VarB="AO 4.1 (KL3468-4)^Channel 1^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18" VarB="AO 4.1 (KL3468-4)^Channel 2^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18_Error" VarB="AO 4.1 (KL3468-4)^Channel 2^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19" VarB="AO 4.1 (KL3468-4)^Channel 3^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19_Error" VarB="AO 4.1 (KL3468-4)^Channel 3^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20" VarB="AO 4.1 (KL3468-4)^Channel 4^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20_Error" VarB="AO 4.1 (KL3468-4)^Channel 4^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI21" VarB="AO 4.2 (KL3468-4)^Channel 1^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI21_Error" VarB="AO 4.2 (KL3468-4)^Channel 1^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI22" VarB="AO 4.2 (KL3468-4)^Channel 2^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI22_Error" VarB="AO 4.2 (KL3468-4)^Channel 2^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI23" VarB="AO 4.2 (KL3468-4)^Channel 3^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI23_Error" VarB="AO 4.2 (KL3468-4)^Channel 3^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI24" VarB="AO 4.2 (KL3468-4)^Channel 4^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI24_Error" VarB="AO 4.2 (KL3468-4)^Channel 4^State" Size="1"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI01" VarB="DI 1 (KL1408)^Channel 1^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI02" VarB="DI 1 (KL1408)^Channel 2^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI03" VarB="DI 1 (KL1408)^Channel 3^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI04" VarB="DI 1 (KL1408)^Channel 4^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI05" VarB="DI 1 (KL1408)^Channel 5^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI06" VarB="DI 1 (KL1408)^Channel 6^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI07" VarB="DI 1 (KL1408)^Channel 7^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI08" VarB="DI 1 (KL1408)^Channel 8^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI09" VarB="DI 2 (KL1408)^Channel 1^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI10" VarB="DI 2 (KL1408)^Channel 2^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI11" VarB="DI 2 (KL1408)^Channel 3^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI12" VarB="DI 2 (KL1408)^Channel 4^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI13" VarB="DI 2 (KL1408)^Channel 5^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI14" VarB="DI 2 (KL1408)^Channel 6^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI15" VarB="DI 2 (KL1408)^Channel 7^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI16" VarB="DI 2 (KL1408)^Channel 8^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI17" VarB="DI 3 (KL1408)^Channel 1^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI18" VarB="DI 3 (KL1408)^Channel 2^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI19" VarB="DI 3 (KL1408)^Channel 3^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI20" VarB="DI 3 (KL1408)^Channel 4^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI21" VarB="DI 3 (KL1408)^Channel 5^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI22" VarB="DI 3 (KL1408)^Channel 6^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI23" VarB="DI 3 (KL1408)^Channel 7^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI24" VarB="DI 3 (KL1408)^Channel 8^Input"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[0]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 0"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[10]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 10"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[11]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 11"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[12]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 12"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[13]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 13"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[14]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 14"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[15]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 15"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[16]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 16"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[17]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 17"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[18]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 18"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[19]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 19"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[1]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 1"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[20]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 20"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[21]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 21"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[2]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 2"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[3]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 3"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[4]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 4"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[5]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 5"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[6]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 6"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[7]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 7"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[8]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 8"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[9]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 9"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^Status" VarB="Modbus RTU (KL6041)^Channel 1^State"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO01" VarB="DO 1 (KL2408)^Channel 1^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO02" VarB="DO 1 (KL2408)^Channel 2^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO03" VarB="DO 1 (KL2408)^Channel 3^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO04" VarB="DO 1 (KL2408)^Channel 4^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO05" VarB="DO 1 (KL2408)^Channel 5^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO06" VarB="DO 1 (KL2408)^Channel 6^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO07" VarB="DO 1 (KL2408)^Channel 7^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO08" VarB="DO 1 (KL2408)^Channel 8^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO09" VarB="DO 2 (KL2408)^Channel 1^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO10" VarB="DO 2 (KL2408)^Channel 2^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO11" VarB="DO 2 (KL2408)^Channel 3^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO12" VarB="DO 2 (KL2408)^Channel 4^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO13" VarB="DO 2 (KL2408)^Channel 5^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO14" VarB="DO 2 (KL2408)^Channel 6^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO15" VarB="DO 2 (KL2408)^Channel 7^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO16" VarB="DO 2 (KL2408)^Channel 8^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO01" VarB="RDO 1 (KL2012)^Channel 1^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO02" VarB="RDO 1 (KL2012)^Channel 2^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO03" VarB="RDO 2 (KL2012)^Channel 1^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO04" VarB="RDO 2 (KL2012)^Channel 2^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO01" VarB="AO 1.1 (KL4408-4)^Channel 1^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO02" VarB="AO 1.1 (KL4408-4)^Channel 2^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO03" VarB="AO 1.1 (KL4408-4)^Channel 3^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO04" VarB="AO 1.1 (KL4408-4)^Channel 4^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO05" VarB="AO 1.2 (KL4408-4)^Channel 1^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO06" VarB="AO 1.2 (KL4408-4)^Channel 2^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO07" VarB="AO 1.2 (KL4408-4)^Channel 3^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO08" VarB="AO 1.2 (KL4408-4)^Channel 4^Data Out"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^Ctrl" VarB="Modbus RTU (KL6041)^Channel 1^Ctrl"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[0]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 0"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[10]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 10"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[11]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 11"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[12]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 12"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[13]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 13"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[14]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 14"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[15]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 15"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[16]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 16"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[17]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 17"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[18]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 18"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[19]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 19"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[1]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 1"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[20]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 20"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[21]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 21"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[2]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 2"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[3]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 3"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[4]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 4"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[5]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 5"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[6]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 6"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[7]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 7"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[8]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 8"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[9]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 9"/>
+		</OwnerB>
+		<OwnerB Name="TIID^Device STD (CX-BK)^Box STD (CX-BK)">
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^Data In"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI01" VarB="DI 1 (KL1408)^Channel 1^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI02" VarB="DI 1 (KL1408)^Channel 2^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI03" VarB="DI 1 (KL1408)^Channel 3^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI04" VarB="DI 1 (KL1408)^Channel 4^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI05" VarB="DI 1 (KL1408)^Channel 5^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI06" VarB="DI 1 (KL1408)^Channel 6^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI07" VarB="DI 1 (KL1408)^Channel 7^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI08" VarB="DI 1 (KL1408)^Channel 8^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI09" VarB="DI 2 (KL1408)^Channel 1^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI10" VarB="DI 2 (KL1408)^Channel 2^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI11" VarB="DI 2 (KL1408)^Channel 3^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI12" VarB="DI 2 (KL1408)^Channel 4^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI13" VarB="DI 2 (KL1408)^Channel 5^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI14" VarB="DI 2 (KL1408)^Channel 6^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI15" VarB="DI 2 (KL1408)^Channel 7^Input"/>
+			<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI16" VarB="DI 2 (KL1408)^Channel 8^Input"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[0]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 0"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[10]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 10"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[11]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 11"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[12]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 12"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[13]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 13"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[14]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 14"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[15]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 15"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[16]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 16"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[17]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 17"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[18]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 18"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[19]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 19"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[1]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 1"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[20]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 20"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[21]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 21"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[2]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 2"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[3]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 3"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[4]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 4"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[5]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 5"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[6]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 6"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[7]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 7"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[8]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 8"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^D[9]" VarB="Modbus RTU (KL6041)^Channel 1^Data In 9"/>
+			<Link VarA="PlcTask Inputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData^Status" VarB="Modbus RTU (KL6041)^Channel 1^State"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO01" VarB="DO 1 (KL2408)^Channel 1^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO02" VarB="DO 1 (KL2408)^Channel 2^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO03" VarB="DO 1 (KL2408)^Channel 3^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO04" VarB="DO 1 (KL2408)^Channel 4^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO05" VarB="DO 1 (KL2408)^Channel 5^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO06" VarB="DO 1 (KL2408)^Channel 6^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO07" VarB="DO 1 (KL2408)^Channel 7^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO08" VarB="DO 1 (KL2408)^Channel 8^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO09" VarB="DO 2 (KL2408)^Channel 1^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO10" VarB="DO 2 (KL2408)^Channel 2^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO11" VarB="DO 2 (KL2408)^Channel 3^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO12" VarB="DO 2 (KL2408)^Channel 4^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO13" VarB="DO 2 (KL2408)^Channel 5^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO14" VarB="DO 2 (KL2408)^Channel 6^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO15" VarB="DO 2 (KL2408)^Channel 7^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO16" VarB="DO 2 (KL2408)^Channel 8^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO01" VarB="RDO 1 (KL2012)^Channel 1^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO02" VarB="RDO 1 (KL2012)^Channel 2^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO03" VarB="RDO 2 (KL2012)^Channel 1^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO04" VarB="RDO 2 (KL2012)^Channel 2^Output"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO01" VarB="AO 1.1 (KL4408-4)^Channel 1^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO02" VarB="AO 1.1 (KL4408-4)^Channel 2^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO03" VarB="AO 1.1 (KL4408-4)^Channel 3^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO04" VarB="AO 1.1 (KL4408-4)^Channel 4^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO05" VarB="AO 1.2 (KL4408-4)^Channel 1^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO06" VarB="AO 1.2 (KL4408-4)^Channel 2^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO07" VarB="AO 1.2 (KL4408-4)^Channel 3^Data Out"/>
+			<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO08" VarB="AO 1.2 (KL4408-4)^Channel 4^Data Out"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^Ctrl" VarB="Modbus RTU (KL6041)^Channel 1^Ctrl"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[0]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 0"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[10]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 10"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[11]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 11"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[12]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 12"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[13]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 13"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[14]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 14"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[15]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 15"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[16]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 16"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[17]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 17"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[18]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 18"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[19]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 19"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[1]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 1"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[20]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 20"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[21]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 21"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[2]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 2"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[3]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 3"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[4]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 4"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[5]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 5"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[6]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 6"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[7]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 7"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[8]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 8"/>
+			<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D[9]" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 9"/>
+		</OwnerB>
+	</OwnerA>
+</VarLinks>

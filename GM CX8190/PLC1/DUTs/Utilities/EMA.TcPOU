@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="EMA" Id="{b98d6a3f-d2e9-4475-a7ba-2dd6a3a8821f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK EMA
+VAR_INPUT
+	NewValue: LREAL;
+END_VAR
+VAR_OUTPUT
+	Value: LREAL;
+END_VAR
+VAR
+	Weight: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Value := Weight * NewValue + (1 - Weight) * Value;]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{4f362200-49e4-4aaa-b01f-f9b20fedbb24}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SetSampleCount(100);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSampleCount" Id="{b4a3000f-dce9-4f1c-994a-db80cd1d7cd7}">
+      <Declaration><![CDATA[METHOD SetSampleCount : BOOL
+VAR_INPUT
+	n: int;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Weight := 2.0 / (1.0 + n);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetValue" Id="{0b7f8250-5451-40ed-90e0-957159557063}">
+      <Declaration><![CDATA[METHOD SetValue : BOOL
+VAR_INPUT
+	NewValue: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Value := NewValue;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="EMA">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EMA.FB_init">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EMA.SetSampleCount">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="EMA.SetValue">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

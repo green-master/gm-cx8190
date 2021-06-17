@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="SetBit" Id="{69b065bc-58cc-4bb0-8793-a161fe34eb32}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION SetBit : ULINT
+VAR_INPUT
+	Value: ULINT;
+	BitNr: INT;
+	State: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF State THEN
+	SetBit := (Value AND (NOT SHL(INT_TO_ULINT(1), BitNr))) OR SHL(INT_TO_ULINT(1), BitNr);
+ELSE
+	SetBit := (Value AND (NOT SHL(INT_TO_ULINT(1), BitNr)));
+END_IF ]]></ST>
+    </Implementation>
+    <LineIds Name="SetBit">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

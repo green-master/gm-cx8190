@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="DigitalOutputOverrideParameters" Id="{74ea69b0-1f09-4367-a7ff-5e7ec4c6cdd4}">
+    <Declaration><![CDATA[TYPE DigitalOutputOverrideParameters :
+STRUCT
+    H_GP1_Override: BOOL; // Cirkulationspump värmekrets
+    H_GP1_OverrideValue: BOOL; // Cirkulationspump värmekrets
+    C_GP1_Override: BOOL; // Cirkulationspump kylkrets
+    C_GP1_OverrideValue: BOOL; // Cirkulationspump kylkrets
+    F_QM1_Override: BOOL; // Frånluftsspjäll
+    F_QM1_OverrideValue: BOOL; // Frånluftsspjäll
+    T_QM3_Override: BOOL; // Tilluftsspjäll
+    T_QM3_OverrideValue: BOOL; // Tilluftsspjäll
+    R_QM1_Override: BOOL; // Återluftsspjäll
+    R_QM1_OverrideValue: BOOL; // Återluftsspjäll
+    F_QM2_Override: BOOL; // Brandspjäll förbigång
+    F_QM2_OverrideValue: BOOL; // Brandspjäll förbigång
+    T_QM1_1_Override: BOOL; // Sektionsavfrostning
+    T_QM1_1_OverrideValue: BOOL; // Sektionsavfrostning
+    T_QM1_2_Override: BOOL; // Sektionsavfrostning
+    T_QM1_2_OverrideValue: BOOL; // Sektionsavfrostning
+    T_QM1_3_Override: BOOL; // Sektionsavfrostning
+    T_QM1_3_OverrideValue: BOOL; // Sektionsavfrostning
+    T_QM1_4_Override: BOOL; // Sektionsavfrostning
+    T_QM1_4_OverrideValue: BOOL; // Sektionsavfrostning
+    T_QM1_5_Override: BOOL; // Sektionsavfrostning
+    T_QM1_5_OverrideValue: BOOL; // Sektionsavfrostning
+    T_QM1_6_Override: BOOL; // Sektionsavfrostning
+    T_QM1_6_OverrideValue: BOOL; // Sektionsavfrostning
+    T_RUN_Override: BOOL; // Supply running (Aktiveras om tilluftsfläkten går)
+    T_RUN_OverrideValue: BOOL; // Supply running (Aktiveras om tilluftsfläkten går)
+    F_RUN_Override: BOOL; // Exhaust running (Aktiveras om frånluftsfläkten går)
+    F_RUN_OverrideValue: BOOL; // Exhaust running (Aktiveras om frånluftsfläkten går)
+	
+	AL_A_Override: BOOL; // A-larm
+	AL_A_OverrideValue: BOOL; // A-larm
+	AL_B_Override: BOOL; // B-larm
+	AL_B_OverrideValue: BOOL; // B-larm
+	AL_C_Override: BOOL; // C-larm
+	AL_C_OverrideValue: BOOL; // C-larm
+	AL_D_Override: BOOL; // D-larm
+	AL_D_OverrideValue: BOOL; // D-larm
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

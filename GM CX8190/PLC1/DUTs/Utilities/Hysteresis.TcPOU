@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Hysteresis" Id="{d8e65019-ab90-4b7b-9745-c0769a498cb8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Hysteresis
+VAR_INPUT
+	EN: BOOL := TRUE;
+	Value: LREAL;
+	LimitValue: LREAL;
+	Offset: LREAL; 
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	Above: BOOL;
+	Below: BOOL;
+END_VAR
+VAR
+	Hysteresis: INT;
+	CurValue: LREAL;
+	PreValue: LREAL;
+	HystLimit: LREAL;
+	HystOffset: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[HystLimit := LimitValue;
+HystOffset := Offset;
+IF EN THEN
+	Update(Value);
+ELSE
+	Reset();
+END_IF
+PreValue := CurValue;
+CurValue := Value;
+ENO := EN;
+]]></ST>
+    </Implementation>
+    <Method Name="Reset" Id="{af996c25-dd0c-4959-adb8-1ed05b4ea3bb}">
+      <Declaration><![CDATA[METHOD Reset
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Hysteresis := 0;
+Above := FALSE;
+Below := FALSE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Update" Id="{39d0cef1-d6c8-4060-a19c-158bd1aa1789}">
+      <Declaration><![CDATA[METHOD PRIVATE Update
+VAR_INPUT
+	Value: LREAL; 
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ABS(Value - HystLimit) >= ABS(HystOffset) THEN
+	Hysteresis := 0;
+END_IF
+IF (Value > (LimitValue + Offset * Hysteresis)) AND (PreValue <= (LimitValue + Offset * Hysteresis)) THEN
+	IF Hysteresis > -1 THEN
+		Hysteresis := Hysteresis - 1;
+	END_IF
+END_IF
+IF (Value <= (LimitValue + Offset * Hysteresis)) AND (PreValue > (LimitValue + Offset * Hysteresis)) THEN
+	IF Hysteresis < 1 THEN
+		Hysteresis := Hysteresis + 1;
+	END_IF
+END_IF
+Above := CurValue > (LimitValue + HystOffset * Hysteresis);
+Below := CurValue <= (LimitValue + HystOffset * Hysteresis);
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="Hysteresis">
+      <LineId Id="65" Count="1" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Hysteresis.Reset">
+      <LineId Id="3" Count="0" />
+      <LineId Id="7" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Hysteresis.Update">
+      <LineId Id="3" Count="12" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

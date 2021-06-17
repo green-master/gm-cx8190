@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <POU Name="WriteLRealIf" Id="{c4c78d15-a769-439d-aef5-fe9424c9b94e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK WriteLRealIf
+VAR_IN_OUT
+	Out: LREAL;
+END_VAR
+VAR_INPUT
+	EN: BOOL := TRUE;
+	In: LREAL;
+END_VAR
+VAR_OUTPUT
+	ENO: bool;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN;
+IF EN THEN
+	Out := In;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="WriteLRealIf">
+      <LineId Id="9" Count="0" />
+      <LineId Id="17" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

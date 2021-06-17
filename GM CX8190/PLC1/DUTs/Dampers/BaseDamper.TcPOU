@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="BaseDamper" Id="{e494647b-56ae-454d-af7e-56fa3303edfc}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK BaseDamper
+VAR_INPUT
+	Open: REFERENCE TO BOOL;
+	IsOpen: REFERENCE TO BOOL;
+	IsClosed: REFERENCE TO BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="BaseDamper">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

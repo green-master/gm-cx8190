@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="StartupRecycling" Id="{ea151a8a-d762-4e34-8f4c-0ad68440122f}">
+    <Declaration><![CDATA[TYPE StartupRecycling :
+STRUCT
+	EN: BOOL;
+	Duration: LTIME;
+	Speed: LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

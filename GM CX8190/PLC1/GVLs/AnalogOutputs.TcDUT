@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="AnalogOutputs" Id="{f76d8748-ec77-45f7-84d1-e13c95b447a3}">
+    <Declaration><![CDATA[TYPE AnalogOutputs :
+STRUCT
+	// ÅV.QN1 VVX-reglering (0-10 V spjäll) 
+    AO01 AT %Q*: WORD;
+	//  T.GQ1 Tilluftsfläkt 
+    AO02 AT %Q*: WORD;
+	// F.GQ1 Frånluftsfläkt 
+    AO03 AT %Q*: WORD;
+	// C.QN1 Kylkrets ventil 
+    AO04 AT %Q*: WORD;
+	// H.QN1 Värmekrets ventil 
+    AO05 AT %Q*: WORD;
+	// Reservutgång
+    AO06 AT %Q*: WORD;
+	// Reservutgång
+    AO07 AT %Q*: WORD;
+	// Reservutgång
+    AO08 AT %Q*: WORD;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Main" Id="{0fc71ecf-56d1-4789-9140-ae6c41febaf6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Main
+VAR
+	//Enum1: FanControlTypes := FanControlTypes.Flow;
+	GreenMaster: GreenMasterXXL_FB;
+	StartupDone: BOOL;
+	EventLog: EventLog;
+	xxx: bool;
+	Saver: FB_S_UPS_CX81xx;
+	HostName: FB_GetHostName;
+	UseReverse_F_QN1: BOOL;
+	test1: bool;
+	
+	CTH_Interface: CTH_Interface;
+	Stena_Interface: Stena_Interface;
+	GreenMasterDI: GreenMasterDI;
+	GreenMasterDO: GreenMasterDO;
+	GreenMasterAI: GreenMasterAI;
+	GreenMasterAO: GreenMasterAO;
+	GreenMasterAI2_RTU: GreenMasterAIU_ModbusRTU;
+	AnySensorError: BOOL;
+	{attribute 'TcEncoding':='UTF-8'}
+	str: STRING;
+	n: INT;
+	
+	NightCooling: BOOL;
+	DebugStop: BOOL;
+END_VAR
+VAR PERSISTENT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[EventLog(EventLogData := Globals.EventLog);
+IF NOT StartupDone THEN
+	Globals.SystemStartTime := NowDT();
+	EventLog.LogEventJSON(Message := 'Starting GreenMaster', Kind := EventTypes.Information, VarAdr := ADR(GreenMaster.Parameters.System.Operation), VarSize := SIZEOF(GreenMaster.Parameters.System.Operation), VarType := 'SystemOperationParameters');
+	EventLog.LogEventJSON(Message := 'Test data $${KFactor} and $${PressureControl.SP}', Kind := EventTypes.Debug, VarAdr := ADR(GreenMaster.Parameters.Regulation.ExtractAir), VarSize := SIZEOF(GreenMaster.Parameters.Regulation.ExtractAir), VarType := 'AirParameters');	
+	StartupDone := TRUE;
+END_IF
+
+Globals.SystemUpTime := DT_TO_DWORD(NowDT()) - DT_TO_DWORD(Globals.SystemStartTime);
+
+NightCooling := FALSE;
+
+str := '';
+FOR n := 0 TO GlobalSettings.MAX_COMPONENTS DO
+	IF GlobalSettings.Components[n].Name = ComponentNames.NONE THEN
+		EXIT;
+	END_IF
+	IF GlobalSettings.Components[n].EN THEN
+		IF str <> '' THEN
+			str := concat(str, ', ');
+		END_IF
+		str := concat(str, TO_STRING(GlobalSettings.Components[n].Name));
+	END_IF
+END_FOR
+Globals.Components := str;
+
+HostName(bExecute := TRUE);
+// CX-503E98 CTH 1
+// CX-492F8F Diginet lab
+// CX-4F1CE6 NIBE AirSite lab
+// 
+Globals.HostName := HostName.sHostName; 
+IF F_ToUCase(HostName.sHostName) = 'CX-503E98' THEN
+	UseReverse_F_QN1 := FALSE;
+ELSE
+	UseReverse_F_QN1 := GreenMaster.Parameters.Io.AOutCalibration.F_QN1.InvertedOutput;
+END_IF
+
+IF GreenMaster.Parameters.System.Operation.IoUpdateEN THEN
+	GreenMasterDI(DIn := Globals.IO.DIn, DInLevels := GreenMaster.Parameters.IO.DInLevels);
+	GreenMasterDO(DOut := Globals.IO.DOut);
+	GreenMasterAI(AIn := Globals.IO.AIn);
+	GreenMasterAO(AOut := Globals.IO.AOut);
+	GreenMasterAI2_RTU(EN := TRUE);
+END_IF
+
+CTH_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_CTH).EN, AIn := Globals.IO.AIn);	
+Stena_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_CTH).EN, AIn := Globals.IO.AIn);	
+
+IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
+	Globals.IO.DOut.DO15 := GreenMaster.Parameters.Alarm.Active.A.Fire;
+	IF GreenMaster.Parameters.System.Operation.RemoteEN THEN
+		IF GreenMaster.Parameters.IO.AIn.T_BT1 > (GreenMaster.Parameters.Regulation.NightCoolingLimit + 0.5) THEN
+			NightCooling := CTH_Interface.NightCooling;		
+		END_IF
+		IF GreenMaster.Parameters.IO.AIn.T_BT1 < GreenMaster.Parameters.Regulation.NightCoolingLimit THEN
+			NightCooling := FALSE;		
+		END_IF
+		GreenMaster.GetParameters().System.Operation.FireDamperUsed := FALSE;		
+	END_IF
+END_IF
+
+IF GetComponent(Name := ComponentNames.GM_BASE).EN THEN
+	GreenMaster.Update(DO_ := GreenMasterDO, AO := GreenMasterAO);
+	GreenMaster(
+		EN := TRUE AND (NOT DebugStop),
+		RemoteEN := CTH_Interface.ENO,  
+		DI := GreenMasterDI,
+		AI := GreenMasterAI,
+		AI2 := GreenMasterAI2_RTU,
+		TCP_AI := SmokeControl.GreenMasterSmokeControl,  
+		Reverse_F_QN1 := UseReverse_F_QN1,
+		NightCooling := NightCooling,
+		EnableFansAndDampers := NOT CTH_Interface.FirePanelActive
+	);
+END_IF
+
+IF GetComponent(Name := ComponentNames.SIMULATION).EN THEN
+	IF GreenMaster.GetParameters().System.Operation.Simulation THEN
+		GreenMaster.Simulation(Parameters := GreenMaster.GetParameters(), ParametersXXL := GreenMaster.GetParametersXXL());			
+	END_IF
+END_IF
+
+// Save persistent data on power off or fail
+Saver();
+]]></ST>
+    </Implementation>
+    <LineIds Name="Main">
+      <LineId Id="1665" Count="7" />
+      <LineId Id="1682" Count="35" />
+      <LineId Id="1826" Count="0" />
+      <LineId Id="1821" Count="3" />
+      <LineId Id="1828" Count="0" />
+      <LineId Id="1827" Count="0" />
+      <LineId Id="1718" Count="2" />
+      <LineId Id="1858" Count="0" />
+      <LineId Id="1721" Count="33" />
+      <LineId Id="1791" Count="0" />
+      <LineId Id="1755" Count="1" />
+      <LineId Id="1463" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

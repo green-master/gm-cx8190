@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmsC" Id="{32a8af76-da63-4fea-bf75-0105f912c5d2}">
+    <Declaration><![CDATA[TYPE AlarmsC :
+STRUCT
+	ExternalSmokeControl: BOOL;
+	ModbusRTU: BOOL;
+	ModbusTCP: BOOL;
+	SensorFailure: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

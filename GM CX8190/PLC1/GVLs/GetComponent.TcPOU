@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="GetComponent" Id="{746cb20f-f503-4212-b9fd-5d00e02fc528}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION GetComponent : REFERENCE TO Component
+VAR_INPUT
+	Name: ComponentNames;
+END_VAR
+VAR
+	n: INT;
+	Found: int := -1;
+	EmptyComponent: Component;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[GetComponent REF= EmptyComponent;
+FOR n := 0 TO GlobalSettings.MAX_COMPONENTS - 1 DO
+	IF GlobalSettings.Components[n].Name = Name THEN
+		Found := n;
+		EXIT;
+	END_IF
+END_FOR
+
+IF Found >= 0 THEN
+	GetComponent REF= GlobalSettings.Components[Found];
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="GetComponent">
+      <LineId Id="15" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="LocalTimeControl" Id="{174f7cf2-ee3d-47ab-a9a1-cb136c0edc6c}">
+    <Declaration><![CDATA[TYPE LocalTimeControl :
+STRUCT
+	MondayStart: DT;
+	MondayStop: DT;
+	TuesdayStart: DT;
+	TuesdayStop: DT;
+	WednesdayStart: DT;
+	WednesdayStop: DT;
+	ThursdayStart: DT;
+	ThursdayStop: DT;
+	FridayStart: DT;
+	FridayStop: DT;
+	SaturdayStart: DT;
+	SaturdayStop: DT;
+	SundayStart: DT;
+	SundaydayStop: DT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

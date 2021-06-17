@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="BaseIO" Id="{bc2cc02a-bef6-49ac-bb7f-3acf66c3e4b2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK BaseIO
+VAR_INPUT
+	ProcessError: BOOL;
+	ProcessErrorCode: INT := 0;
+END_VAR
+VAR_OUTPUT
+	Error: BOOL;
+	ErrorCode: INT := 0;
+END_VAR
+VAR
+	Kind: TIoKind;
+END_VAR
+VAR PERSISTENT
+	{attribute 'TcEncoding':='UTF-8'}
+	Category: STRING;
+	{attribute 'TcEncoding':='UTF-8'}
+	SystemName: STRING;
+	{attribute 'TcEncoding':='UTF-8'}
+	CustomName: STRING;
+	ErrorDescription: STRING;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="BaseIO">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

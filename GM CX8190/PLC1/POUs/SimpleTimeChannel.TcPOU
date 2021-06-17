@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="SimpleTimeChannel" Id="{e47102cb-d6a6-4acd-a377-83c30fec44bf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SimpleTimeChannel
+VAR_INPUT
+	EN: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+	LocalSystemTime: FB_LocalSystemTime;
+	Active: BOOL;
+	InitDone: bool;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT InitDone THEN
+	EN := TRUE;
+	InitDone := TRUE;
+END_IF
+LocalSystemTime(bEnable := TRUE);
+IF LocalSystemTime.bValid THEN
+	Active := (NOT EN) OR ((LocalSystemTime.systemTime.wHour > 5 AND LocalSystemTime.systemTime.wHour < 20) OR
+		(LocalSystemTime.systemTime.wHour = 5 AND LocalSystemTime.systemTime.wMinute >= 30)); 
+END_IF
+
+ENO := EN AND Active;
+]]></ST>
+    </Implementation>
+    <LineIds Name="SimpleTimeChannel">
+      <LineId Id="14" Count="8" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <DUT Name="TIoKind" Id="{2219ce45-118e-4c6a-a822-5e09aa3196d1}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE TIoKind :
+(
+	DigitalIn := 0, DigitalOut, AnalogIn, AnalogOut
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

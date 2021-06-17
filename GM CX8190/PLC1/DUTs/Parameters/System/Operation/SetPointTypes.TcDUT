@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SetPointTypes" Id="{73abc6dc-1bf0-4b66-ad19-b8082a03c809}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE SetPointTypes :
+(
+	Standard := 0, Alternative
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

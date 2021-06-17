@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <POU Name="WriteBoolIf" Id="{e1d5238b-e53c-4fdc-ae3a-44a96228925f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK WriteBoolIf
+VAR_IN_OUT
+	Out: BOOL;
+END_VAR
+VAR_INPUT
+	EN: BOOL := TRUE;
+	In: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN;
+IF EN THEN
+	Out := In;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="WriteBoolIf">
+      <LineId Id="9" Count="0" />
+      <LineId Id="17" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

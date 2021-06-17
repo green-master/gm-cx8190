@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmsDelaysB" Id="{809e6806-49a9-41d0-b284-3f497d289f53}">
+    <Declaration><![CDATA[// MUST be in same order and number as AlarmSignals
+TYPE AlarmsDelaysB :
+STRUCT
+	RegulationDeviation: TIME := T#5S;
+	SupplyAirDeviation: TIME := T#5S;
+	ExtractAirDeviation: TIME := T#5S;
+	SupplyFan: TIME := T#5S;
+	ExtractFan: TIME := T#5S;
+	HeatExchangerEfficiency: TIME := T#5S;
+	Defrost: TIME := T#5S;
+	SupplyFilter: TIME := T#5S;
+	ExtractFilter: TIME := T#5S;
+	SmokeDetectorService: TIME := T#5S;
+	Pump1: TIME := T#5S;
+	Pump2: TIME := T#5S;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

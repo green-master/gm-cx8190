@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="InterpolateNewton" Id="{b5818b84-20d3-40eb-9693-6144dbb836a6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK InterpolateNewton
+VAR_INPUT
+	EN: BOOL;
+	x: LREAL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	y: LREAL;
+END_VAR
+VAR CONSTANT
+	NUM_POINTS: INT := 9;
+END_VAR
+VAR
+	InitDone: BOOL;
+	yd: ARRAY [0..NUM_POINTS - 1, 0..NUM_POINTS - 1] OF LREAL;
+	i: INT;
+END_VAR
+VAR PERSISTENT
+	xd: ARRAY [0..NUM_POINTS - 1] OF LREAL;
+	yv: ARRAY [0..NUM_POINTS - 1] OF LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT InitDone THEN
+	FOR i := 0 TO NUM_POINTS - 1 DO
+		yd[i, 0] := yv[i];
+	END_FOR
+	DividedDiffTable();
+	InitDone := TRUE;
+END_IF
+y := ApplyFormula(x);
+ENO := EN;
+]]></ST>
+    </Implementation>
+    <Method Name="ApplyFormula" Id="{37dced75-6cd7-4655-9076-4916c1ae9ceb}">
+      <Declaration><![CDATA[METHOD ApplyFormula : LREAL
+VAR_INPUT
+	Value: LREAL;
+END_VAR
+VAR
+	Sum: LREAL;
+	i: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Sum := yd[0, 0];
+FOR i := 1 TO NUM_POINTS - 1 DO
+	Sum := Sum + ProTerm(i, Value) * yd[0, i];
+END_FOR
+ApplyFormula := Sum;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="DividedDiffTable" Id="{efdf09d8-3613-4a4a-8a0f-b90ef3dfcba2}">
+      <Declaration><![CDATA[METHOD DividedDiffTable : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	i: INT;
+	j: int;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 1 TO NUM_POINTS - 1 DO
+	FOR j := 0 TO NUM_POINTS - i - 1 DO
+		IF ABS(xd[j] - xd[i + j]) > 0.00000001 THEN
+			yd[j,i] := (yd[j,i - 1] - yd[j + 1,i - 1]) / (xd[j] - xd[i + j]);			
+		END_IF
+	END_FOR
+END_FOR
+DividedDiffTable := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ProTerm" Id="{d2c1070f-e0f4-4c9a-b7f5-b8b4cfe03957}">
+      <Declaration><![CDATA[METHOD ProTerm : LREAL
+VAR_INPUT
+	i: INT;
+	Value: LREAL;
+END_VAR
+VAR
+	Pro: LREAL;
+	j: int;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Pro := 1;
+FOR j := 0 TO i - 1 DO
+	Pro := Pro * (Value - xd[j]);
+END_FOR
+ProTerm := Pro;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="InterpolateNewton">
+      <LineId Id="110" Count="0" />
+      <LineId Id="117" Count="2" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="111" Count="1" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="InterpolateNewton.ApplyFormula">
+      <LineId Id="5" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="2" />
+    </LineIds>
+    <LineIds Name="InterpolateNewton.DividedDiffTable">
+      <LineId Id="5" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="19" Count="1" />
+    </LineIds>
+    <LineIds Name="InterpolateNewton.ProTerm">
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="3" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

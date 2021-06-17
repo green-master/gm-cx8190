@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="StartControl" Id="{f875db22-35e5-4944-86d0-b05b940a8a02}">
+    <Declaration><![CDATA[TYPE StartControl :
+STRUCT
+	UseLocalTimeControl: BOOL;
+	UseRemoteControl: BOOL;
+	RemoteControlStart: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

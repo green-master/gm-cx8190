@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="ActuatorMonitor" Id="{0cd89761-dd24-4a1e-8b25-84bc93830cf6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ActuatorMonitor
+VAR_INPUT
+	Output: LREAL;
+	Input: LREAL;
+	Activated: BOOL := TRUE;
+	ActivatedError: BOOL := FALSE;
+	TimeoutMs: DINT := 30000;
+	Treshold: LREAL := 0.1;
+END_VAR
+VAR_OUTPUT
+	Error: BOOL := FALSE;
+END_VAR
+VAR
+	ActivatedSignal: DigitalSignal;
+	OutputOnTimer: Timer;
+	InputOffTimer: Timer;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Measure ON time for activation signal
+ActivatedSignal(Signal := Activated);
+
+// Measure ON time for output signal
+IF Output < Treshold THEN
+	OutputOnTimer.Restart();
+END_IF
+
+// Measure OFF time for 50% input signal
+IF Input >= (Treshold / 2) THEN
+	InputOffTimer.Restart();
+END_IF
+
+Error := 	(
+				(ActivatedSignal.OnTime() > TimeoutMs) AND 
+				(OutputOnTimer.ElapsedTime() > TimeoutMs) AND 
+				(
+					(InputOffTimer.ElapsedTime() > TimeoutMs) OR
+					ActivatedError
+				)
+			);
+]]></ST>
+    </Implementation>
+    <LineIds Name="ActuatorMonitor">
+      <LineId Id="3" Count="20" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AnalogOutputOverrideParameters" Id="{f71fbf8b-2eec-4faf-9b62-a707c4aa3541}">
+    <Declaration><![CDATA[TYPE AnalogOutputOverrideParameters :
+STRUCT
+	F_QN1_Override: BOOL; // $(W1,S,R0) VVX-reglering (0-10 V spjäll)
+	F_QN1_OverrideValue: LREAL; // $(W1,S,R0) VVX-reglering (0-10 V spjäll)
+	T_GQ1_Override: BOOL; // $(W1,S,R0) Tilluftsfläkt
+	T_GQ1_OverrideValue: LREAL; // $(W1,S,R0) Tilluftsfläkt
+	F_GQ1_Override: BOOL; // $(W1,S,R0) Frånluftsfläkt
+	F_GQ1_OverrideValue: LREAL; // $(W1,S,R0) Frånluftsfläkt
+	C_QN1_Override: BOOL; // $(W1,S,R0) Kylkrets ventil
+	C_QN1_OverrideValue: LREAL; // $(W1,S,R0) Kylkrets ventil
+	H_QN1_Override: BOOL; // $(W1,S,R0) Värmekrets ventil
+	H_QN1_OverrideValue: LREAL; // $(W1,S,R0) Värmekrets ventil
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

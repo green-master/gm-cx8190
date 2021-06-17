@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="DigitalOutputs" Id="{add36bd4-418e-4d08-93e3-6612e2faae35}">
+    <Declaration><![CDATA[TYPE DigitalOutputs :
+STRUCT
+	// H.GP1 Cirkulationspump värmekrets 
+	DO01 AT %Q*: BOOL;
+    //  C.GP1 Cirkulationspump kylkrets 
+	DO02 AT %Q*: BOOL;
+    // Exhaust running (Aktiveras om frånluftsfläkten går) 
+	DO03 AT %Q*: BOOL;
+    // F.QM1 Frånluftsspjäll 
+	DO04 AT %Q*: BOOL;
+    // T.QM3 Tilluftsspjäll 
+	DO05 AT %Q*: BOOL;
+    // R.QM1 Återluftsspjäll 
+	DO06 AT %Q*: BOOL;
+    // F.QM2 Brandspjäll förbigång 
+	DO07 AT %Q*: BOOL;
+    // Supply running (Aktiveras om tilluftsfläkten går) 
+	DO08 AT %Q*: BOOL;
+    // Sektionsavfrostningsspjäll T.QM1:1 
+	DO09 AT %Q*: BOOL;
+    // Sektionsavfrostningsspjäll T.QM1:2 
+	DO10 AT %Q*: BOOL;
+    // Sektionsavfrostningsspjäll T.QM1:3 
+	DO11 AT %Q*: BOOL;
+    // Sektionsavfrostningsspjäll T.QM1:4 
+	DO12 AT %Q*: BOOL;
+    // Sektionsavfrostningsspjäll T.QM1:5 
+	DO13 AT %Q*: BOOL;
+    // Sektionsavfrostningsspjäll T.QM1:6 
+	DO14 AT %Q*: BOOL;
+    // Reservutgång 
+	DO15 AT %Q*: BOOL;
+    // P2
+	DO16 AT %Q*: BOOL;
+	
+	// A-larm
+	RDO01 AT %Q*: BOOL;
+    // B-larm
+	RDO02 AT %Q*: BOOL;
+    // C-larm
+	RDO03 AT %Q*: BOOL;
+    // D-larm
+	RDO04 AT %Q*: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

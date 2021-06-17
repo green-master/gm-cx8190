@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="User" Id="{34c6725e-4b54-439e-9ba3-c63eef7afe35}">
+    <Declaration><![CDATA[TYPE User :
+STRUCT
+	{attribute 'TcEncoding':='UTF-8'}
+	Email: STRING;
+	{attribute 'TcEncoding':='UTF-8'}
+	Password: STRING(30);
+	{attribute 'TcEncoding':='UTF-8'}
+	Name: STRING;
+	{attribute 'TcEncoding':='UTF-8'}
+	Phone: STRING(20);
+	Permissions: Permissions;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

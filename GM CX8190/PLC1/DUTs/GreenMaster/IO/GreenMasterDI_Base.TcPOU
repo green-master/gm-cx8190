@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <POU Name="GreenMasterDI_Base" Id="{75c48f22-9e49-46fc-bb83-7faa6e107f38}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterDI_Base
+VAR_IN_OUT
+	DIn: DigitalInputs;
+	DInLevels: DigitalInputLevels;
+END_VAR
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	Auto: BOOL;
+	CentralFireAlarm: BOOL;
+	FuseAlarm: BOOL;
+	Hand: BOOL;
+	T_GQ1_Alarm: BOOL;
+	F_GQ1_Alarm: BOOL;
+	T_QM3_Closed: BOOL;
+	T_QM3_Open: BOOL;
+	F_QM1_Closed: BOOL;
+	F_QM1_Open: BOOL;
+	F_QM2_Closed: BOOL;
+	F_QM2_Open: BOOL;
+	ExtendedOperation: BOOL;
+	ServiceAlarmCentralAndSmokeExhaustAir: BOOL;
+	FireAlarm: BOOL;
+	ServiceAlarmSupplyAir: BOOL;
+	H_GP1_Running: BOOL;
+	C_GP1_Running: BOOL;
+	H_GP1_Alarm: BOOL;
+	C_GP1_Alarm: BOOL;
+	TX1_Running: BOOL;
+	ResetAlarm: BOOL;
+	P2_Running: BOOL;
+	ExpansionVesselAlarm: BOOL;
+	FireActivateSupplyAir: BOOL;
+	FireDeactivateSupplyAir: BOOL;
+	FireActivateExtractAir: BOOL;
+	FireDeactivateExtractAir: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="GreenMasterDI_Base">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

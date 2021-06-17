@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="PressureInput" Id="{f67aaebf-eb74-43fd-9634-7b59ef2b5baa}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PressureInput EXTENDS AnalogInput
+VAR_INPUT
+	Range: LREAL := 32767;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Aver: Average;
+END_VAR
+VAR PERSISTENT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{ba164769-91c8-4910-878e-3bfbdd95965c}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bInitRetains THEN
+	ProcessMin := 0;
+	ProcessMax := 30000;
+	MinValue := 0;
+	MaxValue := 30000;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetValue" Id="{08f2c029-ba38-454f-9a1e-911b2aaa688f}">
+      <Declaration><![CDATA[METHOD GetValue : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Aver(NewSample := (SUPER^.GetValue() / 32767) * Range);
+GetValue := Aver.Value;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="PressureInput">
+      <LineId Id="12" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PressureInput.FB_init">
+      <LineId Id="12" Count="0" />
+      <LineId Id="8" Count="3" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="PressureInput.GetValue">
+      <LineId Id="11" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="SmokeDetector" Id="{21482072-5996-45ed-abad-28da342bc882}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SmokeDetector
+VAR_INPUT
+	EN: BOOL;
+	Input: REFERENCE TO AnalogInput;
+	FireAlarm: REFERENCE TO AnalogAlarm;
+	ServiceAlarm: REFERENCE TO AnalogAlarm;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="SmokeDetector">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

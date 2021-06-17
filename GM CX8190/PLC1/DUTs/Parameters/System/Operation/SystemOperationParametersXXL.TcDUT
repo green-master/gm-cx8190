@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SystemOperationParametersXXL" Id="{38c43b09-b525-4a8c-923b-6cf311066ad2}">
+    <Declaration><![CDATA[TYPE SystemOperationParametersXXL :
+STRUCT
+	VentilationEN: BOOL := TRUE;	// Enable the ventilation
+	VentilationENO: BOOL; // The ventilation is running
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

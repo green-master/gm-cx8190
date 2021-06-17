@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="DigitalSignal" Id="{479e134f-75f0-4165-808c-efafb9f88e44}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK DigitalSignal
+VAR_INPUT
+	Signal: BOOL;
+END_VAR
+VAR_OUTPUT
+	State: BOOL;
+END_VAR
+VAR
+	_PosFlank: BOOL;
+	_NegFlank: BOOL;
+	Timer: Timer;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Signal <> State THEN
+	State := Signal;
+	IF State THEN
+	  _PosFlank := TRUE;
+	ELSE
+	  _NegFlank := TRUE;
+	END_IF;
+	Timer.Restart();
+END_IF;
+]]></ST>
+    </Implementation>
+    <Method Name="NegFlank" Id="{084ad7ff-3517-4efc-bf51-73b1040e8e50}">
+      <Declaration><![CDATA[METHOD NegFlank : BOOL
+VAR_INPUT
+	Reset: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[NegFlank := _NegFlank;
+if Reset then
+	_NegFlank := FALSE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OffTime" Id="{6870f297-3563-48d6-a194-4c0a89294c1a}">
+      <Declaration><![CDATA[METHOD OffTime : LINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT State THEN
+	OffTime := Timer.ElapsedTime();
+ELSE
+	OffTime := 0;
+END_IF;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnTime" Id="{737c220b-e6d8-4cd6-9d85-6e4160018fd8}">
+      <Declaration><![CDATA[METHOD OnTime : LINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF State THEN
+	OnTime := Timer.ElapsedTime();
+ELSE
+	OnTime := 0;
+END_IF;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PosFlank" Id="{71808a80-b9c8-4ffa-a24c-b4dc129a17f1}">
+      <Declaration><![CDATA[METHOD PosFlank : BOOL
+VAR_INPUT
+	Reset: BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[PosFlank := _PosFlank;
+if Reset then
+	_PosFlank := FALSE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="DigitalSignal">
+      <LineId Id="3" Count="8" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="DigitalSignal.NegFlank">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="DigitalSignal.OffTime">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="DigitalSignal.OnTime">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="DigitalSignal.PosFlank">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

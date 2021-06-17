@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="TemperatureControlParametersFB" Id="{354b90fc-0e79-491e-b97a-00aae56e722e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TemperatureControlParametersFB
+VAR_INPUT
+	EN: BOOL; // $(W1,S,R0)
+	TemperatureControlSource: TemperatureControlSources; // $(W1,S,R0)
+	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.IncreaseToHeat;
+	SetPointAdjustment: SetPointAdjustment;
+	Control: ControllerParameters := ( SP := 20, P := 0.2, I := T#10M );
+	FreezeProtectionControl: ControllerParameters;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="MaxOutput" Id="{4400b954-ec81-45b5-a67c-5966ca43201c}">
+      <Declaration><![CDATA[METHOD MaxOutput : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF HeaterOutputDirection = HeaterOutputDirections.IncreaseToHeat THEN
+	MaxOutput := 1;
+ELSE
+	MaxOutput := 0;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MinOutput" Id="{cd59ac2d-a900-43e3-8226-cf487caa82ae}">
+      <Declaration><![CDATA[METHOD MinOutput : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF HeaterOutputDirection = HeaterOutputDirections.IncreaseToHeat THEN
+	MinOutput := 0;
+ELSE
+	MinOutput := 1;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="TemperatureControlParametersFB">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="TemperatureControlParametersFB.MaxOutput">
+      <LineId Id="6" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="TemperatureControlParametersFB.MinOutput">
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

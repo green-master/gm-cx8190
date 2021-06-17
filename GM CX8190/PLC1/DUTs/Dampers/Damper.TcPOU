@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Damper" Id="{fab3892b-c50d-4312-9c0b-fc77bd04201c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Damper EXTENDS BaseDamper
+VAR_INPUT
+	IO_Open: REFERENCE TO DigitalOutput;
+	IO_FB1, IO_FB2: REFERENCE TO DigitalInput;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	DamperMonitor: DamperMonitor; 
+	Error: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[DamperMonitor(Damper := Open, FB1 := IsOpen, FB2 := IsClosed);
+Error := DamperMonitor.Error;]]></ST>
+    </Implementation>
+    <LineIds Name="Damper">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

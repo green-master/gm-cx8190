@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="NightReduction" Id="{29c0e371-e0b5-4f01-854c-edf6a97a8314}">
+    <Declaration><![CDATA[TYPE NightReduction :
+STRUCT
+	EN: BOOL;
+	StartTime: DT;
+	StopTime: DT;
+	SupplyAirFan: LREAL;
+	ExtractAitFan: LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

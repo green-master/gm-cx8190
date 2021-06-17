@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmLimits" Id="{e63e9d21-ed53-492f-b188-1ba71fd67022}">
+    <Declaration><![CDATA[TYPE AlarmLimits :
+STRUCT
+	FireAlarmSupplyAir: LREAL := 38; // $(W1,S,R0)
+	RegulationDeviationAlarm: LREAL := 4; // $(W1,S,R0)
+	SupplyAirPressureDeviationAlarm: LREAL := 30; // $(W1,S,R0)
+	ExtractAirPressureDeviationAlarm: LREAL := 30; // $(W1,S,R0)
+	SupplyAirFlowDeviationAlarm: LREAL := 0.3; // $(W1,S,R0)
+	ExtractAirFlowDeviationAlarm: LREAL := 0.3; // $(W1,S,R0)
+	HeatExchangerEfficiencyAlarm: LREAL; // $(W1,S,R0)
+	DefrostAlarm: LREAL := -1; // $(W1,S,R0)
+	SupplyFilterAlarm: LREAL := 150; // $(W1,S,R0)
+	ExtractFilterAlarm: LREAL := 150; // $(W1,S,R0)
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

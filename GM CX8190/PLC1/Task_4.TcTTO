@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <Task Name="Task_4" Id="{d5b6047b-d7d9-48bf-8303-56a0d9e4e330}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>500000</CycleTime>
+    <Priority>2</Priority>
+    <PouCall>
+      <Name>SmokeControl</Name>
+    </PouCall>
+    <TaskFBGuid>{5d07652a-6011-4f01-829a-ff300f7b3105}</TaskFBGuid>
+    <Fb_init>{c4a5b22e-43ff-4814-98df-d4457e1cf4a5}</Fb_init>
+    <Fb_exit>{88011d7c-1894-4899-a500-418ea3362402}</Fb_exit>
+    <CycleUpdate>{1932eb4c-e43b-49dc-be44-e5ce8f683b64}</CycleUpdate>
+    <PostCycleUpdate>{3f4a5651-6568-4307-88b2-64fd27c10bf7}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="PressureToFlow" Id="{cd526757-80b0-4a2d-a96c-969d2b1d009d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION PressureToFlow : LREAL
+VAR_INPUT
+	Pressure: LREAL;
+	k: LREAL;
+END_VAR
+VAR
+	DiffPressure: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[DiffPressure := Pressure;
+IF diffpressure < 0 THEN
+	DiffPressure := 0;
+END_IF 
+PressureToFlow := k * SQRT(DiffPressure) / 3.6;
+]]></ST>
+    </Implementation>
+    <LineIds Name="PressureToFlow">
+      <LineId Id="19" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

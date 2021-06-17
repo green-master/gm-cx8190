@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SimulateFlow" Id="{604f773d-d49b-4b5d-9b9c-eaedb836272d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SimulateFlow
+VAR_INPUT
+	EN: BOOL;
+	SP: LREAL;
+	CV: LREAL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	Flow: LREAL;
+END_VAR
+VAR
+	Ramp: Ramp;
+	FlowFactor: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF EN THEN
+	FlowFactor := 1;
+	FlowFactor := FlowFactor * MAX(1, CV / 500);
+	Ramp(Target := SP * 30000, SpeedUp := 50, SpeedDown := 100, Value => Flow);
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="SimulateFlow">
+      <LineId Id="47" Count="4" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

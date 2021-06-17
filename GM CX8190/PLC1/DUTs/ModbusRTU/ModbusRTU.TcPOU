@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="ModbusRTU" Id="{d3df9997-51b6-4f4e-ba59-1348929a5873}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusRTU EXTENDS Modbus
+VAR_INPUT
+	EN: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+	ModbusMaster: ModbusRtuMaster_KL6x22B;
+	stMbErrId: ST_ModbusErrorDiagnostics;
+	State: INT;
+	aRegisterArray1: ARRAY [1..125] OF WORD;
+	aRegisterCoil: ARRAY [1..250] OF BYTE;
+	Param: REFERENCE TO ModbusIo;
+	Delay: TON;
+	StartFlag: BOOL;
+	Counter: LINT;
+END_VAR
+VAR PERSISTENT
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+ENO := EN;
+Delay(IN := StartFlag, PT := T#250MS);
+CASE State OF
+	0:
+		IF EN THEN	
+			StartFlag := TRUE;	
+			CurrentIoIndex := 0;
+			IF IO[CurrentIoIndex] <> 0 AND Delay.Q THEN
+				StartFlag := FALSE;
+				State := 10;
+			END_IF	
+		END_IF
+	10:
+		Param REF= IO[CurrentIoIndex]^; 
+		IF NOT Param.EN THEN
+			State := 30;
+		ELSE
+			IF Param.RegisterType = ModbusRegisterType.Holdingregister THEN
+				ModbusMaster.ReadRegs(
+					UnitID := IO[CurrentIoIndex]^.UnitID, 
+					Quantity := 1, 
+					MBAddr := Param.Register, 
+					cbLength := 2, 
+					pMemoryAddr := ADR(aRegisterArray1), 
+					Execute := TRUE, 
+					Timeout := T#2S);
+			ELSE			
+				ModbusMaster.ReadInputRegs(
+					UnitID := IO[CurrentIoIndex]^.UnitID, 
+					Quantity := 1, 
+					MBAddr := Param.Register, 
+					cbLength := 2, 
+					pMemoryAddr := ADR(aRegisterArray1), 
+					Execute := TRUE, 
+					Timeout := T#2S);
+			END_IF
+			IF  ModbusMaster.BUSY THEN
+				State := 11;
+			END_IF
+		END_IF
+	11:
+		IF Param.RegisterType = ModbusRegisterType.Holdingregister THEN
+			ModbusMaster.ReadRegs();
+		ELSE
+			ModbusMaster.ReadInputRegs();
+		END_IF
+		IF  ModbusMaster.Error or NOT ModbusMaster.BUSY THEN
+			State := 20;
+		END_IF
+	20:
+		IF Param.RegisterType = ModbusRegisterType.Holdingregister THEN
+			ModbusMaster.ReadRegs();
+		ELSE
+			ModbusMaster.ReadInputRegs();
+		END_IF
+		IF ModbusMaster.Error THEN
+			stMbErrId := ModbusMaster.ErrorDiagnostics;
+			IF Param.RegisterType = ModbusRegisterType.Holdingregister THEN
+				ModbusMaster.ReadRegs(Execute := FALSE);
+			ELSE
+				ModbusMaster.ReadInputRegs(Execute := FALSE);
+			END_IF
+			//Param.ErrorOUT := TRUE;
+			ErrorCount := ErrorCount + 1;
+			State := 30;
+		ELSIF NOT ModbusMaster.BUSY THEN
+			IF Param.RegisterType = ModbusRegisterType.Holdingregister THEN
+				ModbusMaster.ReadRegs(Execute := FALSE);
+			ELSE
+				ModbusMaster.ReadInputRegs(Execute := FALSE);
+			END_IF
+			Param.ValueWord := aRegisterArray1[1];
+			Param.ErrorOUT := FALSE;
+			ReadCount := ReadCount + 1;
+			State := 30;
+		END_IF
+	30:
+		Counter := Counter + 1;
+		CurrentIoIndex := CurrentIoIndex + 1;
+		IF CurrentIoIndex >= IO_COUNT THEN
+			CurrentIoIndex := 0;
+		END_IF
+		IF IO[CurrentIoIndex] <> 0 THEN
+			State := 10;
+		ELSE				
+			State := 0;
+		END_IF
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="ModbusRTU">
+      <LineId Id="516" Count="0" />
+      <LineId Id="379" Count="0" />
+      <LineId Id="639" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="380" Count="0" />
+      <LineId Id="640" Count="0" />
+      <LineId Id="484" Count="0" />
+      <LineId Id="486" Count="0" />
+      <LineId Id="644" Count="0" />
+      <LineId Id="488" Count="0" />
+      <LineId Id="487" Count="0" />
+      <LineId Id="382" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="581" Count="0" />
+      <LineId Id="519" Count="1" />
+      <LineId Id="522" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="542" Count="6" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="549" Count="6" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="523" Count="0" />
+      <LineId Id="645" Count="0" />
+      <LineId Id="647" Count="0" />
+      <LineId Id="649" Count="0" />
+      <LineId Id="651" Count="0" />
+      <LineId Id="653" Count="0" />
+      <LineId Id="655" Count="0" />
+      <LineId Id="657" Count="0" />
+      <LineId Id="659" Count="0" />
+      <LineId Id="661" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="159" Count="4" />
+      <LineId Id="599" Count="0" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="525" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="164" Count="4" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="600" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="524" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="617" Count="0" />
+      <LineId Id="641" Count="0" />
+      <LineId Id="491" Count="0" />
+      <LineId Id="495" Count="2" />
+      <LineId Id="492" Count="0" />
+      <LineId Id="146" Count="3" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

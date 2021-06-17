@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="NowDT" Id="{40f516c8-c703-4526-8fc3-882dac645da7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION NowDT : DT
+VAR_INPUT
+END_VAR
+VAR
+	timeAsFileTime: T_FILETIME;
+END_VAR
+VAR_STAT
+	fbSystemTime: GETSYSTEMTIME;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbSystemTime(
+	timeLoDW =>timeAsFileTime.dwLowDateTime,
+	timeHiDW =>timeAsFileTime.dwHighDateTime 
+);
+NowDT := FILETIME_TO_DT( timeAsFileTime );
+]]></ST>
+    </Implementation>
+    <LineIds Name="NowDT">
+      <LineId Id="11" Count="4" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

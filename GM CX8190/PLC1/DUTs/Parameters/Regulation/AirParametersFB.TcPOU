@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="AirParametersFB" Id="{3c103a82-3459-4cea-9958-e638d218fab8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AirParametersFB
+VAR_IN_OUT
+	Parameters: GreenMasterBaseParameters;
+END_VAR
+VAR_INPUT
+	ControlMode: FanControlTypes; // $(W1,S,R0)
+	Control: ControllerParameters;
+	Defaults: DefaultParameters;
+	KFactor: LREAL := 497; // $(W1,S,R0)
+	SlaveOffset: LREAL; // $(W1,S,R0)
+	ConstOutput: LREAL; // $(unit %)
+	MinSpeed: LREAL := 0.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
+	MaxSpeed: LREAL := 1.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
+	StartupFanSpeed: LREAL;
+END_VAR
+VAR_OUTPUT
+	TestOutput: LREAL := 3.14;
+END_VAR
+VAR
+	LastControlMode: FanControlTypes;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF ControlMode <> LastControlMode THEN
+	CASE ControlMode OF
+		FanControlTypes.Pressure:
+			Control := Defaults.Pressure;
+		FanControlTypes.Flow:
+			Control := Defaults.Flow;
+		FanControlTypes.Const:
+			Control := Defaults.Const;
+		FanControlTypes.SlaveFlow:
+			Control := Defaults.SlaveFlow;
+	END_CASE
+	LastControlMode := ControlMode;
+ELSE
+	CASE ControlMode OF
+		FanControlTypes.Pressure:
+			Defaults.Pressure := Control;
+		FanControlTypes.Flow:
+			Defaults.Flow := Control;
+		FanControlTypes.Const:
+			Defaults.Const := Control;
+		FanControlTypes.SlaveFlow:
+			Defaults.SlaveFlow := Control;
+	END_CASE	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="AirParametersFB">
+      <LineId Id="138" Count="22" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

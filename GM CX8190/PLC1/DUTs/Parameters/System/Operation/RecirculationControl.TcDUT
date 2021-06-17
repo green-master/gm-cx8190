@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="RecirculationControl" Id="{090ec2ad-0f41-47c2-a30d-585612ca7c5e}">
+    <Declaration><![CDATA[TYPE RecirculationControl :
+STRUCT
+	AllowOutdoorStartViaADS: BOOL;
+	Inactive: BOOL;
+	OutdoorTemperatureLimit: LREAL;
+	OutdoorTemperatureHysteresis: LREAL;
+	SupplyAirFlow: LREAL;
+	StartTime: DT;
+	StopTime: DT;
+	UseRecirculation: BOOL;
+	AllowIndoorStartViaADS: BOOL;
+	IndoorTemperatureLimit: LREAL;
+	IndoorTemperatureHysteresis: LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

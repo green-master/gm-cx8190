@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Supervisor" Id="{989d1ea3-5d9d-4549-88d9-7f3bfe98bed2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Supervisor
+VAR_INPUT
+	EN: BOOL;
+	Stop: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+END_VAR
+VAR PERSISTENT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN AND NOT Stop;
+]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{1cba1caa-cb11-4b80-ab15-4269d5e3c6b0}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="Supervisor">
+      <LineId Id="33" Count="0" />
+      <LineId Id="26" Count="0" />
+    </LineIds>
+    <LineIds Name="Supervisor.FB_init">
+      <LineId Id="13" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

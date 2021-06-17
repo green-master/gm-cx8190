@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="StateMachine" Id="{394cde49-38b6-4844-a793-c5de2f4e2276}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StateMachine
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	InitDone: BOOL;
+	NewState: POINTER TO State;
+	CurrentState: POINTER TO State;
+	DummyState: State;
+	LastState: POINTER TO State := ADR(DummyState);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT InitDone THEN
+	CurrentState := StartState();
+ELSE
+	CurrentState := CurrentState^.Transition();
+END_IF
+
+IF CurrentState <> LastState THEN
+	LastState^.Stop();
+	CurrentState^.Start();
+	LastState := CurrentState;
+END_IF
+]]></ST>
+    </Implementation>
+    <Method Name="StartState" Id="{7f2e7588-16f9-4ffb-b547-ae26954dd9da}">
+      <Declaration><![CDATA[METHOD StartState : POINTER TO State
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="StateMachine">
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="30" Count="0" />
+    </LineIds>
+    <LineIds Name="StateMachine.StartState">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

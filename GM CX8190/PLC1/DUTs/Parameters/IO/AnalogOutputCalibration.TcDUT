@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AnalogOutputCalibration" Id="{ea5dd394-c96e-45d7-ac6b-0aa63113d27a}">
+    <Declaration><![CDATA[TYPE AnalogOutputCalibration :
+STRUCT
+	F_QN1: AnalogOutputCalibrationParameters;
+	T_GQ1: AnalogOutputCalibrationParameters;
+	F_GQ1: AnalogOutputCalibrationParameters;
+	C_QN1: AnalogOutputCalibrationParameters;
+	H_QN1: AnalogOutputCalibrationParameters;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

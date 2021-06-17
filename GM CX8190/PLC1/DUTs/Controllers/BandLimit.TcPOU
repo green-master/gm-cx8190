@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="BandLimit" Id="{0bd8d519-40a2-4181-be9a-2724cdd75315}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION BandLimit : LREAL
+VAR_INPUT
+	Value: LREAL;
+	Target: LREAL;
+	Width: LREAL;
+	MinValue: LREAL;
+	MaxValue: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[BandLimit := LimitValue(Band(Value, Target, Width), MinValue, MaxValue);]]></ST>
+    </Implementation>
+    <LineIds Name="BandLimit">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

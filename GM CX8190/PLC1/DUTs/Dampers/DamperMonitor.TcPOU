@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="DamperMonitor" Id="{4206d72b-cfed-4344-912b-e38639a56d2e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK DamperMonitor
+VAR_INPUT
+	Damper: BOOL;	// Damper DO
+	FB1: BOOL;		// Open DI
+	FB2: BOOL;		// Closed DI
+END_VAR
+VAR_OUTPUT
+	Error: BOOL;
+END_VAR
+VAR
+	DamperSignal: DigitalSignal;
+	DamperOpenTimer: Timer;
+	DamperClosedTimer: Timer;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[DamperSignal(Signal := Damper);
+Error := ((DamperSignal.OnTime() > 30000) AND (NOT FB1)) OR
+		((DamperSignal.OffTime() > 30000) AND (NOT FB2));]]></ST>
+    </Implementation>
+    <LineIds Name="DamperMonitor">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

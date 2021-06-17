@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Controller" Id="{c2834eec-3bbe-461e-aaa3-c51933aa3dab}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Controller
+VAR_INPUT
+	EN: BOOL;
+    SP: LREAL;          (* Set point                           *)
+    PV: LREAL;          (* Process value                       *)
+    p_gain: LREAL;      (* Proportional gain (stiffness)       *)
+    i_gain: LREAL;      (* integral gain (windup)              *)
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+    CV: LREAL;          (* Control value              *)
+END_VAR
+VAR
+    { Parameters }
+
+    { Calculated values }
+
+    { Local variables}
+    integral: LREAL;
+    last_error: LREAL;
+    last_output: LREAL;
+    this_target: LREAL;
+    next_target: LREAL;
+    ITimer: Timer;    (* Integration timer *)
+    LastITime: LINT;
+    Timer: Timer;    (* Update timer *)
+    MinControl: Timer;
+    MaxControl: Timer;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN;
+IF EN THEN
+	Compute();
+ELSE
+	Reset();	
+END_IF
+]]></ST>
+    </Implementation>
+    <Method Name="Compute" Id="{6128322f-87e2-4091-8a60-4bbefdbec734}">
+      <Declaration><![CDATA[METHOD Compute : BOOL
+VAR_INPUT
+END_VAR
+VAR
+  this_error: LREAL;
+  this_output: LREAL;
+  new_integral: LREAL;
+  TimeValue: LINT;
+
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* the desired PV for this iteration is the value     *)
+(* calculated as next_target during the last loop     *)
+this_target := next_target;
+
+next_target := SP;
+
+(* the error for the current pass is the difference   *)
+(* between the current target and the current PV      *)
+this_error := this_target - PV;
+
+{ the new error is added to the integral             }
+TimeValue := ITimer.ElapsedTime();
+new_integral := integral + i_gain * (this_target - PV) * ((1.0 * LINT_TO_LREAL(TimeValue - LastITime)) / LINT_TO_LREAL(ITimer.TimeoutTime));
+LastITime := TimeValue;
+IF (new_integral + p_gain * this_error) > 1 THEN
+	integral := 1 - p_gain * this_error;
+ELSIF (new_integral + p_gain * this_error) < 0 THEN
+	integral := -p_gain * this_error;
+ELSE
+	integral := new_integral;
+END_IF;
+IF ITimer.Timeout() THEN
+	ITimer.Restart();
+	LastITime := 0;
+END_IF;
+
+(* now that all of the variable terms have been       *)
+(* computed they can be multiplied by the appropriate *)
+(* coefficients and the resulting products summed     *)
+this_output := p_gain * this_error + integral;
+
+last_error := this_error;
+
+(* now check the output value for absolute limits     *)
+IF (this_output < 0) THEN
+	(* Limit I *)
+	if integral < 0 then
+		integral := LimitValue(integral, integral - this_output, 0);
+	END_IF;
+	this_output := 0;
+ELSIF (this_output > 1) THEN
+	(* Limit I *)
+	if integral > 0 then
+		integral := LimitValue(integral, 0, integral - (this_output - 1));
+	END_IF;
+	(* Limit output *)
+	this_output := 1;
+END_IF;
+
+(* store the new output value to be used as the old   *)
+(* output value on the next loop pass                 *)
+last_output := this_output;
+
+CV := this_output;
+IF Timer.Timeout() THEN
+	Timer.Restart();
+END_IF;
+IF CV > 0.01 THEN
+	MinControl.Restart();
+END_IF;
+IF CV < (1 - 0.01) THEN
+	MaxControl.Restart();
+END_IF;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{aa4b94cc-6f48-4269-8620-5eb2bd4f13b1}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[p_gain := 0.5;
+i_gain := 0.5;
+ITimer.TimeoutTime := 30000;
+Timer.TimeoutTime := 1000;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Preset" Id="{3bd84067-1789-4d33-9af6-c8d8e9b9a9a4}">
+      <Declaration><![CDATA[METHOD Preset : BOOL
+VAR_INPUT
+	Target: LREAL;
+	Control: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[  last_error := 0;
+  last_output := Control;
+  next_target := Target;
+  this_target := Target;
+  ResetIntegral();
+  integral := Control;
+  CV := Control;
+  SP := Target;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{18c45059-0c2b-41f9-afdd-6d551029d847}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[  ResetIntegral();
+  last_error := 0;
+  last_output := 0;
+  next_target := 0;
+  this_target := 0;
+  CV := 0;
+  SP := 0;
+  MinControl.Restart();
+  MaxControl.Restart();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ResetIntegral" Id="{42af50d7-aea1-4f4e-8eec-d36d31ad00b6}">
+      <Declaration><![CDATA[METHOD ResetIntegral : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[  integral := 0;
+  ITimer.Restart();
+  LastITime := ITimer.ElapsedTime();
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="Controller">
+      <LineId Id="2" Count="0" />
+      <LineId Id="64" Count="1" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="33" Count="0" />
+    </LineIds>
+    <LineIds Name="Controller.Compute">
+      <LineId Id="3" Count="62" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Controller.FB_init">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Controller.Preset">
+      <LineId Id="3" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Controller.Reset">
+      <LineId Id="3" Count="8" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Controller.ResetIntegral">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

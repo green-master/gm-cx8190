@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="DIStartUnit" Id="{415b2ac1-fa8e-43e0-8e51-6fef70c29f7a}">
+    <Declaration><![CDATA[TYPE DIStartUnit :
+STRUCT
+	SetPoints: SetPointTypes;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

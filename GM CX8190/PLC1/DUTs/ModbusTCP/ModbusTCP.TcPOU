@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="ModbusTCP" Id="{c2b301d9-c3e8-4e6e-b0d2-2d7d47081554}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusTCP EXTENDS Modbus
+VAR_INPUT
+	EN: BOOL;
+	{attribute 'TcEncoding':='UTF-8'}
+	IP: STRING;
+	Port: UINT := 502;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	Error: BOOL;
+END_VAR
+VAR
+	ModbusMaster: FB_MBReadRegs;
+	{attribute 'TcEncoding':='UTF-8'}
+	stMbErrId: STRING;
+	aRegisterArray1: ARRAY [1..125] OF WORD;
+	aRegisterCoil: ARRAY [1..250] OF BYTE;
+	WaitModbusBusy: TON;
+	cbRead: INT;
+	Param: REFERENCE TO ModbusIo;
+	State: INT;
+	ReplyTON: LTON;
+	LastReadCount: LINT;
+END_VAR
+VAR PERSISTENT
+	tTimeBetweenReads: TIME := T#500MS;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+ENO := EN;
+ReplyTON(IN := ReadCount = LastReadCount, PT := LTIME#20S, Q => Error);
+LastReadCount := ReadCount;
+WaitModbusBusy();
+CASE State OF
+	0:
+		IF EN THEN		
+			CurrentIoIndex := 0;
+			IF IO[CurrentIoIndex] <> 0 THEN
+				State := 5;
+			END_IF	
+		END_IF
+	5:	(* Wait between reads *)
+		WaitModbusBusy(IN := TRUE, PT := tTimeBetweenReads, Q=> , ET=> );	
+		IF WaitModbusBusy.Q = TRUE THEN
+			State := 10;
+			WaitModbusBusy(IN := FALSE);
+		END_IF		
+	
+	10:
+		Param REF= IO[CurrentIoIndex]^; 
+		IF NOT Param.EN OR Param.UnitID = 0 THEN
+			Param.ValueWord := 0;
+			Param.ErrorOUT := FALSE;
+			State := 30;
+		ELSE
+			ModbusMaster(
+			sIPAddr:= IP, 
+			nTCPPort:= 502, 
+			nUnitID:= Param.UnitID, 
+			nQuantity:= 1, 
+			nMBAddr:= Param.Register, 
+			cbLength:= 2, 
+			pDestAddr:= ADR(aRegisterArray1), 
+			bExecute:= TRUE, 
+			tTimeout:= T#500MS);
+			IF  ModbusMaster.bBUSY THEN
+				State := State + 10;
+			END_IF
+		END_IF
+	20:
+		ModbusMaster();
+		IF ModbusMaster.bError THEN
+			stMbErrId := concat('Error ', UDINT_TO_STRING(ModbusMaster.nErrId));
+			ModbusMaster(bExecute := FALSE);
+			Param.ValueWord := 0;
+			Param.ErrorOUT := TRUE;
+			ErrorCount := ErrorCount + 1;
+			ModbusMaster.bExecute:= FALSE;
+			State := 30;
+		ELSIF NOT ModbusMaster.bBUSY THEN
+			ModbusMaster(bExecute := FALSE);
+			Param.ValueWord := aRegisterArray1[1];
+			Param.ErrorOUT := FALSE;
+			ReadCount := ReadCount + 1;
+			ModbusMaster(bExecute:= FALSE);
+			State := 30;
+		END_IF
+	30:
+		CurrentIoIndex := CurrentIoIndex + 1;
+		IF CurrentIoIndex >= IO_COUNT THEN
+			CurrentIoIndex := 0;
+		END_IF
+		IF IO[CurrentIoIndex] <> 0 THEN
+			State := 5;
+		ELSE				
+			State := 0;
+		END_IF
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="ModbusTCP">
+      <LineId Id="522" Count="1" />
+      <LineId Id="686" Count="0" />
+      <LineId Id="689" Count="0" />
+      <LineId Id="577" Count="0" />
+      <LineId Id="524" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="525" Count="5" />
+      <LineId Id="346" Count="6" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="531" Count="1" />
+      <LineId Id="660" Count="1" />
+      <LineId Id="533" Count="1" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="372" Count="7" />
+      <LineId Id="627" Count="0" />
+      <LineId Id="258" Count="2" />
+      <LineId Id="537" Count="0" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="267" Count="1" />
+      <LineId Id="270" Count="0" />
+      <LineId Id="658" Count="1" />
+      <LineId Id="292" Count="0" />
+      <LineId Id="633" Count="0" />
+      <LineId Id="632" Count="0" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="295" Count="0" />
+      <LineId Id="299" Count="0" />
+      <LineId Id="548" Count="0" />
+      <LineId Id="339" Count="0" />
+      <LineId Id="634" Count="0" />
+      <LineId Id="631" Count="0" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="552" Count="0" />
+      <LineId Id="539" Count="8" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

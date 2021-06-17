@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="TemperatureInput" Id="{24741fbc-de8f-4dad-9f51-c70e47fca627}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TemperatureInput EXTENDS AnalogInput
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+VAR PERSISTENT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+SignedWord := TRUE;
+]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{c18506e2-7257-4e6a-8e26-15b1532da28e}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bInitRetains THEN
+	ProcessMin := -5000;
+	ProcessMax := 15000;
+	MinValue := -50;
+	MaxValue := 150;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="TemperatureInput">
+      <LineId Id="12" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+    <LineIds Name="TemperatureInput.FB_init">
+      <LineId Id="12" Count="0" />
+      <LineId Id="8" Count="3" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

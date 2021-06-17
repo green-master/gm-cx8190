@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SensorStatus" Id="{4fb33588-df4a-43ff-b60b-1e844a2af65d}">
+    <Declaration><![CDATA[TYPE SensorStatus :
+STRUCT
+	F_BT1: STRING; 
+    T_BT2: STRING;
+    T_BT3: STRING;
+    H_BT1: STRING;
+    T_BT1: STRING; 
+    BT1: STRING;
+    BT2: STRING;
+    F_BT2: STRING;	
+    F_BP1: STRING;
+    T_BP1: STRING;
+    F_BP2: STRING;
+    T_BP2: STRING;
+    F_BP3: STRING;
+    T_BF1: STRING;
+    F_BF1: STRING;	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

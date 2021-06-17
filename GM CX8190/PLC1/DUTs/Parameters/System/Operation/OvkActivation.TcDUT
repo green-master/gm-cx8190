@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="OvkActivation" Id="{0689afcb-1315-412d-bfe1-0c77140b2b04}">
+    <Declaration><![CDATA[TYPE OvkActivation :
+STRUCT
+	Status: BOOL;
+	Timeout: LTIME;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

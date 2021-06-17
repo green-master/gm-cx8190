@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="ValveMonitor" Id="{5e5c3826-97f3-4bfe-aef7-529bb9c4edeb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ValveMonitor
+VAR_INPUT
+	Valve: BOOL;	// Valve DO
+	FB1: BOOL;		// Open DI
+	FB2: BOOL;		// Closed DI
+END_VAR
+VAR_OUTPUT
+	Error: BOOL;
+END_VAR
+VAR
+	ValveSignal: DigitalSignal;
+	ValveOpenTimer: Timer;
+	ValveClosedTimer: Timer;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ValveSignal(Signal := Valve);
+Error := ((ValveSignal.OnTime() > 30000) AND (NOT FB1)) OR
+		((ValveSignal.OffTime() > 30000) AND (NOT FB2));]]></ST>
+    </Implementation>
+    <LineIds Name="ValveMonitor">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

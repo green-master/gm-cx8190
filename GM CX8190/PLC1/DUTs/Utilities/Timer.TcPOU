@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="Timer" Id="{7e40e161-4977-4818-ba36-1d51bb135bda}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Timer
+VAR_INPUT
+	EN: BOOL := TRUE;
+END_VAR
+VAR_OUTPUT
+	ET: LTIME;
+END_VAR
+VAR
+    _TimeTick: LINT;
+    _StartTick: LINT;
+    _Timeout: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ET := LINT_TO_LTIME(ElapsedTime() * 1000000);
+IF NOT EN THEN
+	Restart();
+END_IF
+]]></ST>
+    </Implementation>
+    <Method Name="ElapsedTime" Id="{4e685e91-bd49-4516-b927-236d0d0f0eaa}">
+      <Declaration><![CDATA[METHOD ElapsedTime : LINT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF EN THEN
+	ElapsedTime := (GetTickCount() - _StartTick);
+ELSE
+	ElapsedTime := 0;	
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{119615cf-dd7a-423d-95a6-7ed2302d12e3}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TimeoutTime := 1000;
+Restart();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Restart" Id="{d54a3879-94a5-49f6-bcde-47b508c56933}">
+      <Declaration><![CDATA[METHOD Restart : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_Timeout := FALSE;
+_StartTick := GetTickCount();
+Restart := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Timeout" Id="{15717f88-1ef3-438f-83ed-d1058b2fb2bc}">
+      <Declaration><![CDATA[METHOD Timeout : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT _Timeout THEN
+	IF (GetTickCount() - _StartTick) >= _TimeTick THEN
+		_Timeout := TRUE;
+	END_IF
+END_IF
+Timeout := _Timeout;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="TimeoutTime" Id="{61ed3f75-0994-47ab-9a94-064aeb46ab2e}">
+      <Declaration><![CDATA[PROPERTY TimeoutTime : LINT]]></Declaration>
+      <Get Name="Get" Id="{d6646e3c-e277-45da-a165-a0e9a4e8d2f7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TimeoutTime := _TimeTick;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{020752f4-0484-4707-ac32-7e259f5a1f32}">
+        <Declaration><![CDATA[VAR
+	Temp: lint;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Temp := TimeoutTime;
+IF (TimeoutTime > 0) AND (Temp <= 1) THEN
+	Temp := 2; { Smallest timeout }
+END_IF
+IF Temp <> _TimeTick THEN
+	_TimeTick := Temp;
+	Restart();
+END_IF
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="Timer">
+      <LineId Id="2" Count="0" />
+      <LineId Id="16" Count="2" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="Timer.ElapsedTime">
+      <LineId Id="6" Count="1" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Timer.FB_init">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Timer.Restart">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Timer.Timeout">
+      <LineId Id="3" Count="5" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Timer.TimeoutTime.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Timer.TimeoutTime.Set">
+      <LineId Id="3" Count="3" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

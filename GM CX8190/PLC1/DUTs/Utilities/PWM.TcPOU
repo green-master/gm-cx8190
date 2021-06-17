@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="PWM" Id="{9244c080-1b8e-4132-9e3b-730219951ee1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PWM
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer: Timer;
+	CurrentDutyCycle: LREAL;
+	FPeriod: LREAL;
+	FDutyCycle: LREAL;
+	FMinValue: LREAL := 0.05; // 5% / 95% min/max value	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="DutyCycle" Id="{781a05bc-2d5d-48b9-a536-eb768315fac6}">
+      <Declaration><![CDATA[PROPERTY DutyCycle : LREAL]]></Declaration>
+      <Get Name="Get" Id="{cdfd39e1-fb65-43ba-acc4-c08e2cfa70be}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DutyCycle := CurrentDutyCycle;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{757bccbb-4c3e-490c-89d0-167ae356f8b5}">
+        <Declaration><![CDATA[VAR
+	TimeValue: lreal;	
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TimeValue := DutyCycle * Period;
+IF (TimeValue < MinValue) THEN
+	FDutyCycle := 0;
+ELSIF (TimeValue > (Period - MinValue)) THEN
+	FDutyCycle := 1;
+else
+	FDutyCycle := DutyCycle;
+END_IF
+	]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MinValue" Id="{205b2f90-1457-402d-bf51-233e5ce5a668}">
+      <Declaration><![CDATA[PROPERTY MinValue : LREAL]]></Declaration>
+      <Get Name="Get" Id="{fdd455e6-74f6-4e0d-9b8e-7e1c5f1267d0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MinValue := FMinValue;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{879f4242-2c1e-45c3-b1ff-ff74f92fa1c2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[FMinValue := MinValue;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Period" Id="{59c802b2-6f6c-4360-b527-3160abaa2dc0}">
+      <Declaration><![CDATA[PROPERTY Period : LREAL]]></Declaration>
+      <Get Name="Get" Id="{a36dce81-133c-4e9e-b51f-b1ffcae77743}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Period := FPeriod;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{5a39a657-4cc8-4a5d-84ae-0d4662c64c7a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF FPeriod <> Period THEN
+	FPeriod := Period;
+	CurrentDutyCycle := DutyCycle;
+	Timer.Restart();
+END_IF;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="State" Id="{d3a21502-b353-457a-9d03-cc872ee3d913}">
+      <Declaration><![CDATA[METHOD State : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	ElapsedTime: LINT;
+	Res: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ElapsedTime := Timer.ElapsedTime();
+IF (ElapsedTime > LREAL_TO_LINT(Period * 1000)) THEN
+	ElapsedTime := TRUNC(Period * 1000);
+END_IF
+Res := ElapsedTime <= LREAL_TO_LINT(CurrentDutyCycle * Period * 1000);
+IF (ElapsedTime >= LREAL_TO_LINT(Period * 1000)) THEN
+	Timer.Restart();
+	CurrentDutyCycle := FDutyCycle;
+END_IF;
+State := Res;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="PWM">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PWM.DutyCycle.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PWM.DutyCycle.Set">
+      <LineId Id="3" Count="7" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PWM.MinValue.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PWM.MinValue.Set">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PWM.Period.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PWM.Period.Set">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PWM.State">
+      <LineId Id="3" Count="8" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ControllerParameters" Id="{5d6aeccb-a356-4f0c-a7b2-32ace91878aa}">
+    <Declaration><![CDATA[TYPE ControllerParameters :
+STRUCT
+	PV: LREAL;
+	SP: LREAL; // $(write 0, setup, read 0, decimals 1, step 0.5)
+	SP_HighSpeed: LREAL;
+	P: LREAL := 0.002; // $(write 1, setup, read 0, decimals 2, step 0.1)
+	I: TIME := T#2M; // $(write 1, setup, read 0, time "m:s")
+	D: TIME; // $(write 1, setup, read 0, time "m:s")
+	CV: LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

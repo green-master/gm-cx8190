@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Scale" Id="{79d8db92-1581-43ce-9224-a0c34bb9a397}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Scale
+VAR_INPUT
+	EN: BOOL := TRUE;
+	x: LREAL;
+	x1: LREAL;
+	x2: LREAL;
+	u1: LREAL;
+	u2: LREAL;
+END_VAR
+VAR_OUTPUT
+	ENO: bool;
+	u: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF EN THEN
+	IF u1 <= u2 THEN
+		u := LimitValue((((x - x1) * (u2 - u1)) / (x2 - x1)) + u1, u1, u2);
+	ELSE
+		u := LimitValue(u1 - (((x - x1) * (u1 - u2)) / (x2 - x1)), u2, u1);
+	END_IF
+ELSE
+	u := 0;
+END_IF
+ENO := EN;]]></ST>
+    </Implementation>
+    <LineIds Name="Scale">
+      <LineId Id="24" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

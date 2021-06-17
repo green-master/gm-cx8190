@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <POU Name="DigitalInput" Id="{3f6e813c-0865-421b-aa64-955fd14f7081}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK DigitalInput EXTENDS BaseIO
+VAR_INPUT
+	ProcessValue: BOOL;
+	Override: BOOL;
+	OverrideValue: BOOL;
+	Inverted: bool;
+END_VAR
+VAR_OUTPUT
+	Value: BOOL;
+END_VAR
+VAR
+	InitDone: BOOL;
+	TempValue: bool;
+END_VAR
+VAR PERSISTENT
+	IsInverted: BOOL;
+	SavedOverride: BOOL;
+	SavedOverrideValue: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+IF NOT InitDone THEN
+	InitDone := TRUE;
+	OverrideValue := SavedOverrideValue;
+	Override := SavedOverride;	
+END_IF
+IsInverted := Inverted;
+
+SavedOverride := Override;
+SavedOverrideValue := OverrideValue;
+
+IF NOT Override THEN
+	TempValue := ProcessValue;
+ELSE
+	TempValue := OverrideValue;	
+END_IF
+
+IF IsInverted THEN
+	TempValue := NOT TempValue;
+END_IF
+
+Value := TempValue;
+]]></ST>
+    </Implementation>
+    <LineIds Name="DigitalInput">
+      <LineId Id="118" Count="5" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="124" Count="14" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

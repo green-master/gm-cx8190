@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="BOOL_BMUX" Id="{114651c6-f638-4281-963c-1cdacc01e412}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION BOOL_BMUX : BOOL
+VAR_INPUT
+	B: BOOL;
+	X: BOOL;
+	Y: BOOL
+;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT B THEN
+	BOOL_BMUX := X;
+ELSE
+	BOOL_BMUX := Y;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="BOOL_BMUX">
+      <LineId Id="7" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SmokeControl" Id="{ece165da-f1ed-4d49-8ac5-2cb738a1f4d6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM SmokeControl
+VAR
+	StartupDone: BOOL;
+	GreenMasterSmokeControl: GreenMasterSmokeControl; 
+	Parameters: reference to GreenMasterBaseParameters;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT StartupDone THEN
+	Parameters REF= Main.GreenMaster.GetParameters();
+	StartupDone := TRUE;
+END_IF
+
+GreenMasterSmokeControl(EN := TRUE, Parameters := Parameters, ParametersSC := Main.GreenMaster.GetParametersSC());
+]]></ST>
+    </Implementation>
+    <LineIds Name="SmokeControl">
+      <LineId Id="11" Count="1" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

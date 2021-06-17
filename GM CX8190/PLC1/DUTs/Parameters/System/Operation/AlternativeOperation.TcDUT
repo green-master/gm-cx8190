@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlternativeOperation" Id="{84b3bb15-5ec5-4e46-b08a-b20e6c2e92cd}">
+    <Declaration><![CDATA[TYPE AlternativeOperation :
+STRUCT
+	EN: BOOL;
+	Polarity: BOOL;
+	ActivateViaDI: BOOL;
+	ActivateViaADS: BOOL;
+	SPTemperature: LREAL;
+	UseSPTemperature: BOOL;
+	SPSupplyAirPressure: LREAL;
+	SPExtractAirPressure: LREAL;
+	SPSupplyAirFlow: LREAL;
+	SPExtractAirFlow: LREAL;
+	StopUnit: BOOL;
+	UnitOperation: UnitOperation;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

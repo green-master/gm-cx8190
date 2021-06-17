@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Modbus" Id="{fd8b3be3-31b3-4684-971d-24fffd576038}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Modbus
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	ReadCount: LINT;
+	ErrorCount: LINT;
+END_VAR
+VAR CONSTANT
+	IO_COUNT: INT := 100;
+END_VAR
+VAR
+	Self: REFERENCE TO Modbus;
+	IO: ARRAY [0..IO_COUNT - 1] OF POINTER TO ModbusIo;
+	IOIndex: INT;
+	CurrentIoIndex: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Self REF= THIS^;
+]]></ST>
+    </Implementation>
+    <Method Name="AddIO" Id="{4be3b82a-4103-4e52-b617-e510c7e5594d}">
+      <Declaration><![CDATA[METHOD AddIO : BOOL
+VAR_INPUT
+	Self: pointer TO ModbusIO {flag write};
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF IOIndex < IO_COUNT THEN
+	IO[IOIndex] := Self;
+	IOIndex := IOIndex + 1;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="Modbus">
+      <LineId Id="9" Count="0" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+    <LineIds Name="Modbus.AddIO">
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

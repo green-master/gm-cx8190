@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="Component" Id="{3c928f9a-f06e-4956-9cde-3091ab1b9957}">
+    <Declaration><![CDATA[TYPE Component :
+STRUCT
+	Name: ComponentNames;
+	{attribute 'TcEncoding':='UTF-8'}
+	Path: STRING;
+	Prefix: STRING;
+	EN: BOOL;
+	Required: BOOL;
+	{attribute 'TcEncoding':='UTF-8'}
+	Resource: STRING(20) := 'Parameter';
+	{attribute 'TcEncoding':='UTF-8'}
+	Parameters: ARRAY [0..9] OF STRING(40);
+	Permissions: Permissions;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

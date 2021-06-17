@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="LimitValue" Id="{8ec83da8-172e-4276-96b0-f8e5d7bdeff1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION LimitValue : LREAL
+VAR_INPUT
+	Value: LREAL;
+	MinValue: LREAL;
+	MaxValue: LREAL;
+END_VAR
+VAR
+  Res: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Res := Value;
+IF Res < MinValue THEN
+	Res := MinValue;
+END_IF;
+IF Res > MaxValue THEN
+	Res := MaxValue;
+END_IF;
+LimitValue := Res;
+]]></ST>
+    </Implementation>
+    <LineIds Name="LimitValue">
+      <LineId Id="3" Count="7" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

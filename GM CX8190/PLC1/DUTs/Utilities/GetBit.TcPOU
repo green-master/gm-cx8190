@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="GetBit" Id="{a698304e-48d3-4e0e-b267-b99a1011644f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION GetBit : BOOL
+VAR_INPUT
+	Value: ULINT;
+	BitNr: INT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[GetBit := (Value AND SHL(INT_TO_ULINT(1), BitNr)) <> 0;
+]]></ST>
+    </Implementation>
+    <LineIds Name="GetBit">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

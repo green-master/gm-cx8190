@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="BaseValve" Id="{36969a96-484a-44cb-9c59-1abaa9bae997}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK BaseValve
+VAR_INPUT
+	Open: REFERENCE TO BOOL;
+	IsOpen: REFERENCE TO BOOL;
+	IsClosed: REFERENCE TO BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="BaseValve">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

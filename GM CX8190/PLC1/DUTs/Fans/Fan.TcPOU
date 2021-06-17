@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="Fan" Id="{e2c07891-656f-4991-b517-fea714494f3e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Fan
+VAR_INPUT
+	EN: BOOL;
+	SpeedSP: LREAL;
+	Override: BOOL;
+	OverrideCV: LREAL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	Running: BOOL;
+	SpeedCV: LREAL;
+	Error: BOOL;
+	ErrorCode: INT;
+	SpeedError: BOOL;
+END_VAR
+VAR
+	{attribute 'TcEncoding':='UTF-8'}
+	ErrorDescription: STRING;
+END_VAR
+VAR PERSISTENT
+	SpeedAlarmDelay: LREAL;
+	FanAlarmDelay: LREAL;
+	SpeedAlarmAutoReset: BOOL;
+	FanAlarmAutoReset: BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN;
+Running := EN AND SpeedCV > 0;
+IF NOT Override THEN
+	IF EN THEN
+		SpeedCV := SpeedSP;
+	ELSE
+		SpeedCV := 0;
+	END_IF
+ELSE
+	SpeedCV := OverrideCV;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Fan">
+      <LineId Id="124" Count="10" />
+      <LineId Id="36" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

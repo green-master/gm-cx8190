@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="StartupFanDelay" Id="{cec732d7-d442-4ea9-bf62-be87ed57bf62}">
+    <Declaration><![CDATA[TYPE StartupFanDelay :
+STRUCT
+	SupplyFan: LTIME;
+	ExtractFan: LTIME;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

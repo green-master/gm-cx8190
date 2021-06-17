@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <GVL Name="Globals" Id="{459d57ba-865c-48a0-8da6-d25e0f8e05eb}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	AlarmsLow: INT := 0;
+	AlarmsHigh: INT := 99;
+	EventsLow: INT := 0;
+	EventsHigh: INT := 99;
+END_VAR
+VAR_GLOBAL
+	
+	// Counters
+	LifeCounter: LINT;
+	SecondsCounter: LINT;
+	SystemStartTime: DT;
+	SystemUpTime: DWORD;
+	{attribute 'TcEncoding':='UTF-8'}
+	HostName: STRING;
+	IO: IOTypes;
+END_VAR
+VAR_GLOBAL PERSISTENT
+	AlarmLog: AlarmLog;
+	{attribute 'TcEncoding':='UTF-8'}
+	AlarmLogStrings: ARRAY [AlarmsLow..AlarmsHigh] OF STRING(2000);
+	EventLog: EventLogData;
+	{attribute 'TcEncoding':='UTF-8'}
+	EventLogStrings: ARRAY [AlarmsLow..AlarmsHigh] OF STRING(2000);
+	{attribute 'TcEncoding':='UTF-8'}
+	Components: STRING;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

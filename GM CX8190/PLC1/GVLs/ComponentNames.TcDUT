@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ComponentNames" Id="{2d16b371-bf1e-4d42-8c38-9fe158af1fb0}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE ComponentNames :
+(
+	NONE := 0, GM, GM_BASE, GM_IO, GM_VENT, GM_A, GM_C_T, GM_C_F, GM_XXL, GM_SMOKE_CONTROL, GM_OPT_CTH, SIMULATION, GM_OPT_Stena 
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

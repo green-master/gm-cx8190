@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="UnitOperation" Id="{ea3d12ac-7bef-4039-a499-3d1e58013a54}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE UnitOperation :
+(
+	NormalOperation := 0, AlwaysStart
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

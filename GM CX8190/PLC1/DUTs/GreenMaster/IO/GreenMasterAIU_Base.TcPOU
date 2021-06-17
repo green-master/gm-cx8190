@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="GreenMasterAIU_Base" Id="{cc53c7b9-4ee9-47c3-84d3-5d66647fcaf1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterAIU_Base
+VAR_INPUT
+	EN: BOOL;
+	T_BP2_Override: BOOL;
+	T_BP2_OverrideValue: LREAL;
+END_VAR
+VAR_OUTPUT
+	T_BF1_Error: BOOL;
+	T_BF1: LREAL;
+	F_BF1_Error: BOOL;
+	F_BF1: LREAL;
+	T_BP1_Error: BOOL;
+	T_BP1: LREAL;
+	F_BP1_Error: BOOL;
+	F_BP1: LREAL;
+	T_BP2_Error: BOOL;
+	T_BP2: LREAL;
+	F_BP2_Error: BOOL;
+	F_BP2: LREAL;
+	F_BP3_Error: BOOL;
+	F_BP3: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="GreenMasterAIU_Base">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

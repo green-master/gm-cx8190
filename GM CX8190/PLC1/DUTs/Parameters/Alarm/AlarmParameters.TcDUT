@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmParameters" Id="{b930426d-7843-4419-9378-33c5b23e1312}">
+    <Declaration><![CDATA[TYPE AlarmParameters :
+STRUCT
+	Control: AlarmControl;
+	Disabled: AlarmSignals;
+	AutoReset: AlarmSignals := ( 	A := ( 	FirePanelSupplyStart := TRUE,  
+											FirePanelSupplyStop := TRUE, 
+											FirePanelExtractStart := TRUE, 
+											FirePanelExtractStop := TRUE
+									),
+									B := (	RegulationDeviation := TRUE,
+											SupplyAirDeviation := TRUE,
+											ExtractAirDeviation := TRUE,
+											SupplyFan := TRUE,
+											ExtractFan := TRUE,
+											HeatExchangerEfficiency := TRUE,
+											Defrost := TRUE,
+											SupplyFilter := TRUE,
+											ExtractFilter := TRUE,
+											SmokeDetectorService := TRUE,
+											Pump1 := TRUE,
+											Pump2 := TRUE
+									),
+									C := (	ExternalSmokeControl := TRUE,
+											ModbusRTU := TRUE,
+											ModbusTCP := TRUE,
+											SensorFailure := TRUE
+									));
+	Limits: AlarmLimits;
+	Delay: AlarmDelays; // MUST be in same order and number as AlarmSignals
+	Polarity: AlarmSignals := ( A:= ( Fire := TRUE ));
+	Active: AlarmSignals;
+	Status: AlarmSignals;	
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

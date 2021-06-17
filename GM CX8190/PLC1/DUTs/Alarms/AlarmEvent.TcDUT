@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <DUT Name="AlarmEvent" Id="{1b29d430-d5b2-486e-9a0f-611f0b298708}">
+    <Declaration><![CDATA[TYPE AlarmEvent :
+STRUCT
+	TimeStamp: DT;
+	Signals: AlarmSignals; 
+	Status: AlarmSignals; 
+	Acknowledged: BOOL;
+	AcknowledgedTime: DT;
+	{attribute 'TcEncoding':='UTF-8'}
+	AcknowledgedBy: STRING(20);
+	Reset: BOOL;
+	ResetTime: DT;
+	{attribute 'TcEncoding':='UTF-8'}
+	ResetBy: STRING(20);
+	{attribute 'TcEncoding':='UTF-8'}
+	Message: STRING(20);
+	{attribute 'TcEncoding':='UTF-8'}
+	Notes: STRING(20);
+	{attribute 'TcEncoding':='UTF-8'}
+	JSON: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

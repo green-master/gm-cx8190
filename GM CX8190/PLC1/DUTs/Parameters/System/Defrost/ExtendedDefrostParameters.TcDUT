@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ExtendedDefrostParameters" Id="{04a4896d-ac62-4bdb-92a6-964538cdd041}">
+    <Declaration><![CDATA[TYPE ExtendedDefrostParameters :
+STRUCT
+	EN: BOOL;
+	ENO: BOOL;
+	DefrostTime: LTIME := LTIME#45M;
+	DefrostState: DefrostStates;
+	Stage1: DefrostStageParameters;
+	Stage2: DefrostStageParameters;
+	Stage3: DefrostStageParameters;
+	
+	CurrentTime: LTIME;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

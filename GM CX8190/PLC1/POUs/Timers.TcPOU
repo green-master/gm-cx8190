@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Timers" Id="{6c48a0e3-a487-49da-89e6-6324bbaf0e4b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Timers
+VAR
+	SecondsTimer: Timer;
+	LastTime, Now: LINT;
+	InitDone: BOOL;
+	BlinkPeriod: INT;
+	CurrentBlinkPeriod: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT InitDone THEN
+	Now := SecondsTimer.ElapsedTime();
+	InitDone := TRUE;
+END_IF
+
+// Show that we are alive
+Globals.LifeCounter := Globals.LifeCounter + 1;
+
+// Count seconds
+Globals.SecondsCounter := SecondsTimer.ElapsedTime() / 1000;
+
+IF Main.GreenMaster.VentilationRunning THEN
+	IF Main.GreenMaster.TemperatureControlRunning THEN
+		BlinkPeriod := 250;
+	ELSE
+		BlinkPeriod := 1000;
+	END_IF
+ELSE
+	BlinkPeriod := 3000;
+END_IF
+
+IF BlinkPeriod <> CurrentBlinkPeriod THEN
+	LastTime := SecondsTimer.ElapsedTime();
+END_IF
+
+IF Main.GreenMaster.Parameters.System.Operation.EN THEN
+	// Blink ERR LED
+	Now := SecondsTimer.ElapsedTime();
+	IF (Now - LastTime) > (BlinkPeriod - 50) THEN
+		F_CX8190_LED_ERR(eMode := E_CX81x0_LED.eCX81x0_LED_GREEN_ON);
+	END_IF
+	IF (Now - LastTime) > BlinkPeriod THEN
+		F_CX8190_LED_ERR(eMode := E_CX81x0_LED.eCX81x0_LED_GREEN_OFF);
+		LastTime := LastTime + BlinkPeriod; 
+	END_IF
+ELSE
+	F_CX8190_LED_ERR(eMode := E_CX81x0_LED.eCX81x0_LED_RED_ON);
+END_IF
+CurrentBlinkPeriod := BlinkPeriod;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Timers">
+      <LineId Id="41" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="112" Count="1" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="145" Count="1" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="123" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="GreenMasterAO_Base" Id="{2680f0d3-3417-4597-9d49-8dca04627f3d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterAO_Base
+VAR_IN_OUT
+	AOut: AnalogOutputs;
+END_VAR
+VAR_INPUT
+	F_QN1: LREAL;
+	T_GQ1: LREAL;
+	F_GQ1: LREAL;
+	C_QN1: LREAL;
+	H_QN1: LREAL;	
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="SetOverrideF_GQ1" Id="{1099c3f3-0753-456b-a3a7-f11e02ebc380}">
+      <Declaration><![CDATA[METHOD SetOverrideF_GQ1 : BOOL
+VAR_INPUT
+	Override: BOOL;
+	OverrideValue: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetOverrideF_QN1" Id="{5894b671-2a0c-4309-a421-d0603eabef93}">
+      <Declaration><![CDATA[METHOD SetOverrideF_QN1 : BOOL
+VAR_INPUT
+	Override: BOOL;
+	OverrideValue: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetOverrideH_QN1" Id="{44d9dd66-2a30-412b-9f34-7a515cc7ca78}">
+      <Declaration><![CDATA[METHOD SetOverrideH_QN1 : BOOL
+VAR_INPUT
+	Override: BOOL;
+	OverrideValue: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetOverrideT_GQ1" Id="{260aa01c-e2b5-4a84-93ba-bf8109151de5}">
+      <Declaration><![CDATA[METHOD SetOverrideT_GQ1 : BOOL
+VAR_INPUT
+	Override: BOOL;
+	OverrideValue: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="GreenMasterAO_Base">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="GreenMasterAO_Base.SetOverrideF_GQ1">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="GreenMasterAO_Base.SetOverrideF_QN1">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="GreenMasterAO_Base.SetOverrideH_QN1">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="GreenMasterAO_Base.SetOverrideT_GQ1">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

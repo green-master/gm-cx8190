@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmsB" Id="{23d8b0e2-a72f-467d-b2c2-cfc516deeb56}">
+    <Declaration><![CDATA[TYPE AlarmsB :
+STRUCT
+	RegulationDeviation: BOOL;
+	SupplyAirDeviation: BOOL;
+	ExtractAirDeviation: BOOL;
+	SupplyFan: BOOL;
+	ExtractFan: BOOL;
+	HeatExchangerEfficiency: BOOL;
+	Defrost: BOOL;
+	SupplyFilter: BOOL;
+	ExtractFilter: BOOL;
+	SmokeDetectorService: BOOL;
+	Pump1: BOOL;
+	Pump2: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

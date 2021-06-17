@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="GreenMasterSmokeControl_Base" Id="{f0a50325-de03-4659-be38-0d5b55dfc595}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterSmokeControl_Base
+VAR_IN_OUT
+	Parameters: GreenMasterBaseParameters;	
+	ParametersSC: SmokeControlParametersBase;
+END_VAR
+VAR_INPUT
+	EN: BOOL;
+END_VAR
+VAR_OUTPUT
+	FireAlarm: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="GreenMasterSmokeControl_Base">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

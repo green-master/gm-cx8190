@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="RegulationParametersFB" Id="{35458062-23b8-41fa-a7d8-32b0bd66ddbe}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK RegulationParametersFB
+VAR_IN_OUT
+	Parameters: GreenMasterBaseParameters;
+END_VAR
+VAR_INPUT
+	Control: RegulationControlParameters;
+	SupplyAir: AirParametersFB := (StartupFanSpeed := 0.3);
+	ExtractAir: AirParametersFB := (StartupFanSpeed := 0.4);
+	Temperature: TemperatureControlParametersFB;
+	NightCoolingLimit: LREAL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SupplyAir(Parameters := Parameters);
+ExtractAir(Parameters := Parameters);
+]]></ST>
+    </Implementation>
+    <LineIds Name="RegulationParametersFB">
+      <LineId Id="9" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="20" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="DamperControl" Id="{beee9bde-37af-436a-89f9-427fdbc4e4bf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK DamperControl
+VAR_INPUT
+	EN: BOOL;
+	Interval: TIME;
+	StartTime: TIME_OF_DAY;
+	AlarmOnlyOnExercise: bool;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN;
+]]></ST>
+    </Implementation>
+    <LineIds Name="DamperControl">
+      <LineId Id="9" Count="0" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

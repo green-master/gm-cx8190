@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="ModbusReadWord" Id="{6f7dd8cb-9c2a-4cd0-91a0-b01f02154bdf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusReadWord EXTENDS ModbusIo
+VAR_INPUT
+	Override: BOOL;
+	OverrideValue: INT;
+END_VAR
+VAR_OUTPUT
+	Value: INT;
+END_VAR
+VAR
+END_VAR
+VAR PERSISTENT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+IF Override THEN
+	Value := OverrideValue;
+END_IF
+]]></ST>
+    </Implementation>
+    <Property Name="ValueWord" Id="{0242e1c3-ab32-41c2-87b7-98b4c4f1f701}">
+      <Declaration><![CDATA[PROPERTY ValueWord : WORD]]></Declaration>
+      <Get Name="Get" Id="{c18f4f2a-0704-40d4-8c2b-736bf24d9821}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF NOT Override THEN
+	ValueWord := INT_TO_WORD(Value);
+ELSE
+	ValueWord := INT_TO_WORD(OverrideValue);
+END_IF
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b42f12fd-f678-4055-8508-90b4b8bbd69c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF NOT Override THEN
+	Value := WORD_TO_INT(ValueWord);
+ELSE
+	Value := OverrideValue;
+END_IF
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="ModbusReadWord">
+      <LineId Id="9" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusReadWord.ValueWord.Get">
+      <LineId Id="6" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusReadWord.ValueWord.Set">
+      <LineId Id="5" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="7" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

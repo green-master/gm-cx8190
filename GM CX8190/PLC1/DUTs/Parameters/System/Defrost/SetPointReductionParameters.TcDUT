@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SetPointReductionParameters" Id="{04ea89a1-315b-4db5-a597-042d13b12bc5}">
+    <Declaration><![CDATA[TYPE SetPointReductionParameters :
+STRUCT
+	Reduction: LREAL;
+	TurnOffDelay: LTIME;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

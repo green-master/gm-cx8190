@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="RelativeHumidity" Id="{733e730d-4c0b-4a65-9093-178dd3b54b67}">
+    <Declaration><![CDATA[TYPE RelativeHumidity :
+STRUCT
+	UseSioxY04: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

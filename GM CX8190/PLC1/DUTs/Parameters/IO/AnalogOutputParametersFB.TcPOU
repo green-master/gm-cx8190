@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="AnalogOutputParametersFB" Id="{c88c46c9-ad36-4d2f-906f-fabfc21039b1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AnalogOutputParametersFB
+VAR_INPUT
+	F_QN1: LREAL; // $(scale "0 1 0 100", unit "%") VVX-reglering (0-10 V spjäll)
+	T_GQ1: LREAL; // $(scale "0 1 0 100", unit "%") Tilluftsfläkt
+	F_GQ1: LREAL; // $(scale "0 1 0 100", unit "%") Frånluftsfläkt
+	C_QN1: LREAL; // $(scale "0 1 0 100", unit "%") Kylkrets ventil
+	H_QN1: LREAL; // $(scale "0 1 0 100", unit "%") Värmekrets ventil
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Update" Id="{31ec9ef0-ffad-4ab2-ba4f-287b0d7de1d0}">
+      <Declaration><![CDATA[METHOD Update : BOOL
+VAR_INPUT
+	AO: REFERENCE TO GreenMasterAO_Base;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AO.F_QN1 := F_QN1;
+AO.T_GQ1 := T_GQ1;
+AO.F_GQ1 := F_GQ1;
+AO.C_QN1 := C_QN1;
+AO.H_QN1 := H_QN1;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="AnalogOutputParametersFB">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="AnalogOutputParametersFB.Update">
+      <LineId Id="6" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

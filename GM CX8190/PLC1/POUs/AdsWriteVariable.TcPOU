@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="AdsWriteVariable" Id="{0bb084a0-59da-462e-b6e8-e1ae0d184846}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AdsWriteVariable
+VAR_INPUT
+	NetID: STRING := '';
+	Name: STRING;
+	EN: BOOL;
+	Source: PVOID;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+	PLC_ReadSymInfoByName: PLC_ReadSymInfoByName;
+	ADSWRITE: ADSWRITE;
+	State : INT := 0;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE State OF
+0:
+	IF EN THEN
+		State := 1;
+	END_IF
+1:	
+	PLC_ReadSymInfoByName(
+		NETID := NetID, 
+		PORT := 851, 
+		SYMNAME := Name,
+		TMOUT := T#5S,
+		START := TRUE
+	);
+	State := 2;
+2:
+	PLC_ReadSymInfoByName();
+	IF NOT PLC_ReadSymInfoByName.BUSY THEN
+		PLC_ReadSymInfoByName(START := FALSE);
+		ADSWRITE(
+			NETID:= '',
+			PORT:= 851,
+			IDXGRP:= PLC_ReadSymInfoByName.SYMINFO.idxGroup,
+			IDXOFFS:= PLC_ReadSymInfoByName.SYMINFO.idxOffset,
+			LEN:= SIZEOF(PLC_ReadSymInfoByName.SYMINFO.byteSize),
+			SRCADDR:= Source,
+			WRITE:= TRUE,
+			TMOUT:= T#5S,
+		);
+		State := 3;		
+	END_IF
+	IF NOT EN THEN
+		ADSWRITE(WRITE := FALSE);
+		ENO := FALSE;
+		State := 0;
+	END_IF
+3:
+	ADSWRITE();
+	IF NOT ADSWRITE.BUSY THEN
+		ENO := TRUE;
+		ADSWRITE(WRITE := FALSE);
+	END_IF
+	IF NOT EN THEN
+		ADSWRITE(WRITE := FALSE);
+		ENO := FALSE;
+		State := 0;
+	END_IF
+END_CASE
+]]></ST>
+    </Implementation>
+    <LineIds Name="AdsWriteVariable">
+      <LineId Id="70" Count="4" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="3" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="39" Count="8" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="87" Count="4" />
+      <LineId Id="53" Count="2" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="81" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="68" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

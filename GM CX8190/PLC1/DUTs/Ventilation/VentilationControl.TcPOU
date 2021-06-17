@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="VentilationControl" Id="{d0f91fb4-6566-4ba9-86f0-d920b5d00d5c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK VentilationControl
+VAR_INPUT
+	EN: BOOL;
+	StopFans: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+END_VAR
+VAR PERSISTENT
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN AND NOT StopFans;
+]]></ST>
+    </Implementation>
+    <LineIds Name="VentilationControl">
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

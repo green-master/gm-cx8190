@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="RegulationControlParameters" Id="{ecd9fe89-c947-43c7-96db-b66884bcfdaa}">
+    <Declaration><![CDATA[TYPE RegulationControlParameters :
+STRUCT
+	EN: BOOL := TRUE; // $(W1,S,R0)
+	ENO: BOOL;
+	StartupHeatRecoveryTime: TIME;
+	PostFireVentilationTime: TIME;
+	PostVentilationTime: TIME := T#2M;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

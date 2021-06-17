@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="AnalogOutput" Id="{a58007a3-0968-41f1-9032-30ac32fdcbac}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AnalogOutput EXTENDS BaseIO
+VAR_INPUT
+	Value: LREAL;
+	Override: BOOL;
+	OverrideValue: LREAL;
+END_VAR
+VAR_OUTPUT
+	ProcessValue: LREAL;
+	ValueOut: LREAL;
+END_VAR
+VAR
+	InitDone: BOOL;
+	TempValue: LREAL;
+	OutValue: LREAL;
+	Override2: BOOL;
+	OverrideValue2: LREAL;
+END_VAR
+VAR PERSISTENT
+	SignedWord: BOOL;
+	ProcessMin: DINT := 0;
+	ProcessMax: DINT := 16#7FFF;
+	MinValue: LREAL := 0;
+	MaxValue: LREAL := 1;
+	SavedOverride: BOOL;
+	SavedOverrideValue: LREAL;
+	SavedOverride2: BOOL;
+	SavedOverrideValue2: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+IF NOT InitDone THEN
+	InitDone := TRUE;
+	OverrideValue := SavedOverrideValue;
+	Override := SavedOverride;	
+	OverrideValue2 := SavedOverrideValue2;
+	Override2 := SavedOverride2;	
+END_IF
+TempValue := Value;
+IF Override2 THEN
+	TempValue := OverrideValue2;
+END_IF
+IF Override THEN
+	TempValue := OverrideValue;
+END_IF
+OutValue := (LimitValue(TempValue, MinValue, MaxValue) - MinValue) / (MaxValue - MinValue) * (ProcessMax - ProcessMin) + ProcessMin;
+IF SignedWord THEN
+	IF OutValue < 0 THEN
+		OutValue := OutValue + 16#10000;
+	END_IF
+END_IF
+ProcessValue := OutValue;
+SavedOverride := Override;
+SavedOverrideValue := OverrideValue;
+SavedOverride2 := Override2;
+SavedOverrideValue2 := OverrideValue2;
+ValueOut :=TempValue;
+]]></ST>
+    </Implementation>
+    <Method Name="SetOverride2" Id="{82b71101-8701-497d-9c48-1762b9a0e028}">
+      <Declaration><![CDATA[METHOD SetOverride2 : BOOL
+VAR_INPUT
+	OverrideIN: BOOL;
+	OverrideValueIN: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Override2 := OverrideIN;
+OverrideValue2 := OverrideValueIN;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="AnalogOutput">
+      <LineId Id="113" Count="0" />
+      <LineId Id="3" Count="3" />
+      <LineId Id="145" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="140" Count="2" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="1" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="60" Count="2" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="147" Count="1" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AnalogOutput.SetOverride2">
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

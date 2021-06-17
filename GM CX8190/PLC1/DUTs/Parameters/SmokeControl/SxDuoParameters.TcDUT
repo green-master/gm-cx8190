@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SxDuoParameters" Id="{ef2f051f-b548-4f24-87c3-71d5bcdac534}">
+    <Declaration><![CDATA[TYPE SxDuoParameters :
+STRUCT
+	Unit1: SxDuoUnit := ( EN := TRUE, UnitID := 21 );
+	Unit2: SxDuoUnit := ( EN := TRUE, UnitID := 22 );
+	Unit3: SxDuoUnit := ( EN := TRUE, UnitID := 23 );
+	Unit4: SxDuoUnit := ( EN := TRUE, UnitID := 24 );
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

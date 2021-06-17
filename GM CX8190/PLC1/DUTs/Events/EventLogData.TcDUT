@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="EventLogData" Id="{7ccd88a2-c200-4e03-a83d-434cf52060c7}">
+    <Declaration><![CDATA[TYPE EventLogData :
+STRUCT
+	Head: INT;
+	Tail: INT;
+	Events: ARRAY [Globals.EventsLow..Globals.EventsHigh] OF Event;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ExerciseParameters" Id="{426d04ff-37df-4c2d-805b-730dbc6d09a5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExerciseParameters
+VAR_IN_OUT
+	Parameters: GreenMasterBaseParameters;
+END_VAR
+VAR_INPUT
+	CirculationPumps: ExerciseCirculationPumpsParameters;
+	FireBypassDamper: ExerciseFireBypassDamperParameters;
+	ExternalFireControl: ExerciseExternalFireControlParameters;
+	Exercising: BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	LA02_P1_EXTC: TimeChannel1CH;
+	LA02_P2_EXTC: TimeChannel1CH;
+	LA02_SV_ST_EXTC: TimeChannel1CH;
+	ExerciseState: INT;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CirculationPumps();
+FireBypassDamper();
+ExternalFireControl();
+
+(*
+LA02_P1_EXTC(Settings := ADS_CTH.Tags.Settings.LA02_P1X_TC);
+LA02_P2_EXTC(Settings := ADS_CTH.Tags.Settings.LA02_P2X_TC);
+Globals.IO.DOut.DO01 := LA02_P1_EXTC.Q;
+Globals.IO.DOut.DO16 := LA02_P2_EXTC.Q;
+LA02_SV_ST_EXTC(Settings := ADS_CTH.Tags.Settings.LA02_SX_TC);
+IF LA02_SV_ST_EXTC.Q THEN
+	CASE ExerciseState OF
+		1:
+			Globals.IO.AOut.AO01 := 0;
+			Globals.IO.AOut.AO05 := 0;
+			Globals.IO.DOut.DO04 := FALSE;
+			Globals.IO.DOut.DO05 := FALSE;
+		2:
+			Globals.IO.AOut.AO01 := 32767;
+			Globals.IO.AOut.AO05 := 32767;
+			Globals.IO.DOut.DO04 := TRUE;
+			Globals.IO.DOut.DO05 := TRUE;
+		3:
+			ExerciseState := 0;
+	END_CASE
+END_IF
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="ExerciseParameters">
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="21" Count="20" />
+      <LineId Id="19" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

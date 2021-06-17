@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="CTH_LA02" Id="{efbe37fb-7a1e-494b-b09d-bcad88bf640e}">
+    <Declaration><![CDATA[TYPE CTH_LA02 :
+STRUCT
+	Settings: GreenMasterSettingsCTH2; // Settings for the GreenMaster unit
+	Status: GreenMasterStatusCTH2; // Status for the GreenMaster unit
+	Schedule1: TimeChannelSettings := (AllDays := TRUE, EN := TRUE, OffHour := 23, OffMinute := 59); // Operating schedule for the GreenMaster unit
+	Schedule2: TimeChannelSettings; // Operating schedule for the GreenMaster unit
+	Schedule3: TimeChannelSettings; // Operating schedule for the GreenMaster unit
+	ScheduleFallback: TimeChannelSettings := (AllDays := TRUE, EN := TRUE, OnHour := 5, OnMinute := 30, OffHour := 20, OffMinute := 00); // Operating schedule for the GreenMaster unit on watchdog trig
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="ModbusWriteBits" Id="{5d56ac7c-173a-45e1-9ead-91a1d3788279}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusWriteBits EXTENDS ModbusIo
+VAR_INPUT
+	Value: BOOL;
+	b0: BOOL;
+	b1: BOOL;
+	b2: BOOL;
+	b3: BOOL;
+	b4: BOOL;
+	b5: BOOL;
+	b6: BOOL;
+	b7: BOOL;
+	b8: BOOL;
+	b9: BOOL;
+	b10: BOOL;
+	b11: BOOL;
+	b12: BOOL;
+	b13: BOOL;
+	b14: BOOL;
+	b15: BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+]]></ST>
+    </Implementation>
+    <LineIds Name="ModbusWriteBits">
+      <LineId Id="18" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

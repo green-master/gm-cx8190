@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="SupplyAirControl" Id="{31324594-6c68-4323-994e-89f11b3364f4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SupplyAirControl
+VAR_INPUT
+	EN: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	Recirculation: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN;]]></ST>
+    </Implementation>
+    <LineIds Name="SupplyAirControl">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

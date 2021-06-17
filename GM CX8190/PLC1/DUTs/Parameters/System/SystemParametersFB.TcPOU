@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SystemParametersFB" Id="{f1690a32-b7d9-4c46-bdf1-78c808f8c5e8}" SpecialFunc="None">
+    <Declaration><![CDATA[(* This is a comment 1
+	with multiple lines
+*)
+FUNCTION_BLOCK SystemParametersFB
+VAR_IN_OUT
+	Parameters: GreenMasterBaseParameters;
+END_VAR
+VAR_INPUT
+	Operation: SystemOperationParameters;
+	Defrost: DefrostParameters;
+	Exercise: ExerciseParameters;
+	{attribute 'TcEncoding':='UTF-8'}
+	Diagram: string[8000];
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Exercise(Parameters := Parameters);]]></ST>
+    </Implementation>
+    <LineIds Name="SystemParametersFB">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

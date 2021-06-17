@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="Permissions" Id="{3e44544f-024d-479c-9f7a-4f5897748ce5}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE Permissions :
+(
+	User := 0, AdminUser, SuperUser
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

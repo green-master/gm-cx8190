@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="DefrostStates" Id="{b5ab2524-0242-4074-80d7-e525d63310f7}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE DefrostStates :
+(
+	Normal := 0, ReducedTF, DualSections, ClosedTF 
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <POU Name="PostVentilation" Id="{8d656c1b-4d9d-4f1a-a51c-c8e5edc13b2d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PostVentilation
+VAR_INPUT
+	EN: BOOL := TRUE;
+	SP: LREAL;
+	PostVentilationTime: TIME;
+	PostVentilationLevel: LREAL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	SP_PostVentilation: LREAL;
+END_VAR
+VAR
+	PostVentilationTOF: TOF;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[PostVentilationTOF(IN := SP > 0, PT := PostVentilationTime);
+IF EN THEN
+	IF PostVentilationTOF.Q THEN
+		IF SP > 0 THEN
+			SP_PostVentilation := SP;
+		ELSE
+			SP_PostVentilation := PostVentilationLevel;
+		END_IF
+	ELSE
+		SP_PostVentilation := 0;
+	END_IF
+ELSE
+	SP_PostVentilation := SP;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="PostVentilation">
+      <LineId Id="189" Count="13" />
+      <LineId Id="24" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

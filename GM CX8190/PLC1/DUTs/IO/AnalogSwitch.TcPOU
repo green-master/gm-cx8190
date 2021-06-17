@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="AnalogSwitch" Id="{93297a8a-5728-450b-967a-f01a814869f0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AnalogSwitch
+VAR_INPUT
+	EN: BOOL;
+	Index: INT;
+	Input01: LREAL;
+	Input02: LREAL;
+	Input03: LREAL;
+	Input04: LREAL;
+	Input05: LREAL;
+	Input06: LREAL;
+	Input07: LREAL;
+	Input08: LREAL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	Output: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="AnalogSwitch">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

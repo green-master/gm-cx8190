@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="AnalogInputs" Id="{1793ea03-2504-446e-a5ae-dbcd8e1d1892}">
+    <Declaration><![CDATA[TYPE AnalogInputs :
+STRUCT
+	// F.BT1 Frånluftstemperatur 
+	AI01 AT %I*: WORD;
+    AI01_Error AT %I*: BOOL;
+    // T.BT2 Uteluftstemperatur
+	AI02 AT %I*: WORD;
+    AI02_Error AT %I*: BOOL;
+    // T.BT3 Tilluftstemperatur (innan efterbehandling)
+	AI03 AT %I*: WORD;
+    AI03_Error AT %I*: BOOL;
+    // H.BT1 Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat)
+	AI04 AT %I*: WORD;
+    AI04_Error AT %I*: BOOL;
+    // T.BT1 Tilluftstemperatur (efter efterbehandling) 
+	AI05 AT %I*: WORD;
+    AI05_Error AT %I*: BOOL;
+    // BT1 Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard)
+	AI06 AT %I*: WORD;
+    AI06_Error AT %I*: BOOL;
+    // BT2 Rumstemperatur (lokalgivare, används inte i bostadsaggregat)
+	AI07 AT %I*: WORD;
+    AI07_Error AT %I*: BOOL;
+    // F.BT2 Avluftstemperatur (tillval)
+	AI08 AT %I*: WORD;
+    AI08_Error AT %I*: BOOL;
+    // Reservingång (alt. T.BF1 via 0-10V) 
+	AI09 AT %I*: WORD;
+    AI09_Error AT %I*: BOOL;
+    // Reservingång (alt. F.BF1 via 0-10V)
+	AI10 AT %I*: WORD;
+    AI10_Error AT %I*: BOOL;
+    // Reservingång (alt. T.BP2 via 0-10V) 
+	AI11 AT %I*: WORD;
+    AI11_Error AT %I*: BOOL;
+    // Reservingång (alt. F.BP2 via 0-10V) 
+	AI12 AT %I*: WORD;
+    AI12_Error AT %I*: BOOL;
+    // Reservingång (alt. F.BP3 via 0-10V) 
+	AI13 AT %I*: WORD;
+    AI13_Error AT %I*: BOOL;
+    // Reservingång (alt. T.BP1 via 0-10V) 
+	AI14 AT %I*: WORD;
+    AI14_Error AT %I*: BOOL;
+    // Reservingång (alt. F.BP1 via 0-10V) 
+	AI15 AT %I*: WORD;
+    AI15_Error AT %I*: BOOL;
+    // Reservingång (extra 0-10V-ingång) 
+	AI16 AT %I*: WORD;
+    AI16_Error AT %I*: BOOL;
+	AI17 AT %I*: WORD;
+    AI17_Error AT %I*: BOOL;
+	AI18 AT %I*: WORD;
+    AI18_Error AT %I*: BOOL;
+	AI19 AT %I*: WORD;
+    AI19_Error AT %I*: BOOL;
+	AI20 AT %I*: WORD;
+    AI20_Error AT %I*: BOOL;
+	AI21 AT %I*: WORD;
+    AI21_Error AT %I*: BOOL;
+	AI22 AT %I*: WORD;
+    AI22_Error AT %I*: BOOL;
+	AI23 AT %I*: WORD;
+    AI23_Error AT %I*: BOOL;
+	AI24 AT %I*: WORD;
+    AI24_Error AT %I*: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

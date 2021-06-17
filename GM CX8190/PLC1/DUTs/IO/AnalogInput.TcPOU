@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="AnalogInput" Id="{1d1cb0c1-c0d3-4db6-a9bb-1f03a14e198d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AnalogInput EXTENDS BaseIO
+VAR_INPUT
+	ProcessValue: LREAL;
+	Override: BOOL;
+	OverrideValue: LREAL;
+END_VAR
+VAR_OUTPUT
+	Value: LREAL;
+END_VAR
+VAR
+	InitDone: BOOL;
+	TempValue: LREAL;
+END_VAR
+VAR PERSISTENT
+	SignedWord: BOOL;
+	ProcessMin: DINT := 0;
+	ProcessMax: DINT := 16#3FFF;
+	MinValue: LREAL := 0;
+	MaxValue: LREAL := 1;
+	SavedOverride: BOOL;
+	SavedOverrideValue: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+IF NOT InitDone THEN
+	InitDone := TRUE;
+	OverrideValue := SavedOverrideValue;
+	Override := SavedOverride;	
+END_IF
+IF NOT Override THEN
+	TempValue := ProcessValue;
+	IF SignedWord THEN
+		IF ProcessValue >= 16#8000 THEN
+			TempValue := TempValue - 16#10000;
+		END_IF
+	END_IF
+	Value := GetValue();
+	Error := ProcessError;
+	ErrorCode := ProcessErrorCode;
+ELSE
+	Value := OverrideValue;
+	Error := FALSE;
+	ErrorCode := 0;
+END_IF
+SavedOverride := Override;
+SavedOverrideValue := OverrideValue;
+]]></ST>
+    </Implementation>
+    <Method Name="GetValue" Id="{910725f1-c0fb-409c-a151-64f03276bf5f}">
+      <Declaration><![CDATA[METHOD GetValue : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetValue := (LimitValue(TempValue, ProcessMin, ProcessMax) - ProcessMin) / (ProcessMax - ProcessMin) * (MaxValue - MinValue) + MinValue;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="AnalogInput">
+      <LineId Id="70" Count="0" />
+      <LineId Id="3" Count="5" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="43" Count="2" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="93" Count="1" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="96" Count="1" />
+      <LineId Id="12" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="AnalogInput.GetValue">
+      <LineId Id="7" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

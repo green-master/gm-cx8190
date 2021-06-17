@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="InputStatus" Id="{a81cfb64-635a-48f4-98cf-e9b913add048}">
+    <Declaration><![CDATA[TYPE InputStatus :
+STRUCT
+    AI01: STRING;
+    AI02: STRING;
+    AI03: STRING;
+    AI04: STRING;
+    AI05: STRING;
+    AI06: STRING;
+    AI07: STRING;
+    AI08: STRING;
+    AI09: STRING;
+    AI10: STRING;
+    AI11: STRING;
+    AI12: STRING;
+    AI13: STRING;
+    AI14: STRING;
+    AI15: STRING;
+    AI16: STRING;
+    AI17: STRING;
+    AI18: STRING;
+    AI19: STRING;
+    AI20: STRING;
+    AI21: STRING;
+    AI22: STRING;
+    AI23: STRING;
+    AI24: STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

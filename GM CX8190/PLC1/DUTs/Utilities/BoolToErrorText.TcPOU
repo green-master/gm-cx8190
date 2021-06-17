@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="BoolToErrorText" Id="{1c47d453-b9a0-4fef-acb9-dc5b5c2621ca}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION BoolToErrorText : STRING
+VAR_INPUT
+	Error: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Error THEN
+	BoolToErrorText := 'Error';
+ELSE
+	BoolToErrorText := 'OK';
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="BoolToErrorText">
+      <LineId Id="25" Count="3" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

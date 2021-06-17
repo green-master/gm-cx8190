@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmsDelaysC" Id="{ebe86ea4-0de5-4df8-a9d5-dbcde5aafd3c}">
+    <Declaration><![CDATA[// MUST be in same order and number as AlarmSignals
+TYPE AlarmsDelaysC :
+STRUCT
+	ExternalSmokeControl: TIME := T#5S;
+	ModbusRTU: TIME := T#5S;
+	ModbusTCP: TIME := T#5S;
+	SensorFailure: TIME := T#5S;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

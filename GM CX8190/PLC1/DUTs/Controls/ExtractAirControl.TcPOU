@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="ExtractAirControl" Id="{d099ca57-54fe-4b3f-a235-288be625a22c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExtractAirControl
+VAR_INPUT
+	EN: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN;]]></ST>
+    </Implementation>
+    <LineIds Name="ExtractAirControl">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="DefrostParameters" Id="{71bafd84-79e8-4599-a31a-31f9c5bb9b99}">
+    <Declaration><![CDATA[TYPE DefrostParameters :
+STRUCT
+	EN: BOOL;
+	
+	T_QM1_1: BOOL;
+	T_QM1_2: BOOL;
+	T_QM1_3: BOOL;
+	T_QM1_4: BOOL;
+	T_QM1_5: BOOL;
+	T_QM1_6: BOOL;
+	
+	//ManualControl: BOOL;
+	//SectionCount: INT;
+	DefrostTemperature: LREAL;
+	//StartPressure: LREAL;
+	//StopPressure: LREAL;
+	SectionTime: LTIME;
+	//HeatRequired: LREAL;	
+
+	//BypassOpen: LREAL;
+	
+	SetPointReduction: SetPointReductionParameters;
+	ExtendedDefrost: ExtendedDefrostParameters;
+	WinterShutdown: WinterShutdownParameters;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

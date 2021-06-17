@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="CoolingRecycling" Id="{0f58fd16-d1c7-48ff-9f22-ef910dfe5e29}">
+    <Declaration><![CDATA[TYPE CoolingRecycling :
+STRUCT
+	EN: BOOL := TRUE;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

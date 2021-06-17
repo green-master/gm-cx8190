@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="GreenMasterAI_Base" Id="{33f90b35-1a25-44ab-a524-cc01d4d7df66}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterAI_Base
+VAR_IN_OUT
+	AIn: AnalogInputs;
+END_VAR
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	F_BT1_Error: BOOL;
+	F_BT1: LREAL;
+	T_BT2_Error: BOOL;
+	T_BT2: LREAL;
+	T_BT3_Error: BOOL;
+	T_BT3: LREAL;
+	H_BT1_Error: BOOL;
+	H_BT1: LREAL;
+	T_BT1_Error: BOOL;
+	T_BT1: LREAL;
+	BT1_Error: BOOL;
+	BT1: LREAL;
+	BT2_Error: BOOL;
+	BT2: LREAL;
+	F_BT2_Error: BOOL;
+	F_BT2: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="GreenMasterAI_Base">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

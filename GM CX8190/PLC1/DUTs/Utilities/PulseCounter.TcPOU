@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="PulseCounter" Id="{f82c2d8e-b74b-46c2-8182-efb6a58ed212}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PulseCounter
+VAR_INPUT
+	FM: BOOL;
+END_VAR
+VAR_OUTPUT
+	Flow: LREAL;
+	PulseCounter: LINT;
+END_VAR
+VAR
+	Tmp: BOOL;
+	Now: LINT;
+	Last_FM: BOOL;
+	LastTime: LINT;
+	FilteredFlow: EMA;
+	Pulse: BOOL;
+	LastPulseLength: LINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Tmp := FM;
+Now := GetTickCount();
+Pulse := (Tmp AND (Tmp <> Last_FM)); 
+IF Pulse THEN
+	PulseCounter := PulseCounter + 1;
+	LastPulseLength := Now - LastTime;
+	IF (Now - LastTime) > 0 THEN
+		FilteredFlow(NewValue := 3.6 / (LINT_TO_LREAL(Now - LastTime) / 1000.0));
+	END_IF
+	LastTime := Now;
+END_IF
+Last_FM := Tmp;
+IF (Now - LastTime) > (2 * LastPulseLength) THEN
+	IF (Now - LastTime) > 0 THEN
+		FilteredFlow(NewValue := 3.6 / (LINT_TO_LREAL(Now - LastTime) / 1000.0));
+	END_IF
+END_IF
+IF (Now - LastTime) > 30000 THEN
+	FilteredFlow.SetValue(0);
+END_IF
+Flow := FilteredFlow.Value; 
+]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{18265230-6da1-49a2-b3ed-354fe179765a}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FilteredFlow.SetSampleCount(5);]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="PulseCounter">
+      <LineId Id="3" Count="20" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="PulseCounter.FB_init">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

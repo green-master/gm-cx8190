@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <DUT Name="DigitalInputLevels" Id="{d7454167-5c21-44e8-9c15-634d738ee894}">
+    <Declaration><![CDATA[TYPE DigitalInputLevels :
+STRUCT
+	// Digital Input Levels, false = active high
+	DI01: BOOL; // AUTO AH (Sluten=1=Aggregat tillåts till drift via överstyrning)
+	DI02: BOOL := TRUE; // Brandlarm AL (centralt/rökdetektor frånluft)
+	DI03: BOOL; // Utlöst AH automatsäkring, larm
+	DI04: BOOL; // HAND AH (Sluten=Aggregat i konstant drift)
+	DI05: BOOL := TRUE; // AL Larm T.GQ1 Tilluftsfläkt
+	DI06: BOOL := TRUE; // AL Larm F.GQ1 Frånluftsfläkt
+	DI07: BOOL; // AH F.QM2 brandspjäll ändläge 1 (spjäll stängt/normalläge)
+	DI08: BOOL; // AL F.QM2 brandspjäll ändläge 2 (spjäll öppet/brandläge)
+	DI09: BOOL; // Förlängd drift
+	DI10: BOOL; // Servicelarm (centralt/rökdetektor frånluft)
+	DI11: BOOL := TRUE; // Brandlarm (tilluft)
+	DI12: BOOL; // Servicelarm (tilluft)
+	DI13: BOOL; // Ingång för pumpdrift, alt. pumplarm H.GP1 (värme)
+	DI14: BOOL; // Ingång för pumpdrift, alt. pumplarm C.GP1 (kyla)
+	DI15: BOOL; // Ingång för rotationsvakt värmeväxlare (TX1)
+	DI16: BOOL; // Larmåterställning
+	DI17: BOOL;
+	DI18: BOOL := TRUE;
+	DI19: BOOL := TRUE;
+	DI20: BOOL := TRUE;
+	DI21: BOOL := TRUE;
+	DI22: BOOL;
+	DI23: BOOL;
+	DI24: BOOL;
+	DI25: BOOL;
+	DI26: BOOL;
+	DI27: BOOL;
+	DI28: BOOL;
+	DI29: BOOL;
+	DI30: BOOL;
+	DI31: BOOL;
+	DI32: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

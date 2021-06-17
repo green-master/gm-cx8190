@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Valve" Id="{f79b007e-61a9-4d86-9184-28e3572ebdbb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Valve EXTENDS BaseValve
+VAR_INPUT
+	IO_Open: REFERENCE TO DigitalOutput;
+	IO_FB1, IO_FB2: REFERENCE TO DigitalInput;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	ValveMonitor: ValveMonitor; 
+	Error: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ValveMonitor(Valve := Open, FB1 := IsOpen, FB2 := IsClosed);
+Error := ValveMonitor.Error;]]></ST>
+    </Implementation>
+    <LineIds Name="Valve">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

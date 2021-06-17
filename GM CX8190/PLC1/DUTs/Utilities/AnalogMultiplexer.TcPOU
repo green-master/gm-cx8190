@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="AnalogMultiplexer" Id="{a7e760a3-8baa-4cca-8e27-694b8ef3f927}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AnalogMultiplexer
+VAR_INPUT
+	bSelect: BOOL;
+	iSelect: INT := -1;
+	In0: LREAL := 0;
+	In1: LREAL := 0;
+	In2: LREAL := 0;
+	In3: LREAL := 0;
+END_VAR
+VAR_OUTPUT
+	Out: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF iSelect = -1 THEN
+	IF bSelect THEN
+		Out := In1;
+	ELSE
+		Out := In0;
+	END_IF
+ELSE
+	CASE iSelect OF
+		0: 	Out := In0;
+		1: 	Out := In1;
+		2: 	Out := In2;
+		3: 	Out := In3;
+	END_CASE
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="AnalogMultiplexer">
+      <LineId Id="7" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="25" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="43" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

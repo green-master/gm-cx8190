@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Band" Id="{ef86ebae-c3fa-4ff1-aa85-67b542bf726e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION Band : LREAL
+VAR_INPUT
+	Value: lreal;
+	Target: LREAL;
+	Width: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[  Band := LimitValue(Value - Target, -Width, Width) / Width;
+]]></ST>
+    </Implementation>
+    <LineIds Name="Band">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

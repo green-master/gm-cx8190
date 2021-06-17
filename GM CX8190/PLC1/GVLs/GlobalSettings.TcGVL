@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <GVL Name="GlobalSettings" Id="{ea9bdfda-dc64-4f7f-812b-2ebfec7dc7e4}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	MAX_COMPONENTS: INT := 20;
+END_VAR
+{attribute 'qualified_only'}
+VAR_GLOBAL PERSISTENT
+	{attribute 'TcEncoding':='UTF-8'}
+	WebAdsAccessRoot: STRING := 'Main.GreenMaster';
+	{attribute 'TcEncoding':='UTF-8'}
+	PlcType: STRING := 'CX8190';
+	Webname: STRING := 'NIBE AirSite GreenMaster';
+	Users: ARRAY [0..24] OF User := [
+		(Email := 'user', Password := 'user', Name := 'User', Permissions := Permissions.User),
+		(Email := 'admin', Password := 'admin', Name := 'Admin', Permissions := Permissions.AdminUser),
+		(Email := 'super', Password := 'super', Name := 'Super', Permissions := Permissions.SuperUser)
+	];
+	{attribute 'TcEncoding':='UTF-8'}
+	SiteNames: ARRAY [0..99] OF STRING;
+	Components: ARRAY [0..MAX_COMPONENTS - 1] OF Component := [
+		//(Name := ComponentNames.GM, EN := TRUE, Path := 'Main.GreenMaster', Required := TRUE, Permissions := Permissions.User),
+		(Name := ComponentNames.GM_BASE, EN := TRUE, Path := 'Main.GreenMaster.Parameters', Required := TRUE, Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_IO, EN := TRUE, Path := 'Globals.IO', Required := TRUE, Resource := 'IO', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_VENT, EN := TRUE, Path := 'Main.GreenMaster.ParametersVENT', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_XXL, EN := FALSE, Path := 'Main.GreenMaster.ParametersXXL', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_A, EN := FALSE, Path := 'Main.GreenMaster.ParametersGMA', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_C_F, EN := FALSE, Path := 'Main.GreenMaster.ParametersGMCF', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_C_T, EN := TRUE, Path := 'Main.GreenMaster.ParametersGMCT', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_SMOKE_CONTROL, EN := TRUE, Path := 'Main.GreenMaster.ParametersSC', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_OPT_CTH, EN := TRUE, Path := 'ADS_CTH.Tags2', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.SIMULATION, EN := FALSE, Path := 'Main.GreenMaster.Simulation', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.None)
+	];
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

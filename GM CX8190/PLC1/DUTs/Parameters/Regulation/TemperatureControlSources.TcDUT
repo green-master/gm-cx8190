@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="TemperatureControlSources" Id="{c2e48a83-8d8d-4616-85f7-b1a7f46f60fd}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE TemperatureControlSources :
+(
+	T_BT1 := 0, F_BT1, BT2
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SystemParametersXXL" Id="{3dae6fd6-0e2c-48fd-a262-a277eaa45759}">
+    <Declaration><![CDATA[// A bit of comment
+TYPE SystemParametersXXL :
+STRUCT
+	Operation: SystemOperationParametersXXL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

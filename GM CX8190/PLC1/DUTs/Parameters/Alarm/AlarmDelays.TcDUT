@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmDelays" Id="{9685dc65-47d0-4036-b932-c8bc854e374d}">
+    <Declaration><![CDATA[// MUST be in same order and number as AlarmSignals
+TYPE AlarmDelays :
+STRUCT
+	A: AlarmsDelaysA;
+	B: AlarmsDelaysB;
+	C: AlarmsDelaysC;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="FlowInput" Id="{252a420b-3d35-42f1-8b50-a89741fad6f9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FlowInput EXTENDS AnalogInput
+VAR_INPUT
+	k: LREAL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Aver: Average;
+END_VAR
+VAR PERSISTENT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+]]></ST>
+    </Implementation>
+    <Method Name="GetValue" Id="{c48d5cf9-d7a8-4783-8146-858a11b9064d}">
+      <Declaration><![CDATA[METHOD GetValue : LREAL
+VAR_INPUT
+END_VAR
+VAR
+	Pressure: LREAL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Pressure := SUPER^.GetValue();
+Aver(NewSample := PressureToFlow(Pressure, k));
+GetValue := Aver.Value;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FlowInput">
+      <LineId Id="13" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FlowInput.GetValue">
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

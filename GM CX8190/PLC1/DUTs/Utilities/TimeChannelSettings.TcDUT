@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <DUT Name="TimeChannelSettings" Id="{24116061-ff62-4db0-8564-448a4a1cbe47}">
+    <Declaration><![CDATA[TYPE TimeChannelSettings :
+STRUCT
+	EN               : BOOL;	// Enables this time channel *)
+	Speed            : INT;		// 0,1=normal speed, 2=high speed
+	OnHour           : UINT;	(* Hour value of the switch-on time on the day *)
+	OnMinute         : UINT;	(* Minute value of the switch-on time on the day *)
+	OffHour          : UINT;	(* Hour value of the switch-off time on the day *)
+	OffMinute        : UINT;	(* Minute value of the switch-off time on the day *)
+	AllDays          : BOOL;	(* Selects switch-on on all days *)       
+	Monday           : BOOL;	(* -----------------------------------------------  *)    
+	Tuesday          : BOOL;	(*                                                  *)
+	Wednesday        : BOOL;	(*                                                  *)
+	Thursday         : BOOL;	(* Selects switch-on on the respective day of the week *)
+	Friday           : BOOL;	(*                                                  *)
+	Saturday         : BOOL;	(*                                                  *)
+	Sunday           : BOOL;	(*  ------------------------------------------------*)
+	SingleShot       : BOOL;	(* Resets EN after the on/off cycle is complete *)     
+	Q                : BOOL;	(* Result of the time channel *) 
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

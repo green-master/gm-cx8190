@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="ModbusReadBits" Id="{5e7aab4f-4075-4a76-b76a-9822912767b6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusReadBits EXTENDS ModbusIo
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	b0: BOOL;
+	b1: BOOL;
+	b2: BOOL;
+	b3: BOOL;
+	b4: BOOL;
+	b5: BOOL;
+	b6: BOOL;
+	b7: BOOL;
+	b8: BOOL;
+	b9: BOOL;
+	b10: BOOL;
+	b11: BOOL;
+	b12: BOOL;
+	b13: BOOL;
+	b14: BOOL;
+	b15: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+]]></ST>
+    </Implementation>
+    <Property Name="ValueWord" Id="{bcc57c69-d637-4c03-8361-57d5c423fdc3}">
+      <Declaration><![CDATA[PROPERTY ValueWord : WORD]]></Declaration>
+      <Get Name="Get" Id="{c6873f3c-2f53-4f68-8b6f-9029b0403e14}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ValueWord := 0;
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{3ae1f94e-cd7d-4b1c-ab15-bf10b658fe0a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[b0 := (ValueWord AND 16#0001) <> 0;
+b1 := (ValueWord AND 16#0002) <> 0;
+b2 := (ValueWord AND 16#0004) <> 0;
+b3 := (ValueWord AND 16#0008) <> 0;
+b4 := (ValueWord AND 16#0010) <> 0;
+b5 := (ValueWord AND 16#0020) <> 0;
+b6 := (ValueWord AND 16#0040) <> 0;
+b7 := (ValueWord AND 16#0080) <> 0;
+b8 := (ValueWord AND 16#0100) <> 0;
+b9 := (ValueWord AND 16#0200) <> 0;
+b10 := (ValueWord AND 16#0400) <> 0;
+b11 := (ValueWord AND 16#0800) <> 0;
+b12 := (ValueWord AND 16#1000) <> 0;
+b13 := (ValueWord AND 16#2000) <> 0;
+b14 := (ValueWord AND 16#4000) <> 0;
+b15 := (ValueWord AND 16#8000) <> 0;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="ModbusReadBits">
+      <LineId Id="18" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusReadBits.ValueWord.Get">
+      <LineId Id="7" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusReadBits.ValueWord.Set">
+      <LineId Id="8" Count="0" />
+      <LineId Id="14" Count="14" />
+      <LineId Id="13" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

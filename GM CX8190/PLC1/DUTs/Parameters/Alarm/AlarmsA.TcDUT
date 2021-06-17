@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmsA" Id="{86ff6793-8f0e-4136-82cc-f84389a9fd21}">
+    <Declaration><![CDATA[TYPE AlarmsA :
+STRUCT
+	Fire: BOOL;
+	FireSupply: BOOL;
+	Freeze: BOOL;
+	Fuse: BOOL;
+	Cold: BOOL;
+	Aux: BOOL;
+	SD1_10_1: BOOL;
+	SD1_10_2: BOOL;
+	SD1_10_3: BOOL;
+	SD1_10_4: BOOL;
+	SD1_10_E: BOOL;
+	SD1_11_1: BOOL;
+	SD1_11_2: BOOL;
+	SD1_11_3: BOOL;
+	SD1_11_4: BOOL;
+	SD1_11_E: BOOL;
+	FirePanelSupplyStart: BOOL;
+	FirePanelSupplyStop: BOOL;
+	FirePanelExtractStart: BOOL;
+	FirePanelExtractStop: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

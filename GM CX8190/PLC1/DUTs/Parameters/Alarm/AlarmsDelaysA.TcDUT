@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmsDelaysA" Id="{ca5bd2a0-dc92-4a5b-9cd6-6416885c4bc9}">
+    <Declaration><![CDATA[// MUST be in same order and number as AlarmSignals
+TYPE AlarmsDelaysA :
+STRUCT
+	Fire: TIME := T#1S;
+	FireSupply: TIME := T#1S;
+	Freeze: TIME := T#5S;
+	Fuse: TIME := T#1S;
+	Cold: TIME := T#5S;
+	Aux: TIME := T#5S;
+	SD1_10_1: TIME := T#5S;
+	SD1_10_2: TIME := T#5S;
+	SD1_10_3: TIME := T#5S;
+	SD1_10_4: TIME := T#5S;
+	SD1_10_E: TIME := T#5S;
+	SD1_11_1: TIME := T#5S;
+	SD1_11_2: TIME := T#5S;
+	SD1_11_3: TIME := T#5S;
+	SD1_11_4: TIME := T#5S;
+	SD1_11_E: TIME := T#5S;
+	FirePanelSupplyStart: TIME := T#1S;
+	FirePanelSupplyStop: TIME := T#1S;
+	FirePanelExtractStart: TIME := T#1S;
+	FirePanelExtractStop: TIME := T#1S;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

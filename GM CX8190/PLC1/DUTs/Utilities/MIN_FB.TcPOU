@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="MIN_FB" Id="{3fe24620-f6aa-4b17-9c3a-3d6f08d1f798}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MIN_FB
+VAR_INPUT
+	In1: LREAL;
+	In2: LREAL;
+END_VAR
+VAR_OUTPUT
+	Out: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Out := MIN(In1, In2);]]></ST>
+    </Implementation>
+    <LineIds Name="MIN_FB">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

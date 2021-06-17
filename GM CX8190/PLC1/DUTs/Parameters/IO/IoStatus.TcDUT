@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="IoStatus" Id="{7be4d157-f5c1-4063-a13d-ac0c63fd93f0}">
+    <Declaration><![CDATA[TYPE IoStatus :
+STRUCT
+	SensorStatus: SensorStatus;
+	InputStatus: InputStatus;
+	SmokeControlStatus: SmokeControlStatus;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="AnalogInputParametersFB" Id="{e766f1f7-f183-44ee-8a02-b37c486db9e7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AnalogInputParametersFB
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	F_BT1: LREAL; // $(unit "C") Frånluftstemperatur 
+    T_BT2: LREAL; // $(unit "C") Uteluftstemperatur
+    T_BT3: LREAL; // $(unit "C") Tilluftstemperatur (innan efterbehandling)
+    H_BT1: LREAL; // $(unit "C") Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat)
+    T_BT1: LREAL; // $(unit "C") Tilluftstemperatur (efter efterbehandling) 
+    BT1: LREAL; // $(unit "C") Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard)
+    BT2: LREAL; // $(unit "C") Rumstemperatur (lokalgivare, används inte i bostadsaggregat)
+    F_BT2: LREAL; // $(unit "C") Avluftstemperatur (tillval)
+	
+    F_BP1: LREAL; // $(unit "Pa") Tryckgivare Frånluftskanal
+    T_BP1: LREAL; // $(unit "Pa") Tryckgivare Tilluftskanal
+    F_BP2: LREAL; // $(unit "Pa") Tryckgivare Frånluftsfilter
+    T_BP2: LREAL; // $(unit "Pa") Tryckgivare uteluftsfilter
+    F_BP3: LREAL; // $(unit "Pa") Tryckgivare VVX
+    T_BF1: LREAL; // $(unit "m³/h") Flödesgivare Tilluftsfläkt
+    F_BF1: LREAL; // $(unit "m³/h") Flödesgivare Frånluftsfläkt	
+
+	F_BT1_Error: BOOL; 
+    T_BT2_Error: BOOL;
+    T_BT3_Error: BOOL;
+    H_BT1_Error: BOOL;
+    T_BT1_Error: BOOL; 
+    BT1_Error: BOOL;
+    BT2_Error: BOOL;
+    F_BT2_Error: BOOL;
+	
+    F_BP1_Error: BOOL;
+    T_BP1_Error: BOOL;
+    F_BP2_Error: BOOL;
+    T_BP2_Error: BOOL;
+    F_BP3_Error: BOOL;
+    T_BF1_Error: BOOL;
+    F_BF1_Error: BOOL;	
+
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Update" Id="{8483c25b-6617-4e28-ac3f-e8aa1724067f}">
+      <Declaration><![CDATA[METHOD Update : BOOL
+VAR_INPUT
+	AI: REFERENCE TO GreenMasterAI_Base;
+	AI2: REFERENCE TO GreenMasterAIU_Base;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Parameters.System.Operation.Simulation THEN
+	F_BT1 := AI.F_BT1;
+	F_BT1_Error := AI.F_BT1_Error;
+	T_BT2 := AI.T_BT2;
+	T_BT2_Error := AI.T_BT2_Error;
+	T_BT3 := AI.T_BT3;
+	T_BT3_Error := AI.T_BT3_Error;
+	H_BT1 := AI.H_BT1;
+	H_BT1_Error := AI.H_BT1_Error;
+	T_BT1 := AI.T_BT1; 
+	T_BT1_Error := AI.T_BT1_Error;
+	BT1 := AI.BT1;
+	BT1_Error := AI.BT1_Error;
+	BT2 := AI.BT2;
+	BT2_Error := AI.BT2_Error;
+	F_BT2 := AI.F_BT2;
+	F_BT2_Error := AI.F_BT2_Error;
+	F_BP1 := AI2.F_BP1;
+	F_BP1_Error := AI2.F_BP1_Error;
+	T_BP1 := AI2.T_BP1;
+	T_BP1_Error := AI2.T_BP1_Error;
+	F_BP2 := AI2.F_BP2;
+	F_BP2_Error := AI2.F_BP2_Error;
+	T_BP2 := AI2.T_BP2;
+	T_BP2_Error := AI2.T_BP2_Error;
+	F_BP3 := AI2.F_BP3;
+	F_BP3_Error := AI2.F_BP3_Error;
+	T_BF1 := (SQRT(AI2.T_BF1) * Parameters.Regulation.SupplyAir.KFactor) / 3.6 ;
+	T_BF1_Error := AI2.T_BF1_Error;
+	F_BF1 := (SQRT(AI2.F_BF1) * Parameters.Regulation.ExtractAir.KFactor) / 3.6 ;	
+	F_BF1_Error := AI2.F_BF1_Error;
+ELSE
+	F_BT1_Error := FALSE;
+	T_BT2_Error := FALSE;
+	T_BT3_Error := FALSE;
+	H_BT1_Error := FALSE;
+	T_BT1_Error := FALSE;
+	BT1_Error := FALSE;
+	BT2_Error := FALSE;
+	F_BT2_Error := FALSE;
+	F_BP1_Error := FALSE;
+	T_BP1_Error := FALSE;
+	F_BP2_Error := FALSE;
+	T_BP2_Error := FALSE;
+	F_BP3_Error := FALSE;
+	T_BF1_Error := FALSE;
+	F_BF1_Error := FALSE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="AnalogInputParametersFB">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="AnalogInputParametersFB.Update">
+      <LineId Id="32" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="56" Count="1" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="35" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

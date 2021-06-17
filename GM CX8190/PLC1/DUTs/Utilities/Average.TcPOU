@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="Average" Id="{b5d1a686-8d96-4aa9-ad7b-e544505a4d3d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Average
+VAR_INPUT
+	NewSample: LREAL;
+END_VAR
+VAR_OUTPUT
+	Value: LREAL;
+END_VAR
+VAR
+	Acc: lreal;
+	LastSec: LINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF LastSec = 0 THEN
+	Acc := NewSample;
+END_IF
+IF Globals.SecondsCounter <> LastSec THEN
+	Acc := Acc * 0.9;
+	Acc := Acc + NewSample;
+	Value := Acc / 10;
+	LastSec := Globals.SecondsCounter;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Average">
+      <LineId Id="19" Count="2" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

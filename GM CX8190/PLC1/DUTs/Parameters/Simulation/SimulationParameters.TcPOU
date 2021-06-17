@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SimulationParameters" Id="{90e29d7f-5bc4-4458-b73f-f4191c455abb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SimulationParameters
+VAR_INPUT
+	TestSim: BOOL;
+END_VAR
+VAR_OUTPUT
+	SimCounter: int;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SimCounter := SimCounter + 1;]]></ST>
+    </Implementation>
+    <LineIds Name="SimulationParameters">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

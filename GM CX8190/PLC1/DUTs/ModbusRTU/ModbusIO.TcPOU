@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="ModbusIo" Id="{cfe7a271-9474-4996-867a-665c5c7d8c6b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusIo
+VAR_INPUT
+	EN: BOOL;
+	Modbus: REFERENCE TO Modbus;
+	UnitID: BYTE;
+	RegisterType: ModbusRegisterType;
+	Register: WORD;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	Error: BOOL;
+END_VAR
+VAR_IN_OUT
+END_VAR
+VAR
+	Registered: BOOL;
+END_VAR
+VAR PERSISTENT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF EN AND __ISVALIDREF(Modbus) THEN
+	IF NOT Registered THEN
+		Modbus.AddIO(THIS);
+		Registered := TRUE;	
+	END_IF
+END_IF
+ENO := EN and not Error;
+]]></ST>
+    </Implementation>
+    <Property Name="ErrorOut" Id="{fba349c7-255c-4e7d-b9ff-3cd8aab40960}">
+      <Declaration><![CDATA[PROPERTY ErrorOut : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b4f378e1-a05e-4b08-b5ac-dfa8dc0c617a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ErrorOut := Error;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{af21a136-4472-4451-adb3-f4cea7a9b225}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error := ErrorOut;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="ValueBoolOut" Id="{3afd66ea-b0f4-4521-80b0-9671f2927062}">
+      <Declaration><![CDATA[PROPERTY ValueBoolOut : BOOL]]></Declaration>
+      <Get Name="Get" Id="{76813b2b-1ef4-4b99-876d-7aa6a9992400}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{678ca27f-d241-44fd-a2db-3ca3ed4711b6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="ValueWord" Id="{a791f941-fccb-4e94-9af3-eb1f4346b80f}">
+      <Declaration><![CDATA[PROPERTY ValueWord : WORD]]></Declaration>
+      <Get Name="Get" Id="{c4f0575f-d52c-406c-8e5e-0f45d92f9f6a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{e4efd358-cbf0-4f54-9be1-f9f72775fc2b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="ModbusIo">
+      <LineId Id="79" Count="0" />
+      <LineId Id="82" Count="4" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="52" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ErrorOut.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ErrorOut.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ValueBoolOut.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ValueBoolOut.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ValueWord.Get">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ValueWord.Set">
+      <LineId Id="13" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

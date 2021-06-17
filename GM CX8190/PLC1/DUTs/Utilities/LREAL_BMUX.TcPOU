@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="LREAL_BMUX" Id="{d2a9ab62-4df3-4edc-ba91-3588d6f7b060}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION LREAL_BMUX : LREAL
+VAR_INPUT
+	B: BOOL;
+	X: LREAL;
+	Y: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT B THEN
+	LREAL_BMUX := X;
+ELSE
+	LREAL_BMUX := Y;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="LREAL_BMUX">
+      <LineId Id="7" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

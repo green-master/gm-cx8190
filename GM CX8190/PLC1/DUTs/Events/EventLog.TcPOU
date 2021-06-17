@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+  <POU Name="EventLog" Id="{a2e84b5f-eea0-4836-95b1-c30bdbad7043}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK EventLog
+VAR_IN_OUT
+	EventLogData: EventLogData;	
+END_VAR
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	StartupDone: BOOL;
+	EventLogDataRef: reference to EventLogData;	
+	IncludeJSON: BOOL;
+	sJSON: STRING(2000);
+	fbJsonDataType: FB_JsonReadWriteDataType;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT StartupDone THEN
+	EventLogDataRef REF= EventLogData;
+	StartupDone := TRUE;
+END_IF
+
+]]></ST>
+    </Implementation>
+    <Method Name="LogEvent" Id="{959f7e5f-2aed-4aef-bd2d-57f90a9f6105}">
+      <Declaration><![CDATA[METHOD LogEvent : BOOL
+VAR_INPUT
+	Kind: EventTypes := EventTypes.Information;
+	Message: STRING;
+END_VAR
+VAR
+	TempHead, TempTail: INT;
+	n: uint;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF __ISVALIDREF(EventLogDataRef) THEN
+	TempTail := EventLogDataRef.Tail + 1;
+	IF TempTail > Globals.EventsHigh THEN
+		TempTail := Globals.EventsLow;
+	END_IF
+	
+	IF TempTail = EventLogDataRef.Head THEN
+		TempHead := EventLogDataRef.Head + 1;
+		IF TempHead > Globals.EventsHigh THEN
+			TempHead := Globals.EventsLow;
+		END_IF
+		EventLogDataRef.Head := TempHead;
+	END_IF
+	
+	EventLogDataRef.Events[EventLogDataRef.Tail].Kind := Kind;
+	EventLogDataRef.Events[EventLogDataRef.Tail].TimeStamp := NowDT();
+	EventLogDataRef.Events[EventLogDataRef.Tail].Message := Message;
+	n:= INT_TO_UINT(Len(sJSON));
+	n :=  SIZEOF(EventLogDataRef.Events[EventLogDataRef.Tail].JSON);
+	IF IncludeJSON AND (INT_TO_UINT(Len(sJSON)) < SIZEOF(Globals.EventLogStrings[EventLogDataRef.Tail])) THEN
+		Globals.EventLogStrings[EventLogDataRef.Tail] := sJSON;
+		EventLogDataRef.Events[EventLogDataRef.Tail].JSON := TRUE;
+	ELSE
+		EventLogDataRef.Events[EventLogDataRef.Tail].JSON := FALSE;
+	END_IF
+	
+	EventLogDataRef.Tail := TempTail;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LogEventJSON" Id="{74442dfe-2f33-4b79-803a-f8f0900b474c}">
+      <Declaration><![CDATA[METHOD LogEventJSON : BOOL
+VAR_INPUT
+	Kind: EventTypes := EventTypes.Information;
+	Message: STRING;
+	VarType: STRING;
+	VarSize: DWORD;
+	VarAdr: POINTER TO DWORD;
+END_VAR
+VAR
+	nLen: UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[sJSON := '';
+nLen := fbJsonDataType.CopyJsonStringFromSymbol(VarType, VarSize, VarAdr, sJSON,SIZEOF(sJSON));
+IncludeJSON := nLen > 0;
+LogEvent(Kind := Kind, Message := Message);
+IncludeJSON := FALSE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="EventLog">
+      <LineId Id="28" Count="4" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="EventLog.LogEvent">
+      <LineId Id="93" Count="0" />
+      <LineId Id="61" Count="19" />
+      <LineId Id="105" Count="2" />
+      <LineId Id="81" Count="2" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="EventLog.LogEventJSON">
+      <LineId Id="21" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

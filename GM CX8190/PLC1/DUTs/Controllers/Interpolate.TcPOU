@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Interpolate" Id="{0c7a3a39-b100-4547-a3f5-05d6cc77f908}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Interpolate
+VAR_INPUT
+	EN: BOOL;
+	x: LREAL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	y: LREAL;
+END_VAR
+VAR CONSTANT
+	NUM_POINTS: INT := 9;
+END_VAR
+VAR
+	i: INT;
+	j: INT;
+	ss: LREAL;
+	t: LREAL;
+	k: LREAL;
+END_VAR
+VAR PERSISTENT
+	xd: ARRAY [0..NUM_POINTS - 1] OF LREAL;
+	yd: ARRAY [0..NUM_POINTS - 1] OF LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ENO := EN;
+k := 0;
+FOR i := 0 TO NUM_POINTS - 1 DO
+	ss := 1;
+	t := 1;
+	FOR j := 0 TO NUM_POINTS - 1 DO
+		IF i <> j THEN			
+			ss := ss * (x - xd[j]);
+			t := t * (xd[i] - xd[j]);
+		END_IF
+	END_FOR
+	IF t <> 0 THEN
+		k := k + ((ss / t) * yd[i]);		
+	END_IF
+END_FOR
+y := k;]]></ST>
+    </Implementation>
+    <LineIds Name="Interpolate">
+      <LineId Id="85" Count="0" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="150" Count="2" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="159" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="AlarmMonitor" Id="{52bebb87-3e6b-4026-ad0d-023eea42d0c2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AlarmMonitor EXTENDS State
+VAR_IN_OUT
+	AlarmLog: AlarmLog;
+	Parameters: GreenMasterBaseParameters;
+END_VAR
+VAR_INPUT
+	EN: BOOL;
+	Reset: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	AlarmA: BOOL;
+	AlarmB: BOOL;
+	AlarmC: BOOL;
+	AlarmD: BOOL;
+END_VAR
+VAR
+	AlarmSignals1: REFERENCE TO AlarmSignals;
+	StartupDone: BOOL;
+	AlarmLogRef: REFERENCE TO AlarmLog;
+	NoAlarms, Current: AlarmEvent;
+	n: UINT;
+	aTON: ARRAY [0..19] OF TON;
+	bTON: ARRAY [0..11] OF TON;
+	cTON: ARRAY [0..3] OF TON;
+	CurrentDT, LastDT: DATE_AND_TIME;
+	IncludeJSON: BOOL;
+	sJSON: STRING(2000);
+	fbJsonDataType: FB_JsonReadWriteDataType;
+	StartTime: Timer;
+	Latched, Last: AlarmEvent;
+	LastIoStatus: IoStatus;
+	
+	AlarmCount: UINT := SIZEOF(AlarmSignals);
+	LatchedStatusP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	LatchedSignalP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	StatusP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	AutoResetP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	CurrentP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	PolarityP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	DelayP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF TIME;
+	TONs: ARRAY [0..SIZEOF(AlarmSignals) - 1] OF TON;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT StartupDone THEN
+	AlarmLogRef REF= AlarmLog;
+	StartupDone := TRUE;
+	AlarmSignals1 REF= Parameters.Alarm.Status;
+END_IF
+
+LatchedStatusP := ADR(Latched.Status);
+DelayP := ADR(Parameters.Alarm.Delay);
+StatusP := ADR(Parameters.Alarm.Status);
+PolarityP := ADR(Parameters.Alarm.Polarity);
+CurrentP := ADR(Current.Signals);
+FOR N := 0 TO AlarmCount - 1 DO
+	LatchedStatusP^[n] := StatusP^[n] <> PolarityP^[n];		
+	TONs[n](IN := LatchedStatusP^[n], PT := DelayP^[n], Q => CurrentP^[n]);
+END_FOR
+
+IF Parameters.Alarm.Control.ResetAlarms THEN
+	Latched := NoAlarms;
+	Parameters.Alarm.Control.ResetAlarms := FALSE;
+END_IF
+
+IF Parameters.IO.DIn.ResetAlarm THEN
+	Latched := NoAlarms;
+END_IF
+
+// Transfer from Alarms to Latched according to autoreset and polarity definitions
+LatchedSignalP := ADR(Latched.Signals);
+AutoResetP := ADR(Parameters.Alarm.AutoReset);
+FOR N := 0 TO AlarmCount - 1 DO
+	LatchedSignalP^[n] := LatchedSignalP^[n] AND NOT AutoResetP^[n] OR CurrentP^[n];
+END_FOR
+
+// Set parameters alarms
+Parameters.Alarm.Active.A := Latched.Signals.A;
+Parameters.Alarm.Active.B := Latched.Signals.B;
+Parameters.Alarm.Active.C := Latched.Signals.C;
+
+// Set alarms
+AlarmA := NOT AnyEqual(Latched.Signals.A, NoAlarms.Signals.A);
+AlarmB := NOT AnyEqual(Latched.Signals.B, NoAlarms.Signals.B);
+AlarmC := NOT AnyEqual(Latched.Signals.C, NoAlarms.Signals.C);
+AlarmD := FALSE;
+
+CurrentDT := NowDT();
+StartTime();
+IF (CurrentDT <> LastDT) AND (StartTime.ET > LTIME#20S) THEN
+	// Add any alarm events to alarm log
+	IF (NOT AnyEqual(Latched.Signals, Last.Signals)) or (NOT AnyEqual(Latched.Status, Last.Status)) THEN
+		IF NOT Latched.Signals.C.SensorFailure THEN
+			LogAlarm(Latched);
+		ELSE
+			LogAlarmJSON(Item := Latched, VarAdr := ADR(Parameters.IO.Status), VarSize := SIZEOF(Parameters.IO.Status), VarType := 'IoStatus');
+		END_IF
+		Last := Latched;
+	END_IF
+	LastDT := CurrentDT;
+END_IF
+]]></ST>
+    </Implementation>
+    <Method Name="LogAlarm" Id="{0792e0cf-715e-4d21-b85c-c56ce482c626}">
+      <Declaration><![CDATA[METHOD LogAlarm : BOOL
+VAR_INPUT
+	Item: AlarmEvent;
+END_VAR
+VAR
+	TempHead, TempTail: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF __ISVALIDREF(AlarmLogRef) THEN
+	TempTail := AlarmLogRef.Tail + 1;
+	IF TempTail > Globals.AlarmsHigh THEN
+		TempTail := Globals.AlarmsLow;
+	END_IF
+	
+	IF TempTail = AlarmLogRef.Head THEN
+		TempHead := AlarmLogRef.Head + 1;
+		IF TempHead > Globals.AlarmsHigh THEN
+			TempHead := Globals.AlarmsLow;
+		END_IF
+		AlarmLogRef.Head := TempHead;
+	END_IF
+	Item.TimeStamp := NowDT();	
+	AlarmLogRef.Alarms[AlarmLogRef.Tail] := Item;
+	IF IncludeJSON AND (INT_TO_UINT(Len(sJSON)) < SIZEOF(Globals.AlarmLogStrings[AlarmLogRef.Tail]) ) THEN
+		Globals.AlarmLogStrings[AlarmLogRef.Tail] := sJSON;
+		AlarmLogRef.Alarms[AlarmLogRef.Tail].JSON := TRUE;
+	ELSE
+		AlarmLogRef.Alarms[AlarmLogRef.Tail].JSON := FALSE;
+	END_IF
+	
+	AlarmLogRef.Tail := TempTail;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LogAlarmJSON" Id="{b168a8cb-19fa-48e2-a9b2-ff8760cca349}">
+      <Declaration><![CDATA[METHOD LogAlarmJSON : BOOL
+VAR_INPUT
+	Item: AlarmEvent;
+	VarType: STRING;
+	VarSize: DWORD;
+	VarAdr: POINTER TO DWORD;
+END_VAR
+VAR
+	nLen: UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[sJSON := '';
+nLen := fbJsonDataType.CopyJsonStringFromSymbol(VarType, VarSize, VarAdr, sJSON,SIZEOF(sJSON));
+IncludeJSON := nLen > 0;
+LogAlarm(Item := Item);
+IncludeJSON := FALSE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="AlarmMonitor">
+      <LineId Id="2063" Count="56" />
+      <LineId Id="102" Count="0" />
+    </LineIds>
+    <LineIds Name="AlarmMonitor.LogAlarm">
+      <LineId Id="92" Count="0" />
+      <LineId Id="61" Count="13" />
+      <LineId Id="79" Count="1" />
+      <LineId Id="101" Count="2" />
+      <LineId Id="81" Count="2" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="93" Count="0" />
+    </LineIds>
+    <LineIds Name="AlarmMonitor.LogAlarmJSON">
+      <LineId Id="21" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

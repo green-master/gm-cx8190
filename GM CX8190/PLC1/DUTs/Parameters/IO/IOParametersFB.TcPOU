@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="IOParametersFB" Id="{61b6210d-3e71-4f88-8c8a-f2194dc2a940}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK IOParametersFB
+VAR_IN_OUT
+	GreenMaster: GreenMasterBase;
+	Parameters: GreenMasterBaseParameters;
+END_VAR
+VAR_INPUT
+	DIn: DigitalInputParametersFB;
+	DInLevels: DigitalInputLevels;
+	DOut: DigitalOutputParametersFB;
+	DOutOverride: DigitalOutputOverrideParameters;
+	AIn: AnalogInputParametersFB;
+	AOut: AnalogOutputParametersFB;
+	AOutOverride: AnalogOutputOverrideParameters;
+	AOutCalibration: AnalogOutputCalibration;
+	Status: IoStatus;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	AnySensorError: BOOL;
+	StartTime: Timer;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Parameters.IO.Status.InputStatus.AI01 := BoolToErrorText(Globals.IO.AIn.AI01_Error); 
+Parameters.IO.Status.InputStatus.AI02 := BoolToErrorText(Globals.IO.AIn.AI02_Error); 
+Parameters.IO.Status.InputStatus.AI03 := BoolToErrorText(Globals.IO.AIn.AI03_Error); 
+Parameters.IO.Status.InputStatus.AI04 := BoolToErrorText(Globals.IO.AIn.AI04_Error); 
+Parameters.IO.Status.InputStatus.AI05 := BoolToErrorText(Globals.IO.AIn.AI05_Error); 
+Parameters.IO.Status.InputStatus.AI06 := BoolToErrorText(Globals.IO.AIn.AI06_Error); 
+Parameters.IO.Status.InputStatus.AI07 := BoolToErrorText(Globals.IO.AIn.AI07_Error); 
+Parameters.IO.Status.InputStatus.AI08 := BoolToErrorText(Globals.IO.AIn.AI08_Error); 
+Parameters.IO.Status.InputStatus.AI09 := BoolToErrorText(Globals.IO.AIn.AI09_Error); 
+Parameters.IO.Status.InputStatus.AI10 := BoolToErrorText(Globals.IO.AIn.AI10_Error); 
+Parameters.IO.Status.InputStatus.AI11 := BoolToErrorText(Globals.IO.AIn.AI11_Error); 
+Parameters.IO.Status.InputStatus.AI12 := BoolToErrorText(Globals.IO.AIn.AI12_Error); 
+Parameters.IO.Status.InputStatus.AI13 := BoolToErrorText(Globals.IO.AIn.AI13_Error);
+Parameters.IO.Status.InputStatus.AI14 := BoolToErrorText(Globals.IO.AIn.AI14_Error); 
+Parameters.IO.Status.InputStatus.AI15 := BoolToErrorText(Globals.IO.AIn.AI15_Error); 
+Parameters.IO.Status.InputStatus.AI16 := BoolToErrorText(Globals.IO.AIn.AI16_Error); 
+Parameters.IO.Status.InputStatus.AI17 := BoolToErrorText(Globals.IO.AIn.AI17_Error); 
+Parameters.IO.Status.InputStatus.AI18 := BoolToErrorText(Globals.IO.AIn.AI18_Error); 
+Parameters.IO.Status.InputStatus.AI19 := BoolToErrorText(Globals.IO.AIn.AI19_Error); 
+Parameters.IO.Status.InputStatus.AI20 := BoolToErrorText(Globals.IO.AIn.AI20_Error); 
+Parameters.IO.Status.InputStatus.AI21 := BoolToErrorText(Globals.IO.AIn.AI21_Error); 
+Parameters.IO.Status.InputStatus.AI22 := BoolToErrorText(Globals.IO.AIn.AI22_Error); 
+Parameters.IO.Status.InputStatus.AI23 := BoolToErrorText(Globals.IO.AIn.AI23_Error); 
+Parameters.IO.Status.InputStatus.AI24 := BoolToErrorText(Globals.IO.AIn.AI24_Error); 
+
+Parameters.IO.Status.SensorStatus.F_BT1 := BoolToErrorText(Globals.IO.AIn.AI01_Error); 
+Parameters.IO.Status.SensorStatus.T_BT2 := BoolToErrorText(Globals.IO.AIn.AI02_Error);
+Parameters.IO.Status.SensorStatus.T_BT3 := BoolToErrorText(Globals.IO.AIn.AI03_Error);
+Parameters.IO.Status.SensorStatus.H_BT1 := BoolToErrorText(Globals.IO.AIn.AI04_Error);
+Parameters.IO.Status.SensorStatus.T_BT1 := BoolToErrorText(Globals.IO.AIn.AI05_Error); 
+Parameters.IO.Status.SensorStatus.BT1 := BoolToErrorText(Globals.IO.AIn.AI06_Error);
+Parameters.IO.Status.SensorStatus.BT2 := BoolToErrorText(Globals.IO.AIn.AI07_Error);
+Parameters.IO.Status.SensorStatus.F_BT2 := BoolToErrorText(Globals.IO.AIn.AI08_Error);
+
+IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
+	Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(Globals.IO.AIn.AI09_Error);
+	Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(Globals.IO.AIn.AI10_Error);
+	Parameters.IO.Status.SensorStatus.F_BP2 := BoolToErrorText(Globals.IO.AIn.AI11_Error);
+	Parameters.IO.Status.SensorStatus.T_BP2 := BoolToErrorText(Globals.IO.AIn.AI12_Error);
+	Parameters.IO.Status.SensorStatus.F_BP3 := BoolToErrorText(Globals.IO.AIn.AI13_Error);
+	Parameters.IO.Status.SensorStatus.T_BF1 := BoolToErrorText(Globals.IO.AIn.AI14_Error);
+	Parameters.IO.Status.SensorStatus.F_BF1 := BoolToErrorText(Globals.IO.AIn.AI15_Error);	
+ELSE
+	Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(GreenMaster.AI2.F_BP1_Error);
+	Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(GreenMaster.AI2.T_BP1_Error);
+	Parameters.IO.Status.SensorStatus.F_BP2 := BoolToErrorText(GreenMaster.AI2.F_BP2_Error);
+	Parameters.IO.Status.SensorStatus.T_BP2 := BoolToErrorText(GreenMaster.AI2.T_BP2_Error);
+	Parameters.IO.Status.SensorStatus.F_BP3 := BoolToErrorText(GreenMaster.AI2.F_BP3_Error);
+	Parameters.IO.Status.SensorStatus.T_BF1 := BoolToErrorText(GreenMaster.AI2.T_BF1_Error);
+	Parameters.IO.Status.SensorStatus.F_BF1 := BoolToErrorText(GreenMaster.AI2.F_BF1_Error);	
+END_IF
+
+Parameters.IO.Status.SmokeControlStatus.Gateway := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.GatewayError);
+Parameters.IO.Status.SmokeControlStatus.Device1 := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.Device1Error);
+Parameters.IO.Status.SmokeControlStatus.Device2 := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.Device2Error);
+Parameters.IO.Status.SmokeControlStatus.Device3 := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.Device3Error);
+Parameters.IO.Status.SmokeControlStatus.Device4 := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.Device4Error);
+
+StartTime();
+IF (StartTime.ET > LTIME#20S) and (not Parameters.System.Operation.Simulation) THEN
+	// Check if any sensor error
+	AnySensorError := FALSE;
+	AnySensorError := AnySensorError OR Globals.IO.AIn.AI01_Error; 
+	AnySensorError := AnySensorError OR Globals.IO.AIn.AI02_Error;
+	AnySensorError := AnySensorError OR Globals.IO.AIn.AI03_Error;
+	AnySensorError := AnySensorError OR Globals.IO.AIn.AI04_Error;
+	AnySensorError := AnySensorError OR Globals.IO.AIn.AI05_Error; 
+	AnySensorError := AnySensorError OR Globals.IO.AIn.AI06_Error;
+	AnySensorError := AnySensorError OR Globals.IO.AIn.AI07_Error;
+	AnySensorError := AnySensorError OR Globals.IO.AIn.AI08_Error;
+	
+	IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
+		AnySensorError := AnySensorError OR Globals.IO.AIn.AI09_Error;
+		AnySensorError := AnySensorError OR Globals.IO.AIn.AI10_Error;
+		AnySensorError := AnySensorError OR Globals.IO.AIn.AI11_Error;
+		AnySensorError := AnySensorError OR Globals.IO.AIn.AI12_Error;
+		AnySensorError := AnySensorError OR Globals.IO.AIn.AI13_Error;
+		AnySensorError := AnySensorError OR Globals.IO.AIn.AI14_Error;
+		AnySensorError := AnySensorError OR Globals.IO.AIn.AI15_Error;	
+	ELSE
+		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP1_Error;
+		AnySensorError := AnySensorError OR GreenMaster.AI2.T_BP1_Error;
+		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP2_Error;
+		AnySensorError := AnySensorError OR GreenMaster.AI2.T_BP2_Error;
+		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP3_Error;
+		AnySensorError := AnySensorError OR GreenMaster.AI2.T_BF1_Error;
+		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BF1_Error;	
+	END_IF
+	
+	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.GatewayError;
+	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.Device1Error;
+	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.Device2Error;
+	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.Device3Error;
+	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.Device4Error;
+		
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="IOParametersFB">
+      <LineId Id="22" Count="95" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="MAX_FB" Id="{d82ba786-bb4e-46e1-9dfd-243071a344a6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MAX_FB
+VAR_INPUT
+	In1: LREAL;
+	In2: LREAL;
+END_VAR
+VAR_OUTPUT
+	Out: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Out := MAX(In1, In2);]]></ST>
+    </Implementation>
+    <LineIds Name="MAX_FB">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

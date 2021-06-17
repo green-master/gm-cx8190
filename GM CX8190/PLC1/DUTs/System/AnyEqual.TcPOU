@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="AnyEqual" Id="{e12d2da5-78e7-4053-b7b9-ba1db8628903}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION AnyEqual : BOOL
+VAR_INPUT
+	A: ANY;
+	B: any;
+END_VAR
+VAR
+	bDataTypesEquals: BOOL;
+	bDataSizeEquals: BOOL;
+	nCount: DINT;
+	bDataContentEquals: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF A.TypeClass = B.TypeClass THEN
+    bDataTypesEquals := TRUE;
+END_IF
+IF bDataTypesEquals THEN
+    IF (A.diSize = B.diSize) THEN
+        bDataSizeEquals := TRUE;
+    END_IF
+END_IF
+IF bDataTypesEquals AND bDataSizeEquals THEN
+    // Compare each byte in the ANY-types
+	bDataContentEquals := TRUE;
+    FOR nCount := 0 TO A.diSize-1 BY 1 DO
+        IF A.pValue[nCount] <> B.pValue[nCount] THEN
+            bDataContentEquals := FALSE;
+            EXIT;
+        END_IF
+    END_FOR
+END_IF
+AnyEqual := bDataContentEquals AND bDataSizeEquals AND bDataTypesEquals;]]></ST>
+    </Implementation>
+    <LineIds Name="AnyEqual">
+      <LineId Id="44" Count="17" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
