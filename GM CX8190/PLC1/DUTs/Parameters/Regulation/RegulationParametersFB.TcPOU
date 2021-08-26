@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
   <POU Name="RegulationParametersFB" Id="{35458062-23b8-41fa-a7d8-32b0bd66ddbe}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK RegulationParametersFB
 VAR_IN_OUT
@@ -20,7 +20,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SupplyAir(Parameters := Parameters);
 ExtractAir(Parameters := Parameters);
-]]></ST>
+Temperature(EN:=Parameters.System.Operation.EN);]]></ST>
     </Implementation>
     <LineIds Name="RegulationParametersFB">
       <LineId Id="9" Count="0" />

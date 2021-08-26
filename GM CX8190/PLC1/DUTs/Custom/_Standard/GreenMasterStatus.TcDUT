@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="GreenMasterStatus" Id="{0602427d-d0bc-4546-b69c-6713538a3bac}">
+    <Declaration><![CDATA[TYPE GreenMasterStatus :
+STRUCT
+ENO :  BOOL; // Aggregatet är i drift
+Auto :  BOOL; // Aggregatet är i auto
+Hand :  BOOL; // Aggregatet är i hand
+F_BR1_AL :  BOOL; // Centralt brandlarm
+F_BR1_FAULT :  BOOL; // Servicelarm för RD i frånluft
+Fire_AL :  BOOL; // Brandlarm
+Fuse_AL :  BOOL; // Utlöst säkring
+T_BR1_AL :  BOOL; // Brandlarm tilluft
+T_BR1_FAULT :  BOOL; // Servicelarm för RD i tilluft
+T_GQ1_AL :  BOOL; // Driftfel tilluftsfläkt
+F_GQ1_AL :  BOOL; // Driftfel frånluftsfläkt
+H_GP1_V :  BOOL; // Driftindikering pump värme
+H_GP1_AL :  BOOL; // Driftfel pump värme
+C_GP1_V :  BOOL; // Driftindikering pump kyla
+C_GP1_AL :  BOOL; // Driftfel pump kyla
+T_GQ_AL1 :  BOOL; // Tilluftsfläkt handstartad
+T_GQ_AL2 :  BOOL; // Tilluftsfläkt handstoppad
+F_GQ_AL1 :  BOOL; // Frånluftsfläkt handstartad
+F_GQ_AL2 :  BOOL; // Frånluftsfläkt handstoppad
+QM_AL :  BOOL; // Brandspjäll i fel läge
+TX1_VG_PV :  REAL; // Verkningsgrad VVX
+TX1_VG_LAL :  BOOL; // Verkningsgradslarm
+H_GP1_CMD :  BOOL; // Manöver pump värme
+C_GP1_CMD :  BOOL; // Manöver pump kyla
+F_QM1_CMD :  BOOL; // Frånluftsspjäll manöver
+T_QM1_CMD :  BOOL; // Tilluftsspjäll manöver
+T_QM1_1_CMD :  BOOL; // Sektionsavfrostningsspjäll 1 manöver
+T_QM1_2_CMD :  BOOL; // Sektionsavfrostningsspjäll 2 manöver
+T_QM1_3_CMD :  BOOL; // Sektionsavfrostningsspjäll 3 manöver
+T_QM1_4_CMD :  BOOL; // Sektionsavfrostningsspjäll 4 manöver
+T_QM1_5_CMD :  BOOL; // Sektionsavfrostningsspjäll 5 manöver
+T_QM1_6_CMD :  BOOL; // Sektionsavfrostningsspjäll 6 manöver
+F_QM2_CMD :  BOOL; // Brandförbigångsspjäll (FID) manöver
+F_QM2_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
+F_QM2_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
+T_QM3_CMD :  BOOL; // spjäll manöver
+T_QM3_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
+T_QM3_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
+
+T_BT2_PV :  REAL; // Utetemperatur (aggregat)
+T_BT2_FAULT :  BOOL; // Utetemperatur (aggregat) givarfel
+T_BT3_PV :  REAL; // Tilluftstemperatur före efterbehandling (aggregat)
+T_BT3_FAULT :  BOOL; // Tilluftstemperatur före efterbehandling (aggregat) givarfel
+H_BT1_PV :  REAL; // Frysskyddstemperatur (batteri)
+H_BT1_FAULT :  BOOL; // Frysskyddstemperatur (batteri) givarfel
+H_BT1_LAL :  BOOL; // Frysskyddslarm
+BT1_PV :  REAL; // Utomhustemperatur (fasad)
+BT1_FAULT :  BOOL; // Utomhustemperatur (fasad) givarfel
+F_BT2_PV :  REAL; // Avluftstemperatur (aggregat)
+F_BT2_FAULT :  BOOL; // Avluftstemperatur (aggregat) givarfel
+T_BP2_PV :  REAL; // Differenstryck tilluftsfilter
+T_BP2_FAULT :  BOOL; // Differenstryck tilluftsfilter givarfel
+T_BP2_HAL :  BOOL; // Differenstryck tilluftsfilter Larm
+F_BP2_PV :  REAL; // Differenstryck frånluftsfilter
+F_BP2_FAULT :  BOOL; // Differenstryck frånluftsfilter givarfel
+F_BP2_HAL :  BOOL; // Differenstryck frånluftsfilter Larm
+F_BP3_PV :  REAL; // Differenstryck VVX
+F_BP3_FAULT :  BOOL; // Differenstryck VVX givarfel
+F_BP3_AL :  BOOL; // Differenstryck VVX Larm
+T_GQ1_OP :  REAL; // Utsignal tilluftsfläkt
+F_GQ1_OP :  REAL; // Utsignal frånluftsfläkt
+F_QN1_OP :  REAL; // Utsignal VVX
+H_QN1_OP :  REAL; // Utsignal värmeventil
+C_QN1_OP :  REAL; // Utsignal kylventil
+
+F_BT1_PV :  REAL; // Frånluftstemperatur (aggregat)
+F_BT1_FAULT :  BOOL; // Frånluftstemperatur (aggregat) givarfel
+F_BT1_AL :  BOOL; // Frånluftstemperatur (aggregat) Larm
+T_BT1_PV :  REAL; // Tilluftstemperatur (kanal)
+T_BT1_FAULT :  BOOL; // Tilluftstemperatur (kanal) givarfel
+T_BT1_AL :  BOOL; // Tilluftstemperatur (kanal) Larm
+BT2_PV :  REAL; // Inomhustemperatur (vägg)
+BT2_FAULT :  BOOL; // Inomhustemperatur (vägg) givarfel
+BT2_AL :  BOOL; // Inomhustemperatur (vägg) Larm
+
+T_BF1_PV :  REAL; // Tilluftsflöde
+T_BF1_FAULT :  BOOL; // Tilluftsflöde givarfel
+T_BF1_AL :  BOOL; // Tilluftsflöde Larm
+T_BP1_PV :  REAL; // Tilluftstryck
+T_BP1_FAULT :  BOOL; // Tilluftstryck givarfel
+T_BP1_AL :  BOOL; // Tilluftstryck Larm
+
+F_BF1_PV :  REAL; // Frånluftsflöde
+F_BF1_FAULT :  BOOL; // Frånluftsflöde givarfel
+F_BF1_AL :  BOOL; // Frånluftsflöde Larm
+F_BP1_PV :  REAL; // Frånluftstryck
+F_BP1_FAULT :  BOOL; // Frånluftstryck givarfel
+F_BP1_AL :  BOOL; // Frånluftstryck Larm
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

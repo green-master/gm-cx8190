@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AggStat" Id="{96900aa1-770c-43f3-968a-8b7c6a8852c4}">
+    <Declaration><![CDATA[TYPE AggStat :
+STRUCT
+	SO1:BOOL;		// Serviceomkopplarläge 1 = service
+	Driftfel:BOOL;	// Aggregatet är i driftfel eller
+	TF_OP:REAL;		// Utsignal tilluftsfläkt
+	TF_CMD:BOOL;	// Manöver tilluftsflöäkt
+	FF_OP:REAL;		// Utsignal frånluftsfläkt
+	FF_CMD:BOOL;	// Manöver frånluftsfläkt
+	ST_OP:REAL;		// Utsignal Till- och frånluftsspjäll
+	GP11_PV:REAL;
+	GP11_FAULT:BOOL;
+	GP12_PV:REAL;
+	GP12_FAULT:BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
