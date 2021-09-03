@@ -15,11 +15,13 @@ TemperatureControl_D :  TIME :=T#0M; //  Temperature control D
 StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover
 PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to operation after fire alarm
 SupplyFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/T.BP1, 1=Flow/T.BF1) for Supply Air
+SupplyFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature	Jawa:2021-09-03
 SupplyFan_SP :  REAL :=100 ; //  Supply air control Set Point
 SupplyFanHighSpeed_SP :  REAL ; //  Supply air control high speed Set Point
 SupplyFanControl_P :  REAL :=0.002; //  Supply air control P
 SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I
 ExtractFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/F.BP1, 1=Flow/F.BF1) for Extract Air
+ExtractFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature	Jawa:2021-09-03
 ExtractFan_SP :  REAL := 100; //  Extract air control Set Point
 ExtractFanHighSpeed_SP :  REAL ; //  Extract air control high speed Set Point
 ExtractFanControl_P :  REAL :=0.002; //  Extract air control P
