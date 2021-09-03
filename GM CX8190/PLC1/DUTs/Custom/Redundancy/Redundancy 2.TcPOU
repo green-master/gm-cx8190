@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Redundancy" Id="{696fb271-603f-4a28-b889-3048dc519159}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Redundancy
+VAR_INPUT
+	EN: BOOL;
+	_UPPSTART_DONE:BOOL;
+	_TF_CMD:BOOL;
+	_TF_V:BOOL;
+	_TF_OP:REAL;
+	_TL_GP_PV:REAL;
+	_FF_CMD:BOOL;
+	_FF_V:BOOL;
+	_FF_OP:REAL;
+	_FL_GP_PV:REAL;
+	_SERVICEBRYTARE:BOOL;
+	
+	_B_AMSID:STRING;
+	_B_VARIABLE:STRING;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;	
+END_VAR
+VAR
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	GM_XXL: REFERENCE TO GreenMasterXXL_FB;
+	
+	{attribute 'OPC.UA.DA' := '0'}
+	B_STATUS:adsValue_AggStat;		// Det andra aggregatet
+	{attribute 'OPC.UA.DA' := '0'}
+	A_STATUS:AggStat;				// Detta aggregatet
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+Samdrift av LB01 och LB02. En- till tvåaggregatsdrift och två- till enaggregatsdrift
+då optimalt luftflöde överskrids resp. underskrids med 3% av
+aggregatens totala luftflöde i inställd tid. Efter att båda aggregaten tagits i drift
+skall de, efter inställd tid, regleras parallellt på samma signal så att pendlingar i
+systemen begränsas.
+Drifttidsutjämning genom att veckovis rotera första- resp. andraaggregat.
+*)
+IF EN THEN
+	// Fyll i Aggregatstatus till redundant aggregat
+	A_STATUS.Driftfel 	:= _UPPSTART_DONE AND ((_TF_CMD AND NOT _TF_V) OR (_FF_CMD AND NOT _FF_V));	// Uppstart klar och driftfel TF eller FF (Innan larmtid)
+	A_STATUS.FF_OP 		:= _FF_OP;//FO2._orderOp;
+	A_STATUS.FF_CMD 	:= _FF_CMD;
+	A_STATUS.GP11_PV 	:= _TL_GP_PV;
+	A_STATUS.GP12_PV 	:= _FL_GP_PV;
+	A_STATUS.SO1 		:= _SERVICEBRYTARE;
+//	A_STATUS.ST_OP 		:= ST22.OP;
+	A_STATUS.TF_OP 		:= _TF_OP;
+	A_STATUS.TF_CMD 	:= _TF_CMD;
+
+	// Hämta aggregatstatus från redundant aggregat
+	B_STATUS.AMSID:=_B_AMSID;//'5.83.130.125.1.1';
+	B_STATUS.AMSPORT:=851;
+	B_STATUS.VARIABLE:=_B_VARIABLE;//'GF_5000_5078.p05.B.B_STATUS';
+	B_STATUS();
+
+	// --------------------------------------------------------------------------------
+	// Transfer from Redundancy to settings
+
+	// Status transfers
+	GVL_Redundancy.Tags.Status.FF_CMD := GM_XXL.SupplyFanControl.ENO;
+	
+	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Redundancy">
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="4" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="24" Count="15" />
+      <LineId Id="61" Count="4" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

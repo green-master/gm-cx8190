@@ -5,7 +5,7 @@
 VAR
 	// JaWa
 	_iDbg:INT;	
-
+	_download:BOOL;
 	//Enum1: FanControlTypes := FanControlTypes.Flow;
 	GreenMaster: GreenMasterXXL_FB;
 	StartupDone: BOOL;
@@ -82,7 +82,7 @@ IF GreenMaster.Parameters.System.Operation.IoUpdateEN THEN
 	GreenMasterDO(DOut := Globals.IO.DOut);
 	GreenMasterAI(AIn := Globals.IO.AIn);
 	GreenMasterAO(AOut := Globals.IO.AOut);
-	GreenMasterAI2_RTU(EN := TRUE);
+	GreenMasterAI2_RTU(Parameters:=GreenMaster.GetParameters(), EN:= TRUE);
 END_IF
 
 //_iDbg:=ComponentNames.GM_OPT_STENA;

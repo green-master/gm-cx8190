@@ -7,6 +7,7 @@ ENO :  BOOL; // Aggregatet är i drift
 Auto :  BOOL; // Aggregatet är i auto
 Hand :  BOOL; // Aggregatet är i hand
 F_BR1_AL :  BOOL; // Centralt brandlarm
+TC_V : BOOL; // Tidkanal i aggregat är aktiv
 F_BR1_FAULT :  BOOL; // Servicelarm för RD i frånluft
 Fire_AL :  BOOL; // Brandlarm
 Fuse_AL :  BOOL; // Utlöst säkring

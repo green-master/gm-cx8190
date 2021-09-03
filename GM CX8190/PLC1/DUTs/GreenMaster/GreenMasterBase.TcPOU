@@ -10054,6 +10054,20 @@ END_VAR
         <ST><![CDATA[GetActiveStateName := '';]]></ST>
       </Implementation>
     </Method>
+    <Method Name="GetCurrentExtractAirPV" Id="{53abd77a-8c57-4316-ac40-e64f2159e488}">
+      <Declaration><![CDATA[METHOD GetCurrentExtractAirPV : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+IF Parameters.Regulation.ExtractAir.ControlMode =  FanControlTypes.Pressure  THEN
+	GetCurrentExtractAirPV := AI2.F_BP1;
+ELSE
+	GetCurrentExtractAirPV := AI2.F_BF1;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="GetCurrentPV" Id="{54dd4c5c-8873-45c5-8a20-5341e8f1cf37}">
       <Declaration><![CDATA[METHOD GetCurrentPV : LREAL
 VAR_INPUT
@@ -10081,6 +10095,20 @@ ELSE
 	GetCurrentSP := Parameters.Regulation.Temperature.Control.SP;
 END_IF 
 ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetCurrentSupplyAirPV" Id="{70bc7f2a-64cc-4bba-b9d1-98ad82305898}">
+      <Declaration><![CDATA[METHOD GetCurrentSupplyAirPV : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+IF Parameters.Regulation.SupplyAir.ControlMode =  FanControlTypes.Pressure  THEN
+	GetCurrentSupplyAirPV := AI2.T_BP1;
+ELSE
+	GetCurrentSupplyAirPV := AI2.T_BF1;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetParameters" Id="{0b4dd537-bffd-4a45-a167-901028c44591}">
@@ -10582,6 +10610,11 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
     <LineIds Name="GreenMasterBase.GetActiveStateName">
       <LineId Id="5" Count="0" />
     </LineIds>
+    <LineIds Name="GreenMasterBase.GetCurrentExtractAirPV">
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
     <LineIds Name="GreenMasterBase.GetCurrentPV">
       <LineId Id="5" Count="0" />
       <LineId Id="7" Count="3" />
@@ -10594,6 +10627,11 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="12" Count="1" />
       <LineId Id="11" Count="0" />
       <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="GreenMasterBase.GetCurrentSupplyAirPV">
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="6" Count="0" />
     </LineIds>
     <LineIds Name="GreenMasterBase.GetParameters">
       <LineId Id="5" Count="1" />

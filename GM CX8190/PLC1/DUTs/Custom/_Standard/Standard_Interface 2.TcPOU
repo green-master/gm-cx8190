@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Standard_Interface" Id="{40c37495-96b9-4b64-a0d7-3e6c97a16c6a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Standard_Interface
+VAR_INPUT
+	AIn: REFERENCE TO AnalogInputs;
+	EN: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	NightCooling: BOOL;
+END_VAR
+VAR
+	InitDone: BOOL;
+	PreEN: bool;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	GM_XXL: REFERENCE TO GreenMasterXXL_FB;
+	T_BT1, T_BT2, T_BT3, H_BT1, F_BT2: TemperatureInput;
+	bTemp: BOOL;
+	lrTemp: LREAL;
+	tTemp: TIME;
+	ltTemp: LTIME;
+	modeTemp: FanControlTypes;
+	FirstTime: BOOL;
+	TimeChannelActive: BOOL;
+	TimeChannelEnabled: BOOL;
+	n: UINT;
+	TimeChannel1: TimeChannel1CH;
+	TimeChannel2: TimeChannel1CH;
+	TimeChannel3: TimeChannel1CH;
+	TimeChannelFallback: TimeChannel1CH;
+	WatchdogTOF: TOF;
+	LastWatchDog: INT;
+	SetPointAdjustment: SetPointAdjustment;
+	CurrentPV: LREAL;
+	
+	SavedDisabledStates: AlarmSignals;
+	AlarmSignalsTrueExceptFirePanel: AlarmSignals;
+	StatusP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	AlarmCount: UINT := SIZEOF(AlarmSignals);
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT InitDone THEN
+	Parameters REF= Main.GreenMaster.GetParameters();
+	GM_XXL REF= Main.GreenMaster;
+	InitDone := TRUE;
+END_IF;
+
+TimeChannelEnabled := FALSE;
+TimeChannelActive := FALSE;
+
+TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule1.EN;
+TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule1.Q;
+TimeChannel1(Settings := ADS_Standard.Tags.Schedule1);
+
+TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule2.EN;
+TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule2.Q;
+TimeChannel2(Settings := ADS_Standard.Tags.Schedule2);
+
+TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule3.EN;
+TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule3.Q;
+TimeChannel3(Settings := ADS_Standard.Tags.Schedule3);
+
+TimeChannelFallback(Settings := ADS_Standard.Tags.ScheduleFallback);
+WatchdogTOF(IN := (NOT ADS_Standard.Tags.Settings.WatchdogEnabled) OR (ADS_Standard.Tags.Settings.Watchdog <> LastWatchDog), PT := T#5M);
+
+IF WatchdogTOF.Q THEN
+	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelEnabled AND TimeChannelActive;
+ELSE
+	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelFallback.Q;
+END_IF
+
+IF EN AND Parameters.System.Operation.RemoteEN THEN
+	
+	Globals.IO.DOut.DO16 := ADS_Standard.Tags.Status.C_GP1_CMD;
+	
+	NightCooling := ADS_Standard.Tags.Settings.NightCooling_V;
+	
+	// --------------------------------------------------------------------------------
+	// Transfer from Standard tags to settings
+	
+	Parameters.Alarm.Control.ResetAlarms := ADS_Standard.Tags.Settings.ResetAlarms;
+	Parameters.Regulation.Control.EN := TRUE;//ADS_Standard.Tags.Settings.VentilationEN;
+	Parameters.Regulation.Temperature.EN := TRUE;//ADS_Standard.Tags.Settings.TemperatureControlEN;
+	IF ADS_Standard.Tags.Settings.TemperatureControlPV = 0 THEN
+		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
+	ELSIF ADS_Standard.Tags.Settings.TemperatureControlPV = 1 THEN
+		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.F_BT1;
+	ELSE
+		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
+	END_IF
+	Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Standard.Tags.Settings.SetPointOffsetCurve; 
+	Parameters.Regulation.Temperature.Control.SP := ADS_Standard.Tags.Settings.Temperature_SP;
+	Parameters.Regulation.Temperature.Control.P := ADS_Standard.Tags.Settings.TemperatureControl_P;
+	Parameters.Regulation.Temperature.Control.I := ADS_Standard.Tags.Settings.TemperatureControl_I;
+	Parameters.Regulation.Temperature.Control.D := ADS_Standard.Tags.Settings.TemperatureControl_D;
+	Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_Standard.Tags.Settings.StartupHeatRecoveryTime;
+	Parameters.Regulation.Control.PostFireVentilationTime := ADS_Standard.Tags.Settings.PostFireVentilationTime;
+	Parameters.Regulation.SupplyAir.ControlMode := ADS_Standard.Tags.Settings.SupplyFanControlMode;
+	Parameters.Regulation.SupplyAir.Control.SP := ADS_Standard.Tags.Settings.SupplyFan_SP;
+	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP;
+	Parameters.Regulation.SupplyAir.Control.P := ADS_Standard.Tags.Settings.SupplyFanControl_P;
+	Parameters.Regulation.SupplyAir.Control.I := ADS_Standard.Tags.Settings.SupplyFanControl_I;
+	Parameters.Regulation.ExtractAir.ControlMode := ADS_Standard.Tags.Settings.ExtractFanControlMode;
+	Parameters.Regulation.ExtractAir.Control.SP := ADS_Standard.Tags.Settings.ExtractFan_SP;
+	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.ExtractFanHighSpeed_SP;
+	Parameters.Regulation.ExtractAir.Control.P := ADS_Standard.Tags.Settings.ExtractFanControl_P;
+	Parameters.Regulation.ExtractAir.Control.I := ADS_Standard.Tags.Settings.ExtractFanControl_I;
+	
+	// Status transfers
+	ADS_Standard.Tags.Status.F_BR1_AL := GM_XXL.DI.CentralFireAlarm;
+	ADS_Standard.Tags.Status.Fuse_AL := GM_XXL.DI.FuseAlarm;
+	ADS_Standard.Tags.Status.F_BR1_AL := GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir;
+	ADS_Standard.Tags.Status.T_GQ1_AL := GM_XXL.DI.T_GQ1_Alarm;
+	ADS_Standard.Tags.Status.F_GQ1_AL := GM_XXL.DI.F_GQ1_Alarm;
+	ADS_Standard.Tags.Status.Fire_AL := GM_XXL.DI.FireAlarm;
+	ADS_Standard.Tags.Status.H_GP1_V := GM_XXL.DI.H_GP1_Running;
+	ADS_Standard.Tags.Status.H_GP1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
+	ADS_Standard.Tags.Status.C_GP1_V := Globals.IO.DIn.DI22;
+	ADS_Standard.Tags.Status.C_GP1_AL := Globals.IO.DIn.DI23;
+	
+	ADS_Standard.Tags.Status.H_GP1_CMD := Parameters.IO.DOut.H_GP1;
+	ADS_Standard.Tags.Status.C_GP1_CMD := Parameters.IO.DOut.C_GP1;	// WHHAATT??? Parameters.System.Operation.EN;
+	ADS_Standard.Tags.Status.F_QM1_CMD := Parameters.IO.DOut.F_QM1;
+	ADS_Standard.Tags.Status.T_QM3_CMD := Parameters.IO.DOut.T_QM3;
+		
+	ADS_Standard.Tags.Status.F_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
+	ADS_Standard.Tags.Status.T_BT2_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
+	ADS_Standard.Tags.Status.T_BT3_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT3);
+	ADS_Standard.Tags.Status.H_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.H_BT1);
+	ADS_Standard.Tags.Status.T_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT1);
+	ADS_Standard.Tags.Status.F_BT2_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT2);
+	
+(*	Chalmers, egentligen batteriåtervinning...	
+	GT21(ProcessValue := AIn.AI09, ProcessError := AIn.AI09_Error);
+	ADS_Standard.Tags.Status.GT21_V := LREAL_TO_REAL(GT21.Value);
+	GT44(ProcessValue := AIn.AI10, ProcessError := AIn.AI10_Error);
+	ADS_Standard.Tags.Status.GT44_V := LREAL_TO_REAL(GT44.Value);
+	GT45(ProcessValue := AIn.AI11, ProcessError := AIn.AI11_Error);
+	ADS_Standard.Tags.Status.GT45_V := LREAL_TO_REAL(GT45.Value);
+	GT46(ProcessValue := AIn.AI12, ProcessError := AIn.AI12_Error);
+	ADS_Standard.Tags.Status.GT46_V := LREAL_TO_REAL(GT46.Value);
+	GT41(ProcessValue := AIn.AI13, ProcessError := AIn.AI13_Error);
+	ADS_Standard.Tags.Status.GT41_V := LREAL_TO_REAL(GT41.Value);
+
+*)	
+	IF NOT GM_XXL.AI2.T_BF1_Error THEN
+		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL((SQRT(GM_XXL.AI2.T_BF1) * Parameters.Regulation.SupplyAir.KFactor) / 3.6);
+	ELSE	
+		ADS_Standard.Tags.Status.T_BF1_PV := 0;
+	END_IF
+	IF NOT GM_XXL.AI2.F_BF1_Error THEN
+		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL((SQRT(GM_XXL.AI2.F_BF1) * Parameters.Regulation.ExtractAir.KFactor) / 3.6);
+	ELSE	
+		ADS_Standard.Tags.Status.F_BF1_PV := 0;
+	END_IF
+	ADS_Standard.Tags.Status.T_BP1_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BP1);
+	ADS_Standard.Tags.Status.F_BP1_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP1);
+	ADS_Standard.Tags.Status.T_BP2_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BP2);
+	ADS_Standard.Tags.Status.F_BP2_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP2);
+	ADS_Standard.Tags.Status.F_BP3_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP3);
+	
+	ADS_Standard.Tags.Status.F_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1 * 100);
+	ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1 * 100);
+	ADS_Standard.Tags.Status.T_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1 * 100);
+	ADS_Standard.Tags.Status.F_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1 * 100);
+	
+	lrTemp := ADS_Standard.Tags.Status.F_BT1_PV - ADS_Standard.Tags.Status.T_BT2_PV;
+	IF lrTemp <> 0 THEN
+		ADS_Standard.Tags.Status.TX1_VG_PV := LREAL_TO_REAL((ADS_Standard.Tags.Status.T_BT3_PV - ADS_Standard.Tags.Status.T_BT2_PV) / lrTemp);
+	ELSE
+		ADS_Standard.Tags.Status.TX1_VG_PV := 0;	
+	END_IF
+	
+	Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
+	Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
+	Main.GreenMasterAO.SetOverrideH_QN1(Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
+//	Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Standard.Tags.Settings.F_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.F_QN1_OPM / 100.0);
+	Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Standard.Tags.Settings.TX1_M, OverrideValue := ADS_Standard.Tags.Settings.TX1_OPM / 100.0);
+
+	PreEN := TRUE;
+ELSE
+	IF PreEN THEN
+		Globals.IO.DOut.DO16 := FALSE;
+	END_IF
+	PreEN := FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Standard_Interface">
+      <LineId Id="1322" Count="5" />
+      <LineId Id="1348" Count="84" />
+      <LineId Id="1523" Count="0" />
+      <LineId Id="1433" Count="9" />
+      <LineId Id="1522" Count="0" />
+      <LineId Id="1443" Count="32" />
+      <LineId Id="1525" Count="0" />
+      <LineId Id="1524" Count="0" />
+      <LineId Id="1476" Count="6" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
