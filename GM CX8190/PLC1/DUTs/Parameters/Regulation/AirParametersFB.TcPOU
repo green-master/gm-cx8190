@@ -15,6 +15,7 @@ VAR_INPUT
 	MinSpeed: LREAL := 0.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
 	MaxSpeed: LREAL := 1.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
 	StartupFanSpeed: LREAL;
+	SetPointAdjustment: SetPointAdjustment;
 END_VAR
 VAR_OUTPUT
 	TestOutput: LREAL := 3.14;

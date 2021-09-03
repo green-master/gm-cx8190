@@ -31,7 +31,7 @@ VAR
 	TimeChannelFallback: TimeChannel1CH;
 	WatchdogTOF: TOF;
 	LastWatchDog: INT;
-	SetPointAdjustment: SetPointAdjustment;
+//	SetPointAdjustment: SetPointAdjustment;
 	CurrentPV: LREAL;
 	
 	SavedDisabledStates: AlarmSignals;
@@ -81,6 +81,7 @@ IF EN THEN
 	// --------------------------------------------------------------------------------
 	// Transfer from Standard tags to settings
 	IF Parameters.System.Operation.RemoteEN THEN
+		Parameters.System.Operation.RemoteStart := ADS_Standard.Tags.Settings.RemoteStart;
 		Parameters.Alarm.Control.ResetAlarms := ADS_Standard.Tags.Settings.ResetAlarms;
 		Parameters.Regulation.Control.EN := TRUE;//ADS_Standard.Tags.Settings.VentilationEN;
 		Parameters.Regulation.Temperature.EN := TRUE;//ADS_Standard.Tags.Settings.TemperatureControlEN;
@@ -103,11 +104,13 @@ IF EN THEN
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP;
 		Parameters.Regulation.SupplyAir.Control.P := ADS_Standard.Tags.Settings.SupplyFanControl_P;
 		Parameters.Regulation.SupplyAir.Control.I := ADS_Standard.Tags.Settings.SupplyFanControl_I;
+		Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.SupplyFanOffsetCurve;
 		Parameters.Regulation.ExtractAir.ControlMode := ADS_Standard.Tags.Settings.ExtractFanControlMode;
 		Parameters.Regulation.ExtractAir.Control.SP := ADS_Standard.Tags.Settings.ExtractFan_SP;
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.ExtractFanHighSpeed_SP;
 		Parameters.Regulation.ExtractAir.Control.P := ADS_Standard.Tags.Settings.ExtractFanControl_P;
 		Parameters.Regulation.ExtractAir.Control.I := ADS_Standard.Tags.Settings.ExtractFanControl_I;
+		Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.ExtractFanOffsetCurve;
 		
 		Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
 		Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
@@ -118,6 +121,7 @@ IF EN THEN
 	END_IF
 	
 	// Status transfers
+	ADS_Standard.Tags.Status.Mode := 
 	ADS_Standard.Tags.Status.TC_V := TimeChannelActive;
 	ADS_Standard.Tags.Status.F_BR1_AL := GM_XXL.DI.CentralFireAlarm;
 	ADS_Standard.Tags.Status.Fuse_AL := GM_XXL.DI.FuseAlarm;
@@ -197,13 +201,19 @@ END_IF
     </Implementation>
     <LineIds Name="Standard_Interface">
       <LineId Id="1322" Count="5" />
-      <LineId Id="1348" Count="59" />
+      <LineId Id="1348" Count="32" />
+      <LineId Id="1656" Count="0" />
+      <LineId Id="1381" Count="21" />
+      <LineId Id="1654" Count="0" />
+      <LineId Id="1403" Count="4" />
       <LineId Id="1608" Count="0" />
+      <LineId Id="1655" Count="0" />
       <LineId Id="1610" Count="4" />
       <LineId Id="1609" Count="0" />
       <LineId Id="1408" Count="0" />
       <LineId Id="1607" Count="0" />
       <LineId Id="1409" Count="0" />
+      <LineId Id="1657" Count="0" />
       <LineId Id="1565" Count="0" />
       <LineId Id="1410" Count="15" />
       <LineId Id="1566" Count="1" />

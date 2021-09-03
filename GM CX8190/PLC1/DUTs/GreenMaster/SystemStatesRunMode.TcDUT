@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SystemStatesRunMode" Id="{8e5b585e-9d16-4661-b044-0658e4f58697}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE SystemStatesRunMode :
+(
+	Off := 0, LowSpeed, HighSpeed
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

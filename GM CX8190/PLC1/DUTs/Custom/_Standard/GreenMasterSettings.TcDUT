@@ -4,7 +4,7 @@
     <Declaration><![CDATA[// Settings for GreenMaster
 TYPE GreenMasterSettings :
 STRUCT
-RemoteStart :  WORD := 1; //  Remote (WebPort) unit activation (0=unit off, 1=normal speed, 2=high speed)
+RemoteStart :  INT := -1; //  Remote (WebPort) unit activation (-1=Auto, 0=unit off, 1=normal speed, 2=high speed)
 ResetAlarms :  BOOL :=FALSE; //  Reset alarms
 Temperature_SP :  LREAL :=20.0; //  Temperature Set Point, C
 TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1

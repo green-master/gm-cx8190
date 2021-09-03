@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SystemStatesRunModeExternal" Id="{b13dce87-c6e0-44af-a0f7-5ff863cba0eb}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE SystemStatesRunModeExternal :
+(
+	Auto := -1, Stop, LowSpeed, HighSpeed
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

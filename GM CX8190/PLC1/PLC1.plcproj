@@ -68,6 +68,12 @@
     <Compile Include="DUTs\Custom\_Standard\Standard_Interface.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\GreenMaster\SystemStatesRunMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\GreenMaster\SystemStatesRunModeExternal.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\Alarm\AlarmControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>

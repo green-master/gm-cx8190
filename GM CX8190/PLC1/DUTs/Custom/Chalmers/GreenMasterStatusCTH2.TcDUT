@@ -5,6 +5,7 @@
 STRUCT
 	LA02_ENO: BOOL; // The unit is operating
 	LA02_Auto: BOOL; // The unit is operating in Auto when true, Hand when false
+	
 	LA02_CentralFire_AL: BOOL; // Central fire alarm activated
 	LA02_Fire_AL: BOOL; // Fire alarm activated
 	LA02_Fuse_AL: BOOL; // Fuse alarm activated
