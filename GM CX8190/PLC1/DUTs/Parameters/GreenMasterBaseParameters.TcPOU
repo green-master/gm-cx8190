@@ -27,8 +27,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[
-GetGreenMaster REF= GreenMaster;
+        <ST><![CDATA[GetGreenMaster REF= GreenMaster;
 ]]></ST>
       </Implementation>
     </Method>
@@ -38,7 +37,6 @@ GetGreenMaster REF= GreenMaster;
       <LineId Id="22" Count="0" />
     </LineIds>
     <LineIds Name="GreenMasterBaseParameters.GetGreenMaster">
-      <LineId Id="7" Count="0" />
       <LineId Id="5" Count="1" />
     </LineIds>
   </POU>
