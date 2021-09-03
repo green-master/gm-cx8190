@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.12">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.12" TcVersionFixed="true">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU" AutoDeleteType="true">MB_KL6inData22B</Name>
@@ -102,13 +102,14 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="5.73.47.143.1.1" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="5.94.116.25.1.1" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<IoIdleTask CycleTime="100000"/>
 			</Settings>
 			<Licenses>
-				<Target BkhfOrder="00243608">
+				<Target BkhfOrder="00607878">
+					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
 					<ManualSelect>{6952449D-F68C-49A2-ADE4-8639D85B33A4}</ManualSelect>
 				</Target>
 			</Licenses>
@@ -128,10 +129,6 @@
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
 						<Name>PlcTask Inputs</Name>
-						<Var>
-							<Name>Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData</Name>
-							<Type GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU">MB_KL6inData22B</Type>
-						</Var>
 						<Var>
 							<Name>Globals.IO.DIn.DI01</Name>
 							<Comment><![CDATA[ AUTO AH (Sluten=1=Aggregat tillåts till drift via överstyrning)]]></Comment>
@@ -484,13 +481,13 @@
 							<Name>Globals.IO.AIn.AI24_Error</Name>
 							<Type>BOOL</Type>
 						</Var>
+						<Var>
+							<Name>Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.InData</Name>
+							<Type GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU">MB_KL6inData22B</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 						<Name>PlcTask Outputs</Name>
-						<Var>
-							<Name>Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData</Name>
-							<Type GUID="{E4C24E72-EF65-C814-8E17-663F53275EE3}" Namespace="Tc2_ModbusRTU">MB_KL6outData22B</Type>
-						</Var>
 						<Var>
 							<Name>Globals.IO.DOut.DO01</Name>
 							<Comment><![CDATA[ H.GP1 Cirkulationspump värmekrets ]]></Comment>
@@ -630,6 +627,10 @@
 							<Name>Globals.IO.AOut.AO08</Name>
 							<Comment><![CDATA[ Reservutgång]]></Comment>
 							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData</Name>
+							<Type GUID="{E4C24E72-EF65-C814-8E17-663F53275EE3}" Namespace="Tc2_ModbusRTU">MB_KL6outData22B</Type>
 						</Var>
 					</Vars>
 					<Contexts>

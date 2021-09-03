@@ -23,15 +23,49 @@
         </Event>
       </Events>
     </DeploymentEvents>
+    <Company>Nibe Airsite</Company>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Class Diagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Custom\Chalmers\CTH_LA02.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\Chalmers\CTH_Interface.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Custom\Redundancy\TagsRedundancy.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\Redundancy\adsValue_AggStat.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\Redundancy\AggStat.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\Redundancy\RedundancyStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\Redundancy\RedundancySettings.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\Redundancy\Redundancy.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Custom\Stena\Stena_Interface.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\_Standard\AdsTags.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\_Standard\GreenMasterSettings.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\_Standard\GreenMasterStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\_Standard\Standard_Interface.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Alarm\AlarmControl.TcDUT">
@@ -568,6 +602,10 @@
     <Compile Include="DUTs\Ventilation\VentilationControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\ADS_Standard.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\ADS_Stena.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -595,6 +633,10 @@
     </Compile>
     <Compile Include="GVLs\Globals.TcGVL">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GVL_Redundancy.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\IOTypes.TcDUT">
       <SubType>Code</SubType>
@@ -640,6 +682,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="DUTs\Custom\Redundancy" />
+    <Folder Include="DUTs\Custom\_Standard" />
     <Folder Include="DUTs\Parameters\Alarm" />
     <Folder Include="DUTs\Parameters\IO" />
     <Folder Include="DUTs\Parameters\Simulation" />
@@ -678,6 +722,10 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_DataExchange">
+      <DefaultResolution>Tc2_DataExchange, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_DataExchange</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_ModbusRTU">
       <DefaultResolution>Tc2_ModbusRTU, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_ModbusRTU</Namespace>

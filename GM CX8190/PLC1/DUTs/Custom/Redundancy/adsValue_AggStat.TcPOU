@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="adsValue_AggStat" Id="{513011e3-6c55-4fd0-b2a3-10592667ebec}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK adsValue_AggStat
+VAR_INPUT
+	_r_tsNow:TIMESTRUCT;		(* Aktuell tid *)
+END_VAR
+VAR_OUTPUT
+	SO1:BOOL;		// Serviceomkopplarläge 1 = service
+	Driftfel:BOOL;	// Aggregatet är i driftfel eller
+	TF_OP:REAL;		// Utsignal tilluftsfläkt
+	TF_CMD:BOOL;	// Manöver tilluftsflöäkt
+	FF_CMD:BOOL;	// Manöver tilluftsflöäkt	
+	FF_OP:REAL;		// Utsignal frånluftsfläkt
+	ST_OP:REAL;		// Utsignal Till- och frånluftsspjäll
+	GP11_PV:REAL;
+	GP11_FAULT:BOOL;
+	GP12_PV:REAL;
+	GP12_FAULT:BOOL;
+	FAULT:BOOL;		(* [type=DIGITAL], [scale=|||], [descr=Kommunikationsfel], [format=#], [engunit=], [prio=<givarfelprio>], [setting=] *)
+END_VAR
+VAR
+	ReadAdsSymbol:FB_ReadAdsSymByName;
+	_Data:AggStat;
+	_ton:TON;
+END_VAR
+VAR_INPUT PERSISTENT
+	AMSID:STRING;			(* [rename=AMSID:SP1], [type=STRING], [scale=|||], [descr=AMS-Net-ID], [format=], [engunit=], [prio=], [setting=1] *)
+	AMSPORT:UINT:=851;		(* [rename=AMSPORT:SP2], [type=STRING], [scale=|||], [descr=AMS-Net-Port], [format=], [engunit=], [prio=], [setting=1] *)
+	VARIABLE:STRING;		(* [rename=AMSID:SP3], [type=STRING], [scale=|||], [descr=Variabelnamn], [format=], [engunit=], [prio=], [setting=1] *)
+	iLastSec:INT;
+END_VAR
+(* Summalarm *)
+VAR_INPUT
+	{attribute 'OPC.UA.DA' := '0'}
+	_SLPRIO:INT:=3;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//	_ton(IN:=NOT _ton.Q, PT:=T#100MS);
+	IF NOT ReadAdsSymbol.bBusy THEN// _ton.Q THEN
+		ReadAdsSymbol(	bRead		:=	TRUE,
+						sNetId		:=	AMSID,
+						nPort		:=	AMSPORT,
+						sVarName	:=	VARIABLE,
+						nDestAddr	:=	ADR(_Data),
+						nLen		:=	SIZEOF(AggStat),
+						tTimeout	:=	DEFAULT_ADS_TIMEOUT,
+						eComMode	:=	eAdsComModeFastCom);
+	END_IF;
+
+	ReadAdsSymbol(	bRead:=FALSE);
+
+	SO1 		:= 	_Data.SO1;
+	Driftfel 	:= 	_Data.Driftfel;
+	TF_OP		:=	_Data.TF_OP;
+	TF_CMD		:=	_Data.TF_CMD;
+	FF_OP		:=	_Data.FF_OP;
+	FF_CMD		:=	_Data.FF_CMD;
+	ST_OP		:=	_Data.ST_OP;
+	GP11_PV		:=	_Data.GP11_PV;
+	GP11_FAULT	:=	_Data.GP11_FAULT;
+	GP12_PV		:=	_Data.GP12_PV;	
+	GP12_FAULT	:=	_Data.GP12_FAULT;
+	
+	FAULT :=ReadAdsSymbol.bError;
+
+	(* Summalarm *)
+//	IF  FAULT THEN
+//		CASE _SLPRIO OF
+//			1: GVL_JITEA._SUMLA_A := TRUE;
+//			2: GVL_JITEA._SUMLA_B := TRUE;
+//			3: GVL_JITEA._SUMLA_C := TRUE;
+//		END_CASE
+//	END_IF			]]></ST>
+    </Implementation>
+    <LineIds Name="adsValue_AggStat">
+      <LineId Id="147" Count="26" />
+      <LineId Id="203" Count="7" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

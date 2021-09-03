@@ -7,6 +7,7 @@ VAR_GLOBAL CONSTANT
 END_VAR
 {attribute 'qualified_only'}
 VAR_GLOBAL PERSISTENT
+	_dl:BOOL;
 	{attribute 'TcEncoding':='UTF-8'}
 	WebAdsAccessRoot: STRING := 'Main.GreenMaster';
 	{attribute 'TcEncoding':='UTF-8'}
@@ -20,16 +21,18 @@ VAR_GLOBAL PERSISTENT
 	{attribute 'TcEncoding':='UTF-8'}
 	SiteNames: ARRAY [0..99] OF STRING;
 	Components: ARRAY [0..MAX_COMPONENTS - 1] OF Component := [
-		//(Name := ComponentNames.GM, EN := TRUE, Path := 'Main.GreenMaster', Required := TRUE, Permissions := Permissions.User),
+		(Name := ComponentNames.GM, EN := TRUE, Path := 'Main.GreenMaster', Required := TRUE, Permissions := Permissions.User),
 		(Name := ComponentNames.GM_BASE, EN := TRUE, Path := 'Main.GreenMaster.Parameters', Required := TRUE, Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.GM_IO, EN := TRUE, Path := 'Globals.IO', Required := TRUE, Resource := 'IO', Permissions := Permissions.User),
 		(Name := ComponentNames.GM_VENT, EN := TRUE, Path := 'Main.GreenMaster.ParametersVENT', Resource := 'Parameter', Permissions := Permissions.User),
-		(Name := ComponentNames.GM_XXL, EN := FALSE, Path := 'Main.GreenMaster.ParametersXXL', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_XXL, EN := TRUE, Path := 'Main.GreenMaster.ParametersXXL', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.GM_A, EN := FALSE, Path := 'Main.GreenMaster.ParametersGMA', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.GM_C_F, EN := FALSE, Path := 'Main.GreenMaster.ParametersGMCF', Resource := 'Parameter', Permissions := Permissions.User),
-		(Name := ComponentNames.GM_C_T, EN := TRUE, Path := 'Main.GreenMaster.ParametersGMCT', Resource := 'Parameter', Permissions := Permissions.User),
-		(Name := ComponentNames.GM_SMOKE_CONTROL, EN := TRUE, Path := 'Main.GreenMaster.ParametersSC', Resource := 'Parameter', Permissions := Permissions.User),
-		(Name := ComponentNames.GM_OPT_CTH, EN := TRUE, Path := 'ADS_CTH.Tags2', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_C_T, EN := FALSE, Path := 'Main.GreenMaster.ParametersGMCT', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_SMOKE_CONTROL, EN := FALSE, Path := 'Main.GreenMaster.ParametersSC', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_OPT_STD, EN := FALSE, Path := 'ADS_Standard.Tags', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_OPT_CTH, EN := FALSE, Path := 'ADS_CTH.Tags2', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_OPT_STENA, EN := TRUE, Path := 'ADS_STENA.Tags', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.SIMULATION, EN := FALSE, Path := 'Main.GreenMaster.Simulation', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.None)
 	];

@@ -20,12 +20,25 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SupplyAir(Parameters := Parameters);
 ExtractAir(Parameters := Parameters);
+Temperature(EN:=Parameters.System.Operation.EN);
+
+IF __ISVALIDREF(Parameters.GetGreenMaster()) THEN
+	Temperature.Control.PV := Parameters.GetGreenMaster().GetCurrentPV();
+	SupplyAir.Control.PV := Parameters.GetGreenMaster().GetCurrentSupplyAirPV();
+	ExtractAir.Control.PV := Parameters.GetGreenMaster().GetCurrentExtractAirPV();
+END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="RegulationParametersFB">
       <LineId Id="9" Count="0" />
       <LineId Id="21" Count="0" />
       <LineId Id="20" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="72" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="56" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
