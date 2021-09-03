@@ -40,6 +40,9 @@ VAR
 	AlarmCount: UINT := SIZEOF(AlarmSignals);
 	
 END_VAR
+VAR PERSISTENT
+	SavedSettings: GreenMasterSettingsStena;
+END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT InitDone THEN
@@ -81,33 +84,36 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 	// --------------------------------------------------------------------------------
 	// Transfer from Stena tags to settings
 	
-	Parameters.Alarm.Control.ResetAlarms := ADS_Stena.Tags.Settings.LA02_ResetAlarms;
-	Parameters.Regulation.Control.EN := ADS_Stena.Tags.Settings.LA02_VentilationEN;
-	Parameters.Regulation.Temperature.EN := ADS_Stena.Tags.Settings.LA02_TemperatureControlEN;
-	IF ADS_Stena.Tags.Settings.LA02_TemperatureControlPV = 0 THEN
-		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
-	ELSIF ADS_Stena.Tags.Settings.LA02_TemperatureControlPV = 1 THEN
-		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.F_BT1;
-	ELSE
-		Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
+	IF NOT AnyEqual(ADS_Stena.Tags.Settings, SavedSettings) THEN	
+		SavedSettings := ADS_Stena.Tags.Settings; 	
+		Parameters.Alarm.Control.ResetAlarms := ADS_Stena.Tags.Settings.LA02_ResetAlarms;
+		Parameters.Regulation.Control.EN := ADS_Stena.Tags.Settings.LA02_VentilationEN;
+		Parameters.Regulation.Temperature.EN := ADS_Stena.Tags.Settings.LA02_TemperatureControlEN;
+		IF ADS_Stena.Tags.Settings.LA02_TemperatureControlPV = 0 THEN
+			Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
+		ELSIF ADS_Stena.Tags.Settings.LA02_TemperatureControlPV = 1 THEN
+			Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.F_BT1;
+		ELSE
+			Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
+		END_IF
+		Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Stena.Tags.Settings.LA02_SetPointOffsetCurve; 
+		Parameters.Regulation.Temperature.Control.SP := ADS_Stena.Tags.Settings.LA02_Temperature_SP;
+		Parameters.Regulation.Temperature.Control.P := ADS_Stena.Tags.Settings.LA02_TemperatureControl_P;
+		Parameters.Regulation.Temperature.Control.I := ADS_Stena.Tags.Settings.LA02_TemperatureControl_I;
+		Parameters.Regulation.Temperature.Control.D := ADS_Stena.Tags.Settings.LA02_TemperatureControl_D;
+		Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_Stena.Tags.Settings.LA02_StartupHeatRecoveryTime;
+		Parameters.Regulation.Control.PostFireVentilationTime := ADS_Stena.Tags.Settings.LA02_PostFireVentilationTime;
+		Parameters.Regulation.SupplyAir.ControlMode := ADS_Stena.Tags.Settings.LA02_SupplyFanControlMode;
+		Parameters.Regulation.SupplyAir.Control.SP := ADS_Stena.Tags.Settings.LA02_SupplyFan_SP;
+		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.LA02_SupplyFanHighSpeed_SP;
+		Parameters.Regulation.SupplyAir.Control.P := ADS_Stena.Tags.Settings.LA02_SupplyFanControl_P;
+		Parameters.Regulation.SupplyAir.Control.I := ADS_Stena.Tags.Settings.LA02_SupplyFanControl_I;
+		Parameters.Regulation.ExtractAir.ControlMode := ADS_Stena.Tags.Settings.LA02_ExtractFanControlMode;
+		Parameters.Regulation.ExtractAir.Control.SP := ADS_Stena.Tags.Settings.LA02_ExtractFan_SP;
+		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.LA02_ExtractFanHighSpeed_SP;
+		Parameters.Regulation.ExtractAir.Control.P := ADS_Stena.Tags.Settings.LA02_ExtractFanControl_P;
+		Parameters.Regulation.ExtractAir.Control.I := ADS_Stena.Tags.Settings.LA02_ExtractFanControl_I;
 	END_IF
-	Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Stena.Tags.Settings.LA02_SetPointOffsetCurve; 
-	Parameters.Regulation.Temperature.Control.SP := ADS_Stena.Tags.Settings.LA02_Temperature_SP;
-	Parameters.Regulation.Temperature.Control.P := ADS_Stena.Tags.Settings.LA02_TemperatureControl_P;
-	Parameters.Regulation.Temperature.Control.I := ADS_Stena.Tags.Settings.LA02_TemperatureControl_I;
-	Parameters.Regulation.Temperature.Control.D := ADS_Stena.Tags.Settings.LA02_TemperatureControl_D;
-	Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_Stena.Tags.Settings.LA02_StartupHeatRecoveryTime;
-	Parameters.Regulation.Control.PostFireVentilationTime := ADS_Stena.Tags.Settings.LA02_PostFireVentilationTime;
-	Parameters.Regulation.SupplyAir.ControlMode := ADS_Stena.Tags.Settings.LA02_SupplyFanControlMode;
-	Parameters.Regulation.SupplyAir.Control.SP := ADS_Stena.Tags.Settings.LA02_SupplyFan_SP;
-	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.LA02_SupplyFanHighSpeed_SP;
-	Parameters.Regulation.SupplyAir.Control.P := ADS_Stena.Tags.Settings.LA02_SupplyFanControl_P;
-	Parameters.Regulation.SupplyAir.Control.I := ADS_Stena.Tags.Settings.LA02_SupplyFanControl_I;
-	Parameters.Regulation.ExtractAir.ControlMode := ADS_Stena.Tags.Settings.LA02_ExtractFanControlMode;
-	Parameters.Regulation.ExtractAir.Control.SP := ADS_Stena.Tags.Settings.LA02_ExtractFan_SP;
-	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.LA02_ExtractFanHighSpeed_SP;
-	Parameters.Regulation.ExtractAir.Control.P := ADS_Stena.Tags.Settings.LA02_ExtractFanControl_P;
-	Parameters.Regulation.ExtractAir.Control.I := ADS_Stena.Tags.Settings.LA02_ExtractFanControl_I;
 	
 	// Status transfers
 	ADS_Stena.Tags.Status.LA02_CentralFire_AL := GM_XXL.DI.CentralFireAlarm;
@@ -187,7 +193,11 @@ END_IF
     </Implementation>
     <LineIds Name="Stena_Interface">
       <LineId Id="1322" Count="5" />
-      <LineId Id="1348" Count="134" />
+      <LineId Id="1348" Count="32" />
+      <LineId Id="1525" Count="1" />
+      <LineId Id="1381" Count="27" />
+      <LineId Id="1527" Count="0" />
+      <LineId Id="1409" Count="73" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
