@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="PressureToFlow" Id="{cd526757-80b0-4a2d-a96c-969d2b1d009d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION PressureToFlow : LREAL
 VAR_INPUT
@@ -15,7 +15,7 @@ END_VAR
 IF diffpressure < 0 THEN
 	DiffPressure := 0;
 END_IF 
-PressureToFlow := k * SQRT(DiffPressure) / 3.6;
+PressureToFlow := k * SQRT(DiffPressure);// / 3.6;
 ]]></ST>
     </Implementation>
     <LineIds Name="PressureToFlow">

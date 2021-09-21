@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="FlowInput" Id="{252a420b-3d35-42f1-8b50-a89741fad6f9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FlowInput EXTENDS AnalogInput
 VAR_INPUT
@@ -17,6 +17,23 @@ END_VAR
       <ST><![CDATA[SUPER^();
 ]]></ST>
     </Implementation>
+    <Method Name="FB_init" Id="{b79f8368-e24f-4edd-a475-486dea9c9596}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bInitRetains THEN
+	ProcessMin := 0;
+	ProcessMax := 30000;
+	MinValue := 0;
+	MaxValue := 30000;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="GetValue" Id="{c48d5cf9-d7a8-4783-8146-858a11b9064d}">
       <Declaration><![CDATA[METHOD GetValue : LREAL
 VAR_INPUT
@@ -33,6 +50,12 @@ GetValue := Aver.Value;]]></ST>
     <LineIds Name="FlowInput">
       <LineId Id="13" Count="0" />
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FlowInput.FB_init">
+      <LineId Id="12" Count="0" />
+      <LineId Id="8" Count="3" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FlowInput.GetValue">
       <LineId Id="5" Count="0" />

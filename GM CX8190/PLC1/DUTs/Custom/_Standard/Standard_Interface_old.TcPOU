@@ -31,7 +31,7 @@ VAR
 	TimeChannelFallback: TimeChannel1CH;
 	WatchdogTOF: TOF;
 	LastWatchDog: INT;
-	SetPointAdjustment: SetPointAdjustment;
+//	SetPointAdjustment: SetPointAdjustment;
 	CurrentPV: LREAL;
 	
 	SavedDisabledStates: AlarmSignals;
@@ -39,6 +39,9 @@ VAR
 	StatusP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	AlarmCount: UINT := SIZEOF(AlarmSignals);
 	
+END_VAR
+VAR PERSISTENT
+	SavedSettings: GreenMasterSettings;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -81,6 +84,8 @@ IF EN THEN
 	// --------------------------------------------------------------------------------
 	// Transfer from Standard tags to settings
 	IF Parameters.System.Operation.RemoteEN THEN
+<<<<<<< HEAD
+		Parameters.System.Operation.RemoteStart := ADS_Standard.Tags.Settings.RemoteStart;
 		Parameters.Alarm.Control.ResetAlarms := ADS_Standard.Tags.Settings.ResetAlarms;
 		Parameters.Regulation.Control.EN := TRUE;//ADS_Standard.Tags.Settings.VentilationEN;
 		Parameters.Regulation.Temperature.EN := TRUE;//ADS_Standard.Tags.Settings.TemperatureControlEN;
@@ -103,11 +108,13 @@ IF EN THEN
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP;
 		Parameters.Regulation.SupplyAir.Control.P := ADS_Standard.Tags.Settings.SupplyFanControl_P;
 		Parameters.Regulation.SupplyAir.Control.I := ADS_Standard.Tags.Settings.SupplyFanControl_I;
+		Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.SupplyFanOffsetCurve;
 		Parameters.Regulation.ExtractAir.ControlMode := ADS_Standard.Tags.Settings.ExtractFanControlMode;
 		Parameters.Regulation.ExtractAir.Control.SP := ADS_Standard.Tags.Settings.ExtractFan_SP;
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.ExtractFanHighSpeed_SP;
 		Parameters.Regulation.ExtractAir.Control.P := ADS_Standard.Tags.Settings.ExtractFanControl_P;
 		Parameters.Regulation.ExtractAir.Control.I := ADS_Standard.Tags.Settings.ExtractFanControl_I;
+		Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.ExtractFanOffsetCurve;
 		
 		Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
 		Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
@@ -115,9 +122,48 @@ IF EN THEN
 		Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Standard.Tags.Settings.F_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.F_QN1_OPM / 100.0);
 		Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Standard.Tags.Settings.F_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.F_QN1_OPM / 100.0);
 		
+=======
+		IF NOT AnyEqual(ADS_Standard.Tags.Settings, SavedSettings) THEN	
+			SavedSettings := ADS_Standard.Tags.Settings; 			
+			Parameters.Alarm.Control.ResetAlarms := ADS_Standard.Tags.Settings.ResetAlarms;
+			Parameters.Regulation.Control.EN := TRUE;//ADS_Standard.Tags.Settings.VentilationEN;
+			Parameters.Regulation.Temperature.EN := TRUE;//ADS_Standard.Tags.Settings.TemperatureControlEN;
+			IF ADS_Standard.Tags.Settings.TemperatureControlPV = 0 THEN
+				Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
+			ELSIF ADS_Standard.Tags.Settings.TemperatureControlPV = 1 THEN
+				Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.F_BT1;
+			ELSE
+				Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
+			END_IF
+			Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Standard.Tags.Settings.SetPointOffsetCurve; 
+			Parameters.Regulation.Temperature.Control.SP := ADS_Standard.Tags.Settings.Temperature_SP;
+			Parameters.Regulation.Temperature.Control.P := ADS_Standard.Tags.Settings.TemperatureControl_P;
+			Parameters.Regulation.Temperature.Control.I := ADS_Standard.Tags.Settings.TemperatureControl_I;
+			Parameters.Regulation.Temperature.Control.D := ADS_Standard.Tags.Settings.TemperatureControl_D;
+			Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_Standard.Tags.Settings.StartupHeatRecoveryTime;
+			Parameters.Regulation.Control.PostFireVentilationTime := ADS_Standard.Tags.Settings.PostFireVentilationTime;
+			Parameters.Regulation.SupplyAir.ControlMode := ADS_Standard.Tags.Settings.SupplyFanControlMode;
+			Parameters.Regulation.SupplyAir.Control.SP := ADS_Standard.Tags.Settings.SupplyFan_SP;
+			Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP;
+			Parameters.Regulation.SupplyAir.Control.P := ADS_Standard.Tags.Settings.SupplyFanControl_P;
+			Parameters.Regulation.SupplyAir.Control.I := ADS_Standard.Tags.Settings.SupplyFanControl_I;
+			Parameters.Regulation.ExtractAir.ControlMode := ADS_Standard.Tags.Settings.ExtractFanControlMode;
+			Parameters.Regulation.ExtractAir.Control.SP := ADS_Standard.Tags.Settings.ExtractFan_SP;
+			Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.ExtractFanHighSpeed_SP;
+			Parameters.Regulation.ExtractAir.Control.P := ADS_Standard.Tags.Settings.ExtractFanControl_P;
+			Parameters.Regulation.ExtractAir.Control.I := ADS_Standard.Tags.Settings.ExtractFanControl_I;
+			
+			Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
+			Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
+			Main.GreenMasterAO.SetOverrideH_QN1(Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
+			Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Standard.Tags.Settings.F_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.F_QN1_OPM / 100.0);
+			Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Standard.Tags.Settings.F_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.F_QN1_OPM / 100.0);		
+		END_IF		
+>>>>>>> c245a0bfb6e3d97dc11677900fac3a9cfd3f5e4e
 	END_IF
 	
 	// Status transfers
+	ADS_Standard.Tags.Status.Mode := 
 	ADS_Standard.Tags.Status.TC_V := TimeChannelActive;
 	ADS_Standard.Tags.Status.F_BR1_AL := GM_XXL.DI.CentralFireAlarm;
 	ADS_Standard.Tags.Status.Fuse_AL := GM_XXL.DI.FuseAlarm;
@@ -158,12 +204,12 @@ IF EN THEN
 
 *)	
 	IF NOT GM_XXL.AI2.T_BF1_Error THEN
-		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL((SQRT(GM_XXL.AI2.T_BF1) * Parameters.Regulation.SupplyAir.KFactor) / 3.6);
+		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BF1);//LREAL_TO_REAL((SQRT(GM_XXL.AI2.T_BF1) * Parameters.Regulation.SupplyAir.KFactor) / 3.6);
 	ELSE	
 		ADS_Standard.Tags.Status.T_BF1_PV := 0;
 	END_IF
 	IF NOT GM_XXL.AI2.F_BF1_Error THEN
-		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL((SQRT(GM_XXL.AI2.F_BF1) * Parameters.Regulation.ExtractAir.KFactor) / 3.6);
+		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BF1);//LREAL_TO_REAL((SQRT(GM_XXL.AI2.F_BF1) * Parameters.Regulation.ExtractAir.KFactor) / 3.6);
 	ELSE	
 		ADS_Standard.Tags.Status.F_BF1_PV := 0;
 	END_IF
@@ -197,13 +243,24 @@ END_IF
     </Implementation>
     <LineIds Name="Standard_Interface">
       <LineId Id="1322" Count="5" />
-      <LineId Id="1348" Count="59" />
+      <LineId Id="1348" Count="32" />
+<<<<<<< HEAD
+      <LineId Id="1656" Count="0" />
+      <LineId Id="1381" Count="21" />
+      <LineId Id="1654" Count="0" />
+      <LineId Id="1403" Count="4" />
+=======
+      <LineId Id="1658" Count="1" />
+      <LineId Id="1381" Count="26" />
+>>>>>>> c245a0bfb6e3d97dc11677900fac3a9cfd3f5e4e
       <LineId Id="1608" Count="0" />
+      <LineId Id="1655" Count="0" />
       <LineId Id="1610" Count="4" />
-      <LineId Id="1609" Count="0" />
+      <LineId Id="1660" Count="0" />
       <LineId Id="1408" Count="0" />
       <LineId Id="1607" Count="0" />
       <LineId Id="1409" Count="0" />
+      <LineId Id="1657" Count="0" />
       <LineId Id="1565" Count="0" />
       <LineId Id="1410" Count="15" />
       <LineId Id="1566" Count="1" />
