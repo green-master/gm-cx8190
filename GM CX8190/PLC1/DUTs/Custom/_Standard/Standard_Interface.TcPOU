@@ -103,11 +103,13 @@ IF EN THEN
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP;
 		Parameters.Regulation.SupplyAir.Control.P := ADS_Standard.Tags.Settings.SupplyFanControl_P;
 		Parameters.Regulation.SupplyAir.Control.I := ADS_Standard.Tags.Settings.SupplyFanControl_I;
+		Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.SupplyFanOffsetCurve;
 		Parameters.Regulation.ExtractAir.ControlMode := ADS_Standard.Tags.Settings.ExtractFanControlMode;
 		Parameters.Regulation.ExtractAir.Control.SP := ADS_Standard.Tags.Settings.ExtractFan_SP;
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.ExtractFanHighSpeed_SP;
 		Parameters.Regulation.ExtractAir.Control.P := ADS_Standard.Tags.Settings.ExtractFanControl_P;
 		Parameters.Regulation.ExtractAir.Control.I := ADS_Standard.Tags.Settings.ExtractFanControl_I;
+		Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.ExtractFanOffsetCurve;
 		
 		Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
 		Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
@@ -197,8 +199,11 @@ END_IF
     </Implementation>
     <LineIds Name="Standard_Interface">
       <LineId Id="1322" Count="5" />
-      <LineId Id="1348" Count="59" />
+      <LineId Id="1348" Count="54" />
+      <LineId Id="1654" Count="0" />
+      <LineId Id="1403" Count="4" />
       <LineId Id="1608" Count="0" />
+      <LineId Id="1655" Count="0" />
       <LineId Id="1610" Count="4" />
       <LineId Id="1609" Count="0" />
       <LineId Id="1408" Count="0" />
