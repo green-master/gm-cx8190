@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{B1E792BE-AA5F-4E3C-8C82-674BF9C0715B}") = "GM CX8190", "GM CX8190\GM CX8190.tsproj", "{D63CD02C-0A51-4894-83B6-00C54871755E}"
 EndProject
-Project("{BACAAE27-5D5D-4513-97FF-0FED82FEF961}") = "Empty TwinCAT Connectivity Project1", "Empty TwinCAT Connectivity Project1\Empty TwinCAT Connectivity Project1.tcconnproj", "{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|TwinCAT CE7 (ARMV7) = Debug|TwinCAT CE7 (ARMV7)
@@ -33,14 +31,6 @@ Global
 		{D63CD02C-0A51-4894-83B6-00C54871755E}.Release|TwinCAT OS (ARMT2).Build.0 = Release|TwinCAT OS (ARMT2)
 		{D63CD02C-0A51-4894-83B6-00C54871755E}.Release|TwinCAT RT (x64).ActiveCfg = Release|TwinCAT RT (x64)
 		{D63CD02C-0A51-4894-83B6-00C54871755E}.Release|TwinCAT RT (x86).ActiveCfg = Release|TwinCAT RT (x86)
-		{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}.Debug|TwinCAT CE7 (ARMV7).ActiveCfg = Debug|TwinCAT CE7 (ARMV7)
-		{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}.Debug|TwinCAT OS (ARMT2).ActiveCfg = Debug|TwinCAT OS (ARMT2)
-		{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}.Debug|TwinCAT RT (x64).ActiveCfg = Debug|TwinCAT RT (x64)
-		{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}.Debug|TwinCAT RT (x86).ActiveCfg = Debug|TwinCAT RT (x86)
-		{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}.Release|TwinCAT CE7 (ARMV7).ActiveCfg = Release|TwinCAT CE7 (ARMV7)
-		{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}.Release|TwinCAT OS (ARMT2).ActiveCfg = Release|TwinCAT OS (ARMT2)
-		{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}.Release|TwinCAT RT (x64).ActiveCfg = Release|TwinCAT RT (x64)
-		{CAA6DC56-8917-4A2F-A93C-A6C8F517742B}.Release|TwinCAT RT (x86).ActiveCfg = Release|TwinCAT RT (x86)
 		{82E4CE3D-F1C8-48A6-8B3E-0A9139D7EAF6}.Debug|TwinCAT CE7 (ARMV7).ActiveCfg = Debug|TwinCAT CE7 (ARMV7)
 		{82E4CE3D-F1C8-48A6-8B3E-0A9139D7EAF6}.Debug|TwinCAT CE7 (ARMV7).Build.0 = Debug|TwinCAT CE7 (ARMV7)
 		{82E4CE3D-F1C8-48A6-8B3E-0A9139D7EAF6}.Debug|TwinCAT OS (ARMT2).ActiveCfg = Debug|TwinCAT OS (ARMT2)

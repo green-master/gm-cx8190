@@ -640,6 +640,10 @@
     <Compile Include="GVLs\Globals.TcGVL">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\GVL_MB.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\GVL_Redundancy.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>

@@ -44,6 +44,7 @@ T_QM3_CMD :  BOOL; // spjäll manöver
 T_QM3_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
 T_QM3_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
 
+Temperature_CSP :  LREAL;	// Aktuellt börvärde temperatiurreglering
 T_BT2_PV :  REAL; // Utetemperatur (aggregat)
 T_BT2_FAULT :  BOOL; // Utetemperatur (aggregat) givarfel
 T_BT3_PV :  REAL; // Tilluftstemperatur före efterbehandling (aggregat)
@@ -84,6 +85,7 @@ T_BF1_PV :  REAL; // Tilluftsflöde
 T_BF1_FAULT :  BOOL; // Tilluftsflöde givarfel
 T_BF1_AL :  BOOL; // Tilluftsflöde Larm
 T_BP1_PV :  REAL; // Tilluftstryck
+T_BP1_CSP :	REAL;	// Beräknat börvärde tilluftstryck
 T_BP1_FAULT :  BOOL; // Tilluftstryck givarfel
 T_BP1_AL :  BOOL; // Tilluftstryck Larm
 
@@ -91,6 +93,7 @@ F_BF1_PV :  REAL; // Frånluftsflöde
 F_BF1_FAULT :  BOOL; // Frånluftsflöde givarfel
 F_BF1_AL :  BOOL; // Frånluftsflöde Larm
 F_BP1_PV :  REAL; // Frånluftstryck
+F_BP1_CSP :	REAL;	// Beräknat börvärde tilluftstryck
 F_BP1_FAULT :  BOOL; // Frånluftstryck givarfel
 F_BP1_AL :  BOOL; // Frånluftstryck Larm
 END_STRUCT
