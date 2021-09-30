@@ -265,7 +265,7 @@ END_VAR
                       <v n="Id">2147501325L</v>
                     </o>
                     <v n="PageArea">3</v>
-                    <v n="Bounds">"14, 21, 0, 0"</v>
+                    <v n="Bounds">"1, 29, 0, 0"</v>
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">2147483860L</v>
                     <v n="Id">2147501323L</v>
@@ -529,18 +529,6 @@ END_VAR
                           <v n="PretendsToBeConnected">false</v>
                           <v n="Id">2147501413L</v>
                         </o>
-                        <o>
-                          <v n="Bounds">"0, 0, 0, 0"</v>
-                          <n n="ElementGroupId" />
-                          <v n="IsExtensiblePin">false</v>
-                          <v n="ProcessValue">""</v>
-                          <v n="Access" t="ProcessValueAccess">None</v>
-                          <v n="Negated">false</v>
-                          <v n="SetReset" t="SetReset">None</v>
-                          <v n="SetResetRef" t="SetResetRef">None</v>
-                          <v n="PretendsToBeConnected">false</v>
-                          <v n="Id">2147501420L</v>
-                        </o>
                       </l2>
                     </o>
                     <o n="Outputs" t="CFCItemList">
@@ -571,13 +559,6 @@ END_VAR
                           <v n="Text">""</v>
                           <v n="Modifiable">false</v>
                           <v n="Id">2147501416L</v>
-                        </o>
-                        <o>
-                          <v n="Bounds">"0, 0, 0, 0"</v>
-                          <n n="ElementGroupId" />
-                          <v n="Text">""</v>
-                          <v n="Modifiable">false</v>
-                          <v n="Id">2147501421L</v>
                         </o>
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
@@ -934,13 +915,6 @@ END_VAR
                     <v n="SourcePinId">2147501414L</v>
                     <v n="DestPinId">2147501426L</v>
                     <v n="Id">2147501434L</v>
-                  </o>
-                  <o t="CFCConnection">
-                    <v n="Bounds">"0, 0, 0, 0"</v>
-                    <n n="ElementGroupId" />
-                    <v n="SourcePinId">2147501324L</v>
-                    <v n="DestPinId">2147501420L</v>
-                    <v n="Id">2147501424L</v>
                   </o>
                   <o t="CFCConnection">
                     <v n="Bounds">"0, 0, 0, 0"</v>
@@ -8930,9 +8904,9 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147501442L</v>
+                    <v n="ConnectionId">2147501434L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">30</v>
+                      <v n="X">37</v>
                       <v n="Y">19</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -8944,13 +8918,13 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">30</v>
+                        <v n="X">37</v>
                         <v n="Y">19</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">32</v>
+                        <v n="X">46</v>
                         <v n="Y">19</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
@@ -9026,9 +9000,9 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147501434L</v>
+                    <v n="ConnectionId">2147501442L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">37</v>
+                      <v n="X">30</v>
                       <v n="Y">19</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -9040,42 +9014,14 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">37</v>
-                        <v n="Y">19</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
-                        <v n="X">46</v>
-                        <v n="Y">19</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">2147501424L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">30</v>
-                      <v n="Y">21</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147483860L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
                         <v n="X">30</v>
-                        <v n="Y">21</v>
+                        <v n="Y">19</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">32</v>
-                        <v n="Y">21</v>
+                        <v n="Y">19</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -9990,6 +9936,8 @@ END_VAR
 	Parameters.Regulation.Temperature.Control.SP := 20;	
 	Parameters.Regulation.SupplyAir.Control.SP := 100;	
 	Parameters.Regulation.ExtractAir.Control.SP := 100;	
+	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := 100;	
+	Parameters.Regulation.ExtractAir.Control.SP_HighSpeed := 100;	
 END_IF
 ]]></ST>
       </Implementation>
@@ -10345,7 +10293,6 @@ IF NextState <> State THEN
 			;
 
 		SystemStates.FireHandling:
-			NextState := SystemStates.FireExhaust;
 
 		SystemStates.FireExhaust:
 			Fire();
@@ -10469,18 +10416,18 @@ CASE State OF
 		end_if;
 		
 	SystemStates.FireHandling:
-		IF NOT ENO THEN
-			NextState := SystemStates.Idle;
+		IF Parameters.Alarm.Active.A.FireSupply AND NOT Parameters.Alarm.Active.A.Fire THEN
+			NextState := SystemStates.FireSupply;
 		end_if;
-
+		IF NOT Parameters.Alarm.Active.A.FireSupply AND Parameters.Alarm.Active.A.Fire THEN
+			NextState := SystemStates.FireExhaust;
+		END_IF;
+		
 	SystemStates.FireHandlingExit:
 		NextState := SystemStates.Idle;
 
 	SystemStates.FireExhaust:
-		IF NOT ENO THEN
-			NextState := SystemStates.Idle;
-		end_if;
-		IF NOT Parameters.Alarm.Active.A.FireSupply THEN
+		IF NOT Parameters.Alarm.Active.A.FireSupply AND NOT Parameters.Alarm.Active.A.Fire THEN
 			NextState := SystemStates.Ventilate;
 		end_if;
 		IF Parameters.Alarm.Active.A.FireSupply AND NOT Parameters.Alarm.Active.A.Fire THEN
@@ -10493,9 +10440,12 @@ CASE State OF
 		end_if;
 
 	SystemStates.Ventilate:
-		IF Parameters.Alarm.Active.A.Fire THEN
+		IF NOT Parameters.Alarm.Active.A.FireSupply AND Parameters.Alarm.Active.A.Fire THEN
 			NextState := SystemStates.FireExhaust;
-		end_if;
+		END_IF;
+		IF Parameters.Alarm.Active.A.FireSupply THEN
+			NextState := SystemStates.FireSupply;
+		END_IF
 		IF StateTime() > Parameters.System.Operation.PostFireVentilationTime THEN
 			NextState := SystemStates.FireHandlingExit;
 		END_IF;
@@ -10621,6 +10571,7 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
     <LineIds Name="GreenMasterBase.FB_init">
       <LineId Id="8" Count="1" />
       <LineId Id="11" Count="1" />
+      <LineId Id="18" Count="1" />
       <LineId Id="10" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
@@ -10775,9 +10726,7 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="29" Count="1" />
       <LineId Id="33" Count="3" />
       <LineId Id="211" Count="0" />
-      <LineId Id="38" Count="1" />
-      <LineId Id="193" Count="0" />
-      <LineId Id="40" Count="1" />
+      <LineId Id="38" Count="3" />
       <LineId Id="43" Count="2" />
       <LineId Id="47" Count="2" />
       <LineId Id="212" Count="0" />
@@ -10812,14 +10761,20 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="86" Count="41" />
       <LineId Id="307" Count="10" />
       <LineId Id="128" Count="0" />
-      <LineId Id="194" Count="2" />
+      <LineId Id="392" Count="1" />
+      <LineId Id="196" Count="0" />
+      <LineId Id="394" Count="1" />
       <LineId Id="132" Count="0" />
+      <LineId Id="396" Count="0" />
       <LineId Id="199" Count="0" />
       <LineId Id="201" Count="0" />
       <LineId Id="203" Count="0" />
-      <LineId Id="133" Count="11" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="137" Count="7" />
       <LineId Id="148" Count="4" />
-      <LineId Id="156" Count="5" />
+      <LineId Id="156" Count="2" />
+      <LineId Id="377" Count="2" />
+      <LineId Id="159" Count="2" />
       <LineId Id="266" Count="0" />
       <LineId Id="273" Count="0" />
       <LineId Id="275" Count="2" />

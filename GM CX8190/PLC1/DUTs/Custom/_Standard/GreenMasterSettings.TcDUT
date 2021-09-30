@@ -4,26 +4,77 @@
     <Declaration><![CDATA[// Settings for GreenMaster
 TYPE GreenMasterSettings :
 STRUCT
-RemoteStart :  INT := -1; //  Remote (WebPort) unit activation (-1=Auto, 0=unit off, 1=normal speed, 2=high speed)
+RemoteStart :  INT := 1; //  Remote (WebPort) unit activation (-1=Auto, 0=unit off, 1=normal speed, 2=high speed)
 ResetAlarms :  BOOL :=FALSE; //  Reset alarms
 Temperature_SP :  LREAL :=20.0; //  Temperature Set Point, C
 TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1
 SetPointOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TemperatureControl_P :  REAL :=0.05; //  Temperature control P
 TemperatureControl_I :  TIME :=T#2M; //  Temperature control I
 TemperatureControl_D :  TIME :=T#0M; //  Temperature control D
 StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover
 PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to operation after fire alarm
 SupplyFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/T.BP1, 1=Flow/T.BF1) for Supply Air
-SupplyFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature	Jawa:2021-09-03
 SupplyFan_SP :  REAL :=100 ; //  Supply air control Set Point
 SupplyFanHighSpeed_SP :  REAL ; //  Supply air control high speed Set Point
+SupplyFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 SupplyFanControl_P :  REAL :=0.002; //  Supply air control P
 SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I
 ExtractFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/F.BP1, 1=Flow/F.BF1) for Extract Air
-ExtractFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature	Jawa:2021-09-03
 ExtractFan_SP :  REAL := 100; //  Extract air control Set Point
 ExtractFanHighSpeed_SP :  REAL ; //  Extract air control high speed Set Point
+ExtractFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ExtractFanControl_P :  REAL :=0.002; //  Extract air control P
 ExtractFanControl_I :  TIME :=T#2M; //  Extract air control I
 NightCoolingEN :  BOOL :=FALSE; //  Use Night cooling
@@ -37,8 +88,7 @@ T_GQ1_M :  BOOL; //  Supply air fan control manual override
 F_GQ1_M :  BOOL; //  Extract air fan control manual override
 C_QN1_M :  BOOL; //  Cool supply control valve manual override
 H_QN1_M :  BOOL; //  Heat supply control valve manual override
-F_QN1_M :  BOOL;
-F_QN1_OPM :  REAL; //  Heat exchanger manual value
+TX1_OPM :  REAL; //  Heat exchanger manual value
 T_GQ1_OPM :  REAL; //  Supply air fan control manual value
 F_GQ1_OPM :  REAL; //  Extract air fan control manual value
 C_QN1_OPM :  REAL; //  Cool supply control valve manual value

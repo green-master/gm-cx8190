@@ -6,6 +6,7 @@ STRUCT
 	PV: LREAL;
 	SP: LREAL; // $(write 0, setup, read 0, decimals 1, step 0.5)
 	SP_HighSpeed: LREAL;
+	CSP: LREAL;	// Beräknat börvärde
 	P: LREAL := 0.002; // $(write 1, setup, read 0, decimals 2, step 0.1)
 	I: TIME := T#2M; // $(write 1, setup, read 0, time "m:s")
 	D: TIME; // $(write 1, setup, read 0, time "m:s")

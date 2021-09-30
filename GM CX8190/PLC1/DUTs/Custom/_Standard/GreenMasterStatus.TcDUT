@@ -6,7 +6,7 @@ STRUCT
 ENO :  BOOL; // Aggregatet är i drift
 Auto :  BOOL; // Aggregatet är i auto
 Hand :  BOOL; // Aggregatet är i hand
-Mode : INT;		// Driftmod 0=stopp, 1=halvfart, 2=helfart	
+MODE_PV1 : INT; // Driftmod 0=stopp, 1=halvfart, 2=helfart
 F_BR1_AL :  BOOL; // Centralt brandlarm
 TC_V : BOOL; // Tidkanal i aggregat är aktiv
 F_BR1_FAULT :  BOOL; // Servicelarm för RD i frånluft
@@ -40,11 +40,7 @@ T_QM1_6_CMD :  BOOL; // Sektionsavfrostningsspjäll 6 manöver
 F_QM2_CMD :  BOOL; // Brandförbigångsspjäll (FID) manöver
 F_QM2_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
 F_QM2_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
-T_QM3_CMD :  BOOL; // spjäll manöver
-T_QM3_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
-T_QM3_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
-
-Temperature_CSP :  LREAL;	// Aktuellt börvärde temperatiurreglering
+Temperature_CSP : REAL; // Aktuellt börvärdetemperatur
 T_BT2_PV :  REAL; // Utetemperatur (aggregat)
 T_BT2_FAULT :  BOOL; // Utetemperatur (aggregat) givarfel
 T_BT3_PV :  REAL; // Tilluftstemperatur före efterbehandling (aggregat)
@@ -67,9 +63,12 @@ F_BP3_FAULT :  BOOL; // Differenstryck VVX givarfel
 F_BP3_AL :  BOOL; // Differenstryck VVX Larm
 T_GQ1_OP :  REAL; // Utsignal tilluftsfläkt
 F_GQ1_OP :  REAL; // Utsignal frånluftsfläkt
-F_QN1_OP :  REAL; // Utsignal VVX
+TX1_OP :  REAL; // Utsignal VVX
 H_QN1_OP :  REAL; // Utsignal värmeventil
 C_QN1_OP :  REAL; // Utsignal kylventil
+T_QM3_CMD :  BOOL; // spjäll manöver
+T_QM3_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
+T_QM3_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
 
 F_BT1_PV :  REAL; // Frånluftstemperatur (aggregat)
 F_BT1_FAULT :  BOOL; // Frånluftstemperatur (aggregat) givarfel
@@ -82,18 +81,20 @@ BT2_FAULT :  BOOL; // Inomhustemperatur (vägg) givarfel
 BT2_AL :  BOOL; // Inomhustemperatur (vägg) Larm
 
 T_BF1_PV :  REAL; // Tilluftsflöde
+T_BF1_CSP : REAL; // Beräknat börvärde tilluftsflöde
 T_BF1_FAULT :  BOOL; // Tilluftsflöde givarfel
 T_BF1_AL :  BOOL; // Tilluftsflöde Larm
 T_BP1_PV :  REAL; // Tilluftstryck
-T_BP1_CSP :	REAL;	// Beräknat börvärde tilluftstryck
+T_BP1_CSP : REAL; // Beräknat börvärde tilluftstryck
 T_BP1_FAULT :  BOOL; // Tilluftstryck givarfel
 T_BP1_AL :  BOOL; // Tilluftstryck Larm
 
 F_BF1_PV :  REAL; // Frånluftsflöde
+F_BF1_CSP : REAL; // Beräknat börvärde frånluftsflöde
 F_BF1_FAULT :  BOOL; // Frånluftsflöde givarfel
 F_BF1_AL :  BOOL; // Frånluftsflöde Larm
 F_BP1_PV :  REAL; // Frånluftstryck
-F_BP1_CSP :	REAL;	// Beräknat börvärde tilluftstryck
+F_BP1_CSP : REAL;	// Beräknat börvärde frånluftstryck"
 F_BP1_FAULT :  BOOL; // Frånluftstryck givarfel
 F_BP1_AL :  BOOL; // Frånluftstryck Larm
 END_STRUCT

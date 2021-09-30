@@ -5,7 +5,7 @@
 VAR
 	// JaWa
 	_iDbg:INT;	
-	_download2:BOOL;
+	_download5:BOOL;
 	//Enum1: FanControlTypes := FanControlTypes.Flow;
 	GreenMaster: GreenMasterXXL_FB;
 	StartupDone: BOOL;
@@ -93,7 +93,18 @@ Stena_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STENA).EN, AIn 
 
 // Redundant drift
 IF GetComponent(Name := ComponentNames.REDUNDANCY).EN THEN
-	;
+	Redundancy(	EN := GetComponent(Name := ComponentNames.REDUNDANCY).EN,
+				_UPPSTART_DONE:=StartupDone,
+				_TF_CMD:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV > 0,
+				_TF_V:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV > 0 AND GreenMaster.GetCurrentSupplyAirPV() > 10,
+				_TF_OP:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV,
+				_TL_GP_PV:=GreenMaster.GetCurrentSupplyAirPV(),
+				_FF_CMD:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV > 0,
+				_FF_V:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV > 0 AND GreenMaster.GetCurrentExtractAirPV() > 10,
+				_FF_OP:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV,
+				_FL_GP_PV:=GreenMaster.GetCurrentExtractAirPV(),
+				_SERVICEBRYTARE:=FALSE
+				);
 END_IF
 
 IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
@@ -130,6 +141,7 @@ IF GetComponent(Name := ComponentNames.SIMULATION).EN THEN
 	END_IF
 END_IF
 
+
 // Save persistent data on power off or fail
 Saver();
 ]]></ST>
@@ -146,13 +158,16 @@ Saver();
       <LineId Id="1824" Count="0" />
       <LineId Id="1941" Count="0" />
       <LineId Id="1943" Count="0" />
+      <LineId Id="1992" Count="10" />
       <LineId Id="1942" Count="0" />
       <LineId Id="1940" Count="0" />
       <LineId Id="1828" Count="0" />
       <LineId Id="1827" Count="0" />
       <LineId Id="1718" Count="2" />
       <LineId Id="1858" Count="0" />
-      <LineId Id="1721" Count="30" />
+      <LineId Id="1721" Count="26" />
+      <LineId Id="1986" Count="0" />
+      <LineId Id="1748" Count="3" />
     </LineIds>
   </POU>
 </TcPlcObject>

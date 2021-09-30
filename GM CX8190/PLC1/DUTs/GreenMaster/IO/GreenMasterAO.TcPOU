@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="GreenMasterAO" Id="{ff387c71-d749-4a35-b3f3-c52ada6fced6}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterAO EXTENDS GreenMasterAO_Base
 VAR_INPUT
@@ -1370,7 +1370,7 @@ END_VAR
                         <v n="X">64</v>
                         <v n="Y">32</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">100</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">69</v>
@@ -1636,6 +1636,17 @@ END_VAR
         </XmlArchive>
       </CFC>
     </Implementation>
+    <Method Name="SetOverrideC_QN1" Id="{3cd06bd8-e5ee-451d-b3fa-6b642e1750b2}">
+      <Declaration><![CDATA[METHOD SetOverrideC_QN1 : BOOL
+VAR_INPUT
+	Override: BOOL;
+	OverrideValue: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IO_AO_04.SetOverride2(OverrideIN := Override, OverrideValueIN := OverrideValue);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetOverrideF_GQ1" Id="{9f182b83-0c76-461d-b67a-045d79534555}">
       <Declaration><![CDATA[METHOD SetOverrideF_GQ1 : BOOL
 VAR_INPUT
@@ -1680,6 +1691,9 @@ END_VAR
         <ST><![CDATA[IO_AO_02.SetOverride2(OverrideIN := Override, OverrideValueIN := OverrideValue);]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="GreenMasterAO.SetOverrideC_QN1">
+      <LineId Id="5" Count="0" />
+    </LineIds>
     <LineIds Name="GreenMasterAO.SetOverrideF_GQ1">
       <LineId Id="5" Count="0" />
     </LineIds>

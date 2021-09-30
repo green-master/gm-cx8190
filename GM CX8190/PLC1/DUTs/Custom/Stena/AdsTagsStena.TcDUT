@@ -5,10 +5,10 @@
 STRUCT
 	Settings: GreenMasterSettingsStena; // Settings for the GreenMaster unit
 	Status: GreenMasterStatusStena; // Status for the GreenMaster unit
-	Schedule1: TimeChannelSettings := (AllDays := TRUE, EN := TRUE, OffHour := 23, OffMinute := 59); // Operating schedule for the GreenMaster unit
-	Schedule2: TimeChannelSettings; // Operating schedule for the GreenMaster unit
-	Schedule3: TimeChannelSettings; // Operating schedule for the GreenMaster unit
-	ScheduleFallback: TimeChannelSettings := (AllDays := TRUE, EN := TRUE, OnHour := 5, OnMinute := 30, OffHour := 20, OffMinute := 00); // Operating schedule for the GreenMaster unit on watchdog trig
+	//Schedule1: TimeChannelSettings := (AllDays := TRUE, EN := TRUE, OffHour := 23, OffMinute := 59); // Operating schedule for the GreenMaster unit
+	//Schedule2: TimeChannelSettings; // Operating schedule for the GreenMaster unit
+	//Schedule3: TimeChannelSettings; // Operating schedule for the GreenMaster unit
+	//ScheduleFallback: TimeChannelSettings := (AllDays := TRUE, EN := TRUE, OnHour := 5, OnMinute := 30, OffHour := 20, OffMinute := 00); // Operating schedule for the GreenMaster unit on watchdog trig
 END_STRUCT
 END_TYPE
 ]]></Declaration>

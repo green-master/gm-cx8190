@@ -26,9 +26,6 @@
     <Company>Nibe Airsite</Company>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Class Diagram.TcCD">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DUTs\Custom\Chalmers\CTH_LA02.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -365,6 +362,9 @@
     <Compile Include="DUTs\Parameters\IO\SmokeControlStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\Redundancy\RedundancyParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\Regulation\AirParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -696,6 +696,7 @@
     <Folder Include="DUTs\Custom\_Standard" />
     <Folder Include="DUTs\Parameters\Alarm" />
     <Folder Include="DUTs\Parameters\IO" />
+    <Folder Include="DUTs\Parameters\Redundancy" />
     <Folder Include="DUTs\Parameters\Simulation" />
     <Folder Include="DUTs\Parameters\SmokeControl" />
     <Folder Include="DUTs\Parameters\System" />

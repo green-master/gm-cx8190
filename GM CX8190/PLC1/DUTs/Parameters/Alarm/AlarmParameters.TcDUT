@@ -30,7 +30,7 @@ STRUCT
 									));
 	Limits: AlarmLimits;
 	Delay: AlarmDelays; // MUST be in same order and number as AlarmSignals
-	Polarity: AlarmSignals := ( A:= ( Fire := TRUE ));
+	Polarity: AlarmSignals := ( A:= ( Fire := FALSE ));
 	Active: AlarmSignals;
 	Status: AlarmSignals;	
 	

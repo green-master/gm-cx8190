@@ -53,7 +53,7 @@ END_IF;
 
 TimeChannelEnabled := FALSE;
 TimeChannelActive := FALSE;
-
+(*
 TimeChannelEnabled := TimeChannelEnabled OR ADS_Stena.Tags.Schedule1.EN;
 TimeChannelActive := TimeChannelActive OR ADS_Stena.Tags.Schedule1.Q;
 TimeChannel1(Settings := ADS_Stena.Tags.Schedule1);
@@ -67,6 +67,7 @@ TimeChannelActive := TimeChannelActive OR ADS_Stena.Tags.Schedule3.Q;
 TimeChannel3(Settings := ADS_Stena.Tags.Schedule3);
 
 TimeChannelFallback(Settings := ADS_Stena.Tags.ScheduleFallback);
+*)
 WatchdogTOF(IN := (NOT ADS_Stena.Tags.Settings.LA02_WatchdogEnabled) OR (ADS_Stena.Tags.Settings.LA02_Watchdog <> LastWatchDog), PT := T#5M);
 
 IF WatchdogTOF.Q THEN
@@ -193,7 +194,9 @@ END_IF
     </Implementation>
     <LineIds Name="Stena_Interface">
       <LineId Id="1322" Count="5" />
-      <LineId Id="1348" Count="32" />
+      <LineId Id="1348" Count="15" />
+      <LineId Id="1570" Count="0" />
+      <LineId Id="1364" Count="16" />
       <LineId Id="1525" Count="1" />
       <LineId Id="1381" Count="27" />
       <LineId Id="1527" Count="0" />

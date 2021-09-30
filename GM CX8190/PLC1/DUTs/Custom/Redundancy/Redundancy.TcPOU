@@ -31,7 +31,9 @@ VAR
 	A_STATUS:AggStat;				// Detta aggregatet
 
 END_VAR
-]]></Declaration>
+VAR_INPUT PERSISTENT
+	AGG_A:BOOL;	// True = A false = B
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*
 Samdrift av LB01 och LB02. En- till tvåaggregatsdrift och två- till enaggregatsdrift
@@ -63,8 +65,10 @@ IF EN THEN
 	// Transfer from Redundancy to settings
 
 	// Status transfers
-	GVL_Redundancy.Tags.Status.FF_CMD := GM_XXL.SupplyFanControl.ENO;
+//	GVL_Redundancy.Tags.Status.FF_CMD := GM_XXL.SupplyFanControl.ENO;
 	
+	// Tillfällig lösning
+	// Set AMSID
 	
 END_IF]]></ST>
     </Implementation>
@@ -78,7 +82,9 @@ END_IF]]></ST>
       <LineId Id="61" Count="4" />
       <LineId Id="69" Count="0" />
       <LineId Id="71" Count="0" />
+      <LineId Id="102" Count="0" />
       <LineId Id="18" Count="0" />
+      <LineId Id="103" Count="0" />
       <LineId Id="17" Count="0" />
     </LineIds>
   </POU>
