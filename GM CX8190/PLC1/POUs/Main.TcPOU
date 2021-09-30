@@ -13,7 +13,7 @@ VAR
 	xxx: bool;
 	Saver: FB_S_UPS_CX81xx;
 	HostName: FB_GetHostName;
-	UseReverse_F_QN1: BOOL;
+	UseReverse_C_QN1: BOOL;
 	test1: bool;
 	
 	Std_Interface : Standard_Interface;
@@ -34,6 +34,8 @@ VAR
 	
 	NightCooling: BOOL;
 	DebugStop: BOOL;
+	WritePersistentData: WritePersistentData;
+	StartWritePersistentData: BOOL;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -72,9 +74,9 @@ HostName(bExecute := TRUE);
 // 
 Globals.HostName := HostName.sHostName; 
 IF F_ToUCase(HostName.sHostName) = 'CX-503E98' THEN
-	UseReverse_F_QN1 := FALSE;
+	UseReverse_C_QN1 := FALSE;
 ELSE
-	UseReverse_F_QN1 := GreenMaster.Parameters.Io.AOutCalibration.F_QN1.InvertedOutput;
+	UseReverse_C_QN1 := GreenMaster.Parameters.Io.AOutCalibration.C_QN1.InvertedOutput;
 END_IF
 
 IF GreenMaster.Parameters.System.Operation.IoUpdateEN THEN
@@ -129,7 +131,7 @@ IF GetComponent(Name := ComponentNames.GM_BASE).EN THEN
 		AI := GreenMasterAI,
 		AI2 := GreenMasterAI2_RTU,
 		TCP_AI := SmokeControl.GreenMasterSmokeControl,  
-		Reverse_F_QN1 := UseReverse_F_QN1,
+		Reverse_C_QN1 := UseReverse_C_QN1,
 		NightCooling := NightCooling,
 		EnableFansAndDampers := Std_Interface.EN OR Stena_Interface.EN OR (CTH_Interface.EN AND NOT CTH_Interface.FirePanelActive)
 	);
@@ -144,30 +146,12 @@ END_IF
 
 // Save persistent data on power off or fail
 Saver();
+WritePersistentData(NETID := '', PORT := 851, TMOUT := T#10S, START := StartWritePersistentData);
 ]]></ST>
     </Implementation>
     <LineIds Name="Main">
-      <LineId Id="1665" Count="7" />
-      <LineId Id="1682" Count="35" />
-      <LineId Id="1826" Count="0" />
-      <LineId Id="1863" Count="1" />
-      <LineId Id="1821" Count="0" />
-      <LineId Id="1901" Count="0" />
-      <LineId Id="1822" Count="1" />
-      <LineId Id="1935" Count="0" />
-      <LineId Id="1824" Count="0" />
-      <LineId Id="1941" Count="0" />
-      <LineId Id="1943" Count="0" />
-      <LineId Id="1992" Count="10" />
-      <LineId Id="1942" Count="0" />
-      <LineId Id="1940" Count="0" />
-      <LineId Id="1828" Count="0" />
-      <LineId Id="1827" Count="0" />
-      <LineId Id="1718" Count="2" />
-      <LineId Id="1858" Count="0" />
-      <LineId Id="1721" Count="26" />
-      <LineId Id="1986" Count="0" />
-      <LineId Id="1748" Count="3" />
+      <LineId Id="2117" Count="105" />
+      <LineId Id="2040" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

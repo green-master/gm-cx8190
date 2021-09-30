@@ -5,9 +5,9 @@
 VAR_INPUT
 	EN: BOOL; // $(W1,S,R0)
 	TemperatureControlSource: TemperatureControlSources; // $(W1,S,R0)
-	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.IncreaseToHeat;
+	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.DecreaseToHeat;
 	SetPointAdjustment: SetPointAdjustment;
-	Control: ControllerParameters := ( SP := 20, P := 0.2, I := T#10M );
+	Control: ControllerParameters := ( SP := 20, P := 0.2, I := T#2M );
 	FreezeProtectionControl: ControllerParameters;
 END_VAR
 VAR_OUTPUT

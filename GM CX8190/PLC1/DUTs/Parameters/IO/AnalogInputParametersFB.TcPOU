@@ -82,9 +82,9 @@ END_VAR
 	T_BP2_Error := AI2.T_BP2_Error;
 	F_BP3 := AI2.F_BP3;
 	F_BP3_Error := AI2.F_BP3_Error;
-	T_BF1 := (SQRT(AI2.T_BF1) * Parameters.Regulation.SupplyAir.KFactor) / 3.6 ;
+	T_BF1 := AI2.T_BF1;
 	T_BF1_Error := AI2.T_BF1_Error;
-	F_BF1 := (SQRT(AI2.F_BF1) * Parameters.Regulation.ExtractAir.KFactor) / 3.6 ;	
+	F_BF1 := AI2.F_BF1;	
 	F_BF1_Error := AI2.F_BF1_Error;
 ELSE
 	F_BT1_Error := FALSE;

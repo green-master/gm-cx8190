@@ -121,12 +121,11 @@ IF EN THEN
 	
 	// Status transfers
 	ADS_Standard.Tags.Status.TC_V := TimeChannelActive;
-	ADS_Standard.Tags.Status.F_BR1_AL := GM_XXL.DI.CentralFireAlarm;
-	ADS_Standard.Tags.Status.Fuse_AL := GM_XXL.DI.FuseAlarm;
-	ADS_Standard.Tags.Status.F_BR1_AL := GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir;
+	ADS_Standard.Tags.Status.F_BR1_AL := NOT (GM_XXL.DI.CentralFireAlarm OR GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir);
+	ADS_Standard.Tags.Status.Fuse_AL := NOT GM_XXL.DI.FuseAlarm;
 	ADS_Standard.Tags.Status.T_GQ1_AL := GM_XXL.DI.T_GQ1_Alarm;
 	ADS_Standard.Tags.Status.F_GQ1_AL := GM_XXL.DI.F_GQ1_Alarm;
-	ADS_Standard.Tags.Status.Fire_AL := GM_XXL.DI.FireAlarm;
+	ADS_Standard.Tags.Status.Fire_AL := NOT GM_XXL.DI.FireAlarm;
 	ADS_Standard.Tags.Status.H_GP1_V := GM_XXL.DI.H_GP1_Running;
 	ADS_Standard.Tags.Status.H_GP1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
 	ADS_Standard.Tags.Status.C_GP1_V := Globals.IO.DIn.DI22;
@@ -160,12 +159,12 @@ IF EN THEN
 
 *)	
 	IF NOT GM_XXL.AI2.T_BF1_Error THEN
-		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL((SQRT(GM_XXL.AI2.T_BF1) * Parameters.Regulation.SupplyAir.KFactor) / 3.6);
+		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BF1);
 	ELSE	
 		ADS_Standard.Tags.Status.T_BF1_PV := 0;
 	END_IF
 	IF NOT GM_XXL.AI2.F_BF1_Error THEN
-		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL((SQRT(GM_XXL.AI2.F_BF1) * Parameters.Regulation.ExtractAir.KFactor) / 3.6);
+		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BF1);
 	ELSE	
 		ADS_Standard.Tags.Status.F_BF1_PV := 0;
 	END_IF
@@ -238,7 +237,8 @@ GVL_MB.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV
       <LineId Id="1607" Count="0" />
       <LineId Id="1409" Count="0" />
       <LineId Id="1565" Count="0" />
-      <LineId Id="1410" Count="15" />
+      <LineId Id="1410" Count="1" />
+      <LineId Id="1413" Count="12" />
       <LineId Id="1566" Count="1" />
       <LineId Id="1699" Count="0" />
       <LineId Id="1427" Count="5" />

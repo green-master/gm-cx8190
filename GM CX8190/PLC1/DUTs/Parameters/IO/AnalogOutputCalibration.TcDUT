@@ -6,7 +6,7 @@ STRUCT
 	F_QN1: AnalogOutputCalibrationParameters;
 	T_GQ1: AnalogOutputCalibrationParameters;
 	F_GQ1: AnalogOutputCalibrationParameters;
-	C_QN1: AnalogOutputCalibrationParameters;
+	C_QN1: AnalogOutputCalibrationParameters := (InvertedOutput := TRUE);
 	H_QN1: AnalogOutputCalibrationParameters;
 END_STRUCT
 END_TYPE
