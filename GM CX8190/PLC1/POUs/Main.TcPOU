@@ -36,6 +36,7 @@ VAR
 	DebugStop: BOOL;
 	WritePersistentData: WritePersistentData;
 	StartWritePersistentData: BOOL;
+	SavedParameters: GreenMasterBaseParameters;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -48,7 +49,7 @@ IF NOT StartupDone THEN
 	EventLog.LogEventJSON(Message := 'Test data $${KFactor} and $${PressureControl.SP}', Kind := EventTypes.Debug, VarAdr := ADR(GreenMaster.Parameters.Regulation.ExtractAir), VarSize := SIZEOF(GreenMaster.Parameters.Regulation.ExtractAir), VarType := 'AirParameters');	
 	StartupDone := TRUE;
 END_IF
-
+SavedParameters := GreenMaster.GetParameters();
 Globals.SystemUpTime := DT_TO_DWORD(NowDT()) - DT_TO_DWORD(Globals.SystemStartTime);
 
 NightCooling := FALSE;
@@ -99,12 +100,12 @@ IF GetComponent(Name := ComponentNames.REDUNDANCY).EN THEN
 				_UPPSTART_DONE:=StartupDone,
 				_TF_CMD:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV > 0,
 				_TF_V:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV > 0 AND GreenMaster.GetCurrentSupplyAirPV() > 10,
-				_TF_OP:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV,
-				_TL_GP_PV:=GreenMaster.GetCurrentSupplyAirPV(),
+				_TF_OP:=LREAL_TO_REAL(GreenMaster.Parameters.Regulation.SupplyAir.Control.CV),
+				_TL_GP_PV:=LREAL_TO_REAL(GreenMaster.GetCurrentSupplyAirPV()),
 				_FF_CMD:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV > 0,
 				_FF_V:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV > 0 AND GreenMaster.GetCurrentExtractAirPV() > 10,
-				_FF_OP:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV,
-				_FL_GP_PV:=GreenMaster.GetCurrentExtractAirPV(),
+				_FF_OP:=LREAL_TO_REAL(GreenMaster.Parameters.Regulation.ExtractAir.Control.CV),
+				_FL_GP_PV:=LREAL_TO_REAL(GreenMaster.GetCurrentExtractAirPV()),
 				_SERVICEBRYTARE:=FALSE
 				);
 END_IF

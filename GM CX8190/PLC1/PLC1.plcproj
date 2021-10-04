@@ -662,6 +662,9 @@
     <Compile Include="GVLs\Component.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\ModbusRTU_IO.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>

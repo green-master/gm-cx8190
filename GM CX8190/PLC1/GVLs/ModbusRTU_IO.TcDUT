@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ModbusRTU_IO" Id="{b1a0637e-968f-46ed-a16d-a91da8356b42}">
+    <Declaration><![CDATA[TYPE ModbusRTU_IO :
+STRUCT
+	RTU_T_BP1: WORD;
+	RTU_T_BP1_Error: BOOL;
+	RTU_F_BP1: WORD;
+	RTU_F_BP1_Error: BOOL;
+	RTU_T_BP2: WORD;
+	RTU_T_BP2_Error: BOOL;
+	RTU_F_BP2: WORD;
+	RTU_F_BP2_Error: BOOL;
+	RTU_F_BP3: WORD;
+	RTU_F_BP3_Error: BOOL;
+	RTU_T_BF1: WORD;
+	RTU_T_BF1_Error: BOOL;
+	RTU_F_BF1: WORD;	
+	RTU_F_BF1_Error: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="ModbusRTU" Id="{d3df9997-51b6-4f4e-ba59-1348929a5873}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ModbusRTU EXTENDS Modbus
 VAR_INPUT
@@ -85,7 +85,7 @@ CASE State OF
 			ELSE
 				ModbusMaster.ReadInputRegs(Execute := FALSE);
 			END_IF
-			//Param.ErrorOUT := TRUE;
+			Param.ErrorOUT := TRUE;
 			ErrorCount := ErrorCount + 1;
 			State := 30;
 		ELSIF NOT ModbusMaster.BUSY THEN

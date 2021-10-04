@@ -137,7 +137,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_QM3_CMD := Parameters.IO.DOut.T_QM3;
 		
 	
-	ADS_Standard.Tags.Status.Temperature_CSP := Main.GreenMaster.GetCurrentSP();
+	ADS_Standard.Tags.Status.Temperature_CSP := LREAL_TO_REAL(Main.GreenMaster.GetCurrentSP());
 	ADS_Standard.Tags.Status.F_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
 	ADS_Standard.Tags.Status.T_BT2_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
 	ADS_Standard.Tags.Status.T_BT3_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT3);

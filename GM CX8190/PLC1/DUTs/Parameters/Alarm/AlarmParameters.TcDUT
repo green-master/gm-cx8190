@@ -8,7 +8,8 @@ STRUCT
 	AutoReset: AlarmSignals := ( 	A := ( 	FirePanelSupplyStart := TRUE,  
 											FirePanelSupplyStop := TRUE, 
 											FirePanelExtractStart := TRUE, 
-											FirePanelExtractStop := TRUE
+											FirePanelExtractStop := TRUE,
+											Fuse := TRUE
 									),
 									B := (	RegulationDeviation := TRUE,
 											SupplyAirDeviation := TRUE,

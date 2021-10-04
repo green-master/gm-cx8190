@@ -21,9 +21,9 @@ VAR_GLOBAL PERSISTENT
 	{attribute 'TcEncoding':='UTF-8'}
 	SiteNames: ARRAY [0..99] OF STRING;
 	Components: ARRAY [0..MAX_COMPONENTS - 1] OF Component := [
-		(Name := ComponentNames.GM, EN := TRUE, Path := 'Main.GreenMaster', Required := TRUE, Permissions := Permissions.User),
+		(Name := ComponentNames.GM, EN := FALSE, Path := 'Main.GreenMaster', Required := TRUE, Permissions := Permissions.User),
 		(Name := ComponentNames.GM_BASE, EN := TRUE, Path := 'Main.GreenMaster.Parameters', Required := TRUE, Resource := 'Parameter', Permissions := Permissions.User),
-		(Name := ComponentNames.GM_IO, EN := TRUE, Path := 'Globals.IO', Required := TRUE, Resource := 'IO', Permissions := Permissions.User),
+		(Name := ComponentNames.GM_IO, EN := TRUE, Path := 'Globals.IO', Required := TRUE, Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.GM_VENT, EN := TRUE, Path := 'Main.GreenMaster.ParametersVENT', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.GM_XXL, EN := TRUE, Path := 'Main.GreenMaster.ParametersXXL', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.GM_A, EN := FALSE, Path := 'Main.GreenMaster.ParametersGMA', Resource := 'Parameter', Permissions := Permissions.User),

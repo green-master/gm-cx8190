@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <DUT Name="IOTypes" Id="{53f9b43a-b471-4210-b092-9233fb18c923}">
     <Declaration><![CDATA[TYPE IOTypes :
 STRUCT
@@ -7,6 +7,7 @@ STRUCT
 	DOut: DigitalOutputs;
 	AIn: AnalogInputs;
 	AOut: AnalogOutputs;
+	ModbusRTU: ModbusRTU_IO; 
 END_STRUCT
 END_TYPE
 ]]></Declaration>

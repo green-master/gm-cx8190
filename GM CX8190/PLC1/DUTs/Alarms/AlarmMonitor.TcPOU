@@ -43,7 +43,7 @@ VAR
 	PolarityP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	DelayP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF TIME;
 	TONs: ARRAY [0..SIZEOF(AlarmSignals) - 1] OF TON;
-
+	StartupDelay: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -52,57 +52,59 @@ END_VAR
 	StartupDone := TRUE;
 	AlarmSignals1 REF= Parameters.Alarm.Status;
 END_IF
-
-LatchedStatusP := ADR(Latched.Status);
-DelayP := ADR(Parameters.Alarm.Delay);
-StatusP := ADR(Parameters.Alarm.Status);
-PolarityP := ADR(Parameters.Alarm.Polarity);
-CurrentP := ADR(Current.Signals);
-FOR N := 0 TO AlarmCount - 1 DO
-	LatchedStatusP^[n] := StatusP^[n] <> PolarityP^[n];		
-	TONs[n](IN := LatchedStatusP^[n], PT := DelayP^[n], Q => CurrentP^[n]);
-END_FOR
-
-IF Parameters.Alarm.Control.ResetAlarms THEN
-	Latched := NoAlarms;
-	Parameters.Alarm.Control.ResetAlarms := FALSE;
-END_IF
-
-IF Parameters.IO.DIn.ResetAlarm THEN
-	Latched := NoAlarms;
-END_IF
-
-// Transfer from Alarms to Latched according to autoreset and polarity definitions
-LatchedSignalP := ADR(Latched.Signals);
-AutoResetP := ADR(Parameters.Alarm.AutoReset);
-FOR N := 0 TO AlarmCount - 1 DO
-	LatchedSignalP^[n] := LatchedSignalP^[n] AND NOT AutoResetP^[n] OR CurrentP^[n];
-END_FOR
-
-// Set parameters alarms
-Parameters.Alarm.Active.A := Latched.Signals.A;
-Parameters.Alarm.Active.B := Latched.Signals.B;
-Parameters.Alarm.Active.C := Latched.Signals.C;
-
-// Set alarms
-AlarmA := NOT AnyEqual(Latched.Signals.A, NoAlarms.Signals.A);
-AlarmB := NOT AnyEqual(Latched.Signals.B, NoAlarms.Signals.B);
-AlarmC := NOT AnyEqual(Latched.Signals.C, NoAlarms.Signals.C);
-AlarmD := FALSE;
-
-CurrentDT := NowDT();
-StartTime();
-IF (CurrentDT <> LastDT) AND (StartTime.ET > LTIME#20S) THEN
-	// Add any alarm events to alarm log
-	IF (NOT AnyEqual(Latched.Signals, Last.Signals)) or (NOT AnyEqual(Latched.Status, Last.Status)) THEN
-		IF NOT Latched.Signals.C.SensorFailure THEN
-			LogAlarm(Latched);
-		ELSE
-			LogAlarmJSON(Item := Latched, VarAdr := ADR(Parameters.IO.Status), VarSize := SIZEOF(Parameters.IO.Status), VarType := 'IoStatus');
-		END_IF
-		Last := Latched;
+StartupDelay(IN := TRUE, PT := T#5S);
+IF StartupDelay.Q THEN
+	LatchedStatusP := ADR(Latched.Status);
+	DelayP := ADR(Parameters.Alarm.Delay);
+	StatusP := ADR(Parameters.Alarm.Status);
+	PolarityP := ADR(Parameters.Alarm.Polarity);
+	CurrentP := ADR(Current.Signals);
+	FOR N := 0 TO AlarmCount - 1 DO
+		LatchedStatusP^[n] := StatusP^[n] <> PolarityP^[n];		
+		TONs[n](IN := LatchedStatusP^[n], PT := DelayP^[n], Q => CurrentP^[n]);
+	END_FOR
+	
+	IF Parameters.Alarm.Control.ResetAlarms THEN
+		Latched := NoAlarms;
+		Parameters.Alarm.Control.ResetAlarms := FALSE;
 	END_IF
-	LastDT := CurrentDT;
+	
+	IF Parameters.IO.DIn.ResetAlarm THEN
+		Latched := NoAlarms;
+	END_IF
+	
+	// Transfer from Alarms to Latched according to autoreset and polarity definitions
+	LatchedSignalP := ADR(Latched.Signals);
+	AutoResetP := ADR(Parameters.Alarm.AutoReset);
+	FOR N := 0 TO AlarmCount - 1 DO
+		LatchedSignalP^[n] := LatchedSignalP^[n] AND NOT AutoResetP^[n] OR CurrentP^[n];
+	END_FOR
+	
+	// Set parameters alarms
+	Parameters.Alarm.Active.A := Latched.Signals.A;
+	Parameters.Alarm.Active.B := Latched.Signals.B;
+	Parameters.Alarm.Active.C := Latched.Signals.C;
+	
+	// Set alarms
+	AlarmA := NOT AnyEqual(Latched.Signals.A, NoAlarms.Signals.A);
+	AlarmB := NOT AnyEqual(Latched.Signals.B, NoAlarms.Signals.B);
+	AlarmC := NOT AnyEqual(Latched.Signals.C, NoAlarms.Signals.C);
+	AlarmD := FALSE;
+	
+	CurrentDT := NowDT();
+	StartTime();
+	IF (CurrentDT <> LastDT) AND (StartTime.ET > LTIME#20S) THEN
+		// Add any alarm events to alarm log
+		IF (NOT AnyEqual(Latched.Signals, Last.Signals)) or (NOT AnyEqual(Latched.Status, Last.Status)) THEN
+			IF NOT Latched.Signals.C.SensorFailure THEN
+				LogAlarm(Latched);
+			ELSE
+				LogAlarmJSON(Item := Latched, VarAdr := ADR(Parameters.IO.Status), VarSize := SIZEOF(Parameters.IO.Status), VarType := 'IoStatus');
+			END_IF
+			Last := Latched;
+		END_IF
+		LastDT := CurrentDT;
+	END_IF
 END_IF
 ]]></ST>
     </Implementation>
@@ -165,7 +167,10 @@ IncludeJSON := FALSE;
       </Implementation>
     </Method>
     <LineIds Name="AlarmMonitor">
-      <LineId Id="2063" Count="56" />
+      <LineId Id="2063" Count="4" />
+      <LineId Id="2164" Count="0" />
+      <LineId Id="2068" Count="51" />
+      <LineId Id="2211" Count="0" />
       <LineId Id="102" Count="0" />
     </LineIds>
     <LineIds Name="AlarmMonitor.LogAlarm">
