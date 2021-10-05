@@ -4493,7 +4493,7 @@ END_VAR
                         <v n="X">50</v>
                         <v n="Y">13</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">100</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">64</v>
@@ -5481,7 +5481,7 @@ END_VAR
                         <v n="X">60</v>
                         <v n="Y">13</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">100</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">74</v>
@@ -6185,7 +6185,35 @@ END_VAR
                         <v n="X">23</v>
                         <v n="Y">31</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
+                        <v n="Flags">100</v>
+                      </o>
+                      <o>
+                        <v n="X">26</v>
+                        <v n="Y">31</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147485558L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">23</v>
+                      <v n="Y">31</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147483646L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">23</v>
+                        <v n="Y">31</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">100</v>
                       </o>
                       <o>
                         <v n="X">26</v>
@@ -6229,6 +6257,18 @@ END_VAR
         </XmlArchive>
       </CFC>
     </Implementation>
+    <Method Name="ExtractFanOverride" Id="{845c6049-375f-4348-bb58-2001bb90466c}">
+      <Declaration><![CDATA[METHOD ExtractFanOverride : BOOL
+VAR_INPUT
+	Override: BOOL;
+	Speed: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ExtractFanControl.Override := Override;
+ExtractFanControl.OverrideCV := Speed;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Fire" Id="{1c88f70e-4e58-403a-8538-cb81e4801757}">
       <Declaration><![CDATA[METHOD Fire : BOOL
 VAR_INPUT
@@ -6310,6 +6350,18 @@ END_VAR
         <ST><![CDATA[Sum := v1 + v2;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SupplyFanOverride" Id="{8aa461d5-b7d4-4117-ba9d-e3e15222c794}">
+      <Declaration><![CDATA[METHOD SupplyFanOverride : BOOL
+VAR_INPUT
+	Override: BOOL;
+	Speed: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SupplyFanControl.Override := Override;
+SupplyFanControl.OverrideCV := Speed;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Update" Id="{964d34a0-56a5-4eba-b576-6bb134f2e0c5}">
       <Declaration><![CDATA[METHOD Update : BOOL
 VAR_INPUT
@@ -6325,6 +6377,10 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="GreenMasterXXL.ExtractFanOverride">
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
     <LineIds Name="GreenMasterXXL.Fire">
       <LineId Id="5" Count="2" />
       <LineId Id="9" Count="1" />
@@ -6350,6 +6406,10 @@ END_IF
       <LineId Id="5" Count="1" />
     </LineIds>
     <LineIds Name="GreenMasterXXL.Sum">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="GreenMasterXXL.SupplyFanOverride">
+      <LineId Id="13" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="GreenMasterXXL.Update">

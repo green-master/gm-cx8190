@@ -11204,6 +11204,17 @@ END_VAR
         <ST><![CDATA[DampersOpen := Parameters.IO.DOut.T_QM3_OnTime > LTIME#30s and Parameters.IO.DOut.F_QM1_OnTime > LTIME#30s;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="ExtractFanOverride" Id="{d4dae123-f430-4cea-bdb9-c30106c5f05d}">
+      <Declaration><![CDATA[METHOD ExtractFanOverride : BOOL
+VAR_INPUT
+	Override: BOOL;
+	Speed: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="FB_init" Id="{1e201abe-9496-47c9-ad21-240006067df9}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
@@ -11430,6 +11441,17 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SupplyFanOverride" Id="{63286f14-74e9-40cd-8041-bfbc6adf3fb9}">
+      <Declaration><![CDATA[METHOD SupplyFanOverride : BOOL
+VAR_INPUT
+	Override: BOOL;
+	Speed: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SystemStateST" Id="{9bc36e52-b0aa-4d7d-90b3-a08e80d6b909}">
       <Declaration><![CDATA[METHOD SystemStateST : BOOL
 VAR_IN_OUT
@@ -11466,6 +11488,8 @@ IF NextState <> State THEN
 			
 		SystemStates.Idle:
 			SystemStateVentilation := FALSE;
+			Parameters.IO.DOut.F_QM1 := FALSE;
+			Parameters.IO.DOut.T_QM3 := FALSE;
 			Parameters.IO.AOut.F_QN1 := 0;
 			Parameters.IO.AOut.F_GQ1 := 0;
 			Parameters.IO.AOut.T_GQ1 := 0;
@@ -11475,6 +11499,8 @@ IF NextState <> State THEN
 			Parameters.IO.DOut.T_QM1_4 := FALSE;
 			Parameters.IO.DOut.T_QM1_5 := FALSE;
 			Parameters.IO.DOut.T_QM1_6 := FALSE;
+			ExtractFanOverride(FALSE, 0);
+			SupplyFanOverride(FALSE, 0);
 			
 		SystemStates.OpenDampers:
 			Parameters.IO.AOut.F_QN1 := 0;
@@ -11542,7 +11568,8 @@ CASE State OF
 
 	SystemStates.StartupHeatRecovery:
 		IF StateTime() > Parameters.System.Operation.ExhaustFanStartupDelay THEN
-			Parameters.IO.AOut.F_GQ1 := Parameters.Regulation.ExtractAir.StartupFanSpeed;			
+			ExtractFanOverride(TRUE, Parameters.Regulation.ExtractAir.StartupFanSpeed);
+			//Parameters.IO.AOut.F_GQ1 := Parameters.Regulation.ExtractAir.StartupFanSpeed;			
 			Parameters.IO.DOut.T_QM3 := TRUE;
 			Parameters.IO.DOut.T_QM1_1 := TRUE;
 			Parameters.IO.DOut.T_QM1_2 := TRUE;
@@ -11552,12 +11579,15 @@ CASE State OF
 			Parameters.IO.DOut.T_QM1_6 := TRUE;
 		END_IF
 		IF StateTime() > Parameters.System.Operation.SupplyFanStartupDelay THEN
-			Parameters.IO.AOut.T_GQ1 := Parameters.Regulation.SupplyAir.StartupFanSpeed;			
+			SupplyFanOverride(TRUE, Parameters.Regulation.ExtractAir.StartupFanSpeed);
+			//Parameters.IO.AOut.T_GQ1 := Parameters.Regulation.SupplyAir.StartupFanSpeed;			
 		END_IF
 		OvrTemperatureControl := (StateTime() > LTIME#1000MS) AND (StateTime() < LTIME#2000MS);
 		
 	SystemStates.Run:
 		
+		ExtractFanOverride(FALSE, 0);
+		SupplyFanOverride(FALSE, 0);
 		Parameters.System.Operation.Mode := SystemStatesRunMode.LowSpeed;
 		IF Parameters.Regulation.Temperature.ColdRecycling.EN THEN
 			ColdRecyclingHysteresis(Value := Parameters.IO.AIn.F_BT1, LimitValue := Parameters.Regulation.CompensationTemperature + Parameters.Regulation.Temperature.ColdRecycling.Offset, Offset := Parameters.Regulation.Temperature.ColdRecycling.Hysteresis);
@@ -11816,6 +11846,9 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
     <LineIds Name="GreenMasterBase.DampersOpen">
       <LineId Id="5" Count="0" />
     </LineIds>
+    <LineIds Name="GreenMasterBase.ExtractFanOverride">
+      <LineId Id="5" Count="0" />
+    </LineIds>
     <LineIds Name="GreenMasterBase.FB_init">
       <LineId Id="8" Count="1" />
       <LineId Id="11" Count="1" />
@@ -11900,6 +11933,9 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="5" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
+    <LineIds Name="GreenMasterBase.SupplyFanOverride">
+      <LineId Id="5" Count="0" />
+    </LineIds>
     <LineIds Name="GreenMasterBase.SystemStateST">
       <LineId Id="246" Count="0" />
       <LineId Id="248" Count="1" />
@@ -11912,8 +11948,10 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="210" Count="0" />
       <LineId Id="19" Count="1" />
       <LineId Id="23" Count="0" />
+      <LineId Id="538" Count="1" />
       <LineId Id="482" Count="0" />
       <LineId Id="505" Count="7" />
+      <LineId Id="546" Count="1" />
       <LineId Id="24" Count="1" />
       <LineId Id="330" Count="0" />
       <LineId Id="29" Count="1" />
@@ -11944,13 +11982,18 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="214" Count="0" />
       <LineId Id="67" Count="1" />
       <LineId Id="331" Count="0" />
+      <LineId Id="542" Count="0" />
       <LineId Id="334" Count="0" />
       <LineId Id="504" Count="0" />
       <LineId Id="498" Count="5" />
       <LineId Id="333" Count="0" />
-      <LineId Id="335" Count="2" />
+      <LineId Id="335" Count="0" />
+      <LineId Id="544" Count="0" />
+      <LineId Id="336" Count="1" />
       <LineId Id="69" Count="2" />
       <LineId Id="351" Count="0" />
+      <LineId Id="543" Count="0" />
+      <LineId Id="545" Count="0" />
       <LineId Id="215" Count="0" />
       <LineId Id="423" Count="0" />
       <LineId Id="429" Count="0" />
