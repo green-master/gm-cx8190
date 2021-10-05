@@ -127,7 +127,7 @@ IF GetComponent(Name := ComponentNames.GM_BASE).EN THEN
 	GreenMaster.Update(DO_ := GreenMasterDO, AO := GreenMasterAO);
 	GreenMaster(
 		EN := TRUE AND (NOT DebugStop),
-		RemoteEN := Std_Interface.ENO OR CTH_Interface.ENO OR Stena_Interface.ENO,	// TODO: Varför bara CTH här i original?  
+		RemoteEN := GreenMaster.Parameters.System.Operation.RemoteEN, //Std_Interface.ENO OR CTH_Interface.ENO OR Stena_Interface.ENO,	// TODO: Varför bara CTH här i original?  
 		DI := GreenMasterDI,
 		AI := GreenMasterAI,
 		AI2 := GreenMasterAI2_RTU,

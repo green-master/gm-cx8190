@@ -39,7 +39,7 @@ END_IF
 DefrostStageTimer();
 SectionDefrostTimer();
 
-IF Parameters.Regulation.SupplyAir.ControlMode = FanControlTypes.Pressure AND Parameters.System.Defrost.EN AND ENO THEN
+IF FALSE AND Parameters.Regulation.SupplyAir.ControlMode = FanControlTypes.Pressure AND Parameters.System.Defrost.EN AND ENO THEN
 	CASE DefrostStage OF
 		0:
 			SupplyFlowAdjustment := 1.0;
@@ -124,19 +124,25 @@ ELSE
 	SectionToDefrost := 1;
 	SectionDefrostTimer.Restart();
 	DefrostStageTimer.Restart();
-	Damper1 := TRUE;
-	Damper2 := TRUE;
-	Damper3 := TRUE;
-	Damper4 := TRUE;
-	Damper5 := TRUE;
-	Damper6 := TRUE;
+	
+	Damper1 := Parameters.IO.DOut.T_QM1_1;
+	Damper2 := Parameters.IO.DOut.T_QM1_2;
+	Damper3 := Parameters.IO.DOut.T_QM1_3;
+	Damper4 := Parameters.IO.DOut.T_QM1_4;
+	Damper5 := Parameters.IO.DOut.T_QM1_5;
+	Damper6 := Parameters.IO.DOut.T_QM1_6;
+	
 END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="Defrost">
       <LineId Id="926" Count="17" />
       <LineId Id="945" Count="72" />
-      <LineId Id="1019" Count="10" />
+      <LineId Id="1019" Count="3" />
+      <LineId Id="1056" Count="0" />
+      <LineId Id="1023" Count="5" />
+      <LineId Id="1057" Count="0" />
+      <LineId Id="1029" Count="0" />
       <LineId Id="75" Count="0" />
     </LineIds>
   </POU>

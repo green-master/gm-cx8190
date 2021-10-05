@@ -1641,10 +1641,13 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IO_AO_04.SetOverride2(OverrideIN := Override, OverrideValueIN := OverrideValue);]]></ST>
+        <ST><![CDATA[IO_AO_04.SetOverride2(OverrideIN := Override AND 
+	(Parameters.System.Operation.State = SystemStates.Run),
+	OverrideValueIN := OverrideValue);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetOverrideF_GQ1" Id="{9f182b83-0c76-461d-b67a-045d79534555}">
@@ -1652,10 +1655,12 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IO_AO_03.SetOverride2(OverrideIN := Override, OverrideValueIN := OverrideValue);]]></ST>
+        <ST><![CDATA[IO_AO_03.SetOverride2(OverrideIN := Override AND 
+	(Parameters.System.Operation.State = SystemStates.Run), OverrideValueIN := OverrideValue);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetOverrideF_QN1" Id="{f1d64b06-7b8a-4ff2-b775-32e0b65144ba}">
@@ -1663,10 +1668,12 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IO_AO_01.SetOverride2(OverrideIN := Override, OverrideValueIN := OverrideValue);]]></ST>
+        <ST><![CDATA[IO_AO_01.SetOverride2(OverrideIN := Override AND 
+	(Parameters.System.Operation.State = SystemStates.Run), OverrideValueIN := OverrideValue);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetOverrideH_QN1" Id="{3dbe0887-fb81-474e-a5d4-9d6aad747a97}">
@@ -1674,10 +1681,12 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IO_AO_05.SetOverride2(OverrideIN := Override, OverrideValueIN := OverrideValue);]]></ST>
+        <ST><![CDATA[IO_AO_05.SetOverride2(OverrideIN := Override AND 
+	(Parameters.System.Operation.State = SystemStates.Run), OverrideValueIN := OverrideValue);]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetOverrideT_GQ1" Id="{a0ebcbe9-0a6e-405e-a5f7-9bc9e521cbc7}">
@@ -1685,26 +1694,33 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IO_AO_02.SetOverride2(OverrideIN := Override, OverrideValueIN := OverrideValue);]]></ST>
+        <ST><![CDATA[IO_AO_02.SetOverride2(OverrideIN := Override AND 
+	(Parameters.System.Operation.State = SystemStates.Run), OverrideValueIN := OverrideValue);]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="GreenMasterAO.SetOverrideC_QN1">
       <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="1" />
     </LineIds>
     <LineIds Name="GreenMasterAO.SetOverrideF_GQ1">
       <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
     </LineIds>
     <LineIds Name="GreenMasterAO.SetOverrideF_QN1">
       <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
     </LineIds>
     <LineIds Name="GreenMasterAO.SetOverrideH_QN1">
       <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
     </LineIds>
     <LineIds Name="GreenMasterAO.SetOverrideT_GQ1">
       <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

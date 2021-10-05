@@ -102,8 +102,8 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 		Parameters.Regulation.Temperature.Control.P := ADS_Stena.Tags.Settings.LA02_TemperatureControl_P;
 		Parameters.Regulation.Temperature.Control.I := ADS_Stena.Tags.Settings.LA02_TemperatureControl_I;
 		Parameters.Regulation.Temperature.Control.D := ADS_Stena.Tags.Settings.LA02_TemperatureControl_D;
-		Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_Stena.Tags.Settings.LA02_StartupHeatRecoveryTime;
-		Parameters.Regulation.Control.PostFireVentilationTime := ADS_Stena.Tags.Settings.LA02_PostFireVentilationTime;
+		Parameters.System.Operation.StartupHeatRecoveryTime := TIME_TO_LTIME(ADS_Stena.Tags.Settings.LA02_StartupHeatRecoveryTime);
+		Parameters.System.Operation.PostFireVentilationTime := TIME_TO_LTIME(ADS_Stena.Tags.Settings.LA02_PostFireVentilationTime);
 		Parameters.Regulation.SupplyAir.ControlMode := ADS_Stena.Tags.Settings.LA02_SupplyFanControlMode;
 		Parameters.Regulation.SupplyAir.Control.SP := ADS_Stena.Tags.Settings.LA02_SupplyFan_SP;
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.LA02_SupplyFanHighSpeed_SP;
@@ -179,10 +179,10 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 		ADS_Stena.Tags.Status.LA02_Eff_V := 0;	
 	END_IF
 	
-	Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Stena.Tags.Settings.LA02_TF1_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_TF1_MCMD / 100.0); 
-	Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Stena.Tags.Settings.LA02_FF1_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_FF1_MCMD / 100.0);
-	Main.GreenMasterAO.SetOverrideH_QN1(Override := ADS_Stena.Tags.Settings.LA02_SV21_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_SV21_MCMD / 100.0);
-	Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Stena.Tags.Settings.LA02_SV31_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_SV31_MCMD / 100.0);
+	Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Stena.Tags.Settings.LA02_TF1_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_TF1_MCMD / 100.0); 
+	Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Stena.Tags.Settings.LA02_FF1_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_FF1_MCMD / 100.0);
+	Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Stena.Tags.Settings.LA02_SV21_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_SV21_MCMD / 100.0);
+	Main.GreenMasterAO.SetOverrideF_QN1(Parameters := Parameters, Override := ADS_Stena.Tags.Settings.LA02_SV31_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_SV31_MCMD / 100.0);
 	PreEN := TRUE;
 ELSE
 	IF PreEN THEN

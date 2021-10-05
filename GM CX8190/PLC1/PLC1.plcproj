@@ -605,6 +605,9 @@
     <Compile Include="DUTs\Utilities\WriteLRealIf.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Utilities\WriteLRealOnlyIf.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Valves\BaseValve.TcPOU">
       <SubType>Code</SubType>
     </Compile>

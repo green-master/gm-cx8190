@@ -119,7 +119,7 @@ IF ENO THEN
 							ControlMode := FanControlTypes.Pressure, 
 							ControlParameters := ControllerParameters, 
 							Pressure := Parameters.IO.AIn.T_BP1,
-							PostVentilationTime := T#0S,
+							PostVentilationTime := LTIME#0S,
 							Damper := SupplyDamperOpen,
 							FanAlarm := TRUE);
 		SupplyFanAO := SupplyFanControl.CV;	
@@ -137,7 +137,7 @@ IF ENO THEN
 							ControlMode := FanControlTypes.Pressure, 
 							ControlParameters := ControllerParameters, 
 							Pressure := Parameters.IO.AIn.F_BP1,
-							PostVentilationTime := T#0S,
+							PostVentilationTime := LTIME#0S,
 							Damper := ExtractDamperOpen,
 							FanAlarm := TRUE);
 		ExtractFanAO := ExtractFanControl.CV;	

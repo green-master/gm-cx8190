@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="PostVentilation" Id="{8d656c1b-4d9d-4f1a-a51c-c8e5edc13b2d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK PostVentilation
 VAR_INPUT
 	EN: BOOL := TRUE;
 	SP: LREAL;
-	PostVentilationTime: TIME;
+	PostVentilationTime: LTIME;
 	PostVentilationLevel: LREAL;
 END_VAR
 VAR_OUTPUT
@@ -17,7 +17,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[PostVentilationTOF(IN := SP > 0, PT := PostVentilationTime);
+      <ST><![CDATA[PostVentilationTOF(IN := SP > 0, PT := LTIME_TO_TIME(PostVentilationTime));
 IF EN THEN
 	IF PostVentilationTOF.Q THEN
 		IF SP > 0 THEN

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="GreenMasterAO_Base" Id="{2680f0d3-3417-4597-9d49-8dca04627f3d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterAO_Base
 VAR_IN_OUT
@@ -25,6 +25,7 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -36,6 +37,7 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -47,6 +49,7 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -58,6 +61,7 @@ END_VAR
 VAR_INPUT
 	Override: BOOL;
 	OverrideValue: LREAL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>

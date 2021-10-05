@@ -100,8 +100,8 @@ IF EN THEN
 		Parameters.Regulation.Temperature.Control.P := ADS_Standard.Tags.Settings.TemperatureControl_P;
 		Parameters.Regulation.Temperature.Control.I := ADS_Standard.Tags.Settings.TemperatureControl_I;
 		Parameters.Regulation.Temperature.Control.D := ADS_Standard.Tags.Settings.TemperatureControl_D;
-		Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_Standard.Tags.Settings.StartupHeatRecoveryTime;
-		Parameters.Regulation.Control.PostFireVentilationTime := ADS_Standard.Tags.Settings.PostFireVentilationTime;
+		//Parameters.System.Operation.StartupHeatRecoveryTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.StartupHeatRecoveryTime);
+		//Parameters.System.Operation.PostFireVentilationTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.PostFireVentilationTime);
 		Parameters.Regulation.SupplyAir.ControlMode := ADS_Standard.Tags.Settings.SupplyFanControlMode;
 		Parameters.Regulation.SupplyAir.Control.SP := ADS_Standard.Tags.Settings.SupplyFan_SP;
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP;
@@ -115,11 +115,11 @@ IF EN THEN
 		Parameters.Regulation.ExtractAir.Control.I := ADS_Standard.Tags.Settings.ExtractFanControl_I;
 		Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.ExtractFanOffsetCurve;
 		
-		Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
-		Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideH_QN1(Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_Standard.Tags.Settings.TX1_M, OverrideValue := ADS_Standard.Tags.Settings.TX1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideC_QN1(Override := ADS_Standard.Tags.Settings.C_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.C_QN1_OPM / 100.0);
+		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
+		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
+		Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
+		Main.GreenMasterAO.SetOverrideF_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.TX1_M, OverrideValue := ADS_Standard.Tags.Settings.TX1_OPM / 100.0);
+		Main.GreenMasterAO.SetOverrideC_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.C_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.C_QN1_OPM / 100.0);
 		
 	END_IF
 	

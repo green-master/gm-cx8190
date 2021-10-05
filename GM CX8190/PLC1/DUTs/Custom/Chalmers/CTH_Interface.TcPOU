@@ -148,8 +148,8 @@ IF EN THEN
 			Parameters.Regulation.Temperature.Control.P := ADS_CTH.Tags2.Settings.LA02_TemperatureControl_P;
 			Parameters.Regulation.Temperature.Control.I := ADS_CTH.Tags2.Settings.LA02_TemperatureControl_I;
 			Parameters.Regulation.Temperature.Control.D := ADS_CTH.Tags2.Settings.LA02_TemperatureControl_D;
-			Parameters.Regulation.Control.StartupHeatRecoveryTime := ADS_CTH.Tags2.Settings.LA02_StartupHeatRecoveryTime;
-			Parameters.Regulation.Control.PostFireVentilationTime := ADS_CTH.Tags2.Settings.LA02_PostFireVentilationTime;
+			Parameters.System.Operation.StartupHeatRecoveryTime := TIME_TO_LTIME(ADS_CTH.Tags2.Settings.LA02_StartupHeatRecoveryTime);
+			Parameters.System.Operation.PostFireVentilationTime := TIME_TO_LTIME(ADS_CTH.Tags2.Settings.LA02_PostFireVentilationTime);
 			Parameters.Regulation.SupplyAir.ControlMode := ADS_CTH.Tags2.Settings.LA02_SupplyFanControlMode;
 			Parameters.Regulation.SupplyAir.Control.SP := ADS_CTH.Tags2.Settings.LA02_SupplyFan_SP;
 			Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_CTH.Tags2.Settings.LA02_SupplyFanHighSpeed_SP;
@@ -225,10 +225,10 @@ IF EN THEN
 			ADS_CTH.Tags2.Status.LA02_Eff_V := 0;	
 		END_IF
 		
-		Main.GreenMasterAO.SetOverrideT_GQ1(Override := ADS_CTH.Tags2.Settings.LA02_TF1_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_TF1_MCMD / 100.0); 
-		Main.GreenMasterAO.SetOverrideF_GQ1(Override := ADS_CTH.Tags2.Settings.LA02_FF1_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_FF1_MCMD / 100.0);
-		Main.GreenMasterAO.SetOverrideH_QN1(Override := ADS_CTH.Tags2.Settings.LA02_SV21_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_SV21_MCMD / 100.0);
-		Main.GreenMasterAO.SetOverrideF_QN1(Override := ADS_CTH.Tags2.Settings.LA02_SV31_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_SV31_MCMD / 100.0);
+		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_CTH.Tags2.Settings.LA02_TF1_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_TF1_MCMD / 100.0); 
+		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_CTH.Tags2.Settings.LA02_FF1_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_FF1_MCMD / 100.0);
+		Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_CTH.Tags2.Settings.LA02_SV21_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_SV21_MCMD / 100.0);
+		Main.GreenMasterAO.SetOverrideF_QN1(Parameters := Parameters, Override := ADS_CTH.Tags2.Settings.LA02_SV31_M, OverrideValue := ADS_CTH.Tags2.Settings.LA02_SV31_MCMD / 100.0);
 		PreEN := TRUE;
 	ELSE
 		IF PreEN THEN
@@ -249,7 +249,9 @@ END_IF
       <LineId Id="1641" Count="0" />
       <LineId Id="1381" Count="2" />
       <LineId Id="1645" Count="6" />
-      <LineId Id="1391" Count="16" />
+      <LineId Id="1391" Count="4" />
+      <LineId Id="1743" Count="2" />
+      <LineId Id="1399" Count="8" />
       <LineId Id="1589" Count="0" />
       <LineId Id="1597" Count="0" />
       <LineId Id="1409" Count="73" />
