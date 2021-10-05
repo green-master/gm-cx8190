@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ColdRecyclingParameters" Id="{f6de2867-5c0c-4afd-a856-dd48289dbad4}">
+    <Declaration><![CDATA[TYPE ColdRecyclingParameters :
+STRUCT
+	EN: BOOL := TRUE;
+	Offset: LREAL := -2; // Cold recylcing offset (normally negative)
+	Hysteresis: lreal := 0.5;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -11,6 +11,9 @@ VAR_INPUT
 	ExtractAir: AirParametersFB := (StartupFanSpeed := 0.4);
 	Temperature: TemperatureControlParametersFB;
 	NightCoolingLimit: LREAL;
+	TemperatureCompensationSource: TemperatureCompensationSources;
+	CurrentTemperatureCompensationSource: TemperatureCompensationSources;
+	CompensationTemperature: LREAL;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -20,13 +23,30 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SupplyAir(Parameters := Parameters);
 ExtractAir(Parameters := Parameters);
-Temperature(EN:=Parameters.System.Operation.EN);
+Temperature(Parameters := Parameters, EN:=Parameters.System.Operation.EN);
 
 IF __ISVALIDREF(Parameters.GetGreenMaster()) THEN
 	Temperature.Control.PV := Parameters.GetGreenMaster().GetCurrentPV();
 	SupplyAir.Control.PV := Parameters.GetGreenMaster().GetCurrentSupplyAirPV();
 	ExtractAir.Control.PV := Parameters.GetGreenMaster().GetCurrentExtractAirPV();
 END_IF
+
+CASE TemperatureCompensationSource OF
+	TemperatureCompensationSources.Auto:
+		CompensationTemperature := Parameters.IO.AIn.BT1;
+		IF Parameters.IO.AIn.BT1_Error THEN
+			CompensationTemperature := Parameters.IO.AIn.T_BT2;
+			CurrentTemperatureCompensationSource := TemperatureCompensationSources.T_BT2;
+		ELSE
+			CurrentTemperatureCompensationSource := TemperatureCompensationSources.BT1;			
+		END_IF;
+	TemperatureCompensationSources.BT1:
+		CurrentTemperatureCompensationSource := TemperatureCompensationSources.BT1;
+		CompensationTemperature := Parameters.IO.AIn.BT1;
+	TemperatureCompensationSources.T_BT2:
+		CurrentTemperatureCompensationSource := TemperatureCompensationSources.T_BT2;
+		CompensationTemperature := Parameters.IO.AIn.T_BT2;
+END_CASE
 ]]></ST>
     </Implementation>
     <LineIds Name="RegulationParametersFB">
@@ -38,6 +58,20 @@ END_IF
       <LineId Id="37" Count="0" />
       <LineId Id="72" Count="1" />
       <LineId Id="39" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="124" Count="2" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="97" Count="1" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="94" Count="0" />
       <LineId Id="56" Count="0" />
     </LineIds>
   </POU>

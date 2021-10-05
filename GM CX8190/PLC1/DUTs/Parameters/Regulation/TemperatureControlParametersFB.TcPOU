@@ -2,6 +2,9 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="TemperatureControlParametersFB" Id="{354b90fc-0e79-491e-b97a-00aae56e722e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TemperatureControlParametersFB
+VAR_IN_OUT
+	Parameters: GreenMasterBaseParameters;
+END_VAR
 VAR_INPUT
 	EN: BOOL; // $(W1,S,R0)
 	TemperatureControlSource: TemperatureControlSources; // $(W1,S,R0)
@@ -9,6 +12,7 @@ VAR_INPUT
 	SetPointAdjustment: SetPointAdjustment;
 	Control: ControllerParameters := ( SP := 20, P := 0.2, I := T#2M );
 	FreezeProtectionControl: ControllerParameters;
+	ColdRecycling: ColdRecyclingParameters;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -16,7 +20,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[SetPointAdjustment(X := Parameters.Regulation.CompensationTemperature);
+Control.CSP := Control.SP + SetPointAdjustment.Y;]]></ST>
     </Implementation>
     <Method Name="MaxOutput" Id="{4400b954-ec81-45b5-a67c-5966ca43201c}">
       <Declaration><![CDATA[METHOD MaxOutput : LREAL
@@ -47,6 +52,7 @@ END_IF
       </Implementation>
     </Method>
     <LineIds Name="TemperatureControlParametersFB">
+      <LineId Id="27" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="TemperatureControlParametersFB.MaxOutput">

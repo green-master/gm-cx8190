@@ -2147,7 +2147,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.IO.DIn.T_QM3_Open"</v>
+                      <v n="Text">"true"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147485507L</v>
                     </o>
@@ -2354,7 +2354,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.IO.DIn.F_QM1_Open"</v>
+                      <v n="Text">"true"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147485541L</v>
                     </o>
@@ -4488,7 +4488,7 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147485544L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">32</v>
+                      <v n="X">22</v>
                       <v n="Y">49</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -4500,7 +4500,7 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">32</v>
+                        <v n="X">22</v>
                         <v n="Y">49</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -4781,7 +4781,7 @@ END_VAR
                         <v n="X">23</v>
                         <v n="Y">31</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
+                        <v n="Flags">100</v>
                       </o>
                       <o>
                         <v n="X">26</v>
@@ -5522,7 +5522,7 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147485538L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">29</v>
+                      <v n="X">19</v>
                       <v n="Y">42</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -5534,22 +5534,22 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">29</v>
+                        <v n="X">19</v>
                         <v n="Y">42</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
+                        <v n="Flags">100</v>
                       </o>
                       <o>
-                        <v n="X">36</v>
+                        <v n="X">30</v>
                         <v n="Y">42</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">3</v>
+                        <v n="Flags">35</v>
                       </o>
                       <o>
-                        <v n="X">36</v>
+                        <v n="X">30</v>
                         <v n="Y">36</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">12</v>
+                        <v n="Flags">44</v>
                       </o>
                       <o>
                         <v n="X">42</v>
@@ -5978,10 +5978,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[SUPER^.Fire();
-SupplyFanControl.Override := TRUE;
-SupplyFanControl.OverrideCV := 0.3;
-ExtractFanControl.Override := TRUE;
-ExtractFanControl.OverrideCV := 0.8;
+SupplyFanControl.Override := Parameters.Regulation.SupplyAir.Fire.EN;
+SupplyFanControl.OverrideCV := Parameters.Regulation.SupplyAir.Fire.Speed;
+ExtractFanControl.Override := Parameters.Regulation.ExtractAir.Fire.EN;
+ExtractFanControl.OverrideCV := Parameters.Regulation.ExtractAir.Fire.Speed;
 ]]></ST>
       </Implementation>
     </Method>

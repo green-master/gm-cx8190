@@ -16,6 +16,7 @@ VAR_INPUT
 	MaxSpeed: LREAL := 1.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
 	StartupFanSpeed: LREAL;
 	SetPointAdjustment: SetPointAdjustment;
+	Fire: FireParameters;
 END_VAR
 VAR_OUTPUT
 	TestOutput: LREAL := 3.14;
@@ -48,11 +49,15 @@ ELSE
 		FanControlTypes.SlaveFlow:
 			Defaults.SlaveFlow := Control;
 	END_CASE	
-END_IF]]></ST>
+END_IF
+SetPointAdjustment(X := Parameters.Regulation.CompensationTemperature);
+Control.CSP := Control.SP + SetPointAdjustment.Y;]]></ST>
     </Implementation>
     <LineIds Name="AirParametersFB">
       <LineId Id="138" Count="22" />
       <LineId Id="23" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="183" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

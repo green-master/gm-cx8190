@@ -21,10 +21,6 @@ VAR_INPUT
 	C_GP1_Alarm: BOOL;
 	TX1_Running: BOOL; // Ingång för rotationsvakt värmeväxlare (TX1)
 	ResetAlarm: BOOL; // Larmåterställning
-	T_QM3_Closed: BOOL;
-	T_QM3_Open: BOOL;
-	F_QM1_Closed: BOOL;
-	F_QM1_Open: BOOL;
 	P2_Running: BOOL;
 	ExpansionVesselAlarm: BOOL;
 	FirePanelSupplyStart: BOOL;
@@ -55,10 +51,6 @@ END_VAR
 	HAND := DI.Hand;
 	T_GQ1_Alarm := DI.T_GQ1_Alarm;
 	F_GQ1_Alarm := DI.F_GQ1_Alarm;
-	T_QM3_Closed := DI.T_QM3_Closed;
-	T_QM3_Open := DI.T_QM3_Open;
-	F_QM1_Closed := DI.F_QM1_Closed;
-	F_QM1_Open := DI.F_QM1_Open;
 	F_QM2_Closed := DI.F_QM2_Closed;
 	F_QM2_Open := DI.F_QM2_Open;
 	ExtendedOperation := DI.ExtendedOperation;
@@ -86,9 +78,7 @@ END_IF
     </LineIds>
     <LineIds Name="DigitalInputParametersFB.Update">
       <LineId Id="52" Count="0" />
-      <LineId Id="7" Count="5" />
-      <LineId Id="48" Count="3" />
-      <LineId Id="13" Count="6" />
+      <LineId Id="7" Count="12" />
       <LineId Id="29" Count="0" />
       <LineId Id="21" Count="0" />
       <LineId Id="30" Count="0" />

@@ -368,10 +368,16 @@
     <Compile Include="DUTs\Parameters\Regulation\AirParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\ColdRecyclingParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\Regulation\ControllerParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Regulation\DefaultParameters.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\FireParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Regulation\HeaterOutputDirections.TcDUT">
@@ -387,6 +393,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Regulation\SetPointOffsetCurve.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\TemperatureCompensationSources.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Regulation\TemperatureControlParametersFB.TcPOU">

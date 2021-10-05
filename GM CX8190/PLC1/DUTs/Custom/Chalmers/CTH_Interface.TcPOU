@@ -57,14 +57,14 @@ IF EN THEN
 	FirePanelCTH(	Parameters := Parameters,
 					StartSupplyFan := Parameters.IO.DIn.FirePanelSupplyStart,
 					StopSupplyFan := Parameters.IO.DIn.FirePanelSupplyStop,
-					SupplyDamperOpen := Parameters.IO.DIn.T_QM3_Open,
+					SupplyDamperOpen := TRUE,
 					StartExtractFan := Parameters.IO.DIn.FirePanelExtractStart,
 					StopExtractFan := Parameters.IO.DIn.FirePanelExtractStop,
-					ExtractDamperOpen := Parameters.IO.DIn.F_QM1_Open,
+					ExtractDamperOpen := TRUE,
 					SupplyFanAO := Parameters.IO.AOut.T_GQ1,
 					ExtractFanAO := Parameters.IO.AOut.F_GQ1,
 					SupplyDamper := Parameters.IO.DOut.T_QM3,
-					ExtractDamper := Parameters.IO.DOut.F_QM1,
+					ExtractDamper := Parameters.IO.DOut.F_QM1
 	);
 	
 	ADS_CTH.Tags2.Status.LA02_HANDSTARTED_TF_AL := Parameters.Alarm.Status.A.FirePanelSupplyStart; 
