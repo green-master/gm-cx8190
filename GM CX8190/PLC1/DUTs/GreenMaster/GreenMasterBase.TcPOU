@@ -11499,6 +11499,8 @@ IF NextState <> State THEN
 			Parameters.IO.DOut.T_QM1_4 := FALSE;
 			Parameters.IO.DOut.T_QM1_5 := FALSE;
 			Parameters.IO.DOut.T_QM1_6 := FALSE;
+			Parameters.IO.AOut.F_GQ1 := 0;
+			Parameters.IO.AOut.T_GQ1 := 0;
 			ExtractFanOverride(FALSE, 0);
 			SupplyFanOverride(FALSE, 0);
 			
@@ -11951,6 +11953,7 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="538" Count="1" />
       <LineId Id="482" Count="0" />
       <LineId Id="505" Count="7" />
+      <LineId Id="564" Count="1" />
       <LineId Id="546" Count="1" />
       <LineId Id="24" Count="1" />
       <LineId Id="330" Count="0" />

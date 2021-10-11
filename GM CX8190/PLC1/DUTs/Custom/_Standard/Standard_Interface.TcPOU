@@ -124,8 +124,14 @@ IF EN THEN
 	END_IF
 	
 	// Status transfers
+	ADS_Standard.Tags.Status.ENO := Parameters.System.Operation.ENO;
+	ADS_Standard.Tags.Status.Auto := Parameters.IO.DIn.Auto;
+	ADS_Standard.Tags.Status.Hand := Parameters.IO.DIn.Hand;
 	ADS_Standard.Tags.Status.TC_V := TimeChannelActive;
 	ADS_Standard.Tags.Status.F_BR1_AL := (GM_XXL.DI.CentralFireAlarm OR GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir);
+	ADS_Standard.Tags.Status.T_BR1_AL := GM_XXL.DI.FireAlarm;
+	ADS_Standard.Tags.Status.F_BR1_FAULT := Parameters.Alarm.Active.B.SmokeDetectorService;
+	ADS_Standard.Tags.Status.T_BR1_FAULT := Parameters.Alarm.Active.B.SmokeDetectorService;
 	ADS_Standard.Tags.Status.Fuse_AL := GM_XXL.DI.FuseAlarm;
 	ADS_Standard.Tags.Status.T_GQ1_AL := GM_XXL.DI.T_GQ1_Alarm;
 	ADS_Standard.Tags.Status.F_GQ1_AL := GM_XXL.DI.F_GQ1_Alarm;
@@ -134,6 +140,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.H_GP1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
 	ADS_Standard.Tags.Status.C_GP1_V := Globals.IO.DIn.DI22;
 	ADS_Standard.Tags.Status.C_GP1_AL := Globals.IO.DIn.DI23;
+	ADS_Standard.Tags.Status.T_BP2_HAL := Parameters.Alarm.Active.B.SupplyFilter;
+	ADS_Standard.Tags.Status.F_BP2_HAL := Parameters.Alarm.Active.B.ExtractFilter;
 	
 	ADS_Standard.Tags.Status.H_GP1_CMD := Parameters.IO.DOut.H_GP1;
 	ADS_Standard.Tags.Status.C_GP1_CMD := Parameters.IO.DOut.C_GP1;	// WHHAATT??? Parameters.System.Operation.EN;
@@ -154,8 +162,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_QM1_CMD := Parameters.IO.DOut.T_QM3;
 
 	ADS_Standard.Tags.Status.Temperature_CSP := LREAL_TO_REAL(Parameters.Regulation.Temperature.Control.CSP);
-	ADS_Standard.Tags.Status.F_BP1_CSP := LREAL_TO_REAL(Parameters.Regulation.SupplyAir.Control.CSP);
-	ADS_Standard.Tags.Status.T_BP1_CSP := LREAL_TO_REAL(Parameters.Regulation.ExtractAir.Control.CSP);
+	ADS_Standard.Tags.Status.T_BP1_CSP := LREAL_TO_REAL(Parameters.Regulation.SupplyAir.Control.CSP);
+	ADS_Standard.Tags.Status.F_BP1_CSP := LREAL_TO_REAL(Parameters.Regulation.ExtractAir.Control.CSP);
 	ADS_Standard.Tags.Status.F_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
 	ADS_Standard.Tags.Status.T_BT2_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
 	ADS_Standard.Tags.Status.T_BT3_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT3);
@@ -260,9 +268,15 @@ GVL_MB.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV
       <LineId Id="1408" Count="0" />
       <LineId Id="1607" Count="0" />
       <LineId Id="1409" Count="0" />
+      <LineId Id="1843" Count="2" />
       <LineId Id="1565" Count="0" />
-      <LineId Id="1410" Count="1" />
-      <LineId Id="1413" Count="12" />
+      <LineId Id="1410" Count="0" />
+      <LineId Id="1801" Count="0" />
+      <LineId Id="1846" Count="1" />
+      <LineId Id="1411" Count="0" />
+      <LineId Id="1413" Count="6" />
+      <LineId Id="1841" Count="1" />
+      <LineId Id="1420" Count="5" />
       <LineId Id="1750" Count="2" />
       <LineId Id="1566" Count="0" />
       <LineId Id="1753" Count="0" />

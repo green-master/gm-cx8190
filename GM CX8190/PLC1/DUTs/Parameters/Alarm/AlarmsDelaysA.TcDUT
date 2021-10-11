@@ -4,8 +4,8 @@
     <Declaration><![CDATA[// MUST be in same order and number as AlarmSignals
 TYPE AlarmsDelaysA :
 STRUCT
-	Fire: TIME := T#1S;
-	FireSupply: TIME := T#1S;
+	Fire: TIME := T#5S;
+	FireSupply: TIME := T#5S;
 	Freeze: TIME := T#5S;
 	Fuse: TIME := T#1S;
 	Cold: TIME := T#5S;
