@@ -19,7 +19,7 @@ STRUCT
 	ExhaustFanStartupDelay: LTIME := LTIME#1M;
 	SupplyFanStartupDelay: LTIME := LTIME#2M;
 	PostVentilationTime: LTIME := LTIME#2M;
-	PostFireVentilationTime: LTIME := LTIME#1M;
+	PostFireVentilationTime: LTIME := LTIME#0M;
 	MaxFilterPressure: MaxFilterPressure;
 	OvkActivation: OvkActivation;
 	RelativeHumidity: RelativeHumidity;

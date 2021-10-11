@@ -37,6 +37,8 @@ VAR
 	WritePersistentData: WritePersistentData;
 	StartWritePersistentData: BOOL;
 	SavedParameters: GreenMasterBaseParameters;
+	DevMon: DeviationMonitor;
+	DevValue: LREAL;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -144,15 +146,43 @@ IF GetComponent(Name := ComponentNames.SIMULATION).EN THEN
 	END_IF
 END_IF
 
+AnySensorError := GreenMaster.Parameters.IO.AIn.F_BT1_Error OR 
+    GreenMaster.Parameters.IO.AIn.T_BT2_Error OR
+    GreenMaster.Parameters.IO.AIn.T_BT3_Error OR
+    GreenMaster.Parameters.IO.AIn.H_BT1_Error OR
+    GreenMaster.Parameters.IO.AIn.T_BT1_Error OR
+    GreenMaster.Parameters.IO.AIn.BT1_Error OR
+    GreenMaster.Parameters.IO.AIn.BT2_Error OR
+    GreenMaster.Parameters.IO.AIn.F_BT2_Error OR	
+    GreenMaster.Parameters.IO.AIn.F_BP1_Error OR
+    GreenMaster.Parameters.IO.AIn.T_BP1_Error OR
+    GreenMaster.Parameters.IO.AIn.F_BP2_Error OR
+    GreenMaster.Parameters.IO.AIn.T_BP2_Error OR
+    GreenMaster.Parameters.IO.AIn.F_BP3_Error OR
+    GreenMaster.Parameters.IO.AIn.T_BF1_Error OR
+    GreenMaster.Parameters.IO.AIn.F_BF1_Error;	
+
 
 // Save persistent data on power off or fail
 Saver();
 WritePersistentData(NETID := '', PORT := 851, TMOUT := T#10S, START := StartWritePersistentData);
+
+DevMon(Value := DevValue, TargetValue := 5);
 ]]></ST>
     </Implementation>
     <LineIds Name="Main">
-      <LineId Id="2117" Count="105" />
+      <LineId Id="2117" Count="79" />
+      <LineId Id="2272" Count="0" />
+      <LineId Id="2198" Count="14" />
+      <LineId Id="2282" Count="5" />
+      <LineId Id="2267" Count="0" />
+      <LineId Id="2296" Count="6" />
+      <LineId Id="2304" Count="6" />
+      <LineId Id="2294" Count="0" />
+      <LineId Id="2219" Count="3" />
+      <LineId Id="2290" Count="0" />
       <LineId Id="2040" Count="0" />
+      <LineId Id="2291" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

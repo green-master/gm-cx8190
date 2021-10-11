@@ -39,6 +39,22 @@ VAR_OUTPUT
     T_BF1_Error: BOOL;
     F_BF1_Error: BOOL;	
 
+	F_BT1_EN: BOOL := TRUE; 
+    T_BT2_EN: BOOL := TRUE;
+    T_BT3_EN: BOOL := TRUE;
+    H_BT1_EN: BOOL := TRUE;
+    T_BT1_EN: BOOL := TRUE; 
+    BT1_EN: BOOL := TRUE;
+    BT2_EN: BOOL := TRUE;
+    F_BT2_EN: BOOL := TRUE;
+	
+    F_BP1_EN: BOOL := TRUE;
+    T_BP1_EN: BOOL := TRUE;
+    F_BP2_EN: BOOL := TRUE;
+    T_BP2_EN: BOOL := TRUE;
+    F_BP3_EN: BOOL := TRUE;
+    T_BF1_EN: BOOL := TRUE;
+    F_BF1_EN: BOOL := TRUE;	
 END_VAR
 VAR
 END_VAR
@@ -57,35 +73,35 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF NOT Parameters.System.Operation.Simulation THEN
 	F_BT1 := AI.F_BT1;
-	F_BT1_Error := AI.F_BT1_Error;
+	F_BT1_Error := AI.F_BT1_Error AND F_BT1_EN;
 	T_BT2 := AI.T_BT2;
-	T_BT2_Error := AI.T_BT2_Error;
+	T_BT2_Error := AI.T_BT2_Error AND T_BT2_EN;
 	T_BT3 := AI.T_BT3;
-	T_BT3_Error := AI.T_BT3_Error;
+	T_BT3_Error := AI.T_BT3_Error AND T_BT3_EN;
 	H_BT1 := AI.H_BT1;
-	H_BT1_Error := AI.H_BT1_Error;
+	H_BT1_Error := AI.H_BT1_Error AND H_BT1_EN;
 	T_BT1 := AI.T_BT1; 
-	T_BT1_Error := AI.T_BT1_Error;
+	T_BT1_Error := AI.T_BT1_Error AND T_BT1_EN;
 	BT1 := AI.BT1;
-	BT1_Error := AI.BT1_Error;
+	BT1_Error := AI.BT1_Error AND BT1_EN;
 	BT2 := AI.BT2;
-	BT2_Error := AI.BT2_Error;
+	BT2_Error := AI.BT2_Error AND BT2_EN;
 	F_BT2 := AI.F_BT2;
-	F_BT2_Error := AI.F_BT2_Error;
+	F_BT2_Error := AI.F_BT2_Error AND F_BT2_EN;
 	F_BP1 := AI2.F_BP1;
-	F_BP1_Error := AI2.F_BP1_Error;
+	F_BP1_Error := AI2.F_BP1_Error AND F_BP1_EN;
 	T_BP1 := AI2.T_BP1;
-	T_BP1_Error := AI2.T_BP1_Error;
+	T_BP1_Error := AI2.T_BP1_Error AND T_BP1_EN;
 	F_BP2 := AI2.F_BP2;
-	F_BP2_Error := AI2.F_BP2_Error;
+	F_BP2_Error := AI2.F_BP2_Error AND F_BP2_EN;
 	T_BP2 := AI2.T_BP2;
-	T_BP2_Error := AI2.T_BP2_Error;
+	T_BP2_Error := AI2.T_BP2_Error AND T_BP2_EN;
 	F_BP3 := AI2.F_BP3;
-	F_BP3_Error := AI2.F_BP3_Error;
+	F_BP3_Error := AI2.F_BP3_Error AND F_BP3_EN;
 	T_BF1 := AI2.T_BF1;
-	T_BF1_Error := AI2.T_BF1_Error;
+	T_BF1_Error := AI2.T_BF1_Error AND T_BF1_EN;
 	F_BF1 := AI2.F_BF1;	
-	F_BF1_Error := AI2.F_BF1_Error;
+	F_BF1_Error := AI2.F_BF1_Error AND F_BF1_EN;
 ELSE
 	F_BT1_Error := FALSE;
 	T_BT2_Error := FALSE;

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="DeviationMonitorMode" Id="{1157d9f2-440c-4a1a-ba87-7b04fd3851bf}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE DeviationMonitorMode :
+(
+	Diff := 0, Above, Below
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

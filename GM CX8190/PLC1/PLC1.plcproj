@@ -542,6 +542,12 @@
     <Compile Include="DUTs\Utilities\Average.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Utilities\DeviationMonitor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Utilities\DeviationMonitorMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Utilities\LREAL_BMUX.TcPOU">
       <SubType>Code</SubType>
     </Compile>

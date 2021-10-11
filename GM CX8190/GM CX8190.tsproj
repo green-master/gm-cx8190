@@ -964,7 +964,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 							</Vars>
 						</Term>
 						<Term Id="36" TermType="#x2000c88" Fieldbus="6">
-							<Name>AO 2.1 (KL3208-0010-4)</Name>
+							<Name>AI 2.1 (KL3208-0010-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
 								<Name>Channel 1</Name>
@@ -1076,7 +1076,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 							</Vars>
 						</Term>
 						<Term Id="37" TermType="#x2000c88" Fieldbus="6">
-							<Name>AO 2.2 (KL3208-0010-4)</Name>
+							<Name>AI 2.2 (KL3208-0010-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
 								<Name>Channel 1</Name>
@@ -1188,7 +1188,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 							</Vars>
 						</Term>
 						<Term Id="16" TermType="#x2000c88" Fieldbus="6">
-							<Name>AO 3.1 (KL3208-0010-4)</Name>
+							<Name>AI 3.1 (KL3208-0010-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
 								<Name>Channel 1</Name>
@@ -1300,7 +1300,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 							</Vars>
 						</Term>
 						<Term Id="17" TermType="#x2000c88" Fieldbus="6">
-							<Name>AO 3.2 (KL3208-0010-4)</Name>
+							<Name>AI 3.2 (KL3208-0010-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
 								<Name>Channel 1</Name>
@@ -1412,7 +1412,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 							</Vars>
 						</Term>
 						<Term Id="34" TermType="#xd8c" Fieldbus="6">
-							<Name>AO 4.1 (KL3468-4)</Name>
+							<Name>AI 4.1 (KL3468-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
 								<Name>Channel 1</Name>
@@ -1524,7 +1524,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 							</Vars>
 						</Term>
 						<Term Id="35" TermType="#xd8c" Fieldbus="6">
-							<Name>AO 4.2 (KL3468-4)</Name>
+							<Name>AI 4.2 (KL3468-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
 								<Name>Channel 1</Name>
@@ -4598,54 +4598,54 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 		<MappingInfo Identifier="{00000000-2002-0850-0120-500820000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^PLC1^PLC1 Instance">
 			<OwnerB Name="TIID^Device CTH (CX-BK)^Box CTH (CX-BK)">
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AO 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AO 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AO 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02_Error" VarB="AO 2.1 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03" VarB="AO 2.1 (KL3208-0010-4)^Channel 3^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03_Error" VarB="AO 2.1 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04" VarB="AO 2.1 (KL3208-0010-4)^Channel 4^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04_Error" VarB="AO 2.1 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05" VarB="AO 2.2 (KL3208-0010-4)^Channel 1^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05_Error" VarB="AO 2.2 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06" VarB="AO 2.2 (KL3208-0010-4)^Channel 2^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06_Error" VarB="AO 2.2 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07" VarB="AO 2.2 (KL3208-0010-4)^Channel 3^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07_Error" VarB="AO 2.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08" VarB="AO 2.2 (KL3208-0010-4)^Channel 4^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08_Error" VarB="AO 2.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI09" VarB="AO 3.1 (KL3208-0010-4)^Channel 1^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI09_Error" VarB="AO 3.1 (KL3208-0010-4)^Channel 1^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI10" VarB="AO 3.1 (KL3208-0010-4)^Channel 2^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI10_Error" VarB="AO 3.1 (KL3208-0010-4)^Channel 2^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI11" VarB="AO 3.1 (KL3208-0010-4)^Channel 3^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI11_Error" VarB="AO 3.1 (KL3208-0010-4)^Channel 3^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI12" VarB="AO 3.1 (KL3208-0010-4)^Channel 4^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI12_Error" VarB="AO 3.1 (KL3208-0010-4)^Channel 4^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI13" VarB="AO 3.2 (KL3208-0010-4)^Channel 1^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI13_Error" VarB="AO 3.2 (KL3208-0010-4)^Channel 1^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI14" VarB="AO 3.2 (KL3208-0010-4)^Channel 2^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI14_Error" VarB="AO 3.2 (KL3208-0010-4)^Channel 2^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI15" VarB="AO 3.2 (KL3208-0010-4)^Channel 3^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI15_Error" VarB="AO 3.2 (KL3208-0010-4)^Channel 3^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI16" VarB="AO 3.2 (KL3208-0010-4)^Channel 4^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI16_Error" VarB="AO 3.2 (KL3208-0010-4)^Channel 4^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17" VarB="AO 4.1 (KL3468-4)^Channel 1^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17_Error" VarB="AO 4.1 (KL3468-4)^Channel 1^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18" VarB="AO 4.1 (KL3468-4)^Channel 2^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18_Error" VarB="AO 4.1 (KL3468-4)^Channel 2^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19" VarB="AO 4.1 (KL3468-4)^Channel 3^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19_Error" VarB="AO 4.1 (KL3468-4)^Channel 3^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20" VarB="AO 4.1 (KL3468-4)^Channel 4^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20_Error" VarB="AO 4.1 (KL3468-4)^Channel 4^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI21" VarB="AO 4.2 (KL3468-4)^Channel 1^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI21_Error" VarB="AO 4.2 (KL3468-4)^Channel 1^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI22" VarB="AO 4.2 (KL3468-4)^Channel 2^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI22_Error" VarB="AO 4.2 (KL3468-4)^Channel 2^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI23" VarB="AO 4.2 (KL3468-4)^Channel 3^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI23_Error" VarB="AO 4.2 (KL3468-4)^Channel 3^State" Size="1"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI24" VarB="AO 4.2 (KL3468-4)^Channel 4^Data In"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI24_Error" VarB="AO 4.2 (KL3468-4)^Channel 4^State" Size="1"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI09" VarB="AI 3.1 (KL3208-0010-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI09_Error" VarB="AI 3.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI10" VarB="AI 3.1 (KL3208-0010-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI10_Error" VarB="AI 3.1 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI11" VarB="AI 3.1 (KL3208-0010-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI11_Error" VarB="AI 3.1 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI12" VarB="AI 3.1 (KL3208-0010-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI12_Error" VarB="AI 3.1 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI13" VarB="AI 3.2 (KL3208-0010-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI13_Error" VarB="AI 3.2 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI14" VarB="AI 3.2 (KL3208-0010-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI14_Error" VarB="AI 3.2 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI15" VarB="AI 3.2 (KL3208-0010-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI15_Error" VarB="AI 3.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI16" VarB="AI 3.2 (KL3208-0010-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI16_Error" VarB="AI 3.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17" VarB="AI 4.1 (KL3468-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17_Error" VarB="AI 4.1 (KL3468-4)^Channel 1^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18" VarB="AI 4.1 (KL3468-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18_Error" VarB="AI 4.1 (KL3468-4)^Channel 2^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19" VarB="AI 4.1 (KL3468-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19_Error" VarB="AI 4.1 (KL3468-4)^Channel 3^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20" VarB="AI 4.1 (KL3468-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20_Error" VarB="AI 4.1 (KL3468-4)^Channel 4^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI21" VarB="AI 4.2 (KL3468-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI21_Error" VarB="AI 4.2 (KL3468-4)^Channel 1^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI22" VarB="AI 4.2 (KL3468-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI22_Error" VarB="AI 4.2 (KL3468-4)^Channel 2^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI23" VarB="AI 4.2 (KL3468-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI23_Error" VarB="AI 4.2 (KL3468-4)^Channel 3^State" Size="1" OffsB="6"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI24" VarB="AI 4.2 (KL3468-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI24_Error" VarB="AI 4.2 (KL3468-4)^Channel 4^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI01" VarB="DI 1 (KL1408)^Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI02" VarB="DI 1 (KL1408)^Channel 2^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI03" VarB="DI 1 (KL1408)^Channel 3^Input"/>
@@ -4747,13 +4747,21 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 			</OwnerB>
 			<OwnerB Name="TIID^Device GMA (CX-BK)^Box STD (CX-BK)">
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI01" VarB="DI 1 (KL1408)^Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI02" VarB="DI 1 (KL1408)^Channel 2^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI03" VarB="DI 1 (KL1408)^Channel 3^Input"/>

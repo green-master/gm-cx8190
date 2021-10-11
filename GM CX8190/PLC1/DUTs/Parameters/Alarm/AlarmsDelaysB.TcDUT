@@ -4,9 +4,9 @@
     <Declaration><![CDATA[// MUST be in same order and number as AlarmSignals
 TYPE AlarmsDelaysB :
 STRUCT
-	RegulationDeviation: TIME := T#5S;
-	SupplyAirDeviation: TIME := T#5S;
-	ExtractAirDeviation: TIME := T#5S;
+	RegulationDeviation: TIME := T#10M;
+	SupplyAirDeviation: TIME := T#10M;
+	ExtractAirDeviation: TIME := T#10M;
 	SupplyFan: TIME := T#5S;
 	ExtractFan: TIME := T#5S;
 	HeatExchangerEfficiency: TIME := T#5S;
