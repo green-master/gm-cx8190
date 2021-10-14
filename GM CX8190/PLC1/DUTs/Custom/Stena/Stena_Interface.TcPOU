@@ -117,12 +117,12 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 	END_IF
 	
 	// Status transfers
-	ADS_Stena.Tags.Status.LA02_CentralFire_AL := GM_XXL.DI.CentralFireAlarm;
+	ADS_Stena.Tags.Status.LA02_CentralFire_AL := GM_XXL.DI.FireExtractAlarm;
 	ADS_Stena.Tags.Status.LA02_Fuse_AL := GM_XXL.DI.FuseAlarm;
 	ADS_Stena.Tags.Status.LA02_ServiceSupplyAir_AL := GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir;
 	ADS_Stena.Tags.Status.LA02_TF1_AL := GM_XXL.DI.T_GQ1_Alarm;
 	ADS_Stena.Tags.Status.LA02_FF1_AL := GM_XXL.DI.F_GQ1_Alarm;
-	ADS_Stena.Tags.Status.LA02_Fire_AL := GM_XXL.DI.FireAlarm;
+	ADS_Stena.Tags.Status.LA02_Fire_AL := GM_XXL.DI.FireSupplyAlarm;
 	ADS_Stena.Tags.Status.LA02_P1_V1 := GM_XXL.DI.H_GP1_Running;
 	ADS_Stena.Tags.Status.LA02_P1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
 	ADS_Stena.Tags.Status.LA02_P2_V1 := Globals.IO.DIn.DI22;
@@ -131,7 +131,7 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 	ADS_Stena.Tags.Status.LA02_P1_CMD := Parameters.IO.DOut.H_GP1;
 	ADS_Stena.Tags.Status.LA02_P2_CMD := Parameters.System.Operation.EN;
 	ADS_Stena.Tags.Status.LA02_ST702_CMD := Parameters.IO.DOut.F_QM1;
-	ADS_Stena.Tags.Status.LA02_ST701_ST21_CMD := Parameters.IO.DOut.T_QM3;
+	ADS_Stena.Tags.Status.LA02_ST701_ST21_CMD := Parameters.IO.DOut.T_QM2;
 		
 	ADS_Stena.Tags.Status.LA02_GT42_V := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
 	ADS_Stena.Tags.Status.LA02_GT31_V := LREAL_TO_REAL(GM_XXL.AI.T_BT2);

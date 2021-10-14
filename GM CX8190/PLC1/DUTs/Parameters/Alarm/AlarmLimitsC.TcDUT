@@ -1,11 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
-  <DUT Name="AlarmLimits" Id="{e63e9d21-ed53-492f-b188-1ba71fd67022}">
-    <Declaration><![CDATA[TYPE AlarmLimits :
+  <DUT Name="AlarmLimitsC" Id="{3bc8872f-e1c5-4256-9155-a31ee75c44c7}">
+    <Declaration><![CDATA[TYPE AlarmLimitsC :
 STRUCT
-	A: AlarmLimitsA;
-	B: AlarmLimitsB;
-	C: AlarmLimitsC;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

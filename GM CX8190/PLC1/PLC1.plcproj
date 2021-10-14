@@ -80,6 +80,15 @@
     <Compile Include="DUTs\Parameters\Alarm\AlarmLimits.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\Alarm\AlarmLimitsA.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Alarm\AlarmLimitsB.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Alarm\AlarmLimitsC.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\Alarm\AlarmParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>

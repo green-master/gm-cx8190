@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="GreenMasterDO_Base" Id="{5ad275aa-23a9-47d4-b009-c6105067168f}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterDO_Base
 VAR_IN_OUT
@@ -10,7 +10,7 @@ VAR_INPUT
 	C_GP1: BOOL;
 	ExhaustRunning: BOOL;
 	F_QM1: BOOL;
-	T_QM3: BOOL;
+	T_QM2: BOOL;
 	R_QM1: BOOL;
 	F_QM2: BOOL;
 	SupplyRunning: BOOL;

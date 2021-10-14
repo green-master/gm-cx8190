@@ -5,7 +5,7 @@
 VAR_INPUT
     H_GP1: BOOL; // Cirkulationspump värmekrets
     C_GP1: BOOL; // Cirkulationspump kylkrets
-    T_QM3: BOOL; // Tilluftsspjäll
+    T_QM2: BOOL; // Tilluftsspjäll
     R_QM1: BOOL; // Återluftsspjäll
     T_QM1_1: BOOL; // Sektionsavfrostning
     T_QM1_2: BOOL; // Sektionsavfrostning
@@ -28,20 +28,20 @@ VAR_OUTPUT
 	H_GP1_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
 	F_QM1_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
 	F_QM2_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
-	T_QM3_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
+	T_QM2_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
 END_VAR
 VAR
 	H_GP1_LTON: Timer; // $(skip)
 	F_QM1_LTON: Timer; // $(skip)
 	F_QM2_LTON: Timer; // $(skip)
-	T_QM3_LTON: Timer; // $(skip)
+	T_QM2_LTON: Timer; // $(skip)
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[H_GP1_LTON(EN := H_GP1, ET => H_GP1_OnTime);
 F_QM1_LTON(EN := F_QM1, ET => F_QM1_OnTime);
 F_QM2_LTON(EN := F_QM2, ET => F_QM2_OnTime);
-T_QM3_LTON(EN := T_QM3, ET => T_QM3_OnTime);
+T_QM2_LTON(EN := T_QM2, ET => T_QM2_OnTime);
 ]]></ST>
     </Implementation>
     <Method Name="Update" Id="{c3e83810-423d-49ef-bca7-1df8d58ed7c0}">
@@ -58,7 +58,7 @@ DO_.H_GP1 := H_GP1;
 DO_.C_GP1 := C_GP1;
 IF EnableWriteDampers THEN
 	DO_.F_QM1 := F_QM1;
-	DO_.T_QM3 := T_QM3;
+	DO_.T_QM2 := T_QM2;
 END_IF
 DO_.R_QM1 := R_QM1;
 DO_.F_QM2 := F_QM2;
@@ -80,10 +80,7 @@ DO_.AlarmRelayD := AL_D;
       </Implementation>
     </Method>
     <LineIds Name="DigitalOutputParametersFB">
-      <LineId Id="9" Count="0" />
-      <LineId Id="69" Count="0" />
-      <LineId Id="108" Count="0" />
-      <LineId Id="70" Count="0" />
+      <LineId Id="179" Count="3" />
       <LineId Id="68" Count="0" />
     </LineIds>
     <LineIds Name="DigitalOutputParametersFB.Update">

@@ -63,7 +63,7 @@ IF EN THEN
 					ExtractDamperOpen := TRUE,
 					SupplyFanAO := Parameters.IO.AOut.T_GQ1,
 					ExtractFanAO := Parameters.IO.AOut.F_GQ1,
-					SupplyDamper := Parameters.IO.DOut.T_QM3,
+					SupplyDamper := Parameters.IO.DOut.T_QM2,
 					ExtractDamper := Parameters.IO.DOut.F_QM1
 	);
 	
@@ -163,12 +163,12 @@ IF EN THEN
 		END_IF
 		
 		// Status transfers
-		ADS_CTH.Tags2.Status.LA02_CentralFire_AL := GM_XXL.DI.CentralFireAlarm;
+		ADS_CTH.Tags2.Status.LA02_CentralFire_AL := GM_XXL.DI.FireExtractAlarm;
 		ADS_CTH.Tags2.Status.LA02_Fuse_AL := GM_XXL.DI.FuseAlarm;
 		ADS_CTH.Tags2.Status.LA02_ServiceSupplyAir_AL := GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir;
 		ADS_CTH.Tags2.Status.LA02_TF1_AL := GM_XXL.DI.T_GQ1_Alarm;
 		ADS_CTH.Tags2.Status.LA02_FF1_AL := GM_XXL.DI.F_GQ1_Alarm;
-		ADS_CTH.Tags2.Status.LA02_Fire_AL := GM_XXL.DI.FireAlarm;
+		ADS_CTH.Tags2.Status.LA02_Fire_AL := GM_XXL.DI.FireSupplyAlarm;
 		ADS_CTH.Tags2.Status.LA02_P1_V1 := GM_XXL.DI.H_GP1_Running;
 		ADS_CTH.Tags2.Status.LA02_P1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
 		ADS_CTH.Tags2.Status.LA02_P2_V1 := Globals.IO.DIn.DI22;
@@ -177,7 +177,7 @@ IF EN THEN
 		ADS_CTH.Tags2.Status.LA02_P1_CMD := Parameters.IO.DOut.H_GP1;
 		ADS_CTH.Tags2.Status.LA02_P2_CMD := Parameters.System.Operation.EN;
 		ADS_CTH.Tags2.Status.LA02_ST702_CMD := Parameters.IO.DOut.F_QM1;
-		ADS_CTH.Tags2.Status.LA02_ST701_ST21_CMD := Parameters.IO.DOut.T_QM3;
+		ADS_CTH.Tags2.Status.LA02_ST701_ST21_CMD := Parameters.IO.DOut.T_QM2;
 			
 		ADS_CTH.Tags2.Status.LA02_GT42_V := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
 		ADS_CTH.Tags2.Status.LA02_GT31_V := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
@@ -240,22 +240,7 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="CTH_Interface">
-      <LineId Id="1322" Count="5" />
-      <LineId Id="1696" Count="0" />
-      <LineId Id="1328" Count="18" />
-      <LineId Id="1519" Count="23" />
-      <LineId Id="1347" Count="33" />
-      <LineId Id="1585" Count="0" />
-      <LineId Id="1641" Count="0" />
-      <LineId Id="1381" Count="2" />
-      <LineId Id="1645" Count="6" />
-      <LineId Id="1391" Count="4" />
-      <LineId Id="1743" Count="2" />
-      <LineId Id="1399" Count="8" />
-      <LineId Id="1589" Count="0" />
-      <LineId Id="1597" Count="0" />
-      <LineId Id="1409" Count="73" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="2170" Count="189" />
       <LineId Id="1698" Count="0" />
     </LineIds>
   </POU>

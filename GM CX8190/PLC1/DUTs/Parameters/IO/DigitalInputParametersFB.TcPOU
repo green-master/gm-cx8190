@@ -4,7 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK DigitalInputParametersFB
 VAR_INPUT
 	Auto: BOOL; // AUTO (Sluten=Aggregat tillåts till drift via överstyrning)
-	CentralFireAlarm: BOOL; // Brandlarm (centralt/rökdetektor frånluft)
+	FireExtractAlarm: BOOL; // Brandlarm (centralt/rökdetektor frånluft)
 	FuseAlarm: BOOL; // Utlöst automatsäkring, larm
 	Hand: BOOL; // HAND (Sluten=Aggregat i konstant drift)
 	T_GQ1_Alarm: BOOL; // Larm T.GQ1 Tilluftsfläkt
@@ -13,7 +13,7 @@ VAR_INPUT
 	F_QM2_Open: BOOL; // F.QM2 brandspjäll ändläge 2 (spjäll öppet/brandläge)
 	ExtendedOperation: BOOL; // Förlängd drift
 	ServiceAlarmCentralAndSmokeExhaustAir: BOOL; // Servicelarm (centralt/rökdetektor frånluft)
-	FireAlarm: BOOL; // Brandlarm (tilluft)
+	FireSupplyAlarm: BOOL; // Brandlarm (tilluft)
 	ServiceAlarmSupplyAir: BOOL; // Servicelarm (tilluft)
 	H_GP1_Running: BOOL; // Ingång för pumpdrift, alt. pumplarm H.GP1 (värme)
 	H_GP1_Alarm: BOOL;
@@ -46,7 +46,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF NOT Parameters.System.Operation.Simulation THEN
 	AUTO := DI.AUTO;
-	CentralFireAlarm := DI.CentralFireAlarm;
+	FireExtractAlarm := DI.FireExtractAlarm;
 	FuseAlarm := DI.FuseAlarm;
 	HAND := DI.Hand;
 	T_GQ1_Alarm := DI.T_GQ1_Alarm;
@@ -55,7 +55,7 @@ END_VAR
 	F_QM2_Open := DI.F_QM2_Open;
 	ExtendedOperation := DI.ExtendedOperation;
 	ServiceAlarmCentralAndSmokeExhaustAir := DI.ServiceAlarmCentralAndSmokeExhaustAir;
-	FireAlarm := DI.FireAlarm;
+	FireSupplyAlarm := DI.FireSupplyAlarm;
 	ServiceAlarmSupplyAir := DI.ServiceAlarmSupplyAir;
 	H_GP1_Running := DI.H_GP1_Running;
 	H_GP1_Alarm := DI.H_GP1_Alarm;

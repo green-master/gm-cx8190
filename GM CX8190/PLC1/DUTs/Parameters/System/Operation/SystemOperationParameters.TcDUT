@@ -14,12 +14,13 @@ STRUCT
 	State: SystemStates; // Operation state
 	{attribute 'TcEncoding':='UTF-8'}
 	SystemName: STRING := 'GM'; // $(W1,S,R0) System name |||| Systemnamn
-	StartControl: StartControl;
+	//StartControl: StartControl;
 	StartupHeatRecoveryTime: LTIME := LTIME#3M;
 	ExhaustFanStartupDelay: LTIME := LTIME#1M;
 	SupplyFanStartupDelay: LTIME := LTIME#2M;
 	PostVentilationTime: LTIME := LTIME#2M;
 	PostFireVentilationTime: LTIME := LTIME#0M;
+	(*
 	MaxFilterPressure: MaxFilterPressure;
 	OvkActivation: OvkActivation;
 	RelativeHumidity: RelativeHumidity;
@@ -31,6 +32,7 @@ STRUCT
 	CoolingRecycling: CoolingRecycling;
 	AlternativeOperation: AlternativeOperation;
 	DIStartUnit: DIStartUnit;
+	*)
 END_STRUCT
 END_TYPE
 ]]></Declaration>

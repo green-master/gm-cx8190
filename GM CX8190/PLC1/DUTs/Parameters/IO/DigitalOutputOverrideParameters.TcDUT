@@ -9,8 +9,8 @@ STRUCT
     C_GP1_OverrideValue: BOOL; // Cirkulationspump kylkrets
     F_QM1_Override: BOOL; // Frånluftsspjäll
     F_QM1_OverrideValue: BOOL; // Frånluftsspjäll
-    T_QM3_Override: BOOL; // Tilluftsspjäll
-    T_QM3_OverrideValue: BOOL; // Tilluftsspjäll
+    T_QM2_Override: BOOL; // Tilluftsspjäll
+    T_QM2_OverrideValue: BOOL; // Tilluftsspjäll
     R_QM1_Override: BOOL; // Återluftsspjäll
     R_QM1_OverrideValue: BOOL; // Återluftsspjäll
     F_QM2_Override: BOOL; // Brandspjäll förbigång

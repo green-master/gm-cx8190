@@ -128,8 +128,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.Auto := Parameters.IO.DIn.Auto;
 	ADS_Standard.Tags.Status.Hand := Parameters.IO.DIn.Hand;
 	ADS_Standard.Tags.Status.TC_V := TimeChannelActive;
-	ADS_Standard.Tags.Status.F_BR1_AL := (GM_XXL.DI.CentralFireAlarm OR GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir);
-	ADS_Standard.Tags.Status.T_BR1_AL := GM_XXL.DI.FireAlarm;
+	ADS_Standard.Tags.Status.F_BR1_AL := (GM_XXL.DI.FireExtractAlarm OR GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir);
+	ADS_Standard.Tags.Status.T_BR1_AL := GM_XXL.DI.FireSupplyAlarm;
 	ADS_Standard.Tags.Status.F_BR1_FAULT := Parameters.Alarm.Active.B.SmokeDetectorService;
 	ADS_Standard.Tags.Status.T_BR1_FAULT := Parameters.Alarm.Active.B.SmokeDetectorService;
 	
@@ -156,7 +156,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.Fuse_AL := GM_XXL.DI.FuseAlarm;
 	ADS_Standard.Tags.Status.T_GQ1_AL := GM_XXL.DI.T_GQ1_Alarm;
 	ADS_Standard.Tags.Status.F_GQ1_AL := GM_XXL.DI.F_GQ1_Alarm;
-	ADS_Standard.Tags.Status.Fire_AL := GM_XXL.DI.FireAlarm;
+	ADS_Standard.Tags.Status.Fire_AL := GM_XXL.DI.FireSupplyAlarm;
 	ADS_Standard.Tags.Status.H_GP1_V := GM_XXL.DI.H_GP1_Running;
 	ADS_Standard.Tags.Status.H_GP1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
 	ADS_Standard.Tags.Status.C_GP1_V := Globals.IO.DIn.DI22;
@@ -167,7 +167,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.H_GP1_CMD := Parameters.IO.DOut.H_GP1;
 	ADS_Standard.Tags.Status.C_GP1_CMD := Parameters.IO.DOut.C_GP1;	// WHHAATT??? Parameters.System.Operation.EN;
 	ADS_Standard.Tags.Status.F_QM1_CMD := Parameters.IO.DOut.F_QM1;
-	ADS_Standard.Tags.Status.T_QM3_CMD := Parameters.IO.DOut.T_QM3;
+	ADS_Standard.Tags.Status.T_QM2_CMD := Parameters.IO.DOut.T_QM2;
+	(*!!!!! BORT !!!! *)ADS_Standard.Tags.Status.T_QM3_CMD := Parameters.IO.DOut.T_QM2;
 		
 	ADS_Standard.Tags.Status.F_QM2_CMD := Parameters.IO.DOut.F_QM2;
 	ADS_Standard.Tags.Status.F_QM2_V0 := Parameters.IO.DIn.F_QM2_Closed;
@@ -180,7 +181,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_QM1_5_CMD := Parameters.IO.DOut.T_QM1_5;
 	ADS_Standard.Tags.Status.T_QM1_6_CMD := Parameters.IO.DOut.T_QM1_6;
 
-	ADS_Standard.Tags.Status.T_QM1_CMD := Parameters.IO.DOut.T_QM3;
+	ADS_Standard.Tags.Status.T_QM1_CMD := Parameters.IO.DOut.T_QM2;
 
 	ADS_Standard.Tags.Status.Temperature_CSP := LREAL_TO_REAL(Parameters.Regulation.Temperature.Control.CSP);
 	ADS_Standard.Tags.Status.T_BP1_CSP := LREAL_TO_REAL(Parameters.Regulation.SupplyAir.Control.CSP);
@@ -306,7 +307,9 @@ GVL_MB.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV
       <LineId Id="1411" Count="0" />
       <LineId Id="1413" Count="6" />
       <LineId Id="1841" Count="1" />
-      <LineId Id="1420" Count="5" />
+      <LineId Id="1420" Count="3" />
+      <LineId Id="1962" Count="0" />
+      <LineId Id="1424" Count="1" />
       <LineId Id="1750" Count="2" />
       <LineId Id="1566" Count="0" />
       <LineId Id="1753" Count="0" />

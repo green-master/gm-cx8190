@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmLimitsA" Id="{4247b6ac-ae38-485c-8b72-e24b66dd451c}">
+    <Declaration><![CDATA[TYPE AlarmLimitsA :
+STRUCT
+	FireExtractTemperature: LREAL := 45; // $(W1,S,R0)
+	FireExtractPressureTemperature: LREAL := 38; // $(W1,S,R0)
+	FireExtractPressure: LREAL := 170; // $(W1,S,R0)
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

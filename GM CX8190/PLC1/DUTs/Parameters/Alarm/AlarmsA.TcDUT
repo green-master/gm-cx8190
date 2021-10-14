@@ -3,7 +3,9 @@
   <DUT Name="AlarmsA" Id="{86ff6793-8f0e-4136-82cc-f84389a9fd21}">
     <Declaration><![CDATA[TYPE AlarmsA :
 STRUCT
-	Fire: BOOL;
+	FireExtract: BOOL;
+	FireExtractTemperature: BOOL;
+	FireExtractPressure: BOOL;
 	FireSupply: BOOL;
 	Freeze: BOOL;
 	Fuse: BOOL;

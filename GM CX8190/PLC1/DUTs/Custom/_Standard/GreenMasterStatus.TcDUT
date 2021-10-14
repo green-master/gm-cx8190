@@ -68,8 +68,11 @@ F_GQ1_V :  BOOL; // Drift frånluftsfläkt
 TX1_OP :  REAL; // Utsignal VVX
 H_QN1_OP :  REAL; // Utsignal värmeventil
 C_QN1_OP :  REAL; // Utsignal kylventil
+T_QM2_CMD :  BOOL; // spjäll manöver
+T_QM2_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
+T_QM2_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
 T_QM3_CMD :  BOOL; // spjäll manöver
-T_QM3_V0 :  BOOL; // Brandförbigångsspjäll (FID) stäVngt
+T_QM3_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
 T_QM3_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
 
 F_BT1_PV :  REAL; // Frånluftstemperatur (aggregat)

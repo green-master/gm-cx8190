@@ -85,7 +85,8 @@ CASE State OF
 			ELSE
 				ModbusMaster.ReadInputRegs(Execute := FALSE);
 			END_IF
-			Param.ErrorOUT := TRUE;
+			Param.IncErrorCount();
+			Param.ErrorOUT := Param.GetErrorCount() > 5;
 			ErrorCount := ErrorCount + 1;
 			State := 30;
 		ELSIF NOT ModbusMaster.BUSY THEN
@@ -96,10 +97,16 @@ CASE State OF
 			END_IF
 			Param.ValueWord := aRegisterArray1[1];
 			Param.ErrorOUT := FALSE;
+			Param.ResetErrorCount();
 			ReadCount := ReadCount + 1;
 			State := 30;
 		END_IF
 	30:
+		IF Param.RegisterType = ModbusRegisterType.Holdingregister THEN
+			ModbusMaster.ReadRegs(Execute := FALSE);
+		ELSE
+			ModbusMaster.ReadInputRegs(Execute := FALSE);
+		END_IF
 		Counter := Counter + 1;
 		CurrentIoIndex := CurrentIoIndex + 1;
 		IF CurrentIoIndex >= IO_COUNT THEN
@@ -158,6 +165,7 @@ END_CASE]]></ST>
       <LineId Id="56" Count="0" />
       <LineId Id="124" Count="0" />
       <LineId Id="159" Count="4" />
+      <LineId Id="686" Count="0" />
       <LineId Id="599" Count="0" />
       <LineId Id="127" Count="0" />
       <LineId Id="525" Count="0" />
@@ -165,10 +173,12 @@ END_CASE]]></ST>
       <LineId Id="164" Count="4" />
       <LineId Id="92" Count="0" />
       <LineId Id="600" Count="0" />
+      <LineId Id="687" Count="0" />
       <LineId Id="76" Count="0" />
       <LineId Id="524" Count="0" />
       <LineId Id="61" Count="0" />
       <LineId Id="617" Count="0" />
+      <LineId Id="681" Count="4" />
       <LineId Id="641" Count="0" />
       <LineId Id="491" Count="0" />
       <LineId Id="495" Count="2" />

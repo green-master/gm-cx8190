@@ -113,7 +113,7 @@ IF GetComponent(Name := ComponentNames.REDUNDANCY).EN THEN
 END_IF
 
 IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
-	Globals.IO.DOut.DO15 := GreenMaster.Parameters.Alarm.Active.A.Fire;
+	Globals.IO.DOut.DO15 := GreenMaster.Parameters.Alarm.Active.A.FireExtract;
 	IF GreenMaster.Parameters.System.Operation.RemoteEN THEN
 		IF GreenMaster.Parameters.IO.AIn.T_BT1 > (GreenMaster.Parameters.Regulation.NightCoolingLimit + 0.5) THEN
 			NightCooling := CTH_Interface.NightCooling;	

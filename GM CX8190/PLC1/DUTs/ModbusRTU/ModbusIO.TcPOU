@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="ModbusIo" Id="{cfe7a271-9474-4996-867a-665c5c7d8c6b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ModbusIo
 VAR_INPUT
@@ -17,6 +17,7 @@ VAR_IN_OUT
 END_VAR
 VAR
 	Registered: BOOL;
+	ErrorCount: INT;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -50,6 +51,35 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="GetErrorCount" Id="{0a7c06db-ae5c-4760-8afb-b8c2f09c3ab5}">
+      <Declaration><![CDATA[METHOD GetErrorCount : INT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetErrorCount := ErrorCount;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IncErrorCount" Id="{ccae06b6-9936-462a-b613-d3b0d10f6e50}">
+      <Declaration><![CDATA[METHOD IncErrorCount : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ErrorCount < 10 THEN
+	ErrorCount := ErrorCount + 1;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ResetErrorCount" Id="{d0d61f1f-43b4-488b-9a90-006b7e4305c1}">
+      <Declaration><![CDATA[METHOD ResetErrorCount : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ErrorCount := 0;]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="ValueBoolOut" Id="{3afd66ea-b0f4-4521-80b0-9671f2927062}">
       <Declaration><![CDATA[PROPERTY ValueBoolOut : BOOL]]></Declaration>
       <Get Name="Get" Id="{76813b2b-1ef4-4b99-876d-7aa6a9992400}">
@@ -99,6 +129,15 @@ END_VAR
     </LineIds>
     <LineIds Name="ModbusIo.ErrorOut.Set">
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.GetErrorCount">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.IncErrorCount">
+      <LineId Id="5" Count="2" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ResetErrorCount">
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="ModbusIo.ValueBoolOut.Get">
       <LineId Id="2" Count="0" />

@@ -34,7 +34,7 @@ END_IF
 CASE TemperatureCompensationSource OF
 	TemperatureCompensationSources.Auto:
 		CompensationTemperature := Parameters.IO.AIn.BT1;
-		IF Parameters.IO.AIn.BT1_Error THEN
+		IF (NOT Parameters.IO.AIn.BT1_EN) OR Parameters.IO.AIn.BT1_Error THEN
 			CompensationTemperature := Parameters.IO.AIn.T_BT2;
 			CurrentTemperatureCompensationSource := TemperatureCompensationSources.T_BT2;
 		ELSE

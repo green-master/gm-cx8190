@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE SmokeControlParameters :
 STRUCT
 	MidiSmoke: MidiSmokeParameters;
-	SxDuo: SxDuoParameters;
+	DamperModules: SxDuoParameters;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
