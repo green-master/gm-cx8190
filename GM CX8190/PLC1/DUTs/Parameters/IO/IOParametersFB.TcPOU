@@ -77,12 +77,6 @@ ELSE
 	Parameters.IO.Status.SensorStatus.F_BF1 := BoolToErrorText(GreenMaster.AI2.F_BF1_Error);	
 END_IF
 
-Parameters.IO.Status.SmokeControlStatus.Gateway := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.GatewayError);
-Parameters.IO.Status.SmokeControlStatus.Device1 := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.Device1Error);
-Parameters.IO.Status.SmokeControlStatus.Device2 := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.Device2Error);
-Parameters.IO.Status.SmokeControlStatus.Device3 := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.Device3Error);
-Parameters.IO.Status.SmokeControlStatus.Device4 := BoolToErrorText(SmokeControl.GreenMasterSmokeControl.Device4Error);
-
 StartTime();
 IF (StartTime.ET > LTIME#20S) and (not Parameters.System.Operation.Simulation) THEN
 	// Check if any sensor error
@@ -114,17 +108,14 @@ IF (StartTime.ET > LTIME#20S) and (not Parameters.System.Operation.Simulation) T
 		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BF1_Error;	
 	END_IF
 	
-	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.GatewayError;
-	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.Device1Error;
-	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.Device2Error;
-	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.Device3Error;
-	AnySensorError := AnySensorError OR SmokeControl.GreenMasterSmokeControl.Device4Error;
-		
+	
 END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="IOParametersFB">
-      <LineId Id="22" Count="95" />
+      <LineId Id="22" Count="51" />
+      <LineId Id="80" Count="30" />
+      <LineId Id="116" Count="1" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

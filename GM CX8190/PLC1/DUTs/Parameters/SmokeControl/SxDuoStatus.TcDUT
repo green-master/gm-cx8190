@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SxDuoStatus" Id="{9cf7b2ed-dcff-433a-b719-a7545b8db6f6}">
+    <Declaration><![CDATA[TYPE SxDuoStatus :
+STRUCT
+	FireAlarm: BOOL;
+	Damper1Alarm: BOOL;
+	Exercising: BOOL;
+	Damper2Alarm: BOOL;
+	Damper1Open: BOOL;
+	Damper1Closed: BOOL;
+	Damper2Open: BOOL;
+	Damper2Closed: BOOL;
+	ServiceAlarm: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SmokeControlExerciseParameters" Id="{e404acbd-2aa5-4c64-b4cc-59e95421f5aa}">
+    <Declaration><![CDATA[TYPE SmokeControlExerciseParameters :
+STRUCT
+	Interval: INT := 48; (* $(unit hour) Central exercise interval for all damper modules (set to zero for no exercising) *)
+	StopVentilation: BOOL := TRUE; (* Stop ventilation during central exercise *)
+	Hour: INT := 10; (* $(unit hour) Central exercise at this hour *)
+	Minute: INT := 30; (* $(unit minute) Central exercise at this minute *)
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

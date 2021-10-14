@@ -5,23 +5,48 @@
 VAR
 	StartupDone: BOOL;
 	GreenMasterSmokeControl: GreenMasterSmokeControl; 
-	Parameters: reference to GreenMasterBaseParameters;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	ParametersSC: REFERENCE TO SmokeControlParametersBase;
+	ExerciseTimer: Timer;
+	EN: BOOL;
+	LocalTime: FB_LocalSystemTime;
+	Elapsed: LINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT StartupDone THEN
 	Parameters REF= Main.GreenMaster.GetParameters();
+	ParametersSC REF= Main.GreenMaster.GetParametersSC();
 	StartupDone := TRUE;
 END_IF
-
-GreenMasterSmokeControl(EN := TRUE, Parameters := Parameters, ParametersSC := Main.GreenMaster.GetParametersSC());
-]]></ST>
+EN := GetComponent(Name := ComponentNames.GM_SMOKE_CONTROL).EN;
+LocalTime(bEnable := TRUE);
+ExerciseTimer(EN := EN);
+Elapsed := ExerciseTimer.ElapsedTime();
+IF EN AND LocalTime.bValid THEN
+	GreenMasterSmokeControl(EN := TRUE, Parameters := Parameters, ParametersSC := ParametersSC);
+	GreenMasterSmokeControl.Update(Parameters, Main.GreenMaster.GetParametersSC());
+	IF (ParametersSC.NetLink.Exercise.Interval > 0) and (ExerciseTimer.ElapsedTime() > (ParametersSC.NetLink.Exercise.Interval * 3600 * 1000)) AND (WORD_TO_INT(LocalTime.systemTime.wHour) > ParametersSC.NetLink.Exercise.Hour) AND (WORD_TO_INT(LocalTime.systemTime.wMinute) > ParametersSC.NetLink.Exercise.Minute) THEN
+		ExerciseTimer.Restart();
+	END_IF
+END_IF
+ ]]></ST>
     </Implementation>
     <LineIds Name="SmokeControl">
       <LineId Id="11" Count="1" />
-      <LineId Id="15" Count="2" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="25" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="29" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

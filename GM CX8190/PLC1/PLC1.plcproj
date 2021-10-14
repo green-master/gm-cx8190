@@ -422,19 +422,25 @@
     <Compile Include="DUTs\Parameters\Simulation\SimulationParameters.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\SmokeControl\MidiSmokeParameters.TcDUT">
+    <Compile Include="DUTs\Parameters\SmokeControl\NetLinkParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\SmokeControl\SmokeControlParameters.TcDUT">
+    <Compile Include="DUTs\Parameters\SmokeControl\SmokeControlExerciseParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\SmokeControlParametersBase.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\SmokeControl\SxDuoCommand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\SxDuoParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\SmokeControl\SxDuoUnit.TcDUT">
+    <Compile Include="DUTs\Parameters\SmokeControl\SxDuoStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\SmokeControl\SxDuoUnitFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\System\Defrost\DefrostParameters.TcDUT">
@@ -519,6 +525,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Smoke Control\DamperControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Smoke Control\DamperModule.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Smoke Control\SxDuo.TcPOU">
