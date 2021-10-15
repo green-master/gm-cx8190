@@ -3,11 +3,13 @@
   <POU Name="ModbusIo" Id="{cfe7a271-9474-4996-867a-665c5c7d8c6b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ModbusIo
 VAR_INPUT
-	EN: BOOL;
+	EN: BOOL := TRUE;
 	Modbus: REFERENCE TO Modbus;
 	UnitID: BYTE;
 	RegisterType: ModbusRegisterType;
 	Register: WORD;
+	Write: BOOL := FALSE;
+	ParameterCount: WORD := 1;
 END_VAR
 VAR_OUTPUT
 	ENO: BOOL;
@@ -118,6 +120,25 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Property Name="ValueWordArray" Id="{88650c18-e412-46e3-adbb-31c1fc071dab}">
+      <Declaration><![CDATA[PROPERTY ValueWordArray : ARRAY [1..125] OF WORD]]></Declaration>
+      <Get Name="Get" Id="{2aabd904-e77f-4bc8-8ce1-9dc3f2f5d51f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{329db4af-c165-434a-a8f8-d54204450c95}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <LineIds Name="ModbusIo">
       <LineId Id="79" Count="0" />
       <LineId Id="82" Count="4" />
@@ -149,6 +170,12 @@ END_VAR
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="ModbusIo.ValueWord.Set">
+      <LineId Id="13" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ValueWordArray.Get">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.ValueWordArray.Set">
       <LineId Id="13" Count="0" />
     </LineIds>
   </POU>

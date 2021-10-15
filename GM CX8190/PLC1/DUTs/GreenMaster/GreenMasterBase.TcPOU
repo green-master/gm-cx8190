@@ -2357,6 +2357,31 @@ END_VAR
                     <v n="OwningPageId">2147490091L</v>
                     <v n="Id">2147502557L</v>
                   </o>
+                  <o t="CFCOutputElement">
+                    <o n="Input" t="CFCInputPinWithSetReset">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="ProcessValue">""</v>
+                      <v n="Access" t="ProcessValueAccess">None</v>
+                      <v n="Negated">false</v>
+                      <v n="SetReset" t="SetReset">None</v>
+                      <v n="SetResetRef" t="SetResetRef">None</v>
+                      <v n="PretendsToBeConnected">false</v>
+                      <v n="Id">2147503409L</v>
+                    </o>
+                    <o n="Text" t="CFCText">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Text">"Parameters.Alarm.Status.B.DamperError"</v>
+                      <v n="Modifiable">true</v>
+                      <v n="Id">2147503410L</v>
+                    </o>
+                    <v n="PageArea">4</v>
+                    <v n="Bounds">"48, 5, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="OwningPageId">2147490091L</v>
+                    <v n="Id">2147503408L</v>
+                  </o>
                   <o t="CFCInputElement">
                     <o n="Output" t="CFCOutputPin">
                       <v n="Bounds">"0, 0, 0, 0"</v>
@@ -2429,6 +2454,29 @@ END_VAR
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">2147490091L</v>
                     <v n="Id">2147503142L</v>
+                  </o>
+                  <o t="CFCInputElement">
+                    <o n="Output" t="CFCOutputPin">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Negated">false</v>
+                      <v n="SetReset" t="SetReset">None</v>
+                      <v n="SetResetRef" t="SetResetRef">None</v>
+                      <v n="PretendsToBeConnected">false</v>
+                      <v n="Id">2147503406L</v>
+                    </o>
+                    <o n="Text" t="CFCText">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Text">"SmokeControl.GreenMasterSmokeControl.DamperError"</v>
+                      <v n="Modifiable">true</v>
+                      <v n="Id">2147503407L</v>
+                    </o>
+                    <v n="PageArea">3</v>
+                    <v n="Bounds">"14, 5, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="OwningPageId">2147490091L</v>
+                    <v n="Id">2147503405L</v>
                   </o>
                   <o t="CFCInputElement">
                     <o n="Output" t="CFCOutputPin">
@@ -8859,6 +8907,13 @@ END_VAR
                     <v n="DestPinId">2147503157L</v>
                     <v n="Id">2147503342L</v>
                   </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147503406L</v>
+                    <v n="DestPinId">2147503409L</v>
+                    <v n="Id">2147503411L</v>
+                  </o>
                 </l2>
               </o>
               <n n="ParameterInitializationMethodGenerator" />
@@ -10893,28 +10948,28 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147501341L</v>
+                    <v n="ConnectionId">2147503411L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">28</v>
-                      <v n="Y">8</v>
+                      <v n="X">35</v>
+                      <v n="Y">5</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
                     <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147483860L</v>
+                    <v n="CorrespondingPageId">2147490091L</v>
                     <v n="Locked">false</v>
                   </o>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">28</v>
-                        <v n="Y">8</v>
+                        <v n="X">35</v>
+                        <v n="Y">5</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">46</v>
-                        <v n="Y">8</v>
+                        <v n="X">47</v>
+                        <v n="Y">5</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -12982,6 +13037,80 @@ END_VAR
                       </o>
                     </l2>
                   </o>
+                  <o>
+                    <v n="ConnectionId">2147502770L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">23</v>
+                      <v n="Y">11</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147490091L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">23</v>
+                        <v n="Y">11</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">28</v>
+                        <v n="Y">11</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">3</v>
+                      </o>
+                      <o>
+                        <v n="X">28</v>
+                        <v n="Y">9</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">12</v>
+                      </o>
+                      <o>
+                        <v n="X">34</v>
+                        <v n="Y">9</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">3</v>
+                      </o>
+                      <o>
+                        <v n="X">34</v>
+                        <v n="Y">8</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">12</v>
+                      </o>
+                      <o>
+                        <v n="X">46</v>
+                        <v n="Y">8</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147502611L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">77</v>
+                      <v n="Y">13</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <v n="CorrespondingPageId">2147490091L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">77</v>
+                        <v n="Y">13</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
                 </d2>
               </o>
             </o>
@@ -13370,7 +13499,6 @@ IF NextState <> State THEN
 			
 		SystemStates.Run:
 			SystemStateVentilation := TRUE;
-			;
 
 		SystemStates.FireHandling:
 			;
@@ -13402,7 +13530,9 @@ IF NextState <> State THEN
 		SystemStates.Ventilate:
 			;
 
-	end_case;
+		SystemStates.Exercise:
+			SystemStateVentilation := FALSE;
+	END_CASE;
 end_if;
 
 State := NextState;
@@ -13478,6 +13608,8 @@ CASE State OF
 	SystemStates.Ventilate:
 		;
 
+	SystemStates.Exercise:
+		;
 end_case;
 
 // Transitions
@@ -13531,6 +13663,9 @@ CASE State OF
 			
 		IF NOT Runnable() THEN
 			NextState := SystemStates.PostRun;
+		end_if;
+		IF SmokeControl.Exercising THEN
+			NextState := SystemStates.Exercise;
 		end_if;
 
 	SystemStates.PostRun:
@@ -13594,6 +13729,11 @@ CASE State OF
 			NextState := SystemStates.Idle;		
 		END_IF;
 	
+	SystemStates.Exercise:
+		FireAlarm();
+		IF NOT SmokeControl.Exercising  THEN
+			NextState := SystemStates.Idle;		
+		END_IF;
 END_CASE;
 
 IF NextState <> State THEN
@@ -13840,7 +13980,6 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="33" Count="0" />
       <LineId Id="35" Count="1" />
       <LineId Id="485" Count="0" />
-      <LineId Id="211" Count="0" />
       <LineId Id="38" Count="1" />
       <LineId Id="409" Count="0" />
       <LineId Id="40" Count="1" />
@@ -13853,7 +13992,10 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="463" Count="8" />
       <LineId Id="48" Count="1" />
       <LineId Id="212" Count="0" />
-      <LineId Id="50" Count="4" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="601" Count="0" />
+      <LineId Id="614" Count="0" />
+      <LineId Id="51" Count="3" />
       <LineId Id="484" Count="0" />
       <LineId Id="55" Count="4" />
       <LineId Id="213" Count="0" />
@@ -13892,12 +14034,16 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="533" Count="4" />
       <LineId Id="78" Count="1" />
       <LineId Id="219" Count="0" />
-      <LineId Id="80" Count="3" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="603" Count="1" />
+      <LineId Id="81" Count="2" />
       <LineId Id="291" Count="3" />
       <LineId Id="290" Count="0" />
       <LineId Id="84" Count="1" />
       <LineId Id="204" Count="2" />
-      <LineId Id="86" Count="41" />
+      <LineId Id="86" Count="40" />
+      <LineId Id="611" Count="2" />
+      <LineId Id="127" Count="0" />
       <LineId Id="307" Count="10" />
       <LineId Id="128" Count="0" />
       <LineId Id="438" Count="0" />
@@ -13925,6 +14071,8 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="443" Count="0" />
       <LineId Id="275" Count="2" />
       <LineId Id="274" Count="0" />
+      <LineId Id="605" Count="0" />
+      <LineId Id="607" Count="3" />
       <LineId Id="163" Count="7" />
       <LineId Id="220" Count="0" />
       <LineId Id="171" Count="1" />

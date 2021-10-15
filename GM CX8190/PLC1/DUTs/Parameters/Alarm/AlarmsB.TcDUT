@@ -15,6 +15,7 @@ STRUCT
 	SmokeDetectorService: BOOL;
 	Pump1: BOOL;
 	Pump2: BOOL;
+	DamperError: bool;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

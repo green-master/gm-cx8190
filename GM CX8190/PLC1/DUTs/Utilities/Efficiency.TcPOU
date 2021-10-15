@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Efficiency" Id="{4acfea53-2522-4621-94b3-f1ee94050b0a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION Efficiency : lreal
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+Verkningsgradsberäkning + verkningsgradslarm
+
+(T.BT3-T.BT2) / (F.BT1-T.BT2)
+
+Just nu (i fabriken finns aldrig optimala förhållanden då de omgivande temperaturerna är ganska lika):
+(20,7-20,5) / (21,0-20,5) = 0,4 = 40% verkningsgrad
+
+Exempel på en norm-installation:
+(21-10) / (22-10) = 0,9166 = 91,7% verkningsgrad
+
+
+PRESENTATION AV VERKNINGSGRAD
+-----------------------------
+OBS! Presentation av verkningsgrad får ALDRIG överstiga 100%, även om beräkningen säger att det kan bli så. Det kan hända vid okalibrerade givare eller vid ovanliga omgivande temperaturer. 
+
+Exempel på högre verkningsgrad än 100%:
+Om tilluften är 21 grader och utetemperaturen är 20 grader
+samtidigt som frånluften är 20,5 grader så kommer beräkningen visa 200% verkningsgrad
+
+(21-20) / (20,5-20) = 2
+
+Sådana här fall uppkommer väldigt sällan, men vi har stött på det under vissa förhållanden i tidigare system, så det är otroligt viktigt att OM verkningsgradsberäkningen visar över 100% så skall det presenterade värdet vara 100%, ALDRIG högre! Jag har aldrig stött på att man kan få ett negativt resultat, men samma försäkran borde ändå läggas in åt andra hållet, verkningsgraden kan ju aldrig bli lägre än 0%. (Skalan på verkningsgrad är alltså uteslutande 0-100%) 
+
+
+VERKNINGSGRADSLARM
+------------------------------------------
+Om värmeväxlaren ligger i full återvinning (0% öppet F.QN1 för fallet med GMXXL) och verkningsgraden understiger XX % under YY sekunder sätts verkningsgradslarm. Verkningsgradslarmet "maskas" om värmeåtervinningen ligger i kylläge, dvs. så fort F.QN1 är över 0%, då skall man aldrig erhålla verkningsgradslarm. (Tex vår och sommar)
+
+*)
+]]></ST>
+    </Implementation>
+    <LineIds Name="Efficiency">
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="26" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

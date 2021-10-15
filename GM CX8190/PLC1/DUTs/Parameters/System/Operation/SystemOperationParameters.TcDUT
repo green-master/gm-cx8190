@@ -15,9 +15,9 @@ STRUCT
 	{attribute 'TcEncoding':='UTF-8'}
 	SystemName: STRING := 'GM'; // $(W1,S,R0) System name |||| Systemnamn
 	//StartControl: StartControl;
-	StartupHeatRecoveryTime: LTIME := LTIME#3M;
-	ExhaustFanStartupDelay: LTIME := LTIME#1M;
-	SupplyFanStartupDelay: LTIME := LTIME#2M;
+	StartupHeatRecoveryTime: LTIME := LTIME#1M;
+	ExhaustFanStartupDelay: LTIME := LTIME#20S;
+	SupplyFanStartupDelay: LTIME := LTIME#40S;
 	PostVentilationTime: LTIME := LTIME#2M;
 	PostFireVentilationTime: LTIME := LTIME#0M;
 	(*

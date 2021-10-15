@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="ModbusWriteBits" Id="{5d56ac7c-173a-45e1-9ead-91a1d3788279}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ModbusWriteBits EXTENDS ModbusIo
 VAR_INPUT
-	Value: BOOL;
 	b0: BOOL;
 	b1: BOOL;
 	b2: BOOL;
@@ -24,15 +23,168 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	Pre_b0: BOOL;
+	Pre_b1: BOOL;
+	Pre_b2: BOOL;
+	Pre_b3: BOOL;
+	Pre_b4: BOOL;
+	Pre_b5: BOOL;
+	Pre_b6: BOOL;
+	Pre_b7: BOOL;
+	Pre_b8: BOOL;
+	Pre_b9: BOOL;
+	Pre_b10: BOOL;
+	Pre_b11: BOOL;
+	Pre_b12: BOOL;
+	Pre_b13: BOOL;
+	Pre_b14: BOOL;
+	Pre_b15: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[SUPER^();
-]]></ST>
+IF 
+	(b0 <> Pre_b0) OR
+	(b1 <> Pre_b1) OR
+	(b2 <> Pre_b2) OR
+	(b3 <> Pre_b3) OR
+	(b4 <> Pre_b4) OR
+	(b5 <> Pre_b5) OR
+	(b6 <> Pre_b6) OR
+	(b7 <> Pre_b7) OR
+	(b8 <> Pre_b8) OR
+	(b9 <> Pre_b9) OR
+	(b10 <> Pre_b10) OR
+	(b11 <> Pre_b11) OR
+	(b12 <> Pre_b12) OR
+	(b13 <> Pre_b13) OR
+	(b14 <> Pre_b14) OR
+	(b15 <> Pre_b15) THEN
+	Pre_b0 := b0;
+	Pre_b1 := b1;
+	Pre_b2 := b2;
+	Pre_b3 := b3;
+	Pre_b4 := b4;
+	Pre_b5 := b5;
+	Pre_b6 := b6;
+	Pre_b7 := b7;
+	Pre_b8 := b8;
+	Pre_b9 := b9;
+	Pre_b10 := b10;
+	Pre_b11 := b11;
+	Pre_b12 := b12;
+	Pre_b13 := b13;
+	Pre_b14 := b14;
+	Pre_b15 := b15;
+	Write := TRUE;
+END_IF]]></ST>
     </Implementation>
+    <Property Name="ValueWord" Id="{94a78213-b0ca-4993-b057-8e6209c2f63a}">
+      <Declaration><![CDATA[PROPERTY ValueWord : WORD]]></Declaration>
+      <Get Name="Get" Id="{06a9ee8a-e620-470c-9a58-075f4f6c9c7d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ValueWord := 0;
+IF b0 THEN
+	ValueWord := ValueWord OR 16#0001;
+END_IF
+IF b1 THEN
+	ValueWord := ValueWord OR 16#0002;
+END_IF
+IF b2 THEN
+	ValueWord := ValueWord OR 16#0004;
+END_IF
+IF b3 THEN
+	ValueWord := ValueWord OR 16#0008;
+END_IF
+IF b4 THEN
+	ValueWord := ValueWord OR 16#0010;
+END_IF
+IF b5 THEN
+	ValueWord := ValueWord OR 16#0020;
+END_IF
+IF b6 THEN
+	ValueWord := ValueWord OR 16#0040;
+END_IF
+IF b7 THEN
+	ValueWord := ValueWord OR 16#0080;
+END_IF
+IF b8 THEN
+	ValueWord := ValueWord OR 16#0100;
+END_IF
+IF b9 THEN
+	ValueWord := ValueWord OR 16#0200;
+END_IF
+IF b10 THEN
+	ValueWord := ValueWord OR 16#0400;
+END_IF
+IF b11 THEN
+	ValueWord := ValueWord OR 16#0800;
+END_IF
+IF b12 THEN
+	ValueWord := ValueWord OR 16#1000;
+END_IF
+IF b13 THEN
+	ValueWord := ValueWord OR 16#2000;
+END_IF
+IF b14 THEN
+	ValueWord := ValueWord OR 16#4000;
+END_IF
+IF b15 THEN
+	ValueWord := ValueWord OR 16#8000;
+END_IF
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{81d38ada-1ecc-4aaf-a844-b1223efafd32}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[b0 := (ValueWord AND 16#0001) <> 0;
+b1 := (ValueWord AND 16#0002) <> 0;
+b2 := (ValueWord AND 16#0004) <> 0;
+b3 := (ValueWord AND 16#0008) <> 0;
+b4 := (ValueWord AND 16#0010) <> 0;
+b5 := (ValueWord AND 16#0020) <> 0;
+b6 := (ValueWord AND 16#0040) <> 0;
+b7 := (ValueWord AND 16#0080) <> 0;
+b8 := (ValueWord AND 16#0100) <> 0;
+b9 := (ValueWord AND 16#0200) <> 0;
+b10 := (ValueWord AND 16#0400) <> 0;
+b11 := (ValueWord AND 16#0800) <> 0;
+b12 := (ValueWord AND 16#1000) <> 0;
+b13 := (ValueWord AND 16#2000) <> 0;
+b14 := (ValueWord AND 16#4000) <> 0;
+b15 := (ValueWord AND 16#8000) <> 0;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <LineIds Name="ModbusWriteBits">
       <LineId Id="18" Count="0" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="89" Count="13" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="104" Count="3" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="112" Count="9" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="70" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusWriteBits.ValueWord.Get">
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="47" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusWriteBits.ValueWord.Set">
+      <LineId Id="8" Count="0" />
+      <LineId Id="14" Count="14" />
+      <LineId Id="13" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

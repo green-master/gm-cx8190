@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ModbusReadWordArray" Id="{d68fbbc9-ad32-4387-b6cd-bb784ee837ef}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusReadWordArray EXTENDS ModbusIo
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	Value: ARRAY [1..125] OF WORD;
+	Text: string;
+END_VAR
+VAR
+END_VAR
+VAR PERSISTENT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();
+Text := GetText();]]></ST>
+    </Implementation>
+    <Method Name="GetText" Id="{ffea3707-997a-43f6-91b6-15d08933b010}">
+      <Declaration><![CDATA[METHOD GetText : string
+VAR_INPUT
+END_VAR
+VAR
+	Str: STRING;
+	arr: ARRAY [1..125] OF WORD;
+	p: POINTER TO ARRAY [0..MAX_STRING_LENGTH] OF BYTE;
+	n: int;
+	{attribute 'TcEncoding':='UTF-8'}
+	Utf8: STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[arr := Value;
+FOR n := 1 TO 125 DO
+	arr[n] := SHR(arr[n] AND 16#FF00, 8) + SHL(arr[n] AND 16#00FF, 8);
+END_FOR
+p := ADR(arr);
+Str := BYTEARR_TO_MAXSTRING(p^);
+STRING_TO_UTF8(ADR(Utf8), ADR(Str), SIZEOF(Utf8));
+GetText := Utf8;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ValueWordArray" Id="{839f9df0-1a28-460e-baa6-1a213d09aaf8}">
+      <Declaration><![CDATA[PROPERTY ValueWordArray : array [1..125] of WORD]]></Declaration>
+      <Get Name="Get" Id="{b74c2e47-683a-4ea7-8526-163b11e96bde}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ValueWordArray := Value;
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{ecd8b270-fe8a-4589-9a6f-9a1e0abc5946}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := ValueWordArray;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="ModbusReadWordArray">
+      <LineId Id="9" Count="0" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusReadWordArray.GetText">
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="2" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="21" Count="1" />
+    </LineIds>
+    <LineIds Name="ModbusReadWordArray.ValueWordArray.Get">
+      <LineId Id="7" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusReadWordArray.ValueWordArray.Set">
+      <LineId Id="2" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

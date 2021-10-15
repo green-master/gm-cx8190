@@ -3,7 +3,6 @@
   <DUT Name="SxDuoCommand" Id="{f3bc2133-a027-40ac-b4a0-5029b99faa89}">
     <Declaration><![CDATA[TYPE SxDuoCommand :
 STRUCT
-	FireAlarmOut: BOOL;
 	ActivateFireAlarm: BOOL;
 	ResetSmokeDetector: BOOL;
 	ForceExercise: BOOL;	

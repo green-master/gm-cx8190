@@ -11,6 +11,11 @@ VAR
 	EN: BOOL;
 	LocalTime: FB_LocalSystemTime;
 	Elapsed: LINT;
+	ForceExercise: BOOL;
+	Exercising: BOOL;
+	CurrentState: INT;
+	StateTimer: TImer;
+	DetectedDamperError: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -26,27 +31,53 @@ Elapsed := ExerciseTimer.ElapsedTime();
 IF EN AND LocalTime.bValid THEN
 	GreenMasterSmokeControl(EN := TRUE, Parameters := Parameters, ParametersSC := ParametersSC);
 	GreenMasterSmokeControl.Update(Parameters, Main.GreenMaster.GetParametersSC());
-	IF (ParametersSC.NetLink.Exercise.Interval > 0) and (ExerciseTimer.ElapsedTime() > (ParametersSC.NetLink.Exercise.Interval * 3600 * 1000)) AND (WORD_TO_INT(LocalTime.systemTime.wHour) > ParametersSC.NetLink.Exercise.Hour) AND (WORD_TO_INT(LocalTime.systemTime.wMinute) > ParametersSC.NetLink.Exercise.Minute) THEN
-		ExerciseTimer.Restart();
-	END_IF
 END_IF
- ]]></ST>
+
+IF GreenMasterSmokeControl.DamperError AND Parameters.Alarm.Active.B.DamperError THEN
+	DetectedDamperError := TRUE;
+END_IF
+IF DetectedDamperError AND NOT Parameters.Alarm.Active.B.DamperError THEN
+	DetectedDamperError := FALSE;
+	ForceExercise := TRUE;
+END_IF
+
+StateTimer();
+CASE CurrentState OF
+	0:
+		IF EN AND LocalTime.bValid THEN
+			IF ((ParametersSC.NetLink.Exercise.Interval > 0) AND (ExerciseTimer.ElapsedTime() > (ParametersSC.NetLink.Exercise.Interval * 3600 * 1000)) AND 
+				(
+					(WORD_TO_INT(LocalTime.systemTime.wHour) = ParametersSC.NetLink.Exercise.Hour) AND (WORD_TO_INT(LocalTime.systemTime.wMinute) = ParametersSC.NetLink.Exercise.Minute)
+				)) OR ForceExercise THEN
+				ForceExercise := FALSE;
+				Exercising := TRUE;
+				StateTimer.Restart();
+				CurrentState := 1;
+			END_IF			
+		END_IF
+	1:
+		IF StateTimer.ElapsedTime() > 10 * 1000 THEN
+			GreenMasterSmokeControl.Exercise := TRUE;
+			GreenMasterSmokeControl.Write();
+			ExerciseTimer.Restart();
+			CurrentState := 2;
+		END_IF
+	2:
+		IF StateTimer.ElapsedTime() > 30 * 1000 THEN
+			CurrentState := 3;
+		END_IF
+	3:
+		IF (NOT GreenMasterSmokeControl.Exercising) OR (StateTimer.ElapsedTime() > 180 * 1000) THEN
+			GreenMasterSmokeControl.Exercise := FALSE;
+			Exercising := FALSE;
+			CurrentState := 0;
+		END_IF
+END_CASE
+]]></ST>
     </Implementation>
     <LineIds Name="SmokeControl">
-      <LineId Id="11" Count="1" />
-      <LineId Id="45" Count="0" />
-      <LineId Id="15" Count="1" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="49" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="42" Count="1" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="29" Count="0" />
+      <LineId Id="156" Count="53" />
+      <LineId Id="108" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

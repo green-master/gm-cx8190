@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="ModbusReadBits" Id="{5e7aab4f-4075-4a76-b76a-9822912767b6}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ModbusReadBits EXTENDS ModbusIo
 VAR_INPUT
@@ -37,6 +37,55 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[ValueWord := 0;
+IF b0 THEN
+	ValueWord := ValueWord OR 16#0001;
+END_IF
+IF b1 THEN
+	ValueWord := ValueWord OR 16#0002;
+END_IF
+IF b2 THEN
+	ValueWord := ValueWord OR 16#0004;
+END_IF
+IF b3 THEN
+	ValueWord := ValueWord OR 16#0008;
+END_IF
+IF b4 THEN
+	ValueWord := ValueWord OR 16#0010;
+END_IF
+IF b5 THEN
+	ValueWord := ValueWord OR 16#0020;
+END_IF
+IF b6 THEN
+	ValueWord := ValueWord OR 16#0040;
+END_IF
+IF b7 THEN
+	ValueWord := ValueWord OR 16#0080;
+END_IF
+IF b8 THEN
+	ValueWord := ValueWord OR 16#0100;
+END_IF
+IF b9 THEN
+	ValueWord := ValueWord OR 16#0200;
+END_IF
+IF b10 THEN
+	ValueWord := ValueWord OR 16#0400;
+END_IF
+IF b11 THEN
+	ValueWord := ValueWord OR 16#0800;
+END_IF
+IF b12 THEN
+	ValueWord := ValueWord OR 16#1000;
+END_IF
+IF b13 THEN
+	ValueWord := ValueWord OR 16#2000;
+END_IF
+IF b14 THEN
+	ValueWord := ValueWord OR 16#4000;
+END_IF
+IF b15 THEN
+	ValueWord := ValueWord OR 16#8000;
+END_IF
+
 ]]></ST>
         </Implementation>
       </Get>
@@ -70,6 +119,7 @@ b15 := (ValueWord AND 16#8000) <> 0;
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="ModbusReadBits.ValueWord.Get">
+      <LineId Id="10" Count="48" />
       <LineId Id="7" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>

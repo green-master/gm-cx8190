@@ -71,6 +71,9 @@
     <Compile Include="DUTs\GreenMaster\SystemStatesRunModeExternal.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ModbusRTU\ModbusReadWordArray.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\Alarm\AlarmControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -530,9 +533,6 @@
     <Compile Include="DUTs\Smoke Control\DamperModule.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Smoke Control\SxDuo.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DUTs\StateMachine\State.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -564,6 +564,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Utilities\DeviationMonitorMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Utilities\Efficiency.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Utilities\LREAL_BMUX.TcPOU">

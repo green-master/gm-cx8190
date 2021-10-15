@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="ModbusTCP" Id="{c2b301d9-c3e8-4e6e-b0d2-2d7d47081554}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ModbusTCP EXTENDS Modbus
 VAR_INPUT
@@ -14,6 +14,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	ModbusMaster: FB_MBReadRegs;
+	ModbusMasterWrite: FB_MBWriteRegs;
 	{attribute 'TcEncoding':='UTF-8'}
 	stMbErrId: STRING;
 	aRegisterArray1: ARRAY [1..125] OF WORD;
@@ -45,7 +46,11 @@ CASE State OF
 	5:	(* Wait between reads *)
 		WaitModbusBusy(IN := TRUE, PT := tTimeBetweenReads, Q=> , ET=> );	
 		IF WaitModbusBusy.Q = TRUE THEN
-			State := 10;
+			IF NOT IO[CurrentIoIndex]^.Write THEN
+				State := 10;
+			ELSE
+				State := 110;			
+			END_IF
 			WaitModbusBusy(IN := FALSE);
 		END_IF		
 	
@@ -60,12 +65,12 @@ CASE State OF
 			sIPAddr:= IP, 
 			nTCPPort:= 502, 
 			nUnitID:= Param.UnitID, 
-			nQuantity:= 1, 
+			nQuantity:= Param.ParameterCount, 
 			nMBAddr:= Param.Register, 
-			cbLength:= 2, 
+			cbLength:= 2 * Param.ParameterCount, 
 			pDestAddr:= ADR(aRegisterArray1), 
 			bExecute:= TRUE, 
-			tTimeout:= T#500MS);
+			tTimeout:= T#1000MS);
 			IF  ModbusMaster.bBUSY THEN
 				State := State + 10;
 			END_IF
@@ -83,6 +88,7 @@ CASE State OF
 		ELSIF NOT ModbusMaster.bBUSY THEN
 			ModbusMaster(bExecute := FALSE);
 			Param.ValueWord := aRegisterArray1[1];
+			Param.ValueWordArray := aRegisterArray1;
 			Param.ErrorOUT := FALSE;
 			ReadCount := ReadCount + 1;
 			ModbusMaster(bExecute:= FALSE);
@@ -98,6 +104,48 @@ CASE State OF
 		ELSE				
 			State := 0;
 		END_IF
+	110:
+		Param REF= IO[CurrentIoIndex]^; 
+		IF NOT Param.EN OR Param.UnitID = 0 THEN
+			Param.ValueWord := 0;
+			Param.ErrorOUT := FALSE;
+			State := 30;
+		ELSE
+			aRegisterArray1[1] := Param.ValueWord;
+			ModbusMasterWrite(
+			sIPAddr:= IP, 
+			nTCPPort:= 502, 
+			nUnitID:= Param.UnitID, 
+			nQuantity:= Param.ParameterCount, 
+			nMBAddr:= Param.Register, 
+			cbLength:= 2 * Param.ParameterCount, 
+			pSrcAddr:= ADR(aRegisterArray1), 
+			bExecute:= TRUE, 
+			tTimeout:= T#1000MS);
+			IF  ModbusMasterWrite.bBUSY THEN
+				State := State + 10;
+			END_IF
+		END_IF
+	120:
+		ModbusMasterWrite();
+		IF ModbusMasterWrite.bError THEN
+			stMbErrId := concat('Error ', UDINT_TO_STRING(ModbusMaster.nErrId));
+			ModbusMasterWrite(bExecute := FALSE);
+			Param.ValueWord := 0;
+			Param.ErrorOUT := TRUE;
+			ErrorCount := ErrorCount + 1;
+			ModbusMasterWrite.bExecute:= FALSE;
+			State := 30;
+		ELSIF NOT ModbusMasterWrite.bBUSY THEN
+			ModbusMasterWrite(bExecute := FALSE);
+			Param.ValueWord := aRegisterArray1[1];
+			Param.ErrorOUT := FALSE;
+			ReadCount := ReadCount + 1;
+			ModbusMasterWrite(bExecute:= FALSE);
+			State := 30;
+		END_IF
+		Param.EN := FALSE;
+		Param.Write := FALSE;
 END_CASE]]></ST>
     </Implementation>
     <LineIds Name="ModbusTCP">
@@ -108,7 +156,13 @@ END_CASE]]></ST>
       <LineId Id="524" Count="0" />
       <LineId Id="245" Count="0" />
       <LineId Id="525" Count="5" />
-      <LineId Id="346" Count="6" />
+      <LineId Id="346" Count="2" />
+      <LineId Id="718" Count="0" />
+      <LineId Id="721" Count="0" />
+      <LineId Id="719" Count="0" />
+      <LineId Id="722" Count="0" />
+      <LineId Id="720" Count="0" />
+      <LineId Id="350" Count="2" />
       <LineId Id="252" Count="0" />
       <LineId Id="531" Count="1" />
       <LineId Id="660" Count="1" />
@@ -129,6 +183,7 @@ END_CASE]]></ST>
       <LineId Id="293" Count="0" />
       <LineId Id="295" Count="0" />
       <LineId Id="299" Count="0" />
+      <LineId Id="792" Count="0" />
       <LineId Id="548" Count="0" />
       <LineId Id="339" Count="0" />
       <LineId Id="634" Count="0" />
@@ -136,6 +191,10 @@ END_CASE]]></ST>
       <LineId Id="340" Count="0" />
       <LineId Id="552" Count="0" />
       <LineId Id="539" Count="8" />
+      <LineId Id="723" Count="6" />
+      <LineId Id="763" Count="0" />
+      <LineId Id="730" Count="32" />
+      <LineId Id="791" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
