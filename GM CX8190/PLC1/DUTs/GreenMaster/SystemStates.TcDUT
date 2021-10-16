@@ -3,6 +3,7 @@
   <DUT Name="SystemStates" Id="{1b787587-57f3-4b4a-96aa-8f86abf79337}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
+{attribute 'to_string'}
 TYPE SystemStates :
 (
 	None := 0, Start, Idle, OpenDampers, StartupHeatRecovery, Run, PostRun, FireHandling, FireHandlingExit, FireExhaust, FireSupply, Ventilate, FirePanel, Exercise

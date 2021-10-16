@@ -64,13 +64,18 @@ IF StartupDelay.Q THEN
 		TONs[n](IN := LatchedStatusP^[n], PT := DelayP^[n], Q => CurrentP^[n]);
 	END_FOR
 	
-	IF Parameters.Alarm.Control.ResetAlarms THEN
+	IF (Parameters.IO.DIn.ResetAlarm OR Parameters.Alarm.Control.ResetAlarms) AND (AlarmA OR AlarmB OR AlarmC) THEN
+		IF Parameters.IO.DIn.ResetAlarm THEN
+			Main.EventLog.LogEvent(Message := 'Reset alarm via DI', Kind := EventTypes.Information);
+		ELSE			
+			Main.EventLog.LogEvent(Message := 'Reset alarm via web', Kind := EventTypes.Information);
+		END_IF
+
+		FOR N := 0 TO AlarmCount - 1 DO
+			TONs[n](IN := FALSE);
+		END_FOR
 		Latched := NoAlarms;
 		Parameters.Alarm.Control.ResetAlarms := FALSE;
-	END_IF
-	
-	IF Parameters.IO.DIn.ResetAlarm THEN
-		Latched := NoAlarms;
 	END_IF
 	
 	// Transfer from Alarms to Latched according to autoreset and polarity definitions
@@ -141,6 +146,7 @@ END_VAR
 	END_IF
 	
 	AlarmLogRef.Tail := TempTail;
+	Main.EventLog.LogEventJSON(Message := 'Alarm status changed', Kind := EventTypes.Error, VarAdr := ADR(Item.Signals), VarSize := SIZEOF(Item.Signals), VarType := 'AlarmSignals');
 END_IF
 ]]></ST>
       </Implementation>
@@ -169,7 +175,18 @@ IncludeJSON := FALSE;
     <LineIds Name="AlarmMonitor">
       <LineId Id="2063" Count="4" />
       <LineId Id="2164" Count="0" />
-      <LineId Id="2068" Count="51" />
+      <LineId Id="2068" Count="10" />
+      <LineId Id="2084" Count="0" />
+      <LineId Id="2274" Count="0" />
+      <LineId Id="2277" Count="0" />
+      <LineId Id="2275" Count="0" />
+      <LineId Id="2278" Count="0" />
+      <LineId Id="2276" Count="0" />
+      <LineId Id="2273" Count="0" />
+      <LineId Id="2269" Count="2" />
+      <LineId Id="2085" Count="0" />
+      <LineId Id="2256" Count="0" />
+      <LineId Id="2086" Count="33" />
       <LineId Id="2211" Count="0" />
       <LineId Id="102" Count="0" />
     </LineIds>
@@ -179,6 +196,7 @@ IncludeJSON := FALSE;
       <LineId Id="79" Count="1" />
       <LineId Id="101" Count="2" />
       <LineId Id="81" Count="2" />
+      <LineId Id="111" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="93" Count="0" />
     </LineIds>

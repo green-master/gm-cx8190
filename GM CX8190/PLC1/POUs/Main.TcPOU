@@ -47,8 +47,8 @@ END_VAR
       <ST><![CDATA[EventLog(EventLogData := Globals.EventLog);
 IF NOT StartupDone THEN
 	Globals.SystemStartTime := NowDT();
-	EventLog.LogEventJSON(Message := 'Starting GreenMaster', Kind := EventTypes.Information, VarAdr := ADR(GreenMaster.Parameters.System.Operation), VarSize := SIZEOF(GreenMaster.Parameters.System.Operation), VarType := 'SystemOperationParameters');
-	EventLog.LogEventJSON(Message := 'Test data $${KFactor} and $${PressureControl.SP}', Kind := EventTypes.Debug, VarAdr := ADR(GreenMaster.Parameters.Regulation.ExtractAir), VarSize := SIZEOF(GreenMaster.Parameters.Regulation.ExtractAir), VarType := 'AirParameters');	
+	EventLog.LogEvent(Message := 'Starting up', Kind := EventTypes.Information);
+	//EventLog.LogEventJSON(Message := 'Test data $${KFactor} and $${PressureControl.SP}', Kind := EventTypes.Debug, VarAdr := ADR(GreenMaster.Parameters.Regulation.ExtractAir), VarSize := SIZEOF(GreenMaster.Parameters.Regulation.ExtractAir), VarType := 'AirParameters');	
 	StartupDone := TRUE;
 END_IF
 SavedParameters := GreenMaster.GetParameters();

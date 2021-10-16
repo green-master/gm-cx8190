@@ -16,6 +16,7 @@ VAR
 	CurrentState: INT;
 	StateTimer: TImer;
 	DetectedDamperError: BOOL;
+	DetectedDamperFireAlarm: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -39,6 +40,18 @@ END_IF
 IF DetectedDamperError AND NOT Parameters.Alarm.Active.B.DamperError THEN
 	DetectedDamperError := FALSE;
 	ForceExercise := TRUE;
+END_IF
+
+IF GreenMasterSmokeControl.FireAlarm AND Parameters.Alarm.Active.A.FireLocal THEN
+	DetectedDamperFireAlarm := TRUE;
+END_IF
+IF DetectedDamperFireAlarm AND NOT Parameters.Alarm.Active.A.FireLocal THEN
+	DetectedDamperFireAlarm := FALSE;
+	GreenMasterSmokeControl.ResetSmokeDetectors := TRUE;
+	ForceExercise := TRUE;
+END_IF
+IF NOT Parameters.Alarm.Status.A.FireLocal THEN
+	GreenMasterSmokeControl.ResetSmokeDetectors := FALSE;
 END_IF
 
 StateTimer();
@@ -76,7 +89,15 @@ END_CASE
 ]]></ST>
     </Implementation>
     <LineIds Name="SmokeControl">
-      <LineId Id="156" Count="53" />
+      <LineId Id="156" Count="21" />
+      <LineId Id="227" Count="4" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="232" Count="1" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="178" Count="31" />
       <LineId Id="108" Count="0" />
     </LineIds>
   </POU>

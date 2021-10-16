@@ -4,26 +4,20 @@
     <Declaration><![CDATA[// MUST be in same order and number as AlarmSignals
 TYPE AlarmsDelaysA :
 STRUCT
-	Fire: TIME := T#5S;
+	FireExtract: TIME := T#5S;
+	FireExtractTemperature: TIME := T#5S;
+	FireExtractPressure: TIME := T#5S;
+	FireExtractExternal: TIME := T#5S;
+	FireLocal: TIME := T#5S;
 	FireSupply: TIME := T#5S;
 	Freeze: TIME := T#5S;
-	Fuse: TIME := T#1S;
+	Fuse: TIME := T#5S;
 	Cold: TIME := T#5S;
 	Aux: TIME := T#5S;
-	SD1_10_1: TIME := T#5S;
-	SD1_10_2: TIME := T#5S;
-	SD1_10_3: TIME := T#5S;
-	SD1_10_4: TIME := T#5S;
-	SD1_10_E: TIME := T#5S;
-	SD1_11_1: TIME := T#5S;
-	SD1_11_2: TIME := T#5S;
-	SD1_11_3: TIME := T#5S;
-	SD1_11_4: TIME := T#5S;
-	SD1_11_E: TIME := T#5S;
-	FirePanelSupplyStart: TIME := T#1S;
-	FirePanelSupplyStop: TIME := T#1S;
-	FirePanelExtractStart: TIME := T#1S;
-	FirePanelExtractStop: TIME := T#1S;
+	FirePanelSupplyStart: TIME := T#5S;
+	FirePanelSupplyStop: TIME := T#5S;
+	FirePanelExtractStart: TIME := T#5S;
+	FirePanelExtractStop: TIME := T#5S;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

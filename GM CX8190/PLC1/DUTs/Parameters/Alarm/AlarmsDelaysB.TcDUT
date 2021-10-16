@@ -16,6 +16,7 @@ STRUCT
 	SmokeDetectorService: TIME := T#5S;
 	Pump1: TIME := T#5S;
 	Pump2: TIME := T#5S;
+	DamperError: TIME := T#30s;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

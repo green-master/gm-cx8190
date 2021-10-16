@@ -13455,7 +13455,7 @@ VAR_INST
 	NextState: SystemStates;	
 END_VAR
 VAR
-	TRFALSEUE: BOOL;
+	LogStr: string;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[State REF= Parameters.System.Operation.State;
@@ -13466,6 +13466,9 @@ IF NOT SystemStateSTInitDone THEN
 END_IF
 
 IF NextState <> State THEN
+	LogStr := 'Entering state ';
+	LogStr := Concat(LogStr, TO_STRING(NextState));
+	Main.EventLog.LogEvent(Message := LogStr, Kind := EventTypes.Information);
 	SystemStateStarted();
 	// Entry state logic
 	CASE NextState OF
@@ -13964,6 +13967,8 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="251" Count="0" />
       <LineId Id="247" Count="0" />
       <LineId Id="13" Count="0" />
+      <LineId Id="632" Count="1" />
+      <LineId Id="631" Count="0" />
       <LineId Id="198" Count="0" />
       <LineId Id="15" Count="3" />
       <LineId Id="210" Count="0" />
