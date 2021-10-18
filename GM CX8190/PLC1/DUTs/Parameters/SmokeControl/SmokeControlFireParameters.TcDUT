@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SmokeControlFireParameters" Id="{beb37f6f-2c07-4ee8-a55d-164b4697df20}">
+    <Declaration><![CDATA[TYPE SmokeControlFireParameters :
+STRUCT
+	EN: BOOL := TRUE;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

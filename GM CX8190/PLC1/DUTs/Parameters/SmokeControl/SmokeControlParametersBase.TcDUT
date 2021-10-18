@@ -3,7 +3,7 @@
   <DUT Name="SmokeControlParametersBase" Id="{31e8144e-1420-42f1-adcb-fd3ec93a9ef6}">
     <Declaration><![CDATA[TYPE SmokeControlParametersBase :
 STRUCT
-	NetLink: NetLinkParameters;
+	NetLink: NetLinkParametersFB;
 	DamperModules: SxDuoParameters;
 END_STRUCT
 END_TYPE

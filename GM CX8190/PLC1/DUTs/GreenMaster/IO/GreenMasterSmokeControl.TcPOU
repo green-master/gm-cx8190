@@ -366,6 +366,31 @@ END_VAR
                     <v n="DestPinId">2147483663L</v>
                     <v n="Id">2147483704L</v>
                   </o>
+                  <o t="CFCOutputElement">
+                    <o n="Input" t="CFCInputPinWithSetReset">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="ProcessValue">""</v>
+                      <v n="Access" t="ProcessValueAccess">None</v>
+                      <v n="Negated">false</v>
+                      <v n="SetReset" t="SetReset">None</v>
+                      <v n="SetResetRef" t="SetResetRef">None</v>
+                      <v n="PretendsToBeConnected">false</v>
+                      <v n="Id">2147484887L</v>
+                    </o>
+                    <o n="Text" t="CFCText">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Text">"Main.GreenMaster.GetParametersSC().NetLink.Error"</v>
+                      <v n="Modifiable">true</v>
+                      <v n="Id">2147484888L</v>
+                    </o>
+                    <v n="PageArea">4</v>
+                    <v n="Bounds">"55, 13, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="OwningPageId">2147483646L</v>
+                    <v n="Id">2147484886L</v>
+                  </o>
                   <o t="CFCPage">
                     <o n="Name" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
@@ -1653,6 +1678,13 @@ END_VAR
                     <v n="DestPinId">2147484837L</v>
                     <v n="Id">2147484854L</v>
                   </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147484443L</v>
+                    <v n="DestPinId">2147484887L</v>
+                    <v n="Id">2147484889L</v>
+                  </o>
                 </l2>
               </o>
               <n n="ParameterInitializationMethodGenerator" />
@@ -2263,10 +2295,10 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147483700L</v>
+                    <v n="ConnectionId">2147483704L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">29</v>
-                      <v n="Y">8</v>
+                      <v n="X">17</v>
+                      <v n="Y">7</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -2277,14 +2309,14 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">29</v>
-                        <v n="Y">8</v>
+                        <v n="X">17</v>
+                        <v n="Y">7</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">39</v>
-                        <v n="Y">8</v>
+                        <v n="Y">7</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -2319,10 +2351,10 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147483704L</v>
+                    <v n="ConnectionId">2147484889L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">17</v>
-                      <v n="Y">7</v>
+                      <v n="X">49</v>
+                      <v n="Y">10</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -2333,14 +2365,26 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">17</v>
-                        <v n="Y">7</v>
+                        <v n="X">49</v>
+                        <v n="Y">10</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">39</v>
-                        <v n="Y">7</v>
+                        <v n="X">51</v>
+                        <v n="Y">10</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">9</v>
+                      </o>
+                      <o>
+                        <v n="X">51</v>
+                        <v n="Y">13</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
+                        <v n="X">54</v>
+                        <v n="Y">13</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -2433,24 +2477,30 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147484235L</v>
+                    <v n="ConnectionId">2147483700L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">37</v>
-                      <v n="Y">6</v>
+                      <v n="X">29</v>
+                      <v n="Y">8</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147483710L</v>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147483646L</v>
                     <v n="Locked">false</v>
                   </o>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">37</v>
-                        <v n="Y">6</v>
+                        <v n="X">29</v>
+                        <v n="Y">8</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">39</v>
+                        <v n="Y">8</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
                       </o>
                     </l2>
                   </o>
@@ -2496,7 +2546,8 @@ VAR
 	TempAlarm: bool;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ParametersSC.DamperModules.Unit01.Update(Parameters, DamperModule_0);
+        <ST><![CDATA[ParametersSC.NetLink.Update(Parameters);
+ParametersSC.DamperModules.Unit01.Update(Parameters, DamperModule_0);
 ParametersSC.DamperModules.Unit02.Update(Parameters, DamperModule_1);
 ParametersSC.DamperModules.Unit03.Update(Parameters, DamperModule_3);
 ParametersSC.DamperModules.Unit04.Update(Parameters, DamperModule_4);
@@ -2513,7 +2564,7 @@ ParametersSC.DamperModules.Unit14.Update(Parameters, DamperModule_14);
 ParametersSC.DamperModules.Unit15.Update(Parameters, DamperModule_15);
 
 
-Parameters.Alarm.Status.A.FireExtractExternal := 
+Parameters.Alarm.Status.A.FireExtractExternal := ParametersSC.NetLink.Fire.EN AND (
 	(ParametersSC.DamperModules.Unit01.Fire AND ParametersSC.DamperModules.Unit01.CentralFireAlarm) OR
 	(ParametersSC.DamperModules.Unit02.Fire AND ParametersSC.DamperModules.Unit02.CentralFireAlarm) OR
 	(ParametersSC.DamperModules.Unit03.Fire AND ParametersSC.DamperModules.Unit03.CentralFireAlarm) OR
@@ -2528,9 +2579,9 @@ Parameters.Alarm.Status.A.FireExtractExternal :=
 	(ParametersSC.DamperModules.Unit12.Fire AND ParametersSC.DamperModules.Unit12.CentralFireAlarm) OR
 	(ParametersSC.DamperModules.Unit13.Fire AND ParametersSC.DamperModules.Unit13.CentralFireAlarm) OR
 	(ParametersSC.DamperModules.Unit14.Fire AND ParametersSC.DamperModules.Unit14.CentralFireAlarm) OR
-	(ParametersSC.DamperModules.Unit15.Fire AND ParametersSC.DamperModules.Unit15.CentralFireAlarm);
+	(ParametersSC.DamperModules.Unit15.Fire AND ParametersSC.DamperModules.Unit15.CentralFireAlarm));
 	
-Parameters.Alarm.Status.A.FireLocal := 
+Parameters.Alarm.Status.A.FireLocal := ParametersSC.NetLink.Fire.EN AND (
 	(ParametersSC.DamperModules.Unit01.Fire AND NOT ParametersSC.DamperModules.Unit01.CentralFireAlarm) OR
 	(ParametersSC.DamperModules.Unit02.Fire AND NOT ParametersSC.DamperModules.Unit02.CentralFireAlarm) OR
 	(ParametersSC.DamperModules.Unit03.Fire AND NOT ParametersSC.DamperModules.Unit03.CentralFireAlarm) OR
@@ -2545,7 +2596,7 @@ Parameters.Alarm.Status.A.FireLocal :=
 	(ParametersSC.DamperModules.Unit12.Fire AND NOT ParametersSC.DamperModules.Unit12.CentralFireAlarm) OR
 	(ParametersSC.DamperModules.Unit13.Fire AND NOT ParametersSC.DamperModules.Unit13.CentralFireAlarm) OR
 	(ParametersSC.DamperModules.Unit14.Fire AND NOT ParametersSC.DamperModules.Unit14.CentralFireAlarm) OR
-	(ParametersSC.DamperModules.Unit15.Fire AND NOT ParametersSC.DamperModules.Unit15.CentralFireAlarm);
+	(ParametersSC.DamperModules.Unit15.Fire AND NOT ParametersSC.DamperModules.Unit15.CentralFireAlarm));
 	]]></ST>
       </Implementation>
     </Method>
@@ -2561,6 +2612,7 @@ DamperModule_1.StartWrite();
       </Implementation>
     </Method>
     <LineIds Name="GreenMasterSmokeControl.Update">
+      <LineId Id="77" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="15" Count="13" />
       <LineId Id="14" Count="0" />

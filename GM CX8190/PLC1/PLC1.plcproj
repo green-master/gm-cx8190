@@ -425,10 +425,13 @@
     <Compile Include="DUTs\Parameters\Simulation\SimulationParameters.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\SmokeControl\NetLinkParameters.TcDUT">
+    <Compile Include="DUTs\Parameters\SmokeControl\NetLinkParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\SmokeControlExerciseParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\SmokeControl\SmokeControlFireParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\SmokeControlParametersBase.TcDUT">
