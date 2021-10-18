@@ -8,8 +8,8 @@ END_VAR
 VAR_INPUT
 	CirculationPumps: ExerciseCirculationPumpsParameters;
 	FireBypassDamper: ExerciseFireBypassDamperParameters;
-	ExternalFireControl: ExerciseExternalFireControlParameters;
-	Exercising: BOOL;
+	//ExternalFireControl: ExerciseExternalFireControlParameters;
+	//Exercising: BOOL;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -23,7 +23,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[CirculationPumps();
 FireBypassDamper();
-ExternalFireControl();
+//ExternalFireControl();
 
 (*
 LA02_P1_EXTC(Settings := ADS_CTH.Tags.Settings.LA02_P1X_TC);

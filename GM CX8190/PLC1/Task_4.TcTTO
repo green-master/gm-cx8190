@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
-  <Task Name="Task_4" Id="{d5b6047b-d7d9-48bf-8303-56a0d9e4e330}">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <Task Name="Task_4" Id="{2144aea7-e047-4629-893d-d377e0ea4b7e}">
     <!--CycleTime in micro seconds.-->
-    <CycleTime>500000</CycleTime>
-    <Priority>2</Priority>
+    <CycleTime>10000</CycleTime>
+    <Priority>1</Priority>
     <PouCall>
       <Name>SmokeControl</Name>
     </PouCall>
-    <TaskFBGuid>{5d07652a-6011-4f01-829a-ff300f7b3105}</TaskFBGuid>
-    <Fb_init>{c4a5b22e-43ff-4814-98df-d4457e1cf4a5}</Fb_init>
-    <Fb_exit>{88011d7c-1894-4899-a500-418ea3362402}</Fb_exit>
-    <CycleUpdate>{1932eb4c-e43b-49dc-be44-e5ce8f683b64}</CycleUpdate>
-    <PostCycleUpdate>{3f4a5651-6568-4307-88b2-64fd27c10bf7}</PostCycleUpdate>
+    <TaskFBGuid>{74761b0d-1f17-4990-a29a-a5586963238b}</TaskFBGuid>
+    <Fb_init>{b45fe437-1e36-42f4-83ed-131cae755af9}</Fb_init>
+    <Fb_exit>{da89daa7-88d6-4c76-b12b-b50695c57821}</Fb_exit>
+    <CycleUpdate>{e5191d4c-10c4-4017-b3bc-732d4e4b2944}</CycleUpdate>
+    <PostCycleUpdate>{ad242fb0-b625-40ec-9dd2-3f963e351a71}</PostCycleUpdate>
   </Task>
 </TcPlcObject>

@@ -4,7 +4,9 @@
     <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterBase
 VAR PERSISTENT
 	Parameters: GreenMasterBaseParameters;
+	{attribute 'OPC.UA.DA' := '1'}
 	ParametersSC: SmokeControlParametersBase;
+	{attribute 'OPC.UA.DA' := '0'}
 	Simulation: Simulation;
 END_VAR
 VAR_INPUT
@@ -22,6 +24,7 @@ VAR_OUTPUT
 	ENO: BOOL;
 	VentilationRunning: BOOL;
 	TemperatureControlRunning: BOOL;
+	ExerciseF_QM2: ExerciseF_QM2;
 END_VAR
 VAR
 	StateStartTime: LTIME;
@@ -7461,6 +7464,142 @@ END_VAR
                     <v n="DestPinId">2147502011L</v>
                     <v n="Id">2147502032L</v>
                   </o>
+                  <o t="CFCInputElement">
+                    <o n="Output" t="CFCOutputPin">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Negated">false</v>
+                      <v n="SetReset" t="SetReset">None</v>
+                      <v n="SetResetRef" t="SetResetRef">None</v>
+                      <v n="PretendsToBeConnected">false</v>
+                      <v n="Id">2147503495L</v>
+                    </o>
+                    <o n="Text" t="CFCText">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Text">"Parameters"</v>
+                      <v n="Modifiable">true</v>
+                      <v n="Id">2147503496L</v>
+                    </o>
+                    <v n="PageArea">3</v>
+                    <v n="Bounds">"20, 7, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="OwningPageId">2147484857L</v>
+                    <v n="Id">2147503494L</v>
+                  </o>
+                  <o t="CFCBoxElement">
+                    <o n="Inputs" t="CFCItemList">
+                      <l2 n="InnerList">
+                        <o t="CFCInOutPin">
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="ProcessValue">""</v>
+                          <v n="Access" t="ProcessValueAccess">None</v>
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147503486L</v>
+                        </o>
+                        <o t="CFCInputPin">
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="IsExtensiblePin">false</v>
+                          <v n="ProcessValue">""</v>
+                          <v n="Access" t="ProcessValueAccess">None</v>
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147503488L</v>
+                        </o>
+                        <o t="CFCInputPin">
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="IsExtensiblePin">false</v>
+                          <v n="ProcessValue">""</v>
+                          <v n="Access" t="ProcessValueAccess">None</v>
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147503490L</v>
+                        </o>
+                      </l2>
+                    </o>
+                    <o n="Outputs" t="CFCItemList">
+                      <l2 n="InnerList" cet="CFCOutputPin">
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147503492L</v>
+                        </o>
+                      </l2>
+                    </o>
+                    <o n="Texts" t="CFCItemList">
+                      <l2 n="InnerList" cet="CFCText">
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"Parameters"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147503487L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"EN"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147503489L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"ForceExercise"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147503491L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"Exercising"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147503493L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"ExerciseF_QM2"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147503484L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"ExerciseF_QM2"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147503485L</v>
+                        </o>
+                      </l2>
+                    </o>
+                    <o n="Parameters" t="CFCItemList">
+                      <l2 n="InnerList" />
+                    </o>
+                    <n n="PreparedParameters" />
+                    <v n="PageArea">0</v>
+                    <v n="Bounds">"33, 9, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="EnEno">false</v>
+                    <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
+                    <v n="ContainsExtensibleInputs">false</v>
+                    <v n="Forced">false</v>
+                    <v n="OwningPageId">2147484857L</v>
+                    <v n="Id">2147503477L</v>
+                  </o>
                   <o t="CFCPage">
                     <o n="Name" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
@@ -8913,6 +9052,13 @@ END_VAR
                     <v n="SourcePinId">2147503406L</v>
                     <v n="DestPinId">2147503409L</v>
                     <v n="Id">2147503411L</v>
+                  </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147503495L</v>
+                    <v n="DestPinId">2147503486L</v>
+                    <v n="Id">2147503497L</v>
                   </o>
                 </l2>
               </o>
@@ -13065,6 +13211,46 @@ END_VAR
                       </o>
                     </l2>
                   </o>
+                  <o>
+                    <v n="ConnectionId">2147503497L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">27</v>
+                      <v n="Y">7</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147484857L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">27</v>
+                        <v n="Y">7</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">29</v>
+                        <v n="Y">7</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">9</v>
+                      </o>
+                      <o>
+                        <v n="X">29</v>
+                        <v n="Y">11</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
+                        <v n="X">32</v>
+                        <v n="Y">11</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
                 </d2>
               </o>
             </o>
@@ -13610,6 +13796,9 @@ CASE State OF
 		IF NOT Runnable() THEN
 			NextState := SystemStates.Idle;
 		end_if;
+		IF SmokeControl.Exercising OR Main.GreenMaster.ExerciseF_QM2.Exercising THEN
+			NextState := SystemStates.Exercise;
+		end_if;
 
 	SystemStates.StartupHeatRecovery:
 		if FireAlarm() then
@@ -13621,6 +13810,9 @@ CASE State OF
 		IF StateTime() > Parameters.System.Operation.StartupHeatRecoveryTime THEN
 			NextState := SystemStates.Run;
 		END_IF;
+		IF SmokeControl.Exercising OR Main.GreenMaster.ExerciseF_QM2.Exercising THEN
+			NextState := SystemStates.Exercise;
+		end_if;
 		
 	SystemStates.Run:
 		if FireAlarm() then
@@ -13630,7 +13822,7 @@ CASE State OF
 		IF NOT Runnable() THEN
 			NextState := SystemStates.PostRun;
 		end_if;
-		IF SmokeControl.Exercising THEN
+		IF SmokeControl.Exercising OR Main.GreenMaster.ExerciseF_QM2.Exercising THEN
 			NextState := SystemStates.Exercise;
 		end_if;
 
@@ -14012,7 +14204,11 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
       <LineId Id="290" Count="0" />
       <LineId Id="84" Count="1" />
       <LineId Id="204" Count="2" />
-      <LineId Id="86" Count="40" />
+      <LineId Id="86" Count="20" />
+      <LineId Id="653" Count="2" />
+      <LineId Id="107" Count="10" />
+      <LineId Id="650" Count="2" />
+      <LineId Id="118" Count="8" />
       <LineId Id="611" Count="2" />
       <LineId Id="127" Count="0" />
       <LineId Id="307" Count="10" />

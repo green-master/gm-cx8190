@@ -117,7 +117,7 @@
 				<Task Id="1" CreateSymbols="true" Priority="20" CycleTime="500000" AmsPort="350" ExceedWarning="1">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="2" CycleTime="5000000" AmsPort="351" AdtTasks="true">
+				<Task Id="4" Priority="1" CycleTime="100000" AmsPort="351" AdtTasks="true">
 					<Name>Task 4</Name>
 				</Task>
 			</Tasks>
@@ -640,8 +640,8 @@
 							<ManualConfig>
 								<OTCID>#x02010040</OTCID>
 							</ManualConfig>
-							<Priority>2</Priority>
-							<CycleTime>500000000</CycleTime>
+							<Priority>1</Priority>
+							<CycleTime>10000000</CycleTime>
 						</Context>
 						<Context>
 							<Id NeedCalleeCall="true">1</Id>
@@ -654,7 +654,7 @@
 						</Context>
 					</Contexts>
 					<TaskPouOids>
-						<TaskPouOid Prio="2" OTCID="#x08502001"/>
+						<TaskPouOid Prio="1" OTCID="#x08502001"/>
 						<TaskPouOid Prio="20" OTCID="#x08502002"/>
 					</TaskPouOids>
 				</Instance>

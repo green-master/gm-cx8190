@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ExerciseF_QM2" Id="{bb8268c0-0fa7-48db-bbc7-f19b5ac9af73}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExerciseF_QM2
+VAR_IN_OUT
+	Parameters: GreenMasterBaseParameters;
+END_VAR
+VAR_INPUT
+	EN: BOOL := TRUE;
+	ForceExercise: BOOL;
+END_VAR
+VAR_OUTPUT
+	Exercising: BOOL;
+END_VAR
+VAR
+	ExerciseTimer: Timer;
+	LocalTime: FB_LocalSystemTime;
+	Elapsed: LINT;
+	CurrentState: INT;
+	StateTimer: TImer;
+	DetectedDamperError: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[LocalTime(bEnable := TRUE);
+ExerciseTimer(EN := EN);
+Elapsed := ExerciseTimer.ElapsedTime();
+
+StateTimer();
+IF EN THEN
+	CASE CurrentState OF
+		0:
+			IF EN AND LocalTime.bValid THEN
+				IF ((Parameters.System.Exercise.FireBypassDamper.Interval > 0) AND (ExerciseTimer.ElapsedTime() > (Parameters.System.Exercise.FireBypassDamper.Interval * 3600 * 1000)) AND 
+					(
+						(WORD_TO_INT(LocalTime.systemTime.wHour) = Parameters.System.Exercise.FireBypassDamper.Hour) AND (WORD_TO_INT(LocalTime.systemTime.wMinute) = Parameters.System.Exercise.FireBypassDamper.Minute)
+					)) OR ForceExercise THEN
+					ForceExercise := FALSE;
+					Exercising := TRUE;
+					StateTimer.Restart();
+					CurrentState := 1;
+				END_IF			
+			END_IF
+		1:
+			IF StateTimer.ElapsedTime() > 10 * 1000 THEN
+				ExerciseTimer.Restart();
+				Parameters.IO.DOut.F_QM2 := FALSE;
+				CurrentState := 2;
+			END_IF
+		2:
+			IF StateTimer.ElapsedTime() > 30 * 1000 THEN
+				CurrentState := 3;
+			END_IF
+		3:
+			IF StateTimer.ElapsedTime() > 180 * 1000 THEN
+				Parameters.IO.DOut.F_QM2 := TRUE;
+				Exercising := FALSE;
+				CurrentState := 0;
+			END_IF
+	END_CASE
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="ExerciseF_QM2">
+      <LineId Id="31" Count="2" />
+      <LineId Id="58" Count="1" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="60" Count="14" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="78" Count="7" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="87" Count="3" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

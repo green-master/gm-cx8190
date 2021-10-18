@@ -65,6 +65,9 @@
     <Compile Include="DUTs\Custom\_Standard\Standard_Interface.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Exercise\ExerciseF_QM2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\GreenMaster\SystemStatesRunMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -733,6 +736,7 @@
     <Folder Include="DUTs" />
     <Folder Include="DUTs\Custom\Redundancy" />
     <Folder Include="DUTs\Custom\_Standard" />
+    <Folder Include="DUTs\Exercise" />
     <Folder Include="DUTs\Parameters\Alarm" />
     <Folder Include="DUTs\Parameters\IO" />
     <Folder Include="DUTs\Parameters\Redundancy" />
