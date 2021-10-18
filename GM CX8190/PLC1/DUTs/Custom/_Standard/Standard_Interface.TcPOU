@@ -229,7 +229,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_GQ1_V := Parameters.IO.AOut.T_GQ1 > 0.02;
 	ADS_Standard.Tags.Status.F_GQ1_V := Parameters.IO.AOut.F_GQ1 > 0.02;
 	
-	ADS_Standard.Tags.Status.TX1_VG_PV := LREAL_TO_REAL(Parameters.Regulation.Temperature.Efficiency);
+	ADS_Standard.Tags.Status.TX1_VG_PV := LREAL_TO_REAL(Parameters.Regulation.Temperature.Efficiency * 100);
 	ADS_Standard.Tags.Status.TX1_VG_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 
 	PreEN := TRUE;
