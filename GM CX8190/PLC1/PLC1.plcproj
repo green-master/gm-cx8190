@@ -536,12 +536,6 @@
     <Compile Include="DUTs\Smoke Control\DamperModule.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\StateMachine\State.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\StateMachine\StateMachine.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DUTs\System\AnyEqual.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -569,7 +563,7 @@
     <Compile Include="DUTs\Utilities\DeviationMonitorMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Utilities\Efficiency.TcPOU">
+    <Compile Include="DUTs\Utilities\CalculateEfficiency.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Utilities\LREAL_BMUX.TcPOU">
@@ -766,7 +760,6 @@
     <Folder Include="DUTs\Parameters\System\Defrost" />
     <Folder Include="DUTs\Parameters\System\Exercise" />
     <Folder Include="DUTs\Parameters\System\Operation" />
-    <Folder Include="DUTs\StateMachine" />
     <Folder Include="DUTs\Smoke Control" />
     <Folder Include="DUTs\System" />
     <Folder Include="DUTs\Ventilation" />

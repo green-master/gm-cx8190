@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
-  <POU Name="Efficiency" Id="{4acfea53-2522-4621-94b3-f1ee94050b0a}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION Efficiency : lreal
+  <POU Name="CalculateEfficiency" Id="{4acfea53-2522-4621-94b3-f1ee94050b0a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION CalculateEfficiency : lreal
 VAR_INPUT
+	T_BT3: LREAL;
+	T_BT2: LREAL;
+	F_BT1: LREAL;
 END_VAR
 VAR
+	denom: LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -38,13 +42,28 @@ VERKNINGSGRADSLARM
 Om värmeväxlaren ligger i full återvinning (0% öppet F.QN1 för fallet med GMXXL) och verkningsgraden understiger XX % under YY sekunder sätts verkningsgradslarm. Verkningsgradslarmet "maskas" om värmeåtervinningen ligger i kylläge, dvs. så fort F.QN1 är över 0%, då skall man aldrig erhålla verkningsgradslarm. (Tex vår och sommar)
 
 *)
+denom := F_BT1-T_BT2;
+IF denom > 0 THEN
+	CalculateEfficiency := (T_BT3-T_BT2) / (F_BT1-T_BT2);
+	IF CalculateEfficiency > 1 THEN
+		CalculateEfficiency := 1;
+	END_IF
+ELSE
+	CalculateEfficiency := 1;
+END_IF	
 ]]></ST>
     </Implementation>
-    <LineIds Name="Efficiency">
+    <LineIds Name="CalculateEfficiency">
       <LineId Id="7" Count="0" />
       <LineId Id="10" Count="26" />
       <LineId Id="9" Count="0" />
       <LineId Id="8" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="54" Count="2" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="50" Count="0" />
       <LineId Id="37" Count="0" />
     </LineIds>
   </POU>

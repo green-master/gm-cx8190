@@ -15,6 +15,7 @@ VAR_INPUT
 	ColdRecycling: ColdRecyclingParameters;
 END_VAR
 VAR_OUTPUT
+	Efficiency: LREAL;
 END_VAR
 VAR
 END_VAR
@@ -22,6 +23,16 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SetPointAdjustment(X := Parameters.Regulation.CompensationTemperature);
 Control.CSP := Control.SP + SetPointAdjustment.Y;
+IF (Main.GreenMaster.GetState() = SystemStates.Run) AND (Main.GreenMaster.StateTime() > LTIME#10M) THEN
+	Efficiency := CalculateEfficiency(Parameters.IO.AIn.T_BT3, Parameters.IO.AIn.T_BT2, Parameters.IO.AIn.F_BT1);
+	IF ((Parameters.IO.AOut.F_QN1 < 0.001) AND (Parameters.Regulation.Temperature.HeaterOutputDirection = HeaterOutputDirections.DecreaseToHeat)) OR
+		((Parameters.IO.AOut.F_QN1 > 0.999) AND (Parameters.Regulation.Temperature.HeaterOutputDirection = HeaterOutputDirections.IncreaseToHeat)) THEN
+		Parameters.Alarm.Status.B.HeatExchangerEfficiency := Efficiency < Parameters.Alarm.Limits.B.HeatExchangerEfficiency;
+	END_IF
+ELSE
+	Efficiency := 0;	
+	Parameters.Alarm.Status.B.HeatExchangerEfficiency := FALSE;
+END_IF
 ]]></ST>
     </Implementation>
     <Method Name="MaxOutput" Id="{4400b954-ec81-45b5-a67c-5966ca43201c}">
@@ -54,6 +65,13 @@ END_IF
     </Method>
     <LineIds Name="TemperatureControlParametersFB">
       <LineId Id="47" Count="1" />
+      <LineId Id="67" Count="1" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="70" Count="2" />
+      <LineId Id="69" Count="0" />
       <LineId Id="46" Count="0" />
     </LineIds>
     <LineIds Name="TemperatureControlParametersFB.MaxOutput">

@@ -9,7 +9,7 @@ STRUCT
 	ExtractAirDeviation: TIME := T#10M;
 	SupplyFan: TIME := T#5S;
 	ExtractFan: TIME := T#5S;
-	HeatExchangerEfficiency: TIME := T#5S;
+	HeatExchangerEfficiency: TIME := T#5M;
 	Defrost: TIME := T#5S;
 	SupplyFilter: TIME := T#5S;
 	ExtractFilter: TIME := T#5S;

@@ -13038,76 +13038,30 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147502770L</v>
+                    <v n="ConnectionId">2147501341L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">23</v>
-                      <v n="Y">11</v>
+                      <v n="X">28</v>
+                      <v n="Y">8</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
                     <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147490091L</v>
+                    <v n="CorrespondingPageId">2147483860L</v>
                     <v n="Locked">false</v>
                   </o>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">23</v>
-                        <v n="Y">11</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
                         <v n="X">28</v>
-                        <v n="Y">11</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">3</v>
-                      </o>
-                      <o>
-                        <v n="X">28</v>
-                        <v n="Y">9</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">12</v>
-                      </o>
-                      <o>
-                        <v n="X">34</v>
-                        <v n="Y">9</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">3</v>
-                      </o>
-                      <o>
-                        <v n="X">34</v>
                         <v n="Y">8</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">12</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">46</v>
                         <v n="Y">8</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">2147502611L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">77</v>
-                      <v n="Y">13</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147490091L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">77</v>
-                        <v n="Y">13</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
                       </o>
                     </l2>
                   </o>
@@ -13264,7 +13218,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GetActiveStateName := '';]]></ST>
+        <ST><![CDATA[GetActiveStateName := TO_STRING(Parameters.System.Operation.State);]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetCurrentExtractAirPV" Id="{53abd77a-8c57-4316-ac40-e64f2159e488}">
@@ -13382,6 +13336,15 @@ END_VAR
       <Implementation>
         <ST><![CDATA[GetParametersSC REF= ParametersSC;
 ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetState" Id="{1c16c115-a2ff-46c2-ba22-7da5754dfc3e}">
+      <Declaration><![CDATA[METHOD GetState : SystemStates
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetState := Parameters.System.Operation.State;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Runnable" Id="{60dd4a36-2d40-48ae-9dcb-3012f065c445}">
@@ -13945,6 +13908,9 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
     </LineIds>
     <LineIds Name="GreenMasterBase.GetParametersSC">
       <LineId Id="5" Count="1" />
+    </LineIds>
+    <LineIds Name="GreenMasterBase.GetState">
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="GreenMasterBase.Runnable">
       <LineId Id="5" Count="0" />
