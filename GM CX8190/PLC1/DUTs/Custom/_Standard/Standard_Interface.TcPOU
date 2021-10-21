@@ -39,12 +39,18 @@ VAR
 	StatusP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	AlarmCount: UINT := SIZEOF(AlarmSignals);
 	ResetAlarmTON: TON;
+	SavedParameters: GreenMasterBaseParameters;
+	SavedInterface: GreenMasterSettings;
+	TestExchange: BOOL := FALSE;
+	UpdateTON: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT InitDone THEN
 	Parameters REF= Main.GreenMaster.GetParameters();
 	GM_XXL REF= Main.GreenMaster;
+	SavedParameters := Parameters;
+	SavedInterface := ADS_Standard.Tags.Settings;
 	InitDone := TRUE;
 END_IF;
 
@@ -77,10 +83,11 @@ IF EN THEN
 	Globals.IO.DOut.DO16 := ADS_Standard.Tags.Status.C_GP1_CMD;
 	
 	NightCooling := ADS_Standard.Tags.Settings.NightCooling_V;
-	
+	UpdateTON(IN := TRUE, PT := T#1S);
 	// --------------------------------------------------------------------------------
 	// Transfer from Standard tags to settings
-	IF Parameters.System.Operation.RemoteEN THEN
+	IF Parameters.System.Operation.RemoteEN AND UpdateTON.Q THEN
+		UpdateTON(IN := False);
 		Parameters.Alarm.Control.ResetAlarms := ADS_Standard.Tags.Settings.ResetAlarms;
 		ResetAlarmTON(IN := ADS_Standard.Tags.Settings.ResetAlarms, PT := T#3S);
 		IF ResetAlarmTON.Q THEN
@@ -95,8 +102,25 @@ IF EN THEN
 		ELSE
 			Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
 		END_IF
-		Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Standard.Tags.Settings.SetPointOffsetCurve; 
-		Parameters.Regulation.Temperature.Control.SP := ADS_Standard.Tags.Settings.Temperature_SP;
+		
+		IF TestExchange THEN
+			ExchangeData(	ADR(Parameters.Regulation.Temperature.Control.SP), 
+							ADR(ADS_Standard.Tags.Settings.Temperature_SP), 
+							SIZEOF(Parameters.Regulation.Temperature.Control.SP), 
+							ADR(SavedParameters.Regulation.Temperature.Control.SP), 
+							ADR(SavedInterface.Temperature_SP), 
+							'LREAL', sLiteral_TO_UTF8('Temp SP changed locally to $${Value} °C'), sLiteral_TO_UTF8('Temp SP changed via ADS to $${Value} °C'));	
+			ExchangeData(	ADR(Parameters.Regulation.Temperature.SetPointAdjustment.Curve), 
+							ADR(ADS_Standard.Tags.Settings.SetPointOffsetCurve), 
+							SIZEOF(Parameters.Regulation.Temperature.SetPointAdjustment.Curve), 
+							ADR(SavedParameters.Regulation.Temperature.SetPointAdjustment.Curve), 
+							ADR(SavedInterface.SetPointOffsetCurve), 
+							'SetPointOffsetCurve', sLiteral_TO_UTF8('Temp curve changed locally'), sLiteral_TO_UTF8('Temp curve changed via ADS'));	
+		ELSE	
+			Parameters.Regulation.Temperature.Control.SP := ADS_Standard.Tags.Settings.Temperature_SP;
+			Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Standard.Tags.Settings.SetPointOffsetCurve; 
+		END_IF
+		
 		Parameters.Regulation.Temperature.Control.P := ADS_Standard.Tags.Settings.TemperatureControl_P;
 		Parameters.Regulation.Temperature.Control.I := ADS_Standard.Tags.Settings.TemperatureControl_I;
 		Parameters.Regulation.Temperature.Control.D := ADS_Standard.Tags.Settings.TemperatureControl_D;
@@ -243,6 +267,42 @@ ELSE
 END_IF
 ]]></ST>
     </Implementation>
+    <Method Name="ExchangeData" Id="{46e1af3f-f028-4584-9b21-580cb58e0bb4}">
+      <Declaration><![CDATA[METHOD ExchangeData : BOOL
+VAR_INPUT
+	PData1: POINTER TO BYTE;
+	PData2: POINTER TO BYTE;
+	Size: UDINT;
+	PSavedData1: POINTER TO BYTE;
+	PSavedData2: POINTER TO BYTE;
+	VarType: STRING;
+	{attribute 'TcEncoding':='UTF-8'}
+	LogText1: STRING := '';
+	{attribute 'TcEncoding':='UTF-8'}
+	LogText2: STRING := '';
+END_VAR
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF MemCmp(PData1, PSavedData1, Size) <> 0 THEN
+	MemCpy(PData2, PData1, Size);
+	MemCpy(PSavedData2, PData1, Size);
+	MemCpy(PSavedData1, PData1, Size);
+	IF LogText1 <> '' THEN
+		Main.EventLog.LogEventJSON(EventTypes.Information, LogText1, VarType, Size, PData1);	
+	END_IF
+END_IF
+IF MemCmp(PData2, PSavedData2, Size) <> 0 THEN
+	MemCpy(PData1, PData2, Size);
+	MemCpy(PSavedData1, PData2, Size);
+	MemCpy(PSavedData2, PData2, Size);
+	IF LogText2 <> '' THEN
+		Main.EventLog.LogEventJSON(EventTypes.Information, LogText2, VarType, Size, PData2);	
+	END_IF
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="ModbusSettings" Id="{65316f0c-b296-4acc-9143-2ee0375ea553}">
       <Declaration><![CDATA[METHOD ModbusSettings : BOOL
 VAR_INPUT
@@ -270,64 +330,25 @@ GVL_MB.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV
       </Implementation>
     </Action>
     <LineIds Name="Standard_Interface">
-      <LineId Id="1322" Count="5" />
-      <LineId Id="1348" Count="33" />
-      <LineId Id="1739" Count="1" />
-      <LineId Id="1744" Count="0" />
-      <LineId Id="1742" Count="0" />
-      <LineId Id="1382" Count="20" />
-      <LineId Id="1654" Count="0" />
-      <LineId Id="1403" Count="4" />
-      <LineId Id="1608" Count="0" />
-      <LineId Id="1655" Count="0" />
-      <LineId Id="1610" Count="4" />
-      <LineId Id="1609" Count="0" />
-      <LineId Id="1408" Count="0" />
-      <LineId Id="1607" Count="0" />
-      <LineId Id="1409" Count="0" />
-      <LineId Id="1843" Count="2" />
-      <LineId Id="1565" Count="0" />
-      <LineId Id="1410" Count="0" />
-      <LineId Id="1801" Count="0" />
-      <LineId Id="1846" Count="1" />
-      <LineId Id="1919" Count="3" />
-      <LineId Id="1888" Count="0" />
-      <LineId Id="1900" Count="0" />
-      <LineId Id="1887" Count="0" />
-      <LineId Id="1891" Count="0" />
-      <LineId Id="1901" Count="2" />
-      <LineId Id="1905" Count="5" />
-      <LineId Id="1912" Count="2" />
-      <LineId Id="1889" Count="0" />
-      <LineId Id="1411" Count="0" />
-      <LineId Id="1413" Count="6" />
-      <LineId Id="1841" Count="1" />
-      <LineId Id="1420" Count="3" />
-      <LineId Id="1962" Count="0" />
-      <LineId Id="1424" Count="1" />
-      <LineId Id="1750" Count="2" />
-      <LineId Id="1566" Count="0" />
-      <LineId Id="1753" Count="0" />
-      <LineId Id="1755" Count="4" />
-      <LineId Id="1754" Count="0" />
-      <LineId Id="1760" Count="1" />
-      <LineId Id="1567" Count="0" />
-      <LineId Id="1745" Count="1" />
-      <LineId Id="1699" Count="0" />
-      <LineId Id="1427" Count="5" />
-      <LineId Id="1523" Count="0" />
-      <LineId Id="1433" Count="9" />
-      <LineId Id="1522" Count="0" />
-      <LineId Id="1443" Count="20" />
-      <LineId Id="1748" Count="1" />
-      <LineId Id="1464" Count="0" />
-      <LineId Id="1467" Count="0" />
-      <LineId Id="2002" Count="0" />
-      <LineId Id="1524" Count="0" />
-      <LineId Id="1476" Count="0" />
-      <LineId Id="1696" Count="1" />
-      <LineId Id="1477" Count="5" />
+      <LineId Id="2100" Count="2" />
+      <LineId Id="2306" Count="1" />
+      <LineId Id="2103" Count="50" />
+      <LineId Id="2155" Count="2" />
+      <LineId Id="2308" Count="10" />
+      <LineId Id="2158" Count="1" />
+      <LineId Id="2319" Count="0" />
+      <LineId Id="2160" Count="145" />
       <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Standard_Interface.ExchangeData">
+      <LineId Id="117" Count="3" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="121" Count="4" />
+      <LineId Id="134" Count="2" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="15" Count="0" />
     </LineIds>
     <LineIds Name="Standard_Interface.ModbusSettings">
       <LineId Id="5" Count="0" />
