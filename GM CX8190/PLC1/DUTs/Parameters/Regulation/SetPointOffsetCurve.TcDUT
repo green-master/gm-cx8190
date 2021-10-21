@@ -3,15 +3,24 @@
   <DUT Name="SetPointOffsetCurve" Id="{3d6be3ef-28c9-4392-bfae-8270191f9be4}">
     <Declaration><![CDATA[TYPE SetPointOffsetCurve :
 STRUCT
-	X1, Y1: LREAL;
-	X2, Y2: LREAL;
-	X3, Y3: LREAL;
-	X4, Y4: LREAL;
-	X5, Y5: LREAL;
-	X6, Y6: LREAL;
-	X7, Y7: LREAL;
-	X8, Y8: LREAL;
-	X9, Y9: LREAL;
+	X1: LREAL := -20;
+	Y1: LREAL;
+	X2: LREAL := -15;
+	Y2: LREAL;
+	X3: LREAL := -10;
+	Y3: LREAL;
+	X4: LREAL := -5;
+	Y4: LREAL;
+	X5: LREAL := 0;
+	Y5: LREAL;
+	X6: LREAL := 5;
+	Y6: LREAL;
+	X7: LREAL := 10;
+	Y7: LREAL;
+	X8: LREAL := 15;
+	Y8: LREAL;
+	X9: LREAL := 20;
+	Y9: LREAL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
