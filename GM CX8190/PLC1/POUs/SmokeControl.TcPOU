@@ -66,6 +66,7 @@ CASE CurrentState OF
 				Exercising := TRUE;
 				StateTimer.Restart();
 				CurrentState := 1;
+				Main.EventLog.LogEvent(EventTypes.Information, 'Exercising Smoke Control dampers');
 			END_IF			
 		END_IF
 	1:
@@ -97,7 +98,9 @@ END_CASE
       <LineId Id="238" Count="0" />
       <LineId Id="240" Count="0" />
       <LineId Id="234" Count="0" />
-      <LineId Id="178" Count="31" />
+      <LineId Id="178" Count="11" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="190" Count="19" />
       <LineId Id="108" Count="0" />
     </LineIds>
   </POU>

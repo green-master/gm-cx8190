@@ -3,19 +3,19 @@
   <DUT Name="ModbusRTU_IO" Id="{b1a0637e-968f-46ed-a16d-a91da8356b42}">
     <Declaration><![CDATA[TYPE ModbusRTU_IO :
 STRUCT
-	T_BP1: WORD;
+	T_BP1: INT;
 	T_BP1_Error: BOOL;
-	F_BP1: WORD;
+	F_BP1: INT;
 	F_BP1_Error: BOOL;
-	T_BP2: WORD;
+	T_BP2: INT;
 	T_BP2_Error: BOOL;
-	F_BP2: WORD;
+	F_BP2: INT;
 	F_BP2_Error: BOOL;
-	F_BP3: WORD;
+	F_BP3: INT;
 	F_BP3_Error: BOOL;
-	T_BF1: WORD;
+	T_BF1: INT;
 	T_BF1_Error: BOOL;
-	F_BF1: WORD;	
+	F_BF1: INT;	
 	F_BF1_Error: BOOL;
 END_STRUCT
 END_TYPE

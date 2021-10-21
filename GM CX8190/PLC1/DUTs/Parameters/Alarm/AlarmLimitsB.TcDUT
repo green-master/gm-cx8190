@@ -8,7 +8,7 @@ STRUCT
 	ExtractAirPressureDeviation: LREAL := 30; // $(W1,S,R0)
 	SupplyAirFlowDeviation: LREAL := 0.3; // $(W1,S,R0)
 	ExtractAirFlowDeviation: LREAL := 0.3; // $(W1,S,R0)
-	HeatExchangerEfficiency: LREAL := 0.3; // $(W1,S,R0)
+	HeatExchangerEfficiency: LREAL := 0.3; // $(scale "0 1 0 100", unit "%")
 	Defrost: LREAL := -1; // $(W1,S,R0)
 	SupplyFilter: LREAL := 150; // $(W1,S,R0)
 	ExtractFilter: LREAL := 150; // $(W1,S,R0)

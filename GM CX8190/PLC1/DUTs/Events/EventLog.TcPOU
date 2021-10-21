@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="EventLog" Id="{a2e84b5f-eea0-4836-95b1-c30bdbad7043}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK EventLog
 VAR_IN_OUT
@@ -84,6 +84,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[sJSON := '';
 nLen := fbJsonDataType.CopyJsonStringFromSymbol(VarType, VarSize, VarAdr, sJSON,SIZEOF(sJSON));
+IF nLen > 0 THEN
+	IF sJSON[0] <> F_ToASC('{') THEN
+		sJSON := concat(concat('{ "Value": ', sJSON), ' }');
+	END_IF
+END_IF
 IncludeJSON := nLen > 0;
 LogEvent(Kind := Kind, Message := Message);
 IncludeJSON := FALSE;
@@ -105,6 +110,9 @@ IncludeJSON := FALSE;
     <LineIds Name="EventLog.LogEventJSON">
       <LineId Id="21" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="33" Count="1" />
+      <LineId Id="36" Count="1" />
+      <LineId Id="35" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="20" Count="0" />

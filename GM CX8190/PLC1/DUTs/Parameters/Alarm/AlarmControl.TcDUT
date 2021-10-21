@@ -3,8 +3,8 @@
   <DUT Name="AlarmControl" Id="{fc8fffd1-fa88-4767-b2ef-1451bf2234fc}">
     <Declaration><![CDATA[TYPE AlarmControl :
 STRUCT
-	UseSupplyAirFireAlarm: BOOL; // $(W1,S,R0)
-	UseDI2_FireAlarm: BOOL; // $(W1,S,R0)
+	//UseSupplyAirFireAlarm: BOOL; // $(W1,S,R0)
+	//UseDI2_FireAlarm: BOOL; // $(W1,S,R0)
 	ResetAlarms: BOOL; // $(W1,S,R0)
 END_STRUCT
 END_TYPE

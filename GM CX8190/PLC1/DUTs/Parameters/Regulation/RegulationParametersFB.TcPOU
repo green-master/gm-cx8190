@@ -7,7 +7,7 @@ VAR_IN_OUT
 END_VAR
 VAR_INPUT
 	Control: RegulationControlParameters;
-	SupplyAir: AirParametersFB := (StartupFanSpeed := 0.3);
+	SupplyAir: AirParametersFB := (StartupFanSpeed := 0.3, SetPointAdjustment := (Curve := (Y1 := 165)));
 	ExtractAir: AirParametersFB := (StartupFanSpeed := 0.4);
 	Temperature: TemperatureControlParametersFB;
 	NightCoolingLimit: LREAL;
