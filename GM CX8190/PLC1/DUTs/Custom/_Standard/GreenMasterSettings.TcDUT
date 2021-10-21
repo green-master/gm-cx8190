@@ -6,9 +6,9 @@ TYPE GreenMasterSettings :
 STRUCT
 RemoteStart :  INT := 1; //  Remote (WebPort) unit activation (-1=Auto, 0=unit off, 1=normal speed, 2=high speed)
 ResetAlarms :  BOOL :=FALSE; //  Reset alarms
-Temperature_SP :  LREAL :=20.0; //  Temperature Set Point, C
+Temperature_SP :  LREAL :=0; //  Temperature Set Point, C
 TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1
-SetPointOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature
+SetPointOffsetCurve :  SetPointOffsetCurve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20); // Outdoorcompensation temperature
 
 
 
@@ -32,9 +32,9 @@ TemperatureControl_D :  TIME :=T#0M; //  Temperature control D
 StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover
 PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to operation after fire alarm
 SupplyFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/T.BP1, 1=Flow/T.BF1) for Supply Air
-SupplyFan_SP :  REAL :=100 ; //  Supply air control Set Point
+SupplyFan_SP :  REAL :=0 ; //  Supply air control Set Point
 SupplyFanHighSpeed_SP :  REAL ; //  Supply air control high speed Set Point
-SupplyFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature
+SupplyFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 165, Y2 := 165, Y3 := 165, Y4 := 165, Y5 := 165, Y6 := 165, Y7 := 165, Y8 := 165, Y9 := 165); // Outdoorcompensation temperature
 
 
 
@@ -55,9 +55,9 @@ SupplyFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:
 SupplyFanControl_P :  REAL :=0.002; //  Supply air control P
 SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I
 ExtractFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/F.BP1, 1=Flow/F.BF1) for Extract Air
-ExtractFan_SP :  REAL := 100; //  Extract air control Set Point
+ExtractFan_SP :  REAL := 0; //  Extract air control Set Point
 ExtractFanHighSpeed_SP :  REAL ; //  Extract air control high speed Set Point
-ExtractFanOffsetCurve :  SetPointOffsetCurve:=(X1:=-20, X2:=-10, X3:=0,X4:=10,X5:=20); // Outdoorcompensation temperature
+ExtractFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 160, Y2 := 160, Y3 := 160, Y4 := 160, Y5 := 160, Y6 := 160, Y7 := 160, Y8 := 160, Y9 := 160); // Outdoorcompensation temperature
 
 
 
