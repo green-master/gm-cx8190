@@ -134,6 +134,10 @@
 							<Type GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU">MB_KL6inData22B</Type>
 						</Var>
 						<Var>
+							<Name>ExtraAlarmInputs.AL01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>Globals.IO.DIn.DI01</Name>
 							<Comment><![CDATA[ AUTO AH (Sluten=1=Aggregat tillåts till drift via överstyrning)]]></Comment>
 							<Type>BOOL</Type>
@@ -483,6 +487,34 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI24_Error</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL08</Name>
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>
@@ -2429,7 +2461,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 			<Device Id="4" DevType="120">
 				<Name>Device STD (CX-BK)</Name>
 				<DevData>000000c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000007000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
-				<Image Id="2" AddrType="1" ImageType="3" SizeIn="80" SizeOut="78">
+				<Image Id="2" AddrType="1" ImageType="3" SizeIn="80" SizeOut="80">
 					<Name>Image</Name>
 				</Image>
 				<Box Id="1" BoxType="9703" AmsPort="28929">
@@ -3212,7 +3244,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								</Var>
 							</Vars>
 						</Term>
-						<Term Id="22" Disabled="true" TermType="#x580" Fieldbus="6">
+						<Term Id="22" TermType="#x580" Fieldbus="6">
 							<Name>DI 3 (KL1408)</Name>
 							<ImageId>7</ImageId>
 							<Vars VarGrpType="3">
@@ -4922,6 +4954,14 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Link VarA="PlcTask Outputs^Main.GreenMasterAI2_RTU.ModbusRTU.ModbusMaster.OutData^D" VarB="Modbus RTU (KL6041)^Channel 1^Data Out 9" Size="8" OffsA="72"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device STD (CX-BK)^Box STD (CX-BK)">
+				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL01" VarB="DI 3 (KL1408)^Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL02" VarB="DI 3 (KL1408)^Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL03" VarB="DI 3 (KL1408)^Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL04" VarB="DI 3 (KL1408)^Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL05" VarB="DI 3 (KL1408)^Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL06" VarB="DI 3 (KL1408)^Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL07" VarB="DI 3 (KL1408)^Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL08" VarB="DI 3 (KL1408)^Channel 8^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^Data In"/>

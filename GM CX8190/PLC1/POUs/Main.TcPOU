@@ -19,6 +19,8 @@ VAR
 	Std_Interface : Standard_Interface;
 	CTH_Interface: CTH_Interface;
 	Stena_Interface: Stena_Interface;
+	ExtraAlarms_Interface: ExtraAlarms_Interface;
+	SmokeControl_Interface: SmokeControl_Interface;
 
 	Redundancy:Redundancy;
 	
@@ -168,6 +170,20 @@ Saver();
 WritePersistentData(NETID := '', PORT := 851, TMOUT := T#10S, START := StartWritePersistentData);
 
 DevMon(Value := DevValue, TargetValue := 5);
+
+IF GetComponent(Name := ComponentNames.EXTRA_ALARMS).EN THEN	
+	GreenMaster.GetParameters().Alarm.Status.A.AL01 := NOT ExtraAlarmInputs.AL01;
+	GreenMaster.GetParameters().Alarm.Status.A.AL02 := NOT ExtraAlarmInputs.AL02;
+	GreenMaster.GetParameters().Alarm.Status.A.AL03 := NOT ExtraAlarmInputs.AL03;
+	GreenMaster.GetParameters().Alarm.Status.A.AL04 := NOT ExtraAlarmInputs.AL04;
+	GreenMaster.GetParameters().Alarm.Status.A.AL05 := NOT ExtraAlarmInputs.AL05;
+	GreenMaster.GetParameters().Alarm.Status.A.AL06 := NOT ExtraAlarmInputs.AL06;
+	GreenMaster.GetParameters().Alarm.Status.A.AL07 := NOT ExtraAlarmInputs.AL07;
+	GreenMaster.GetParameters().Alarm.Status.A.AL08 := NOT ExtraAlarmInputs.AL08;
+END_IF
+ExtraAlarms_Interface(EN := GetComponent(Name := ComponentNames.EXTRA_ALARMS).EN);
+SmokeControl_Interface(EN := GetComponent(Name := ComponentNames.GM_SMOKE_CONTROL).EN);
+
 ]]></ST>
     </Implementation>
     <LineIds Name="Main">
@@ -182,7 +198,16 @@ DevMon(Value := DevValue, TargetValue := 5);
       <LineId Id="2219" Count="3" />
       <LineId Id="2290" Count="0" />
       <LineId Id="2040" Count="0" />
+      <LineId Id="2362" Count="0" />
+      <LineId Id="2353" Count="0" />
       <LineId Id="2291" Count="0" />
+      <LineId Id="2355" Count="5" />
+      <LineId Id="2370" Count="0" />
+      <LineId Id="2365" Count="0" />
+      <LineId Id="2367" Count="0" />
+      <LineId Id="2371" Count="0" />
+      <LineId Id="2368" Count="0" />
+      <LineId Id="2354" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="GreenMasterStatusExtraAlarms" Id="{7c9c2746-d246-4fd7-8513-ef376bc677b8}">
+    <Declaration><![CDATA[TYPE GreenMasterStatusExtraAlarms :
+STRUCT
+	EXTRA_01_AL: BOOL; // Extra alarm 1
+	EXTRA_02_AL: BOOL; // Extra alarm 2
+	EXTRA_03_AL: BOOL; // Extra alarm 3
+	EXTRA_04_AL: BOOL; // Extra alarm 4
+	EXTRA_05_AL: BOOL; // Extra alarm 5
+	EXTRA_06_AL: BOOL; // Extra alarm 6
+	EXTRA_07_AL: BOOL; // Extra alarm 7
+	EXTRA_08_AL: BOOL; // Extra alarm 8
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

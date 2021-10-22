@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ExtraAlarms_Interface" Id="{b250d8c1-35db-4bc8-837d-98b05c670699}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExtraAlarms_Interface
+VAR_INPUT
+	EN: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+	InitDone: BOOL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT InitDone THEN
+	Parameters REF= Main.GreenMaster.GetParameters();
+	InitDone := TRUE;
+END_IF;
+
+ENO := EN;
+
+IF EN THEN
+	// Status transfers
+	ADS_ExtraAlarms.Tags.Status.EXTRA_01_AL := Parameters.Alarm.Active.A.AL01;
+	ADS_ExtraAlarms.Tags.Status.EXTRA_02_AL := Parameters.Alarm.Active.A.AL02;
+	ADS_ExtraAlarms.Tags.Status.EXTRA_03_AL := Parameters.Alarm.Active.A.AL03;
+	ADS_ExtraAlarms.Tags.Status.EXTRA_04_AL := Parameters.Alarm.Active.A.AL04;
+	ADS_ExtraAlarms.Tags.Status.EXTRA_05_AL := Parameters.Alarm.Active.A.AL05;
+	ADS_ExtraAlarms.Tags.Status.EXTRA_06_AL := Parameters.Alarm.Active.A.AL06;
+	ADS_ExtraAlarms.Tags.Status.EXTRA_07_AL := Parameters.Alarm.Active.A.AL07;
+	ADS_ExtraAlarms.Tags.Status.EXTRA_08_AL := Parameters.Alarm.Active.A.AL08;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="ExtraAlarms_Interface">
+      <LineId Id="2100" Count="1" />
+      <LineId Id="2103" Count="2" />
+      <LineId Id="2129" Count="0" />
+      <LineId Id="2363" Count="0" />
+      <LineId Id="2130" Count="0" />
+      <LineId Id="2188" Count="1" />
+      <LineId Id="2364" Count="6" />
+      <LineId Id="2305" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

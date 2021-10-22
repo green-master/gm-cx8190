@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SxDuoInterface" Id="{ab4489fa-4929-4da3-95d3-98b4ef78a1de}">
+    <Declaration><![CDATA[TYPE SxDuoInterface :
+STRUCT
+	{attribute 'TcEncoding':='UTF-8'}
+	TEXT_PV: STRING; // Place identifier
+	FIRE_AL: BOOL; // Fire alarm
+	DAMPER1_AL: BOOL; // Damper 1 alarm
+	EXERCISING_V: BOOL; // Exercising
+	DAMPER2_AL: BOOL; // Damper 2 alarm
+	DAMPER1_V1: BOOL; // Damper 1 open
+	DAMPER1_V0: BOOL; // Damper 1 closed
+	DAMPER2_V1: BOOL; // Damper 2 open
+	DAMPER2_V0: BOOL; // Damper 2 closed
+	SERVICE_AL: BOOL; // Servcie alarm
+	COMM_FAULT: BOOL; // Communication error
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
