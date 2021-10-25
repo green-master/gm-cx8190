@@ -95,7 +95,13 @@
     <Compile Include="DUTs\GreenMaster\SystemStatesRunModeExternal.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ModbusRTU\Gebhardt_Power.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ModbusRTU\ModbusReadWordArray.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ModbusRTU\EBM_Power.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Alarm\AlarmControl.TcDUT">
@@ -413,6 +419,9 @@
     <Compile Include="DUTs\Parameters\Regulation\DefaultParameters.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\FanTypes.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\Regulation\FireParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -712,7 +721,7 @@
     <Compile Include="GVLs\Globals.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GVLs\GVL_MB.TcGVL">
+    <Compile Include="GVLs\GVL.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>

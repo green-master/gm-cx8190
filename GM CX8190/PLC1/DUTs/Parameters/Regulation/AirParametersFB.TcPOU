@@ -17,6 +17,12 @@ VAR_INPUT
 	StartupFanSpeed: LREAL;
 	SetPointAdjustment: SetPointAdjustment;
 	Fire: FireParameters;
+	FanType: FanTypes := FanTypes.EBM;
+	SpecificFanPower: LREAL; // $(unit "kPa")
+	Flow: LREAL; // $(unit "l/s")
+	Power: LREAL; // $(unit "W")
+	FanEfficiency: LREAL; // $(scale "0 1 0 100", unit "%")
+	PressureRise: LREAL; // $(unit "Pa")
 END_VAR
 VAR_OUTPUT
 	TestOutput: LREAL := 3.14;
@@ -51,13 +57,30 @@ ELSE
 	END_CASE	
 END_IF
 SetPointAdjustment(X := Parameters.Regulation.CompensationTemperature);
-Control.CSP := Control.SP + SetPointAdjustment.Y;]]></ST>
+Control.CSP := Control.SP + SetPointAdjustment.Y;
+IF Flow <> 0 THEN
+	SpecificFanPower := Power / Flow;	
+ELSE
+	SpecificFanPower := 0;
+END_IF
+IF PressureRise <> 0 THEN
+	FanEfficiency := SpecificFanPower / (PressureRise / 1000.0);
+ELSE
+	FanEfficiency := 0;
+END_IF
+]]></ST>
     </Implementation>
     <LineIds Name="AirParametersFB">
       <LineId Id="138" Count="22" />
       <LineId Id="23" Count="0" />
       <LineId Id="207" Count="0" />
       <LineId Id="183" Count="0" />
+      <LineId Id="236" Count="1" />
+      <LineId Id="239" Count="1" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="244" Count="0" />
+      <LineId Id="248" Count="2" />
+      <LineId Id="246" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

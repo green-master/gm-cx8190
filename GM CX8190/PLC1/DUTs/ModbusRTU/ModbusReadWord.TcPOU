@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="ModbusReadWord" Id="{6f7dd8cb-9c2a-4cd0-91a0-b01f02154bdf}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ModbusReadWord EXTENDS ModbusIo
 VAR_INPUT
@@ -8,6 +8,7 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	Value: INT;
+	ValueW: WORD;
 END_VAR
 VAR
 END_VAR
@@ -19,6 +20,7 @@ END_VAR
 IF Override THEN
 	Value := OverrideValue;
 END_IF
+ValueW := ValueWord;
 ]]></ST>
     </Implementation>
     <Property Name="ValueWord" Id="{0242e1c3-ab32-41c2-87b7-98b4c4f1f701}">
@@ -54,6 +56,7 @@ END_IF
       <LineId Id="9" Count="0" />
       <LineId Id="36" Count="0" />
       <LineId Id="39" Count="1" />
+      <LineId Id="55" Count="0" />
       <LineId Id="18" Count="0" />
     </LineIds>
     <LineIds Name="ModbusReadWord.ValueWord.Get">

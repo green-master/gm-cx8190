@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="GreenMasterAIU_Base" Id="{cc53c7b9-4ee9-47c3-84d3-5d66647fcaf1}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterAIU_Base
 VAR_INPUT
@@ -22,6 +22,8 @@ VAR_OUTPUT
 	F_BP2: LREAL;
 	F_BP3_Error: BOOL;
 	F_BP3: LREAL;
+	T_CurrentPower: LREAL;
+	F_CurrentPower: LREAL;
 END_VAR
 VAR
 END_VAR

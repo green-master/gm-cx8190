@@ -138,6 +138,34 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>ExtraAlarmInputs.AL02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ExtraAlarmInputs.AL08</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>Globals.IO.DIn.DI01</Name>
 							<Comment><![CDATA[ AUTO AH (Sluten=1=Aggregat tillåts till drift via överstyrning)]]></Comment>
 							<Type>BOOL</Type>
@@ -487,34 +515,6 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI24_Error</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ExtraAlarmInputs.AL02</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ExtraAlarmInputs.AL03</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ExtraAlarmInputs.AL04</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ExtraAlarmInputs.AL05</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ExtraAlarmInputs.AL06</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ExtraAlarmInputs.AL07</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ExtraAlarmInputs.AL08</Name>
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>

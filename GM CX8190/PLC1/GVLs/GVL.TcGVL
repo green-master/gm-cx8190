@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
-  <GVL Name="GVL_MB" Id="{76e83e92-525f-4e7c-8225-8eea945b5bf4}">
+  <GVL Name="GVL" Id="{76e83e92-525f-4e7c-8225-8eea945b5bf4}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	mb_Input_Coils:ARRAY[0..255] OF BOOL;

@@ -13,11 +13,11 @@ STRUCT
 	T_QM1_6: BOOL;
 	
 	//ManualControl: BOOL;
-	//SectionCount: INT;
+	Sections: INT := 4;
 	DefrostTemperature: LREAL;
 	//StartPressure: LREAL;
 	//StopPressure: LREAL;
-	SectionTime: LTIME;
+	SectionTime: LTIME := LTIME#1M;
 	//HeatRequired: LREAL;	
 
 	//BypassOpen: LREAL;

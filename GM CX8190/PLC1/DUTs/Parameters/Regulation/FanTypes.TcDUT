@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="FanTypes" Id="{358019fd-dbbb-4482-a66b-d2c026f38d79}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE FanTypes :
+(
+	EBM := 0, Gebhardt
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

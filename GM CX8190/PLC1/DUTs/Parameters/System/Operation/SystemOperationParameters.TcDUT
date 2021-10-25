@@ -5,7 +5,7 @@
 STRUCT
 	EN: BOOL := TRUE;	// $(W1,S,R0) Enable the GreenMaster unit |||| Aktivera GreenMaster-enheten
 	ENO: BOOL; // The GreenMaster unit is running
-	RemoteEN: BOOL := FALSE;
+	RemoteEN: BOOL := TRUE;
 	RemoteStart : SystemStatesRunModeExternal:=SystemStatesRunModeExternal.Auto;
 	Mode:SystemStatesRunMode;
 	IoUpdateEN: BOOL := TRUE; // Update inputs and outputs

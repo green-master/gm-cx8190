@@ -89,57 +89,94 @@ IF EN THEN
 	// Transfer from Standard tags to settings
 	IF Parameters.System.Operation.RemoteEN AND UpdateTON.Q THEN
 		UpdateTON(IN := False);
-		Parameters.Alarm.Control.ResetAlarms := ADS_Standard.Tags.Settings.ResetAlarms;
+		ExchangeData(	ADR(Parameters.Alarm.Control.ResetAlarms), 
+						ADR(ADS_Standard.Tags.Settings.ResetAlarms), 
+						SIZEOF(Parameters.Alarm.Control.ResetAlarms), 
+						ADR(SavedParameters.Alarm.Control.ResetAlarms), 
+						ADR(SavedInterface.ResetAlarms), 
+						'BOOL', 'Parameters.Alarm.Control.ResetAlarms', 'ResetAlarms');	
 		ResetAlarmTON(IN := ADS_Standard.Tags.Settings.ResetAlarms, PT := T#3S);
 		IF ResetAlarmTON.Q THEN
 			ADS_Standard.Tags.Settings.ResetAlarms := FALSE;
 		END_IF
-		Parameters.Regulation.Control.EN := TRUE;//ADS_Standard.Tags.Settings.VentilationEN;
-		Parameters.Regulation.Temperature.EN := TRUE;//ADS_Standard.Tags.Settings.TemperatureControlEN;
-		IF ADS_Standard.Tags.Settings.TemperatureControlPV = 0 THEN
-			Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
-		ELSIF ADS_Standard.Tags.Settings.TemperatureControlPV = 1 THEN
-			Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.F_BT1;
-		ELSE
-			Parameters.Regulation.Temperature.TemperatureControlSource := TemperatureControlSources.T_BT1;
-		END_IF
+		ExchangeData(	ADR(Parameters.Regulation.Control.EN), 
+						ADR(ADS_Standard.Tags.Settings.VentilationEN), 
+						SIZEOF(Parameters.Regulation.Control.EN), 
+						ADR(SavedParameters.Regulation.Control.EN), 
+						ADR(SavedInterface.VentilationEN), 
+						'BOOL', ('Parameters.Regulation.Control.EN'), ('VentilationEN'));	
+		ExchangeData(	ADR(Parameters.Regulation.Temperature.EN), 
+						ADR(ADS_Standard.Tags.Settings.TemperatureControlEN), 
+						SIZEOF(Parameters.Regulation.Temperature.EN), 
+						ADR(SavedParameters.Regulation.Temperature.EN), 
+						ADR(SavedInterface.TemperatureControlEN), 
+						'BOOL', ('Parameters.Regulation.Temperature.EN'), ('ADS TemperatureControlEN'));	
+		ExchangeData(	ADR(Parameters.Regulation.Temperature.TemperatureControlSource), 
+						ADR(ADS_Standard.Tags.Settings.TemperatureControlPV), 
+						SIZEOF(Parameters.Regulation.Temperature.TemperatureControlSource), 
+						ADR(SavedParameters.Regulation.Temperature.TemperatureControlSource), 
+						ADR(SavedInterface.TemperatureControlPV), 
+						'INT', ('Parameters.Regulation.Temperature.TemperatureControlSource'), ('ADS TemperatureControlPV'));	
 		
-		IF TestExchange THEN
-			ExchangeData(	ADR(Parameters.Regulation.Temperature.Control.SP), 
-							ADR(ADS_Standard.Tags.Settings.Temperature_SP), 
-							SIZEOF(Parameters.Regulation.Temperature.Control.SP), 
-							ADR(SavedParameters.Regulation.Temperature.Control.SP), 
-							ADR(SavedInterface.Temperature_SP), 
-							'LREAL', sLiteral_TO_UTF8('Temp SP changed locally to $${Value} °C'), sLiteral_TO_UTF8('Temp SP changed via ADS to $${Value} °C'));	
-			ExchangeData(	ADR(Parameters.Regulation.Temperature.SetPointAdjustment.Curve), 
-							ADR(ADS_Standard.Tags.Settings.SetPointOffsetCurve), 
-							SIZEOF(Parameters.Regulation.Temperature.SetPointAdjustment.Curve), 
-							ADR(SavedParameters.Regulation.Temperature.SetPointAdjustment.Curve), 
-							ADR(SavedInterface.SetPointOffsetCurve), 
-							'SetPointOffsetCurve', sLiteral_TO_UTF8('Temp curve changed locally'), sLiteral_TO_UTF8('Temp curve changed via ADS'));	
-			ExchangeData(	ADR(Parameters.Alarm.Delay.B.HeatExchangerEfficiency), 
-							ADR(ADS_Standard.Tags.Settings.HeatExchangerEfficiencyAlarmDelay), 
-							SIZEOF(Parameters.Alarm.Delay.B.HeatExchangerEfficiency), 
-							ADR(SavedParameters.Alarm.Delay.B.HeatExchangerEfficiency), 
-							ADR(SavedInterface.HeatExchangerEfficiencyAlarmDelay), 
-							'TIME', sLiteral_TO_UTF8('HeatExchangerEfficiencyAlarmDelay changed locally'), sLiteral_TO_UTF8('HeatExchangerEfficiencyAlarmDelay changed via ADS'));	
-			ExchangeData(	ADR(Parameters.Alarm.Limits.B.HeatExchangerEfficiency), 
-							ADR(ADS_Standard.Tags.Settings.HeatExchangerEfficiencyAlarmLimit), 
-							SIZEOF(Parameters.Alarm.Limits.B.HeatExchangerEfficiency), 
-							ADR(SavedParameters.Alarm.Limits.B.HeatExchangerEfficiency), 
-							ADR(SavedInterface.HeatExchangerEfficiencyAlarmLimit), 
-							'REAL', sLiteral_TO_UTF8('HeatExchangerEfficiencyAlarmLimit changed locally'), sLiteral_TO_UTF8('HeatExchangerEfficiencyAlarmLimit changed via ADS'));	
-		ELSE	
-			Parameters.Regulation.Temperature.Control.SP := ADS_Standard.Tags.Settings.Temperature_SP;
-			Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Standard.Tags.Settings.SetPointOffsetCurve; 
-		END_IF
+		ExchangeData(	ADR(Parameters.Regulation.Temperature.Control.SP), 
+						ADR(ADS_Standard.Tags.Settings.Temperature_SP), 
+						SIZEOF(Parameters.Regulation.Temperature.Control.SP), 
+						ADR(SavedParameters.Regulation.Temperature.Control.SP), 
+						ADR(SavedInterface.Temperature_SP), 
+						'LREAL', ('Parameters.Regulation.Temperature.Control.SP'), ('Temperature_SP'));	
+		ExchangeData(	ADR(Parameters.Regulation.Temperature.SetPointAdjustment.Curve), 
+						ADR(ADS_Standard.Tags.Settings.SetPointOffsetCurve), 
+						SIZEOF(Parameters.Regulation.Temperature.SetPointAdjustment.Curve), 
+						ADR(SavedParameters.Regulation.Temperature.SetPointAdjustment.Curve), 
+						ADR(SavedInterface.SetPointOffsetCurve), 
+						'SetPointOffsetCurve', ('Parameters.Regulation.Temperature.SetPointAdjustment.Curve'), ('SetPointOffsetCurve'));	
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.HeatExchangerEfficiency), 
+						ADR(ADS_Standard.Tags.Settings.HeatExchangerEfficiencyAlarmDelay), 
+						SIZEOF(Parameters.Alarm.Delay.B.HeatExchangerEfficiency), 
+						ADR(SavedParameters.Alarm.Delay.B.HeatExchangerEfficiency), 
+						ADR(SavedInterface.HeatExchangerEfficiencyAlarmDelay), 
+						'TIME', ('Parameters.Alarm.Delay.B.HeatExchangerEfficiency'), ('HeatExchangerEfficiencyAlarmDelay'));	
+		ExchangeData(	ADR(Parameters.Alarm.Limits.B.HeatExchangerEfficiency), 
+						ADR(ADS_Standard.Tags.Settings.HeatExchangerEfficiencyAlarmLimit), 
+						SIZEOF(Parameters.Alarm.Limits.B.HeatExchangerEfficiency), 
+						ADR(SavedParameters.Alarm.Limits.B.HeatExchangerEfficiency), 
+						ADR(SavedInterface.HeatExchangerEfficiencyAlarmLimit), 
+						'REAL', ('Parameters.Alarm.Limits.B.HeatExchangerEfficiency'), ('HeatExchangerEfficiencyAlarmLimit'));	
 		
-		Parameters.Regulation.Temperature.Control.P := ADS_Standard.Tags.Settings.TemperatureControl_P;
-		Parameters.Regulation.Temperature.Control.I := ADS_Standard.Tags.Settings.TemperatureControl_I;
-		Parameters.Regulation.Temperature.Control.D := ADS_Standard.Tags.Settings.TemperatureControl_D;
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.Temperature.Control.P), 
+						ADR(ADS_Standard.Tags.Settings.TemperatureControl_P), 
+						ADR(SavedParameters.Regulation.Temperature.Control.P), 
+						ADR(SavedInterface.TemperatureControl_P), 
+						('Parameters.Regulation.Temperature.Control.P'), ('TemperatureControl_P'));	
+
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.Temperature.Control.I), 
+						ADR(ADS_Standard.Tags.Settings.TemperatureControl_I), 
+						ADR(SavedParameters.Regulation.Temperature.Control.I), 
+						ADR(SavedInterface.TemperatureControl_I), 
+						('Parameters.Regulation.Temperature.Control.I'), ('TemperatureControl_I'));	
+
+
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.Temperature.Control.D), 
+						ADR(ADS_Standard.Tags.Settings.TemperatureControl_D), 
+						ADR(SavedParameters.Regulation.Temperature.Control.D), 
+						ADR(SavedInterface.TemperatureControl_D), 
+						('Parameters.Regulation.Temperature.Control.D'), ('TemperatureControl_D'));	
+
+
 		//Parameters.System.Operation.StartupHeatRecoveryTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.StartupHeatRecoveryTime);
 		//Parameters.System.Operation.PostFireVentilationTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.PostFireVentilationTime);
+		
+		
+		
 		Parameters.Regulation.SupplyAir.ControlMode := ADS_Standard.Tags.Settings.SupplyFanControlMode;
+		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.ControlMode), 
+						ADR(ADS_Standard.Tags.Settings.SupplyFanControlMode), 
+						SIZEOF(Parameters.Regulation.SupplyAir.ControlMode), 
+						ADR(SavedParameters.Regulation.Temperature.TemperatureControlSource), 
+						ADR(SavedInterface.SupplyFanControlMode), 
+						'INT', ('Parameters.Regulation.SupplyAir.ControlMode'), ('SupplyFanControlMode'));	
+		
+		// TBD ExchangeData !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		Parameters.Regulation.SupplyAir.Control.SP := ADS_Standard.Tags.Settings.SupplyFan_SP;
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP;
 		Parameters.Regulation.SupplyAir.Control.P := ADS_Standard.Tags.Settings.SupplyFanControl_P;
@@ -273,6 +310,7 @@ IF EN THEN
 	PreEN := TRUE;
 	
 	ModbusSettings();
+	ModbusStatus();
 ELSE
 	IF PreEN THEN
 		Globals.IO.DOut.DO16 := FALSE;
@@ -303,7 +341,7 @@ END_VAR]]></Declaration>
 	MemCpy(PSavedData2, PData1, Size);
 	MemCpy(PSavedData1, PData1, Size);
 	IF LogText1 <> '' THEN
-		Main.EventLog.LogEventJSON(EventTypes.Information, LogText1, VarType, Size, PData1);	
+		Main.EventLog.LogEventJSON(EventTypes.Information, concat('Local change ', concat(concat(LogText1, ' => '), LogText2)), VarType, Size, PData1);	
 	END_IF
 END_IF
 IF MemCmp(PData2, PSavedData2, Size) <> 0 THEN
@@ -311,7 +349,41 @@ IF MemCmp(PData2, PSavedData2, Size) <> 0 THEN
 	MemCpy(PSavedData1, PData2, Size);
 	MemCpy(PSavedData2, PData2, Size);
 	IF LogText2 <> '' THEN
-		Main.EventLog.LogEventJSON(EventTypes.Information, LogText2, VarType, Size, PData2);	
+		Main.EventLog.LogEventJSON(EventTypes.Information, concat('ADS change ', concat(concat(LogText2, ' => '), LogText1)), VarType, Size, PData2);	
+	END_IF
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ExchangeData_LREAL_REAL" Id="{2e233188-bb31-4307-8a75-28c6820feef1}">
+      <Declaration><![CDATA[METHOD ExchangeData_LREAL_REAL : BOOL
+VAR_INPUT
+	PData1: POINTER TO LREAL;
+	PData2: POINTER TO REAL;
+	PSavedData1: POINTER TO LREAL;
+	PSavedData2: POINTER TO REAL;
+	{attribute 'TcEncoding':='UTF-8'}
+	LogText1: STRING := '';
+	{attribute 'TcEncoding':='UTF-8'}
+	LogText2: STRING := '';
+END_VAR
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF PData1^ <> PSavedData1^ THEN
+	PData2^ := TO_REAL(PData1^);
+	PSavedData2^ := TO_REAL(PData1^);
+	PSavedData1^ := PData1^;
+	IF LogText1 <> '' THEN
+		Main.EventLog.LogEventJSON(EventTypes.Information, concat('Local change ', concat(concat(LogText1, ' => '), LogText2)), 'LREAL', SIZEOF(LREAL), PData1);	
+	END_IF
+END_IF
+IF PData2^ <> PSavedData2^ THEN
+	PData1^ := TO_LREAL(PData2^);
+	PSavedData1^ := TO_LREAL(PData2^);
+	PSavedData2^ := PData2^;
+	IF LogText2 <> '' THEN
+		Main.EventLog.LogEventJSON(EventTypes.Information, concat('ADS change ', concat(concat(LogText2, ' => '), LogText1)), 'REAL', SIZEOF(REAL), PData2);	
 	END_IF
 END_IF
 ]]></ST>
@@ -323,22 +395,22 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[GVL_MB.mb_Output_Registers[0] := BOOL_TO_WORD(ADS_Standard.Tags.Status.TC_V);]]></ST>
+        <ST><![CDATA[GVL.mb_Output_Registers[0] := BOOL_TO_WORD(ADS_Standard.Tags.Status.TC_V);]]></ST>
       </Implementation>
     </Method>
     <Action Name="ModbusStatus" Id="{0977aaf0-06a9-4503-8531-2e133e4315a5}">
       <Implementation>
-        <ST><![CDATA[GVL_MB.mb_Input_Registers[0] := REAL_TO_WORD(ADS_Standard.Tags.Status.Temperature_CSP);
+        <ST><![CDATA[GVL.mb_Input_Registers[0] := REAL_TO_WORD(ADS_Standard.Tags.Status.Temperature_CSP);
 
-GVL_MB.mb_Input_Registers[100] := REAL_TO_WORD(ADS_Standard.Tags.Status.BT1_PV*10.0);
-GVL_MB.mb_Input_Registers[101] := REAL_TO_WORD(ADS_Standard.Tags.Status.T_BT2_PV*10.0);
-GVL_MB.mb_Input_Registers[102] := REAL_TO_WORD(ADS_Standard.Tags.Status.T_BT3_PV*10.0);
-GVL_MB.mb_Input_Registers[103] := REAL_TO_WORD(ADS_Standard.Tags.Status.H_BT1_PV*10.0);
-GVL_MB.mb_Input_Registers[104] := REAL_TO_WORD(ADS_Standard.Tags.Status.T_BT1_PV*10.0);
-GVL_MB.mb_Input_Registers[105] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT1_PV*10.0);
-GVL_MB.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10.0);
+GVL.mb_Input_Registers[100] := REAL_TO_WORD(ADS_Standard.Tags.Status.BT1_PV*10.0);
+GVL.mb_Input_Registers[101] := REAL_TO_WORD(ADS_Standard.Tags.Status.T_BT2_PV*10.0);
+GVL.mb_Input_Registers[102] := REAL_TO_WORD(ADS_Standard.Tags.Status.T_BT3_PV*10.0);
+GVL.mb_Input_Registers[103] := REAL_TO_WORD(ADS_Standard.Tags.Status.H_BT1_PV*10.0);
+GVL.mb_Input_Registers[104] := REAL_TO_WORD(ADS_Standard.Tags.Status.T_BT1_PV*10.0);
+GVL.mb_Input_Registers[105] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT1_PV*10.0);
+GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10.0);
 
-//GVL_MB.mb_Input_Registers[200] := REAL_TO_INT(ADS_Standard.Tags.Status.T_BP *10.0);
+//GVL.mb_Input_Registers[200] := REAL_TO_INT(ADS_Standard.Tags.Status.T_BP *10.0);
 
 ]]></ST>
       </Implementation>
@@ -346,16 +418,35 @@ GVL_MB.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV
     <LineIds Name="Standard_Interface">
       <LineId Id="2100" Count="2" />
       <LineId Id="2306" Count="1" />
-      <LineId Id="2103" Count="50" />
-      <LineId Id="2155" Count="2" />
+      <LineId Id="2103" Count="36" />
+      <LineId Id="2386" Count="3" />
+      <LineId Id="2384" Count="1" />
+      <LineId Id="2141" Count="3" />
+      <LineId Id="2390" Count="17" />
+      <LineId Id="2155" Count="0" />
+      <LineId Id="2157" Count="0" />
       <LineId Id="2308" Count="10" />
       <LineId Id="2321" Count="5" />
       <LineId Id="2329" Count="5" />
-      <LineId Id="2158" Count="1" />
-      <LineId Id="2319" Count="0" />
-      <LineId Id="2160" Count="31" />
+      <LineId Id="2161" Count="0" />
+      <LineId Id="2410" Count="1" />
+      <LineId Id="2413" Count="2" />
+      <LineId Id="2409" Count="0" />
+      <LineId Id="2418" Count="4" />
+      <LineId Id="2416" Count="1" />
+      <LineId Id="2425" Count="4" />
+      <LineId Id="2423" Count="1" />
+      <LineId Id="2165" Count="1" />
+      <LineId Id="2430" Count="2" />
+      <LineId Id="2167" Count="0" />
+      <LineId Id="2434" Count="5" />
+      <LineId Id="2433" Count="0" />
+      <LineId Id="2440" Count="0" />
+      <LineId Id="2168" Count="23" />
       <LineId Id="2320" Count="0" />
-      <LineId Id="2192" Count="113" />
+      <LineId Id="2192" Count="107" />
+      <LineId Id="2379" Count="0" />
+      <LineId Id="2300" Count="5" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Standard_Interface.ExchangeData">
@@ -365,6 +456,16 @@ GVL_MB.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV
       <LineId Id="132" Count="0" />
       <LineId Id="121" Count="4" />
       <LineId Id="134" Count="2" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="Standard_Interface.ExchangeData_LREAL_REAL">
+      <LineId Id="117" Count="3" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="121" Count="1" />
+      <LineId Id="165" Count="5" />
       <LineId Id="126" Count="0" />
       <LineId Id="15" Count="0" />
     </LineIds>
