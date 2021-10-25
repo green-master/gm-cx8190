@@ -17,6 +17,7 @@ VAR
 	GM_XXL: REFERENCE TO GreenMasterXXL_FB;
 	T_BT1, T_BT2, T_BT3, H_BT1, F_BT2: TemperatureInput;
 	bTemp: BOOL;
+	rTemp: REAL;
 	lrTemp: LREAL;
 	tTemp: TIME;
 	ltTemp: LTIME;
@@ -116,6 +117,18 @@ IF EN THEN
 							ADR(SavedParameters.Regulation.Temperature.SetPointAdjustment.Curve), 
 							ADR(SavedInterface.SetPointOffsetCurve), 
 							'SetPointOffsetCurve', sLiteral_TO_UTF8('Temp curve changed locally'), sLiteral_TO_UTF8('Temp curve changed via ADS'));	
+			ExchangeData(	ADR(Parameters.Alarm.Delay.B.HeatExchangerEfficiency), 
+							ADR(ADS_Standard.Tags.Settings.HeatExchangerEfficiencyAlarmDelay), 
+							SIZEOF(Parameters.Alarm.Delay.B.HeatExchangerEfficiency), 
+							ADR(SavedParameters.Alarm.Delay.B.HeatExchangerEfficiency), 
+							ADR(SavedInterface.HeatExchangerEfficiencyAlarmDelay), 
+							'TIME', sLiteral_TO_UTF8('HeatExchangerEfficiencyAlarmDelay changed locally'), sLiteral_TO_UTF8('HeatExchangerEfficiencyAlarmDelay changed via ADS'));	
+			ExchangeData(	ADR(Parameters.Alarm.Limits.B.HeatExchangerEfficiency), 
+							ADR(ADS_Standard.Tags.Settings.HeatExchangerEfficiencyAlarmLimit), 
+							SIZEOF(Parameters.Alarm.Limits.B.HeatExchangerEfficiency), 
+							ADR(SavedParameters.Alarm.Limits.B.HeatExchangerEfficiency), 
+							ADR(SavedInterface.HeatExchangerEfficiencyAlarmLimit), 
+							'REAL', sLiteral_TO_UTF8('HeatExchangerEfficiencyAlarmLimit changed locally'), sLiteral_TO_UTF8('HeatExchangerEfficiencyAlarmLimit changed via ADS'));	
 		ELSE	
 			Parameters.Regulation.Temperature.Control.SP := ADS_Standard.Tags.Settings.Temperature_SP;
 			Parameters.Regulation.Temperature.SetPointAdjustment.Curve := ADS_Standard.Tags.Settings.SetPointOffsetCurve; 
@@ -151,6 +164,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.ENO := Parameters.System.Operation.ENO;
 	ADS_Standard.Tags.Status.Auto := Parameters.IO.DIn.Auto;
 	ADS_Standard.Tags.Status.Hand := Parameters.IO.DIn.Hand;
+	ADS_Standard.Tags.Status.TX1_EFF_AL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.TC_V := TimeChannelActive;
 	ADS_Standard.Tags.Status.F_BR1_AL := (GM_XXL.DI.FireExtractAlarm OR GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir);
 	ADS_Standard.Tags.Status.T_BR1_AL := GM_XXL.DI.FireSupplyAlarm;
@@ -335,9 +349,13 @@ GVL_MB.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV
       <LineId Id="2103" Count="50" />
       <LineId Id="2155" Count="2" />
       <LineId Id="2308" Count="10" />
+      <LineId Id="2321" Count="5" />
+      <LineId Id="2329" Count="5" />
       <LineId Id="2158" Count="1" />
       <LineId Id="2319" Count="0" />
-      <LineId Id="2160" Count="145" />
+      <LineId Id="2160" Count="31" />
+      <LineId Id="2320" Count="0" />
+      <LineId Id="2192" Count="113" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Standard_Interface.ExchangeData">

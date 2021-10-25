@@ -27,7 +27,7 @@ VAR
 	LastReadCount: LINT;
 END_VAR
 VAR PERSISTENT
-	tTimeBetweenReads: TIME := T#500MS;
+	tTimeBetweenReads: TIME := T#100MS;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[SUPER^();
@@ -46,10 +46,15 @@ CASE State OF
 	5:	(* Wait between reads *)
 		WaitModbusBusy(IN := TRUE, PT := tTimeBetweenReads, Q=> , ET=> );	
 		IF WaitModbusBusy.Q = TRUE THEN
-			IF NOT IO[CurrentIoIndex]^.Write THEN
-				State := 10;
+			IF TIME_TO_LTIME(NowDT() - IO[CurrentIoIndex]^.LastUpdate) > IO[CurrentIoIndex]^.UpdateInterval THEN	
+				IO[CurrentIoIndex]^.SetLastUpdate(NowDT());			
+				IF NOT IO[CurrentIoIndex]^.Write THEN
+					State := 10;
+				ELSE
+					State := 110;			
+				END_IF
 			ELSE
-				State := 110;			
+				State := 30;
 			END_IF
 			WaitModbusBusy(IN := FALSE);
 		END_IF		
@@ -158,11 +163,15 @@ END_CASE]]></ST>
       <LineId Id="245" Count="0" />
       <LineId Id="525" Count="5" />
       <LineId Id="346" Count="2" />
+      <LineId Id="849" Count="0" />
+      <LineId Id="858" Count="0" />
       <LineId Id="718" Count="0" />
       <LineId Id="721" Count="0" />
       <LineId Id="719" Count="0" />
       <LineId Id="722" Count="0" />
       <LineId Id="720" Count="0" />
+      <LineId Id="856" Count="1" />
+      <LineId Id="855" Count="0" />
       <LineId Id="350" Count="2" />
       <LineId Id="252" Count="0" />
       <LineId Id="531" Count="1" />

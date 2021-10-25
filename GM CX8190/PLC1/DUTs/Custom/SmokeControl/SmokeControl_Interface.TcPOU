@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SmokeControl_Interface" Id="{f71b6d52-c4bd-4c9f-b001-7802adfd8a60}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SmokeControl_Interface
+VAR_INPUT
+	EN: BOOL;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+END_VAR
+VAR
+	InitDone: BOOL;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	ParametersSC: REFERENCE TO SmokeControlParametersBase;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT InitDone THEN
+	Parameters REF= Main.GreenMaster.GetParameters();
+	ParametersSC REF= Main.GreenMaster.GetParametersSC();
+	InitDone := TRUE;
+END_IF;
+
+ENO := EN;
+
+IF EN THEN
+	// Status
+	ADS_SmokeControl.Tags.Status.COMM_AL := (ParametersSC.DamperModules.Unit01.EN AND ParametersSC.DamperModules.Unit01.Error) OR
+		(ParametersSC.DamperModules.Unit02.EN AND ParametersSC.DamperModules.Unit02.Error) OR
+		(ParametersSC.DamperModules.Unit03.EN AND ParametersSC.DamperModules.Unit03.Error) OR
+		(ParametersSC.DamperModules.Unit04.EN AND ParametersSC.DamperModules.Unit04.Error) OR
+		(ParametersSC.DamperModules.Unit05.EN AND ParametersSC.DamperModules.Unit05.Error) OR
+		(ParametersSC.DamperModules.Unit06.EN AND ParametersSC.DamperModules.Unit06.Error) OR
+		(ParametersSC.DamperModules.Unit07.EN AND ParametersSC.DamperModules.Unit07.Error) OR
+		(ParametersSC.DamperModules.Unit08.EN AND ParametersSC.DamperModules.Unit08.Error) OR
+		(ParametersSC.DamperModules.Unit09.EN AND ParametersSC.DamperModules.Unit09.Error) OR
+		(ParametersSC.DamperModules.Unit10.EN AND ParametersSC.DamperModules.Unit10.Error) OR
+		(ParametersSC.DamperModules.Unit11.EN AND ParametersSC.DamperModules.Unit11.Error) OR
+		(ParametersSC.DamperModules.Unit12.EN AND ParametersSC.DamperModules.Unit12.Error) OR
+		(ParametersSC.DamperModules.Unit13.EN AND ParametersSC.DamperModules.Unit13.Error) OR
+		(ParametersSC.DamperModules.Unit14.EN AND ParametersSC.DamperModules.Unit14.Error) OR
+		(ParametersSC.DamperModules.Unit15.EN AND ParametersSC.DamperModules.Unit15.Error);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_01, ParametersSC.DamperModules.Unit01);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_02, ParametersSC.DamperModules.Unit02);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_03, ParametersSC.DamperModules.Unit03);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_04, ParametersSC.DamperModules.Unit04);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_05, ParametersSC.DamperModules.Unit05);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_06, ParametersSC.DamperModules.Unit06);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_07, ParametersSC.DamperModules.Unit07);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_08, ParametersSC.DamperModules.Unit08);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_09, ParametersSC.DamperModules.Unit09);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_10, ParametersSC.DamperModules.Unit10);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_11, ParametersSC.DamperModules.Unit11);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_12, ParametersSC.DamperModules.Unit12);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_13, ParametersSC.DamperModules.Unit13);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_14, ParametersSC.DamperModules.Unit14);
+	UpdateModuleTags(ADS_SmokeControl.Tags.Status.UNIT_15, ParametersSC.DamperModules.Unit15);
+END_IF
+]]></ST>
+    </Implementation>
+    <Method Name="UpdateModuleTags" Id="{2ef4ed9c-4bab-4e8e-a79a-d737e5bcd8b3}">
+      <Declaration><![CDATA[METHOD UpdateModuleTags : BOOL
+VAR_INPUT
+	SxDuoInterface: REFERENCE TO SxDuoInterface;
+	SxDuoUnitFB: reference to SxDuoUnitFB;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SxDuoInterface.TEXT_PV := SxDuoUnitFB.Text;
+SxDuoInterface.DAMPER1_AL := SxDuoUnitFB.SxDuoStatus.Damper1Alarm;
+SxDuoInterface.DAMPER2_AL := SxDuoUnitFB.SxDuoStatus.Damper2Alarm;
+SxDuoInterface.DAMPER1_V0 := SxDuoUnitFB.SxDuoStatus.Damper1Closed;
+SxDuoInterface.DAMPER2_V0 := SxDuoUnitFB.SxDuoStatus.Damper2Closed;
+SxDuoInterface.DAMPER1_V1 := SxDuoUnitFB.SxDuoStatus.Damper1Open;
+SxDuoInterface.DAMPER2_V1 := SxDuoUnitFB.SxDuoStatus.Damper2Open;
+SxDuoInterface.EXERCISING_V := SxDuoUnitFB.SxDuoStatus.Exercising;
+SxDuoInterface.FIRE_AL := SxDuoUnitFB.SxDuoStatus.FireAlarm;
+SxDuoInterface.SERVICE_AL := SxDuoUnitFB.SxDuoStatus.ServiceAlarm;
+SxDuoInterface.COMM_FAULT := SxDuoUnitFB.Error;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="SmokeControl_Interface">
+      <LineId Id="2100" Count="1" />
+      <LineId Id="2384" Count="0" />
+      <LineId Id="2103" Count="2" />
+      <LineId Id="2129" Count="0" />
+      <LineId Id="2363" Count="0" />
+      <LineId Id="2130" Count="0" />
+      <LineId Id="2188" Count="0" />
+      <LineId Id="2403" Count="1" />
+      <LineId Id="2406" Count="12" />
+      <LineId Id="2385" Count="0" />
+      <LineId Id="2389" Count="13" />
+      <LineId Id="2305" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="SmokeControl_Interface.UpdateModuleTags">
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="7" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

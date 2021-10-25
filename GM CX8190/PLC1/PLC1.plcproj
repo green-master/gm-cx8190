@@ -32,6 +32,24 @@
     <Compile Include="DUTs\Custom\Chalmers\CTH_Interface.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Custom\ExtraAlarms\AdsTagsExtraAlarms.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ExtraAlarms\GreenMasterStatusExtraAlarms.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ExtraAlarms\ExtraAlarms_Interface.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\SmokeControl\AdsTagsSmokeControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\SmokeControl\SmokeControl_Interface.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\SmokeControl\GreenMasterStatusSmokeControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Custom\Redundancy\TagsRedundancy.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -48,6 +66,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\Redundancy\Redundancy.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\SmokeControl\SxDuoInterface.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\Stena\Stena_Interface.TcPOU">
@@ -647,11 +668,19 @@
     <Compile Include="DUTs\Ventilation\VentilationControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\ADS_SmokeControl.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\ADS_Standard.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\ADS_Stena.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\ADS_ExtraAlarms.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
@@ -672,6 +701,10 @@
     </Compile>
     <Compile Include="GVLs\ComponentNames.TcDUT">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\ExtraAlarmInputs.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\GetComponent.TcPOU">
       <SubType>Code</SubType>
@@ -734,6 +767,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="DUTs\Custom\ExtraAlarms" />
+    <Folder Include="DUTs\Custom\SmokeControl" />
     <Folder Include="DUTs\Custom\Redundancy" />
     <Folder Include="DUTs\Custom\_Standard" />
     <Folder Include="DUTs\Exercise" />

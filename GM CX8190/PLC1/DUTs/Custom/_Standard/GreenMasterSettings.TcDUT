@@ -6,6 +6,9 @@ TYPE GreenMasterSettings :
 STRUCT
 RemoteStart :  INT := 1; //  Remote (WebPort) unit activation (-1=Auto, 0=unit off, 1=normal speed, 2=high speed)
 ResetAlarms :  BOOL :=FALSE; //  Reset alarms
+
+HeatExchangerEfficiencyAlarmDelay :  TIME :=T#5M; //  Alarm delay low efficiency
+HeatExchangerEfficiencyAlarmLimit :  REAL :=0.3; //  Alarm limit low efficiencyLimit
 Temperature_SP :  LREAL :=0; //  Temperature Set Point, C
 TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1
 SetPointOffsetCurve :  SetPointOffsetCurve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20); // Outdoorcompensation temperature

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AdsTagsExtraAlarms" Id="{a29c554c-7d24-42c9-8c10-d0d9c36c1c45}">
+    <Declaration><![CDATA[TYPE AdsTagsExtraAlarms :
+STRUCT
+	Status: GreenMasterStatusExtraAlarms;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -9,7 +9,15 @@ STRUCT
 											FirePanelSupplyStop := TRUE, 
 											FirePanelExtractStart := TRUE, 
 											FirePanelExtractStop := TRUE,
-											Fuse := TRUE
+											Fuse := TRUE,
+											AL01 := TRUE,
+											AL02 := TRUE,
+											AL03 := TRUE,
+											AL04 := TRUE,
+											AL05 := TRUE,
+											AL06 := TRUE,
+											AL07 := TRUE,
+											AL08 := TRUE
 									),
 									B := (	RegulationDeviation := TRUE,
 											SupplyAirDeviation := TRUE,
@@ -22,7 +30,8 @@ STRUCT
 											ExtractFilter := TRUE,
 											SmokeDetectorService := TRUE,
 											Pump1 := TRUE,
-											Pump2 := TRUE
+											Pump2 := TRUE,
+											CommunicationError := TRUE
 									),
 									C := (	ExternalSmokeControl := TRUE,
 											ModbusRTU := TRUE,

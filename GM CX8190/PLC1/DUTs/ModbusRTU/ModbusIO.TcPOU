@@ -10,10 +10,12 @@ VAR_INPUT
 	Register: WORD;
 	Write: BOOL := FALSE;
 	ParameterCount: WORD := 1;
+	UpdateInterval: LTIME := LTIME#2S;
 END_VAR
 VAR_OUTPUT
 	ENO: BOOL;
 	Error: BOOL;
+	LastUpdate: DT;
 END_VAR
 VAR_IN_OUT
 END_VAR
@@ -80,6 +82,16 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[ErrorCount := 0;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetLastUpdate" Id="{8f8fe46e-f6c0-4c3c-bddd-e43060bf5896}">
+      <Declaration><![CDATA[METHOD SetLastUpdate : BOOL
+VAR_INPUT
+	CurrentTime: DT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[LastUpdate := CurrentTime;]]></ST>
       </Implementation>
     </Method>
     <Property Name="ValueBoolOut" Id="{3afd66ea-b0f4-4521-80b0-9671f2927062}">
@@ -158,6 +170,9 @@ END_VAR
       <LineId Id="5" Count="2" />
     </LineIds>
     <LineIds Name="ModbusIo.ResetErrorCount">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ModbusIo.SetLastUpdate">
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="ModbusIo.ValueBoolOut.Get">

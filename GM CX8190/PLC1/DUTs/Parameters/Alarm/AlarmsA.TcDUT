@@ -17,6 +17,14 @@ STRUCT
 	FirePanelSupplyStop: BOOL;
 	FirePanelExtractStart: BOOL;
 	FirePanelExtractStop: BOOL;
+	AL01: BOOL;
+	AL02: BOOL;
+	AL03: BOOL;
+	AL04: BOOL;
+	AL05: BOOL;
+	AL06: BOOL;
+	AL07: BOOL;
+	AL08: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

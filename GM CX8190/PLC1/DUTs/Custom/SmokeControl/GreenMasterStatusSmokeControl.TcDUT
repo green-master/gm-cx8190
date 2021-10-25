@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="GreenMasterStatusSmokeControl" Id="{834986a3-ab7e-417f-bacd-416f759ae71f}">
+    <Declaration><![CDATA[TYPE GreenMasterStatusSmokeControl :
+STRUCT
+	COMM_AL: BOOL; // Communication alarm
+	UNIT_01: SxDuoInterface;
+	UNIT_02: SxDuoInterface;
+	UNIT_03: SxDuoInterface;
+	UNIT_04: SxDuoInterface;
+	UNIT_05: SxDuoInterface;
+	UNIT_06: SxDuoInterface;
+	UNIT_07: SxDuoInterface;
+	UNIT_08: SxDuoInterface;
+	UNIT_09: SxDuoInterface;
+	UNIT_10: SxDuoInterface;
+	UNIT_11: SxDuoInterface;
+	UNIT_12: SxDuoInterface;
+	UNIT_13: SxDuoInterface;
+	UNIT_14: SxDuoInterface;
+	UNIT_15: SxDuoInterface;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

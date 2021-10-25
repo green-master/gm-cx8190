@@ -3,9 +3,9 @@
   <DUT Name="AlarmLimitsA" Id="{4247b6ac-ae38-485c-8b72-e24b66dd451c}">
     <Declaration><![CDATA[TYPE AlarmLimitsA :
 STRUCT
-	FireExtractTemperature: LREAL := 45; // $(W1,S,R0)
-	FireExtractPressureTemperature: LREAL := 38; // $(W1,S,R0)
-	FireExtractPressure: LREAL := 170; // $(W1,S,R0)
+	FireExtractTemperature: REAL := 45; // $(W1,S,R0)
+	FireExtractPressureTemperature: REAL := 38; // $(W1,S,R0)
+	FireExtractPressure: REAL := 170; // $(W1,S,R0)
 END_STRUCT
 END_TYPE
 ]]></Declaration>
