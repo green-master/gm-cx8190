@@ -12,6 +12,8 @@ F_BR1_AL :  BOOL; // Centralt brandlarm
 TC_V : BOOL; // Tidkanal i aggregat är aktiv
 F_BR1_FAULT :  BOOL; // Servicelarm för RD i frånluft
 Fire_AL :  BOOL; // Brandlarm
+F_BR2_AL :  BOOL; // Brandlarm frånluft temperatur (normalt 45 C)
+F_BR3_AL :  BOOL; // Brandlarm frånluft temperatur och tryck (normalt 38 C och 170 Pa)
 Fuse_AL :  BOOL; // Utlöst säkring
 T_BR1_AL :  BOOL; // Brandlarm tilluft
 T_BR1_FAULT :  BOOL; // Servicelarm för RD i tilluft

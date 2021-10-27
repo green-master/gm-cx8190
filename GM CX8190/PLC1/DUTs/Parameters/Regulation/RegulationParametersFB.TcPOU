@@ -62,8 +62,8 @@ IF CurrentMaxFlow <> 0 THEN
 ELSE
 	SystemSpecificFanPower := 0;
 END_IF
-IF SupplyAir.PressureRise <> 0 THEN
-	SystemEfficiency := SystemSpecificFanPower / (SupplyAir.PressureRise / 1000);
+IF (SupplyAir.PressureRise + ExtractAir.PressureRise) <> 0 THEN
+	SystemEfficiency := (SupplyAir.SpecificFanPower + ExtractAir.SpecificFanPower) / ((SupplyAir.PressureRise + ExtractAir.PressureRise) / 1000);
 ELSE
 	SystemEfficiency := 0;	
 END_IF

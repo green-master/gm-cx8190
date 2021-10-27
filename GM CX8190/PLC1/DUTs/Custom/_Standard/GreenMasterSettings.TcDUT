@@ -98,6 +98,55 @@ T_GQ1_OPM :  REAL; //  Supply air fan control manual value
 F_GQ1_OPM :  REAL; //  Extract air fan control manual value
 C_QN1_OPM :  REAL; //  Cool supply control valve manual value
 H_QN1_OPM :  REAL; //  Heat supply control valve manual value
+
+CT1 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT2 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT3 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT4 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT5 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT6 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT7 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+
+CT11 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT12 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT13 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT14 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT15 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT16 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT17 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+
+CT21 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT22 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT23 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT24 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT25 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT26 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CT27 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+
+CF1 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF2 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF3 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF4 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF5 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF6 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF7 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+
+CF11 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF12 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF13 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF14 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF15 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF16 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF17 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+
+CF21 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF22 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF23 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF24 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF25 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF26 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+CF27 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+
 END_STRUCT
 END_TYPE
 ]]></Declaration>

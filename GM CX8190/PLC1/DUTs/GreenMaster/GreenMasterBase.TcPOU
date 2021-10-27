@@ -322,7 +322,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"NOT Parameters.IO.DIn.FuseAlarm"</v>
+                      <v n="Text">"NOT Parameters.Alarm.Active.A.Fuse"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147502552L</v>
                     </o>
@@ -9288,7 +9288,7 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147502553L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">38</v>
+                      <v n="X">39</v>
                       <v n="Y">10</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -9300,7 +9300,7 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">38</v>
+                        <v n="X">39</v>
                         <v n="Y">10</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -13156,48 +13156,24 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147502770L</v>
+                    <v n="ConnectionId">2147501341L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">23</v>
-                      <v n="Y">11</v>
+                      <v n="X">28</v>
+                      <v n="Y">8</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
                     <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147490091L</v>
+                    <v n="CorrespondingPageId">2147483860L</v>
                     <v n="Locked">false</v>
                   </o>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">23</v>
-                        <v n="Y">11</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
                         <v n="X">28</v>
-                        <v n="Y">11</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">3</v>
-                      </o>
-                      <o>
-                        <v n="X">28</v>
-                        <v n="Y">9</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">12</v>
-                      </o>
-                      <o>
-                        <v n="X">34</v>
-                        <v n="Y">9</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">3</v>
-                      </o>
-                      <o>
-                        <v n="X">34</v>
                         <v n="Y">8</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">12</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">46</v>
@@ -13384,11 +13360,11 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF bInitRetains THEN
-	Parameters.Regulation.Temperature.Control.SP := 20;	
-	Parameters.Regulation.SupplyAir.Control.SP := 100;	
-	Parameters.Regulation.ExtractAir.Control.SP := 100;	
-	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := 100;	
-	Parameters.Regulation.ExtractAir.Control.SP_HighSpeed := 100;	
+	Parameters.Regulation.Temperature.Control.SP := 0;	
+	Parameters.Regulation.SupplyAir.Control.SP := 0;	
+	Parameters.Regulation.ExtractAir.Control.SP := 0;	
+	Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := 0;	
+	Parameters.Regulation.ExtractAir.Control.SP_HighSpeed := 0;	
 END_IF
 ]]></ST>
       </Implementation>
@@ -13591,7 +13567,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runnable := ENO and not (Parameters.Alarm.Active.B.ExtractFan or Parameters.Alarm.Active.B.SupplyFan);]]></ST>
+        <ST><![CDATA[Runnable := ENO AND (NOT (Parameters.Alarm.Active.B.ExtractFan OR Parameters.Alarm.Active.B.SupplyFan)) AND
+	(Parameters.IO.DIn.Hand OR (Parameters.IO.DIn.Auto AND Parameters.System.Operation.TimeChannels.Q));]]></ST>
       </Implementation>
     </Method>
     <Method Name="Simulate" Id="{2c7e379c-c1c7-4206-9735-f2160708f434}">
@@ -14151,6 +14128,7 @@ Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampe
     </LineIds>
     <LineIds Name="GreenMasterBase.Runnable">
       <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="GreenMasterBase.Simulate">
       <LineId Id="40" Count="7" />

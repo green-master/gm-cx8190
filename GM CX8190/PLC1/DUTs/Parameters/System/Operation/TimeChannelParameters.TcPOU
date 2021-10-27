@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="TimeChannelParameters" Id="{da56f15f-511d-409e-bbc6-3822c1ef44b4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TimeChannelParameters
+VAR_INPUT
+	TC01: TimeChannel1CH := ( Day := TimerDays.Monday );
+	TC02: TimeChannel1CH := ( Day := TimerDays.Tuesday );
+	TC03: TimeChannel1CH := ( Day := TimerDays.Wednesday );
+	TC04: TimeChannel1CH := ( Day := TimerDays.Thursday );
+	TC05: TimeChannel1CH := ( Day := TimerDays.Friday );
+	TC06: TimeChannel1CH := ( Day := TimerDays.Saturday );
+	TC07: TimeChannel1CH := ( Day := TimerDays.Sunday );
+	TC11: TimeChannel1CH := ( Day := TimerDays.Monday );
+	TC12: TimeChannel1CH := ( Day := TimerDays.Tuesday );
+	TC13: TimeChannel1CH := ( Day := TimerDays.Wednesday );
+	TC14: TimeChannel1CH := ( Day := TimerDays.Thursday );
+	TC15: TimeChannel1CH := ( Day := TimerDays.Friday );
+	TC16: TimeChannel1CH := ( Day := TimerDays.Saturday );
+	TC17: TimeChannel1CH := ( Day := TimerDays.Sunday );
+	TC21: TimeChannel1CH := ( Day := TimerDays.Monday );
+	TC22: TimeChannel1CH := ( Day := TimerDays.Tuesday );
+	TC23: TimeChannel1CH := ( Day := TimerDays.Wednesday );
+	TC24: TimeChannel1CH := ( Day := TimerDays.Thursday );
+	TC25: TimeChannel1CH := ( Day := TimerDays.Friday );
+	TC26: TimeChannel1CH := ( Day := TimerDays.Saturday );
+	TC27: TimeChannel1CH := ( Day := TimerDays.Sunday );
+	Q: BOOL; // Result of the time channels
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="TimeChannelParameters">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

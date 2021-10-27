@@ -20,6 +20,7 @@ STRUCT
 	SupplyFanStartupDelay: LTIME := LTIME#40S;
 	PostVentilationTime: LTIME := LTIME#2M;
 	PostFireVentilationTime: LTIME := LTIME#0M;
+	TimeChannels: TimeChannelParameters;
 	(*
 	MaxFilterPressure: MaxFilterPressure;
 	OvkActivation: OvkActivation;

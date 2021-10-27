@@ -101,19 +101,6 @@ IF EN THEN
 	TimeChannelEnabled := FALSE;
 	TimeChannelActive := FALSE;
 	
-	TimeChannelEnabled := TimeChannelEnabled OR ADS_CTH.Tags2.Schedule1.EN;
-	TimeChannelActive := TimeChannelActive OR ADS_CTH.Tags2.Schedule1.Q;
-	TimeChannel1(Settings := ADS_CTH.Tags2.Schedule1);
-	
-	TimeChannelEnabled := TimeChannelEnabled OR ADS_CTH.Tags2.Schedule2.EN;
-	TimeChannelActive := TimeChannelActive OR ADS_CTH.Tags2.Schedule2.Q;
-	TimeChannel2(Settings := ADS_CTH.Tags2.Schedule2);
-	
-	TimeChannelEnabled := TimeChannelEnabled OR ADS_CTH.Tags2.Schedule3.EN;
-	TimeChannelActive := TimeChannelActive OR ADS_CTH.Tags2.Schedule3.Q;
-	TimeChannel3(Settings := ADS_CTH.Tags2.Schedule3);
-	
-	TimeChannelFallback(Settings := ADS_CTH.Tags2.ScheduleFallback);
 	WatchdogTOF(IN := (NOT ADS_CTH.Tags2.Settings.LA02_WatchdogEnabled) OR (ADS_CTH.Tags2.Settings.LA02_Watchdog <> LastWatchDog), PT := T#5M);
 	
 	IF WatchdogTOF.Q THEN
@@ -240,7 +227,8 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="CTH_Interface">
-      <LineId Id="2170" Count="189" />
+      <LineId Id="2170" Count="53" />
+      <LineId Id="2237" Count="122" />
       <LineId Id="1698" Count="0" />
     </LineIds>
   </POU>

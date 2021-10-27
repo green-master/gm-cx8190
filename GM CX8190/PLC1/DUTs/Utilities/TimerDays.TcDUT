@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="TimerDays" Id="{56e2a2fb-7862-4c11-8cd1-6088a6f5d2ab}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE TimerDays :
+(
+	Monday := 0, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AllDays
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
