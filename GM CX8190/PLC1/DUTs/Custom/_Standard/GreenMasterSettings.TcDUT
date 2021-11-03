@@ -13,7 +13,8 @@ HeatExchangerEfficiencyAlarmDelay :  TIME :=T#5M; //  Alarm delay low efficiency
 HeatExchangerEfficiencyAlarmLimit :  REAL :=0.3; //  Alarm limit low efficiencyLimit
 Temperature_SP :  LREAL :=0; //  Temperature Set Point, C
 TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1
-SetPointOffsetCurve :  SetPointOffsetCurve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20); // Outdoorcompensation temperature
+//SetPointOffsetCurve :  SetPointOffsetCurve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20); // Outdoorcompensation temperature
+SetPointOffsetCurve :  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 
 
@@ -39,7 +40,8 @@ PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to 
 SupplyFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/T.BP1, 1=Flow/T.BF1) for Supply Air
 SupplyFan_SP :  REAL :=0 ; //  Supply air control Set Point
 SupplyFanHighSpeed_SP :  REAL ; //  Supply air control high speed Set Point
-SupplyFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 165, Y2 := 165, Y3 := 165, Y4 := 165, Y5 := 165, Y6 := 165, Y7 := 165, Y8 := 165, Y9 := 165); // Outdoorcompensation temperature
+//SupplyFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 165, Y2 := 165, Y3 := 165, Y4 := 165, Y5 := 165, Y6 := 165, Y7 := 165, Y8 := 165, Y9 := 165); // Outdoorcompensation temperature
+SupplyFanOffsetCurve:  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 
 
@@ -62,7 +64,8 @@ SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I
 ExtractFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/F.BP1, 1=Flow/F.BF1) for Extract Air
 ExtractFan_SP :  REAL := 0; //  Extract air control Set Point
 ExtractFanHighSpeed_SP :  REAL ; //  Extract air control high speed Set Point
-ExtractFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 160, Y2 := 160, Y3 := 160, Y4 := 160, Y5 := 160, Y6 := 160, Y7 := 160, Y8 := 160, Y9 := 160); // Outdoorcompensation temperature
+//ExtractFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 160, Y2 := 160, Y3 := 160, Y4 := 160, Y5 := 160, Y6 := 160, Y7 := 160, Y8 := 160, Y9 := 160); // Outdoorcompensation temperature
+ExtractFanOffsetCurve :  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 
 
@@ -99,53 +102,8 @@ F_GQ1_OPM :  REAL; //  Extract air fan control manual value
 C_QN1_OPM :  REAL; //  Cool supply control valve manual value
 H_QN1_OPM :  REAL; //  Heat supply control valve manual value
 
-CT1 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT2 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT3 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT4 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT5 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT6 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT7 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+TC: TimeChannel_CT_CF;
 
-CT11 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT12 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT13 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT14 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT15 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT16 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT17 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-
-CT21 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT22 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT23 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT24 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT25 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT26 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CT27 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-
-CF1 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF2 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF3 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF4 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF5 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF6 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF7 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-
-CF11 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF12 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF13 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF14 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF15 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF16 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF17 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-
-CF21 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF22 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF23 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF24 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF25 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF26 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-CF27 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
 
 END_STRUCT
 END_TYPE

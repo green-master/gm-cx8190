@@ -6,7 +6,7 @@ VAR_INPUT
 	EN: BOOL := TRUE;// Enable the time channel (settings must also be enabled)
 	Speed            : INT;		// $(skip) 0,1=normal speed, 2=high speed
 	OnTime           : UINT;	(* Hour/minute value of the switch-on time on the day *)
-	OffTime          : UINT;	(* Hour/minute value of the switch-off time on the day *)
+	OffTime          : UINT := 2400;	(* Hour/minute value of the switch-off time on the day *)
 	Day: TimerDays;
 	SingleShot       : BOOL;	(* $(skip) Resets EN after the on/off cycle is complete *)   
 END_VAR
@@ -33,6 +33,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[Loop := Loop + 1;
+Error := False;
 IF Loop >= 10 THEN
 	Loop := 0;
 	OnHour := OnTime / 100;
@@ -40,19 +41,12 @@ IF Loop >= 10 THEN
 	OffHour := OffTime / 100;
 	OffMinute := OffTime MOD 100;
 	LocalSystemTime(bEnable := TRUE);
-	IF OnHour > 23 OR OnMinute > 59 OR OffHour > 23 OR OffMinute > 59 THEN
-		Error := TRUE;
-		ErrorID := 1;						
-	ELSE
-		Error := FALSE;
-		ErrorID := 0;						
-	END_IF
 	IF EN AND (NOT Error) THEN
 		IF LocalSystemTime.bValid THEN	
 			CurrentDay := F_GetDayOfWeek(in := NowDT()); 
 			DayMatch := Day = TimerDays.AllDays OR (TO_WORD(Day) = CurrentDay - 1);
-			IF DayMatch AND OnHour = OffHour AND OnMinute = OffMinute THEN
-				Q := TRUE;
+			IF OnHour = OffHour AND OnMinute = OffMinute THEN
+				Q := FALSE;
 			ELSE
 				MinuteOfDay := LocalSystemTime.systemTime.wHour * 60 + LocalSystemTime.systemTime.wMinute;
 				StartMinuteOfDay := OnHour * 60 + OnMinute;
@@ -77,13 +71,12 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="TimeChannel1CH">
-      <LineId Id="167" Count="1" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="338" Count="0" />
+      <LineId Id="168" Count="0" />
       <LineId Id="173" Count="0" />
       <LineId Id="305" Count="3" />
       <LineId Id="136" Count="0" />
-      <LineId Id="180" Count="2" />
-      <LineId Id="211" Count="0" />
-      <LineId Id="184" Count="2" />
       <LineId Id="54" Count="0" />
       <LineId Id="131" Count="0" />
       <LineId Id="55" Count="1" />
