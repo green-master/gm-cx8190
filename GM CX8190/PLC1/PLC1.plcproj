@@ -779,6 +779,9 @@
     <Compile Include="POUs\AdsReadVariable.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\TestPID.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Timers.TcPOU">
       <SubType>Code</SubType>
     </Compile>

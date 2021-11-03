@@ -41,6 +41,7 @@ VAR
 	SavedParameters: GreenMasterBaseParameters;
 	DevMon: DeviationMonitor;
 	DevValue: LREAL;
+	TestPID: TestPID;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -57,6 +58,8 @@ SavedParameters := GreenMaster.GetParameters();
 Globals.SystemUpTime := DT_TO_DWORD(NowDT()) - DT_TO_DWORD(Globals.SystemStartTime);
 
 NightCooling := FALSE;
+
+TestPID();
 
 str := '';
 FOR n := 0 TO GlobalSettings.MAX_COMPONENTS DO
@@ -187,7 +190,10 @@ SmokeControl_Interface(EN := GetComponent(Name := ComponentNames.GM_SMOKE_CONTRO
 ]]></ST>
     </Implementation>
     <LineIds Name="Main">
-      <LineId Id="2117" Count="79" />
+      <LineId Id="2117" Count="10" />
+      <LineId Id="2417" Count="0" />
+      <LineId Id="2416" Count="0" />
+      <LineId Id="2128" Count="68" />
       <LineId Id="2272" Count="0" />
       <LineId Id="2198" Count="14" />
       <LineId Id="2282" Count="5" />

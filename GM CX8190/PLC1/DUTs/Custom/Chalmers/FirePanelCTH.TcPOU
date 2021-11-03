@@ -121,12 +121,13 @@ IF ENO THEN
 							Pressure := Parameters.IO.AIn.T_BP1,
 							PostVentilationTime := LTIME#0S,
 							Damper := SupplyDamperOpen,
-							FanAlarm := TRUE);
+							FanAlarm := TRUE,
+							Parameters := Parameters);
 		SupplyFanAO := SupplyFanControl.CV;	
 	END_IF
 	IF Parameters.Alarm.Status.A.FirePanelSupplyStop THEN
 		SupplyDamper := FALSE;
-		SupplyFanControl(EN := FALSE);
+		SupplyFanControl(EN := FALSE, Parameters := Parameters);
 		SupplyFanAO := 0;
 	END_IF
 	
@@ -139,12 +140,13 @@ IF ENO THEN
 							Pressure := Parameters.IO.AIn.F_BP1,
 							PostVentilationTime := LTIME#0S,
 							Damper := ExtractDamperOpen,
-							FanAlarm := TRUE);
+							FanAlarm := TRUE,
+							Parameters := Parameters);
 		ExtractFanAO := ExtractFanControl.CV;	
 	END_IF
 	IF Parameters.Alarm.Status.A.FirePanelExtractStop THEN
 		ExtractDamper := FALSE;
-		ExtractFanControl(EN := FALSE);
+		ExtractFanControl(EN := FALSE, Parameters := Parameters);
 		ExtractFanAO := 0;
 	END_IF
 	
@@ -154,8 +156,8 @@ ELSE
 		ExtractFanAO := 0;
 		SupplyDamper := FALSE;
 		ExtractDamper := FALSE;
-		SupplyFanControl(EN := FALSE);
-		ExtractFanControl(EN := FALSE);
+		SupplyFanControl(EN := FALSE, Parameters := Parameters);
+		ExtractFanControl(EN := FALSE, Parameters := Parameters);
 	END_IF
 	IF SupplyDamperClosed AND ExtractDamperClosed THEN
 		ENO := FALSE;
@@ -202,6 +204,7 @@ END_IF
       <LineId Id="740" Count="0" />
       <LineId Id="743" Count="7" />
       <LineId Id="952" Count="0" />
+      <LineId Id="1001" Count="0" />
       <LineId Id="751" Count="0" />
       <LineId Id="742" Count="0" />
       <LineId Id="731" Count="0" />
@@ -209,6 +212,7 @@ END_IF
       <LineId Id="735" Count="3" />
       <LineId Id="765" Count="8" />
       <LineId Id="953" Count="0" />
+      <LineId Id="1002" Count="0" />
       <LineId Id="774" Count="7" />
       <LineId Id="595" Count="0" />
       <LineId Id="601" Count="0" />

@@ -387,6 +387,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.Auto := Parameters.IO.DIn.Auto;
 	ADS_Standard.Tags.Status.Hand := Parameters.IO.DIn.Hand;
 	ADS_Standard.Tags.Status.TX1_EFF_AL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
+	ADS_Standard.Tags.Status.SFP_PV := TO_REAL(Parameters.Regulation.SystemSpecificFanPower);
 	ADS_Standard.Tags.Status.TC_V := TimeChannelActive;
 	ADS_Standard.Tags.Status.F_BR1_AL := (GM_XXL.DI.FireExtractAlarm OR GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir);
 	ADS_Standard.Tags.Status.F_BR2_AL := Parameters.Alarm.Active.A.FireExtractTemperature;
@@ -645,6 +646,7 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       <LineId Id="3004" Count="0" />
       <LineId Id="2180" Count="11" />
       <LineId Id="2320" Count="0" />
+      <LineId Id="3081" Count="0" />
       <LineId Id="2192" Count="1" />
       <LineId Id="2485" Count="1" />
       <LineId Id="2194" Count="101" />

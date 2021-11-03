@@ -7,8 +7,8 @@ VAR_INPUT
 	EN: BOOL := TRUE;
 	SP: LREAL;
 	PV: LREAL;
-	P: LREAL;
-	I: TIME;
+	P: LREAL := 1;
+	I: TIME := T#1M;
 	Dtime: UDINT;
 	DampingTime: TIME;
 	SyncCV: LREAL;
@@ -39,9 +39,9 @@ Ctrl(	bEn := EN,
 		udiTn_ms := TIME_TO_UDINT(I), 
 		udiTv_ms := Dtime, 
 		udiTd_ms := TIME_TO_UDINT(DampingTime), 
-		rYMax := MaxSpeed * 1000, 
-		rYMin := MinSpeed * 1000, 
-		rSync := LREAL_TO_REAL(SyncCV), 
+		rYMax := TO_REAL(MaxSpeed * 1000), 
+		rYMin := TO_REAL(MinSpeed * 1000), 
+		rSync := LREAL_TO_REAL(SyncCV * 1000), 
 		bSync := LastSync, 		
 		rY => TempCV, 
 		rE => Error
