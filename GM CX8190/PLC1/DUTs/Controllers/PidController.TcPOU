@@ -24,18 +24,50 @@ VAR_OUTPUT
 END_VAR
 VAR
 	Ctrl: FB_BA_PIDCtrl;
-	TempCV: real;
+	TempCV: REAL;
+	LastSync: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Ctrl(bEn := EN, rW := LREAL_TO_REAL(SP), rX := LREAL_TO_REAL(PV), rKp := LREAL_TO_REAL(P), udiTn_ms := TIME_TO_UDINT(I), udiTv_ms := Dtime, udiTd_ms := TIME_TO_UDINT(DampingTime), rYMax := MaxSpeed * 1000, rYMin := MinSpeed * 1000, rSync := LREAL_TO_REAL(SyncCV), bSync := Sync, rY => TempCV, rE => Error);
+      <ST><![CDATA[IF NOT Sync THEN
+	LastSync := FALSE;
+END_IF
+Ctrl(	bEn := EN, 
+		rW := LREAL_TO_REAL(SP), 
+		rX := LREAL_TO_REAL(PV), 
+		rKp := LREAL_TO_REAL(P), 
+		udiTn_ms := TIME_TO_UDINT(I), 
+		udiTv_ms := Dtime, 
+		udiTd_ms := TIME_TO_UDINT(DampingTime), 
+		rYMax := MaxSpeed * 1000, 
+		rYMin := MinSpeed * 1000, 
+		rSync := LREAL_TO_REAL(SyncCV), 
+		bSync := LastSync, 		
+		rY => TempCV, 
+		rE => Error
+);
 CV := TempCV / 1000;
-ENO := EN;]]></ST>
+IF Sync THEN
+	LastSync := NOT LastSync;
+ELSE
+	LastSync := FALSE;
+END_IF
+ENO := EN;
+]]></ST>
     </Implementation>
     <LineIds Name="PidController">
+      <LineId Id="126" Count="0" />
+      <LineId Id="129" Count="1" />
       <LineId Id="9" Count="0" />
+      <LineId Id="132" Count="12" />
       <LineId Id="92" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="123" Count="0" />
       <LineId Id="68" Count="0" />
+      <LineId Id="131" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
