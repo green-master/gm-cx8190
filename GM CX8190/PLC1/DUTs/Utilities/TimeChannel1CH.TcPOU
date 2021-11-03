@@ -6,7 +6,7 @@ VAR_INPUT
 	EN: BOOL := TRUE;// Enable the time channel (settings must also be enabled)
 	Speed            : INT;		// $(skip) 0,1=normal speed, 2=high speed
 	OnTime           : UINT;	(* Hour/minute value of the switch-on time on the day *)
-	OffTime          : UINT := 2400;	(* Hour/minute value of the switch-off time on the day *)
+	OffTime          : UINT;	(* Hour/minute value of the switch-off time on the day *)
 	Day: TimerDays;
 	SingleShot       : BOOL;	(* $(skip) Resets EN after the on/off cycle is complete *)   
 END_VAR

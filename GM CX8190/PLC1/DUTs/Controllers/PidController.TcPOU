@@ -26,14 +26,18 @@ VAR
 	Ctrl: FB_BA_PIDCtrl;
 	TempCV: REAL;
 	LastSync: BOOL;
+	UseSP: lreal;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT Sync THEN
+      <ST><![CDATA[UseSP := SP;
+IF NOT Sync THEN
 	LastSync := FALSE;
+ELSE
+	UseSP := PV;
 END_IF
 Ctrl(	bEn := EN, 
-		rW := LREAL_TO_REAL(SP), 
+		rW := LREAL_TO_REAL(UseSP), 
 		rX := LREAL_TO_REAL(PV), 
 		rKp := LREAL_TO_REAL(P), 
 		udiTn_ms := TIME_TO_UDINT(I), 
@@ -56,8 +60,11 @@ ENO := EN;
 ]]></ST>
     </Implementation>
     <LineIds Name="PidController">
+      <LineId Id="172" Count="0" />
       <LineId Id="126" Count="0" />
-      <LineId Id="129" Count="1" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="173" Count="1" />
+      <LineId Id="130" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="132" Count="12" />
       <LineId Id="92" Count="0" />
