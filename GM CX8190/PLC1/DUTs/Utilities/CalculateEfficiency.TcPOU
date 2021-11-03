@@ -48,6 +48,9 @@ IF denom > 0 THEN
 	IF CalculateEfficiency > 1 THEN
 		CalculateEfficiency := 1;
 	END_IF
+	IF CalculateEfficiency < 0 THEN
+		CalculateEfficiency := 0;
+	END_IF
 ELSE
 	CalculateEfficiency := 1;
 END_IF	
@@ -62,6 +65,7 @@ END_IF
       <LineId Id="49" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="54" Count="2" />
+      <LineId Id="66" Count="2" />
       <LineId Id="52" Count="1" />
       <LineId Id="50" Count="0" />
       <LineId Id="37" Count="0" />

@@ -105,6 +105,7 @@ F_BP1_PV :  REAL; // Frånluftstryck
 F_BP1_CSP : REAL;	// Beräknat börvärde frånluftstryck"
 F_BP1_FAULT :  BOOL; // Frånluftstryck givarfel
 F_BP1_AL :  BOOL; // Frånluftstryck Larm
+PLC_VERSION: string; // PLC version (major.minor.patch)
 END_STRUCT
 END_TYPE
 ]]></Declaration>

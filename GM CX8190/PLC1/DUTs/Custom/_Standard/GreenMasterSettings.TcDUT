@@ -31,7 +31,7 @@ SetPointOffsetCurve :  SetPointOffsetCurve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 
 
 
 
-TemperatureControl_P :  REAL :=0.05; //  Temperature control P
+TemperatureControl_P :  REAL :=50; //  Temperature control P
 TemperatureControl_I :  TIME :=T#2M; //  Temperature control I
 TemperatureControl_D :  TIME :=T#0M; //  Temperature control D
 StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover
@@ -57,7 +57,7 @@ SupplyFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 165, Y2 := 165, Y3 := 165,
 
 
 
-SupplyFanControl_P :  REAL :=0.002; //  Supply air control P
+SupplyFanControl_P :  REAL :=2; //  Supply air control P
 SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I
 ExtractFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/F.BP1, 1=Flow/F.BF1) for Extract Air
 ExtractFan_SP :  REAL := 0; //  Extract air control Set Point
@@ -80,7 +80,7 @@ ExtractFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 160, Y2 := 160, Y3 := 160
 
 
 
-ExtractFanControl_P :  REAL :=0.002; //  Extract air control P
+ExtractFanControl_P :  REAL :=2; //  Extract air control P
 ExtractFanControl_I :  TIME :=T#2M; //  Extract air control I
 NightCoolingEN :  BOOL :=FALSE; //  Use Night cooling
 NightCoolingTemperatureSP :  REAL :=18.0; //  Night cooling temperature Set Point, C

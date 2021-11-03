@@ -168,15 +168,6 @@ IF EN THEN
 		//Parameters.System.Operation.PostFireVentilationTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.PostFireVentilationTime);
 		
 		
-		
-		Parameters.Regulation.SupplyAir.ControlMode := ADS_Standard.Tags.Settings.SupplyFanControlMode;
-		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.ControlMode), 
-						ADR(ADS_Standard.Tags.Settings.SupplyFanControlMode), 
-						SIZEOF(Parameters.Regulation.SupplyAir.ControlMode), 
-						ADR(SavedParameters.Regulation.Temperature.TemperatureControlSource), 
-						ADR(SavedInterface.SupplyFanControlMode), 
-						'INT', ('Parameters.Regulation.SupplyAir.ControlMode'), ('SupplyFanControlMode'));	
-		
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC01.OnTime), 
 						ADR(ADS_Standard.Tags.Settings.CT1), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC01.OnTime), 
@@ -306,19 +297,83 @@ IF EN THEN
 						ADR(SavedInterface.CT27), 
 						'UINT', ('Parameters.System.Operation.TimeChannels.TC27.OnTime'), ('CT27'));	
 
-		// TBD ExchangeData !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		Parameters.Regulation.SupplyAir.Control.SP := ADS_Standard.Tags.Settings.SupplyFan_SP;
-		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP;
-		Parameters.Regulation.SupplyAir.Control.P := ADS_Standard.Tags.Settings.SupplyFanControl_P;
-		Parameters.Regulation.SupplyAir.Control.I := ADS_Standard.Tags.Settings.SupplyFanControl_I;
-		Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.SupplyFanOffsetCurve;
-		Parameters.Regulation.ExtractAir.ControlMode := ADS_Standard.Tags.Settings.ExtractFanControlMode;
-		Parameters.Regulation.ExtractAir.Control.SP := ADS_Standard.Tags.Settings.ExtractFan_SP;
-		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Standard.Tags.Settings.ExtractFanHighSpeed_SP;
-		Parameters.Regulation.ExtractAir.Control.P := ADS_Standard.Tags.Settings.ExtractFanControl_P;
-		Parameters.Regulation.ExtractAir.Control.I := ADS_Standard.Tags.Settings.ExtractFanControl_I;
-		Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve :=ADS_Standard.Tags.Settings.ExtractFanOffsetCurve;
+		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.ControlMode), 
+						ADR(ADS_Standard.Tags.Settings.SupplyFanControlMode), 
+						SIZEOF(Parameters.Regulation.SupplyAir.ControlMode), 
+						ADR(SavedParameters.Regulation.Temperature.TemperatureControlSource), 
+						ADR(SavedInterface.SupplyFanControlMode), 
+						'INT', ('Parameters.Regulation.SupplyAir.ControlMode'), ('SupplyFanControlMode'));	
 		
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.SupplyAir.Control.SP), 
+						ADR(ADS_Standard.Tags.Settings.SupplyFan_SP), 
+						ADR(SavedParameters.Regulation.SupplyAir.Control.SP), 
+						ADR(SavedInterface.SupplyFan_SP), 
+						('Parameters.Regulation.SupplyAir.Control.SP'), ('SupplyFan_SP'));	
+		
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.SupplyAir.Control.SP_HighSpeed), 
+						ADR(ADS_Standard.Tags.Settings.SupplyFanHighSpeed_SP), 
+						ADR(SavedParameters.Regulation.SupplyAir.Control.SP_HighSpeed), 
+						ADR(SavedInterface.SupplyFanHighSpeed_SP), 
+						('Parameters.Regulation.SupplyAir.Control.SP_HighSpeed'), ('SupplyFanHighSpeed_SP'));	
+		
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.SupplyAir.Control.P), 
+						ADR(ADS_Standard.Tags.Settings.SupplyFanControl_P), 
+						ADR(SavedParameters.Regulation.SupplyAir.Control.P), 
+						ADR(SavedInterface.SupplyFanControl_P), 
+						('Parameters.Regulation.SupplyAir.Control.P'), ('SupplyFanControl_P'));	
+		
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.SupplyAir.Control.I), 
+						ADR(ADS_Standard.Tags.Settings.SupplyFanControl_I), 
+						ADR(SavedParameters.Regulation.SupplyAir.Control.I), 
+						ADR(SavedInterface.SupplyFanControl_I), 
+						('Parameters.Regulation.SupplyAir.Control.I'), ('SupplyFanControl_I'));	
+		
+		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
+						ADR(ADS_Standard.Tags.Settings.SupplyFanOffsetCurve), 
+						SIZEOF(Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
+						ADR(SavedParameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
+						ADR(SavedInterface.SupplyFanOffsetCurve), 
+						'SetPointOffsetCurve', ('Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve'), ('SupplyFanOffsetCurve'));	
+		
+		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.ControlMode), 
+						ADR(ADS_Standard.Tags.Settings.ExtractFanControlMode), 
+						SIZEOF(Parameters.Regulation.ExtractAir.ControlMode), 
+						ADR(SavedParameters.Regulation.Temperature.TemperatureControlSource), 
+						ADR(SavedInterface.ExtractFanControlMode), 
+						'INT', ('Parameters.Regulation.ExtractAir.ControlMode'), ('ExtractFanControlMode'));	
+		
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.ExtractAir.Control.SP), 
+						ADR(ADS_Standard.Tags.Settings.ExtractFan_SP), 
+						ADR(SavedParameters.Regulation.ExtractAir.Control.SP), 
+						ADR(SavedInterface.ExtractFan_SP), 
+						('Parameters.Regulation.ExtractAir.Control.SP'), ('ExtractFan_SP'));	
+		
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.ExtractAir.Control.SP_HighSpeed), 
+						ADR(ADS_Standard.Tags.Settings.ExtractFanHighSpeed_SP), 
+						ADR(SavedParameters.Regulation.ExtractAir.Control.SP_HighSpeed), 
+						ADR(SavedInterface.ExtractFanHighSpeed_SP), 
+						('Parameters.Regulation.ExtractAir.Control.SP_HighSpeed'), ('ExtractFanHighSpeed_SP'));	
+		
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.ExtractAir.Control.P), 
+						ADR(ADS_Standard.Tags.Settings.ExtractFanControl_P), 
+						ADR(SavedParameters.Regulation.ExtractAir.Control.P), 
+						ADR(SavedInterface.ExtractFanControl_P), 
+						('Parameters.Regulation.ExtractAir.Control.P'), ('ExtractFanControl_P'));	
+		
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.ExtractAir.Control.I), 
+						ADR(ADS_Standard.Tags.Settings.ExtractFanControl_I), 
+						ADR(SavedParameters.Regulation.ExtractAir.Control.I), 
+						ADR(SavedInterface.ExtractFanControl_I), 
+						('Parameters.Regulation.ExtractAir.Control.I'), ('ExtractFanControl_I'));	
+		
+		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
+						ADR(ADS_Standard.Tags.Settings.ExtractFanOffsetCurve), 
+						SIZEOF(Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
+						ADR(SavedParameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
+						ADR(SavedInterface.ExtractFanOffsetCurve), 
+						'SetPointOffsetCurve', ('Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve'), ('ExtractFanOffsetCurve'));	
+		
+		// TBD ExchangeData !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
 		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
 		Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
@@ -438,6 +493,7 @@ IF EN THEN
 	
 	ADS_Standard.Tags.Status.TX1_VG_PV := LREAL_TO_REAL(Parameters.Regulation.Temperature.Efficiency * 100);
 	ADS_Standard.Tags.Status.TX1_VG_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
+	ADS_Standard.Tags.Status.PLC_VERSION := GlobalSettings.PlcVersion;
 
 	PreEN := TRUE;
 	
@@ -573,19 +629,27 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       <LineId Id="2423" Count="1" />
       <LineId Id="2165" Count="1" />
       <LineId Id="2430" Count="2" />
-      <LineId Id="2167" Count="0" />
-      <LineId Id="2434" Count="5" />
-      <LineId Id="2433" Count="0" />
-      <LineId Id="2532" Count="5" />
+      <LineId Id="2533" Count="4" />
       <LineId Id="2792" Count="35" />
       <LineId Id="2664" Count="0" />
       <LineId Id="2828" Count="85" />
-      <LineId Id="2440" Count="0" />
-      <LineId Id="2168" Count="23" />
+      <LineId Id="2997" Count="6" />
+      <LineId Id="2959" Count="3" />
+      <LineId Id="2958" Count="0" />
+      <LineId Id="2968" Count="0" />
+      <LineId Id="2963" Count="4" />
+      <LineId Id="2969" Count="19" />
+      <LineId Id="3005" Count="30" />
+      <LineId Id="2989" Count="5" />
+      <LineId Id="2179" Count="0" />
+      <LineId Id="3004" Count="0" />
+      <LineId Id="2180" Count="11" />
       <LineId Id="2320" Count="0" />
       <LineId Id="2192" Count="1" />
       <LineId Id="2485" Count="1" />
-      <LineId Id="2194" Count="105" />
+      <LineId Id="2194" Count="101" />
+      <LineId Id="3036" Count="0" />
+      <LineId Id="2296" Count="3" />
       <LineId Id="2379" Count="0" />
       <LineId Id="2300" Count="5" />
       <LineId Id="9" Count="0" />

@@ -75,7 +75,7 @@ SxDuoInterface.DAMPER1_V1 := SxDuoUnitFB.SxDuoStatus.Damper1Open;
 SxDuoInterface.DAMPER2_V1 := SxDuoUnitFB.SxDuoStatus.Damper2Open;
 SxDuoInterface.EXERCISING_V := SxDuoUnitFB.SxDuoStatus.Exercising;
 SxDuoInterface.FIRE_AL := SxDuoUnitFB.SxDuoStatus.FireAlarm;
-SxDuoInterface.SERVICE_AL := SxDuoUnitFB.SxDuoStatus.ServiceAlarm;
+SxDuoInterface.FIRE_FAULT := SxDuoUnitFB.SxDuoStatus.ServiceAlarm;
 SxDuoInterface.COMM_FAULT := SxDuoUnitFB.Error;
 ]]></ST>
       </Implementation>
@@ -96,10 +96,7 @@ SxDuoInterface.COMM_FAULT := SxDuoUnitFB.Error;
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="SmokeControl_Interface.UpdateModuleTags">
-      <LineId Id="5" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="10" Count="7" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="24" Count="10" />
       <LineId Id="18" Count="0" />
     </LineIds>
   </POU>

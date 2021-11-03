@@ -3,10 +3,10 @@
   <POU Name="DefaultParameters" Id="{4975ba0a-01f7-4cdb-a2ac-96db5e0f2562}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DefaultParameters
 VAR_INPUT
-	Pressure: ControllerParameters := ( P := 0.02, I := T#2M );
-	Flow: ControllerParameters := ( P := 0.02, I := T#2M );
-	SlaveFlow: ControllerParameters := ( P := 0.02, I := T#2M );
-	Const: ControllerParameters := ( P := 0.02, I := T#2M );
+	Pressure: ControllerParameters := ( P := 2, I := T#2M );
+	Flow: ControllerParameters := ( P := 0.2, I := T#20S );
+	SlaveFlow: ControllerParameters := ( P := 0.2, I := T#20S );
+	Const: ControllerParameters := ( P := 1, I := T#1M );
 END_VAR
 VAR_OUTPUT
 END_VAR

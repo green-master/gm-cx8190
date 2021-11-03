@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="PidController" Id="{ce4602e5-fa4a-4b7b-aa4a-d7ef94ea92a1}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK PidController
 VAR_INPUT
@@ -14,6 +14,8 @@ VAR_INPUT
 	SyncCV: LREAL;
 	Sync: BOOL;
 	Hold: BOOL;
+	MinSpeed: LREAL := 0;
+	MaxSpeed: LREAL := 1;
 END_VAR
 VAR_OUTPUT
 	CV: LREAL;
@@ -22,14 +24,17 @@ VAR_OUTPUT
 END_VAR
 VAR
 	Ctrl: FB_BA_PIDCtrl;
+	TempCV: real;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Ctrl(bEn := EN, rW := LREAL_TO_REAL(SP), rX := LREAL_TO_REAL(PV), rKp := LREAL_TO_REAL(P), udiTn_ms := TIME_TO_UDINT(I), udiTv_ms := Dtime, udiTd_ms := TIME_TO_UDINT(DampingTime), rYMax := 1, rYMin := 0, rSync := LREAL_TO_REAL(SyncCV), bSync := Sync, rY => CV, rE => Error);
+      <ST><![CDATA[Ctrl(bEn := EN, rW := LREAL_TO_REAL(SP), rX := LREAL_TO_REAL(PV), rKp := LREAL_TO_REAL(P), udiTn_ms := TIME_TO_UDINT(I), udiTv_ms := Dtime, udiTd_ms := TIME_TO_UDINT(DampingTime), rYMax := MaxSpeed * 1000, rYMin := MinSpeed * 1000, rSync := LREAL_TO_REAL(SyncCV), bSync := Sync, rY => TempCV, rE => Error);
+CV := TempCV / 1000;
 ENO := EN;]]></ST>
     </Implementation>
     <LineIds Name="PidController">
       <LineId Id="9" Count="0" />
+      <LineId Id="92" Count="0" />
       <LineId Id="68" Count="0" />
     </LineIds>
   </POU>

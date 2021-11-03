@@ -8,6 +8,7 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	Value: ARRAY [1..125] OF WORD;
+	{attribute 'TcEncoding':='UTF-8'}
 	Text: STRING;
 END_VAR
 VAR
@@ -21,14 +22,16 @@ Text := GetText();
 SetText(WriteText);]]></ST>
     </Implementation>
     <Method Name="GetText" Id="{ffea3707-997a-43f6-91b6-15d08933b010}">
-      <Declaration><![CDATA[METHOD GetText : string
+      <Declaration><![CDATA[{attribute 'TcEncoding':='UTF-8'}
+METHOD GetText : string
 VAR_INPUT
 END_VAR
 VAR
+	//{attribute 'TcEncoding':='UTF-8'}
 	Str: STRING;
 	arr: ARRAY [1..125] OF WORD;
 	p: POINTER TO ARRAY [0..MAX_STRING_LENGTH] OF BYTE;
-	n: int;
+	n: INT;
 	{attribute 'TcEncoding':='UTF-8'}
 	Utf8: STRING;
 END_VAR]]></Declaration>
@@ -39,7 +42,8 @@ FOR n := 1 TO 125 DO
 END_FOR
 p := ADR(arr);
 Str := BYTEARR_TO_MAXSTRING(p^);
-STRING_TO_UTF8(ADR(Utf8), ADR(Str), SIZEOF(Utf8));
+//STRING_TO_UTF8(ADR(Utf8), ADR(Str), SIZEOF(Utf8));
+Utf8 := Str;
 GetText := Utf8;
 ]]></ST>
       </Implementation>
@@ -140,6 +144,7 @@ END_VAR
       <LineId Id="12" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="8" Count="0" />
+      <LineId Id="38" Count="0" />
       <LineId Id="21" Count="1" />
     </LineIds>
     <LineIds Name="ModbusReadWordArray.SetText">
