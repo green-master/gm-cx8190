@@ -18,6 +18,8 @@ VAR_INPUT
 	CompensationTemperature: LREAL;
 	SystemSpecificFanPower: LREAL; // $(unit "kPa")
 	SystemEfficiency: LREAL; // $(scale "0 1 0 100", unit "%")
+	ApplyAbsoluteSetPointCurves: word; // $(skip)
+	LastApplyAbsoluteSetPointCurves: WORD; // $(skip)
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -69,6 +71,40 @@ IF (SupplyAir.PressureRise + ExtractAir.PressureRise) <> 0 THEN
 ELSE
 	SystemEfficiency := 0;	
 END_IF
+
+IF ApplyAbsoluteSetPointCurves <> LastApplyAbsoluteSetPointCurves THEN
+	Temperature.SetPointAdjustment.Curve.Y1 := Temperature.Control.SP; 
+	Temperature.SetPointAdjustment.Curve.Y2 := Temperature.Control.SP; 
+	Temperature.SetPointAdjustment.Curve.Y3 := Temperature.Control.SP; 
+	Temperature.SetPointAdjustment.Curve.Y4 := Temperature.Control.SP; 
+	Temperature.SetPointAdjustment.Curve.Y5 := Temperature.Control.SP; 
+	Temperature.SetPointAdjustment.Curve.Y6 := Temperature.Control.SP; 
+	Temperature.SetPointAdjustment.Curve.Y7 := Temperature.Control.SP; 
+	Temperature.SetPointAdjustment.Curve.Y8 := Temperature.Control.SP; 
+	Temperature.SetPointAdjustment.Curve.Y9 := Temperature.Control.SP;
+	Temperature.Control.SP := 0;
+	SupplyAir.SetPointAdjustment.Curve.Y1 := SupplyAir.Control.SP;
+	SupplyAir.SetPointAdjustment.Curve.Y2 := SupplyAir.Control.SP;
+	SupplyAir.SetPointAdjustment.Curve.Y3 := SupplyAir.Control.SP;
+	SupplyAir.SetPointAdjustment.Curve.Y4 := SupplyAir.Control.SP;
+	SupplyAir.SetPointAdjustment.Curve.Y5 := SupplyAir.Control.SP;
+	SupplyAir.SetPointAdjustment.Curve.Y6 := SupplyAir.Control.SP;
+	SupplyAir.SetPointAdjustment.Curve.Y7 := SupplyAir.Control.SP;
+	SupplyAir.SetPointAdjustment.Curve.Y8 := SupplyAir.Control.SP;
+	SupplyAir.SetPointAdjustment.Curve.Y9 := SupplyAir.Control.SP;
+	SupplyAir.Control.SP := 0;
+	ExtractAir.SetPointAdjustment.Curve.Y1 := ExtractAir.Control.SP;
+	ExtractAir.SetPointAdjustment.Curve.Y2 := ExtractAir.Control.SP;
+	ExtractAir.SetPointAdjustment.Curve.Y3 := ExtractAir.Control.SP;
+	ExtractAir.SetPointAdjustment.Curve.Y4 := ExtractAir.Control.SP;
+	ExtractAir.SetPointAdjustment.Curve.Y5 := ExtractAir.Control.SP;
+	ExtractAir.SetPointAdjustment.Curve.Y6 := ExtractAir.Control.SP;
+	ExtractAir.SetPointAdjustment.Curve.Y7 := ExtractAir.Control.SP;
+	ExtractAir.SetPointAdjustment.Curve.Y8 := ExtractAir.Control.SP;
+	ExtractAir.SetPointAdjustment.Curve.Y9 := ExtractAir.Control.SP;
+	ExtractAir.Control.SP := 0;
+	LastApplyAbsoluteSetPointCurves := ApplyAbsoluteSetPointCurves;
+END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="RegulationParametersFB">
@@ -106,7 +142,17 @@ END_IF
       <LineId Id="160" Count="0" />
       <LineId Id="157" Count="0" />
       <LineId Id="161" Count="0" />
-      <LineId Id="158" Count="1" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="195" Count="0" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="198" Count="8" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="207" Count="8" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="216" Count="8" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="196" Count="1" />
+      <LineId Id="159" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
