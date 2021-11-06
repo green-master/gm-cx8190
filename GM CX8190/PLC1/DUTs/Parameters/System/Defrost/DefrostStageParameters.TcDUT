@@ -3,11 +3,10 @@
   <DUT Name="DefrostStageParameters" Id="{47b00efb-bc15-4802-beb5-41372bee945e}">
     <Declaration><![CDATA[TYPE DefrostStageParameters :
 STRUCT
-	EN: BOOL;
-	ENO: BOOL;
-	PressureLimit: LREAL;
-	SupplyAir: LREAL;
-	ExtractAir: LREAL;
+	EN: BOOL := TRUE; // $(setup)
+	PressureLimit: LREAL := 100; // $(setup)
+	SupplyAir: LREAL := 1.0; // $(setup)
+	ExtractAir: LREAL := 1.0; // $(setup)
 END_STRUCT
 END_TYPE
 ]]></Declaration>

@@ -3,15 +3,15 @@
   <DUT Name="AlarmLimitsB" Id="{63765a84-dc8d-4fc7-92b8-c809be200df8}">
     <Declaration><![CDATA[TYPE AlarmLimitsB :
 STRUCT
-	RegulationDeviation: REAL := 4; // $(W1,S,R0)
-	SupplyAirPressureDeviation: REAL := 30; // $(W1,S,R0)
-	ExtractAirPressureDeviation: REAL := 30; // $(W1,S,R0)
-	SupplyAirFlowDeviation: REAL := 0.3; // $(W1,S,R0)
-	ExtractAirFlowDeviation: REAL := 0.3; // $(W1,S,R0)
+	RegulationDeviation: REAL := 4;
+	SupplyAirPressureDeviation: REAL := 30;
+	ExtractAirPressureDeviation: REAL := 30;
+	SupplyAirFlowDeviation: REAL := 0.3;
+	ExtractAirFlowDeviation: REAL := 0.3;
 	HeatExchangerEfficiency: REAL := 0.3; // $(scale "0 1 0 100", unit "%")
-	Defrost: REAL := -1; // $(W1,S,R0)
-	SupplyFilter: REAL := 150; // $(W1,S,R0)
-	ExtractFilter: REAL := 150; // $(W1,S,R0)
+	Defrost: REAL := -1;
+	SupplyFilter: REAL := 150;
+	ExtractFilter: REAL := 150;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

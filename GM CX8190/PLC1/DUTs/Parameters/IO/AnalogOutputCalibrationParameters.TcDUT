@@ -3,10 +3,10 @@
   <DUT Name="AnalogOutputCalibrationParameters" Id="{89b33880-9fe6-448e-9399-d16e8014f449}">
     <Declaration><![CDATA[TYPE AnalogOutputCalibrationParameters :
 STRUCT
-	Output: LREAL; // $(W1,S,R0)
-	Gain: LREAL := 1.0; // $(W1,S,R0)
-	ManualControl: BOOL; // $(W1,S,R0)
-	InvertedOutput: BOOL; // $(W1,S,R0)
+	Output: LREAL;
+	Gain: LREAL := 1.0;
+	ManualControl: BOOL;
+	InvertedOutput: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

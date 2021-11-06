@@ -3,7 +3,7 @@
   <DUT Name="RegulationControlParameters" Id="{ecd9fe89-c947-43c7-96db-b66884bcfdaa}">
     <Declaration><![CDATA[TYPE RegulationControlParameters :
 STRUCT
-	EN: BOOL := TRUE; // $(W1,S,R0)
+	EN: BOOL := TRUE;
 	ENO: BOOL;
 	//StartupHeatRecoveryTime: TIME := T#2M;
 	//PostFireVentilationTime: TIME;

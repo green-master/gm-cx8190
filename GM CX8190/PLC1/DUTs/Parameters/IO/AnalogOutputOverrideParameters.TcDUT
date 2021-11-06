@@ -3,16 +3,16 @@
   <DUT Name="AnalogOutputOverrideParameters" Id="{f71fbf8b-2eec-4faf-9b62-a707c4aa3541}">
     <Declaration><![CDATA[TYPE AnalogOutputOverrideParameters :
 STRUCT
-	F_QN1_Override: BOOL; // $(W1,S,R0) VVX-reglering (0-10 V spjäll)
-	F_QN1_OverrideValue: LREAL; // $(W1,S,R0) VVX-reglering (0-10 V spjäll)
-	T_GQ1_Override: BOOL; // $(W1,S,R0) Tilluftsfläkt
-	T_GQ1_OverrideValue: LREAL; // $(W1,S,R0) Tilluftsfläkt
-	F_GQ1_Override: BOOL; // $(W1,S,R0) Frånluftsfläkt
-	F_GQ1_OverrideValue: LREAL; // $(W1,S,R0) Frånluftsfläkt
-	C_QN1_Override: BOOL; // $(W1,S,R0) Kylkrets ventil
-	C_QN1_OverrideValue: LREAL; // $(W1,S,R0) Kylkrets ventil
-	H_QN1_Override: BOOL; // $(W1,S,R0) Värmekrets ventil
-	H_QN1_OverrideValue: LREAL; // $(W1,S,R0) Värmekrets ventil
+	F_QN1_Override: BOOL; // VVX-reglering (0-10 V spjäll)
+	F_QN1_OverrideValue: LREAL; // VVX-reglering (0-10 V spjäll)
+	T_GQ1_Override: BOOL; // Tilluftsfläkt
+	T_GQ1_OverrideValue: LREAL; // Tilluftsfläkt
+	F_GQ1_Override: BOOL; // Frånluftsfläkt
+	F_GQ1_OverrideValue: LREAL; // Frånluftsfläkt
+	C_QN1_Override: BOOL; // Kylkrets ventil
+	C_QN1_OverrideValue: LREAL; // Kylkrets ventil
+	H_QN1_Override: BOOL; // Värmekrets ventil
+	H_QN1_OverrideValue: LREAL; // Värmekrets ventil
 END_STRUCT
 END_TYPE
 ]]></Declaration>

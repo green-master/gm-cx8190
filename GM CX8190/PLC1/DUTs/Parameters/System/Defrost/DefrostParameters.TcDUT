@@ -3,7 +3,8 @@
   <DUT Name="DefrostParameters" Id="{71bafd84-79e8-4599-a31a-31f9c5bb9b99}">
     <Declaration><![CDATA[TYPE DefrostParameters :
 STRUCT
-	EN: BOOL;
+	EN: BOOL := TRUE; // $(setup)
+	ENO: BOOL;
 	
 	T_QM1_1: BOOL;
 	T_QM1_2: BOOL;
@@ -12,19 +13,24 @@ STRUCT
 	T_QM1_5: BOOL;
 	T_QM1_6: BOOL;
 	
-	//ManualControl: BOOL;
-	Sections: INT := 4;
-	DefrostTemperature: LREAL;
-	//StartPressure: LREAL;
-	//StopPressure: LREAL;
-	SectionTime: LTIME := LTIME#1M;
-	//HeatRequired: LREAL;	
-
-	//BypassOpen: LREAL;
+	Sections: INT := 4; // $(setup)
+	DefrostTemperature: LREAL := -4; // $(setup)
 	
-	SetPointReduction: SetPointReductionParameters;
-	ExtendedDefrost: ExtendedDefrostParameters;
-	WinterShutdown: WinterShutdownParameters;
+	SectionTime: TIME := T#10M; // $(setup)
+	
+	CurrentStage: INT;
+	CurrentSection: INT;
+	CurrentPressureLimit: LREAL;
+
+	DefrostState: DefrostStates;
+	Stage1: DefrostStageParameters := (PressureLimit := 100, SupplyAir := 0.8, ExtractAir := 1);
+	Stage2: DefrostStageParameters := (PressureLimit := 150, SupplyAir := 0.4, ExtractAir := 1);
+	Stage3: DefrostStageParameters := (PressureLimit := 200, SupplyAir := 0, ExtractAir := 0.5);
+	
+	CurrentTime: LTIME;
+	//SetPointReduction: SetPointReductionParameters;
+	//ExtendedDefrost: ExtendedDefrostParameters;
+	//WinterShutdown: WinterShutdownParameters;
 	
 END_STRUCT
 END_TYPE

@@ -3,8 +3,8 @@
   <DUT Name="WinterShutdownParameters" Id="{83b3717d-e33f-4162-9dbe-e6b865535ae6}">
     <Declaration><![CDATA[TYPE WinterShutdownParameters :
 STRUCT
-	EN: BOOL; // $(W1,S,R0)
-	OutdoorTemperatureLimit: LREAL; // $(W1,S,R0)
+	EN: BOOL;
+	OutdoorTemperatureLimit: LREAL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

@@ -15,7 +15,7 @@ VAR_INPUT
     T_QM1_6: BOOL; // Sektionsavfrostning
     F_QM1: BOOL; // Frånluftsspjäll
     F_QM2: BOOL; // Brandspjäll förbigång
-	F_QM2_ActiveWhenStopped: BOOL;	// $(W1,S,R0)
+	F_QM2_ActiveWhenStopped: BOOL;
     T_RUN: BOOL; // Supply running (Aktiveras om tilluftsfläkten går)
     F_RUN: BOOL; // Exhaust running (Aktiveras om frånluftsfläkten går)
 	

@@ -6,11 +6,11 @@ VAR_IN_OUT
 	Parameters: GreenMasterBaseParameters;
 END_VAR
 VAR_INPUT
-	ControlMode: FanControlTypes; // $(W1,S,R0)
+	ControlMode: FanControlTypes;
 	Control: ControllerParameters;
 	Defaults: DefaultParameters;
-	KFactor: LREAL := 96.7; // $(W1,S,R0)
-	SlaveOffset: LREAL; // $(W1,S,R0)
+	KFactor: LREAL := 96.7;
+	SlaveOffset: LREAL;
 	ConstOutput: LREAL; // $(unit %)
 	MinSpeed: LREAL := 0.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
 	MaxSpeed: LREAL := 1.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)

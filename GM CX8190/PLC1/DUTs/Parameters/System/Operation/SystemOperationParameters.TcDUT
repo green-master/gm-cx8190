@@ -3,7 +3,7 @@
   <DUT Name="SystemOperationParameters" Id="{6364569f-26c9-4f24-a355-cd28d162d8af}">
     <Declaration><![CDATA[TYPE SystemOperationParameters :
 STRUCT
-	EN: BOOL := TRUE;	// $(W1,S,R0) Enable the GreenMaster unit |||| Aktivera GreenMaster-enheten
+	EN: BOOL := TRUE;	// Enable the GreenMaster unit |||| Aktivera GreenMaster-enheten
 	ENO: BOOL; // The GreenMaster unit is running
 	RemoteEN: BOOL := TRUE;
 	RemoteStart : SystemStatesRunModeExternal:=SystemStatesRunModeExternal.Auto;
@@ -13,7 +13,7 @@ STRUCT
 	FireDamperUsed: BOOL := TRUE;
 	State: SystemStates; // Operation state
 	{attribute 'TcEncoding':='UTF-8'}
-	SystemName: STRING := 'GM'; // $(W1,S,R0) System name |||| Systemnamn
+	SystemName: STRING := 'GM'; // System name |||| Systemnamn
 	//StartControl: StartControl;
 	StartupHeatRecoveryTime: LTIME := LTIME#1M;
 	ExhaustFanStartupDelay: LTIME := LTIME#20S;
