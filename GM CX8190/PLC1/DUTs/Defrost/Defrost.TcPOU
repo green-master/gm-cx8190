@@ -25,15 +25,18 @@ VAR
 	DefrostStage: INT;
 	DefrostStageTimer: Timer;
 	SectionDefrostTimer: Timer;
-	SectionToDefrost: INT;
+	SectionToDefrost: DefrostSections;
+	Active: BOOL;
+	ForceStage2: BOOL;
+	ForceStage3: bool;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Temperature < Parameters.System.Defrost.DefrostTemperature THEN
-	ENO := TRUE; // Run Defrost because low outdoor temp
-end_if
-IF Temperature > Parameters.System.Defrost.DefrostTemperature + 1 THEN
-	ENO := FALSE; // 1 C hysteresis
+      <ST><![CDATA[IF (Temperature < Parameters.System.Defrost.DefrostTemperature) AND (Parameters.System.Operation.State = SystemStates.Run) THEN
+	Active := TRUE; // Run Defrost because low outdoor temp
+END_IF  
+IF (Temperature > Parameters.System.Defrost.DefrostTemperature + 1) OR (Parameters.System.Operation.State <> SystemStates.Run) THEN
+	Active := FALSE; // 1 C hysteresis
 END_IF
 
 DefrostStageTimer();
@@ -42,10 +45,11 @@ Parameters.Regulation.SupplyAir.AdjustCSP := SupplyFlowAdjustment;
 Parameters.Regulation.ExtractAir.AdjustCSP := ExtractFlowAdjustment;
 Parameters.System.Defrost.CurrentStage := DefrostStage;
 Parameters.System.Defrost.CurrentSection := SectionToDefrost;
+Parameters.System.Defrost.CurrentTime := TO_LTIME(DefrostStageTimer.ElapsedTime() * 1000000);
 CASE DefrostStage OF
 	0:  Parameters.System.Defrost.CurrentPressureLimit := Parameters.System.Defrost.Stage1.PressureLimit;
-	1:  Parameters.System.Defrost.CurrentPressureLimit := Parameters.System.Defrost.Stage2.PressureLimit;
-	2:  Parameters.System.Defrost.CurrentPressureLimit := Parameters.System.Defrost.Stage3.PressureLimit;
+	1:  Parameters.System.Defrost.CurrentPressureLimit := Parameters.System.Defrost.Stage1.PressureLimit;
+	2:  Parameters.System.Defrost.CurrentPressureLimit := Parameters.System.Defrost.Stage2.PressureLimit;
 	3:  Parameters.System.Defrost.CurrentPressureLimit := Parameters.System.Defrost.Stage3.PressureLimit;
 END_CASE
 Parameters.System.Defrost.T_QM1_1 := Damper1;
@@ -54,37 +58,35 @@ Parameters.System.Defrost.T_QM1_3 := Damper3;
 Parameters.System.Defrost.T_QM1_4 := Damper4;
 Parameters.System.Defrost.T_QM1_5 := Damper5;
 Parameters.System.Defrost.T_QM1_6 := Damper6;
-Parameters.System.Defrost.ENO := ENO;
+Parameters.System.Defrost.ENO := DefrostStage > 0;
 
-IF Parameters.System.Defrost.EN AND ENO THEN
-	CASE DefrostStage OF
-		0:
-			SupplyFlowAdjustment := 1.0;
-			ExtractFlowAdjustment := 1.0;
-			IF Pressure >= Parameters.System.Defrost.Stage1.PressureLimit AND Parameters.System.Defrost.Stage1.EN THEN
-				DefrostStage := 1;
-				DefrostStageTimer.Restart();
-			END_IF
-		1:
-			SupplyFlowAdjustment := Parameters.System.Defrost.Stage1.SupplyAir;
-			IF Pressure >= Parameters.System.Defrost.Stage2.PressureLimit AND Parameters.System.Defrost.Stage2.EN THEN
-				DefrostStage := 2;
-				DefrostStageTimer.Restart();
-			END_IF
-		2:
-			SupplyFlowAdjustment := Parameters.System.Defrost.Stage2.SupplyAir;
-			ExtractFlowAdjustment := Parameters.System.Defrost.Stage2.ExtractAir;
-			IF Pressure >= Parameters.System.Defrost.Stage3.PressureLimit AND Parameters.System.Defrost.Stage3.EN THEN		
-				DefrostStage := 3;
-				DefrostStageTimer.Restart();
-			END_IF
-		3:
-			SupplyFlowAdjustment := Parameters.System.Defrost.Stage3.SupplyAir;
-			ExtractFlowAdjustment := Parameters.System.Defrost.Stage3.ExtractAir;
-	END_CASE
-	
-	IF DefrostStageTimer.ET > TO_LTIME(Parameters.System.Defrost.SectionTime) THEN
-		DefrostStage := 0;
+IF Parameters.System.Defrost.EN AND Active THEN
+	IF (Pressure >= Parameters.System.Defrost.Stage3.PressureLimit AND 
+			Parameters.System.Defrost.Stage3.EN AND
+			DefrostStage < 3) OR ForceStage3 THEN
+		ForceStage3 := TRUE;		
+		SupplyFlowAdjustment := Parameters.System.Defrost.Stage3.SupplyAir;
+		ExtractFlowAdjustment := Parameters.System.Defrost.Stage3.ExtractAir;
+		DefrostStage := 3;
+		SectionToDefrost := 11;
+		DefrostStageTimer.Restart();
+	ELSIF (Pressure >= Parameters.System.Defrost.Stage2.PressureLimit AND 
+			Parameters.System.Defrost.Stage2.EN AND
+			DefrostStage < 2) OR ForceStage2 THEN	
+		ForceStage2 := FALSE;	
+		SupplyFlowAdjustment := Parameters.System.Defrost.Stage2.SupplyAir;
+		ExtractFlowAdjustment := Parameters.System.Defrost.Stage2.ExtractAir;
+		DefrostStage := 2;
+		SectionToDefrost := 7;
+		DefrostStageTimer.Restart();
+	ELSIF Pressure >= Parameters.System.Defrost.Stage1.PressureLimit AND 
+			Parameters.System.Defrost.Stage1.EN AND
+			DefrostStage < 1 THEN		
+		SupplyFlowAdjustment := Parameters.System.Defrost.Stage1.SupplyAir;
+		ExtractFlowAdjustment := Parameters.System.Defrost.Stage1.ExtractAir;
+		DefrostStage := 1;
+		SectionToDefrost := 1;
+		DefrostStageTimer.Restart();
 	END_IF
 	
 	Damper1 := Parameters.System.Defrost.Sections >= 1;
@@ -96,47 +98,102 @@ IF Parameters.System.Defrost.EN AND ENO THEN
 	IF DefrostStage > 0 THEN
 		CASE SectionToDefrost OF
 			// Close one at a time
-			1: Damper1 := FALSE;
-			2: Damper2 := FALSE;
-			3: Damper3 := FALSE;
-			4: Damper4 := FALSE;
-			5: Damper5 := FALSE;
-			6: Damper6 := FALSE;
-			7: Damper1 := FALSE; Damper3 := FALSE;
-			8: Damper2 := FALSE; Damper4 := FALSE;
-			9: Damper5 := FALSE; Damper6 := FALSE;
+			DefrostSections.S1: Damper1 := FALSE;
+			DefrostSections.S2: Damper2 := FALSE;
+			DefrostSections.S3: Damper3 := FALSE;
+			DefrostSections.S4: Damper4 := FALSE;
+			DefrostSections.S5: Damper5 := FALSE;
+			DefrostSections.S6: Damper6 := FALSE;
+			DefrostSections.S1_3: Damper1 := FALSE; Damper3 := FALSE;
+			DefrostSections.S2_4: Damper2 := FALSE; Damper4 := FALSE;
+			DefrostSections.S5_6: Damper5 := FALSE; Damper6 := FALSE;
+			DefrostSections.S1_3_5: Damper1 := FALSE; Damper2 := FALSE; Damper3 := FALSE;
+			DefrostSections.S2_4_6: Damper4 := FALSE; Damper5 := FALSE; Damper6 := FALSE;
 		END_CASE
 		
-		// Section defrost setmintimer(TimerminSeqDefrost,0);// Section defrost interval
-		IF SectionDefrostTimer.ET > TO_LTIME(Parameters.System.Defrost.SectionTime) THEN
+		IF (SectionToDefrost > 0) AND (SectionDefrostTimer.ET > TO_LTIME(Parameters.System.Defrost.SectionTime)) THEN
 			SectionDefrostTimer.Restart();
 			// Next section
-			if DefrostStage = 2 then	
+			IF DefrostStage = 1 THEN	
 				CASE SectionToDefrost OF
-					1, 3, 7: SectionToDefrost := 8;
-					2, 4, 8: SectionToDefrost := 9;
-					else
-						SectionToDefrost := 7;
-				end_case
-			ELSIF DefrostStage = 3 THEN
-				SectionToDefrost := 10;
-			ELSE
-				CASE SectionToDefrost OF
-					1: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 1, 2, 1);
-					2: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 2, 3, 1);
-					3: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 3, 4, 1);
-					4: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 4, 5, 1);
-					5: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 5, 6, 1);
+					1:
+						IF Parameters.System.Defrost.Sections > 1 THEN
+							SectionToDefrost := 2;
+						ELSE
+							SectionToDefrost := 0;
+						END_IF
+					2:
+						IF Parameters.System.Defrost.Sections > 2 THEN
+							SectionToDefrost := 3;
+						ELSE
+							SectionToDefrost := 0;
+						END_IF
+					3:
+						IF Parameters.System.Defrost.Sections > 3 THEN
+							SectionToDefrost := 4;
+						ELSE
+							SectionToDefrost := 0;
+						END_IF
+					4:
+						IF Parameters.System.Defrost.Sections > 4 THEN
+							SectionToDefrost := 5;
+						ELSE
+							SectionToDefrost := 0;
+						END_IF
+					5:
+						IF Parameters.System.Defrost.Sections > 5 THEN
+							SectionToDefrost := 6;
+						ELSE
+							SectionToDefrost := 0;
+						END_IF
 					ELSE
-						SectionToDefrost := 1;
+						SectionToDefrost := DefrostSections.S0;
+				END_CASE
+				IF( SectionToDefrost = 0) AND (Pressure >= Parameters.System.Defrost.Stage1.PressureLimit) THEN
+					ForceStage2 := TRUE;
+				END_IF
+			ELSIF DefrostStage = 2 THEN	
+				CASE SectionToDefrost OF
+					7:
+						IF Parameters.System.Defrost.Sections > 2 THEN
+							SectionToDefrost := 8;
+						ELSE
+							SectionToDefrost := 0;
+						END_IF
+					8: 
+						IF Parameters.System.Defrost.Sections > 4 THEN
+							SectionToDefrost := 9;
+						ELSE
+							SectionToDefrost := 0;
+						END_IF
+					9: 
+						IF Parameters.System.Defrost.Sections > 4 THEN
+							SectionToDefrost := 10;
+						ELSE
+							SectionToDefrost := 0;
+						END_IF
+					ELSE
+						SectionToDefrost := 0;
+				END_CASE
+				IF( SectionToDefrost = 0) AND (Pressure >= Parameters.System.Defrost.Stage2.PressureLimit) THEN
+					ForceStage3 := TRUE;
+				END_IF
+			ELSIF DefrostStage = 3 THEN
+				CASE SectionToDefrost OF
+					11:
+						SectionToDefrost := 12;
+					ELSE
+						SectionToDefrost := 0;
 				end_case
-			end_if
+			END_IF
 			SectionDefrostTimer.Restart(); // Reinit Section defrost interval
 		END_IF
 	ELSE
 		SectionToDefrost := 0;
 	END_IF
-	
+	IF SectionToDefrost = 0 THEN
+		DefrostStage := 0;
+	END_IF
 ELSE
 	SupplyFlowAdjustment := 1.0;
 	ExtractFlowAdjustment := 1.0;
@@ -164,6 +221,7 @@ Parameters.IO.DOut.T_QM1_6 := Damper6;
     <LineIds Name="Defrost">
       <LineId Id="926" Count="9" />
       <LineId Id="1084" Count="2" />
+      <LineId Id="1237" Count="0" />
       <LineId Id="1088" Count="0" />
       <LineId Id="1087" Count="0" />
       <LineId Id="1090" Count="2" />
@@ -171,10 +229,68 @@ Parameters.IO.DOut.T_QM1_6 := Damper6;
       <LineId Id="1093" Count="5" />
       <LineId Id="1113" Count="0" />
       <LineId Id="1100" Count="0" />
-      <LineId Id="936" Count="7" />
-      <LineId Id="945" Count="68" />
+      <LineId Id="936" Count="0" />
+      <LineId Id="1196" Count="0" />
+      <LineId Id="1212" Count="0" />
+      <LineId Id="1215" Count="0" />
+      <LineId Id="1278" Count="0" />
+      <LineId Id="1197" Count="4" />
+      <LineId Id="948" Count="0" />
+      <LineId Id="1213" Count="0" />
+      <LineId Id="1216" Count="0" />
+      <LineId Id="1277" Count="0" />
+      <LineId Id="1190" Count="1" />
+      <LineId Id="949" Count="0" />
+      <LineId Id="1146" Count="0" />
+      <LineId Id="950" Count="0" />
+      <LineId Id="1204" Count="0" />
+      <LineId Id="1214" Count="0" />
+      <LineId Id="1217" Count="0" />
+      <LineId Id="1205" Count="4" />
+      <LineId Id="1211" Count="0" />
+      <LineId Id="963" Count="0" />
+      <LineId Id="968" Count="17" />
+      <LineId Id="1171" Count="1" />
+      <LineId Id="986" Count="1" />
+      <LineId Id="989" Count="2" />
+      <LineId Id="1154" Count="2" />
+      <LineId Id="1240" Count="0" />
+      <LineId Id="1243" Count="0" />
+      <LineId Id="1241" Count="0" />
+      <LineId Id="1244" Count="0" />
+      <LineId Id="1242" Count="0" />
+      <LineId Id="1157" Count="0" />
+      <LineId Id="1245" Count="4" />
+      <LineId Id="1158" Count="0" />
+      <LineId Id="1250" Count="4" />
+      <LineId Id="1159" Count="0" />
+      <LineId Id="1255" Count="4" />
+      <LineId Id="1160" Count="0" />
+      <LineId Id="1260" Count="4" />
+      <LineId Id="1173" Count="1" />
+      <LineId Id="1163" Count="0" />
+      <LineId Id="1279" Count="2" />
+      <LineId Id="992" Count="2" />
+      <LineId Id="1223" Count="4" />
+      <LineId Id="1152" Count="0" />
+      <LineId Id="1219" Count="0" />
+      <LineId Id="1218" Count="0" />
+      <LineId Id="1220" Count="0" />
+      <LineId Id="1222" Count="0" />
+      <LineId Id="1221" Count="0" />
+      <LineId Id="1269" Count="5" />
+      <LineId Id="1233" Count="1" />
+      <LineId Id="998" Count="0" />
+      <LineId Id="1282" Count="2" />
+      <LineId Id="999" Count="0" />
+      <LineId Id="1175" Count="1" />
+      <LineId Id="1229" Count="0" />
+      <LineId Id="1178" Count="2" />
+      <LineId Id="1011" Count="2" />
       <LineId Id="1116" Count="2" />
-      <LineId Id="1014" Count="3" />
+      <LineId Id="1014" Count="0" />
+      <LineId Id="1235" Count="1" />
+      <LineId Id="1015" Count="2" />
       <LineId Id="1019" Count="3" />
       <LineId Id="1056" Count="0" />
       <LineId Id="1101" Count="5" />
