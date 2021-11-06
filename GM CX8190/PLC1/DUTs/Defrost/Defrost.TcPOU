@@ -106,7 +106,8 @@ IF Parameters.System.Defrost.EN AND Active THEN
 			DefrostSections.S6: Damper6 := FALSE;
 			DefrostSections.S1_3: Damper1 := FALSE; Damper3 := FALSE;
 			DefrostSections.S2_4: Damper2 := FALSE; Damper4 := FALSE;
-			DefrostSections.S5_6: Damper5 := FALSE; Damper6 := FALSE;
+			DefrostSections.S3_5: Damper3 := FALSE; Damper5 := FALSE;
+			DefrostSections.S4_6: Damper5 := FALSE; Damper6 := FALSE;
 			DefrostSections.S1_3_5: Damper1 := FALSE; Damper3 := FALSE; Damper5 := FALSE;
 			DefrostSections.S2_4_6: Damper2 := FALSE; Damper4 := FALSE; Damper6 := FALSE;
 		END_CASE
@@ -249,7 +250,9 @@ Parameters.IO.DOut.T_QM1_6 := Damper6;
       <LineId Id="1205" Count="4" />
       <LineId Id="1211" Count="0" />
       <LineId Id="963" Count="0" />
-      <LineId Id="968" Count="17" />
+      <LineId Id="968" Count="16" />
+      <LineId Id="1285" Count="0" />
+      <LineId Id="985" Count="0" />
       <LineId Id="1171" Count="1" />
       <LineId Id="986" Count="1" />
       <LineId Id="989" Count="2" />
