@@ -107,8 +107,8 @@ IF Parameters.System.Defrost.EN AND Active THEN
 			DefrostSections.S1_3: Damper1 := FALSE; Damper3 := FALSE;
 			DefrostSections.S2_4: Damper2 := FALSE; Damper4 := FALSE;
 			DefrostSections.S5_6: Damper5 := FALSE; Damper6 := FALSE;
-			DefrostSections.S1_3_5: Damper1 := FALSE; Damper2 := FALSE; Damper3 := FALSE;
-			DefrostSections.S2_4_6: Damper4 := FALSE; Damper5 := FALSE; Damper6 := FALSE;
+			DefrostSections.S1_3_5: Damper1 := FALSE; Damper3 := FALSE; Damper5 := FALSE;
+			DefrostSections.S2_4_6: Damper2 := FALSE; Damper4 := FALSE; Damper6 := FALSE;
 		END_CASE
 		
 		IF (SectionToDefrost > 0) AND (SectionDefrostTimer.ET > TO_LTIME(Parameters.System.Defrost.SectionTime)) THEN
