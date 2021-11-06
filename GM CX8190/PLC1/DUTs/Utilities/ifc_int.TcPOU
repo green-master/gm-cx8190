@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ifc_int" Id="{4f1ae2a4-6bd4-4708-bce7-6aa733a65344}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ifc_int : INT
+VAR_INPUT
+	Condition: BOOL;
+	ValueTrue: INT;
+	ValueFalse: INT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Condition THEN
+	ifc_int := ValueTrue;
+ELSE
+	ifc_int := ValueFalse;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="ifc_int">
+      <LineId Id="7" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

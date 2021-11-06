@@ -6,7 +6,7 @@ STRUCT
 ENO :  BOOL; // Aggregatet är i drift
 Auto :  BOOL; // Aggregatet är i auto
 Hand :  BOOL; // Aggregatet är i hand
-SFP_PV: REAL;
+SFP_PV: REAL; // Aktuellt SFPv $(min 0, max 5, unit "kW/(m³s)", format "0.000")
 TX1_EFF_AL: BOOL; // Larm låg verkningsgrad
 MODE_PV1 : INT; // Driftmod 0=stopp, 1=halvfart, 2=helfart
 F_BR1_AL :  BOOL; // Centralt brandlarm

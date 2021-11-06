@@ -38,8 +38,9 @@ END_IF
 
 DefrostStageTimer();
 SectionDefrostTimer();
-
-IF FALSE AND Parameters.Regulation.SupplyAir.ControlMode = FanControlTypes.Pressure AND Parameters.System.Defrost.EN AND ENO THEN
+Parameters.Regulation.SupplyAir.AdjustCSP := SupplyFlowAdjustment;
+Parameters.Regulation.ExtractAir.AdjustCSP := ExtractFlowAdjustment;
+IF Parameters.System.Defrost.EN AND ENO THEN
 	CASE DefrostStage OF
 		0:
 			SupplyFlowAdjustment := 1.0;
@@ -57,10 +58,10 @@ IF FALSE AND Parameters.Regulation.SupplyAir.ControlMode = FanControlTypes.Press
 		2:
 			SupplyFlowAdjustment := Parameters.System.Defrost.ExtendedDefrost.Stage2.SupplyAir;
 			ExtractFlowAdjustment := Parameters.System.Defrost.ExtendedDefrost.Stage2.ExtractAir;
-			(*IF Pressure >= Parameters.System.Defrost.ExtendedDefrost.Stage3.PressureLimit THEN		
+			IF Pressure >= Parameters.System.Defrost.ExtendedDefrost.Stage3.PressureLimit THEN		
 				DefrostStage := 3;
 				DefrostStageTimer.Restart();
-			END_IF*)
+			END_IF
 		3:
 			SupplyFlowAdjustment := Parameters.System.Defrost.ExtendedDefrost.Stage3.SupplyAir;
 			ExtractFlowAdjustment := Parameters.System.Defrost.ExtendedDefrost.Stage3.ExtractAir;
@@ -70,12 +71,12 @@ IF FALSE AND Parameters.Regulation.SupplyAir.ControlMode = FanControlTypes.Press
 		DefrostStage := 0;
 	END_IF
 	
-	Damper1 := TRUE;
-	Damper2 := TRUE;
-	Damper3 := TRUE;
-	Damper4 := TRUE;
-	//Damper5 := TRUE; !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//Damper6 := TRUE;
+	Damper1 := Parameters.System.Defrost.Sections >= 1;
+	Damper2 := Parameters.System.Defrost.Sections >= 2;
+	Damper3 := Parameters.System.Defrost.Sections >= 3;
+	Damper4 := Parameters.System.Defrost.Sections >= 4;
+	Damper5 := Parameters.System.Defrost.Sections >= 5;
+	Damper6 := Parameters.System.Defrost.Sections >= 6;
 	
 	CASE SectionToDefrost OF
 		// Close one at a time
@@ -103,13 +104,13 @@ IF FALSE AND Parameters.Regulation.SupplyAir.ControlMode = FanControlTypes.Press
 			end_case
 		ELSIF DefrostStage = 3 THEN
 			SectionToDefrost := 10;
-		else
+		ELSE
 			CASE SectionToDefrost OF
-				1: SectionToDefrost := 2;
-				2: SectionToDefrost := 3;
-				3: SectionToDefrost := 4;
-				//4: SectionToDefrost := 5;
-				//5: SectionToDefrost := 6;
+				1: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 1, 2, 1);
+				2: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 2, 3, 1);
+				3: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 3, 4, 1);
+				4: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 4, 5, 1);
+				5: SectionToDefrost := ifc_int(Parameters.System.Defrost.Sections > 5, 6, 1);
 				ELSE
 					SectionToDefrost := 1;
 			end_case
@@ -136,7 +137,9 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="Defrost">
-      <LineId Id="926" Count="17" />
+      <LineId Id="926" Count="9" />
+      <LineId Id="1084" Count="0" />
+      <LineId Id="936" Count="7" />
       <LineId Id="945" Count="72" />
       <LineId Id="1019" Count="3" />
       <LineId Id="1056" Count="0" />

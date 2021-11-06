@@ -23,6 +23,7 @@ VAR_INPUT
 	Power: LREAL; // $(unit "W")
 	FanEfficiency: LREAL; // $(scale "0 1 0 100", unit "%")
 	PressureRise: LREAL; // $(unit "Pa")
+	AdjustCSP: LREAL := 1.0; // $(skip) Adjust CSP during defrost
 END_VAR
 VAR_OUTPUT
 	TestOutput: LREAL := 3.14;
@@ -57,7 +58,7 @@ ELSE
 	END_CASE	
 END_IF
 SetPointAdjustment(X := Parameters.Regulation.CompensationTemperature);
-Control.CSP := Control.SP + SetPointAdjustment.Y;
+Control.CSP := (Control.SP + SetPointAdjustment.Y) * AdjustCSP;
 IF Flow <> 0 THEN
 	SpecificFanPower := Power / Flow;	
 ELSE
