@@ -130,10 +130,10 @@ IF EN THEN
 						ADR(SavedInterface.Temperature_SP), 
 						'LREAL', ('Parameters.Regulation.Temperature.Control.SP'), ('Temperature_SP'));	
 		ExchangeData(	ADR(Parameters.Regulation.Temperature.SetPointAdjustment.Curve), 
-						ADR(ADS_Standard.Tags.Settings.SetPointOffsetCurve), 
+						ADR(ADS_Standard.Tags.Settings.T_BT1_CURVE), 
 						SIZEOF(Parameters.Regulation.Temperature.SetPointAdjustment.Curve), 
 						ADR(SavedParameters.Regulation.Temperature.SetPointAdjustment.Curve), 
-						ADR(SavedInterface.SetPointOffsetCurve), 
+						ADR(SavedInterface.T_BT1_CURVE), 
 						'SetPointOffsetCurve', ('Parameters.Regulation.Temperature.SetPointAdjustment.Curve'), ('SetPointOffsetCurve'));	
 		ExchangeData(	ADR(Parameters.Alarm.Delay.B.HeatExchangerEfficiency), 
 						ADR(ADS_Standard.Tags.Settings.TX1_EFF_AD), 
@@ -461,10 +461,10 @@ IF EN THEN
 						('Parameters.Regulation.SupplyAir.Control.I'), ('SupplyFanControl_I'));	
 		
 		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
-						ADR(ADS_Standard.Tags.Settings.SupplyFanOffsetCurve), 
+						ADR(ADS_Standard.Tags.Settings.F_GQ1_CURVE), 
 						SIZEOF(Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
 						ADR(SavedParameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
-						ADR(SavedInterface.SupplyFanOffsetCurve), 
+						ADR(SavedInterface.F_GQ1_CURVE), 
 						'SetPointOffsetCurve', ('Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve'), ('SupplyFanOffsetCurve'));	
 		
 		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.ControlMode), 
@@ -499,10 +499,10 @@ IF EN THEN
 						('Parameters.Regulation.ExtractAir.Control.I'), ('ExtractFanControl_I'));	
 		
 		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
-						ADR(ADS_Standard.Tags.Settings.ExtractFanOffsetCurve), 
+						ADR(ADS_Standard.Tags.Settings.T_GQ1_CURVE), 
 						SIZEOF(Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
 						ADR(SavedParameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
-						ADR(SavedInterface.ExtractFanOffsetCurve), 
+						ADR(SavedInterface.T_GQ1_CURVE), 
 						'SetPointOffsetCurve', ('Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve'), ('ExtractFanOffsetCurve'));	
 		
 		// TBD ExchangeData !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -516,11 +516,11 @@ IF EN THEN
 		// ADS_Standard.Tags.Settings.T_BT1_AD := Parameters.Alarm.Delay.B.RegulationDeviation;
 		
 		ExchangeData(	ADR(Parameters.Alarm.Limits.B.RegulationDeviation), 
-						ADR(ADS_Standard.Tags.Settings.T_BT1_ALL), 
+						ADR(ADS_Standard.Tags.Settings.T_BT1_ADL), 
 						SIZEOF(Parameters.Alarm.Limits.B.RegulationDeviation), 
 						ADR(SavedParameters.Alarm.Limits.B.RegulationDeviation), 
-						ADR(SavedInterface.T_BT1_ALL), 
-						'REAL', ('Parameters.Alarm.Limits.B.RegulationDeviation'), ('T_BT1_ALL'));	
+						ADR(SavedInterface.T_BT1_ADL), 
+						'REAL', ('Parameters.Alarm.Limits.B.RegulationDeviation'), ('T_BT1_ADL'));	
 		// ADS_Standard.Tags.Settings.T_BT1_ALL := Parameters.Alarm.Limits.B.RegulationDeviation;
 		
 		ExchangeData(	ADR(Parameters.Alarm.Delay.B.SupplyFan), 
@@ -548,11 +548,11 @@ IF EN THEN
 		// ADS_Standard.Tags.Settings.T_BP2_AD := Parameters.Alarm.Delay.B.SupplyFilter;
 		
 		ExchangeData(	ADR(Parameters.Alarm.Limits.B.SupplyFilter), 
-						ADR(ADS_Standard.Tags.Settings.T_BP2_HLL), 
+						ADR(ADS_Standard.Tags.Settings.T_BP2_AHL), 
 						SIZEOF(Parameters.Alarm.Limits.B.SupplyFilter), 
 						ADR(SavedParameters.Alarm.Limits.B.SupplyFilter), 
-						ADR(SavedInterface.T_BP2_HLL), 
-						'REAL', ('Parameters.Alarm.Limits.B.SupplyFilter'), ('T_BP2_HLL'));	
+						ADR(SavedInterface.T_BP2_AHL), 
+						'REAL', ('Parameters.Alarm.Limits.B.SupplyFilter'), ('T_BP2_AHL'));	
 		// ADS_Standard.Tags.Settings.T_BP2_HLL := Parameters.Alarm.Limits.B.SupplyFilter;
 		
 		ExchangeData(	ADR(Parameters.Alarm.Delay.B.ExtractFilter), 
@@ -564,11 +564,11 @@ IF EN THEN
 		// ADS_Standard.Tags.Settings.F_BP2_AD := Parameters.Alarm.Delay.B.ExtractFilter;
 		
 		ExchangeData(	ADR(Parameters.Alarm.Limits.B.ExtractFilter), 
-						ADR(ADS_Standard.Tags.Settings.F_BP2_HLL), 
+						ADR(ADS_Standard.Tags.Settings.F_BP2_AHL), 
 						SIZEOF(Parameters.Alarm.Limits.B.ExtractFilter), 
 						ADR(SavedParameters.Alarm.Limits.B.ExtractFilter), 
-						ADR(SavedInterface.F_BP2_HLL), 
-						'REAL', ('Parameters.Alarm.Limits.B.ExtractFilter'), ('F_BP2_HLL'));	
+						ADR(SavedInterface.F_BP2_AHL), 
+						'REAL', ('Parameters.Alarm.Limits.B.ExtractFilter'), ('F_BP2_AHL'));	
 		// ADS_Standard.Tags.Settings.F_BP2_HLL := Parameters.Alarm.Limits.B.ExtractFilter;
 		
 		ExchangeData(	ADR(Parameters.System.Exercise.FireBypassDamper.Interval), 
@@ -587,6 +587,34 @@ IF EN THEN
 						'INT', ('ParametersSC.NetLink.Exercise.Interval'), ('EXT_QM_XI'));	
 		// ADS_Standard.Tags.Settings.EXT_QM_XI := ParametersSC.NetLink.Exercise.Interval;
 		
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.SupplyAirDeviation), 
+						ADR(ADS_Standard.Tags.Settings.T_BP1_AD), 
+						SIZEOF(Parameters.Alarm.Delay.B.SupplyAirDeviation), 
+						ADR(SavedParameters.Alarm.Delay.B.SupplyAirDeviation), 
+						ADR(SavedInterface.T_BP1_AD), 
+						'TIME', ('Parameters.Alarm.Delay.B.SupplyAirDeviation'), ('T_BP1_AD'));	
+		
+		ExchangeData(	ADR(Parameters.Alarm.Limits.B.SupplyAirPressureDeviation), 
+						ADR(ADS_Standard.Tags.Settings.T_BP1_ADL), 
+						SIZEOF(Parameters.Alarm.Limits.B.SupplyAirPressureDeviation), 
+						ADR(SavedParameters.Alarm.Limits.B.SupplyAirPressureDeviation), 
+						ADR(SavedInterface.T_BP1_ADL), 
+						'REAL', ('Parameters.Alarm.Limits.B.SupplyAirPressureDeviation'), ('T_BP1_ADL'));	
+		
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.ExtractAirDeviation), 
+						ADR(ADS_Standard.Tags.Settings.F_BP1_AD), 
+						SIZEOF(Parameters.Alarm.Delay.B.ExtractAirDeviation), 
+						ADR(SavedParameters.Alarm.Delay.B.ExtractAirDeviation), 
+						ADR(SavedInterface.F_BP1_AD), 
+						'TIME', ('Parameters.Alarm.Delay.B.ExtractAirDeviation'), ('F_BP1_AD'));	
+		
+		ExchangeData(	ADR(Parameters.Alarm.Limits.B.ExtractAirPressureDeviation), 
+						ADR(ADS_Standard.Tags.Settings.F_BP1_ADL), 
+						SIZEOF(Parameters.Alarm.Limits.B.ExtractAirPressureDeviation), 
+						ADR(SavedParameters.Alarm.Limits.B.ExtractAirPressureDeviation), 
+						ADR(SavedInterface.F_BP1_ADL), 
+						'REAL', ('Parameters.Alarm.Limits.B.ExtractAirPressureDeviation'), ('F_BP1_ADL'));	
+			
 		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
 		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
 		Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
@@ -862,6 +890,10 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       <LineId Id="4191" Count="5" />
       <LineId Id="4125" Count="0" />
       <LineId Id="3845" Count="0" />
+      <LineId Id="4206" Count="5" />
+      <LineId Id="4213" Count="6" />
+      <LineId Id="4221" Count="0" />
+      <LineId Id="4238" Count="13" />
       <LineId Id="3453" Count="45" />
       <LineId Id="4199" Count="0" />
       <LineId Id="4201" Count="2" />

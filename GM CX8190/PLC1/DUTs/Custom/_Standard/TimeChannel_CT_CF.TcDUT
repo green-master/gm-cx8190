@@ -3,53 +3,53 @@
   <DUT Name="TimeChannel_CT_CF" Id="{e07645ca-fdad-4c51-827f-7916f8552b68}">
     <Declaration><![CDATA[TYPE TimeChannel_CT_CF :
 STRUCT
-	CT1 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT2 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT3 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT4 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT5 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT6 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT7 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+	CT1 : UINT ; // Mån Till 1
+	CT2 : UINT ; // Tis Till 1
+	CT3 : UINT ; // Ons Till 1
+	CT4 : UINT ; // Tor Till 1
+	CT5 : UINT ; // Fre Till 1
+	CT6 : UINT ; // Lör Till 1
+	CT7 : UINT ; // Sön Till 1
 	
-	CT11 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT12 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT13 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT14 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT15 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT16 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT17 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+	CT11 : UINT ; // Mån Till 2
+	CT12 : UINT ; // Tis Till 2
+	CT13 : UINT ; // Ons Till 2
+	CT14 : UINT ; // Tor Till 2
+	CT15 : UINT ; // Fre Till 2
+	CT16 : UINT ; // Lör Till 2
+	CT17 : UINT ; // Sön Till 2
 	
-	CT21 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT22 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT23 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT24 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT25 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT26 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CT27 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Till 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+	CT21 : UINT ; // Mån Till 3
+	CT22 : UINT ; // Tis Till 3
+	CT23 : UINT ; // Ons Till 3
+	CT24 : UINT ; // Tor Till 3
+	CT25 : UINT ; // Fre Till 3
+	CT26 : UINT ; // Lör Till 3
+	CT27 : UINT ; // Sön Till 3
 	
-	CF1 : UINT := 2400; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF2 : UINT := 2400; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF3 : UINT := 2400; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF4 : UINT := 2400; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF5 : UINT := 2400; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF6 : UINT := 2400; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF7 : UINT := 2400; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 1],[format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+	CF1 : UINT := 2400; // Mån Från 1
+	CF2 : UINT := 2400; // Tis Från 1
+	CF3 : UINT := 2400; // Ons Från 1
+	CF4 : UINT := 2400; // Tor Från 1
+	CF5 : UINT := 2400; // Fre Från 1
+	CF6 : UINT := 2400; // Lör Från 1
+	CF7 : UINT := 2400; // Sön Från 1
 	
-	CF11 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF12 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF13 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF14 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF15 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF16 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF17 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 2], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+	CF11 : UINT ; // Mån Från 2
+	CF12 : UINT ; // Tis Från 2
+	CF13 : UINT ; // Ons Från 2
+	CF14 : UINT ; // Tor Från 2
+	CF15 : UINT ; // Fre Från 2
+	CF16 : UINT ; // Lör Från 2
+	CF17 : UINT ; // Sön Från 2
 	
-	CF21 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Mån Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF22 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tis Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF23 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Ons Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF24 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Tor Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF25 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Fre Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF26 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Lör Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
-	CF27 : UINT ; (* [type=UINT], [scale=0|2400|0|2400], [descr=Sön Från 3], [format=####EU], [engunit=hhmm], [prio=], [setting=1] *)
+	CF21 : UINT ; // Mån Från 3
+	CF22 : UINT ; // Tis Från 3
+	CF23 : UINT ; // Ons Från 3
+	CF24 : UINT ; // Tor Från 3
+	CF25 : UINT ; // Fre Från 3
+	CF26 : UINT ; // Lör Från 3
+	CF27 : UINT ; // Sön Från 3
 
 END_STRUCT
 END_TYPE
