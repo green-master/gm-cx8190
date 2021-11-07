@@ -13,7 +13,7 @@ STRUCT
 	DAMPER1_V0: BOOL; // Damper 1 closed
 	DAMPER2_V1: BOOL; // Damper 2 open
 	DAMPER2_V0: BOOL; // Damper 2 closed
-	FIRE_FAULT: BOOL; // Servcie alarm
+	FIRE_FAULT: BOOL; // Service alarm
 	COMM_FAULT: BOOL; // Communication error
 END_STRUCT
 END_TYPE

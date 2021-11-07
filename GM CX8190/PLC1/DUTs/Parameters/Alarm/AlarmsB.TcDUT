@@ -17,7 +17,8 @@ STRUCT
 	Pump1: BOOL;
 	Pump2: BOOL;
 	DamperError: BOOL;
-	CommunicationError: bool;
+	CommunicationError: BOOL;
+	DamperModuleService: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
