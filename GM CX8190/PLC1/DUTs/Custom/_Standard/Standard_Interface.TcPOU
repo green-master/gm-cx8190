@@ -14,6 +14,7 @@ VAR
 	InitDone: BOOL;
 	PreEN: bool;
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	ParametersSC: REFERENCE TO SmokeControlParametersBase;
 	GM_XXL: REFERENCE TO GreenMasterXXL_FB;
 	T_BT1, T_BT2, T_BT3, H_BT1, F_BT2: TemperatureInput;
 	bTemp: BOOL;
@@ -42,6 +43,7 @@ VAR
 	ResetAlarmTON: TON;
 	SavedParameters: GreenMasterBaseParameters;
 	SavedInterface: GreenMasterSettings;
+	SavedParametersSC: SmokeControlParametersBase;
 	TestExchange: BOOL := FALSE;
 	UpdateTON: TON;
 END_VAR
@@ -49,9 +51,11 @@ END_VAR
     <Implementation>
       <ST><![CDATA[IF NOT InitDone THEN
 	Parameters REF= Main.GreenMaster.GetParameters();
+	ParametersSC REF= Main.GreenMaster.GetParametersSC();
 	GM_XXL REF= Main.GreenMaster;
 	SavedParameters := Parameters;
 	SavedInterface := ADS_Standard.Tags.Settings;
+	SavedParametersSC := ParametersSC;
 	InitDone := TRUE;
 END_IF;
 
@@ -167,264 +171,263 @@ IF EN THEN
 		//Parameters.System.Operation.StartupHeatRecoveryTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.StartupHeatRecoveryTime);
 		//Parameters.System.Operation.PostFireVentilationTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.PostFireVentilationTime);
 		
-		
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC01.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF1), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC01.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC01.OnTime), 
-						ADR(SavedInterface.TC.CF1), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC01.OnTime'), ('CF1'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC02.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF2), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC02.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC02.OnTime), 
-						ADR(SavedInterface.TC.CF2), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC02.OnTime'), ('CF2'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC03.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF3), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC03.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC03.OnTime), 
-						ADR(SavedInterface.TC.CF3), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC03.OnTime'), ('CF3'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC04.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF4), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC04.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC04.OnTime), 
-						ADR(SavedInterface.TC.CF4), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC04.OnTime'), ('CF4'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC05.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF5), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC05.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC05.OnTime), 
-						ADR(SavedInterface.TC.CF5), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC05.OnTime'), ('CF5'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC06.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF6), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC06.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC06.OnTime), 
-						ADR(SavedInterface.TC.CF6), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC06.OnTime'), ('CF6'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC07.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF7), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC07.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC07.OnTime), 
-						ADR(SavedInterface.TC.CF7), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC07.OnTime'), ('CF7'));	
-
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC11.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF11), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC11.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC11.OnTime), 
-						ADR(SavedInterface.TC.CF11), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC11.OnTime'), ('CF11'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC12.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF12), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC12.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC12.OnTime), 
-						ADR(SavedInterface.TC.CF12), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC12.OnTime'), ('CF12'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC13.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF13), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC13.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC13.OnTime), 
-						ADR(SavedInterface.TC.CF13), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC13.OnTime'), ('CF13'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC14.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF14), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC14.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC14.OnTime), 
-						ADR(SavedInterface.TC.CF14), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC14.OnTime'), ('CF14'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC15.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF15), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC15.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC15.OnTime), 
-						ADR(SavedInterface.TC.CF15), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC15.OnTime'), ('CF15'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC16.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF16), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC16.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC16.OnTime), 
-						ADR(SavedInterface.TC.CF16), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC16.OnTime'), ('CF16'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC17.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF17), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC17.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC17.OnTime), 
-						ADR(SavedInterface.TC.CF17), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC17.OnTime'), ('CF17'));	
-
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC21.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF21), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC21.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC21.OnTime), 
-						ADR(SavedInterface.TC.CF21), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC21.OnTime'), ('CF21'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC22.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF22), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC22.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC22.OnTime), 
-						ADR(SavedInterface.TC.CF22), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC22.OnTime'), ('CF22'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC23.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF23), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC23.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC23.OnTime), 
-						ADR(SavedInterface.TC.CF23), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC23.OnTime'), ('CF23'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC24.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF24), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC24.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC24.OnTime), 
-						ADR(SavedInterface.TC.CF24), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC24.OnTime'), ('CF24'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC25.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF25), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC25.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC25.OnTime), 
-						ADR(SavedInterface.TC.CF25), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC25.OnTime'), ('CF25'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC26.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF26), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC26.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC26.OnTime), 
-						ADR(SavedInterface.TC.CF26), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC26.OnTime'), ('CF26'));	
-		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC27.OnTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CF27), 
-						SIZEOF(Parameters.System.Operation.TimeChannels.TC27.OnTime), 
-						ADR(SavedParameters.System.Operation.TimeChannels.TC27.OnTime), 
-						ADR(SavedInterface.TC.CF27), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC27.OnTime'), ('CF27'));	
-
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC01.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT1), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF1), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC01.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC01.OffTime), 
-						ADR(SavedInterface.TC.CT1), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC01.OffTime'), ('CT1'));	
+						ADR(SavedInterface.TC.CF1), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC01.OffTime'), ('CF1'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC02.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT2), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF2), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC02.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC02.OffTime), 
-						ADR(SavedInterface.TC.CT2), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC02.OffTime'), ('CT2'));	
+						ADR(SavedInterface.TC.CF2), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC02.OffTime'), ('CF2'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC03.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT3), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF3), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC03.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC03.OffTime), 
-						ADR(SavedInterface.TC.CT3), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC03.OffTime'), ('CT3'));	
+						ADR(SavedInterface.TC.CF3), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC03.OffTime'), ('CF3'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC04.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT4), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF4), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC04.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC04.OffTime), 
-						ADR(SavedInterface.TC.CT4), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC04.OffTime'), ('CT4'));	
+						ADR(SavedInterface.TC.CF4), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC04.OffTime'), ('CF4'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC05.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT5), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF5), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC05.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC05.OffTime), 
-						ADR(SavedInterface.TC.CT5), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC05.OffTime'), ('CT5'));	
+						ADR(SavedInterface.TC.CF5), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC05.OffTime'), ('CF5'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC06.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT6), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF6), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC06.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC06.OffTime), 
-						ADR(SavedInterface.TC.CT6), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC06.OffTime'), ('CT6'));	
+						ADR(SavedInterface.TC.CF6), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC06.OffTime'), ('CF6'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC07.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT7), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF7), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC07.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC07.OffTime), 
-						ADR(SavedInterface.TC.CT7), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC07.OffTime'), ('CT7'));	
+						ADR(SavedInterface.TC.CF7), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC07.OffTime'), ('CF7'));	
 
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC11.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT11), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF11), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC11.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC11.OffTime), 
-						ADR(SavedInterface.TC.CT11), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC11.OffTime'), ('CT11'));	
+						ADR(SavedInterface.TC.CF11), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC11.OffTime'), ('CF11'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC12.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT12), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF12), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC12.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC12.OffTime), 
-						ADR(SavedInterface.TC.CT12), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC12.OffTime'), ('CT12'));	
+						ADR(SavedInterface.TC.CF12), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC12.OffTime'), ('CF12'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC13.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT13), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF13), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC13.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC13.OffTime), 
-						ADR(SavedInterface.TC.CT13), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC13.OffTime'), ('CT13'));	
+						ADR(SavedInterface.TC.CF13), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC13.OffTime'), ('CF13'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC14.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT14), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF14), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC14.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC14.OffTime), 
-						ADR(SavedInterface.TC.CT14), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC14.OffTime'), ('CT14'));	
+						ADR(SavedInterface.TC.CF14), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC14.OffTime'), ('CF14'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC15.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT15), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF15), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC15.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC15.OffTime), 
-						ADR(SavedInterface.TC.CT15), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC15.OffTime'), ('CT15'));	
+						ADR(SavedInterface.TC.CF15), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC15.OffTime'), ('CF15'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC16.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT16), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF16), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC16.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC16.OffTime), 
-						ADR(SavedInterface.TC.CT16), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC16.OffTime'), ('CT16'));	
+						ADR(SavedInterface.TC.CF16), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC16.OffTime'), ('CF16'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC17.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT17), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF17), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC17.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC17.OffTime), 
-						ADR(SavedInterface.TC.CT17), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC17.OffTime'), ('CT17'));	
+						ADR(SavedInterface.TC.CF17), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC17.OffTime'), ('CF17'));	
 
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC21.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT21), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF21), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC21.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC21.OffTime), 
-						ADR(SavedInterface.TC.CT21), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC21.OffTime'), ('CT21'));	
+						ADR(SavedInterface.TC.CF21), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC21.OffTime'), ('CF21'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC22.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT22), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF22), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC22.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC22.OffTime), 
-						ADR(SavedInterface.TC.CT22), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC22.OffTime'), ('CT22'));	
+						ADR(SavedInterface.TC.CF22), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC22.OffTime'), ('CF22'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC23.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT23), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF23), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC23.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC23.OffTime), 
-						ADR(SavedInterface.TC.CT23), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC23.OffTime'), ('CT23'));	
+						ADR(SavedInterface.TC.CF23), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC23.OffTime'), ('CF23'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC24.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT24), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF24), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC24.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC24.OffTime), 
-						ADR(SavedInterface.TC.CT24), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC24.OffTime'), ('CT24'));	
+						ADR(SavedInterface.TC.CF24), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC24.OffTime'), ('CF24'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC25.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT25), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF25), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC25.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC25.OffTime), 
-						ADR(SavedInterface.TC.CT25), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC25.OffTime'), ('CT25'));	
+						ADR(SavedInterface.TC.CF25), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC25.OffTime'), ('CF25'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC26.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT26), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF26), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC26.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC26.OffTime), 
-						ADR(SavedInterface.TC.CT26), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC26.OffTime'), ('CT26'));	
+						ADR(SavedInterface.TC.CF26), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC26.OffTime'), ('CF26'));	
 		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC27.OffTime), 
-						ADR(ADS_Standard.Tags.Settings.TC.CT27), 
+						ADR(ADS_Standard.Tags.Settings.TC.CF27), 
 						SIZEOF(Parameters.System.Operation.TimeChannels.TC27.OffTime), 
 						ADR(SavedParameters.System.Operation.TimeChannels.TC27.OffTime), 
+						ADR(SavedInterface.TC.CF27), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC27.OffTime'), ('CF27'));	
+
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC01.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT1), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC01.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC01.OnTime), 
+						ADR(SavedInterface.TC.CT1), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC01.OnTime'), ('CT1'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC02.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT2), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC02.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC02.OnTime), 
+						ADR(SavedInterface.TC.CT2), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC02.OnTime'), ('CT2'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC03.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT3), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC03.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC03.OnTime), 
+						ADR(SavedInterface.TC.CT3), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC03.OnTime'), ('CT3'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC04.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT4), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC04.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC04.OnTime), 
+						ADR(SavedInterface.TC.CT4), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC04.OnTime'), ('CT4'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC05.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT5), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC05.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC05.OnTime), 
+						ADR(SavedInterface.TC.CT5), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC05.OnTime'), ('CT5'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC06.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT6), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC06.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC06.OnTime), 
+						ADR(SavedInterface.TC.CT6), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC06.OnTime'), ('CT6'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC07.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT7), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC07.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC07.OnTime), 
+						ADR(SavedInterface.TC.CT7), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC07.OnTime'), ('CT7'));	
+
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC11.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT11), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC11.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC11.OnTime), 
+						ADR(SavedInterface.TC.CT11), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC11.OnTime'), ('CT11'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC12.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT12), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC12.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC12.OnTime), 
+						ADR(SavedInterface.TC.CT12), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC12.OnTime'), ('CT12'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC13.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT13), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC13.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC13.OnTime), 
+						ADR(SavedInterface.TC.CT13), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC13.OnTime'), ('CT13'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC14.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT14), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC14.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC14.OnTime), 
+						ADR(SavedInterface.TC.CT14), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC14.OnTime'), ('CT14'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC15.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT15), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC15.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC15.OnTime), 
+						ADR(SavedInterface.TC.CT15), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC15.OnTime'), ('CT15'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC16.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT16), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC16.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC16.OnTime), 
+						ADR(SavedInterface.TC.CT16), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC16.OnTime'), ('CT16'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC17.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT17), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC17.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC17.OnTime), 
+						ADR(SavedInterface.TC.CT17), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC17.OnTime'), ('CT17'));	
+
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC21.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT21), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC21.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC21.OnTime), 
+						ADR(SavedInterface.TC.CT21), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC21.OnTime'), ('CT21'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC22.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT22), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC22.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC22.OnTime), 
+						ADR(SavedInterface.TC.CT22), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC22.OnTime'), ('CT22'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC23.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT23), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC23.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC23.OnTime), 
+						ADR(SavedInterface.TC.CT23), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC23.OnTime'), ('CT23'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC24.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT24), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC24.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC24.OnTime), 
+						ADR(SavedInterface.TC.CT24), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC24.OnTime'), ('CT24'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC25.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT25), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC25.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC25.OnTime), 
+						ADR(SavedInterface.TC.CT25), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC25.OnTime'), ('CT25'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC26.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT26), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC26.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC26.OnTime), 
+						ADR(SavedInterface.TC.CT26), 
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC26.OnTime'), ('CT26'));	
+		ExchangeData(	ADR(Parameters.System.Operation.TimeChannels.TC27.OnTime), 
+						ADR(ADS_Standard.Tags.Settings.TC.CT27), 
+						SIZEOF(Parameters.System.Operation.TimeChannels.TC27.OnTime), 
+						ADR(SavedParameters.System.Operation.TimeChannels.TC27.OnTime), 
 						ADR(SavedInterface.TC.CT27), 
-						'UINT', ('Parameters.System.Operation.TimeChannels.TC27.OffTime'), ('CT27'));	
+						'UINT', ('Parameters.System.Operation.TimeChannels.TC27.OnTime'), ('CT27'));	
 
 		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.ControlMode), 
 						ADR(ADS_Standard.Tags.Settings.SupplyFanControlMode), 
@@ -503,6 +506,87 @@ IF EN THEN
 						'SetPointOffsetCurve', ('Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve'), ('ExtractFanOffsetCurve'));	
 		
 		// TBD ExchangeData !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.RegulationDeviation), 
+						ADR(ADS_Standard.Tags.Settings.T_BT1_AD), 
+						SIZEOF(Parameters.Alarm.Delay.B.RegulationDeviation), 
+						ADR(SavedParameters.Alarm.Delay.B.RegulationDeviation), 
+						ADR(SavedInterface.T_BT1_AD), 
+						'TIME', ('Parameters.Alarm.Delay.B.RegulationDeviation'), ('T_BT1_AD'));	
+		// ADS_Standard.Tags.Settings.T_BT1_AD := Parameters.Alarm.Delay.B.RegulationDeviation;
+		
+		ExchangeData(	ADR(Parameters.Alarm.Limits.B.RegulationDeviation), 
+						ADR(ADS_Standard.Tags.Settings.T_BT1_ALL), 
+						SIZEOF(Parameters.Alarm.Limits.B.RegulationDeviation), 
+						ADR(SavedParameters.Alarm.Limits.B.RegulationDeviation), 
+						ADR(SavedInterface.T_BT1_ALL), 
+						'REAL', ('Parameters.Alarm.Limits.B.RegulationDeviation'), ('T_BT1_ALL'));	
+		// ADS_Standard.Tags.Settings.T_BT1_ALL := Parameters.Alarm.Limits.B.RegulationDeviation;
+		
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.SupplyFan), 
+						ADR(ADS_Standard.Tags.Settings.T_GQ1_AD), 
+						SIZEOF(Parameters.Alarm.Delay.B.SupplyFan), 
+						ADR(SavedParameters.Alarm.Delay.B.SupplyFan), 
+						ADR(SavedInterface.T_GQ1_AD), 
+						'TIME', ('Parameters.Alarm.Delay.B.SupplyFan'), ('T_GQ1_AD'));	
+		// ADS_Standard.Tags.Settings.T_GQ1_AD := Parameters.Alarm.Delay.B.SupplyFan;
+		
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.ExtractFan), 
+						ADR(ADS_Standard.Tags.Settings.F_GQ1_AD), 
+						SIZEOF(Parameters.Alarm.Delay.B.ExtractFan), 
+						ADR(SavedParameters.Alarm.Delay.B.ExtractFan), 
+						ADR(SavedInterface.F_GQ1_AD), 
+						'TIME', ('Parameters.Alarm.Delay.B.ExtractFan'), ('F_GQ1_AD'));	
+		// ADS_Standard.Tags.Settings.F_GQ1_AD := Parameters.Alarm.Delay.B.ExtractFan;
+		
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.SupplyFilter), 
+						ADR(ADS_Standard.Tags.Settings.T_BP2_AD), 
+						SIZEOF(Parameters.Alarm.Delay.B.SupplyFilter), 
+						ADR(SavedParameters.Alarm.Delay.B.SupplyFilter), 
+						ADR(SavedInterface.T_BP2_AD), 
+						'TIME', ('Parameters.Alarm.Delay.B.SupplyFilter'), ('T_BP2_AD'));	
+		// ADS_Standard.Tags.Settings.T_BP2_AD := Parameters.Alarm.Delay.B.SupplyFilter;
+		
+		ExchangeData(	ADR(Parameters.Alarm.Limits.B.SupplyFilter), 
+						ADR(ADS_Standard.Tags.Settings.T_BP2_HLL), 
+						SIZEOF(Parameters.Alarm.Limits.B.SupplyFilter), 
+						ADR(SavedParameters.Alarm.Limits.B.SupplyFilter), 
+						ADR(SavedInterface.T_BP2_HLL), 
+						'REAL', ('Parameters.Alarm.Limits.B.SupplyFilter'), ('T_BP2_HLL'));	
+		// ADS_Standard.Tags.Settings.T_BP2_HLL := Parameters.Alarm.Limits.B.SupplyFilter;
+		
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.ExtractFilter), 
+						ADR(ADS_Standard.Tags.Settings.F_BP2_AD), 
+						SIZEOF(Parameters.Alarm.Delay.B.ExtractFilter), 
+						ADR(SavedParameters.Alarm.Delay.B.ExtractFilter), 
+						ADR(SavedInterface.F_BP2_AD), 
+						'TIME', ('Parameters.Alarm.Delay.B.ExtractFilter'), ('F_BP2_AD'));	
+		// ADS_Standard.Tags.Settings.F_BP2_AD := Parameters.Alarm.Delay.B.ExtractFilter;
+		
+		ExchangeData(	ADR(Parameters.Alarm.Limits.B.ExtractFilter), 
+						ADR(ADS_Standard.Tags.Settings.F_BP2_HLL), 
+						SIZEOF(Parameters.Alarm.Limits.B.ExtractFilter), 
+						ADR(SavedParameters.Alarm.Limits.B.ExtractFilter), 
+						ADR(SavedInterface.F_BP2_HLL), 
+						'REAL', ('Parameters.Alarm.Limits.B.ExtractFilter'), ('F_BP2_HLL'));	
+		// ADS_Standard.Tags.Settings.F_BP2_HLL := Parameters.Alarm.Limits.B.ExtractFilter;
+		
+		ExchangeData(	ADR(Parameters.System.Exercise.FireBypassDamper.Interval), 
+						ADR(ADS_Standard.Tags.Settings.F_QM2_XI), 
+						SIZEOF(Parameters.System.Exercise.FireBypassDamper.Interval), 
+						ADR(SavedParameters.System.Exercise.FireBypassDamper.Interval), 
+						ADR(SavedInterface.F_QM2_XI), 
+						'INT', ('Parameters.System.Exercise.FireBypassDamper.Interval'), ('F_QM2_XI'));	
+		// ADS_Standard.Tags.Settings.F_QM2_XI := Parameters.System.Exercise.FireBypassDamper.Interval;
+		
+		ExchangeData(	ADR(ParametersSC.NetLink.Exercise.Interval), 
+						ADR(ADS_Standard.Tags.Settings.EXT_QM_XI), 
+						SIZEOF(ParametersSC.NetLink.Exercise.Interval), 
+						ADR(SavedParametersSC.NetLink.Exercise.Interval), 
+						ADR(SavedInterface.EXT_QM_XI), 
+						'INT', ('ParametersSC.NetLink.Exercise.Interval'), ('EXT_QM_XI'));	
+		// ADS_Standard.Tags.Settings.EXT_QM_XI := ParametersSC.NetLink.Exercise.Interval;
+		
 		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
 		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
 		Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
@@ -517,8 +601,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.Hand := Parameters.IO.DIn.Hand;
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.SFP_PV := TO_REAL(Parameters.Regulation.SystemSpecificFanPower);
-	ADS_Standard.Tags.Status.TC_V := TimeChannelActive;
-	ADS_Standard.Tags.Status.F_BR1_AL := (GM_XXL.DI.FireExtractAlarm OR GM_XXL.DI.ServiceAlarmCentralAndSmokeExhaustAir);
+	ADS_Standard.Tags.Status.TC_V := Parameters.System.Operation.TimeChannels.Q;
+	ADS_Standard.Tags.Status.F_BR1_AL := GM_XXL.DI.FireExtractAlarm;
 	ADS_Standard.Tags.Status.F_BRT2_AL := Parameters.Alarm.Active.A.FireExtractTemperature;
 	ADS_Standard.Tags.Status.F_BRT3_AL := Parameters.Alarm.Active.A.FireExtractPressure;
 	ADS_Standard.Tags.Status.T_BR1_AL := GM_XXL.DI.FireSupplyAlarm;
@@ -734,9 +818,46 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       </Implementation>
     </Action>
     <LineIds Name="Standard_Interface">
-      <LineId Id="3126" Count="249" />
-      <LineId Id="3714" Count="128" />
-      <LineId Id="3376" Count="208" />
+      <LineId Id="3126" Count="1" />
+      <LineId Id="4127" Count="0" />
+      <LineId Id="3128" Count="2" />
+      <LineId Id="4198" Count="0" />
+      <LineId Id="3131" Count="114" />
+      <LineId Id="3857" Count="128" />
+      <LineId Id="3987" Count="128" />
+      <LineId Id="3376" Count="76" />
+      <LineId Id="3843" Count="0" />
+      <LineId Id="4128" Count="5" />
+      <LineId Id="3846" Count="0" />
+      <LineId Id="4134" Count="0" />
+      <LineId Id="4143" Count="5" />
+      <LineId Id="4117" Count="0" />
+      <LineId Id="4135" Count="0" />
+      <LineId Id="4149" Count="5" />
+      <LineId Id="4118" Count="0" />
+      <LineId Id="4136" Count="0" />
+      <LineId Id="4155" Count="5" />
+      <LineId Id="4119" Count="0" />
+      <LineId Id="4137" Count="0" />
+      <LineId Id="4161" Count="5" />
+      <LineId Id="4120" Count="0" />
+      <LineId Id="4138" Count="0" />
+      <LineId Id="4173" Count="5" />
+      <LineId Id="4121" Count="0" />
+      <LineId Id="4139" Count="0" />
+      <LineId Id="4167" Count="5" />
+      <LineId Id="4122" Count="0" />
+      <LineId Id="4140" Count="0" />
+      <LineId Id="4179" Count="5" />
+      <LineId Id="4123" Count="0" />
+      <LineId Id="4141" Count="0" />
+      <LineId Id="4185" Count="5" />
+      <LineId Id="4124" Count="0" />
+      <LineId Id="4142" Count="0" />
+      <LineId Id="4191" Count="5" />
+      <LineId Id="4125" Count="0" />
+      <LineId Id="3845" Count="0" />
+      <LineId Id="3453" Count="131" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Standard_Interface.ExchangeData">

@@ -13,8 +13,8 @@ TX1_EFF_AD :  TIME :=T#5M; //  Alarm delay low efficiency (s) |||| Larmfördröj
 TX1_EFF_ALL :  REAL :=0.3; //  $(scale "0 1 0 100") Alarm limit low efficiencyLimit |||| Larmgräns låg verkninggrad
 
 // KOPPLA !!!!!!!!!!!!!!!!!!!!!!!!!
-T_BT1_AD: TIME; //  Alarm delay low temperature (s) |||| Larmfördröjning låg temperatur (s) $(unit "s")
-T_BT1_ALL: REAL; //  Alarm limit low temperature |||| Larmgräns låg temperatur $(unit "C")
+T_BT1_AD: TIME; //  Alarm delay temperature deviation (s) |||| Larmfördröjning temperatur-avvikelse (s) $(unit "s")
+T_BT1_ALL: REAL; //  Alarm limit temperature deviation |||| Larmgräns temperatur-avvikelse $(unit "C")
 T_GQ1_AD: TIME; //  Alarm delay supply fan (s) |||| Larmfördröjning tilluftsfläkt (s) $(unit "s")
 F_GQ1_AD: TIME; //  Alarm delay supply fan (s) |||| Larmfördröjning tilluftsfläkt (s) $(unit "s")
 T_BP2_AD: TIME; //  Alarm delay high pressure (s) |||| Larmfördröjning högt tryck (s) $(unit "s")
