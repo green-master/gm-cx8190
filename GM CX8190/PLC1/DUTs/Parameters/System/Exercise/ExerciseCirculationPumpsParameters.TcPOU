@@ -3,10 +3,10 @@
   <POU Name="ExerciseCirculationPumpsParameters" Id="{221f950b-bc06-4040-9983-aa363eb5fa79}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ExerciseCirculationPumpsParameters
 VAR_INPUT
-	Interval: INT := 48; (* $(unit hour) Central exercise interval for all damper modules (set to zero for no exercising) *)
+	Interval: INT := 48; (* Central exercise interval for all damper modules (set to zero for no exercising) $(unit hour) *)
 	StopVentilation: BOOL := TRUE; (* Stop ventilation during central exercise *)
-	Hour: INT := 10; (* $(unit hour) Central exercise at this hour *)
-	Minute: INT := 30; (* $(unit minute) Central exercise at this minute *)
+	Hour: INT := 10; (* Central exercise at this hour $(unit hour) *)
+	Minute: INT := 30; (* Central exercise at this minute $(unit minute) *)
 	(*
 	TimeChannel: TimeChannelSettings;
 	StartManualExercise: BOOL;

@@ -5,22 +5,22 @@
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
-	F_BT1: LREAL; // $(unit "C") Frånluftstemperatur 
-    T_BT2: LREAL; // $(unit "C") Uteluftstemperatur
-    T_BT3: LREAL; // $(unit "C") Tilluftstemperatur (innan efterbehandling)
-    H_BT1: LREAL; // $(unit "C") Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat)
-    T_BT1: LREAL; // $(unit "C") Tilluftstemperatur (efter efterbehandling) 
-    BT1: LREAL; // $(unit "C") Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard)
-    BT2: LREAL; // $(unit "C") Rumstemperatur (lokalgivare, används inte i bostadsaggregat)
-    F_BT2: LREAL; // $(unit "C") Avluftstemperatur (tillval)
+	F_BT1: LREAL; // Frånluftstemperatur $(unit "C")  
+    T_BT2: LREAL; // Uteluftstemperatur $(unit "C")
+    T_BT3: LREAL; // Tilluftstemperatur (innan efterbehandling) $(unit "C")
+    H_BT1: LREAL; // Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat) $(unit "C")
+    T_BT1: LREAL; // Tilluftstemperatur (efter efterbehandling) $(unit "C") 
+    BT1: LREAL; // Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard) $(unit "C")
+    BT2: LREAL; // Rumstemperatur (lokalgivare, används inte i bostadsaggregat) $(unit "C")
+    F_BT2: LREAL; // Avluftstemperatur (tillval) $(unit "C")
 	
-    F_BP1: LREAL; // $(unit "Pa") Tryckgivare Frånluftskanal
-    T_BP1: LREAL; // $(unit "Pa") Tryckgivare Tilluftskanal
-    F_BP2: LREAL; // $(unit "Pa") Tryckgivare Frånluftsfilter
-    T_BP2: LREAL; // $(unit "Pa") Tryckgivare uteluftsfilter
-    F_BP3: LREAL; // $(unit "Pa") Tryckgivare VVX
-    T_BF1: LREAL; // $(unit "m³/h") Flödesgivare Tilluftsfläkt
-    F_BF1: LREAL; // $(unit "m³/h") Flödesgivare Frånluftsfläkt	
+    F_BP1: LREAL; // Tryckgivare Frånluftskanal $(unit "Pa")
+    T_BP1: LREAL; // Tryckgivare Tilluftskanal $(unit "Pa")
+    F_BP2: LREAL; // Tryckgivare Frånluftsfilter $(unit "Pa")
+    T_BP2: LREAL; //  Tryckgivare uteluftsfilter $(unit "Pa")
+    F_BP3: LREAL; // Tryckgivare VVX $(unit "Pa")
+    T_BF1: LREAL; // Flödesgivare Tilluftsfläkt $(unit "m³/h")
+    F_BF1: LREAL; // Flödesgivare Frånluftsfläkt $(unit "m³/h")	
 
 	F_BT1_Error: BOOL; 
     T_BT2_Error: BOOL;

@@ -12,7 +12,8 @@ STRUCT
 	Defrost: BOOL;
 	SupplyFilter: BOOL;
 	ExtractFilter: BOOL;
-	SmokeDetectorService: BOOL;
+	SmokeDetectorServiceSupply: BOOL;
+	SmokeDetectorServiceExtract: BOOL;
 	Pump1: BOOL;
 	Pump2: BOOL;
 	DamperError: BOOL;

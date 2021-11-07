@@ -3,18 +3,18 @@
   <DUT Name="GreenMasterStatus" Id="{0602427d-d0bc-4546-b69c-6713538a3bac}">
     <Declaration><![CDATA[TYPE GreenMasterStatus :
 STRUCT
-ENO :  BOOL; // Aggregatet är i drift
+ENO :  BOOL; // Unit is operating |||| Aggregatet är i drift
 Auto :  BOOL; // Aggregatet är i auto
 Hand :  BOOL; // Aggregatet är i hand
-SFP_PV: REAL; // Aktuellt SFPv $(min 0, max 5, unit "kW/(m³s)", format "0.000")
-TX1_EFF_AL: BOOL; // Larm låg verkningsgrad
+SFP_PV: REAL; // Current SFPv |||| Aktuellt SFPv $(scale "0 5 0 5", unit "kW/(m³s)", format "0.000")
+TX1_EFF_LAL: BOOL; // Larm låg verkningsgrad
 MODE_PV1 : INT; // Driftmod 0=stopp, 1=halvfart, 2=helfart
 F_BR1_AL :  BOOL; // Centralt brandlarm
 TC_V : BOOL; // Tidkanal i aggregat är aktiv
 F_BR1_FAULT :  BOOL; // Servicelarm för RD i frånluft
 Fire_AL :  BOOL; // Brandlarm
-F_BR2_AL :  BOOL; // Brandlarm frånluft temperatur (normalt 45 C)
-F_BR3_AL :  BOOL; // Brandlarm frånluft temperatur och tryck (normalt 38 C och 170 Pa)
+F_BRT2_AL :  BOOL; // Brandlarm frånluft temperatur (normalt 45 C)
+F_BRT3_AL :  BOOL; // Brandlarm frånluft temperatur och tryck (normalt 38 C och 170 Pa)
 Fuse_AL :  BOOL; // Utlöst säkring
 T_BR1_AL :  BOOL; // Brandlarm tilluft
 T_BR1_FAULT :  BOOL; // Servicelarm för RD i tilluft
@@ -29,8 +29,7 @@ T_GQ_AL2 :  BOOL; // Tilluftsfläkt handstoppad
 F_GQ_AL1 :  BOOL; // Frånluftsfläkt handstartad
 F_GQ_AL2 :  BOOL; // Frånluftsfläkt handstoppad
 QM_AL :  BOOL; // Brandspjäll i fel läge
-TX1_VG_PV :  REAL; // Verkningsgrad VVX
-TX1_VG_LAL :  BOOL; // Verkningsgradslarm
+TX1_EFF_PV :  REAL; // Verkningsgrad VVX
 H_GP1_CMD :  BOOL; // Manöver pump värme
 C_GP1_CMD :  BOOL; // Manöver pump kyla
 F_QM1_CMD :  BOOL; // Frånluftsspjäll manöver

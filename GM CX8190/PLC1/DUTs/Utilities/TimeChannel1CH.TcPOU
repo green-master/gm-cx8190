@@ -4,17 +4,17 @@
     <Declaration><![CDATA[FUNCTION_BLOCK TimeChannel1CH
 VAR_INPUT
 	EN: BOOL := TRUE;// Enable the time channel (settings must also be enabled)
-	Speed            : INT;		// $(skip) 0,1=normal speed, 2=high speed
+	Speed            : INT;		// 0,1=normal speed, 2=high speed $(skip)
 	OnTime           : UINT;	(* Hour/minute value of the switch-on time on the day *)
 	OffTime          : UINT;	(* Hour/minute value of the switch-off time on the day *)
 	Day: TimerDays;
-	SingleShot       : BOOL;	(* $(skip) Resets EN after the on/off cycle is complete *)   
+	SingleShot       : BOOL;	(* Resets EN after the on/off cycle is complete $(skip) *)   
 END_VAR
 VAR_OUTPUT
-	ENO: BOOL; // $(skip) Set if enabled and settings are valid
+	ENO: BOOL; // Set if enabled and settings are valid $(skip)
 	Q: BOOL; // Result of the time channel
 	Error: BOOL; // Settings error
-	ErrorID: UDINT; // // $(skip) 1 = Inconsistent weekday settings, 2 = Bad time settings, 3 = on and off times equal
+	ErrorID: UDINT; // // 1 = Inconsistent weekday settings, 2 = Bad time settings, 3 = on and off times equal $(skip)
 END_VAR
 VAR
 	CurrentDay: WORD; // $(skip)
@@ -25,10 +25,10 @@ VAR
 	StartMinuteOfDay: WORD; // $(skip)
 	EndMinuteOfDay: WORD; // $(skip)
 	Loop: WORD := 0; // $(skip)
-	OnHour           : UINT;	(* $(skip) Hour value of the switch-on time on the day *)
-	OnMinute         : UINT;	(* $(skip) Minute value of the switch-on time on the day *)
-	OffHour          : UINT;	(* $(skip) Hour value of the switch-off time on the day *)
-	OffMinute        : UINT;	(* $(skip) Minute value of the switch-off time on the day *)
+	OnHour           : UINT;	(* Hour value of the switch-on time on the day $(skip) *)
+	OnMinute         : UINT;	(* Minute value of the switch-on time on the day $(skip) *)
+	OffHour          : UINT;	(* Hour value of the switch-off time on the day $(skip) *)
+	OffMinute        : UINT;	(* Minute value of the switch-off time on the day $(skip) *)
 END_VAR
 ]]></Declaration>
     <Implementation>

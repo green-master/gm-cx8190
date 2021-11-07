@@ -3,11 +3,11 @@
   <POU Name="AnalogOutputParametersFB" Id="{c88c46c9-ad36-4d2f-906f-fabfc21039b1}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK AnalogOutputParametersFB
 VAR_INPUT
-	F_QN1: LREAL; // $(scale "0 1 0 100", unit "%") VVX-reglering (0-10 V spjäll)
-	T_GQ1: LREAL; // $(scale "0 1 0 100", unit "%") Tilluftsfläkt
-	F_GQ1: LREAL; // $(scale "0 1 0 100", unit "%") Frånluftsfläkt
-	C_QN1: LREAL; // $(scale "0 1 0 100", unit "%") Kylkrets ventil
-	H_QN1: LREAL; // $(scale "0 1 0 100", unit "%") Värmekrets ventil
+	F_QN1: LREAL; // VVX-reglering (0-10 V spjäll) $(scale "0 1 0 100", unit "%")
+	T_GQ1: LREAL; // Tilluftsfläkt $(scale "0 1 0 100", unit "%")
+	F_GQ1: LREAL; // Frånluftsfläkt $(scale "0 1 0 100", unit "%")
+	C_QN1: LREAL; // Kylkrets ventil $(scale "0 1 0 100", unit "%")
+	H_QN1: LREAL; // Värmekrets ventil $(scale "0 1 0 100", unit "%")
 END_VAR
 VAR_OUTPUT
 END_VAR

@@ -19,7 +19,7 @@ STRUCT
 	SectionTime: TIME := T#10M; // $(setup)
 	
 	CurrentStage: INT;
-	CurrentSection: INT;
+	CurrentSection: DefrostSections;
 	CurrentPressureLimit: LREAL;
 
 	DefrostState: DefrostStates;

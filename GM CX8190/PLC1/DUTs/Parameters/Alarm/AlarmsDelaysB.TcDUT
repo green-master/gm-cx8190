@@ -13,7 +13,8 @@ STRUCT
 	Defrost: TIME := T#5S;
 	SupplyFilter: TIME := T#5S;
 	ExtractFilter: TIME := T#5S;
-	SmokeDetectorService: TIME := T#5S;
+	SmokeDetectorServiceSupply: TIME := T#5S;
+	SmokeDetectorServiceExtract: TIME := T#5S;
 	Pump1: TIME := T#5S;
 	Pump2: TIME := T#5S;
 	DamperError: TIME := T#30S;

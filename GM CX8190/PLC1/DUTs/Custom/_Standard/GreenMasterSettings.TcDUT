@@ -9,8 +9,22 @@ ResetAlarms :  BOOL :=FALSE; //  Reset alarms
 VentilationEN: BOOL := TRUE;
 TemperatureControlEN: BOOL := TRUE;
 
-HeatExchangerEfficiencyAlarmDelay :  TIME :=T#5M; //  Alarm delay low efficiency
-HeatExchangerEfficiencyAlarmLimit :  REAL :=0.3; //  Alarm limit low efficiencyLimit
+TX1_EFF_AD :  TIME :=T#5M; //  Alarm delay low efficiency (s) |||| Larmfördröjning låg verkningsgrad (s)
+TX1_EFF_ALL :  REAL :=0.3; //  $(scale "0 1 0 100") Alarm limit low efficiencyLimit |||| Larmgräns låg verkninggrad
+
+// KOPPLA !!!!!!!!!!!!!!!!!!!!!!!!!
+T_BT1_AD: TIME; //  Alarm delay low temperature (s) |||| Larmfördröjning låg temperatur (s) $(unit "s")
+T_BT1_ALL: REAL; //  Alarm limit low temperature |||| Larmgräns låg temperatur $(unit "C")
+T_GQ1_AD: TIME; //  Alarm delay supply fan (s) |||| Larmfördröjning tilluftsfläkt (s) $(unit "s")
+F_GQ1_AD: TIME; //  Alarm delay supply fan (s) |||| Larmfördröjning tilluftsfläkt (s) $(unit "s")
+T_BP2_AD: TIME; //  Alarm delay high pressure (s) |||| Larmfördröjning högt tryck (s) $(unit "s")
+T_BP2_HLL: REAL; //  Alarm limit high pressure |||| Larmgräns högt tryck $(unit "C")
+F_BP2_AD: TIME; //  Alarm delay high pressure (s) |||| Larmfördröjning högt tryck (s) $(unit "s")
+F_BP2_HLL: REAL; //  Alarm limit high pressure |||| Larmgräns högt tryck $(unit "C")
+F_QM2_XI: INT;//  Exercise interval F.QM2 (minutes) |||| Motioneringsintervall F.QM2 (minuter) $(unit "minute")
+EXT_QM_XI: INT;//  Exercise interval external dampers (minutes) |||| Motioneringsintervall externa spjäll (minuter) $(unit "minute")
+//-------------------
+
 Temperature_SP :  LREAL :=0; //  Temperature Set Point, C
 TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1
 //SetPointOffsetCurve :  SetPointOffsetCurve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20); // Outdoorcompensation temperature
@@ -33,10 +47,10 @@ SetPointOffsetCurve :  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 
 TemperatureControl_P :  REAL :=50; //  Temperature control P
-TemperatureControl_I :  TIME :=T#2M; //  Temperature control I
-TemperatureControl_D :  TIME :=T#0M; //  Temperature control D
-StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover
-PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to operation after fire alarm
+TemperatureControl_I :  TIME :=T#2M; //  Temperature control I (s)
+TemperatureControl_D :  TIME :=T#0M; //  Temperature control D (s)
+StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover (s)
+PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to operation after fire alarm (s)
 SupplyFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/T.BP1, 1=Flow/T.BF1) for Supply Air
 SupplyFan_SP :  REAL :=0 ; //  Supply air control Set Point
 SupplyFanHighSpeed_SP :  REAL ; //  Supply air control high speed Set Point

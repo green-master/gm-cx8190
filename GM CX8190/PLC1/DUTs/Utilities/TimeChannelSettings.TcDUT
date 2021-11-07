@@ -3,22 +3,22 @@
   <DUT Name="TimeChannelSettings" Id="{24116061-ff62-4db0-8564-448a4a1cbe47}">
     <Declaration><![CDATA[TYPE TimeChannelSettings :
 STRUCT
-	EN               : BOOL;	// $( skip) Enables this time channel *)
+	EN               : BOOL;	// Enables this time channel $(skip) *)
 	Speed            : INT;		// 0,1=normal speed, 2=high speed
 	OnHour           : UINT;	(* Hour value of the switch-on time on the day *)
 	OnMinute         : UINT;	(* Minute value of the switch-on time on the day *)
 	OffHour          : UINT;	(* Hour value of the switch-off time on the day *)
 	OffMinute        : UINT;	(* Minute value of the switch-off time on the day *)
-	AllDays          : BOOL;	(* $(skip) Selects switch-on on all days *)       
-	Monday           : BOOL;	(* $(skip) -----------------------------------------------  *)    
-	Tuesday          : BOOL;	(* $(skip)                                                  *)
-	Wednesday        : BOOL;	(* $(skip)                                                  *)
-	Thursday         : BOOL;	(* $(skip) Selects switch-on on the respective day of the week *)
-	Friday           : BOOL;	(* $(skip)                                                  *)
-	Saturday         : BOOL;	(* $(skip)                                                  *)
-	Sunday           : BOOL;	(* $(skip)  ------------------------------------------------*)
-	SingleShot       : BOOL;	(* $( skip) Resets EN after the on/off cycle is complete *)     
-	Q                : BOOL;	(* $( skip) Result of the time channel *) 
+	AllDays          : BOOL;	(* Selects switch-on on all days $(skip) *)       
+	Monday           : BOOL;	(* ----------------------------------------------- $(skip) *)    
+	Tuesday          : BOOL;	(*                                                 $(skip) *)
+	Wednesday        : BOOL;	(*                                                 $(skip) *)
+	Thursday         : BOOL;	(* Selects switch-on on the respective day of the week $(skip) *)
+	Friday           : BOOL;	(*                                                 $(skip) *)
+	Saturday         : BOOL;	(*                                                 $(skip) *)
+	Sunday           : BOOL;	(* ----------------------------------------------- $(skip) *)
+	SingleShot       : BOOL;	(* Resets EN after the on/off cycle is complete $(skip) *)     
+	Q                : BOOL;	(* Result of the time channel $(skip) *) 
 END_STRUCT
 END_TYPE
 ]]></Declaration>
