@@ -629,10 +629,15 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_BT2_FAULT := Parameters.IO.AIn.T_BT2_Error;
 	ADS_Standard.Tags.Status.T_BT3_FAULT := Parameters.IO.AIn.T_BT3_Error;
 	
-	ADS_Standard.Tags.Status.Fuse_AL := GM_XXL.DI.FuseAlarm;
-	ADS_Standard.Tags.Status.T_GQ1_AL := GM_XXL.DI.T_GQ1_Alarm;
-	ADS_Standard.Tags.Status.F_GQ1_AL := GM_XXL.DI.F_GQ1_Alarm;
-	ADS_Standard.Tags.Status.Fire_AL := GM_XXL.DI.FireSupplyAlarm;
+	ADS_Standard.Tags.Status.Fuse_AL := Parameters.Alarm.Active.A.Fuse;
+	ADS_Standard.Tags.Status.T_GQ1_AL := Parameters.Alarm.Active.B.SupplyFan;
+	ADS_Standard.Tags.Status.F_GQ1_AL := Parameters.Alarm.Active.B.ExtractFan;
+	ADS_Standard.Tags.Status.Fire_AL := Parameters.Alarm.Active.A.FireExtract OR
+											Parameters.Alarm.Active.A.FireExtractExternal OR
+											Parameters.Alarm.Active.A.FireExtractPressure OR
+											Parameters.Alarm.Active.A.FireExtractTemperature OR
+											Parameters.Alarm.Active.A.FireLocal OR
+											Parameters.Alarm.Active.A.FireSupply;
 	ADS_Standard.Tags.Status.H_GP1_V := GM_XXL.DI.H_GP1_Running;
 	ADS_Standard.Tags.Status.H_GP1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
 	ADS_Standard.Tags.Status.C_GP1_V := Globals.IO.DIn.DI22;
@@ -857,7 +862,11 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       <LineId Id="4191" Count="5" />
       <LineId Id="4125" Count="0" />
       <LineId Id="3845" Count="0" />
-      <LineId Id="3453" Count="131" />
+      <LineId Id="3453" Count="45" />
+      <LineId Id="4199" Count="0" />
+      <LineId Id="4201" Count="2" />
+      <LineId Id="4200" Count="0" />
+      <LineId Id="3499" Count="85" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Standard_Interface.ExchangeData">

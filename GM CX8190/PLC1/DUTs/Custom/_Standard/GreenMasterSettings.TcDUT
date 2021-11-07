@@ -10,9 +10,8 @@ VentilationEN: BOOL := TRUE;
 TemperatureControlEN: BOOL := TRUE;
 
 TX1_EFF_AD :  TIME :=T#5M; //  Alarm delay low efficiency (s) |||| Larmfördröjning låg verkningsgrad (s)
-TX1_EFF_ALL :  REAL :=0.3; //  $(scale "0 1 0 100") Alarm limit low efficiencyLimit |||| Larmgräns låg verkninggrad
+TX1_EFF_ALL :  REAL :=0.3; //  Alarm limit low efficiencyLimit |||| Larmgräns låg verkninggrad $(scale "0 1 0 100", unit "%")
 
-// KOPPLA !!!!!!!!!!!!!!!!!!!!!!!!!
 T_BT1_AD: TIME; //  Alarm delay temperature deviation (s) |||| Larmfördröjning temperatur-avvikelse (s) $(unit "s")
 T_BT1_ALL: REAL; //  Alarm limit temperature deviation |||| Larmgräns temperatur-avvikelse $(unit "C")
 T_GQ1_AD: TIME; //  Alarm delay supply fan (s) |||| Larmfördröjning tilluftsfläkt (s) $(unit "s")
@@ -23,7 +22,6 @@ F_BP2_AD: TIME; //  Alarm delay high pressure (s) |||| Larmfördröjning högt t
 F_BP2_HLL: REAL; //  Alarm limit high pressure |||| Larmgräns högt tryck $(unit "C")
 F_QM2_XI: INT;//  Exercise interval F.QM2 (minutes) |||| Motioneringsintervall F.QM2 (minuter) $(unit "minute")
 EXT_QM_XI: INT;//  Exercise interval external dampers (minutes) |||| Motioneringsintervall externa spjäll (minuter) $(unit "minute")
-//-------------------
 
 Temperature_SP :  LREAL :=0; //  Temperature Set Point, C
 TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1

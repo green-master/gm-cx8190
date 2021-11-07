@@ -4,20 +4,20 @@
     <Declaration><![CDATA[TYPE GreenMasterStatus :
 STRUCT
 ENO :  BOOL; // Unit is operating |||| Aggregatet är i drift
-Auto :  BOOL; // Aggregatet är i auto
-Hand :  BOOL; // Aggregatet är i hand
+AUTO :  BOOL; // Aggregatet är i auto
+HAND :  BOOL; // Aggregatet är i hand
 SFP_PV: REAL; // Current SFPv |||| Aktuellt SFPv $(scale "0 5 0 5", unit "kW/(m³s)", format "0.000")
 TX1_EFF_LAL: BOOL; // Larm låg verkningsgrad
 MODE_PV1 : INT; // Driftmod 0=stopp, 1=halvfart, 2=helfart
-F_BR1_AL :  BOOL; // Centralt brandlarm
+F_BR1_AL :  BOOL; // Brandlarm F.BR1
 TC_V : BOOL; // Tidkanal i aggregat är aktiv
-F_BR1_FAULT :  BOOL; // Servicelarm för RD i frånluft
-Fire_AL :  BOOL; // Brandlarm
+F_BR1_FAULT :  BOOL; // Servicelarm F.BR1
+FIRE_AL :  BOOL; // Brandlarm
 F_BRT2_AL :  BOOL; // Brandlarm frånluft temperatur (normalt 45 C)
 F_BRT3_AL :  BOOL; // Brandlarm frånluft temperatur och tryck (normalt 38 C och 170 Pa)
-Fuse_AL :  BOOL; // Utlöst säkring
-T_BR1_AL :  BOOL; // Brandlarm tilluft
-T_BR1_FAULT :  BOOL; // Servicelarm för RD i tilluft
+FUSE_AL :  BOOL; // Utlöst säkring
+T_BR1_AL :  BOOL; // Brandlarm T.BR1
+T_BR1_FAULT :  BOOL; // Servicelarm T.BR1
 T_GQ1_AL :  BOOL; // Driftfel tilluftsfläkt
 F_GQ1_AL :  BOOL; // Driftfel frånluftsfläkt
 H_GP1_V :  BOOL; // Driftindikering pump värme
@@ -43,7 +43,7 @@ T_QM1_6_CMD :  BOOL; // Sektionsavfrostningsspjäll 6 manöver
 F_QM2_CMD :  BOOL; // Brandförbigångsspjäll (FID) manöver
 F_QM2_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
 F_QM2_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
-Temperature_CSP : REAL; // Aktuellt börvärdetemperatur
+TEMPERATURE_CSP : REAL; // Aktuellt börvärdetemperatur
 T_BT2_PV :  REAL; // Utetemperatur (aggregat)
 T_BT2_FAULT :  BOOL; // Utetemperatur (aggregat) givarfel
 T_BT3_PV :  REAL; // Tilluftstemperatur före efterbehandling (aggregat)
