@@ -5,14 +5,14 @@
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
-	F_BT1: LREAL; // Frånluftstemperatur $(unit "C")  
-    T_BT2: LREAL; // Uteluftstemperatur $(unit "C")
-    T_BT3: LREAL; // Tilluftstemperatur (innan efterbehandling) $(unit "C")
-    H_BT1: LREAL; // Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat) $(unit "C")
-    T_BT1: LREAL; // Tilluftstemperatur (efter efterbehandling) $(unit "C") 
-    BT1: LREAL; // Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard) $(unit "C")
-    BT2: LREAL; // Rumstemperatur (lokalgivare, används inte i bostadsaggregat) $(unit "C")
-    F_BT2: LREAL; // Avluftstemperatur (tillval) $(unit "C")
+	F_BT1: LREAL; // Frånluftstemperatur $(unit "°C")  
+    T_BT2: LREAL; // Uteluftstemperatur $(unit "°C")
+    T_BT3: LREAL; // Tilluftstemperatur (innan efterbehandling) $(unit "°C")
+    H_BT1: LREAL; // Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat) $(unit "°C")
+    T_BT1: LREAL; // Tilluftstemperatur (efter efterbehandling) $(unit "°C") 
+    BT1: LREAL; // Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard) $(unit "°C")
+    BT2: LREAL; // Rumstemperatur (lokalgivare, används inte i bostadsaggregat) $(unit "°C")
+    F_BT2: LREAL; // Avluftstemperatur (tillval) $(unit "°C")
 	
     F_BP1: LREAL; // Tryckgivare Frånluftskanal $(unit "Pa")
     T_BP1: LREAL; // Tryckgivare Tilluftskanal $(unit "Pa")
