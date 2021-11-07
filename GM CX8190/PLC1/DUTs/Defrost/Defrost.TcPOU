@@ -89,6 +89,11 @@ IF Parameters.System.Defrost.EN AND Active THEN
 		DefrostStageTimer.Restart();
 	END_IF
 	
+	IF DefrostStage = 0 THEN
+		SupplyFlowAdjustment := 1;
+		ExtractFlowAdjustment := 1;		
+	END_IF
+	
 	Damper1 := Parameters.System.Defrost.Sections >= 1;
 	Damper2 := Parameters.System.Defrost.Sections >= 2;
 	Damper3 := Parameters.System.Defrost.Sections >= 3;
@@ -249,6 +254,9 @@ Parameters.IO.DOut.T_QM1_6 := Damper6;
       <LineId Id="1217" Count="0" />
       <LineId Id="1205" Count="4" />
       <LineId Id="1211" Count="0" />
+      <LineId Id="1315" Count="1" />
+      <LineId Id="1319" Count="1" />
+      <LineId Id="1318" Count="0" />
       <LineId Id="963" Count="0" />
       <LineId Id="968" Count="16" />
       <LineId Id="1285" Count="0" />
