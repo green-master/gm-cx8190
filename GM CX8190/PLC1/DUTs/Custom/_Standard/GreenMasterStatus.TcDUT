@@ -64,13 +64,13 @@ F_BP2_HAL :  BOOL; // Differenstryck frånluftsfilter Larm
 F_BP3_PV :  REAL; // Differenstryck VVX
 F_BP3_FAULT :  BOOL; // Differenstryck VVX givarfel
 F_BP3_AL :  BOOL; // Differenstryck VVX Larm
-T_GQ1_OP :  REAL; // Utsignal tilluftsfläkt
-F_GQ1_OP :  REAL; // Utsignal frånluftsfläkt
+T_GQ1_OP :  REAL; // Utsignal tilluftsfläkt $(scale "0 1 0 100", unit "%")
+F_GQ1_OP :  REAL; // Utsignal frånluftsfläkt $(scale "0 1 0 100", unit "%")
 T_GQ1_V :  BOOL; // Drift tilluftsfläkt
 F_GQ1_V :  BOOL; // Drift frånluftsfläkt
-TX1_OP :  REAL; // Utsignal VVX
-H_QN1_OP :  REAL; // Utsignal värmeventil
-C_QN1_OP :  REAL; // Utsignal kylventil
+TX1_OP :  REAL; // Utsignal VVX $(scale "0 1 0 100", unit "%")
+H_QN1_OP :  REAL; // Utsignal värmeventil $(scale "0 1 0 100", unit "%")
+C_QN1_OP :  REAL; // Utsignal kylventil $(scale "0 1 0 100", unit "%")
 T_QM2_CMD :  BOOL; // spjäll manöver
 T_QM2_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
 T_QM2_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet

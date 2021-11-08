@@ -20,8 +20,12 @@ T_BP2_AD: TIME := T#5S; //  Alarm delay high pressure (s) |||| Larmfördröjning
 T_BP2_AHL: REAL := 150; //  Alarm limit high pressure |||| Larmgräns högt tryck $(unit "Pa")
 F_BP2_AD: TIME := T#5S; //  Alarm delay high pressure (s) |||| Larmfördröjning högt tryck (s) $(unit "s")
 F_BP2_AHL: REAL := 150; //  Alarm limit high pressure |||| Larmgräns högt tryck $(unit "Pa")
-F_QM2_XI: INT:= 48;//  Exercise interval F.QM2 (minutes) |||| Motioneringsintervall F.QM2 (minuter) $(unit "minute")
-EXT_QM_XI: INT:= 48;//  Exercise interval external dampers (minutes) |||| Motioneringsintervall externa spjäll (minuter) $(unit "minute")
+F_QM2_SP1: INT:= 48;//  Exercise interval F.QM2 (hour) |||| Motioneringsintervall F.QM2 (timma) $(unit "hour")
+F_QM2_SP2: INT:= 10;//  Exercise start hour F.QM2 (hour) |||| Motionering F.QM2 starttimma (timma) $(unit "hour")
+F_QM2_SP3: INT:= 30;//  Exercise start minute F.QM2 (minute) |||| Motionering F.QM2 startminut (minuter) $(unit "minute")
+EXT_QM_SP1: INT:= 48;//  Exercise interval external dampers (hour) |||| Motioneringsintervall externa spjäll (timma) $(unit "hour")
+EXT_QM_SP2: INT:= 10;//  Exercise start hour external dampers (hour) |||| Motionering externa spjäll starttimma (timma) $(unit "hour")
+EXT_QM_SP3: INT:= 30;//  Exercise start minute external dampers (minute) |||| Motionering externa spjäll startminut (minut) $(unit "minute")
 T_BP1_AD: TIME := T#10M; //  Alarm delay supply pressure deviation (s) |||| Larmfördröjning avvikelse tilluftstryck (s) $(unit "s")
 T_BP1_ADL: REAL := 30; //  Alarm limit supply pressure deviation |||| Larmgräns avvikelse tilluftstryck $(unit "Pa")
 F_BP1_AD: TIME := T#10M; //  Alarm delay extract pressure deviation (s) |||| Larmfördröjning avvikelse frånluftstryck (s) $(unit "s")
@@ -112,11 +116,11 @@ T_GQ1_M :  BOOL; //  Supply air fan control manual override
 F_GQ1_M :  BOOL; //  Extract air fan control manual override
 C_QN1_M :  BOOL; //  Cool supply control valve manual override
 H_QN1_M :  BOOL; //  Heat supply control valve manual override
-TX1_OPM :  REAL; //  Heat exchanger manual value
-T_GQ1_OPM :  REAL; //  Supply air fan control manual value
-F_GQ1_OPM :  REAL; //  Extract air fan control manual value
-C_QN1_OPM :  REAL; //  Cool supply control valve manual value
-H_QN1_OPM :  REAL; //  Heat supply control valve manual value
+TX1_OPM :  REAL; //  Heat exchanger manual value $(scale "0 1 0 100", unit "%")
+T_GQ1_OPM :  REAL; //  Supply air fan control manual value $(scale "0 1 0 100", unit "%")
+F_GQ1_OPM :  REAL; //  Extract air fan control manual value $(scale "0 1 0 100", unit "%")
+C_QN1_OPM :  REAL; //  Cool supply control valve manual value $(scale "0 1 0 100", unit "%")
+H_QN1_OPM :  REAL; //  Heat supply control valve manual value $(scale "0 1 0 100", unit "%")
 
 TC: TimeChannel_CT_CF;
 

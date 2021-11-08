@@ -572,21 +572,48 @@ IF EN THEN
 		// ADS_Standard.Tags.Settings.F_BP2_HLL := Parameters.Alarm.Limits.B.ExtractFilter;
 		
 		ExchangeData(	ADR(Parameters.System.Exercise.FireBypassDamper.Interval), 
-						ADR(ADS_Standard.Tags.Settings.F_QM2_XI), 
+						ADR(ADS_Standard.Tags.Settings.F_QM2_SP1), 
 						SIZEOF(Parameters.System.Exercise.FireBypassDamper.Interval), 
 						ADR(SavedParameters.System.Exercise.FireBypassDamper.Interval), 
-						ADR(SavedInterface.F_QM2_XI), 
-						'INT', ('Parameters.System.Exercise.FireBypassDamper.Interval'), ('F_QM2_XI'));	
+						ADR(SavedInterface.F_QM2_SP1), 
+						'INT', ('Parameters.System.Exercise.FireBypassDamper.Interval'), ('F_QM2_SP1'));	
 		// ADS_Standard.Tags.Settings.F_QM2_XI := Parameters.System.Exercise.FireBypassDamper.Interval;
 		
+		ExchangeData(	ADR(Parameters.System.Exercise.FireBypassDamper.Hour), 
+						ADR(ADS_Standard.Tags.Settings.F_QM2_SP2), 
+						SIZEOF(Parameters.System.Exercise.FireBypassDamper.Hour), 
+						ADR(SavedParameters.System.Exercise.FireBypassDamper.Hour), 
+						ADR(SavedInterface.F_QM2_SP2), 
+						'INT', ('Parameters.System.Exercise.FireBypassDamper.Hour'), ('F_QM2_SP2'));
+	
+		ExchangeData(	ADR(Parameters.System.Exercise.FireBypassDamper.Minute), 
+						ADR(ADS_Standard.Tags.Settings.F_QM2_SP3), 
+						SIZEOF(Parameters.System.Exercise.FireBypassDamper.Minute), 
+						ADR(SavedParameters.System.Exercise.FireBypassDamper.Minute), 
+						ADR(SavedInterface.F_QM2_SP3), 
+						'INT', ('Parameters.System.Exercise.FireBypassDamper.Minute'), ('F_QM2_SP3'));
+						
 		ExchangeData(	ADR(ParametersSC.NetLink.Exercise.Interval), 
-						ADR(ADS_Standard.Tags.Settings.EXT_QM_XI), 
+						ADR(ADS_Standard.Tags.Settings.EXT_QM_SP1), 
 						SIZEOF(ParametersSC.NetLink.Exercise.Interval), 
 						ADR(SavedParametersSC.NetLink.Exercise.Interval), 
-						ADR(SavedInterface.EXT_QM_XI), 
-						'INT', ('ParametersSC.NetLink.Exercise.Interval'), ('EXT_QM_XI'));	
+						ADR(SavedInterface.EXT_QM_SP1), 
+						'INT', ('ParametersSC.NetLink.Exercise.Interval'), ('EXT_QM_SP1'));	
 		// ADS_Standard.Tags.Settings.EXT_QM_XI := ParametersSC.NetLink.Exercise.Interval;
 		
+		ExchangeData(	ADR(ParametersSC.NetLink.Exercise.Hour), 
+						ADR(ADS_Standard.Tags.Settings.EXT_QM_SP2), 
+						SIZEOF(ParametersSC.NetLink.Exercise.Hour), 
+						ADR(SavedParametersSC.NetLink.Exercise.Hour), 
+						ADR(SavedInterface.EXT_QM_SP2), 
+						'INT', ('ParametersSC.NetLink.Exercise.Hour'), ('EXT_QM_SP2'));
+		ExchangeData(	ADR(ParametersSC.NetLink.Exercise.Minute), 
+						ADR(ADS_Standard.Tags.Settings.EXT_QM_SP3), 
+						SIZEOF(ParametersSC.NetLink.Exercise.Minute), 
+						ADR(SavedParametersSC.NetLink.Exercise.Minute), 
+						ADR(SavedInterface.EXT_QM_SP3), 
+						'INT', ('ParametersSC.NetLink.Exercise.Minute'), ('EXT_QM_SP3'));	
+	
 		ExchangeData(	ADR(Parameters.Alarm.Delay.B.SupplyAirDeviation), 
 						ADR(ADS_Standard.Tags.Settings.T_BP1_AD), 
 						SIZEOF(Parameters.Alarm.Delay.B.SupplyAirDeviation), 
@@ -731,14 +758,15 @@ IF EN THEN
 	ADS_Standard.Tags.Status.F_BP2_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP2);
 	ADS_Standard.Tags.Status.F_BP3_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP3);
 	
-	ADS_Standard.Tags.Status.TX1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1 * 100);
-	ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1 * 100);
-	ADS_Standard.Tags.Status.T_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1 * 100);
-	ADS_Standard.Tags.Status.F_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1 * 100);
+	ADS_Standard.Tags.Status.TX1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1);
+	ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1);
+	ADS_Standard.Tags.Status.C_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.C_QN1);
+	ADS_Standard.Tags.Status.T_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1);
+	ADS_Standard.Tags.Status.F_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1);
 	ADS_Standard.Tags.Status.T_GQ1_V := Parameters.IO.AOut.T_GQ1 > 0.02;
 	ADS_Standard.Tags.Status.F_GQ1_V := Parameters.IO.AOut.F_GQ1 > 0.02;
 	
-	ADS_Standard.Tags.Status.TX1_EFF_PV := LREAL_TO_REAL(Parameters.Regulation.Temperature.Efficiency * 100);
+	ADS_Standard.Tags.Status.TX1_EFF_PV := LREAL_TO_REAL(Parameters.Regulation.Temperature.Efficiency);
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.PLC_VERSION_PV := GlobalSettings.PlcVersion;
 
@@ -887,9 +915,13 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       <LineId Id="4185" Count="5" />
       <LineId Id="4124" Count="0" />
       <LineId Id="4142" Count="0" />
+      <LineId Id="4298" Count="13" />
       <LineId Id="4191" Count="5" />
       <LineId Id="4125" Count="0" />
       <LineId Id="3845" Count="0" />
+      <LineId Id="4318" Count="5" />
+      <LineId Id="4325" Count="5" />
+      <LineId Id="4324" Count="0" />
       <LineId Id="4206" Count="5" />
       <LineId Id="4213" Count="6" />
       <LineId Id="4221" Count="0" />
@@ -898,7 +930,9 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       <LineId Id="4199" Count="0" />
       <LineId Id="4201" Count="2" />
       <LineId Id="4200" Count="0" />
-      <LineId Id="3499" Count="85" />
+      <LineId Id="3499" Count="66" />
+      <LineId Id="4331" Count="0" />
+      <LineId Id="3566" Count="18" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Standard_Interface.ExchangeData">
