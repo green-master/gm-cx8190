@@ -29,7 +29,7 @@ T_GQ_AL2 :  BOOL; // Tilluftsfläkt handstoppad
 F_GQ_AL1 :  BOOL; // Frånluftsfläkt handstartad
 F_GQ_AL2 :  BOOL; // Frånluftsfläkt handstoppad
 QM_AL :  BOOL; // Brandspjäll i fel läge
-TX1_EFF_PV :  REAL; // Verkningsgrad VVX $(unit "%")
+TX1_EFF_PV :  REAL; // Verkningsgrad VVX $(scale "0 1 0 100", unit "%")
 H_GP1_CMD :  BOOL; // Manöver pump värme
 C_GP1_CMD :  BOOL; // Manöver pump kyla
 F_QM1_CMD :  BOOL; // Frånluftsspjäll manöver
