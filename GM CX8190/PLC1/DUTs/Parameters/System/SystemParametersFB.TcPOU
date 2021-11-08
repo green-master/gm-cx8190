@@ -22,6 +22,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[Exercise(Parameters := Parameters);
+Operation.ENO := Operation.State > SystemStates.Idle;
 Operation.TimeChannels.TC01();
 Operation.TimeChannels.TC02();
 Operation.TimeChannels.TC03();
@@ -72,6 +73,7 @@ Operation.TimeChannels.Q :=
     </Implementation>
     <LineIds Name="SystemParametersFB">
       <LineId Id="9" Count="0" />
+      <LineId Id="181" Count="0" />
       <LineId Id="28" Count="0" />
       <LineId Id="141" Count="5" />
       <LineId Id="140" Count="0" />

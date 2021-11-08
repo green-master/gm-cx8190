@@ -461,11 +461,11 @@ IF EN THEN
 						('Parameters.Regulation.SupplyAir.Control.I'), ('SupplyFanControl_I'));	
 		
 		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
-						ADR(ADS_Standard.Tags.Settings.F_GQ1_CURVE), 
+						ADR(ADS_Standard.Tags.Settings.T_GQ1_CURVE), 
 						SIZEOF(Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
 						ADR(SavedParameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
-						ADR(SavedInterface.F_GQ1_CURVE), 
-						'SetPointOffsetCurve', ('Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve'), ('SupplyFanOffsetCurve'));	
+						ADR(SavedInterface.T_GQ1_CURVE), 
+						'SetPointOffsetCurve', ('Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve'), ('T_GQ1_CURVE'));	
 		
 		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.ControlMode), 
 						ADR(ADS_Standard.Tags.Settings.ExtractFanControlMode), 
@@ -499,11 +499,11 @@ IF EN THEN
 						('Parameters.Regulation.ExtractAir.Control.I'), ('ExtractFanControl_I'));	
 		
 		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
-						ADR(ADS_Standard.Tags.Settings.T_GQ1_CURVE), 
+						ADR(ADS_Standard.Tags.Settings.F_GQ1_CURVE), 
 						SIZEOF(Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
 						ADR(SavedParameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
-						ADR(SavedInterface.T_GQ1_CURVE), 
-						'SetPointOffsetCurve', ('Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve'), ('ExtractFanOffsetCurve'));	
+						ADR(SavedInterface.F_GQ1_CURVE), 
+						'SetPointOffsetCurve', ('Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve'), ('F_GQ1_CURVE'));	
 		
 		// TBD ExchangeData !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		

@@ -9,16 +9,16 @@ ResetAlarms :  BOOL :=FALSE; //  Reset alarms
 VentilationEN: BOOL := TRUE;
 TemperatureControlEN: BOOL := TRUE;
 
-TX1_EFF_AD :  TIME :=T#5M; //  Alarm delay low efficiency (s) |||| Larmfördröjning låg verkningsgrad (s)
+TX1_EFF_AD :  TIME :=T#5M; //  Alarm delay low efficiency (s) |||| Larmfördröjning låg verkningsgrad (s) $(unit "s", scale "0 1000 0 1")
 TX1_EFF_ALL :  REAL :=0.3; //  Alarm limit low efficiencyLimit |||| Larmgräns låg verkninggrad $(scale "0 1 0 100", unit "%")
 
-T_BT1_AD: TIME := T#10M; //  Alarm delay temperature deviation (s) |||| Larmfördröjning temperatur-avvikelse (s) $(unit "s")
+T_BT1_AD: TIME := T#10M; //  Alarm delay temperature deviation (s) |||| Larmfördröjning temperatur-avvikelse (s) $(unit "s", scale "0 1000 0 1")
 T_BT1_ADL: REAL := 4; //  Alarm limit temperature deviation |||| Larmgräns temperatur-avvikelse $(unit "°C")
-T_GQ1_AD: TIME := T#5S; //  Alarm delay supply fan (s) |||| Larmfördröjning tilluftsfläkt (s) $(unit "s")
-F_GQ1_AD: TIME := T#5S; //  Alarm delay extract fan (s) |||| Larmfördröjning frånluftsfläkt (s) $(unit "s")
-T_BP2_AD: TIME := T#5S; //  Alarm delay high pressure (s) |||| Larmfördröjning högt tryck (s) $(unit "s")
+T_GQ1_AD: TIME := T#5S; //  Alarm delay supply fan (s) |||| Larmfördröjning tilluftsfläkt (s) $(unit "s", scale "0 1000 0 1")
+F_GQ1_AD: TIME := T#5S; //  Alarm delay extract fan (s) |||| Larmfördröjning frånluftsfläkt (s) $(unit "s", scale "0 1000 0 1")
+T_BP2_AD: TIME := T#5S; //  Alarm delay high pressure (s) |||| Larmfördröjning högt tryck (s) $(unit "s", scale "0 1000 0 1")
 T_BP2_AHL: REAL := 150; //  Alarm limit high pressure |||| Larmgräns högt tryck $(unit "Pa")
-F_BP2_AD: TIME := T#5S; //  Alarm delay high pressure (s) |||| Larmfördröjning högt tryck (s) $(unit "s")
+F_BP2_AD: TIME := T#5S; //  Alarm delay high pressure (s) |||| Larmfördröjning högt tryck (s) $(unit "s", scale "0 1000 0 1")
 F_BP2_AHL: REAL := 150; //  Alarm limit high pressure |||| Larmgräns högt tryck $(unit "Pa")
 F_QM2_SP1: INT:= 48;//  Exercise interval F.QM2 (hour) |||| Motioneringsintervall F.QM2 (timma) $(unit "hour")
 F_QM2_SP2: INT:= 10;//  Exercise start hour F.QM2 (hour) |||| Motionering F.QM2 starttimma (timma) $(unit "hour")
@@ -26,9 +26,9 @@ F_QM2_SP3: INT:= 30;//  Exercise start minute F.QM2 (minute) |||| Motionering F.
 EXT_QM_SP1: INT:= 48;//  Exercise interval external dampers (hour) |||| Motioneringsintervall externa spjäll (timma) $(unit "hour")
 EXT_QM_SP2: INT:= 10;//  Exercise start hour external dampers (hour) |||| Motionering externa spjäll starttimma (timma) $(unit "hour")
 EXT_QM_SP3: INT:= 30;//  Exercise start minute external dampers (minute) |||| Motionering externa spjäll startminut (minut) $(unit "minute")
-T_BP1_AD: TIME := T#10M; //  Alarm delay supply pressure deviation (s) |||| Larmfördröjning avvikelse tilluftstryck (s) $(unit "s")
+T_BP1_AD: TIME := T#10M; //  Alarm delay supply pressure deviation (s) |||| Larmfördröjning avvikelse tilluftstryck (s) $(unit "s", scale "0 1000 0 1")
 T_BP1_ADL: REAL := 30; //  Alarm limit supply pressure deviation |||| Larmgräns avvikelse tilluftstryck $(unit "Pa")
-F_BP1_AD: TIME := T#10M; //  Alarm delay extract pressure deviation (s) |||| Larmfördröjning avvikelse frånluftstryck (s) $(unit "s")
+F_BP1_AD: TIME := T#10M; //  Alarm delay extract pressure deviation (s) |||| Larmfördröjning avvikelse frånluftstryck (s) $(unit "s", scale "0 1000 0 1")
 F_BP1_ADL: REAL := 30; //  Alarm limit extract pressure deviation |||| Larmgräns avvikelse frånluftstryck $(unit "Pa")
 
 Temperature_SP :  LREAL :=0; //  Temperature Set Point, C
@@ -52,11 +52,11 @@ T_BT1_CURVE :  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 
 
-TemperatureControl_P :  REAL :=50; //  Temperature control P
-TemperatureControl_I :  TIME :=T#2M; //  Temperature control I (s)
-TemperatureControl_D :  TIME :=T#0M; //  Temperature control D (s)
-StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover (s)
-PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to operation after fire alarm (s)
+TemperatureControl_P :  REAL :=10; //  Temperature control P
+TemperatureControl_I :  TIME :=T#2M; //  Temperature control I (s) $(unit "s", scale "0 1000 0 1")
+TemperatureControl_D :  TIME :=T#0M; //  Temperature control D (s) $(unit "s", scale "0 1000 0 1")
+StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover (s) $(unit "s", scale "0 1000 0 1")
+PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to operation after fire alarm (s) $(unit "s", scale "0 1000 0 1")
 SupplyFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/T.BP1, 1=Flow/T.BF1) for Supply Air
 SupplyFan_SP :  REAL :=0 ; //  Supply air control Set Point
 SupplyFanHighSpeed_SP :  REAL ; //  Supply air control high speed Set Point
@@ -80,7 +80,7 @@ F_GQ1_CURVE:  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 
 SupplyFanControl_P :  REAL :=2; //  Supply air control P
-SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I
+SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I $(unit "s", scale "0 1000 0 1")
 ExtractFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/F.BP1, 1=Flow/F.BF1) for Extract Air
 ExtractFan_SP :  REAL := 0; //  Extract air control Set Point
 ExtractFanHighSpeed_SP :  REAL ; //  Extract air control high speed Set Point
@@ -104,10 +104,10 @@ T_GQ1_CURVE :  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 
 ExtractFanControl_P :  REAL :=2; //  Extract air control P
-ExtractFanControl_I :  TIME :=T#2M; //  Extract air control I
+ExtractFanControl_I :  TIME :=T#2M; //  Extract air control I $(unit "s", scale "0 1000 0 1")
 NightCoolingEN :  BOOL :=FALSE; //  Use Night cooling
 NightCoolingTemperatureSP :  REAL :=18.0; //  Night cooling temperature Set Point, C
-FanStopDelayTime :  TIME :=T#2M; //  Fan stop delay cool down period
+FanStopDelayTime :  TIME :=T#2M; //  Fan stop delay cool down period $(unit "s", scale "0 1000 0 1")
 WatchdogEnabled :  BOOL :=FALSE; //  Watchdog enable - enables unit on watchdog update failure 
 Watchdog :  INT :=0; //  Watchdog counter to be changed at a minimum every 5 minutes (when enabled)  
 NightCooling_V :  BOOL; //  Activate nigh time cooling  

@@ -25,10 +25,10 @@ VAR_INPUT
 	AL_D: BOOL; // D-larm
 END_VAR
 VAR_OUTPUT
-	H_GP1_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
-	F_QM1_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
-	F_QM2_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
-	T_QM2_OnTime: LTIME; // $(time "h:mm:ss", unit "h:m:s")
+	H_GP1_OnTime: LTIME;
+	F_QM1_OnTime: LTIME;
+	F_QM2_OnTime: LTIME;
+	T_QM2_OnTime: LTIME;
 END_VAR
 VAR
 	H_GP1_LTON: Timer; // $(skip)
