@@ -657,10 +657,10 @@ IF EN THEN
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.SFP_PV := TO_REAL(Parameters.Regulation.SystemSpecificFanPower);
 	ADS_Standard.Tags.Status.TC_V := Parameters.System.Operation.TimeChannels.Q;
-	ADS_Standard.Tags.Status.F_BR1_AL := GM_XXL.DI.FireExtractAlarm;
+	ADS_Standard.Tags.Status.F_BR1_AL := Parameters.Alarm.Active.A.FireExtract; // GM_XXL.DI.FireExtractAlarm;
 	ADS_Standard.Tags.Status.F_BRT2_AL := Parameters.Alarm.Active.A.FireExtractTemperature;
 	ADS_Standard.Tags.Status.F_BRT3_AL := Parameters.Alarm.Active.A.FireExtractPressure;
-	ADS_Standard.Tags.Status.T_BR1_AL := GM_XXL.DI.FireSupplyAlarm;
+	ADS_Standard.Tags.Status.T_BR1_AL := Parameters.Alarm.Active.A.FireSupply;
 	ADS_Standard.Tags.Status.F_BR1_FAULT := Parameters.Alarm.Active.B.SmokeDetectorServiceExtract;
 	ADS_Standard.Tags.Status.T_BR1_FAULT := Parameters.Alarm.Active.B.SmokeDetectorServiceSupply;
 	
