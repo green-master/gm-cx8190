@@ -769,7 +769,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.TX1_EFF_PV := LREAL_TO_REAL(Parameters.Regulation.Temperature.Efficiency);
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.PLC_VERSION_PV := GlobalSettings.PlcVersion;
-	ADS_Standard.Tags.Status.SYSTEMTIME_DT1 := Parameters.System.SystemTime;
+	ADS_Standard.Tags.Status._TIMEANDDATE_PV := Parameters.System.SystemTime;
 
 	PreEN := TRUE;
 	

@@ -45,7 +45,11 @@ VAR
 	fbGetSystemTime: GETSYSTEMTIME;
     fileTime: T_FILETIME;
     sTime: STRING;	LastSecondsCounter: LINT;
+	sPart1: STRING;
+	sPart2: STRING;
 	ExceptionYet: BOOL;
+	PTest: POINTER TO BYTE;
+	Crash: BOOL;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -53,151 +57,157 @@ END_VAR
     <Implementation>
       <ST><![CDATA[IF NOT ExceptionYet THEN
 	__TRY
-	EventLog(EventLogData := Globals.EventLog);
-	IF NOT StartupDone THEN
-		Globals.SystemStartTime := NowDT();
-		EventLog.LogEvent(Message := 'Starting up', Kind := EventTypes.Information);
-		//EventLog.LogEventJSON(Message := 'Test data $${KFactor} and $${PressureControl.SP}', Kind := EventTypes.Debug, VarAdr := ADR(GreenMaster.Parameters.Regulation.ExtractAir), VarSize := SIZEOF(GreenMaster.Parameters.Regulation.ExtractAir), VarType := 'AirParameters');	
-		StartupDone := TRUE;
-	END_IF
-	SavedParameters := GreenMaster.GetParameters();
-	Globals.SystemUpTime := DT_TO_DWORD(NowDT()) - DT_TO_DWORD(Globals.SystemStartTime);
-	
-	NightCooling := FALSE;
-	
-	TestPID();
-	
-	str := '';
-	FOR n := 0 TO GlobalSettings.MAX_COMPONENTS DO
-		IF GlobalSettings.Components[n].Name = ComponentNames.NONE THEN
-			EXIT;
+		EventLog(EventLogData := Globals.EventLog);
+		IF NOT StartupDone THEN
+			Globals.SystemStartTime := NowDT();
+			EventLog.LogEvent(Message := 'Starting up', Kind := EventTypes.Information);
+			//EventLog.LogEventJSON(Message := 'Test data $${KFactor} and $${PressureControl.SP}', Kind := EventTypes.Debug, VarAdr := ADR(GreenMaster.Parameters.Regulation.ExtractAir), VarSize := SIZEOF(GreenMaster.Parameters.Regulation.ExtractAir), VarType := 'AirParameters');	
+			StartupDone := TRUE;
 		END_IF
-		IF GlobalSettings.Components[n].EN THEN
-			IF str <> '' THEN
-				str := concat(str, ', ');
+		SavedParameters := GreenMaster.GetParameters();
+		Globals.SystemUpTime := DT_TO_DWORD(NowDT()) - DT_TO_DWORD(Globals.SystemStartTime);
+		
+		NightCooling := FALSE;
+		
+		TestPID();
+		
+		str := '';
+		FOR n := 0 TO GlobalSettings.MAX_COMPONENTS DO
+			IF GlobalSettings.Components[n].Name = ComponentNames.NONE THEN
+				EXIT;
 			END_IF
-			str := concat(str, TO_STRING(GlobalSettings.Components[n].Name));
-		END_IF
-	END_FOR
-	Globals.Components := str;
-	
-	HostName(bExecute := TRUE);
-	// CX-503E98 CTH 1
-	// CX-492F8F Diginet lab
-	// CX-4F1CE6 NIBE AirSite lab
-	// 
-	Globals.HostName := HostName.sHostName; 
-	IF F_ToUCase(HostName.sHostName) = 'CX-503E98' THEN
-		UseReverse_C_QN1 := FALSE;
-	ELSE
-		UseReverse_C_QN1 := GreenMaster.Parameters.Io.AOutCalibration.C_QN1.InvertedOutput;
-	END_IF
-	
-	IF GreenMaster.Parameters.System.Operation.IoUpdateEN THEN
-		GreenMasterDI(DIn := Globals.IO.DIn, DInLevels := GreenMaster.Parameters.IO.DInLevels);
-		GreenMasterDO(DOut := Globals.IO.DOut);
-		GreenMasterAI(AIn := Globals.IO.AIn);
-		GreenMasterAO(AOut := Globals.IO.AOut);
-		GreenMasterAI2_RTU(Parameters:=GreenMaster.GetParameters(), EN:= TRUE);
-	END_IF
-	
-	//_iDbg:=ComponentNames.GM_OPT_STENA;
-	//Std_Interface(EN := GetComponent(Name := ComponentNames.GM_TAGS).EN, AIn := Globals.IO.AIn);
-	Std_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STD).EN, AIn := Globals.IO.AIn);
-	CTH_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_CTH).EN, AIn := Globals.IO.AIn);	
-	Stena_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STENA).EN, AIn := Globals.IO.AIn);	
-	
-	// Redundant drift
-	IF GetComponent(Name := ComponentNames.REDUNDANCY).EN THEN
-		Redundancy(	EN := GetComponent(Name := ComponentNames.REDUNDANCY).EN,
-					_UPPSTART_DONE:=StartupDone,
-					_TF_CMD:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV > 0,
-					_TF_V:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV > 0 AND GreenMaster.GetCurrentSupplyAirPV() > 10,
-					_TF_OP:=LREAL_TO_REAL(GreenMaster.Parameters.Regulation.SupplyAir.Control.CV),
-					_TL_GP_PV:=LREAL_TO_REAL(GreenMaster.GetCurrentSupplyAirPV()),
-					_FF_CMD:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV > 0,
-					_FF_V:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV > 0 AND GreenMaster.GetCurrentExtractAirPV() > 10,
-					_FF_OP:=LREAL_TO_REAL(GreenMaster.Parameters.Regulation.ExtractAir.Control.CV),
-					_FL_GP_PV:=LREAL_TO_REAL(GreenMaster.GetCurrentExtractAirPV()),
-					_SERVICEBRYTARE:=FALSE
-					);
-	END_IF
-	
-	IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
-		Globals.IO.DOut.DO15 := GreenMaster.Parameters.Alarm.Active.A.FireExtract;
-		IF GreenMaster.Parameters.System.Operation.RemoteEN THEN
-			IF GreenMaster.Parameters.IO.AIn.T_BT1 > (GreenMaster.Parameters.Regulation.NightCoolingLimit + 0.5) THEN
-				NightCooling := CTH_Interface.NightCooling;	
+			IF GlobalSettings.Components[n].EN THEN
+				IF str <> '' THEN
+					str := concat(str, ', ');
+				END_IF
+				str := concat(str, TO_STRING(GlobalSettings.Components[n].Name));
 			END_IF
-			IF GreenMaster.Parameters.IO.AIn.T_BT1 < GreenMaster.Parameters.Regulation.NightCoolingLimit THEN
-				NightCooling := FALSE;		
+		END_FOR
+		Globals.Components := str;
+		
+		HostName(bExecute := TRUE);
+		// CX-503E98 CTH 1
+		// CX-492F8F Diginet lab
+		// CX-4F1CE6 NIBE AirSite lab
+		// 
+		Globals.HostName := HostName.sHostName; 
+		IF F_ToUCase(HostName.sHostName) = 'CX-503E98' THEN
+			UseReverse_C_QN1 := FALSE;
+		ELSE
+			UseReverse_C_QN1 := GreenMaster.Parameters.Io.AOutCalibration.C_QN1.InvertedOutput;
+		END_IF
+		
+		IF GreenMaster.Parameters.System.Operation.IoUpdateEN THEN
+			GreenMasterDI(DIn := Globals.IO.DIn, DInLevels := GreenMaster.Parameters.IO.DInLevels);
+			GreenMasterDO(DOut := Globals.IO.DOut);
+			GreenMasterAI(AIn := Globals.IO.AIn);
+			GreenMasterAO(AOut := Globals.IO.AOut);
+			GreenMasterAI2_RTU(Parameters:=GreenMaster.GetParameters(), EN:= TRUE);
+		END_IF
+		
+		//_iDbg:=ComponentNames.GM_OPT_STENA;
+		//Std_Interface(EN := GetComponent(Name := ComponentNames.GM_TAGS).EN, AIn := Globals.IO.AIn);
+		Std_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STD).EN, AIn := Globals.IO.AIn);
+		CTH_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_CTH).EN, AIn := Globals.IO.AIn);	
+		Stena_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STENA).EN, AIn := Globals.IO.AIn);	
+		
+		// Redundant drift
+		IF GetComponent(Name := ComponentNames.REDUNDANCY).EN THEN
+			Redundancy(	EN := GetComponent(Name := ComponentNames.REDUNDANCY).EN,
+						_UPPSTART_DONE:=StartupDone,
+						_TF_CMD:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV > 0,
+						_TF_V:=GreenMaster.Parameters.Regulation.SupplyAir.Control.CV > 0 AND GreenMaster.GetCurrentSupplyAirPV() > 10,
+						_TF_OP:=LREAL_TO_REAL(GreenMaster.Parameters.Regulation.SupplyAir.Control.CV),
+						_TL_GP_PV:=LREAL_TO_REAL(GreenMaster.GetCurrentSupplyAirPV()),
+						_FF_CMD:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV > 0,
+						_FF_V:=GreenMaster.Parameters.Regulation.ExtractAir.Control.CV > 0 AND GreenMaster.GetCurrentExtractAirPV() > 10,
+						_FF_OP:=LREAL_TO_REAL(GreenMaster.Parameters.Regulation.ExtractAir.Control.CV),
+						_FL_GP_PV:=LREAL_TO_REAL(GreenMaster.GetCurrentExtractAirPV()),
+						_SERVICEBRYTARE:=FALSE
+						);
+		END_IF
+		
+		IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
+			Globals.IO.DOut.DO15 := GreenMaster.Parameters.Alarm.Active.A.FireExtract;
+			IF GreenMaster.Parameters.System.Operation.RemoteEN THEN
+				IF GreenMaster.Parameters.IO.AIn.T_BT1 > (GreenMaster.Parameters.Regulation.NightCoolingLimit + 0.5) THEN
+					NightCooling := CTH_Interface.NightCooling;	
+				END_IF
+				IF GreenMaster.Parameters.IO.AIn.T_BT1 < GreenMaster.Parameters.Regulation.NightCoolingLimit THEN
+					NightCooling := FALSE;		
+				END_IF
+				GreenMaster.GetParameters().System.Operation.FireDamperUsed := FALSE;		
 			END_IF
-			GreenMaster.GetParameters().System.Operation.FireDamperUsed := FALSE;		
 		END_IF
-	END_IF
-	
-	IF GetComponent(Name := ComponentNames.GM_BASE).EN THEN
-		GreenMaster.Update(DO_ := GreenMasterDO, AO := GreenMasterAO);
-		GreenMaster(
-			EN := TRUE AND (NOT DebugStop),
-			RemoteEN := GreenMaster.Parameters.System.Operation.RemoteEN, //Std_Interface.ENO OR CTH_Interface.ENO OR Stena_Interface.ENO,	// TODO: Varför bara CTH här i original?  
-			DI := GreenMasterDI,
-			AI := GreenMasterAI,
-			AI2 := GreenMasterAI2_RTU,
-			TCP_AI := SmokeControl.GreenMasterSmokeControl,  
-			Reverse_C_QN1 := UseReverse_C_QN1,
-			NightCooling := NightCooling,
-			EnableFansAndDampers := Std_Interface.EN OR Stena_Interface.EN OR (CTH_Interface.EN AND NOT CTH_Interface.FirePanelActive)
-		);
-	END_IF
-	
-	IF GetComponent(Name := ComponentNames.SIMULATION).EN THEN
-		IF GreenMaster.GetParameters().System.Operation.Simulation THEN
-			GreenMaster.Simulation(Parameters := GreenMaster.GetParameters(), ParametersXXL := GreenMaster.GetParametersXXL());			
+		
+		IF GetComponent(Name := ComponentNames.GM_BASE).EN THEN
+			GreenMaster.Update(DO_ := GreenMasterDO, AO := GreenMasterAO);
+			GreenMaster(
+				EN := TRUE AND (NOT DebugStop),
+				RemoteEN := GreenMaster.Parameters.System.Operation.RemoteEN, //Std_Interface.ENO OR CTH_Interface.ENO OR Stena_Interface.ENO,	// TODO: Varför bara CTH här i original?  
+				DI := GreenMasterDI,
+				AI := GreenMasterAI,
+				AI2 := GreenMasterAI2_RTU,
+				TCP_AI := SmokeControl.GreenMasterSmokeControl,  
+				Reverse_C_QN1 := UseReverse_C_QN1,
+				NightCooling := NightCooling,
+				EnableFansAndDampers := Std_Interface.EN OR Stena_Interface.EN OR (CTH_Interface.EN AND NOT CTH_Interface.FirePanelActive)
+			);
 		END_IF
-	END_IF
-	
-	AnySensorError := GreenMaster.Parameters.IO.AIn.F_BT1_Error OR 
-		GreenMaster.Parameters.IO.AIn.T_BT2_Error OR
-		GreenMaster.Parameters.IO.AIn.T_BT3_Error OR
-		GreenMaster.Parameters.IO.AIn.H_BT1_Error OR
-		GreenMaster.Parameters.IO.AIn.T_BT1_Error OR
-		GreenMaster.Parameters.IO.AIn.BT1_Error OR
-		GreenMaster.Parameters.IO.AIn.BT2_Error OR
-		GreenMaster.Parameters.IO.AIn.F_BT2_Error OR	
-		GreenMaster.Parameters.IO.AIn.F_BP1_Error OR
-		GreenMaster.Parameters.IO.AIn.T_BP1_Error OR
-		GreenMaster.Parameters.IO.AIn.F_BP2_Error OR
-		GreenMaster.Parameters.IO.AIn.T_BP2_Error OR
-		GreenMaster.Parameters.IO.AIn.F_BP3_Error OR
-		GreenMaster.Parameters.IO.AIn.T_BF1_Error OR
-		GreenMaster.Parameters.IO.AIn.F_BF1_Error;	
-	
-	
-	// Save persistent data on power off or fail
-	Saver();
-	WritePersistentData(NETID := '', PORT := 851, TMOUT := T#10S, START := StartWritePersistentData);
-	
-	DevMon(Value := DevValue, TargetValue := 5);
-	
-	IF GetComponent(Name := ComponentNames.EXTRA_ALARMS).EN THEN	
-		GreenMaster.GetParameters().Alarm.Status.A.AL01 := NOT ExtraAlarmInputs.AL01;
-		GreenMaster.GetParameters().Alarm.Status.A.AL02 := NOT ExtraAlarmInputs.AL02;
-		GreenMaster.GetParameters().Alarm.Status.A.AL03 := NOT ExtraAlarmInputs.AL03;
-		GreenMaster.GetParameters().Alarm.Status.A.AL04 := NOT ExtraAlarmInputs.AL04;
-		GreenMaster.GetParameters().Alarm.Status.A.AL05 := NOT ExtraAlarmInputs.AL05;
-		GreenMaster.GetParameters().Alarm.Status.A.AL06 := NOT ExtraAlarmInputs.AL06;
-		GreenMaster.GetParameters().Alarm.Status.A.AL07 := NOT ExtraAlarmInputs.AL07;
-		GreenMaster.GetParameters().Alarm.Status.A.AL08 := NOT ExtraAlarmInputs.AL08;
-	END_IF
-	ExtraAlarms_Interface(EN := GetComponent(Name := ComponentNames.EXTRA_ALARMS).EN);
-	SmokeControl_Interface(EN := GetComponent(Name := ComponentNames.GM_SMOKE_CONTROL).EN);
-	IF Globals.SecondsCounter <> LastSecondsCounter THEN
-		LastSecondsCounter := Globals.SecondsCounter;
-		fbGetSystemTime(timeLoDW=>fileTime.dwLowDateTime, timeHiDW=>fileTime.dwHighDateTime );
-		sTime :=SYSTEMTIME_TO_STRING( FILETIME_TO_SYSTEMTIME( fileTime ) );
-		GreenMaster.GetParameters().System.SystemTime := sTime;
-	END_IF
+		
+		IF GetComponent(Name := ComponentNames.SIMULATION).EN THEN
+			IF GreenMaster.GetParameters().System.Operation.Simulation THEN
+				GreenMaster.Simulation(Parameters := GreenMaster.GetParameters(), ParametersXXL := GreenMaster.GetParametersXXL());			
+			END_IF
+		END_IF
+		
+		AnySensorError := GreenMaster.Parameters.IO.AIn.F_BT1_Error OR 
+			GreenMaster.Parameters.IO.AIn.T_BT2_Error OR
+			GreenMaster.Parameters.IO.AIn.T_BT3_Error OR
+			GreenMaster.Parameters.IO.AIn.H_BT1_Error OR
+			GreenMaster.Parameters.IO.AIn.T_BT1_Error OR
+			GreenMaster.Parameters.IO.AIn.BT1_Error OR
+			GreenMaster.Parameters.IO.AIn.BT2_Error OR
+			GreenMaster.Parameters.IO.AIn.F_BT2_Error OR	
+			GreenMaster.Parameters.IO.AIn.F_BP1_Error OR
+			GreenMaster.Parameters.IO.AIn.T_BP1_Error OR
+			GreenMaster.Parameters.IO.AIn.F_BP2_Error OR
+			GreenMaster.Parameters.IO.AIn.T_BP2_Error OR
+			GreenMaster.Parameters.IO.AIn.F_BP3_Error OR
+			GreenMaster.Parameters.IO.AIn.T_BF1_Error OR
+			GreenMaster.Parameters.IO.AIn.F_BF1_Error;	
+		
+		
+		// Save persistent data on power off or fail
+		Saver();
+		WritePersistentData(NETID := '', PORT := 851, TMOUT := T#10S, START := StartWritePersistentData);
+		
+		DevMon(Value := DevValue, TargetValue := 5);
+		
+		IF GetComponent(Name := ComponentNames.EXTRA_ALARMS).EN THEN	
+			GreenMaster.GetParameters().Alarm.Status.A.AL01 := NOT ExtraAlarmInputs.AL01;
+			GreenMaster.GetParameters().Alarm.Status.A.AL02 := NOT ExtraAlarmInputs.AL02;
+			GreenMaster.GetParameters().Alarm.Status.A.AL03 := NOT ExtraAlarmInputs.AL03;
+			GreenMaster.GetParameters().Alarm.Status.A.AL04 := NOT ExtraAlarmInputs.AL04;
+			GreenMaster.GetParameters().Alarm.Status.A.AL05 := NOT ExtraAlarmInputs.AL05;
+			GreenMaster.GetParameters().Alarm.Status.A.AL06 := NOT ExtraAlarmInputs.AL06;
+			GreenMaster.GetParameters().Alarm.Status.A.AL07 := NOT ExtraAlarmInputs.AL07;
+			GreenMaster.GetParameters().Alarm.Status.A.AL08 := NOT ExtraAlarmInputs.AL08;
+		END_IF
+		ExtraAlarms_Interface(EN := GetComponent(Name := ComponentNames.EXTRA_ALARMS).EN);
+		SmokeControl_Interface(EN := GetComponent(Name := ComponentNames.GM_SMOKE_CONTROL).EN);
+		IF Globals.SecondsCounter <> LastSecondsCounter THEN
+			LastSecondsCounter := Globals.SecondsCounter;
+			fbGetSystemTime(timeLoDW=>fileTime.dwLowDateTime, timeHiDW=>fileTime.dwHighDateTime );
+			sTime :=SYSTEMTIME_TO_STRING( FILETIME_TO_SYSTEMTIME( fileTime ) );
+			// 2021-11-10-08:08:53.582
+			sPart1 := Delete(sTime, 4, 19);
+			sPart2 := Replace(sPart1, ' ', 1, 11);
+			GreenMaster.GetParameters().System.SystemTime := sPart2;
+		END_IF
+		IF Crash THEN
+			PTest^ := 111;
+		END_IF
 	__CATCH
 		ExceptionYet := TRUE; 			
 	__ENDTRY
@@ -235,8 +245,12 @@ END_IF
       <LineId Id="2469" Count="0" />
       <LineId Id="2465" Count="0" />
       <LineId Id="2464" Count="0" />
+      <LineId Id="2489" Count="0" />
+      <LineId Id="2488" Count="0" />
+      <LineId Id="2492" Count="0" />
       <LineId Id="2368" Count="0" />
       <LineId Id="2467" Count="0" />
+      <LineId Id="2485" Count="2" />
       <LineId Id="2479" Count="0" />
       <LineId Id="2482" Count="0" />
       <LineId Id="2481" Count="0" />
