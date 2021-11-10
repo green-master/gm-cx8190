@@ -5,10 +5,10 @@
 VAR_INPUT
 	{attribute 'TcEncoding':='UTF-8'}
 	ModbusTCP_IP: STRING := '10.133.0.23';
-	EN: BOOL := TRUE;
+	EN: BOOL := FALSE;
 	Exercise: SmokeControlExerciseParameters;
 	Fire: SmokeControlFireParameters;
-	Error: BOOL := TRUE;
+	Error: BOOL := FALSE;
 END_VAR
 VAR_OUTPUT
 END_VAR

@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE SxDuoParameters :
 STRUCT
 	Unit01: SxDuoUnitFB := ( EN := TRUE, UnitID := 21 );
-	Unit02: SxDuoUnitFB := ( EN := TRUE, UnitID := 22 );
+	Unit02: SxDuoUnitFB := ( EN := FALSE, UnitID := 22 );
 	Unit03: SxDuoUnitFB := ( EN := FALSE, UnitID := 23 );
 	Unit04: SxDuoUnitFB := ( EN := FALSE, UnitID := 24 );
 	Unit05: SxDuoUnitFB := ( EN := FALSE, UnitID := 25 );

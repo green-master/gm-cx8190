@@ -50,6 +50,9 @@ VAR
 	ExceptionYet: BOOL;
 	PTest: POINTER TO BYTE;
 	Crash: BOOL;
+	i: INT;
+	w: WORD;
+	Rr: LREAL;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -214,7 +217,10 @@ END_VAR
 ELSE
 	ExceptionYet := TRUE; 	
 END_IF
-]]></ST>
+
+Rr := -4;
+i := TO_INT(Rr);
+i := TO_INT(w);]]></ST>
     </Implementation>
     <LineIds Name="Main">
       <LineId Id="2472" Count="0" />
@@ -256,7 +262,9 @@ END_IF
       <LineId Id="2475" Count="0" />
       <LineId Id="2477" Count="0" />
       <LineId Id="2476" Count="0" />
+      <LineId Id="2560" Count="0" />
       <LineId Id="2354" Count="0" />
+      <LineId Id="2561" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>
