@@ -12,6 +12,7 @@ VAR_INPUT
 	Operation: SystemOperationParameters;
 	Defrost: DefrostParameters;
 	Exercise: ExerciseParameters;
+	SystemTime: string;
 	{attribute 'TcEncoding':='UTF-8'}
 	Diagram: string[8000];
 END_VAR

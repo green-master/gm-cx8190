@@ -769,6 +769,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.TX1_EFF_PV := LREAL_TO_REAL(Parameters.Regulation.Temperature.Efficiency);
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.PLC_VERSION_PV := GlobalSettings.PlcVersion;
+	ADS_Standard.Tags.Status.SYSTEMTIME_DT1 := Parameters.System.SystemTime;
 
 	PreEN := TRUE;
 	
@@ -932,7 +933,9 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       <LineId Id="4200" Count="0" />
       <LineId Id="3499" Count="66" />
       <LineId Id="4331" Count="0" />
-      <LineId Id="3566" Count="18" />
+      <LineId Id="3566" Count="7" />
+      <LineId Id="4378" Count="0" />
+      <LineId Id="3574" Count="10" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Standard_Interface.ExchangeData">
