@@ -864,7 +864,7 @@ END_VAR
     </Method>
     <Action Name="ModbusStatus" Id="{0977aaf0-06a9-4503-8531-2e133e4315a5}">
       <Implementation>
-        <ST><![CDATA[GVL.mb_Input_Registers[0] := REAL_TO_WORD(ADS_Standard.Tags.Status.Temperature_CSP);
+        <ST><![CDATA[GVL.mb_Input_Registers[0] := REAL_TO_WORD(ADS_Standard.Tags.Status.TEMPERATURE_CSP);
 
 GVL.mb_Input_Registers[100] := REAL_TO_WORD(ADS_Standard.Tags.Status.BT1_PV*10.0);
 GVL.mb_Input_Registers[101] := REAL_TO_WORD(ADS_Standard.Tags.Status.T_BT2_PV*10.0);
@@ -873,6 +873,7 @@ GVL.mb_Input_Registers[103] := REAL_TO_WORD(ADS_Standard.Tags.Status.H_BT1_PV*10
 GVL.mb_Input_Registers[104] := REAL_TO_WORD(ADS_Standard.Tags.Status.T_BT1_PV*10.0);
 GVL.mb_Input_Registers[105] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT1_PV*10.0);
 GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10.0);
+GVL.mb_Input_Registers[107] := REAL_TO_WORD(ADS_Standard.Tags.Status.BT2_PV*10.0);
 
 //GVL.mb_Input_Registers[200] := REAL_TO_INT(ADS_Standard.Tags.Status.T_BP *10.0);
 
@@ -966,6 +967,7 @@ GVL.mb_Input_Registers[106] := REAL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_PV*10
       <LineId Id="4" Count="0" />
       <LineId Id="3" Count="0" />
       <LineId Id="5" Count="5" />
+      <LineId Id="14" Count="0" />
       <LineId Id="12" Count="1" />
       <LineId Id="11" Count="0" />
       <LineId Id="2" Count="0" />
