@@ -884,7 +884,7 @@ GVL.mb_Input_Registers[301] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.F_BP1_PV)
 GVL.mb_Input_Registers[500] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.T_BF1_PV));
 GVL.mb_Input_Registers[501] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.F_BF1_PV));
 
-GVL.mb_Input_Registers[600] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.TX1_EFF_PV * 10));
+GVL.mb_Input_Registers[600] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.TX1_EFF_PV * 100));
 GVL.mb_Input_Registers[601] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.SFP_PV * 1000));
 
 GVL.mb_Input_Registers[700] := TO_WORD(ADS_Standard.Tags.Status.T_GQ1_OP * 100);
