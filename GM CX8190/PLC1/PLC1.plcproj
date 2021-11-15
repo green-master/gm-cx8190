@@ -101,7 +101,13 @@
     <Compile Include="DUTs\GreenMaster\SystemStatesRunModeExternal.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ModbusRTU\EBM_Speed.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ModbusRTU\Gebhardt_Power.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ModbusRTU\Gebhardt_Speed.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ModbusRTU\ModbusReadWordArray.TcPOU">
