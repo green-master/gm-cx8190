@@ -6,8 +6,6 @@ VAR_IN_OUT
 	Parameters: GreenMasterBaseParameters;
 	SupplyDamper: BOOL;
 	ExtractDamper: BOOL;
-	SupplyFanAO: LREAL;
-	ExtractFanAO: LREAL;
 END_VAR
 VAR_INPUT
 	EN: BOOL;
@@ -28,9 +26,6 @@ VAR_OUTPUT
 	ExtractFanStopped: BOOL;
 END_VAR
 VAR
-	SupplyFanControl: FanControl;
-	ExtractFanControl: FanControl;
-	ControllerParameters: ControllerParameters;
 	
 	LastStartSupplyFan: BOOL;
 	StartSupplyFanTON: TON;
@@ -47,6 +42,7 @@ VAR
 	LastStopExtractFan: BOOL;
 	StopExtractFanTON: TON;
 	CurrentStopExtractFan: BOOL;
+	LastENO: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -71,36 +67,51 @@ IF 		Parameters.Alarm.Status.A.FirePanelSupplyStart OR
 	ENO := TRUE;
 END_IF
 IF Parameters.Alarm.Control.ResetAlarms THEN
+	Parameters.Alarm.Status.A.FirePanelSupplyStart := FALSE;
 	Parameters.Alarm.Status.A.FirePanelSupplyStop := FALSE;
 	Parameters.Alarm.Status.A.FirePanelExtractStart := FALSE;
 	Parameters.Alarm.Status.A.FirePanelExtractStop := FALSE;
-	Parameters.Alarm.Status.A.FirePanelSupplyStart := FALSE;
+	Main.GreenMaster.SupplyFanOverride(FALSE, 0);
+	Main.GreenMaster.ExtractFanOverride(FALSE, 0);	
+	SupplyDamper := FALSE;	
+	ExtractDamper := FALSE;
 	ENO := FALSE;
 END_IF
 	
 IF ENO THEN
 	
-	IF CurrentStartSupplyFan AND NOT LastStartSupplyFan THEN
+	IF ENO <> LastENO THEN
+		Main.GreenMaster.SupplyFanOverride(TRUE, 0);
+		Main.GreenMaster.ExtractFanOverride(TRUE, 0);	
+		SupplyDamper := FALSE;	
+		ExtractDamper := FALSE;
 		Parameters.Alarm.Status.A.FirePanelSupplyStop := FALSE;
 		Parameters.Alarm.Status.A.FirePanelExtractStart := FALSE;
 		Parameters.Alarm.Status.A.FirePanelExtractStop := FALSE;
+		Parameters.Alarm.Status.A.FirePanelSupplyStart := FALSE;
+	END_IF
+	
+	IF CurrentStartSupplyFan AND NOT LastStartSupplyFan THEN
 		Parameters.Alarm.Status.A.FirePanelSupplyStart := TRUE;
+		Parameters.Alarm.Status.A.FirePanelSupplyStop := FALSE;
+		Parameters.Alarm.Status.A.FirePanelExtractStart := FALSE;
+		Parameters.Alarm.Status.A.FirePanelExtractStop := FALSE;
 	END_IF
 	LastStartSupplyFan := CurrentStartSupplyFan;
 	
 	IF CurrentStopSupplyFan AND NOT LastStopSupplyFan THEN
 		Parameters.Alarm.Status.A.FirePanelSupplyStart := FALSE;
+		Parameters.Alarm.Status.A.FirePanelSupplyStop := TRUE;
 		Parameters.Alarm.Status.A.FirePanelExtractStart := FALSE;
 		Parameters.Alarm.Status.A.FirePanelExtractStop := FALSE;
-		Parameters.Alarm.Status.A.FirePanelSupplyStop := TRUE;
 	END_IF
 	LastStopSupplyFan := CurrentStopSupplyFan;
 	
 	IF CurrentStartExtractFan AND NOT LastStartExtractFan THEN
 		Parameters.Alarm.Status.A.FirePanelSupplyStop := FALSE;
 		Parameters.Alarm.Status.A.FirePanelSupplyStart := FALSE;
-		Parameters.Alarm.Status.A.FirePanelExtractStop := FALSE;
 		Parameters.Alarm.Status.A.FirePanelExtractStart := TRUE;
+		Parameters.Alarm.Status.A.FirePanelExtractStop := FALSE;
 	END_IF
 	LastStartExtractFan := CurrentStartExtractFan;
 	
@@ -114,50 +125,34 @@ IF ENO THEN
 	
 	IF Parameters.Alarm.Status.A.FirePanelSupplyStart THEN
 		SupplyDamper := TRUE;
-		ControllerParameters.SP := ADS_CTH.Tags2.Settings.LA02_SupplyFanHighSpeed_SP;
-		SupplyFanControl(	EN := SupplyDamperOpen, 
-							ControlMode := FanControlTypes.Pressure, 
-							ControlParameters := ControllerParameters, 
-							Pressure := Parameters.IO.AIn.T_BP1,
-							PostVentilationTime := LTIME#0S,
-							Damper := SupplyDamperOpen,
-							FanAlarm := TRUE,
-							Parameters := Parameters);
-		SupplyFanAO := SupplyFanControl.CV;	
+		IF SupplyDamperOpen THEN
+			Main.GreenMaster.SupplyFanOverride(TRUE, 0.75);
+		ELSE
+			Main.GreenMaster.SupplyFanOverride(TRUE, 0);			
+		END_IF
 	END_IF
 	IF Parameters.Alarm.Status.A.FirePanelSupplyStop THEN
 		SupplyDamper := FALSE;
-		SupplyFanControl(EN := FALSE, Parameters := Parameters);
-		SupplyFanAO := 0;
+		Main.GreenMaster.SupplyFanOverride(TRUE, 0);
 	END_IF
 	
 	IF Parameters.Alarm.Status.A.FirePanelExtractStart THEN
 		ExtractDamper := TRUE;
-		ControllerParameters.SP := ADS_CTH.Tags2.Settings.LA02_ExtractFanHighSpeed_SP;
-		ExtractFanControl(	EN := ExtractDamperOpen, 
-							ControlMode := FanControlTypes.Pressure, 
-							ControlParameters := ControllerParameters, 
-							Pressure := Parameters.IO.AIn.F_BP1,
-							PostVentilationTime := LTIME#0S,
-							Damper := ExtractDamperOpen,
-							FanAlarm := TRUE,
-							Parameters := Parameters);
-		ExtractFanAO := ExtractFanControl.CV;	
+		IF ExtractDamperOpen THEN
+			Main.GreenMaster.ExtractFanOverride(TRUE, 0.75);
+		ELSE
+			Main.GreenMaster.ExtractFanOverride(TRUE, 0);			
+		END_IF
 	END_IF
 	IF Parameters.Alarm.Status.A.FirePanelExtractStop THEN
 		ExtractDamper := FALSE;
-		ExtractFanControl(EN := FALSE, Parameters := Parameters);
-		ExtractFanAO := 0;
+		Main.GreenMaster.ExtractFanOverride(TRUE, 0);
 	END_IF
 	
 ELSE
 	IF ENO THEN
-		SupplyFanAO := 0;
-		ExtractFanAO := 0;
 		SupplyDamper := FALSE;
 		ExtractDamper := FALSE;
-		SupplyFanControl(EN := FALSE, Parameters := Parameters);
-		ExtractFanControl(EN := FALSE, Parameters := Parameters);
 	END_IF
 	IF SupplyDamperClosed AND ExtractDamperClosed THEN
 		ENO := FALSE;
@@ -167,6 +162,7 @@ ELSE
 	ExtractFanStarted := FALSE;
 	ExtractFanStopped := FALSE;
 END_IF
+LastENO := ENO;
 ]]></ST>
     </Implementation>
     <LineIds Name="FirePanelCTH">
@@ -178,47 +174,61 @@ END_IF
       <LineId Id="840" Count="3" />
       <LineId Id="668" Count="1" />
       <LineId Id="671" Count="0" />
-      <LineId Id="948" Count="3" />
-      <LineId Id="672" Count="1" />
+      <LineId Id="1140" Count="0" />
+      <LineId Id="948" Count="2" />
+      <LineId Id="1152" Count="3" />
+      <LineId Id="1160" Count="0" />
+      <LineId Id="1151" Count="0" />
       <LineId Id="670" Count="0" />
-      <LineId Id="591" Count="1" />
+      <LineId Id="591" Count="0" />
+      <LineId Id="1115" Count="1" />
+      <LineId Id="1119" Count="1" />
+      <LineId Id="1122" Count="1" />
+      <LineId Id="1134" Count="3" />
+      <LineId Id="1118" Count="0" />
+      <LineId Id="592" Count="0" />
       <LineId Id="527" Count="0" />
+      <LineId Id="1141" Count="0" />
       <LineId Id="723" Count="0" />
       <LineId Id="940" Count="1" />
-      <LineId Id="528" Count="0" />
       <LineId Id="538" Count="2" />
       <LineId Id="721" Count="1" />
+      <LineId Id="1142" Count="0" />
       <LineId Id="942" Count="1" />
-      <LineId Id="542" Count="0" />
       <LineId Id="547" Count="0" />
       <LineId Id="752" Count="0" />
       <LineId Id="548" Count="0" />
       <LineId Id="753" Count="0" />
       <LineId Id="945" Count="0" />
       <LineId Id="944" Count="0" />
-      <LineId Id="755" Count="0" />
-      <LineId Id="785" Count="0" />
-      <LineId Id="756" Count="3" />
+      <LineId Id="1143" Count="0" />
+      <LineId Id="755" Count="4" />
       <LineId Id="946" Count="1" />
       <LineId Id="760" Count="4" />
       <LineId Id="740" Count="0" />
-      <LineId Id="743" Count="7" />
-      <LineId Id="952" Count="0" />
-      <LineId Id="1001" Count="0" />
-      <LineId Id="751" Count="0" />
+      <LineId Id="743" Count="0" />
+      <LineId Id="1124" Count="0" />
+      <LineId Id="1108" Count="0" />
+      <LineId Id="1125" Count="0" />
+      <LineId Id="1128" Count="0" />
+      <LineId Id="1127" Count="0" />
       <LineId Id="742" Count="0" />
       <LineId Id="731" Count="0" />
       <LineId Id="739" Count="0" />
-      <LineId Id="735" Count="3" />
-      <LineId Id="765" Count="8" />
-      <LineId Id="953" Count="0" />
-      <LineId Id="1002" Count="0" />
-      <LineId Id="774" Count="7" />
+      <LineId Id="1110" Count="0" />
+      <LineId Id="737" Count="1" />
+      <LineId Id="765" Count="1" />
+      <LineId Id="1129" Count="0" />
+      <LineId Id="1111" Count="0" />
+      <LineId Id="1130" Count="0" />
+      <LineId Id="1133" Count="0" />
+      <LineId Id="1132" Count="0" />
+      <LineId Id="775" Count="2" />
+      <LineId Id="1112" Count="0" />
+      <LineId Id="780" Count="1" />
       <LineId Id="595" Count="0" />
       <LineId Id="601" Count="0" />
-      <LineId Id="614" Count="1" />
       <LineId Id="612" Count="1" />
-      <LineId Id="645" Count="1" />
       <LineId Id="787" Count="0" />
       <LineId Id="647" Count="0" />
       <LineId Id="654" Count="0" />
@@ -226,6 +236,7 @@ END_IF
       <LineId Id="651" Count="0" />
       <LineId Id="598" Count="2" />
       <LineId Id="594" Count="0" />
+      <LineId Id="1114" Count="0" />
       <LineId Id="22" Count="0" />
     </LineIds>
   </POU>
