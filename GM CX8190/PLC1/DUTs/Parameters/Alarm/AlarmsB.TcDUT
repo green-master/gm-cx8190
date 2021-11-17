@@ -19,6 +19,10 @@ STRUCT
 	DamperError: BOOL;
 	CommunicationError: BOOL;
 	DamperModuleService: BOOL;
+	Watchdog: BOOL;
+	ExpansionTank: BOOL;
+	HeatExchangerHighPressure: BOOL;
+	OperatingTime: bool;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

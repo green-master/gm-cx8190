@@ -5,8 +5,8 @@
 VAR_INPUT
 	EN: BOOL := TRUE;
 	SP: LREAL;
-	PostVentilationTime: LTIME;
-	PostVentilationLevel: LREAL;
+	PostVentilationTime: LTIME := LTIME#2M;
+	PostVentilationLevel: LREAL := 0.25;
 END_VAR
 VAR_OUTPUT
 	ENO: BOOL;
@@ -17,24 +17,33 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[PostVentilationTOF(IN := SP > 0, PT := LTIME_TO_TIME(PostVentilationTime));
+      <ST><![CDATA[PostVentilationTOF(IN := SP > 0.01, PT := LTIME_TO_TIME(PostVentilationTime));
 IF EN THEN
 	IF PostVentilationTOF.Q THEN
-		IF SP > 0 THEN
+		ENO := TRUE;
+		IF SP > 0.01 THEN
 			SP_PostVentilation := SP;
 		ELSE
 			SP_PostVentilation := PostVentilationLevel;
 		END_IF
 	ELSE
+		ENO := FALSE;
 		SP_PostVentilation := 0;
 	END_IF
 ELSE
+	ENO := FALSE;
 	SP_PostVentilation := SP;
 END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="PostVentilation">
-      <LineId Id="189" Count="13" />
+      <LineId Id="189" Count="2" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="192" Count="5" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="198" Count="2" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="201" Count="1" />
       <LineId Id="24" Count="0" />
     </LineIds>
   </POU>

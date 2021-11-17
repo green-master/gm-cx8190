@@ -27,6 +27,8 @@ VAR_INPUT
 	FirePanelSupplyStop: BOOL;
 	FirePanelExtractStart: BOOL;
 	FirePanelExtractStop: BOOL;
+	F_QM1_Closed: BOOL;
+	F_QM1_Open: BOOL;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -69,6 +71,8 @@ END_VAR
 	FirePanelSupplyStop := DI.FireDeactivateSupplyAir;
 	FirePanelExtractStart := DI.FireActivateExtractAir;
 	FirePanelExtractStop := DI.FireDeactivateExtractAir;
+	F_QM1_Closed := DI.F_QM1_Closed;
+	F_QM1_Open := DI.F_QM1_Open;
 END_IF
 ]]></ST>
       </Implementation>
@@ -85,6 +89,7 @@ END_IF
       <LineId Id="23" Count="1" />
       <LineId Id="37" Count="1" />
       <LineId Id="59" Count="3" />
+      <LineId Id="68" Count="1" />
       <LineId Id="53" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>

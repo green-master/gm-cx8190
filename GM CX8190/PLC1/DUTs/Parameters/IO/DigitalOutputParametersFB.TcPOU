@@ -7,12 +7,6 @@ VAR_INPUT
     C_GP1: BOOL; // Cirkulationspump kylkrets
     T_QM2: BOOL; // Tilluftsspjäll
     R_QM1: BOOL; // Återluftsspjäll
-    T_QM1_1: BOOL; // Sektionsavfrostning
-    T_QM1_2: BOOL; // Sektionsavfrostning
-    T_QM1_3: BOOL; // Sektionsavfrostning
-    T_QM1_4: BOOL; // Sektionsavfrostning
-    T_QM1_5: BOOL; // Sektionsavfrostning
-    T_QM1_6: BOOL; // Sektionsavfrostning
     F_QM1: BOOL; // Frånluftsspjäll
     F_QM2: BOOL; // Brandspjäll förbigång
 	F_QM2_ActiveWhenStopped: BOOL;
@@ -23,6 +17,7 @@ VAR_INPUT
 	AL_B: BOOL; // B-larm
 	AL_C: BOOL; // C-larm
 	AL_D: BOOL; // D-larm
+	P2: BOOL;
 END_VAR
 VAR_OUTPUT
 	H_GP1_OnTime: LTIME;
@@ -62,12 +57,6 @@ IF EnableWriteDampers THEN
 END_IF
 DO_.R_QM1 := R_QM1;
 DO_.F_QM2 := F_QM2;
-DO_.T_QM1_1 := T_QM1_1;
-DO_.T_QM1_2 := T_QM1_2;
-DO_.T_QM1_3 := T_QM1_3;
-DO_.T_QM1_4 := T_QM1_4;
-DO_.T_QM1_5 := T_QM1_5;
-DO_.T_QM1_6 := T_QM1_6;
 F_QM2_ActiveWhenStopped := FALSE;
 DO_.SupplyRunning := T_RUN;
 DO_.ExhaustRunning := F_RUN;
@@ -76,7 +65,8 @@ DO_.AlarmRelayA := AL_A;
 DO_.AlarmRelayB := AL_B;
 DO_.AlarmRelayC := AL_C;
 DO_.AlarmRelayD := AL_D;
-]]></ST>
+
+DO_.P2 := P2;]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="DigitalOutputParametersFB">
@@ -84,7 +74,9 @@ DO_.AlarmRelayD := AL_D;
       <LineId Id="68" Count="0" />
     </LineIds>
     <LineIds Name="DigitalOutputParametersFB.Update">
-      <LineId Id="47" Count="22" />
+      <LineId Id="47" Count="8" />
+      <LineId Id="62" Count="7" />
+      <LineId Id="76" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

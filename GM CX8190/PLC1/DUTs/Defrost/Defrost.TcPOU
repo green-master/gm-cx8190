@@ -216,12 +216,6 @@ ELSE
 	Damper6 := Parameters.System.Defrost.Sections >= 6;
 	
 END_IF
-Parameters.IO.DOut.T_QM1_1 := Damper1;
-Parameters.IO.DOut.T_QM1_2 := Damper2;
-Parameters.IO.DOut.T_QM1_3 := Damper3;
-Parameters.IO.DOut.T_QM1_4 := Damper4;
-Parameters.IO.DOut.T_QM1_5 := Damper5;
-Parameters.IO.DOut.T_QM1_6 := Damper6;
 ]]></ST>
     </Implementation>
     <LineIds Name="Defrost">
@@ -307,8 +301,6 @@ Parameters.IO.DOut.T_QM1_6 := Damper6;
       <LineId Id="1101" Count="5" />
       <LineId Id="1057" Count="0" />
       <LineId Id="1029" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="1108" Count="4" />
       <LineId Id="1107" Count="0" />
     </LineIds>
   </POU>

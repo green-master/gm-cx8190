@@ -32,6 +32,7 @@ VAR_OUTPUT
 	TX1_Running: BOOL;
 	ResetAlarm: BOOL;
 	P2_Running: BOOL;
+	P2_Alarm: BOOL;
 	ExpansionVesselAlarm: BOOL;
 	FireActivateSupplyAir: BOOL;
 	FireDeactivateSupplyAir: BOOL;

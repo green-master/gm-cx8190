@@ -95,6 +95,9 @@
     <Compile Include="DUTs\Exercise\ExerciseF_QM2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\GreenMaster\RecyclingFreezeProtection.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\GreenMaster\SystemStatesRunMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -605,6 +608,9 @@
     <Compile Include="DUTs\Utilities\Average.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Utilities\CheckWatchdog.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Utilities\DeviationMonitor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -615,6 +621,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Utilities\ifc_int.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Utilities\LimitOutput.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Utilities\LREAL_BMUX.TcPOU">

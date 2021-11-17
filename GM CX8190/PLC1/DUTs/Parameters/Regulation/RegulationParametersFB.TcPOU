@@ -12,7 +12,9 @@ VAR_INPUT
 	SupplyAir: AirParametersFB := (StartupFanSpeed := 0.3);
 	ExtractAir: AirParametersFB := (StartupFanSpeed := 0.4);
 	Temperature: TemperatureControlParametersFB;
-	NightCoolingLimit: LREAL;
+	NightCoolingLimit: LREAL := 18;
+	NightCooling: BOOL;
+	NightCoolingEN: BOOL := FALSE;
 	TemperatureCompensationSource: TemperatureCompensationSources;
 	CurrentTemperatureCompensationSource: TemperatureCompensationSources;
 	CompensationTemperature: LREAL;

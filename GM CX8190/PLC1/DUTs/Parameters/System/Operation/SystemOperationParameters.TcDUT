@@ -14,26 +14,20 @@ STRUCT
 	State: SystemStates; // Operation state
 	{attribute 'TcEncoding':='UTF-8'}
 	SystemName: STRING := 'GM'; // System name |||| Systemnamn
-	//StartControl: StartControl;
-	StartupHeatRecoveryTime: LTIME := LTIME#1M;
-	ExhaustFanStartupDelay: LTIME := LTIME#20S;
-	SupplyFanStartupDelay: LTIME := LTIME#40S;
+	StartupHeatRecoveryTime: LTIME := LTIME#3M;
+	SupplyFanStartupDelay: LTIME := LTIME#1M;
 	PostVentilationTime: LTIME := LTIME#2M;
 	PostFireVentilationTime: LTIME := LTIME#0M;
+	OperatingTime: LTIME;
 	TimeChannels: TimeChannelParameters;
-	(*
-	MaxFilterPressure: MaxFilterPressure;
-	OvkActivation: OvkActivation;
-	RelativeHumidity: RelativeHumidity;
-	LocalTimeControl: LocalTimeControl;
-	StartupRecycling: StartupRecycling;
-	StartupFanDelay: StartupFanDelay;
-	NightReduction: NightReduction;
-	RecirculationControl: RecirculationControl;
-	CoolingRecycling: CoolingRecycling;
-	AlternativeOperation: AlternativeOperation;
-	DIStartUnit: DIStartUnit;
-	*)
+	TimeChannelsLocal: TimeChannelParameters := (	TC01 := ( Day := TimerDays.Monday, OnTime := 0530, OffTime := 2000 ),
+													TC02 := ( Day := TimerDays.Tuesday, OnTime := 0530, OffTime := 2000 ),
+													TC03 := ( Day := TimerDays.Wednesday, OnTime := 0530, OffTime := 2000 ),
+													TC04 := ( Day := TimerDays.Thursday, OnTime := 0530, OffTime := 2000 ),
+													TC05 := ( Day := TimerDays.Friday, OnTime := 0530, OffTime := 2000 ),
+													TC06 := ( Day := TimerDays.Saturday, OnTime := 0530, OffTime := 2000 ),
+													TC07 := ( Day := TimerDays.Sunday, OnTime := 0530, OffTime := 2000 )
+												);
 END_STRUCT
 END_TYPE
 ]]></Declaration>

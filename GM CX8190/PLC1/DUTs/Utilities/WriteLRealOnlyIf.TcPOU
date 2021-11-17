@@ -2,14 +2,15 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="WriteLRealOnlyIf" Id="{095d4888-dcfd-4e6d-85cd-cff8863d336f}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK WriteLRealOnlyIf
+VAR_IN_OUT
+	Out: LREAL;	
+END_VAR
 VAR_INPUT
 	EN: BOOL := TRUE;
-	In: LREAL;
-	InNotEN: LREAL;
+	Value: LREAL;
 END_VAR
 VAR_OUTPUT
 	ENO: bool;
-	Out: LREAL;
 END_VAR
 VAR
 END_VAR
@@ -17,16 +18,12 @@ END_VAR
     <Implementation>
       <ST><![CDATA[ENO := EN;
 IF EN THEN
-	Out := In;
-ELSE
-	Out := InNotEN;
+	Out := Value;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="WriteLRealOnlyIf">
       <LineId Id="9" Count="0" />
-      <LineId Id="17" Count="1" />
-      <LineId Id="66" Count="1" />
-      <LineId Id="19" Count="0" />
+      <LineId Id="17" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>

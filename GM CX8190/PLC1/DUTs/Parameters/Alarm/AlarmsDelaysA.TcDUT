@@ -14,10 +14,10 @@ STRUCT
 	Fuse: TIME := T#5S;
 	Cold: TIME := T#5S;
 	Aux: TIME := T#5S;
-	FirePanelSupplyStart: TIME := T#5S;
-	FirePanelSupplyStop: TIME := T#5S;
-	FirePanelExtractStart: TIME := T#5S;
-	FirePanelExtractStop: TIME := T#5S;
+	FirePanelSupplyStart: TIME := T#1S;
+	FirePanelSupplyStop: TIME := T#1S;
+	FirePanelExtractStart: TIME := T#1S;
+	FirePanelExtractStop: TIME := T#1S;
 	AL01: TIME := T#5S;
 	AL02: TIME := T#5S;
 	AL03: TIME := T#5S;
@@ -26,6 +26,7 @@ STRUCT
 	AL06: TIME := T#5S;
 	AL07: TIME := T#5S;
 	AL08: TIME := T#5S;
+	DamperError: TIME := T#5S;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

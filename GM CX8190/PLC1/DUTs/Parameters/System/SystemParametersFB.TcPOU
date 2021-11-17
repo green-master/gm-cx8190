@@ -70,6 +70,53 @@ Operation.TimeChannels.Q :=
 	Operation.TimeChannels.TC25.Q OR
 	Operation.TimeChannels.TC26.Q OR
 	Operation.TimeChannels.TC27.Q;
+
+Operation.TimeChannelsLocal.TC01();
+Operation.TimeChannelsLocal.TC02();
+Operation.TimeChannelsLocal.TC03();
+Operation.TimeChannelsLocal.TC04();
+Operation.TimeChannelsLocal.TC05();
+Operation.TimeChannelsLocal.TC06();
+Operation.TimeChannelsLocal.TC07();
+
+Operation.TimeChannelsLocal.TC11();
+Operation.TimeChannelsLocal.TC12();
+Operation.TimeChannelsLocal.TC13();
+Operation.TimeChannelsLocal.TC14();
+Operation.TimeChannelsLocal.TC15();
+Operation.TimeChannelsLocal.TC16();
+Operation.TimeChannelsLocal.TC17();
+
+Operation.TimeChannelsLocal.TC21();
+Operation.TimeChannelsLocal.TC22();
+Operation.TimeChannelsLocal.TC23();
+Operation.TimeChannelsLocal.TC24();
+Operation.TimeChannelsLocal.TC25();
+Operation.TimeChannelsLocal.TC26();
+Operation.TimeChannelsLocal.TC27();
+
+Operation.TimeChannelsLocal.Q :=
+	Operation.TimeChannelsLocal.TC01.Q OR
+	Operation.TimeChannelsLocal.TC02.Q OR
+	Operation.TimeChannelsLocal.TC03.Q OR
+	Operation.TimeChannelsLocal.TC04.Q OR
+	Operation.TimeChannelsLocal.TC05.Q OR
+	Operation.TimeChannelsLocal.TC06.Q OR
+	Operation.TimeChannelsLocal.TC07.Q OR
+	Operation.TimeChannelsLocal.TC11.Q OR
+	Operation.TimeChannelsLocal.TC12.Q OR
+	Operation.TimeChannelsLocal.TC13.Q OR
+	Operation.TimeChannelsLocal.TC14.Q OR
+	Operation.TimeChannelsLocal.TC15.Q OR
+	Operation.TimeChannelsLocal.TC16.Q OR
+	Operation.TimeChannelsLocal.TC17.Q OR
+	Operation.TimeChannelsLocal.TC21.Q OR
+	Operation.TimeChannelsLocal.TC22.Q OR
+	Operation.TimeChannelsLocal.TC23.Q OR
+	Operation.TimeChannelsLocal.TC24.Q OR
+	Operation.TimeChannelsLocal.TC25.Q OR
+	Operation.TimeChannelsLocal.TC26.Q OR
+	Operation.TimeChannelsLocal.TC27.Q;
 ]]></ST>
     </Implementation>
     <LineIds Name="SystemParametersFB">
@@ -87,6 +134,7 @@ Operation.TimeChannels.Q :=
       <LineId Id="129" Count="2" />
       <LineId Id="133" Count="2" />
       <LineId Id="137" Count="2" />
+      <LineId Id="201" Count="46" />
       <LineId Id="111" Count="0" />
     </LineIds>
   </POU>

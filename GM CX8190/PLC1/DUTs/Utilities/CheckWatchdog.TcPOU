@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="CheckWatchdog" Id="{1cabb147-68a0-4ddd-84b0-c821a7f35d4a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CheckWatchdog
+VAR_INPUT
+	EN: BOOL;
+	Watchdog: INT;
+	Timeout: TIME := T#30S;
+END_VAR
+VAR_OUTPUT
+	ENO: BOOL;
+	Alarm: BOOL;
+END_VAR
+VAR
+	LastWatchdog: INT;
+	WatchdogTimer: Timer;
+	FirstTime: bool;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT FirstTime THEN
+	WatchdogTimer.Restart();
+	FirstTime := TRUE;
+END_IF
+ENO := EN;
+IF EN THEN
+	IF Watchdog <> LastWatchdog THEN
+		WatchdogTimer.Restart();	
+		LastWatchdog := Watchdog;
+	END_IF
+	Alarm := WatchdogTimer.ElapsedTime() > TO_LINT(Timeout);
+ELSE
+	WatchdogTimer.Restart();	
+	Alarm := FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="CheckWatchdog">
+      <LineId Id="23" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="21" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

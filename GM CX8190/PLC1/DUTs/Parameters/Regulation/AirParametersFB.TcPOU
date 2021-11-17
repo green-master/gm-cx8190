@@ -7,7 +7,7 @@ VAR_IN_OUT
 END_VAR
 VAR_INPUT
 	ControlMode: FanControlTypes;
-	Control: ControllerParameters;
+	Control: ControllerParameters := (SP := 100, SP_HighSpeed := 150);
 	Defaults: DefaultParameters;
 	KFactor: LREAL := 96.7;
 	SlaveOffset: LREAL;
@@ -58,7 +58,11 @@ ELSE
 	END_CASE	
 END_IF
 SetPointAdjustment(X := Parameters.Regulation.CompensationTemperature);
-Control.CSP := (Control.SP + SetPointAdjustment.Y) * AdjustCSP;
+IF NOT (Parameters.IO.DIn.ExtendedOperation or (Parameters.Regulation.NightCoolingEN and Parameters.Regulation.NightCooling)) THEN
+	Control.CSP := (Control.SP + SetPointAdjustment.Y) * AdjustCSP;
+ELSE
+	Control.CSP := (Control.SP_HighSpeed + SetPointAdjustment.Y) * AdjustCSP;
+END_IF
 IF Flow <> 0 THEN
 	SpecificFanPower := Power / Flow;	
 ELSE
@@ -75,7 +79,11 @@ END_IF
       <LineId Id="138" Count="22" />
       <LineId Id="23" Count="0" />
       <LineId Id="207" Count="0" />
-      <LineId Id="183" Count="0" />
+      <LineId Id="281" Count="0" />
+      <LineId Id="284" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="285" Count="0" />
+      <LineId Id="283" Count="0" />
       <LineId Id="236" Count="1" />
       <LineId Id="239" Count="1" />
       <LineId Id="238" Count="0" />

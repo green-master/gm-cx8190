@@ -20,6 +20,10 @@ STRUCT
 	DamperError: TIME := T#30S;
 	CommunicationError: TIME := T#30S;
 	DamperModuleService: TIME := T#5S;
+	Watchdog: time := T#5m;
+	ExpansionTank: TIME := T#5S;
+	HeatExchangerHighPressure: TIME := T#30S;
+	OperatingTime: TIME := T#1S;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

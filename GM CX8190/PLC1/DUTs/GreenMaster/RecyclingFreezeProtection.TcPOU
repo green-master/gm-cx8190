@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="RecyclingFreezeProtection" Id="{7fedce1a-72b8-4cfb-b806-53fb2d9609e3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK RecyclingFreezeProtection
+VAR_INPUT
+	CV: LREAL;
+	Pressure: LREAL;
+END_VAR
+VAR_OUTPUT
+	CV_OUT: LREAL;
+END_VAR
+VAR
+	Hysteresis: Hysteresis;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Hysteresis(Value := Main.GreenMaster.Parameters.IO.AIn.F_BP3, LimitValue := Main.GreenMaster.Parameters.Alarm.Limits.B.HeatExchangerHighPressure, Offset := 5);
+IF Hysteresis.Above THEN
+	CV_OUT := 0;
+ELSE
+	CV_OUT := CV;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="RecyclingFreezeProtection">
+      <LineId Id="20" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

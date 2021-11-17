@@ -78,8 +78,6 @@ END_IF
 
 IF EN AND Parameters.System.Operation.RemoteEN THEN
 	
-	Globals.IO.DOut.DO16 := ADS_Stena.Tags.Status.LA02_P2_CMD;
-	
 	NightCooling := ADS_Stena.Tags.Settings.LA02_NightCooling_V;
 	
 	// --------------------------------------------------------------------------------
@@ -184,11 +182,6 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 	Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Stena.Tags.Settings.LA02_SV21_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_SV21_MCMD / 100.0);
 	Main.GreenMasterAO.SetOverrideF_QN1(Parameters := Parameters, Override := ADS_Stena.Tags.Settings.LA02_SV31_M, OverrideValue := ADS_Stena.Tags.Settings.LA02_SV31_MCMD / 100.0);
 	PreEN := TRUE;
-ELSE
-	IF PreEN THEN
-		Globals.IO.DOut.DO16 := FALSE;
-	END_IF
-	PreEN := FALSE;
 END_IF
 ]]></ST>
     </Implementation>
@@ -196,11 +189,13 @@ END_IF
       <LineId Id="1322" Count="5" />
       <LineId Id="1348" Count="15" />
       <LineId Id="1570" Count="0" />
-      <LineId Id="1364" Count="16" />
+      <LineId Id="1364" Count="9" />
+      <LineId Id="1376" Count="4" />
       <LineId Id="1525" Count="1" />
       <LineId Id="1381" Count="27" />
       <LineId Id="1527" Count="0" />
-      <LineId Id="1409" Count="73" />
+      <LineId Id="1409" Count="67" />
+      <LineId Id="1482" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="LimitOutput" Id="{8ae27181-a104-4ac6-aeea-42c26e637f82}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK LimitOutput
+VAR_INPUT
+	IN: LREAL;
+	LIM: LREAL;
+	LIM_FB: LREAL;
+	T: TIME := T#60S;
+END_VAR
+VAR_OUTPUT
+	OUT: LREAL;
+END_VAR
+VAR
+	TempIN: LREAL;
+	TempOut: LREAL;
+	Sum: LREAL;
+	Timer: Timer;
+	Delta: LREAL;
+	d: LINT;
+	FirstTime: bool;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT FirstTime THEN
+	FirstTime := TRUE;
+	d := TO_LINT(T);
+	IF d > 0 THEN
+		Delta := 1000.0 / TO_LREAL(d);
+	ELSE
+		Delta := 0.01;	
+	END_IF
+END_IF
+
+TempIN := IN;
+
+IF Timer.ElapsedTime() > 1000 THEN	
+	IF LIM_FB > LIM AND Sum > 0 THEN
+		Sum := Sum - Delta;
+		IF Sum < 0 THEN
+			Sum := 0;
+		END_IF
+	END_IF
+	IF LIM_FB < LIM AND Sum < 1 THEN
+		Sum := Sum + Delta;
+		IF Sum > 1 THEN
+			Sum := 1;
+		END_IF
+	END_IF
+	Timer.Restart();
+END_IF
+TempOut := TempIN - Sum;
+IF TempOut < 0 THEN
+	TempOut := 0;
+END_IF
+IF TempOut > 1 THEN
+	TempOut := 1;
+END_IF
+OUT := TempOut;]]></ST>
+    </Implementation>
+    <LineIds Name="LimitOutput">
+      <LineId Id="72" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="76" Count="5" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="65" Count="2" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="68" Count="2" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="59" Count="5" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

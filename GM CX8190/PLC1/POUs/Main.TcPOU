@@ -17,7 +17,7 @@ VAR
 	test1: bool;
 	
 	Std_Interface : Standard_Interface;
-	CTH_Interface: CTH_Interface;
+	CTH_Interface1: CTH_Interface;
 	Stena_Interface: Stena_Interface;
 	ExtraAlarms_Interface: ExtraAlarms_Interface;
 	SmokeControl_Interface: SmokeControl_Interface;
@@ -28,13 +28,13 @@ VAR
 	GreenMasterDO: GreenMasterDO;
 	GreenMasterAI: GreenMasterAI;
 	GreenMasterAO: GreenMasterAO;
-	GreenMasterAI2_RTU: GreenMasterAIU_ModbusRTU;
+	//GreenMasterAI2_RTU: GreenMasterAIU_ModbusRTU;
+	GreenMasterAIU: GreenMasterAIU;
 	AnySensorError: BOOL;
 	{attribute 'TcEncoding':='UTF-8'}
 	str: STRING;
 	n: INT;
 	
-	NightCooling: BOOL;
 	DebugStop: BOOL;
 	WritePersistentData: WritePersistentData;
 	StartWritePersistentData: BOOL;
@@ -70,8 +70,6 @@ END_VAR
 		SavedParameters := GreenMaster.GetParameters();
 		Globals.SystemUpTime := DT_TO_DWORD(NowDT()) - DT_TO_DWORD(Globals.SystemStartTime);
 		
-		NightCooling := FALSE;
-		
 		TestPID();
 		
 		str := '';
@@ -94,7 +92,7 @@ END_VAR
 		// CX-4F1CE6 NIBE AirSite lab
 		// 
 		Globals.HostName := HostName.sHostName; 
-		IF F_ToUCase(HostName.sHostName) = 'CX-503E98' THEN
+		IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
 			UseReverse_C_QN1 := FALSE;
 		ELSE
 			UseReverse_C_QN1 := GreenMaster.Parameters.Io.AOutCalibration.C_QN1.InvertedOutput;
@@ -105,13 +103,13 @@ END_VAR
 			GreenMasterDO(DOut := Globals.IO.DOut);
 			GreenMasterAI(AIn := Globals.IO.AIn);
 			GreenMasterAO(AOut := Globals.IO.AOut);
-			GreenMasterAI2_RTU(Parameters:=GreenMaster.GetParameters(), EN:= TRUE);
+			GreenMasterAIU(EN:= TRUE);
 		END_IF
 		
 		//_iDbg:=ComponentNames.GM_OPT_STENA;
 		//Std_Interface(EN := GetComponent(Name := ComponentNames.GM_TAGS).EN, AIn := Globals.IO.AIn);
 		Std_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STD).EN, AIn := Globals.IO.AIn);
-		CTH_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_CTH).EN, AIn := Globals.IO.AIn);	
+		CTH_Interface1(EN := GetComponent(Name := ComponentNames.GM_OPT_CTH).EN, AIn := Globals.IO.AIn);	
 		Stena_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STENA).EN, AIn := Globals.IO.AIn);	
 		
 		// Redundant drift
@@ -130,32 +128,30 @@ END_VAR
 						);
 		END_IF
 		
-		IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
-			Globals.IO.DOut.DO15 := GreenMaster.Parameters.Alarm.Active.A.FireExtract;
-			IF GreenMaster.Parameters.System.Operation.RemoteEN THEN
-				IF GreenMaster.Parameters.IO.AIn.T_BT1 > (GreenMaster.Parameters.Regulation.NightCoolingLimit + 0.5) THEN
-					NightCooling := CTH_Interface.NightCooling;	
-				END_IF
-				IF GreenMaster.Parameters.IO.AIn.T_BT1 < GreenMaster.Parameters.Regulation.NightCoolingLimit THEN
-					NightCooling := FALSE;		
-				END_IF
-				GreenMaster.GetParameters().System.Operation.FireDamperUsed := FALSE;		
-			END_IF
+		IF GreenMaster.Parameters.IO.AIn.T_BT1 > GreenMaster.Parameters.Regulation.NightCoolingLimit THEN
+			GreenMaster.GetParameters().Regulation.NightCooling := GreenMaster.GetParameters().Regulation.NightCoolingEN;	
 		END_IF
+		IF GreenMaster.Parameters.IO.AIn.T_BT1 < (GreenMaster.Parameters.Regulation.NightCoolingLimit - 0.5) THEN
+			GreenMaster.GetParameters().Regulation.NightCooling := FALSE;		
+		END_IF
+
+		//IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
+		//END_IF
 		
 		IF GetComponent(Name := ComponentNames.GM_BASE).EN THEN
 			GreenMaster.Update(DO_ := GreenMasterDO, AO := GreenMasterAO);
-			GreenMaster(
-				EN := TRUE AND (NOT DebugStop),
-				RemoteEN := GreenMaster.Parameters.System.Operation.RemoteEN, //Std_Interface.ENO OR CTH_Interface.ENO OR Stena_Interface.ENO,	// TODO: Varför bara CTH här i original?  
-				DI := GreenMasterDI,
-				AI := GreenMasterAI,
-				AI2 := GreenMasterAI2_RTU,
-				TCP_AI := SmokeControl.GreenMasterSmokeControl,  
-				Reverse_C_QN1 := UseReverse_C_QN1,
-				NightCooling := NightCooling,
-				EnableFansAndDampers := Std_Interface.EN OR Stena_Interface.EN OR (CTH_Interface.EN AND NOT CTH_Interface.FirePanelActive)
-			);
+			IF NOT CTH_Interface1.IsFirePanelActive() THEN				
+				GreenMaster(
+					EN := TRUE AND (NOT DebugStop),
+					RemoteEN := GreenMaster.Parameters.System.Operation.RemoteEN, //Std_Interface.ENO OR CTH_Interface.ENO OR Stena_Interface.ENO,	// TODO: Varför bara CTH här i original?  
+					DI := GreenMasterDI,
+					AI := GreenMasterAI,
+					AI2 := GreenMasterAIU,
+					TCP_AI := SmokeControl.GreenMasterSmokeControl,  
+					Reverse_C_QN1 := UseReverse_C_QN1,
+					EnableFansAndDampers := Std_Interface.EN OR Stena_Interface.EN OR (CTH_Interface1.EN AND NOT CTH_Interface1.FirePanelActive)
+				);
+			END_IF
 		END_IF
 		
 		IF GetComponent(Name := ComponentNames.SIMULATION).EN THEN
@@ -225,13 +221,18 @@ i := TO_INT(w);]]></ST>
     <LineIds Name="Main">
       <LineId Id="2472" Count="0" />
       <LineId Id="2478" Count="0" />
-      <LineId Id="2117" Count="10" />
-      <LineId Id="2417" Count="0" />
+      <LineId Id="2117" Count="9" />
       <LineId Id="2416" Count="0" />
-      <LineId Id="2128" Count="68" />
-      <LineId Id="2272" Count="0" />
-      <LineId Id="2198" Count="14" />
-      <LineId Id="2282" Count="5" />
+      <LineId Id="2128" Count="56" />
+      <LineId Id="2619" Count="6" />
+      <LineId Id="2185" Count="0" />
+      <LineId Id="2202" Count="3" />
+      <LineId Id="2642" Count="0" />
+      <LineId Id="2206" Count="1" />
+      <LineId Id="2209" Count="3" />
+      <LineId Id="2282" Count="3" />
+      <LineId Id="2645" Count="0" />
+      <LineId Id="2286" Count="1" />
       <LineId Id="2267" Count="0" />
       <LineId Id="2296" Count="6" />
       <LineId Id="2304" Count="6" />
@@ -265,6 +266,8 @@ i := TO_INT(w);]]></ST>
       <LineId Id="2560" Count="0" />
       <LineId Id="2354" Count="0" />
       <LineId Id="2561" Count="1" />
+      <LineId Id="157" Count="4" />
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

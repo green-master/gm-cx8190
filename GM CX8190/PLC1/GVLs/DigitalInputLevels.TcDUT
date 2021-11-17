@@ -21,10 +21,10 @@ STRUCT
 	DI15: BOOL; // Ingång för rotationsvakt värmeväxlare (TX1)
 	DI16: BOOL; // Larmåterställning
 	DI17: BOOL;
-	DI18: BOOL := TRUE;
-	DI19: BOOL := TRUE;
-	DI20: BOOL := TRUE;
-	DI21: BOOL := TRUE;
+	DI18: BOOL;
+	DI19: BOOL;
+	DI20: BOOL;
+	DI21: BOOL;
 	DI22: BOOL;
 	DI23: BOOL;
 	DI24: BOOL;

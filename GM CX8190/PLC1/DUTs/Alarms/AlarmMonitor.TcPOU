@@ -39,6 +39,7 @@ VAR
 	LatchedSignalP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	StatusP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	AutoResetP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	DisabledP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	CurrentP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	PolarityP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	DelayP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF TIME;
@@ -59,8 +60,9 @@ IF StartupDelay.Q THEN
 	StatusP := ADR(Parameters.Alarm.Status);
 	PolarityP := ADR(Parameters.Alarm.Polarity);
 	CurrentP := ADR(Current.Signals);
+	DisabledP := ADR(Parameters.Alarm.Disabled);
 	FOR N := 0 TO AlarmCount - 1 DO
-		LatchedStatusP^[n] := StatusP^[n] <> PolarityP^[n];		
+		LatchedStatusP^[n] := (StatusP^[n] <> PolarityP^[n]) AND (NOT DisabledP^[n]);		
 		TONs[n](IN := LatchedStatusP^[n], PT := DelayP^[n], Q => CurrentP^[n]);
 	END_FOR
 	
@@ -175,7 +177,9 @@ IncludeJSON := FALSE;
     <LineIds Name="AlarmMonitor">
       <LineId Id="2063" Count="4" />
       <LineId Id="2164" Count="0" />
-      <LineId Id="2068" Count="10" />
+      <LineId Id="2068" Count="5" />
+      <LineId Id="2325" Count="0" />
+      <LineId Id="2074" Count="4" />
       <LineId Id="2084" Count="0" />
       <LineId Id="2274" Count="0" />
       <LineId Id="2277" Count="0" />

@@ -4,7 +4,17 @@
     <Declaration><![CDATA[TYPE AlarmParameters :
 STRUCT
 	Control: AlarmControl;
-	Disabled: AlarmSignals;
+	Disabled: AlarmSignals := ( 	A := ( 	AL01 := TRUE,
+											AL02 := TRUE,
+											AL03 := TRUE,
+											AL04 := TRUE,
+											AL05 := TRUE,
+											AL06 := TRUE,
+											AL07 := TRUE,
+											AL08 := TRUE
+									),
+									B := ( Watchdog := TRUE)
+									);
 	AutoReset: AlarmSignals := ( 	A := ( 	FirePanelSupplyStart := TRUE,  
 											FirePanelSupplyStop := TRUE, 
 											FirePanelExtractStart := TRUE, 
@@ -31,7 +41,8 @@ STRUCT
 											SmokeDetectorServiceSupply := TRUE,
 											Pump1 := TRUE,
 											Pump2 := TRUE,
-											CommunicationError := TRUE
+											CommunicationError := TRUE,
+											Watchdog := TRUE
 									),
 									C := (	ExternalSmokeControl := TRUE,
 											ModbusRTU := TRUE,
