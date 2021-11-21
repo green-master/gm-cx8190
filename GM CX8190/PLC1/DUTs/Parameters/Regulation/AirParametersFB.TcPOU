@@ -7,7 +7,7 @@ VAR_IN_OUT
 END_VAR
 VAR_INPUT
 	ControlMode: FanControlTypes;
-	Control: ControllerParameters := (SP := 100, SP_HighSpeed := 150);
+	Control: ControllerParameters := (SP := 275, SP_HighSpeed := 300);
 	Defaults: DefaultParameters;
 	KFactor: LREAL := 96.7;
 	SlaveOffset: LREAL;

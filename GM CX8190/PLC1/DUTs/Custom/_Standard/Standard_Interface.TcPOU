@@ -164,9 +164,22 @@ IF EN THEN
 						ADR(SavedInterface.TemperatureControl_D), 
 						('Parameters.Regulation.Temperature.Control.D'), ('TemperatureControl_D'));	
 
-
-		//Parameters.System.Operation.StartupHeatRecoveryTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.StartupHeatRecoveryTime);
-		//Parameters.System.Operation.PostFireVentilationTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.PostFireVentilationTime);
+		ExchangeData(ADR(Parameters.System.Operation.StartupHeatRecoveryTime), 
+						ADR(ADS_Standard.Tags.Settings.StartupHeatRecoveryTime), 
+						SIZEOF(Parameters.System.Operation.StartupHeatRecoveryTime), 
+						ADR(SavedParameters.System.Operation.StartupHeatRecoveryTime), 
+						ADR(SavedInterface.StartupHeatRecoveryTime), 
+						'TIME', ('Parameters.System.Operation.StartupHeatRecoveryTime'), ('StartupHeatRecoveryTime')
+		);
+		
+		ExchangeData(ADR(Parameters.System.Operation.PostVentilationTime), 
+						ADR(ADS_Standard.Tags.Settings.FanStopDelayTime), 
+						SIZEOF(Parameters.System.Operation.PostVentilationTime), 
+						ADR(SavedParameters.System.Operation.PostVentilationTime), 
+						ADR(SavedInterface.FanStopDelayTime), 
+						'TIME', ('Parameters.System.Operation.PostVentilationTime'), ('FanStopDelayTime')
+		);	
+		
 		UpdateTimeChannels(	TimeChannels := Parameters.System.Operation.TimeChannels, 
 							SavedTimeChannels := SavedParameters.System.Operation.TimeChannels, 
 							TC := ADS_Standard.Tags.Settings.TC, 
@@ -975,7 +988,14 @@ ExchangeData(	ADR(TimeChannels.TC27.OnTime),
     </Method>
     <LineIds Name="Standard_Interface">
       <LineId Id="4458" Count="36" />
-      <LineId Id="4496" Count="93" />
+      <LineId Id="4496" Count="77" />
+      <LineId Id="5264" Count="4" />
+      <LineId Id="4574" Count="0" />
+      <LineId Id="5263" Count="0" />
+      <LineId Id="5269" Count="0" />
+      <LineId Id="5271" Count="6" />
+      <LineId Id="5270" Count="0" />
+      <LineId Id="4577" Count="12" />
       <LineId Id="4849" Count="75" />
       <LineId Id="5211" Count="5" />
       <LineId Id="5209" Count="0" />

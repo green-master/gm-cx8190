@@ -20,11 +20,13 @@ END_VAR
     <Implementation>
       <ST><![CDATA[ValveSignal(Signal := Valve);
 Error := ((ValveSignal.OnTime() > TO_LINT(Timeout)) AND (NOT FB1)) OR
-		((ValveSignal.OffTime() > TO_LINT(Timeout)) AND (NOT FB2));]]></ST>
+		((ValveSignal.OffTime() > TO_LINT(Timeout)) AND (NOT FB2));
+Error := false;]]></ST>
     </Implementation>
     <LineIds Name="ValveMonitor">
       <LineId Id="3" Count="1" />
       <LineId Id="2" Count="0" />
+      <LineId Id="20" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

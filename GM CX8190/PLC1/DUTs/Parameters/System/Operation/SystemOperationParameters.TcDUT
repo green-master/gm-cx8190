@@ -14,10 +14,10 @@ STRUCT
 	State: SystemStates; // Operation state
 	{attribute 'TcEncoding':='UTF-8'}
 	SystemName: STRING := 'GM'; // System name |||| Systemnamn
-	StartupHeatRecoveryTime: LTIME := LTIME#3M;
-	SupplyFanStartupDelay: LTIME := LTIME#1M;
-	PostVentilationTime: LTIME := LTIME#2M;
-	PostFireVentilationTime: LTIME := LTIME#0M;
+	StartupHeatRecoveryTime: TIME := T#3M;
+	SupplyFanStartupDelay: TIME := T#1M;
+	PostVentilationTime: TIME := T#2M;
+	PostFireVentilationTime: TIME := T#0M;
 	OperatingTime: LTIME;
 	TimeChannels: TimeChannelParameters;
 	TimeChannelsLocal: TimeChannelParameters := (	TC01 := ( Day := TimerDays.Monday, OnTime := 0530, OffTime := 2000 ),

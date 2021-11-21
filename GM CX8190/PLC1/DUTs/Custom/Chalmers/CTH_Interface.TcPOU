@@ -75,9 +75,9 @@ IF EN THEN
 		VvXHyst(Value := Parameters.IO.AIn.F_BP3, LimitValue := Parameters.Alarm.Limits.B.HeatExchangerHighPressure, Offset := 5);
 		IF VvXHyst.Above THEN
 			P2Temp := TRUE;
-			GM_XXL.Disable := TRUE;
-		ELSE
 			GM_XXL.Disable := FALSE;
+		ELSE
+			GM_XXL.Disable := TRUE;
 		END_IF
 		Parameters.IO.DOut.P2 := P2Temp;	
 		

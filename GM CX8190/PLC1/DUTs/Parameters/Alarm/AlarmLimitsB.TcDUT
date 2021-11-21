@@ -12,7 +12,7 @@ STRUCT
 	Defrost: REAL := -1;
 	SupplyFilter: REAL := 150;
 	ExtractFilter: REAL := 150;
-	HeatExchangerHighPressure: REAL := 290;
+	HeatExchangerHighPressure: REAL := 310;
 	OperatingTime: LTIME := LTIME#15H;
 END_STRUCT
 END_TYPE

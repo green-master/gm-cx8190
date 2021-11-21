@@ -1343,7 +1343,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"FlowError"</v>
+                      <v n="Text">"false"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147483923L</v>
                     </o>
@@ -3258,7 +3258,7 @@ END_VAR
                         <v n="X">11</v>
                         <v n="Y">38</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
+                        <v n="Flags">100</v>
                       </o>
                       <o>
                         <v n="X">16</v>
@@ -4530,7 +4530,7 @@ END_VAR
                         <v n="X">54</v>
                         <v n="Y">5</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">100</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">55</v>

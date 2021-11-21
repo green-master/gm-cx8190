@@ -76,6 +76,9 @@ H_QN1_OPM :  REAL; //  Heat supply control valve manual value $(scale "0 1 0 100
 
 TC: TimeChannel_CT_CF;
 TC_LOCAL: TimeChannel_CT_CF;
+TC1_Speed: INT; // Speed (0=normal, 1=alternative) for time channels TC 0x
+TC2_Speed: INT; // Speed (0=normal, 1=alternative) for time channels TC 1x
+TC3_Speed: INT; // Speed (0=normal, 1=alternative) for time channels TC 2x
 
 END_STRUCT
 END_TYPE

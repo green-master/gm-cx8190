@@ -11,7 +11,7 @@ VAR_INPUT
 	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.IncreaseToHeat;
 	//SetPointAdjustment: SetPointAdjustment := ( Curve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20));
 	SetPointAdjustment: SetPointAdjustment;
-	Control: ControllerParameters := ( P := 10, I := T#2M, SP := 20, SP_HighSpeed := 20 );
+	Control: ControllerParameters := ( P := 1, I := T#10M, SP := 19, SP_HighSpeed := 19 );
 	FreezeProtectionControl: ControllerParameters;
 	ColdRecycling: ColdRecyclingParameters;
 
@@ -27,12 +27,7 @@ END_VAR
 Control.CSP := Control.SP + SetPointAdjustment.Y;
 IF (Main.GreenMaster.GetState() = SystemStates.Run) AND (Main.GreenMaster.StateTime() > LTIME#1M) THEN
 	Efficiency := CalculateEfficiency(Parameters.IO.AIn.T_BT3, Parameters.IO.AIn.T_BT2, Parameters.IO.AIn.F_BT1);
-	IF ((Parameters.IO.AOut.F_QN1 < 0.001) AND (Parameters.Regulation.Temperature.HeaterOutputDirection = HeaterOutputDirections.DecreaseToHeat)) OR
-		((Parameters.IO.AOut.F_QN1 > 0.999) AND (Parameters.Regulation.Temperature.HeaterOutputDirection = HeaterOutputDirections.IncreaseToHeat)) THEN
-		Parameters.Alarm.Status.B.HeatExchangerEfficiency := Efficiency < Parameters.Alarm.Limits.B.HeatExchangerEfficiency;
-	ELSE
-		Parameters.Alarm.Status.B.HeatExchangerEfficiency := FALSE;
-	END_IF
+	Parameters.Alarm.Status.B.HeatExchangerEfficiency := Efficiency < Parameters.Alarm.Limits.B.HeatExchangerEfficiency;
 ELSE
 	Efficiency := 0;	
 	Parameters.Alarm.Status.B.HeatExchangerEfficiency := FALSE;
@@ -70,11 +65,7 @@ END_IF
     <LineIds Name="TemperatureControlParametersFB">
       <LineId Id="47" Count="1" />
       <LineId Id="67" Count="1" />
-      <LineId Id="74" Count="0" />
-      <LineId Id="76" Count="0" />
       <LineId Id="73" Count="0" />
-      <LineId Id="95" Count="1" />
-      <LineId Id="75" Count="0" />
       <LineId Id="70" Count="2" />
       <LineId Id="69" Count="0" />
       <LineId Id="46" Count="0" />

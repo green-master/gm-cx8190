@@ -3,8 +3,6 @@
   <DUT Name="GreenMasterStatusCTH2" Id="{15146d7d-4d3c-4772-b282-ed4c8a5d6077}">
     <Declaration><![CDATA[TYPE GreenMasterStatusCTH2 :
 STRUCT
-	P1_V1: BOOL; // Circulation pump running
-	P1_AL: BOOL; // Circulation pump alarm
 	P2_V1: BOOL; // Circulation pump running
 	P2_AL: BOOL; // Circulation pump alarm
 	HANDSTARTED_TF_AL: BOOL;
@@ -13,7 +11,6 @@ STRUCT
 	HANDSTOPPED_FF_AL: BOOL;
 	BAD_DAMPER_POS_AL: BOOL;
 	
-	P1_CMD: BOOL; // Circulation pump activated
 	P2_CMD: BOOL; // Circulation pump activated
 END_STRUCT
 END_TYPE

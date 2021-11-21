@@ -59,7 +59,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT ExceptionYet THEN
-	__TRY
+	//__TRY
 		EventLog(EventLogData := Globals.EventLog);
 		IF NOT StartupDone THEN
 			Globals.SystemStartTime := NowDT();
@@ -207,9 +207,9 @@ END_VAR
 		IF Crash THEN
 			PTest^ := 111;
 		END_IF
-	__CATCH
-		ExceptionYet := TRUE; 			
-	__ENDTRY
+	//__CATCH
+		//ExceptionYet := TRUE; 			
+	//__ENDTRY
 ELSE
 	ExceptionYet := TRUE; 	
 END_IF

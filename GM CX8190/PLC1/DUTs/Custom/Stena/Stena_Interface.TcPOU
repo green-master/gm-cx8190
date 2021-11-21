@@ -100,8 +100,8 @@ IF EN AND Parameters.System.Operation.RemoteEN THEN
 		Parameters.Regulation.Temperature.Control.P := ADS_Stena.Tags.Settings.LA02_TemperatureControl_P;
 		Parameters.Regulation.Temperature.Control.I := ADS_Stena.Tags.Settings.LA02_TemperatureControl_I;
 		Parameters.Regulation.Temperature.Control.D := ADS_Stena.Tags.Settings.LA02_TemperatureControl_D;
-		Parameters.System.Operation.StartupHeatRecoveryTime := TIME_TO_LTIME(ADS_Stena.Tags.Settings.LA02_StartupHeatRecoveryTime);
-		Parameters.System.Operation.PostFireVentilationTime := TIME_TO_LTIME(ADS_Stena.Tags.Settings.LA02_PostFireVentilationTime);
+		Parameters.System.Operation.StartupHeatRecoveryTime := ADS_Stena.Tags.Settings.LA02_StartupHeatRecoveryTime;
+		Parameters.System.Operation.PostFireVentilationTime := ADS_Stena.Tags.Settings.LA02_PostFireVentilationTime;
 		Parameters.Regulation.SupplyAir.ControlMode := ADS_Stena.Tags.Settings.LA02_SupplyFanControlMode;
 		Parameters.Regulation.SupplyAir.Control.SP := ADS_Stena.Tags.Settings.LA02_SupplyFan_SP;
 		Parameters.Regulation.SupplyAir.Control.SP_HighSpeed := ADS_Stena.Tags.Settings.LA02_SupplyFanHighSpeed_SP;
