@@ -106,15 +106,15 @@ IF EN THEN
 		ADS_CTH.Tags.Status.GP83_AD := Parameters.Alarm.Delay.B.HeatExchangerHighPressure;
 		ADS_CTH.Tags.Status.GP83_HAL := Parameters.Alarm.Active.B.HeatExchangerHighPressure;
 		ADS_CTH.Tags.Status.SV31_OP := TO_REAL(Parameters.IO.AOut.F_QN1);
-		ADS_CTH.Tags.Status.GT21 := Globals.IO.AIn.AI09 / 10.0;
+		ADS_CTH.Tags.Status.GT21 := Globals.IO.AIn.AI09 / 100.0;
 		ADS_CTH.Tags.Status.GT21_FAULT := Globals.IO.AIn.AI09_Error;
-		ADS_CTH.Tags.Status.GT41 := Globals.IO.AIn.AI13 / 10.0;
+		ADS_CTH.Tags.Status.GT41 := Globals.IO.AIn.AI13 / 100.0;
 		ADS_CTH.Tags.Status.GT41_FAULT := Globals.IO.AIn.AI13_Error;
-		ADS_CTH.Tags.Status.GT44 := Globals.IO.AIn.AI10 / 10.0;
+		ADS_CTH.Tags.Status.GT44 := Globals.IO.AIn.AI10 / 100.0;
 		ADS_CTH.Tags.Status.GT44_FAULT := Globals.IO.AIn.AI10_Error;
-		ADS_CTH.Tags.Status.GT45 := Globals.IO.AIn.AI11 / 10.0;
+		ADS_CTH.Tags.Status.GT45 := Globals.IO.AIn.AI11 / 100.0;
 		ADS_CTH.Tags.Status.GT45_FAULT := Globals.IO.AIn.AI11_Error;
-		ADS_CTH.Tags.Status.GT46 := Globals.IO.AIn.AI12 / 10.0;
+		ADS_CTH.Tags.Status.GT46 := Globals.IO.AIn.AI12 / 100.0;
 		ADS_CTH.Tags.Status.GT46_FAULT := Globals.IO.AIn.AI12_Error;
 
 		Parameters.Alarm.Status.B.ExpansionTank := Globals.IO.DIn.DI24;
