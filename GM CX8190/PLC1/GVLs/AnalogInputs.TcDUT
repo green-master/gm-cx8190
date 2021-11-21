@@ -4,68 +4,68 @@
     <Declaration><![CDATA[TYPE AnalogInputs :
 STRUCT
 	// F.BT1 Frånluftstemperatur 
-	AI01 AT %I*: WORD;
+	AI01 AT %I*: INT;
     AI01_Error AT %I*: BOOL;
     // T.BT2 Uteluftstemperatur
-	AI02 AT %I*: WORD;
+	AI02 AT %I*: INT;
     AI02_Error AT %I*: BOOL;
     // T.BT3 Tilluftstemperatur (innan efterbehandling)
-	AI03 AT %I*: WORD;
+	AI03 AT %I*: INT;
     AI03_Error AT %I*: BOOL;
     // H.BT1 Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat)
-	AI04 AT %I*: WORD;
+	AI04 AT %I*: INT;
     AI04_Error AT %I*: BOOL;
     // T.BT1 Tilluftstemperatur (efter efterbehandling) 
-	AI05 AT %I*: WORD;
+	AI05 AT %I*: INT;
     AI05_Error AT %I*: BOOL;
     // BT1 Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard)
-	AI06 AT %I*: WORD;
+	AI06 AT %I*: INT;
     AI06_Error AT %I*: BOOL;
     // BT2 Rumstemperatur (lokalgivare, används inte i bostadsaggregat)
-	AI07 AT %I*: WORD;
+	AI07 AT %I*: INT;
     AI07_Error AT %I*: BOOL;
     // F.BT2 Avluftstemperatur (tillval)
-	AI08 AT %I*: WORD;
+	AI08 AT %I*: INT;
     AI08_Error AT %I*: BOOL;
     // Reservingång (alt. T.BF1 via 0-10V) 
-	AI09 AT %I*: WORD;
+	AI09 AT %I*: INT;
     AI09_Error AT %I*: BOOL;
     // Reservingång (alt. F.BF1 via 0-10V)
-	AI10 AT %I*: WORD;
+	AI10 AT %I*: INT;
     AI10_Error AT %I*: BOOL;
     // Reservingång (alt. T.BP2 via 0-10V) 
-	AI11 AT %I*: WORD;
+	AI11 AT %I*: INT;
     AI11_Error AT %I*: BOOL;
     // Reservingång (alt. F.BP2 via 0-10V) 
-	AI12 AT %I*: WORD;
+	AI12 AT %I*: INT;
     AI12_Error AT %I*: BOOL;
     // Reservingång (alt. F.BP3 via 0-10V) 
-	AI13 AT %I*: WORD;
+	AI13 AT %I*: INT;
     AI13_Error AT %I*: BOOL;
     // Reservingång (alt. T.BP1 via 0-10V) 
-	AI14 AT %I*: WORD;
+	AI14 AT %I*: INT;
     AI14_Error AT %I*: BOOL;
     // Reservingång (alt. F.BP1 via 0-10V) 
-	AI15 AT %I*: WORD;
+	AI15 AT %I*: INT;
     AI15_Error AT %I*: BOOL;
     // Reservingång (extra 0-10V-ingång) 
-	AI16 AT %I*: WORD;
+	AI16 AT %I*: INT;
     AI16_Error AT %I*: BOOL;
-	AI17 AT %I*: WORD;
+	AI17 AT %I*: INT;
     AI17_Error AT %I*: BOOL;
-	AI18 AT %I*: WORD;
+	AI18 AT %I*: INT;
     AI18_Error AT %I*: BOOL;
-	AI19 AT %I*: WORD;
+	AI19 AT %I*: INT;
     AI19_Error AT %I*: BOOL;
-	AI20 AT %I*: WORD;
+	AI20 AT %I*: INT;
     AI20_Error AT %I*: BOOL;
-	AI21 AT %I*: WORD;
+	AI21 AT %I*: INT;
     AI21_Error AT %I*: BOOL;
-	AI22 AT %I*: WORD;
+	AI22 AT %I*: INT;
     AI22_Error AT %I*: BOOL;
-	AI23 AT %I*: WORD;
+	AI23 AT %I*: INT;
     AI23_Error AT %I*: BOOL;
-	AI24 AT %I*: WORD;
+	AI24 AT %I*: INT;
     AI24_Error AT %I*: BOOL;
 END_STRUCT
 END_TYPE

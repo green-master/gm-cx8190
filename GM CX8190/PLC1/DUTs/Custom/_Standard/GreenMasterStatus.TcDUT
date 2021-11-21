@@ -33,7 +33,8 @@ TX1_EFF_PV :  REAL; // Verkningsgrad VVX $(scale "0 1 0 100", unit "%")
 H_GP1_CMD :  BOOL; // Manöver pump värme
 C_GP1_CMD :  BOOL; // Manöver pump kyla
 F_QM1_CMD :  BOOL; // Frånluftsspjäll manöver
-T_QM1_CMD :  BOOL; // Tilluftsspjäll manöver
+F_QM1_V0 :  BOOL; // Frånluftsspjäll stängt
+F_QM1_V1 :  BOOL; // Frånluftsspjäll öppet
 T_QM1_1_CMD :  BOOL; // Sektionsavfrostningsspjäll 1 manöver
 T_QM1_2_CMD :  BOOL; // Sektionsavfrostningsspjäll 2 manöver
 T_QM1_3_CMD :  BOOL; // Sektionsavfrostningsspjäll 3 manöver
@@ -74,9 +75,6 @@ C_QN1_OP :  REAL; // Utsignal kylventil $(scale "0 1 0 100", unit "%")
 T_QM2_CMD :  BOOL; // spjäll manöver
 T_QM2_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
 T_QM2_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
-T_QM3_CMD :  BOOL; // spjäll manöver
-T_QM3_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
-T_QM3_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
 
 F_BT1_PV :  REAL; // Frånluftstemperatur (aggregat)
 F_BT1_FAULT :  BOOL; // Frånluftstemperatur (aggregat) givarfel

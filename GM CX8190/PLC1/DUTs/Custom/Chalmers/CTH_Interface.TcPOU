@@ -56,6 +56,7 @@ END_VAR
 END_IF;
 Loop := Loop + 1;
 IF EN THEN
+	
 	IF Loop > 20 THEN
 		Loop := 0;
 		Globals.IO.DOut.DO15 := Parameters.Alarm.Active.A.FireExtract OR Parameters.Alarm.Active.A.FireSupply;
@@ -92,40 +93,33 @@ IF EN THEN
 						ExtractDamper := Parameters.IO.DOut.F_QM1
 		);
 		
+		ADS_CTH.Tags.Settings.POST_RUN_FANS := TO_TIME(Parameters.System.Operation.PostVentilationTime);
+		
 		ADS_CTH.Tags.Status.HANDSTARTED_TF_AL := Parameters.Alarm.Status.A.FirePanelSupplyStart; 
 		ADS_CTH.Tags.Status.HANDSTOPPED_TF_AL := Parameters.Alarm.Status.A.FirePanelSupplyStop; 
 		ADS_CTH.Tags.Status.HANDSTARTED_FF_AL := Parameters.Alarm.Status.A.FirePanelExtractStart; 
 		ADS_CTH.Tags.Status.HANDSTOPPED_FF_AL := Parameters.Alarm.Status.A.FirePanelExtractStop; 
 		ADS_CTH.Tags.Status.BAD_DAMPER_POS_AL := Parameters.Alarm.Active.A.DamperError;
 		
+		ADS_CTH.Tags.Status.GP83_PV := TO_REAL(Parameters.IO.AIn.F_BP3);
+		ADS_CTH.Tags.Status.GP83_AHL := Parameters.Alarm.Limits.B.HeatExchangerHighPressure;
+		ADS_CTH.Tags.Status.GP83_AD := Parameters.Alarm.Delay.B.HeatExchangerHighPressure;
+		ADS_CTH.Tags.Status.GP83_HAL := Parameters.Alarm.Active.B.HeatExchangerHighPressure;
+		ADS_CTH.Tags.Status.SV31_OP := TO_REAL(Parameters.IO.AOut.F_QN1);
+		ADS_CTH.Tags.Status.GT21 := Globals.IO.AIn.AI09 / 10.0;
+		ADS_CTH.Tags.Status.GT21_FAULT := Globals.IO.AIn.AI09_Error;
+		ADS_CTH.Tags.Status.GT41 := Globals.IO.AIn.AI13 / 10.0;
+		ADS_CTH.Tags.Status.GT41_FAULT := Globals.IO.AIn.AI13_Error;
+		ADS_CTH.Tags.Status.GT44 := Globals.IO.AIn.AI10 / 10.0;
+		ADS_CTH.Tags.Status.GT44_FAULT := Globals.IO.AIn.AI10_Error;
+		ADS_CTH.Tags.Status.GT45 := Globals.IO.AIn.AI11 / 10.0;
+		ADS_CTH.Tags.Status.GT45_FAULT := Globals.IO.AIn.AI11_Error;
+		ADS_CTH.Tags.Status.GT46 := Globals.IO.AIn.AI12 / 10.0;
+		ADS_CTH.Tags.Status.GT46_FAULT := Globals.IO.AIn.AI12_Error;
+
 		Parameters.Alarm.Status.B.ExpansionTank := Globals.IO.DIn.DI24;
 			
 		FirePanelActive := FirePanelCTH.ENO;
-		(*
-		IF FirePanelActive THEN
-			// Restore alarm disabled states
-			SavedDisabledStates := Parameters.Alarm.Disabled;
-			// Set all alarms except fire panel disabled
-			StatusP := ADR(AlarmSignalsTrueExceptFirePanel);
-			FOR n := 0 TO AlarmCount - 1 DO
-				StatusP^[n] := TRUE;
-			END_FOR
-			AlarmSignalsTrueExceptFirePanel.A.FirePanelExtractStart := FALSE;
-			AlarmSignalsTrueExceptFirePanel.A.FirePanelExtractStop := FALSE;
-			AlarmSignalsTrueExceptFirePanel.A.FirePanelSupplyStart := FALSE;
-			AlarmSignalsTrueExceptFirePanel.A.FirePanelSupplyStop := FALSE;
-			Parameters.Alarm.Disabled := AlarmSignalsTrueExceptFirePanel;
-			// Remember fire panel was active
-			FirePanelWasActive := TRUE;
-		ELSE
-			// if FirePanel was active
-			IF FirePanelWasActive THEN
-				// Restore previous alarm disabled states
-				Parameters.Alarm.Disabled := SavedDisabledStates;
-				FirePanelWasActive := FALSE;
-			END_IF
-		END_IF
-		*)
 		TimeChannelEnabled := FALSE;
 		TimeChannelActive := FALSE;
 		
@@ -145,14 +139,5 @@ END_VAR
         <ST><![CDATA[FirePanelActive := FirePanelCTH.ENO;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="CTH_Interface">
-      <LineId Id="2575" Count="46" />
-      <LineId Id="2659" Count="0" />
-      <LineId Id="2622" Count="36" />
-      <LineId Id="1698" Count="0" />
-    </LineIds>
-    <LineIds Name="CTH_Interface.IsFirePanelActive">
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

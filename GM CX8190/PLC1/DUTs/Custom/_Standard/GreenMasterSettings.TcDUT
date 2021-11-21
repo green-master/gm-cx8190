@@ -42,7 +42,7 @@ TemperatureControl_D :  TIME :=T#0M; //  Temperature control D (s) $(unit "s", s
 StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover (s) $(unit "s", scale "0 1000 0 1")
 PostFireVentilationTime :  TIME :=T#1M; //  Time to ventilate when returning to operation after fire alarm (s) $(unit "s", scale "0 1000 0 1")
 SupplyFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/T.BP1, 1=Flow/T.BF1) for Supply Air
-SupplyFan_SP :  REAL :=100 ; //  Supply air control Set Point
+SupplyFan_SP :  REAL :=275 ; //  Supply air control Set Point
 SupplyFanHighSpeed_SP :  REAL ; //  Supply air control high speed Set Point
 //SupplyFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 165, Y2 := 165, Y3 := 165, Y4 := 165, Y5 := 165, Y6 := 165, Y7 := 165, Y8 := 165, Y9 := 165); // Outdoorcompensation temperature
 F_GQ1_CURVE:  SetPointOffsetCurve; // Outdoorcompensation temperature
@@ -50,7 +50,7 @@ F_GQ1_CURVE:  SetPointOffsetCurve; // Outdoorcompensation temperature
 SupplyFanControl_P :  REAL :=2; //  Supply air control P
 SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I $(unit "s", scale "0 1000 0 1")
 ExtractFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/F.BP1, 1=Flow/F.BF1) for Extract Air
-ExtractFan_SP :  REAL := 100; //  Extract air control Set Point
+ExtractFan_SP :  REAL := 275; //  Extract air control Set Point
 ExtractFanHighSpeed_SP :  REAL ; //  Extract air control high speed Set Point
 //ExtractFanOffsetCurve :  SetPointOffsetCurve := (Y1 := 160, Y2 := 160, Y3 := 160, Y4 := 160, Y5 := 160, Y6 := 160, Y7 := 160, Y8 := 160, Y9 := 160); // Outdoorcompensation temperature
 T_GQ1_CURVE :  SetPointOffsetCurve; // Outdoorcompensation temperature
@@ -79,6 +79,9 @@ TC_LOCAL: TimeChannel_CT_CF;
 TC1_Speed: INT; // Speed (0=normal, 1=alternative) for time channels TC 0x
 TC2_Speed: INT; // Speed (0=normal, 1=alternative) for time channels TC 1x
 TC3_Speed: INT; // Speed (0=normal, 1=alternative) for time channels TC 2x
+TC0_ACTIVATE_HIGHSPEED_SP: BOOL;
+TC1_ACTIVATE_HIGHSPEED_SP: BOOL;
+TC2_ACTIVATE_HIGHSPEED_SP: BOOL;
 
 END_STRUCT
 END_TYPE

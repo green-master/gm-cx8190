@@ -52,7 +52,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="5.94.116.55.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="5.80.62.152.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<IoIdleTask CycleTime="100000"/>
@@ -258,7 +258,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI01</Name>
 							<Comment><![CDATA[ F.BT1 Frånluftstemperatur ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI01_Error</Name>
@@ -267,7 +267,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI02</Name>
 							<Comment><![CDATA[ T.BT2 Uteluftstemperatur]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI02_Error</Name>
@@ -276,7 +276,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI03</Name>
 							<Comment><![CDATA[ T.BT3 Tilluftstemperatur (innan efterbehandling)]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI03_Error</Name>
@@ -285,7 +285,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI04</Name>
 							<Comment><![CDATA[ H.BT1 Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat)]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI04_Error</Name>
@@ -294,7 +294,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI05</Name>
 							<Comment><![CDATA[ T.BT1 Tilluftstemperatur (efter efterbehandling) ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI05_Error</Name>
@@ -303,7 +303,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI06</Name>
 							<Comment><![CDATA[ BT1 Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard)]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI06_Error</Name>
@@ -312,7 +312,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI07</Name>
 							<Comment><![CDATA[ BT2 Rumstemperatur (lokalgivare, används inte i bostadsaggregat)]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI07_Error</Name>
@@ -321,7 +321,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI08</Name>
 							<Comment><![CDATA[ F.BT2 Avluftstemperatur (tillval)]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI08_Error</Name>
@@ -330,7 +330,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI09</Name>
 							<Comment><![CDATA[ Reservingång (alt. T.BF1 via 0-10V) ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI09_Error</Name>
@@ -339,7 +339,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI10</Name>
 							<Comment><![CDATA[ Reservingång (alt. F.BF1 via 0-10V)]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI10_Error</Name>
@@ -348,7 +348,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI11</Name>
 							<Comment><![CDATA[ Reservingång (alt. T.BP2 via 0-10V) ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI11_Error</Name>
@@ -357,7 +357,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI12</Name>
 							<Comment><![CDATA[ Reservingång (alt. F.BP2 via 0-10V) ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI12_Error</Name>
@@ -366,7 +366,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI13</Name>
 							<Comment><![CDATA[ Reservingång (alt. F.BP3 via 0-10V) ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI13_Error</Name>
@@ -375,7 +375,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI14</Name>
 							<Comment><![CDATA[ Reservingång (alt. T.BP1 via 0-10V) ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI14_Error</Name>
@@ -384,7 +384,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI15</Name>
 							<Comment><![CDATA[ Reservingång (alt. F.BP1 via 0-10V) ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI15_Error</Name>
@@ -393,7 +393,7 @@
 						<Var>
 							<Name>Globals.IO.AIn.AI16</Name>
 							<Comment><![CDATA[ Reservingång (extra 0-10V-ingång) ]]></Comment>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI16_Error</Name>
@@ -401,7 +401,7 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI17</Name>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI17_Error</Name>
@@ -409,7 +409,7 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI18</Name>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI18_Error</Name>
@@ -417,7 +417,7 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI19</Name>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI19_Error</Name>
@@ -425,7 +425,7 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI20</Name>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI20_Error</Name>
@@ -433,7 +433,7 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI21</Name>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI21_Error</Name>
@@ -441,7 +441,7 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI22</Name>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI22_Error</Name>
@@ -449,7 +449,7 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI23</Name>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI23_Error</Name>
@@ -457,7 +457,7 @@
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI24</Name>
-							<Type>WORD</Type>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Globals.IO.AIn.AI24_Error</Name>
@@ -4758,21 +4758,13 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.RDO04" VarB="RDO 2 (KL2652)^Channel 2^Output"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device GMA (CX-BK)^Box STD (CX-BK)">
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI01" VarB="DI 1 (KL1408)^Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI02" VarB="DI 1 (KL1408)^Channel 2^Input"/>
@@ -4820,21 +4812,13 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL06" VarB="DI 3 (KL1408)^Channel 6^Input"/>
 				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL07" VarB="DI 3 (KL1408)^Channel 7^Input"/>
 				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL08" VarB="DI 3 (KL1408)^Channel 8^Input"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI03_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI04_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI05_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI06_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 2^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI01" VarB="DI 1 (KL1408)^Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI02" VarB="DI 1 (KL1408)^Channel 2^Input"/>

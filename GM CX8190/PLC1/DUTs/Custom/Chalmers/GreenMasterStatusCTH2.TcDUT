@@ -12,6 +12,22 @@ STRUCT
 	BAD_DAMPER_POS_AL: BOOL;
 	
 	P2_CMD: BOOL; // Circulation pump activated
+	
+	GP83_PV: REAL; // Mätvärde
+	GP83_AHL: REAL; // Larmgräns
+	GP83_AD: TIME; // Larmfördröjningstid
+	GP83_HAL: BOOL; // Larm
+	SV31_OP: REAL; // Handställning
+	GT21: REAL; // Givare ÅV
+	GT21_FAULT: BOOL; // Givarfel, ÅV
+	GT41: REAL; // Efter VVX
+	GT41_FAULT: BOOL; // Givarfel, efter VVX
+	GT44: REAL; // Varmaste punkten
+	GT44_FAULT: BOOL; // Givarfel, varmaste punkten
+	GT45: REAL; // Innan tilluftsbatteri
+	GT45_FAULT: BOOL; // Givarfel, innan tilluftsbatteri
+	GT46: REAL; // Kallaste punkten
+	GT46_FAULT: BOOL; // Givarfel, kallaste punkten
 END_STRUCT
 END_TYPE
 ]]></Declaration>

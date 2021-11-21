@@ -25,6 +25,9 @@ VAR_INPUT
 	TC26: TimeChannel1CH := ( Day := TimerDays.Saturday );
 	TC27: TimeChannel1CH := ( Day := TimerDays.Sunday );
 	Q: BOOL; // Result of the time channels
+	TC0_HighSpeed: BOOL := FALSE;
+	TC1_HighSpeed: BOOL := FALSE;
+	TC2_HighSpeed: BOOL := FALSE;
 END_VAR
 VAR_OUTPUT
 END_VAR

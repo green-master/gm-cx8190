@@ -58,6 +58,7 @@ CurrentStopSupplyFan := StopSupplyFanTON.Q;
 CurrentStartExtractFan := StartExtractFanTON.Q; 
 CurrentStopExtractFan := StopExtractFanTON.Q; 
 
+
 ENO := FALSE;
 
 Parameters.Alarm.Status.A.FirePanelSupplyStart := CurrentStartSupplyFan;
@@ -103,48 +104,5 @@ ELSIF ExtractActive THEN
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="FirePanelCTH">
-      <LineId Id="662" Count="4" />
-      <LineId Id="835" Count="3" />
-      <LineId Id="1162" Count="0" />
-      <LineId Id="1161" Count="0" />
-      <LineId Id="892" Count="0" />
-      <LineId Id="1163" Count="0" />
-      <LineId Id="1142" Count="1" />
-      <LineId Id="761" Count="0" />
-      <LineId Id="764" Count="0" />
-      <LineId Id="740" Count="0" />
-      <LineId Id="743" Count="0" />
-      <LineId Id="1124" Count="0" />
-      <LineId Id="1108" Count="0" />
-      <LineId Id="1125" Count="0" />
-      <LineId Id="1128" Count="0" />
-      <LineId Id="1127" Count="0" />
-      <LineId Id="1165" Count="0" />
-      <LineId Id="1197" Count="0" />
-      <LineId Id="731" Count="0" />
-      <LineId Id="739" Count="0" />
-      <LineId Id="1191" Count="1" />
-      <LineId Id="1198" Count="0" />
-      <LineId Id="1186" Count="0" />
-      <LineId Id="1193" Count="0" />
-      <LineId Id="1196" Count="0" />
-      <LineId Id="737" Count="1" />
-      <LineId Id="765" Count="1" />
-      <LineId Id="1129" Count="0" />
-      <LineId Id="1111" Count="0" />
-      <LineId Id="1130" Count="0" />
-      <LineId Id="1133" Count="0" />
-      <LineId Id="1132" Count="0" />
-      <LineId Id="1167" Count="0" />
-      <LineId Id="776" Count="1" />
-      <LineId Id="1112" Count="0" />
-      <LineId Id="1184" Count="0" />
-      <LineId Id="1205" Count="0" />
-      <LineId Id="1199" Count="0" />
-      <LineId Id="1203" Count="1" />
-      <LineId Id="780" Count="0" />
-      <LineId Id="1182" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

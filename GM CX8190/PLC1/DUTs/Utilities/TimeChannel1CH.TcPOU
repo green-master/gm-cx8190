@@ -4,7 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK TimeChannel1CH
 VAR_INPUT
 	EN: BOOL := TRUE;// Enable the time channel (settings must also be enabled)
-	Speed            : INT;		// 0,1=normal speed, 2=high speed $(skip)
+	Speed            : INT;		// 0=normal speed, 1=high speed $(skip)
 	OnTime           : UINT;	(* Hour/minute value of the switch-on time on the day *)
 	OffTime          : UINT;	(* Hour/minute value of the switch-off time on the day *)
 	Day: TimerDays;
