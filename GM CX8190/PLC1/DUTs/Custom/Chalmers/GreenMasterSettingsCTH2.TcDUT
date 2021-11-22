@@ -5,12 +5,10 @@
 TYPE GreenMasterSettingsCTH2 :
 STRUCT
 	P2_TEMP_LIM_V: REAL := 12;
-	NIGHT_COOL_EN: BOOL := FALSE; // Night cooling activation
-	NIGHT_COOL_SP: REAL := 18.0; // Night cooling temperature Set Point, C
 	WD_EN: BOOL := FALSE; // Watchdog enable - enables unit on watchdog update failure 
 	WD_V: INT := 0; // Watchdog counter to be changed at a minimum every 5 minutes (when enabled)
 	SV31_M: BOOL := FALSE; // Handställning  
-	SV31_OPM: BOOL; // Handställning utsignal  
+	SV31_OPM: REAL; // Handställning utsignal  
 	POST_RUN_FANS: TIME; // Eftergångstid fläktar
 END_STRUCT
 END_TYPE

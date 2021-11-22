@@ -17,7 +17,7 @@ STRUCT
 	GP83_AHL: REAL; // Larmgräns
 	GP83_AD: TIME; // Larmfördröjningstid
 	GP83_HAL: BOOL; // Larm
-	SV31_OP: REAL; // Handställning
+	SV31_OP: REAL; // Utsignal
 	GT21: REAL; // Givare ÅV
 	GT21_FAULT: BOOL; // Givarfel, ÅV
 	GT41: REAL; // Efter VVX

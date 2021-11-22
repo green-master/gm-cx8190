@@ -73,8 +73,8 @@ TX1_OP :  REAL; // Utsignal VVX $(scale "0 1 0 100", unit "%")
 H_QN1_OP :  REAL; // Utsignal värmeventil $(scale "0 1 0 100", unit "%")
 C_QN1_OP :  REAL; // Utsignal kylventil $(scale "0 1 0 100", unit "%")
 T_QM2_CMD :  BOOL; // spjäll manöver
-T_QM2_V0 :  BOOL; // Brandförbigångsspjäll (FID) stängt
-T_QM2_V1 :  BOOL; // Brandförbigångsspjäll (FID) öppet
+T_QM2_V0 :  BOOL; // Tilluftsspjäll stängt
+T_QM2_V1 :  BOOL; // Tilluftsspjäll öppet
 
 F_BT1_PV :  REAL; // Frånluftstemperatur (aggregat)
 F_BT1_FAULT :  BOOL; // Frånluftstemperatur (aggregat) givarfel

@@ -3,7 +3,7 @@
   <DUT Name="DefrostParameters" Id="{71bafd84-79e8-4599-a31a-31f9c5bb9b99}">
     <Declaration><![CDATA[TYPE DefrostParameters :
 STRUCT
-	EN: BOOL := TRUE; // $(setup)
+	EN: BOOL := FALSE; // $(setup)
 	ENO: BOOL;
 	
 	T_QM1_1: BOOL;
