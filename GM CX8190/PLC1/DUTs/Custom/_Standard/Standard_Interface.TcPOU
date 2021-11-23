@@ -507,7 +507,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.F_QM1_V1 := Parameters.IO.DIn.F_QM1_Open;
 	ADS_Standard.Tags.Status.T_QM2_CMD := Parameters.IO.DOut.T_QM2;
 	ADS_Standard.Tags.Status.T_QM2_V0 := Parameters.IO.DIn.T_QM2_Closed;
-	ADS_Standard.Tags.Status.T_QM2_V1 := Parameters.IO.DIn.T_QM2_Open;
+	ADS_Standard.Tags.Status.T_QM2_V1 := Parameters.IO.DIn.F_QM2_Open;
 		
 	ADS_Standard.Tags.Status.F_QM2_CMD := Parameters.IO.DOut.F_QM2;
 	ADS_Standard.Tags.Status.F_QM2_V0 := Parameters.IO.DIn.F_QM2_Closed;
@@ -523,19 +523,6 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT1);
 	ADS_Standard.Tags.Status.F_BT2_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT2);
 	
-(*	Chalmers, egentligen batteriåtervinning...	
-	GT21(ProcessValue := AIn.AI09, ProcessError := AIn.AI09_Error);
-	ADS_Standard.Tags.Status.GT21_V := LREAL_TO_REAL(GT21.Value);
-	GT44(ProcessValue := AIn.AI10, ProcessError := AIn.AI10_Error);
-	ADS_Standard.Tags.Status.GT44_V := LREAL_TO_REAL(GT44.Value);
-	GT45(ProcessValue := AIn.AI11, ProcessError := AIn.AI11_Error);
-	ADS_Standard.Tags.Status.GT45_V := LREAL_TO_REAL(GT45.Value);
-	GT46(ProcessValue := AIn.AI12, ProcessError := AIn.AI12_Error);
-	ADS_Standard.Tags.Status.GT46_V := LREAL_TO_REAL(GT46.Value);
-	GT41(ProcessValue := AIn.AI13, ProcessError := AIn.AI13_Error);
-	ADS_Standard.Tags.Status.GT41_V := LREAL_TO_REAL(GT41.Value);
-
-*)	
 	IF NOT GM_XXL.AI2.T_BF1_Error THEN
 		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BF1);
 	ELSE	

@@ -11,7 +11,7 @@ VAR_INPUT
 	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.IncreaseToHeat;
 	//SetPointAdjustment: SetPointAdjustment := ( Curve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20));
 	SetPointAdjustment: SetPointAdjustment;
-	Control: ControllerParameters := ( P := 1, I := T#10M, SP := 19, SP_HighSpeed := 19 );
+	Control: ControllerParameters := ( P := 10, I := T#2M, SP := 20, SP_HighSpeed := 20 );
 	FreezeProtectionControl: ControllerParameters;
 	ColdRecycling: ColdRecyclingParameters;
 
@@ -62,25 +62,5 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="TemperatureControlParametersFB">
-      <LineId Id="47" Count="1" />
-      <LineId Id="67" Count="1" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="70" Count="2" />
-      <LineId Id="69" Count="0" />
-      <LineId Id="46" Count="0" />
-    </LineIds>
-    <LineIds Name="TemperatureControlParametersFB.MaxOutput">
-      <LineId Id="6" Count="4" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="TemperatureControlParametersFB.MinOutput">
-      <LineId Id="5" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
