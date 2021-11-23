@@ -14,7 +14,7 @@ STRUCT
 	T_QM1_6: BOOL;
 	
 	Sections: INT := 4; // $(setup)
-	DefrostTemperature: LREAL := -4; // $(setup)
+	DefrostTemperature: LREAL := -40; // $(setup)
 	
 	SectionTime: TIME := T#10M; // $(setup)
 	

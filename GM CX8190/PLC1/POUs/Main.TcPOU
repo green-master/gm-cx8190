@@ -156,7 +156,7 @@ END_VAR
 		
 		IF GetComponent(Name := ComponentNames.SIMULATION).EN THEN
 			IF GreenMaster.GetParameters().System.Operation.Simulation THEN
-				GreenMaster.Simulation(Parameters := GreenMaster.GetParameters(), ParametersXXL := GreenMaster.GetParametersXXL());			
+				GreenMaster.GetParameters().Simulation(Parameters := GreenMaster.GetParameters(), ParametersXXL := GreenMaster.GetParametersXXL());			
 			END_IF
 		END_IF
 		
@@ -218,56 +218,5 @@ Rr := -4;
 i := TO_INT(Rr);
 i := TO_INT(w);]]></ST>
     </Implementation>
-    <LineIds Name="Main">
-      <LineId Id="2472" Count="0" />
-      <LineId Id="2478" Count="0" />
-      <LineId Id="2117" Count="9" />
-      <LineId Id="2416" Count="0" />
-      <LineId Id="2128" Count="56" />
-      <LineId Id="2619" Count="6" />
-      <LineId Id="2185" Count="0" />
-      <LineId Id="2202" Count="3" />
-      <LineId Id="2642" Count="0" />
-      <LineId Id="2206" Count="1" />
-      <LineId Id="2209" Count="3" />
-      <LineId Id="2282" Count="3" />
-      <LineId Id="2645" Count="0" />
-      <LineId Id="2286" Count="1" />
-      <LineId Id="2267" Count="0" />
-      <LineId Id="2296" Count="6" />
-      <LineId Id="2304" Count="6" />
-      <LineId Id="2294" Count="0" />
-      <LineId Id="2219" Count="3" />
-      <LineId Id="2290" Count="0" />
-      <LineId Id="2040" Count="0" />
-      <LineId Id="2362" Count="0" />
-      <LineId Id="2353" Count="0" />
-      <LineId Id="2291" Count="0" />
-      <LineId Id="2355" Count="5" />
-      <LineId Id="2370" Count="0" />
-      <LineId Id="2365" Count="0" />
-      <LineId Id="2367" Count="0" />
-      <LineId Id="2371" Count="0" />
-      <LineId Id="2499" Count="0" />
-      <LineId Id="2466" Count="0" />
-      <LineId Id="2469" Count="0" />
-      <LineId Id="2500" Count="0" />
-      <LineId Id="2503" Count="0" />
-      <LineId Id="2501" Count="1" />
-      <LineId Id="2368" Count="0" />
-      <LineId Id="2467" Count="0" />
-      <LineId Id="2485" Count="2" />
-      <LineId Id="2479" Count="0" />
-      <LineId Id="2482" Count="0" />
-      <LineId Id="2481" Count="0" />
-      <LineId Id="2475" Count="0" />
-      <LineId Id="2477" Count="0" />
-      <LineId Id="2476" Count="0" />
-      <LineId Id="2560" Count="0" />
-      <LineId Id="2354" Count="0" />
-      <LineId Id="2561" Count="1" />
-      <LineId Id="157" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

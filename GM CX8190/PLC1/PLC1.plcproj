@@ -374,7 +374,10 @@
     <Compile Include="DUTs\ModbusTCP\ModbusTCP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\GreenMasterBaseParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\GreenMasterBaseParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\GreenMasterBaseParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\GreenMasterParametersXXL.TcDUT">

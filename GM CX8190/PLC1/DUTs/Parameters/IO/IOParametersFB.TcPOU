@@ -5,6 +5,7 @@
 VAR_IN_OUT
 	GreenMaster: GreenMasterBase;
 	Parameters: GreenMasterBaseParameters;
+	ParametersFB: GreenMasterBaseParametersFB;
 END_VAR
 VAR_INPUT
 	DIn: DigitalInputParametersFB;
@@ -105,16 +106,5 @@ END_IF
 Globals.IO.DOut.DO11 := Globals.IO.DIn.DI19;
 Globals.IO.DOut.DO12 := Globals.IO.DIn.DI21;]]></ST>
     </Implementation>
-    <LineIds Name="IOParametersFB">
-      <LineId Id="22" Count="33" />
-      <LineId Id="65" Count="6" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="80" Count="30" />
-      <LineId Id="116" Count="1" />
-      <LineId Id="142" Count="0" />
-      <LineId Id="140" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="141" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

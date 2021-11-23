@@ -94,6 +94,10 @@ IF EN THEN
 		
 		ADS_CTH.Tags.Settings.POST_RUN_FANS := TO_TIME(Parameters.System.Operation.PostVentilationTime);
 		
+		ADS_CTH.Tags.Status.P2_AL := Parameters.Alarm.Active.B.Pump2; 
+		ADS_CTH.Tags.Status.P2_CMD := Parameters.IO.DOut.P2; 
+		ADS_CTH.Tags.Status.P2_V1 := Parameters.IO.DIn.P2_Running; 
+		
 		ADS_CTH.Tags.Status.HANDSTARTED_TF_AL := Parameters.Alarm.Status.A.FirePanelSupplyStart; 
 		ADS_CTH.Tags.Status.HANDSTOPPED_TF_AL := Parameters.Alarm.Status.A.FirePanelSupplyStop; 
 		ADS_CTH.Tags.Status.HANDSTARTED_FF_AL := Parameters.Alarm.Status.A.FirePanelExtractStart; 

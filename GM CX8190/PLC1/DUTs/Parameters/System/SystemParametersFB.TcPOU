@@ -7,6 +7,7 @@
 FUNCTION_BLOCK SystemParametersFB
 VAR_IN_OUT
 	Parameters: GreenMasterBaseParameters;
+	ParametersFB: GreenMasterBaseParametersFB;
 END_VAR
 VAR_INPUT
 	Operation: SystemOperationParameters;
@@ -119,23 +120,5 @@ Operation.TimeChannelsLocal.Q :=
 	Operation.TimeChannelsLocal.TC27.Q;
 ]]></ST>
     </Implementation>
-    <LineIds Name="SystemParametersFB">
-      <LineId Id="9" Count="0" />
-      <LineId Id="181" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="141" Count="5" />
-      <LineId Id="140" Count="0" />
-      <LineId Id="147" Count="15" />
-      <LineId Id="110" Count="0" />
-      <LineId Id="113" Count="2" />
-      <LineId Id="117" Count="2" />
-      <LineId Id="121" Count="2" />
-      <LineId Id="125" Count="2" />
-      <LineId Id="129" Count="2" />
-      <LineId Id="133" Count="2" />
-      <LineId Id="137" Count="2" />
-      <LineId Id="201" Count="46" />
-      <LineId Id="111" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

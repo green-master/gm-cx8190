@@ -5,7 +5,7 @@
 VAR_INPUT
 	Interval: INT := 48; (* Central exercise interval for all damper modules (set to zero for no exercising) $(unit hour) *)
 	StopVentilation: BOOL := TRUE; (* Stop ventilation during central exercise *)
-	Hour: INT := 10; (* Central exercise at this hour $(unit hour) *)
+	Hour: INT := 22; (* Central exercise at this hour $(unit hour) *)
 	Minute: INT := 30; (* Central exercise at this minute $(unit minute) *)
 END_VAR
 VAR_OUTPUT
@@ -16,8 +16,5 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <LineIds Name="ExerciseFireBypassDamperParameters">
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
