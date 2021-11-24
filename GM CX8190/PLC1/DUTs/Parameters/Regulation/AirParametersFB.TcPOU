@@ -9,7 +9,7 @@ VAR_INPUT
 	ControlMode: FanControlTypes;
 	Control: ControllerParameters := (SP := 275, SP_HighSpeed := 300);
 	Defaults: DefaultParameters;
-	KFactor: LREAL := 96.7;
+	KFactor: LREAL := 138.05;
 	SlaveOffset: LREAL;
 	ConstOutput: LREAL; // $(unit %)
 	MinSpeed: LREAL := 0.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
@@ -75,21 +75,5 @@ ELSE
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="AirParametersFB">
-      <LineId Id="138" Count="22" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="207" Count="0" />
-      <LineId Id="281" Count="0" />
-      <LineId Id="284" Count="0" />
-      <LineId Id="282" Count="0" />
-      <LineId Id="285" Count="0" />
-      <LineId Id="283" Count="0" />
-      <LineId Id="236" Count="1" />
-      <LineId Id="239" Count="1" />
-      <LineId Id="238" Count="0" />
-      <LineId Id="244" Count="0" />
-      <LineId Id="248" Count="2" />
-      <LineId Id="246" Count="1" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -57,8 +57,13 @@ CASE TemperatureCompensationSource OF
 		CurrentTemperatureCompensationSource := TemperatureCompensationSources.T_BT2;
 		CompensationTemperature := Parameters.IO.AIn.T_BT2;
 END_CASE
-SupplyAir.Flow := Parameters.IO.AIn.T_BF1;
-ExtractAir.Flow := Parameters.IO.AIn.F_BF1;
+IF NOT GetComponent(ComponentNames.GM_OPT_CTH).EN THEN
+	SupplyAir.Flow := Parameters.IO.AIn.T_BF1;
+	ExtractAir.Flow := Parameters.IO.AIn.F_BF1;
+ELSE
+	SupplyAir.Flow := PressureToFlow(Parameters.IO.AIn.T_BF1, Parameters.Regulation.SupplyAir.KFactor);
+	ExtractAir.Flow := PressureToFlow(Parameters.IO.AIn.F_BF1, Parameters.Regulation.ExtractAir.KFactor);
+END_IF
 SupplyAir.Power := Main.GreenMaster.AI2.T_CurrentPower;
 ExtractAir.Power := Main.GreenMaster.AI2.F_CurrentPower;
 SupplyAir.PressureRise := Parameters.IO.AIn.T_BF1;

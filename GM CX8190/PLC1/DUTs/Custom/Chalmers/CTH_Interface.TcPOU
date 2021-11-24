@@ -60,7 +60,7 @@ IF EN THEN
 		Loop := 0;
 		Globals.IO.DOut.DO15 := Parameters.Alarm.Active.A.FireExtract OR Parameters.Alarm.Active.A.FireSupply;
 		Parameters.System.Operation.FireDamperUsed := FALSE;		
-		P2Hyst(Value := Parameters.IO.AIn.T_BT1, LimitValue := ADS_CTH.Tags.Settings.P2_TEMP_LIM_V, Offset := 0.5);
+		P2Hyst(Value := Parameters.IO.AIn.T_BT2, LimitValue := ADS_CTH.Tags.Settings.P2_TEMP_LIM_V, Offset := 0.5);
 		P2Temp := FALSE;
 		IF P2Hyst.Below THEN
 			P2Temp := TRUE;	
@@ -71,6 +71,10 @@ IF EN THEN
 			IF Parameters.IO.AOut.F_QN1 < 0.02 THEN
 				P2Temp := FALSE;					
 			END_IF
+		END_IF
+		IF 	NOT (Parameters.System.Operation.State = SystemStates.Run OR
+			Parameters.System.Operation.State = SystemStates.StartupHeatRecovery) THEN
+			P2Temp := FALSE;
 		END_IF
 		VvXHyst(Value := Parameters.IO.AIn.F_BP3, LimitValue := Parameters.Alarm.Limits.B.HeatExchangerHighPressure, Offset := 5);
 		IF VvXHyst.Above THEN

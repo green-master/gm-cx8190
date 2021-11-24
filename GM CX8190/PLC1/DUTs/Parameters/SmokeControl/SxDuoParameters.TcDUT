@@ -3,7 +3,7 @@
   <DUT Name="SxDuoParameters" Id="{ef2f051f-b548-4f24-87c3-71d5bcdac534}">
     <Declaration><![CDATA[TYPE SxDuoParameters :
 STRUCT
-	Unit01: SxDuoUnitFB := ( EN := TRUE, UnitID := 21 );
+	Unit01: SxDuoUnitFB := ( EN := FALSE, UnitID := 21 );
 	Unit02: SxDuoUnitFB := ( EN := FALSE, UnitID := 22 );
 	Unit03: SxDuoUnitFB := ( EN := FALSE, UnitID := 23 );
 	Unit04: SxDuoUnitFB := ( EN := FALSE, UnitID := 24 );

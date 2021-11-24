@@ -507,7 +507,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.F_QM1_V1 := Parameters.IO.DIn.F_QM1_Open;
 	ADS_Standard.Tags.Status.T_QM2_CMD := Parameters.IO.DOut.T_QM2;
 	ADS_Standard.Tags.Status.T_QM2_V0 := Parameters.IO.DIn.T_QM2_Closed;
-	ADS_Standard.Tags.Status.T_QM2_V1 := Parameters.IO.DIn.F_QM2_Open;
+	ADS_Standard.Tags.Status.T_QM2_V1 := Parameters.IO.DIn.T_QM2_Open;
 		
 	ADS_Standard.Tags.Status.F_QM2_CMD := Parameters.IO.DOut.F_QM2;
 	ADS_Standard.Tags.Status.F_QM2_V0 := Parameters.IO.DIn.F_QM2_Closed;
@@ -524,12 +524,12 @@ IF EN THEN
 	ADS_Standard.Tags.Status.F_BT2_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT2);
 	
 	IF NOT GM_XXL.AI2.T_BF1_Error THEN
-		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BF1);
+		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL(Parameters.Regulation.SupplyAir.Flow);
 	ELSE	
 		ADS_Standard.Tags.Status.T_BF1_PV := 0;
 	END_IF
 	IF NOT GM_XXL.AI2.F_BF1_Error THEN
-		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BF1);
+		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL(Parameters.Regulation.ExtractAir.Flow);
 	ELSE	
 		ADS_Standard.Tags.Status.F_BF1_PV := 0;
 	END_IF

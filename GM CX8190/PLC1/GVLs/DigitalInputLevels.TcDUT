@@ -15,7 +15,7 @@ STRUCT
 	DI09: BOOL; // Förlängd drift
 	DI10: BOOL := TRUE; // Servicelarm (centralt/rökdetektor frånluft)
 	DI11: BOOL := TRUE; // Brandlarm (tilluft)
-	DI12: BOOL := TRUE; // Servicelarm (tilluft)
+	DI12: BOOL := FALSE; // Servicelarm (tilluft)
 	DI13: BOOL; // Ingång för pumpdrift, alt. pumplarm H.GP1 (värme)
 	DI14: BOOL; // Ingång för pumpdrift, alt. pumplarm C.GP1 (kyla)
 	DI15: BOOL; // Ingång för rotationsvakt värmeväxlare (TX1)
