@@ -864,187 +864,84 @@ END_VAR
     </Method>
     <Action Name="ModbusStatus" Id="{0977aaf0-06a9-4503-8531-2e133e4315a5}">
       <Implementation>
-        <ST><![CDATA[GVL.mb_Input_Registers[0] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.TEMPERATURE_CSP));
+        <ST><![CDATA[GVL.mb_Input_Registers[0] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.TEMPERATURE_CSP);
 
-GVL.mb_Input_Registers[100] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.BT1_PV * 10));
-GVL.mb_Input_Registers[101] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.T_BT2_PV * 10));
-GVL.mb_Input_Registers[102] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.T_BT3_PV * 10));
-GVL.mb_Input_Registers[103] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.H_BT1_PV * 10));
-GVL.mb_Input_Registers[104] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.T_BT1_PV * 10));
-GVL.mb_Input_Registers[105] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.F_BT1_PV * 10));
-GVL.mb_Input_Registers[106] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.F_BT2_PV * 10));
-GVL.mb_Input_Registers[107] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.BT2_PV * 10));
+GVL.mb_Input_Registers[100] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.BT1_PV * 10);
+GVL.mb_Input_Registers[101] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.T_BT2_PV * 10);
+GVL.mb_Input_Registers[102] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.T_BT3_PV * 10);
+GVL.mb_Input_Registers[103] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.H_BT1_PV * 10);
+GVL.mb_Input_Registers[104] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.T_BT1_PV * 10);
+GVL.mb_Input_Registers[105] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.F_BT1_PV * 10);
+GVL.mb_Input_Registers[106] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.F_BT2_PV * 10);
+GVL.mb_Input_Registers[107] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.BT2_PV * 10);
 
-GVL.mb_Input_Registers[200] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.T_BP1_CSP));
-GVL.mb_Input_Registers[201] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.F_BP1_CSP));
+GVL.mb_Input_Registers[200] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.T_BP1_CSP);
+GVL.mb_Input_Registers[201] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.F_BP1_CSP);
 
-GVL.mb_Input_Registers[300] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.T_BP1_PV));
-GVL.mb_Input_Registers[301] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.F_BP1_PV));
+GVL.mb_Input_Registers[300] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.T_BP1_PV);
+GVL.mb_Input_Registers[301] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.F_BP1_PV);
 
-GVL.mb_Input_Registers[500] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.T_BF1_PV));
-GVL.mb_Input_Registers[501] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.F_BF1_PV));
+GVL.mb_Input_Registers[500] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.T_BF1_PV);
+GVL.mb_Input_Registers[501] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.F_BF1_PV);
 
-GVL.mb_Input_Registers[600] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.TX1_EFF_PV * 100));
-GVL.mb_Input_Registers[601] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.SFP_PV * 1000));
+GVL.mb_Input_Registers[600] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.TX1_EFF_PV * 100);
+GVL.mb_Input_Registers[601] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.SFP_PV * 1000);
 
-GVL.mb_Input_Registers[700] := TO_WORD(ADS_Standard.Tags.Status.T_GQ1_OP * 100);
-GVL.mb_Input_Registers[701] := TO_WORD(ADS_Standard.Tags.Status.F_GQ1_OP * 100);
-GVL.mb_Input_Registers[702] := TO_WORD(ADS_Standard.Tags.Status.TX1_OP * 100);
-GVL.mb_Input_Registers[703] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.H_QN1_OP * 100));
-GVL.mb_Input_Registers[704] := TO_WORD(TO_INT(ADS_Standard.Tags.Status.C_QN1_OP * 100));
+GVL.mb_Input_Registers[700] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.T_GQ1_OP * 100);
+GVL.mb_Input_Registers[701] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.F_GQ1_OP * 100);
+GVL.mb_Input_Registers[702] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.TX1_OP * 100);
+GVL.mb_Input_Registers[703] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.H_QN1_OP * 100);
+GVL.mb_Input_Registers[704] := REAL_TO_WORD_SAFE(ADS_Standard.Tags.Status.C_QN1_OP * 100);
 
-GVL.mb_Input_Registers[800] := TO_WORD(ADS_Standard.Tags.Status.T_GQ1_OP > 0);
-GVL.mb_Input_Registers[801] := TO_WORD(ADS_Standard.Tags.Status.F_GQ1_OP > 0);
-GVL.mb_Input_Registers[802] := TO_WORD(ADS_Standard.Tags.Status.H_GP1_CMD);
-GVL.mb_Input_Registers[803] := TO_WORD(ADS_Standard.Tags.Status.C_GP1_CMD);
+GVL.mb_Input_Registers[800] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_GQ1_OP > 0);
+GVL.mb_Input_Registers[801] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_GQ1_OP > 0);
+GVL.mb_Input_Registers[802] := BOOL_TO_WORD(ADS_Standard.Tags.Status.H_GP1_CMD);
+GVL.mb_Input_Registers[803] := BOOL_TO_WORD(ADS_Standard.Tags.Status.C_GP1_CMD);
 
-GVL.mb_Input_Registers[900] := TO_WORD(ADS_Standard.Tags.Status.F_BR1_AL);
-GVL.mb_Input_Registers[901] := TO_WORD(ADS_Standard.Tags.Status.T_BR1_AL);
-GVL.mb_Input_Registers[902] := TO_WORD(ADS_Standard.Tags.Status.FIRE_AL);
-GVL.mb_Input_Registers[903] := TO_WORD(ADS_Standard.Tags.Status.F_BRT2_AL);
-GVL.mb_Input_Registers[904] := TO_WORD(ADS_Standard.Tags.Status.F_BRT3_AL);
-GVL.mb_Input_Registers[905] := TO_WORD(ADS_Standard.Tags.Status.FUSE_AL);
-GVL.mb_Input_Registers[906] := TO_WORD(ADS_Standard.Tags.Status.T_GQ1_AL);
-GVL.mb_Input_Registers[907] := TO_WORD(ADS_Standard.Tags.Status.T_GQ_AL1);
-GVL.mb_Input_Registers[908] := TO_WORD(ADS_Standard.Tags.Status.T_GQ_AL2);
-GVL.mb_Input_Registers[909] := TO_WORD(ADS_Standard.Tags.Status.F_GQ1_AL);
-GVL.mb_Input_Registers[910] := TO_WORD(ADS_Standard.Tags.Status.F_GQ_AL1);
-GVL.mb_Input_Registers[911] := TO_WORD(ADS_Standard.Tags.Status.F_GQ_AL2);
-GVL.mb_Input_Registers[912] := TO_WORD(ADS_Standard.Tags.Status.H_GP1_AL);
-GVL.mb_Input_Registers[913] := TO_WORD(ADS_Standard.Tags.Status.C_GP1_AL);
-GVL.mb_Input_Registers[914] := TO_WORD(ADS_Standard.Tags.Status.QM_AL);
-GVL.mb_Input_Registers[915] := TO_WORD(ADS_Standard.Tags.Status.TX1_EFF_LAL);
-GVL.mb_Input_Registers[916] := TO_WORD(ADS_Standard.Tags.Status.H_BT1_LAL);
-GVL.mb_Input_Registers[917] := TO_WORD(ADS_Standard.Tags.Status.T_BP2_HAL);
-GVL.mb_Input_Registers[918] := TO_WORD(ADS_Standard.Tags.Status.F_BP2_HAL);
-GVL.mb_Input_Registers[919] := TO_WORD(ADS_Standard.Tags.Status.F_BP3_AL);
-GVL.mb_Input_Registers[920] := TO_WORD(ADS_Standard.Tags.Status.T_BT3_FAULT);
-GVL.mb_Input_Registers[921] := TO_WORD(ADS_Standard.Tags.Status.T_BT1_AL);
-GVL.mb_Input_Registers[922] := TO_WORD(ADS_Standard.Tags.Status.T_BP1_AL);
-GVL.mb_Input_Registers[923] := TO_WORD(ADS_Standard.Tags.Status.F_BP1_AL);
-GVL.mb_Input_Registers[924] := TO_WORD(ADS_Standard.Tags.Status.T_BT1_FAULT);
-GVL.mb_Input_Registers[925] := TO_WORD(ADS_Standard.Tags.Status.BT1_FAULT);
-GVL.mb_Input_Registers[926] := TO_WORD(ADS_Standard.Tags.Status.T_BT2_FAULT);
-GVL.mb_Input_Registers[927] := TO_WORD(ADS_Standard.Tags.Status.T_BT3_FAULT);
-GVL.mb_Input_Registers[928] := TO_WORD(ADS_Standard.Tags.Status.F_BT1_FAULT);
-GVL.mb_Input_Registers[929] := TO_WORD(ADS_Standard.Tags.Status.F_BT2_FAULT);
-GVL.mb_Input_Registers[930] := TO_WORD(ADS_Standard.Tags.Status.BT2_FAULT);
-GVL.mb_Input_Registers[931] := TO_WORD(ADS_Standard.Tags.Status.H_BT1_FAULT);
-GVL.mb_Input_Registers[932] := TO_WORD(ADS_Standard.Tags.Status.T_BP1_FAULT);
-GVL.mb_Input_Registers[933] := TO_WORD(ADS_Standard.Tags.Status.F_BP1_FAULT);
-GVL.mb_Input_Registers[934] := TO_WORD(ADS_Standard.Tags.Status.T_BP2_FAULT);
-GVL.mb_Input_Registers[935] := TO_WORD(ADS_Standard.Tags.Status.F_BP2_FAULT);
-GVL.mb_Input_Registers[936] := TO_WORD(ADS_Standard.Tags.Status.F_BP3_FAULT);
-GVL.mb_Input_Registers[937] := TO_WORD(ADS_Standard.Tags.Status.T_BR1_AL);
-GVL.mb_Input_Registers[938] := TO_WORD(ADS_Standard.Tags.Status.F_BR1_AL);
-GVL.mb_Input_Registers[939] := TO_WORD(ADS_Standard.Tags.Status.T_BF1_FAULT);
-GVL.mb_Input_Registers[940] := TO_WORD(ADS_Standard.Tags.Status.F_BF1_FAULT);
+GVL.mb_Input_Registers[900] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BR1_AL);
+GVL.mb_Input_Registers[901] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BR1_AL);
+GVL.mb_Input_Registers[902] := BOOL_TO_WORD(ADS_Standard.Tags.Status.FIRE_AL);
+GVL.mb_Input_Registers[903] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BRT2_AL);
+GVL.mb_Input_Registers[904] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BRT3_AL);
+GVL.mb_Input_Registers[905] := BOOL_TO_WORD(ADS_Standard.Tags.Status.FUSE_AL);
+GVL.mb_Input_Registers[906] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_GQ1_AL);
+GVL.mb_Input_Registers[907] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_GQ_AL1);
+GVL.mb_Input_Registers[908] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_GQ_AL2);
+GVL.mb_Input_Registers[909] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_GQ1_AL);
+GVL.mb_Input_Registers[910] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_GQ_AL1);
+GVL.mb_Input_Registers[911] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_GQ_AL2);
+GVL.mb_Input_Registers[912] := BOOL_TO_WORD(ADS_Standard.Tags.Status.H_GP1_AL);
+GVL.mb_Input_Registers[913] := BOOL_TO_WORD(ADS_Standard.Tags.Status.C_GP1_AL);
+GVL.mb_Input_Registers[914] := BOOL_TO_WORD(ADS_Standard.Tags.Status.QM_AL);
+GVL.mb_Input_Registers[915] := BOOL_TO_WORD(ADS_Standard.Tags.Status.TX1_EFF_LAL);
+GVL.mb_Input_Registers[916] := BOOL_TO_WORD(ADS_Standard.Tags.Status.H_BT1_LAL);
+GVL.mb_Input_Registers[917] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BP2_HAL);
+GVL.mb_Input_Registers[918] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BP2_HAL);
+GVL.mb_Input_Registers[919] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BP3_AL);
+GVL.mb_Input_Registers[920] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BT3_FAULT);
+GVL.mb_Input_Registers[921] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BT1_AL);
+GVL.mb_Input_Registers[922] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BP1_AL);
+GVL.mb_Input_Registers[923] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BP1_AL);
+GVL.mb_Input_Registers[924] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BT1_FAULT);
+GVL.mb_Input_Registers[925] := BOOL_TO_WORD(ADS_Standard.Tags.Status.BT1_FAULT);
+GVL.mb_Input_Registers[926] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BT2_FAULT);
+GVL.mb_Input_Registers[927] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BT3_FAULT);
+GVL.mb_Input_Registers[928] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BT1_FAULT);
+GVL.mb_Input_Registers[929] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BT2_FAULT);
+GVL.mb_Input_Registers[930] := BOOL_TO_WORD(ADS_Standard.Tags.Status.BT2_FAULT);
+GVL.mb_Input_Registers[931] := BOOL_TO_WORD(ADS_Standard.Tags.Status.H_BT1_FAULT);
+GVL.mb_Input_Registers[932] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BP1_FAULT);
+GVL.mb_Input_Registers[933] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BP1_FAULT);
+GVL.mb_Input_Registers[934] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BP2_FAULT);
+GVL.mb_Input_Registers[935] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BP2_FAULT);
+GVL.mb_Input_Registers[936] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BP3_FAULT);
+GVL.mb_Input_Registers[937] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BR1_AL);
+GVL.mb_Input_Registers[938] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BR1_AL);
+GVL.mb_Input_Registers[939] := BOOL_TO_WORD(ADS_Standard.Tags.Status.T_BF1_FAULT);
+GVL.mb_Input_Registers[940] := BOOL_TO_WORD(ADS_Standard.Tags.Status.F_BF1_FAULT);
 
 ]]></ST>
       </Implementation>
     </Action>
-    <LineIds Name="Standard_Interface">
-      <LineId Id="3126" Count="1" />
-      <LineId Id="4127" Count="0" />
-      <LineId Id="3128" Count="2" />
-      <LineId Id="4198" Count="0" />
-      <LineId Id="3131" Count="114" />
-      <LineId Id="3857" Count="128" />
-      <LineId Id="3987" Count="128" />
-      <LineId Id="3376" Count="76" />
-      <LineId Id="3843" Count="0" />
-      <LineId Id="4128" Count="5" />
-      <LineId Id="3846" Count="0" />
-      <LineId Id="4134" Count="0" />
-      <LineId Id="4143" Count="5" />
-      <LineId Id="4117" Count="0" />
-      <LineId Id="4135" Count="0" />
-      <LineId Id="4149" Count="5" />
-      <LineId Id="4118" Count="0" />
-      <LineId Id="4136" Count="0" />
-      <LineId Id="4155" Count="5" />
-      <LineId Id="4119" Count="0" />
-      <LineId Id="4137" Count="0" />
-      <LineId Id="4161" Count="5" />
-      <LineId Id="4120" Count="0" />
-      <LineId Id="4138" Count="0" />
-      <LineId Id="4173" Count="5" />
-      <LineId Id="4121" Count="0" />
-      <LineId Id="4139" Count="0" />
-      <LineId Id="4167" Count="5" />
-      <LineId Id="4122" Count="0" />
-      <LineId Id="4140" Count="0" />
-      <LineId Id="4179" Count="5" />
-      <LineId Id="4123" Count="0" />
-      <LineId Id="4141" Count="0" />
-      <LineId Id="4185" Count="5" />
-      <LineId Id="4124" Count="0" />
-      <LineId Id="4142" Count="0" />
-      <LineId Id="4298" Count="13" />
-      <LineId Id="4191" Count="5" />
-      <LineId Id="4125" Count="0" />
-      <LineId Id="3845" Count="0" />
-      <LineId Id="4318" Count="5" />
-      <LineId Id="4325" Count="5" />
-      <LineId Id="4324" Count="0" />
-      <LineId Id="4206" Count="5" />
-      <LineId Id="4213" Count="6" />
-      <LineId Id="4221" Count="0" />
-      <LineId Id="4238" Count="13" />
-      <LineId Id="3453" Count="45" />
-      <LineId Id="4199" Count="0" />
-      <LineId Id="4201" Count="2" />
-      <LineId Id="4200" Count="0" />
-      <LineId Id="3499" Count="66" />
-      <LineId Id="4331" Count="0" />
-      <LineId Id="3566" Count="7" />
-      <LineId Id="4378" Count="0" />
-      <LineId Id="3574" Count="10" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="Standard_Interface.ExchangeData">
-      <LineId Id="117" Count="3" />
-      <LineId Id="130" Count="0" />
-      <LineId Id="133" Count="0" />
-      <LineId Id="132" Count="0" />
-      <LineId Id="121" Count="4" />
-      <LineId Id="134" Count="2" />
-      <LineId Id="126" Count="0" />
-      <LineId Id="15" Count="0" />
-    </LineIds>
-    <LineIds Name="Standard_Interface.ExchangeData_LREAL_REAL">
-      <LineId Id="117" Count="3" />
-      <LineId Id="130" Count="0" />
-      <LineId Id="133" Count="0" />
-      <LineId Id="132" Count="0" />
-      <LineId Id="121" Count="1" />
-      <LineId Id="165" Count="5" />
-      <LineId Id="126" Count="0" />
-      <LineId Id="15" Count="0" />
-    </LineIds>
-    <LineIds Name="Standard_Interface.ModbusSettings">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="Standard_Interface.ModbusStatus">
-      <LineId Id="1" Count="0" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="5" Count="5" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="12" Count="1" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="16" Count="1" />
-      <LineId Id="19" Count="2" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="22" Count="7" />
-      <LineId Id="32" Count="4" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="37" Count="38" />
-      <LineId Id="78" Count="0" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

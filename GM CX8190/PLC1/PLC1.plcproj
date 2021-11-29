@@ -659,6 +659,12 @@
     <Compile Include="DUTs\Utilities\PWM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Utilities\REAL_TO_WORD_SAFE.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Utilities\LREAL_TO_WORD_SAFE.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Utilities\Scale.TcPOU">
       <SubType>Code</SubType>
     </Compile>

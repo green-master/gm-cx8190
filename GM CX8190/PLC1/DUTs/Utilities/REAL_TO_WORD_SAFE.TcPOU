@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="REAL_TO_WORD_SAFE" Id="{9bd2be92-9716-41c3-8bd4-09fc3b43d50b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION REAL_TO_WORD_SAFE : WORD
+VAR_INPUT
+	Value: REAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[REAL_TO_WORD_SAFE := TO_WORD(TO_INT(Value));
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

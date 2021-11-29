@@ -114,10 +114,10 @@
 				</Target>
 			</Licenses>
 			<Tasks>
-				<Task Id="1" CreateSymbols="true" Priority="20" CycleTime="500000" AmsPort="350" ExceedWarning="1">
+				<Task Id="1" CreateSymbols="true" Priority="20" CycleTime="500000" AmsPort="350" ExceedWarning="1" DisableFpExceptions="true">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="1" CycleTime="100000" AmsPort="351" AdtTasks="true">
+				<Task Id="4" Priority="1" CycleTime="100000" AmsPort="351" DisableFpExceptions="true" AdtTasks="true">
 					<Name>Task 4</Name>
 				</Task>
 			</Tasks>
@@ -2461,7 +2461,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 			<Device Id="4" DevType="120">
 				<Name>Device STD (CX-BK)</Name>
 				<DevData>000000c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000007000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
-				<Image Id="2" AddrType="1" ImageType="3" SizeIn="80" SizeOut="80">
+				<Image Id="2" AddrType="1" ImageType="3" SizeIn="80" SizeOut="78">
 					<Name>Image</Name>
 				</Image>
 				<Box Id="1" BoxType="9703" AmsPort="28929">
@@ -3244,7 +3244,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								</Var>
 							</Vars>
 						</Term>
-						<Term Id="22" TermType="#x580" Fieldbus="6">
+						<Term Id="22" Disabled="true" TermType="#x580" Fieldbus="6">
 							<Name>DI 3 (KL1408)</Name>
 							<ImageId>7</ImageId>
 							<Vars VarGrpType="3">
