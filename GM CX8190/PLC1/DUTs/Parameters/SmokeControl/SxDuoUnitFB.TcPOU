@@ -15,6 +15,7 @@ VAR_OUTPUT
 	Fire: BOOL;
 	{attribute 'TcEncoding':='UTF-8'}
 	Text: STRING;
+	Text_CP1252: STRING;
 	SxDuoCommand: SxDuoCommand;
 END_VAR
 VAR
@@ -37,20 +38,9 @@ Fire := DamperModule.Fire;
 SxDuoStatus := DamperModule.SxDuoStatus;
 DamperModule.SxDuoCommand := SxDuoCommand;
 Text := DamperModule.Text;
+Text_CP1252 := DamperModule.Text_CP1252;
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="SxDuoUnitFB">
-      <LineId Id="9" Count="0" />
-      <LineId Id="48" Count="0" />
-    </LineIds>
-    <LineIds Name="SxDuoUnitFB.Update">
-      <LineId Id="5" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="18" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

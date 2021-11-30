@@ -66,7 +66,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SxDuoInterface.TEXT_PV := SxDuoUnitFB.Text;
+        <ST><![CDATA[SxDuoInterface.TEXT_PV := SxDuoUnitFB.Text_CP1252;
 SxDuoInterface.DAMPER1_AL := SxDuoUnitFB.SxDuoStatus.Damper1Alarm;
 SxDuoInterface.DAMPER2_AL := SxDuoUnitFB.SxDuoStatus.Damper2Alarm;
 SxDuoInterface.DAMPER1_V0 := SxDuoUnitFB.SxDuoStatus.Damper1Closed;
@@ -80,24 +80,5 @@ SxDuoInterface.COMM_FAULT := SxDuoUnitFB.Error;
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="SmokeControl_Interface">
-      <LineId Id="2100" Count="1" />
-      <LineId Id="2384" Count="0" />
-      <LineId Id="2103" Count="2" />
-      <LineId Id="2129" Count="0" />
-      <LineId Id="2363" Count="0" />
-      <LineId Id="2130" Count="0" />
-      <LineId Id="2188" Count="0" />
-      <LineId Id="2403" Count="1" />
-      <LineId Id="2406" Count="12" />
-      <LineId Id="2385" Count="0" />
-      <LineId Id="2389" Count="13" />
-      <LineId Id="2305" Count="0" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="SmokeControl_Interface.UpdateModuleTags">
-      <LineId Id="24" Count="10" />
-      <LineId Id="18" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
