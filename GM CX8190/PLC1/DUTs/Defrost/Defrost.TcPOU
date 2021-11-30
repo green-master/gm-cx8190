@@ -208,12 +208,12 @@ ELSE
 	SectionDefrostTimer.Restart();
 	DefrostStageTimer.Restart();
 	
-	Damper1 := Parameters.System.Defrost.Sections >= 1;
-	Damper2 := Parameters.System.Defrost.Sections >= 2;
-	Damper3 := Parameters.System.Defrost.Sections >= 3;
-	Damper4 := Parameters.System.Defrost.Sections >= 4;
-	Damper5 := Parameters.System.Defrost.Sections >= 5;
-	Damper6 := Parameters.System.Defrost.Sections >= 6;
+	Damper1 := (Parameters.System.Defrost.Sections >= 1) AND (Parameters.System.Operation.State <> SystemStates.Idle);
+	Damper2 := (Parameters.System.Defrost.Sections >= 2) AND (Parameters.System.Operation.State <> SystemStates.Idle);
+	Damper3 := (Parameters.System.Defrost.Sections >= 3) AND (Parameters.System.Operation.State <> SystemStates.Idle);
+	Damper4 := (Parameters.System.Defrost.Sections >= 4) AND (Parameters.System.Operation.State <> SystemStates.Idle);
+	Damper5 := (Parameters.System.Defrost.Sections >= 5) AND (Parameters.System.Operation.State <> SystemStates.Idle);
+	Damper6 := (Parameters.System.Defrost.Sections >= 6) AND (Parameters.System.Operation.State <> SystemStates.Idle);
 	
 END_IF
 Parameters.IO.DOut.T_QM1_1 := Damper1;
