@@ -21,6 +21,7 @@ VAR_INPUT
 	SpecificFanPower: LREAL; // $(unit "kPa")
 	Flow: LREAL; // $(unit "l/s")
 	Power: LREAL; // $(unit "W")
+	Speed: LREAL; // $(unit "rpm")
 	FanEfficiency: LREAL; // $(scale "0 1 0 100", unit "%")
 	PressureRise: LREAL; // $(unit "Pa")
 	AdjustCSP: LREAL := 1.0; // $(skip) Adjust CSP during defrost
@@ -71,17 +72,5 @@ ELSE
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="AirParametersFB">
-      <LineId Id="138" Count="22" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="207" Count="0" />
-      <LineId Id="183" Count="0" />
-      <LineId Id="236" Count="1" />
-      <LineId Id="239" Count="1" />
-      <LineId Id="238" Count="0" />
-      <LineId Id="244" Count="0" />
-      <LineId Id="248" Count="2" />
-      <LineId Id="246" Count="1" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -24,6 +24,8 @@ VAR_OUTPUT
 	F_BP3: LREAL;
 	T_CurrentPower: LREAL;
 	F_CurrentPower: LREAL;
+	T_CurrentSpeed: LREAL;
+	F_CurrentSpeed: LREAL;
 END_VAR
 VAR
 END_VAR
@@ -31,8 +33,5 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <LineIds Name="GreenMasterAIU_Base">
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

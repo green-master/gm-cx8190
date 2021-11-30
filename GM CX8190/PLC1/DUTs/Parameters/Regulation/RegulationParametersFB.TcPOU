@@ -58,6 +58,8 @@ SupplyAir.Flow := Parameters.IO.AIn.T_BF1;
 ExtractAir.Flow := Parameters.IO.AIn.F_BF1;
 SupplyAir.Power := Main.GreenMaster.AI2.T_CurrentPower;
 ExtractAir.Power := Main.GreenMaster.AI2.F_CurrentPower;
+SupplyAir.Speed := Main.GreenMaster.AI2.T_CurrentSpeed;
+ExtractAir.Speed := Main.GreenMaster.AI2.F_CurrentSpeed;
 SupplyAir.PressureRise := Parameters.IO.AIn.T_BF1;
 ExtractAir.PressureRise := Parameters.IO.AIn.F_BF1;
 CurrentMaxFlow := MAX(ExtractAir.Flow, SupplyAir.Flow);
@@ -107,52 +109,5 @@ IF ApplyAbsoluteSetPointCurves <> LastApplyAbsoluteSetPointCurves THEN
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="RegulationParametersFB">
-      <LineId Id="9" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="254" Count="0" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="72" Count="1" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="92" Count="0" />
-      <LineId Id="91" Count="0" />
-      <LineId Id="93" Count="0" />
-      <LineId Id="118" Count="0" />
-      <LineId Id="95" Count="0" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="124" Count="2" />
-      <LineId Id="121" Count="0" />
-      <LineId Id="96" Count="0" />
-      <LineId Id="127" Count="0" />
-      <LineId Id="97" Count="1" />
-      <LineId Id="128" Count="0" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="56" Count="0" />
-      <LineId Id="148" Count="0" />
-      <LineId Id="147" Count="0" />
-      <LineId Id="150" Count="0" />
-      <LineId Id="149" Count="0" />
-      <LineId Id="151" Count="0" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="164" Count="4" />
-      <LineId Id="156" Count="0" />
-      <LineId Id="160" Count="0" />
-      <LineId Id="157" Count="0" />
-      <LineId Id="161" Count="0" />
-      <LineId Id="158" Count="0" />
-      <LineId Id="195" Count="0" />
-      <LineId Id="194" Count="0" />
-      <LineId Id="198" Count="8" />
-      <LineId Id="225" Count="0" />
-      <LineId Id="207" Count="8" />
-      <LineId Id="226" Count="0" />
-      <LineId Id="216" Count="8" />
-      <LineId Id="227" Count="0" />
-      <LineId Id="196" Count="1" />
-      <LineId Id="159" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
