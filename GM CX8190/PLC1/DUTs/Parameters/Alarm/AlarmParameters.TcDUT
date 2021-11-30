@@ -4,7 +4,41 @@
     <Declaration><![CDATA[TYPE AlarmParameters :
 STRUCT
 	Control: AlarmControl;
-	Disabled: AlarmSignals;
+	Enabled: AlarmSignals := ( 	A := ( 		
+										FireExtract := TRUE,
+										FireExtractTemperature := TRUE,
+										FireExtractPressure := TRUE,
+										FireExtractExternal := TRUE,
+										FireLocal := TRUE,
+										FireSupply := TRUE,
+										Freeze := TRUE,
+										Fuse := TRUE,
+										Cold := TRUE,
+										Aux := TRUE
+									),
+									B := (	
+										RegulationDeviation := TRUE,
+										SupplyAirDeviation := TRUE,
+										ExtractAirDeviation := TRUE,
+										SupplyFan := TRUE,
+										ExtractFan := TRUE,
+										HeatExchangerEfficiency := TRUE,
+										Defrost := TRUE,
+										SupplyFilter := TRUE,
+										ExtractFilter := TRUE,
+										SmokeDetectorServiceSupply := TRUE,
+										SmokeDetectorServiceExtract := TRUE,
+										Pump1 := TRUE,
+										DamperError := TRUE,
+										CommunicationError := TRUE,
+										DamperModuleService := TRUE
+									),
+									C := (	
+										ExternalSmokeControl := TRUE,
+										ModbusRTU := TRUE,
+										ModbusTCP := TRUE,
+										SensorFailure := TRUE
+									));
 	AutoReset: AlarmSignals := ( 	A := ( 	FirePanelSupplyStart := TRUE,  
 											FirePanelSupplyStop := TRUE, 
 											FirePanelExtractStart := TRUE, 

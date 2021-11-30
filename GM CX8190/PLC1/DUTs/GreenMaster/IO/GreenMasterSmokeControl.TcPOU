@@ -3,8 +3,6 @@
   <POU Name="GreenMasterSmokeControl" Id="{be7d3d16-f182-463d-92da-aec7fbfb4c74}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterSmokeControl extends GreenMasterSmokeControl_Base
 VAR_INPUT
-	{attribute 'TcEncoding':='UTF-8'}
-	ModbusTCP_IP: STRING := '10.133.0.23';
 	Exercise: BOOL;
 	ResetSmokeDetectors: bool;
 END_VAR
@@ -15463,28 +15461,6 @@ END_VAR
                       </o>
                     </l2>
                   </o>
-                  <o>
-                    <v n="ConnectionId">2147484235L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">37</v>
-                      <v n="Y">6</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147483710L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">37</v>
-                        <v n="Y">6</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
                 </d2>
               </o>
             </o>
@@ -15608,27 +15584,5 @@ DamperModule_1.StartWrite();
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="GreenMasterSmokeControl.Update">
-      <LineId Id="77" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="15" Count="13" />
-      <LineId Id="86" Count="14" />
-      <LineId Id="85" Count="0" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="49" Count="0" />
-      <LineId Id="36" Count="12" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="54" Count="14" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="69" Count="0" />
-    </LineIds>
-    <LineIds Name="GreenMasterSmokeControl.Write">
-      <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="6" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

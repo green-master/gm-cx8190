@@ -39,6 +39,7 @@ VAR
 	LatchedSignalP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	StatusP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	AutoResetP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
+	EnabledP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	CurrentP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	PolarityP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	DelayP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF TIME;
@@ -59,8 +60,9 @@ IF StartupDelay.Q THEN
 	StatusP := ADR(Parameters.Alarm.Status);
 	PolarityP := ADR(Parameters.Alarm.Polarity);
 	CurrentP := ADR(Current.Signals);
+	EnabledP := ADR(Parameters.Alarm.Enabled);
 	FOR N := 0 TO AlarmCount - 1 DO
-		LatchedStatusP^[n] := StatusP^[n] <> PolarityP^[n];		
+		LatchedStatusP^[n] := (StatusP^[n] <> PolarityP^[n]) AND EnabledP^[n];		
 		TONs[n](IN := LatchedStatusP^[n], PT := DelayP^[n], Q => CurrentP^[n]);
 	END_FOR
 	
@@ -172,41 +174,5 @@ IncludeJSON := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="AlarmMonitor">
-      <LineId Id="2063" Count="4" />
-      <LineId Id="2164" Count="0" />
-      <LineId Id="2068" Count="10" />
-      <LineId Id="2084" Count="0" />
-      <LineId Id="2274" Count="0" />
-      <LineId Id="2277" Count="0" />
-      <LineId Id="2275" Count="0" />
-      <LineId Id="2278" Count="0" />
-      <LineId Id="2276" Count="0" />
-      <LineId Id="2273" Count="0" />
-      <LineId Id="2269" Count="2" />
-      <LineId Id="2085" Count="0" />
-      <LineId Id="2256" Count="0" />
-      <LineId Id="2086" Count="33" />
-      <LineId Id="2211" Count="0" />
-      <LineId Id="102" Count="0" />
-    </LineIds>
-    <LineIds Name="AlarmMonitor.LogAlarm">
-      <LineId Id="92" Count="0" />
-      <LineId Id="61" Count="13" />
-      <LineId Id="79" Count="1" />
-      <LineId Id="101" Count="2" />
-      <LineId Id="81" Count="2" />
-      <LineId Id="111" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="93" Count="0" />
-    </LineIds>
-    <LineIds Name="AlarmMonitor.LogAlarmJSON">
-      <LineId Id="21" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="19" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

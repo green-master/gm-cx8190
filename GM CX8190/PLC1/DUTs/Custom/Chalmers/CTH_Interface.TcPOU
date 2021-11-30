@@ -37,8 +37,8 @@ VAR
 	CurrentPV: LREAL;
 	
 	FirePanelWasActive: BOOL;	
-	SavedDisabledStates: AlarmSignals;
-	AlarmSignalsTrueExceptFirePanel: AlarmSignals;
+	SavedEnabledStates: AlarmSignals;
+	AlarmSignalsFalseExceptFirePanel: AlarmSignals;
 	StatusP: POINTER TO ARRAY [0..SIZEOF(AlarmSignals) - 1] OF BOOL;
 	AlarmCount: UINT := SIZEOF(AlarmSignals);	
 END_VAR
@@ -76,24 +76,24 @@ IF EN THEN
 	
 	IF FirePanelActive THEN
 		// Restore alarm disabled states
-		SavedDisabledStates := Parameters.Alarm.Disabled;
+		SavedEnabledStates := Parameters.Alarm.Enabled;
 		// Set all alarms except fire panel disabled
-		StatusP := ADR(AlarmSignalsTrueExceptFirePanel);
+		StatusP := ADR(AlarmSignalsFalseExceptFirePanel);
 		FOR n := 0 TO AlarmCount - 1 DO
-			StatusP^[n] := TRUE;
+			StatusP^[n] := FALSE;
 		END_FOR
-		AlarmSignalsTrueExceptFirePanel.A.FirePanelExtractStart := FALSE;
-		AlarmSignalsTrueExceptFirePanel.A.FirePanelExtractStop := FALSE;
-		AlarmSignalsTrueExceptFirePanel.A.FirePanelSupplyStart := FALSE;
-		AlarmSignalsTrueExceptFirePanel.A.FirePanelSupplyStop := FALSE;
-		Parameters.Alarm.Disabled := AlarmSignalsTrueExceptFirePanel;
+		AlarmSignalsFalseExceptFirePanel.A.FirePanelExtractStart := TRUE;
+		AlarmSignalsFalseExceptFirePanel.A.FirePanelExtractStop := TRUE;
+		AlarmSignalsFalseExceptFirePanel.A.FirePanelSupplyStart := TRUE;
+		AlarmSignalsFalseExceptFirePanel.A.FirePanelSupplyStop := TRUE;
+		Parameters.Alarm.Enabled := AlarmSignalsFalseExceptFirePanel;
 		// Remember fire panel was active
 		FirePanelWasActive := TRUE;
 	ELSE
 		// if FirePanel was active
 		IF FirePanelWasActive THEN
 			// Restore previous alarm disabled states
-			Parameters.Alarm.Disabled := SavedDisabledStates;
+			Parameters.Alarm.Enabled := SavedEnabledStates;
 			FirePanelWasActive := FALSE;
 		END_IF
 	END_IF
@@ -226,10 +226,5 @@ IF EN THEN
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="CTH_Interface">
-      <LineId Id="2170" Count="53" />
-      <LineId Id="2237" Count="122" />
-      <LineId Id="1698" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
