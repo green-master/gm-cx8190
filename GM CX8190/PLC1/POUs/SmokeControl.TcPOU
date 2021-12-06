@@ -6,7 +6,9 @@ VAR
 	StartupDone: BOOL;
 	GreenMasterSmokeControl: GreenMasterSmokeControl; 
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	ParametersFB: REFERENCE TO GreenMasterBaseParametersFB;
 	ParametersSC: REFERENCE TO SmokeControlParametersBase;
+	ParametersSCFB: REFERENCE TO SmokeControlParametersBaseFB;
 	ExerciseTimer: Timer;
 	EN: BOOL;
 	LocalTime: FB_LocalSystemTime;
@@ -23,6 +25,8 @@ END_VAR
       <ST><![CDATA[IF NOT StartupDone THEN
 	Parameters REF= Main.GreenMaster.GetParameters();
 	ParametersSC REF= Main.GreenMaster.GetParametersSC();
+	ParametersFB REF= Main.GreenMaster.GetParametersFB();
+	ParametersSCFB REF= Main.GreenMaster.GetParametersSCFB();
 	StartupDone := TRUE;
 END_IF
 EN := GetComponent(Name := ComponentNames.GM_SMOKE_CONTROL).EN;
@@ -31,7 +35,7 @@ ExerciseTimer(EN := EN);
 Elapsed := ExerciseTimer.ElapsedTime();
 IF EN AND LocalTime.bValid THEN
 	GreenMasterSmokeControl(EN := TRUE, Parameters := Parameters, ParametersSC := ParametersSC);
-	GreenMasterSmokeControl.Update(Parameters, Main.GreenMaster.GetParametersSC());
+	GreenMasterSmokeControl.Update(Parameters, ParametersSC, ParametersFB, ParametersSCFB);
 END_IF
 
 IF GreenMasterSmokeControl.DamperError AND Parameters.Alarm.Active.B.DamperError THEN
@@ -89,19 +93,5 @@ CASE CurrentState OF
 END_CASE
 ]]></ST>
     </Implementation>
-    <LineIds Name="SmokeControl">
-      <LineId Id="156" Count="21" />
-      <LineId Id="227" Count="4" />
-      <LineId Id="235" Count="0" />
-      <LineId Id="232" Count="1" />
-      <LineId Id="236" Count="0" />
-      <LineId Id="238" Count="0" />
-      <LineId Id="240" Count="0" />
-      <LineId Id="234" Count="0" />
-      <LineId Id="178" Count="11" />
-      <LineId Id="258" Count="0" />
-      <LineId Id="190" Count="19" />
-      <LineId Id="108" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

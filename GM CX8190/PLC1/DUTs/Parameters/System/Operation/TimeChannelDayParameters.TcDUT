@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="TimeChannelDayParameters" Id="{09ca24ce-999a-4cd1-a59d-8eb448035ada}">
+    <Declaration><![CDATA[TYPE TimeChannelDayParameters :
+STRUCT
+	Timer1: TimeChannel1CH;
+	Timer2: TimeChannel1CH;
+	Timer3: TimeChannel1CH;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

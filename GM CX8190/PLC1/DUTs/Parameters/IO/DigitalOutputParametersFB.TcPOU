@@ -3,26 +3,7 @@
   <POU Name="DigitalOutputParametersFB" Id="{85648e1a-e841-444e-abc6-5abe348f319a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DigitalOutputParametersFB
 VAR_INPUT
-    H_GP1: BOOL; // Cirkulationspump värmekrets
-    C_GP1: BOOL; // Cirkulationspump kylkrets
-    T_QM2: BOOL; // Tilluftsspjäll
-    R_QM1: BOOL; // Återluftsspjäll
-    T_QM1_1: BOOL; // Sektionsavfrostning
-    T_QM1_2: BOOL; // Sektionsavfrostning
-    T_QM1_3: BOOL; // Sektionsavfrostning
-    T_QM1_4: BOOL; // Sektionsavfrostning
-    T_QM1_5: BOOL; // Sektionsavfrostning
-    T_QM1_6: BOOL; // Sektionsavfrostning
-    F_QM1: BOOL; // Frånluftsspjäll
-    F_QM2: BOOL; // Brandspjäll förbigång
-	F_QM2_ActiveWhenStopped: BOOL;
-    T_RUN: BOOL; // Supply running (Aktiveras om tilluftsfläkten går)
-    F_RUN: BOOL; // Exhaust running (Aktiveras om frånluftsfläkten går)
-	
-	AL_A: BOOL; // A-larm
-	AL_B: BOOL; // B-larm
-	AL_C: BOOL; // C-larm
-	AL_D: BOOL; // D-larm
+	DOut: DigitalOutputParameters;
 END_VAR
 VAR_OUTPUT
 	H_GP1_OnTime: LTIME;
@@ -38,10 +19,10 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[H_GP1_LTON(EN := H_GP1, ET => H_GP1_OnTime);
-F_QM1_LTON(EN := F_QM1, ET => F_QM1_OnTime);
-F_QM2_LTON(EN := F_QM2, ET => F_QM2_OnTime);
-T_QM2_LTON(EN := T_QM2, ET => T_QM2_OnTime);
+      <ST><![CDATA[H_GP1_LTON(EN := DOut.H_GP1, ET => H_GP1_OnTime);
+F_QM1_LTON(EN := DOut.F_QM1, ET => F_QM1_OnTime);
+F_QM2_LTON(EN := DOut.F_QM2, ET => F_QM2_OnTime);
+T_QM2_LTON(EN := DOut.T_QM2, ET => T_QM2_OnTime);
 ]]></ST>
     </Implementation>
     <Method Name="Update" Id="{c3e83810-423d-49ef-bca7-1df8d58ed7c0}">
@@ -54,38 +35,30 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-DO_.H_GP1 := H_GP1;
-DO_.C_GP1 := C_GP1;
+DO_.H_GP1 := Parameters.IO.DOut.H_GP1;
+DO_.C_GP1 := Parameters.IO.DOut.C_GP1;
 IF EnableWriteDampers THEN
-	DO_.F_QM1 := F_QM1;
-	DO_.T_QM2 := T_QM2;
+	DO_.F_QM1 := Parameters.IO.DOut.F_QM1;
+	DO_.T_QM2 := Parameters.IO.DOut.T_QM2;
 END_IF
-DO_.R_QM1 := R_QM1;
-DO_.F_QM2 := F_QM2;
-DO_.T_QM1_1 := T_QM1_1;
-DO_.T_QM1_2 := T_QM1_2;
-DO_.T_QM1_3 := T_QM1_3;
-DO_.T_QM1_4 := T_QM1_4;
-DO_.T_QM1_5 := T_QM1_5;
-DO_.T_QM1_6 := T_QM1_6;
-F_QM2_ActiveWhenStopped := FALSE;
-DO_.SupplyRunning := T_RUN;
-DO_.ExhaustRunning := F_RUN;
+DO_.R_QM1 := Parameters.IO.DOut.R_QM1;
+DO_.F_QM2 := Parameters.IO.DOut.F_QM2;
+DO_.T_QM1_1 := Parameters.IO.DOut.T_QM1_1;
+DO_.T_QM1_2 := Parameters.IO.DOut.T_QM1_2;
+DO_.T_QM1_3 := Parameters.IO.DOut.T_QM1_3;
+DO_.T_QM1_4 := Parameters.IO.DOut.T_QM1_4;
+DO_.T_QM1_5 := Parameters.IO.DOut.T_QM1_5;
+DO_.T_QM1_6 := Parameters.IO.DOut.T_QM1_6;
+Parameters.IO.DOut.F_QM2_ActiveWhenStopped := FALSE;
+DO_.SupplyRunning := Parameters.IO.DOut.T_RUN;
+DO_.ExhaustRunning := Parameters.IO.DOut.F_RUN;
 
-DO_.AlarmRelayA := AL_A;
-DO_.AlarmRelayB := AL_B;
-DO_.AlarmRelayC := AL_C;
-DO_.AlarmRelayD := AL_D;
+DO_.AlarmRelayA := Parameters.IO.DOut.AL_A;
+DO_.AlarmRelayB := Parameters.IO.DOut.AL_B;
+DO_.AlarmRelayC := Parameters.IO.DOut.AL_C;
+DO_.AlarmRelayD := Parameters.IO.DOut.AL_D;
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="DigitalOutputParametersFB">
-      <LineId Id="179" Count="3" />
-      <LineId Id="68" Count="0" />
-    </LineIds>
-    <LineIds Name="DigitalOutputParametersFB.Update">
-      <LineId Id="47" Count="22" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

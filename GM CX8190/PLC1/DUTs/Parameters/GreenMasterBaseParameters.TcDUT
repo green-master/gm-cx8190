@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="GreenMasterBaseParameters" Id="{12db7461-42df-4fa4-9c9a-fcd12bddac83}">
+    <Declaration><![CDATA[TYPE GreenMasterBaseParameters :
+STRUCT
+	System: SystemParameters;
+	Regulation: RegulationParameters;
+	Alarm: AlarmParameters;
+	IO: IoParameters;
+	Simulation: SimulationParameters;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

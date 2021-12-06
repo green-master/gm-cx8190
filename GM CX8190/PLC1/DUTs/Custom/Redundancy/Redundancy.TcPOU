@@ -22,7 +22,7 @@ VAR_OUTPUT
 	ENO: BOOL;	
 END_VAR
 VAR
-	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	Parameters: REFERENCE TO GreenMasterBaseParametersFB;
 	GM_XXL: REFERENCE TO GreenMasterXXL_FB;
 	
 	B_STATUS:adsValue_AggStat;		// Det andra aggregatet

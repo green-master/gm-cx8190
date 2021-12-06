@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SxDuoParametersFB" Id="{45eab6e2-8e80-45d1-8e49-5b9cf0fffde1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SxDuoParametersFB
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	Unit01: SxDuoUnitFB;
+	Unit02: SxDuoUnitFB;
+	Unit03: SxDuoUnitFB;
+	Unit04: SxDuoUnitFB;
+	Unit05: SxDuoUnitFB;
+	Unit06: SxDuoUnitFB;
+	Unit07: SxDuoUnitFB;
+	Unit08: SxDuoUnitFB;
+	Unit09: SxDuoUnitFB;
+	Unit10: SxDuoUnitFB;
+	Unit11: SxDuoUnitFB;
+	Unit12: SxDuoUnitFB;
+	Unit13: SxDuoUnitFB;
+	Unit14: SxDuoUnitFB;
+	Unit15: SxDuoUnitFB;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

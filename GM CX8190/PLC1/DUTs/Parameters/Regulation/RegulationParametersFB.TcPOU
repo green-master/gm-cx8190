@@ -4,108 +4,99 @@
     <Declaration><![CDATA[FUNCTION_BLOCK RegulationParametersFB
 VAR_IN_OUT
 	Parameters: GreenMasterBaseParameters;
+	ParametersFB: GreenMasterBaseParametersFB;
+	Regulation: RegulationParameters;
 END_VAR
 VAR_INPUT
-	Control: RegulationControlParameters;
-	//SupplyAir: AirParametersFB := (StartupFanSpeed := 0.3, SetPointAdjustment := (Curve := (Y1 := 165, Y2 := 165, Y3 := 165, Y4 := 165, Y5 := 165, Y6 := 165, Y7 := 165, Y8 := 165, Y9 := 165)));
-	//ExtractAir: AirParametersFB := (StartupFanSpeed := 0.4, SetPointAdjustment := (Curve := (Y1 := 160, Y2 := 160, Y3 := 160, Y4 := 160, Y5 := 160, Y6 := 160, Y7 := 160, Y8 := 160, Y9 := 160)));
-	SupplyAir: AirParametersFB := (StartupFanSpeed := 0.3);
-	ExtractAir: AirParametersFB := (StartupFanSpeed := 0.4);
-	Temperature: TemperatureControlParametersFB;
-	NightCoolingLimit: LREAL;
-	TemperatureCompensationSource: TemperatureCompensationSources;
-	CurrentTemperatureCompensationSource: TemperatureCompensationSources;
-	CompensationTemperature: LREAL;
-	SystemSpecificFanPower: LREAL; // $(unit "kPa")
-	SystemEfficiency: LREAL; // $(scale "0 1 0 100", unit "%")
-	ApplyAbsoluteSetPointCurves: word; // $(skip)
-	LastApplyAbsoluteSetPointCurves: WORD; // $(skip)
 END_VAR
 VAR_OUTPUT
+	SupplyAir: AirParametersFB;
+	ExtractAir: AirParametersFB;
+	Temperature: TemperatureControlParametersFB;
 END_VAR
 VAR
 	CurrentMaxFlow: LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[SupplyAir(Parameters := Parameters);
-ExtractAir(Parameters := Parameters);
-Temperature(Parameters := Parameters, EN:=Parameters.System.Operation.EN);
+      <ST><![CDATA[SupplyAir(Parameters := Parameters, ParametersFB := ParametersFB, AirParameters := Regulation.SupplyAir);
+ExtractAir(Parameters := Parameters, ParametersFB := ParametersFB, AirParameters := Regulation.ExtractAir);
+Temperature(Parameters := Parameters, ParametersFB := ParametersFB, Temperature := Parameters.Regulation.Temperature);
 
-IF __ISVALIDREF(Parameters.GetGreenMaster()) THEN
-	Temperature.Control.PV := Parameters.GetGreenMaster().GetCurrentPV();
-	SupplyAir.Control.PV := Parameters.GetGreenMaster().GetCurrentSupplyAirPV();
-	ExtractAir.Control.PV := Parameters.GetGreenMaster().GetCurrentExtractAirPV();
+IF __ISVALIDREF(ParametersFB.GetGreenMaster()) THEN
+	Regulation.Temperature.Control.PV := ParametersFB.GetGreenMaster().GetCurrentPV();
+	Regulation.SupplyAir.Control.PV := ParametersFB.GetGreenMaster().GetCurrentSupplyAirPV();
+	Regulation.ExtractAir.Control.PV := ParametersFB.GetGreenMaster().GetCurrentExtractAirPV();
 END_IF
 
-CASE TemperatureCompensationSource OF
+CASE Regulation.TemperatureCompensationSource OF
 	TemperatureCompensationSources.Auto:
-		CompensationTemperature := Parameters.IO.AIn.BT1;
+		Regulation.CompensationTemperature := Parameters.IO.AIn.BT1;
 		IF (NOT Parameters.IO.AIn.BT1_EN) OR Parameters.IO.AIn.BT1_Error THEN
-			CompensationTemperature := Parameters.IO.AIn.T_BT2;
-			CurrentTemperatureCompensationSource := TemperatureCompensationSources.T_BT2;
+			Regulation.CompensationTemperature := Parameters.IO.AIn.T_BT2;
+			Regulation.CurrentTemperatureCompensationSource := TemperatureCompensationSources.T_BT2;
 		ELSE
-			CurrentTemperatureCompensationSource := TemperatureCompensationSources.BT1;			
+			Regulation.CurrentTemperatureCompensationSource := TemperatureCompensationSources.BT1;			
 		END_IF;
 	TemperatureCompensationSources.BT1:
-		CurrentTemperatureCompensationSource := TemperatureCompensationSources.BT1;
-		CompensationTemperature := Parameters.IO.AIn.BT1;
+		Regulation.CurrentTemperatureCompensationSource := TemperatureCompensationSources.BT1;
+		Regulation.CompensationTemperature := Parameters.IO.AIn.BT1;
 	TemperatureCompensationSources.T_BT2:
-		CurrentTemperatureCompensationSource := TemperatureCompensationSources.T_BT2;
-		CompensationTemperature := Parameters.IO.AIn.T_BT2;
+		Regulation.CurrentTemperatureCompensationSource := TemperatureCompensationSources.T_BT2;
+		Regulation.CompensationTemperature := Parameters.IO.AIn.T_BT2;
 END_CASE
-SupplyAir.Flow := Parameters.IO.AIn.T_BF1;
-ExtractAir.Flow := Parameters.IO.AIn.F_BF1;
-SupplyAir.Power := Main.GreenMaster.AI2.T_CurrentPower;
-ExtractAir.Power := Main.GreenMaster.AI2.F_CurrentPower;
-SupplyAir.Speed := Main.GreenMaster.AI2.T_CurrentSpeed;
-ExtractAir.Speed := Main.GreenMaster.AI2.F_CurrentSpeed;
-SupplyAir.PressureRise := Parameters.IO.AIn.T_BF1;
-ExtractAir.PressureRise := Parameters.IO.AIn.F_BF1;
-CurrentMaxFlow := MAX(ExtractAir.Flow, SupplyAir.Flow);
+Regulation.SupplyAir.Flow := Parameters.IO.AIn.T_BF1;
+Regulation.ExtractAir.Flow := Parameters.IO.AIn.F_BF1;
+Regulation.SupplyAir.Power := Main.GreenMaster.AI2.T_CurrentPower;
+Regulation.ExtractAir.Power := Main.GreenMaster.AI2.F_CurrentPower;
+Regulation.SupplyAir.Speed := Main.GreenMaster.AI2.T_CurrentSpeed;
+Regulation.ExtractAir.Speed := Main.GreenMaster.AI2.F_CurrentSpeed;
+Regulation.SupplyAir.PressureRise := Parameters.IO.AIn.T_BF1;
+Regulation.ExtractAir.PressureRise := Parameters.IO.AIn.F_BF1;
+CurrentMaxFlow := MAX(Regulation.ExtractAir.Flow, Regulation.SupplyAir.Flow);
 IF CurrentMaxFlow <> 0 THEN
-	SystemSpecificFanPower := (ExtractAir.Power + SupplyAir.Power) / CurrentMaxFlow;	
+	Regulation.SystemSpecificFanPower := (Regulation.ExtractAir.Power + Regulation.SupplyAir.Power) / CurrentMaxFlow;	
 ELSE
-	SystemSpecificFanPower := 0;
+	Regulation.SystemSpecificFanPower := 0;
 END_IF
-IF (SupplyAir.PressureRise + ExtractAir.PressureRise) <> 0 THEN
-	SystemEfficiency := (SupplyAir.SpecificFanPower + ExtractAir.SpecificFanPower) / ((SupplyAir.PressureRise + ExtractAir.PressureRise) / 1000);
+IF (Regulation.SupplyAir.PressureRise + Regulation.ExtractAir.PressureRise) <> 0 THEN
+	Regulation.SystemEfficiency := (Regulation.SupplyAir.SpecificFanPower + Regulation.ExtractAir.SpecificFanPower) / ((Regulation.SupplyAir.PressureRise + Regulation.ExtractAir.PressureRise) / 1000);
 ELSE
-	SystemEfficiency := 0;	
+	Regulation.SystemEfficiency := 0;	
 END_IF
 
-IF ApplyAbsoluteSetPointCurves <> LastApplyAbsoluteSetPointCurves THEN
-	Temperature.SetPointAdjustment.Curve.Y1 := Temperature.Control.SP; 
-	Temperature.SetPointAdjustment.Curve.Y2 := Temperature.Control.SP; 
-	Temperature.SetPointAdjustment.Curve.Y3 := Temperature.Control.SP; 
-	Temperature.SetPointAdjustment.Curve.Y4 := Temperature.Control.SP; 
-	Temperature.SetPointAdjustment.Curve.Y5 := Temperature.Control.SP; 
-	Temperature.SetPointAdjustment.Curve.Y6 := Temperature.Control.SP; 
-	Temperature.SetPointAdjustment.Curve.Y7 := Temperature.Control.SP; 
-	Temperature.SetPointAdjustment.Curve.Y8 := Temperature.Control.SP; 
-	Temperature.SetPointAdjustment.Curve.Y9 := Temperature.Control.SP;
-	Temperature.Control.SP := 0;
-	SupplyAir.SetPointAdjustment.Curve.Y1 := SupplyAir.Control.SP;
-	SupplyAir.SetPointAdjustment.Curve.Y2 := SupplyAir.Control.SP;
-	SupplyAir.SetPointAdjustment.Curve.Y3 := SupplyAir.Control.SP;
-	SupplyAir.SetPointAdjustment.Curve.Y4 := SupplyAir.Control.SP;
-	SupplyAir.SetPointAdjustment.Curve.Y5 := SupplyAir.Control.SP;
-	SupplyAir.SetPointAdjustment.Curve.Y6 := SupplyAir.Control.SP;
-	SupplyAir.SetPointAdjustment.Curve.Y7 := SupplyAir.Control.SP;
-	SupplyAir.SetPointAdjustment.Curve.Y8 := SupplyAir.Control.SP;
-	SupplyAir.SetPointAdjustment.Curve.Y9 := SupplyAir.Control.SP;
-	SupplyAir.Control.SP := 0;
-	ExtractAir.SetPointAdjustment.Curve.Y1 := ExtractAir.Control.SP;
-	ExtractAir.SetPointAdjustment.Curve.Y2 := ExtractAir.Control.SP;
-	ExtractAir.SetPointAdjustment.Curve.Y3 := ExtractAir.Control.SP;
-	ExtractAir.SetPointAdjustment.Curve.Y4 := ExtractAir.Control.SP;
-	ExtractAir.SetPointAdjustment.Curve.Y5 := ExtractAir.Control.SP;
-	ExtractAir.SetPointAdjustment.Curve.Y6 := ExtractAir.Control.SP;
-	ExtractAir.SetPointAdjustment.Curve.Y7 := ExtractAir.Control.SP;
-	ExtractAir.SetPointAdjustment.Curve.Y8 := ExtractAir.Control.SP;
-	ExtractAir.SetPointAdjustment.Curve.Y9 := ExtractAir.Control.SP;
-	ExtractAir.Control.SP := 0;
-	LastApplyAbsoluteSetPointCurves := ApplyAbsoluteSetPointCurves;
+IF Regulation.ApplyAbsoluteSetPointCurves <> Regulation.LastApplyAbsoluteSetPointCurves THEN
+	Regulation.Temperature.SetPointAdjustment.Curve.Y1 := Regulation.Temperature.Control.SP; 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y2 := Regulation.Temperature.Control.SP; 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y3 := Regulation.Temperature.Control.SP; 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y4 := Regulation.Temperature.Control.SP; 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y5 := Regulation.Temperature.Control.SP; 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y6 := Regulation.Temperature.Control.SP; 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y7 := Regulation.Temperature.Control.SP; 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y8 := Regulation.Temperature.Control.SP; 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y9 := Regulation.Temperature.Control.SP;
+	Regulation.Temperature.Control.SP := 0;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y1 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y2 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y3 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y4 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y5 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y6 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y7 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y8 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y9 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.Control.SP := 0;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y1 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y2 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y3 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y4 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y5 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y6 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y7 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y8 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y9 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.Control.SP := 0;
+	Regulation.LastApplyAbsoluteSetPointCurves := Regulation.ApplyAbsoluteSetPointCurves;
 END_IF
 ]]></ST>
     </Implementation>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SimulationParameters" Id="{af3ccd02-8df9-4b3c-9822-8c961c3bf65f}">
+    <Declaration><![CDATA[TYPE SimulationParameters :
+STRUCT
+	EN: BOOL;
+	ENO: BOOL;
+	TestSim: BOOL;
+	SimCounter: INT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

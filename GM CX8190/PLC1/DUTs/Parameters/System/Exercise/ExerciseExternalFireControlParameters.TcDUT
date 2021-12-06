@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ExerciseExternalFireControlParameters" Id="{93298cf9-e86c-4fcf-87da-c55058caf83f}">
+    <Declaration><![CDATA[TYPE ExerciseExternalFireControlParameters :
+STRUCT
+	TimeChannel: TimeChannelSettings;
+	StartManualExercise: BOOL;
+	ExerciseStatus: BOOL;
+	Monitor: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

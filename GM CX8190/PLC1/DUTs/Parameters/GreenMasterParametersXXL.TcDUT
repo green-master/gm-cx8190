@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
-  <DUT Name="GreenMasterParametersXXL" Id="{b1e94a17-75ad-4bc1-864b-01c5f39120d1}">
-    <Declaration><![CDATA[TYPE GreenMasterParametersXXL:
+  <DUT Name="GreenMasterParametersXXL" Id="{cfd756c8-9d5d-40b0-aa23-4c8e079dada0}">
+    <Declaration><![CDATA[TYPE GreenMasterParametersXXL :
 STRUCT
 	System: SystemParametersXXL;
 END_STRUCT

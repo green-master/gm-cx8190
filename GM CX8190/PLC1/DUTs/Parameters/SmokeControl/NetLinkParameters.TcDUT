@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="NetLinkParameters" Id="{00656190-a413-4013-aace-1cb2db9cc01b}">
+    <Declaration><![CDATA[TYPE NetLinkParameters :
+STRUCT
+	{attribute 'TcEncoding':='UTF-8'}
+	ModbusTCP_IP: STRING := '10.133.0.23';
+	EN: BOOL := FALSE;
+	Exercise: SmokeControlExerciseParameters;
+	Fire: SmokeControlFireParameters;
+	Error: BOOL := FALSE;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

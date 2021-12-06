@@ -2,10 +2,14 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="GreenMasterBase" Id="{3964931c-0c74-4f82-aa73-a9f5913e638a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterBase
+VAR
+	ParametersFB: GreenMasterBaseParametersFB;
+	ParametersSCFB: SmokeControlParametersBaseFB;
+END_VAR
 VAR PERSISTENT
 	Parameters: GreenMasterBaseParameters;
 	ParametersSC: SmokeControlParametersBase;
-	Simulation: Simulation;
+	Simulation: SimulationFB;
 END_VAR
 VAR_INPUT
 	EN: BOOL := TRUE;
@@ -4958,7 +4962,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.Regulation.Temperature.MinOutput()"</v>
+                      <v n="Text">"ParametersFB.Regulation.Temperature.MinOutput()"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147489381L</v>
                     </o>
@@ -5027,7 +5031,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.Regulation.Temperature.MaxOutput()"</v>
+                      <v n="Text">"ParametersFB.Regulation.Temperature.MaxOutput()"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147489384L</v>
                     </o>
@@ -6793,7 +6797,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.Regulation.Temperature.MinOutput()"</v>
+                      <v n="Text">"ParametersFB.Regulation.Temperature.MinOutput()"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147502852L</v>
                     </o>
@@ -13186,7 +13190,7 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147502868L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">76</v>
+                      <v n="X">77</v>
                       <v n="Y">40</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -13198,7 +13202,7 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">76</v>
+                        <v n="X">77</v>
                         <v n="Y">40</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -13599,6 +13603,72 @@ END_VAR
                       </o>
                     </l2>
                   </o>
+                  <o>
+                    <v n="ConnectionId">2147502147L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">69</v>
+                      <v n="Y">29</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <v n="CorrespondingPageId">2147484866L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">69</v>
+                        <v n="Y">29</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147502398L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">58</v>
+                      <v n="Y">50</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <v n="CorrespondingPageId">2147484866L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">58</v>
+                        <v n="Y">50</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147502466L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">58</v>
+                      <v n="Y">51</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <v n="CorrespondingPageId">2147484866L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">58</v>
+                        <v n="Y">51</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
                 </d2>
               </o>
             </o>
@@ -13657,7 +13727,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[DampersOpen := Parameters.IO.DOut.T_QM2_OnTime > LTIME#30s and Parameters.IO.DOut.F_QM1_OnTime > LTIME#30s;]]></ST>
+        <ST><![CDATA[DampersOpen := ParametersFB.IO.DOut.T_QM2_OnTime > LTIME#30s and ParametersFB.IO.DOut.F_QM1_OnTime > LTIME#30s;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ExtractFanOverride" Id="{d4dae123-f430-4cea-bdb9-c30106c5f05d}">
@@ -13862,6 +13932,16 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="GetParametersFB" Id="{556f28bb-3665-417e-8584-2077b47d1ac2}">
+      <Declaration><![CDATA[METHOD GetParametersFB : reference to GreenMasterBaseParametersFB
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetParametersFB REF= ParametersFB;
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="GetParametersSC" Id="{3224ff51-720a-4182-90f0-3d33da53d667}">
       <Declaration><![CDATA[METHOD GetParametersSC : reference to SmokeControlParametersBase
 VAR_INPUT
@@ -13869,6 +13949,16 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[GetParametersSC REF= ParametersSC;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetParametersSCFB" Id="{17318181-6254-4751-ab01-968cb7b168df}">
+      <Declaration><![CDATA[METHOD GetParametersSCFB : reference to SmokeControlParametersBaseFB
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetParametersSCFB REF= ParametersSCFB;
 ]]></ST>
       </Implementation>
     </Method>
@@ -13894,7 +13984,8 @@ END_VAR
     <Method Name="Simulate" Id="{2c7e379c-c1c7-4206-9735-f2160708f434}">
       <Declaration><![CDATA[METHOD Simulate : BOOL
 VAR_INPUT
-	Parameters: reference to GreenMasterBaseParameters;
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	ParametersFB: REFERENCE TO GreenMasterBaseParametersFB;
 END_VAR
 
 VAR
@@ -13911,8 +14002,8 @@ END_VAR]]></Declaration>
 	FirstTime := TRUE;
 END_IF
 
-Parameters.IO.DIn.F_QM2_Closed := Parameters.IO.DOut.F_QM2_OnTime < LTIME#5S; 
-Parameters.IO.DIn.F_QM2_Open := Parameters.IO.DOut.F_QM2_OnTime > LTIME#30S; 
+Parameters.IO.DIn.F_QM2_Closed := ParametersFB.IO.DOut.F_QM2_OnTime < LTIME#5S; 
+Parameters.IO.DIn.F_QM2_Open := ParametersFB.IO.DOut.F_QM2_OnTime > LTIME#30S; 
 ]]></ST>
       </Implementation>
     </Method>
@@ -14324,13 +14415,9 @@ END_IF
 
 UpdateIO(DO_ := DO_, AO := AO);
 
-IF Parameters.System.Operation.Simulation THEN
-	Simulate(Parameters := Parameters);
-END_IF
-
 SystemStateST(Parameters := Parameters);
 
-Parameters(GreenMaster := THIS^);
+ParametersFB(GreenMaster := THIS^);
 ]]></ST>
       </Implementation>
     </Method>
@@ -14342,15 +14429,15 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Parameters.IO.AIn();
-Parameters.IO.AOut();
-Parameters.IO.DIn();
-Parameters.IO.DOut();
+        <ST><![CDATA[ParametersFB.IO.AIn();
+ParametersFB.IO.AOut();
+ParametersFB.IO.DIn();
+ParametersFB.IO.DOut();
 
-Parameters.IO.AIn.Update(AI := AI, AI2 := AI2, Parameters := Parameters);
-Parameters.IO.AOut.Update(AO := AO, Parameters := Parameters);
-Parameters.IO.DIn.Update(DI := DI, Parameters := Parameters);
-Parameters.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampers := EnableFansAndDampers);
+ParametersFB.IO.AIn.Update(AI := AI, AI2 := AI2, Parameters := Parameters);
+ParametersFB.IO.AOut.Update(AO := AO, Parameters  := Parameters, AOut := Parameters.IO.AOut);
+ParametersFB.IO.DIn.Update(DI := DI, Parameters := Parameters, DIn := Parameters.IO.DIn);
+ParametersFB.IO.DOut.Update(DO_ := DO_, Parameters := Parameters, EnableWriteDampers := EnableFansAndDampers);
 
 ]]></ST>
       </Implementation>

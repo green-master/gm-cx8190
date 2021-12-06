@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SxDuoUnit" Id="{5f59b56e-514f-48cd-bc75-b8b57290e0ba}">
+    <Declaration><![CDATA[TYPE SxDuoUnit :
+STRUCT
+	EN: BOOL;
+	UnitID: BYTE;
+	CentralFireAlarm: BOOL;
+	CloseOnCentralFireAlarm: BOOL;
+	SxDuoStatus: SxDuoStatus;
+	ENO: BOOL;
+	Error: BOOL;
+	Fire: BOOL;
+	{attribute 'TcEncoding':='UTF-8'}
+	Text: STRING;
+	Text_CP1252: STRING;
+	SxDuoCommand: SxDuoCommand;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

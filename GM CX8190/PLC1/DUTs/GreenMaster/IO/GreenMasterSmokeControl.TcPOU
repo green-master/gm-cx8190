@@ -15498,27 +15498,29 @@ END_VAR
 VAR_INPUT
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
 	ParametersSC: REFERENCE TO SmokeControlParametersBase;
+	ParametersFB: REFERENCE TO GreenMasterBaseParametersFB;
+	ParametersSCFB: REFERENCE TO SmokeControlParametersBaseFB;
 END_VAR
 VAR
 	TempAlarm: bool;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[ParametersSC.NetLink.Update(Parameters);
-ParametersSC.DamperModules.Unit01.Update(Parameters, DamperModule_0);
-ParametersSC.DamperModules.Unit02.Update(Parameters, DamperModule_1);
-ParametersSC.DamperModules.Unit03.Update(Parameters, DamperModule_2);
-ParametersSC.DamperModules.Unit04.Update(Parameters, DamperModule_3);
-ParametersSC.DamperModules.Unit05.Update(Parameters, DamperModule_4);
-ParametersSC.DamperModules.Unit06.Update(Parameters, DamperModule_5);
-ParametersSC.DamperModules.Unit07.Update(Parameters, DamperModule_6);
-ParametersSC.DamperModules.Unit08.Update(Parameters, DamperModule_7);
-ParametersSC.DamperModules.Unit09.Update(Parameters, DamperModule_8);
-ParametersSC.DamperModules.Unit10.Update(Parameters, DamperModule_9);
-ParametersSC.DamperModules.Unit11.Update(Parameters, DamperModule_10);
-ParametersSC.DamperModules.Unit12.Update(Parameters, DamperModule_11);
-ParametersSC.DamperModules.Unit13.Update(Parameters, DamperModule_12);
-ParametersSC.DamperModules.Unit14.Update(Parameters, DamperModule_13);
-ParametersSC.DamperModules.Unit15.Update(Parameters, DamperModule_14);
+        <ST><![CDATA[ParametersSCFB.NetLink.Update(Parameters);
+ParametersSCFB.DamperModules.Unit01.Update(Parameters, DamperModule_0, ParametersSC.DamperModules.Unit01);
+ParametersSCFB.DamperModules.Unit02.Update(Parameters, DamperModule_1, ParametersSC.DamperModules.Unit02);
+ParametersSCFB.DamperModules.Unit03.Update(Parameters, DamperModule_2, ParametersSC.DamperModules.Unit03);
+ParametersSCFB.DamperModules.Unit04.Update(Parameters, DamperModule_3, ParametersSC.DamperModules.Unit04);
+ParametersSCFB.DamperModules.Unit05.Update(Parameters, DamperModule_4, ParametersSC.DamperModules.Unit05);
+ParametersSCFB.DamperModules.Unit06.Update(Parameters, DamperModule_5, ParametersSC.DamperModules.Unit06);
+ParametersSCFB.DamperModules.Unit07.Update(Parameters, DamperModule_6, ParametersSC.DamperModules.Unit07);
+ParametersSCFB.DamperModules.Unit08.Update(Parameters, DamperModule_7, ParametersSC.DamperModules.Unit08);
+ParametersSCFB.DamperModules.Unit09.Update(Parameters, DamperModule_8, ParametersSC.DamperModules.Unit09);
+ParametersSCFB.DamperModules.Unit10.Update(Parameters, DamperModule_9, ParametersSC.DamperModules.Unit10);
+ParametersSCFB.DamperModules.Unit11.Update(Parameters, DamperModule_10, ParametersSC.DamperModules.Unit11);
+ParametersSCFB.DamperModules.Unit12.Update(Parameters, DamperModule_11, ParametersSC.DamperModules.Unit12);
+ParametersSCFB.DamperModules.Unit13.Update(Parameters, DamperModule_12, ParametersSC.DamperModules.Unit13);
+ParametersSCFB.DamperModules.Unit14.Update(Parameters, DamperModule_13, ParametersSC.DamperModules.Unit14);
+ParametersSCFB.DamperModules.Unit15.Update(Parameters, DamperModule_14, ParametersSC.DamperModules.Unit15);
 
 Parameters.Alarm.Status.B.CommunicationError := (ParametersSC.DamperModules.Unit01.EN AND ParametersSC.DamperModules.Unit01.Error) OR
 		(ParametersSC.DamperModules.Unit02.EN AND ParametersSC.DamperModules.Unit02.Error) OR

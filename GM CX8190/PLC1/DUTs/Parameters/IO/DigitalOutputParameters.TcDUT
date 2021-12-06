@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="DigitalOutputParameters" Id="{e709d514-3f15-4eff-a35f-f36943c013f3}">
+    <Declaration><![CDATA[TYPE DigitalOutputParameters :
+STRUCT
+    H_GP1: BOOL; // Cirkulationspump värmekrets
+    C_GP1: BOOL; // Cirkulationspump kylkrets
+    T_QM2: BOOL; // Tilluftsspjäll
+    R_QM1: BOOL; // Återluftsspjäll
+    T_QM1_1: BOOL; // Sektionsavfrostning
+    T_QM1_2: BOOL; // Sektionsavfrostning
+    T_QM1_3: BOOL; // Sektionsavfrostning
+    T_QM1_4: BOOL; // Sektionsavfrostning
+    T_QM1_5: BOOL; // Sektionsavfrostning
+    T_QM1_6: BOOL; // Sektionsavfrostning
+    F_QM1: BOOL; // Frånluftsspjäll
+    F_QM2: BOOL; // Brandspjäll förbigång
+	F_QM2_ActiveWhenStopped: BOOL;
+    T_RUN: BOOL; // Supply running (Aktiveras om tilluftsfläkten går)
+    F_RUN: BOOL; // Exhaust running (Aktiveras om frånluftsfläkten går)
+	
+	AL_A: BOOL; // A-larm
+	AL_B: BOOL; // B-larm
+	AL_C: BOOL; // C-larm
+	AL_D: BOOL; // D-larm
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

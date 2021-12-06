@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
-  <POU Name="Simulation" Id="{e07fe9b8-b0ad-45ff-a31d-c7901da29d36}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Simulation
+  <POU Name="SimulationFB" Id="{e07fe9b8-b0ad-45ff-a31d-c7901da29d36}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SimulationFB
 VAR_IN_OUT
 	Parameters: GreenMasterBaseParameters;
-	ParametersXXL : GreenMasterParametersXXL;
 END_VAR
 VAR_INPUT
 	Simulation: SimulationParameters;	
@@ -17,8 +16,5 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <LineIds Name="Simulation">
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

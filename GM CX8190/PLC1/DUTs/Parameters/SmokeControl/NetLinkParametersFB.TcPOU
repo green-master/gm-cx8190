@@ -3,12 +3,6 @@
   <POU Name="NetLinkParametersFB" Id="{70d71791-c95b-4941-80ac-0ecb7778050c}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK NetLinkParametersFB
 VAR_INPUT
-	{attribute 'TcEncoding':='UTF-8'}
-	ModbusTCP_IP: STRING := '10.133.0.23';
-	EN: BOOL := FALSE;
-	Exercise: SmokeControlExerciseParameters;
-	Fire: SmokeControlFireParameters;
-	Error: BOOL := FALSE;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -28,11 +22,5 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="NetLinkParametersFB">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="NetLinkParametersFB.Update">
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

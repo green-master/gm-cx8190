@@ -3,30 +3,6 @@
   <POU Name="DigitalInputParametersFB" Id="{1c129cf4-e078-4866-a8ce-b1abba9158eb}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DigitalInputParametersFB
 VAR_INPUT
-	Auto: BOOL; // AUTO (Sluten=Aggregat tillåts till drift via överstyrning)
-	FireExtractAlarm: BOOL; // Brandlarm (centralt/rökdetektor frånluft)
-	FuseAlarm: BOOL; // Utlöst automatsäkring, larm
-	Hand: BOOL; // HAND (Sluten=Aggregat i konstant drift)
-	T_GQ1_Alarm: BOOL; // Larm T.GQ1 Tilluftsfläkt
-	F_GQ1_Alarm: BOOL; // Larm F.GQ1 Frånluftsfläkt
-	F_QM2_Closed: BOOL; // F.QM2 brandspjäll ändläge 1 (spjäll stängt/normalläge)
-	F_QM2_Open: BOOL; // F.QM2 brandspjäll ändläge 2 (spjäll öppet/brandläge)
-	ExtendedOperation: BOOL; // Förlängd drift
-	ServiceAlarmCentralAndSmokeExhaustAir: BOOL; // Servicelarm (centralt/rökdetektor frånluft)
-	FireSupplyAlarm: BOOL; // Brandlarm (tilluft)
-	ServiceAlarmSupplyAir: BOOL; // Servicelarm (tilluft)
-	H_GP1_Running: BOOL; // Ingång för pumpdrift, alt. pumplarm H.GP1 (värme)
-	H_GP1_Alarm: BOOL;
-	C_GP1_Running: BOOL; // Ingång för pumpdrift, alt. pumplarm C.GP1 (kyla)
-	C_GP1_Alarm: BOOL;
-	TX1_Running: BOOL; // Ingång för rotationsvakt värmeväxlare (TX1)
-	ResetAlarm: BOOL; // Larmåterställning
-	P2_Running: BOOL;
-	ExpansionVesselAlarm: BOOL;
-	FirePanelSupplyStart: BOOL;
-	FirePanelSupplyStop: BOOL;
-	FirePanelExtractStart: BOOL;
-	FirePanelExtractStop: BOOL;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -41,52 +17,38 @@ END_VAR
 VAR_INPUT
 	DI: REFERENCE TO GreenMasterDI_Base;
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	DIn: DigitalInputParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT Parameters.System.Operation.Simulation THEN
-	AUTO := DI.AUTO;
-	FireExtractAlarm := DI.FireExtractAlarm;
-	FuseAlarm := DI.FuseAlarm;
-	HAND := DI.Hand;
-	T_GQ1_Alarm := DI.T_GQ1_Alarm;
-	F_GQ1_Alarm := DI.F_GQ1_Alarm;
-	F_QM2_Closed := DI.F_QM2_Closed;
-	F_QM2_Open := DI.F_QM2_Open;
-	ExtendedOperation := DI.ExtendedOperation;
-	ServiceAlarmCentralAndSmokeExhaustAir := DI.ServiceAlarmCentralAndSmokeExhaustAir;
-	FireSupplyAlarm := DI.FireSupplyAlarm;
-	ServiceAlarmSupplyAir := DI.ServiceAlarmSupplyAir;
-	H_GP1_Running := DI.H_GP1_Running;
-	H_GP1_Alarm := DI.H_GP1_Alarm;
-	C_GP1_Running := DI.C_GP1_Running;
-	C_GP1_Alarm := DI.C_GP1_Alarm;
-	TX1_Running := DI.TX1_Running;
-	ResetAlarm := DI.ResetAlarm;
-	P2_Running := DI.P2_Running;
-	ExpansionVesselAlarm := DI.ExpansionVesselAlarm;
-	FirePanelSupplyStart := DI.FireActivateSupplyAir;
-	FirePanelSupplyStop := DI.FireDeactivateSupplyAir;
-	FirePanelExtractStart := DI.FireActivateExtractAir;
-	FirePanelExtractStop := DI.FireDeactivateExtractAir;
+	DIn.AUTO := DI.AUTO;
+	DIn.FireExtractAlarm := DI.FireExtractAlarm;
+	DIn.FuseAlarm := DI.FuseAlarm;
+	DIn.HAND := DI.Hand;
+	DIn.T_GQ1_Alarm := DI.T_GQ1_Alarm;
+	DIn.F_GQ1_Alarm := DI.F_GQ1_Alarm;
+	DIn.F_QM2_Closed := DI.F_QM2_Closed;
+	DIn.F_QM2_Open := DI.F_QM2_Open;
+	DIn.ExtendedOperation := DI.ExtendedOperation;
+	DIn.ServiceAlarmCentralAndSmokeExhaustAir := DI.ServiceAlarmCentralAndSmokeExhaustAir;
+	DIn.FireSupplyAlarm := DI.FireSupplyAlarm;
+	DIn.ServiceAlarmSupplyAir := DI.ServiceAlarmSupplyAir;
+	DIn.H_GP1_Running := DI.H_GP1_Running;
+	DIn.H_GP1_Alarm := DI.H_GP1_Alarm;
+	DIn.C_GP1_Running := DI.C_GP1_Running;
+	DIn.C_GP1_Alarm := DI.C_GP1_Alarm;
+	DIn.TX1_Running := DI.TX1_Running;
+	DIn.ResetAlarm := DI.ResetAlarm;
+	DIn.P2_Running := DI.P2_Running;
+	DIn.ExpansionVesselAlarm := DI.ExpansionVesselAlarm;
+	DIn.FirePanelSupplyStart := DI.FireActivateSupplyAir;
+	DIn.FirePanelSupplyStop := DI.FireDeactivateSupplyAir;
+	DIn.FirePanelExtractStart := DI.FireActivateExtractAir;
+	DIn.FirePanelExtractStop := DI.FireDeactivateExtractAir;
 END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="DigitalInputParametersFB">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="DigitalInputParametersFB.Update">
-      <LineId Id="52" Count="0" />
-      <LineId Id="7" Count="12" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="23" Count="1" />
-      <LineId Id="37" Count="1" />
-      <LineId Id="59" Count="3" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

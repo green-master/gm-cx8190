@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="DefaultParameters" Id="{e78daf55-08c3-4891-8315-cee0d68341e2}">
+    <Declaration><![CDATA[TYPE DefaultParameters :
+STRUCT
+	Pressure: ControllerParameters := ( P := 2, I := T#2M );
+	Flow: ControllerParameters := ( P := 0.2, I := T#20S );
+	SlaveFlow: ControllerParameters := ( P := 0.2, I := T#20S );
+	Const: ControllerParameters := ( P := 1, I := T#1M );
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

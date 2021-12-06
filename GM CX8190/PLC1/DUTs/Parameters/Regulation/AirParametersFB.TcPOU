@@ -4,29 +4,13 @@
     <Declaration><![CDATA[FUNCTION_BLOCK AirParametersFB
 VAR_IN_OUT
 	Parameters: GreenMasterBaseParameters;
+	ParametersFB: GreenMasterBaseParametersFB;
+	AirParameters: AirParameters;
 END_VAR
 VAR_INPUT
-	ControlMode: FanControlTypes;
-	Control: ControllerParameters;
-	Defaults: DefaultParameters;
-	KFactor: LREAL := 96.7;
-	SlaveOffset: LREAL;
-	ConstOutput: LREAL; // $(unit %)
-	MinSpeed: LREAL := 0.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
-	MaxSpeed: LREAL := 1.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
-	StartupFanSpeed: LREAL;
-	SetPointAdjustment: SetPointAdjustment;
-	Fire: FireParameters;
-	FanType: FanTypes := FanTypes.EBM;
-	SpecificFanPower: LREAL; // $(unit "kPa")
-	Flow: LREAL; // $(unit "l/s")
-	Power: LREAL; // $(unit "W")
-	Speed: LREAL; // $(unit "rpm")
-	FanEfficiency: LREAL; // $(scale "0 1 0 100", unit "%")
-	PressureRise: LREAL; // $(unit "Pa")
-	AdjustCSP: LREAL := 1.0; // $(skip) Adjust CSP during defrost
 END_VAR
 VAR_OUTPUT
+	SetPointAdjustmentFB: SetPointAdjustmentFB;
 	TestOutput: LREAL := 3.14;
 END_VAR
 VAR
@@ -34,41 +18,41 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF ControlMode <> LastControlMode THEN
-	CASE ControlMode OF
+      <ST><![CDATA[IF AirParameters.ControlMode <> LastControlMode THEN
+	CASE AirParameters.ControlMode OF
 		FanControlTypes.Pressure:
-			Control := Defaults.Pressure;
+			AirParameters.Control := AirParameters.Defaults.Pressure;
 		FanControlTypes.Flow:
-			Control := Defaults.Flow;
+			AirParameters.Control := AirParameters.Defaults.Flow;
 		FanControlTypes.Const:
-			Control := Defaults.Const;
+			AirParameters.Control := AirParameters.Defaults.Const;
 		FanControlTypes.SlaveFlow:
-			Control := Defaults.SlaveFlow;
+			AirParameters.Control := AirParameters.Defaults.SlaveFlow;
 	END_CASE
-	LastControlMode := ControlMode;
+	LastControlMode := AirParameters.ControlMode;
 ELSE
-	CASE ControlMode OF
+	CASE AirParameters.ControlMode OF
 		FanControlTypes.Pressure:
-			Defaults.Pressure := Control;
+			AirParameters.Defaults.Pressure := AirParameters.Control;
 		FanControlTypes.Flow:
-			Defaults.Flow := Control;
+			AirParameters.Defaults.Flow := AirParameters.Control;
 		FanControlTypes.Const:
-			Defaults.Const := Control;
+			AirParameters.Defaults.Const := AirParameters.Control;
 		FanControlTypes.SlaveFlow:
-			Defaults.SlaveFlow := Control;
+			AirParameters.Defaults.SlaveFlow := AirParameters.Control;
 	END_CASE	
 END_IF
-SetPointAdjustment(X := Parameters.Regulation.CompensationTemperature);
-Control.CSP := (Control.SP + SetPointAdjustment.Y) * AdjustCSP;
-IF Flow <> 0 THEN
-	SpecificFanPower := Power / Flow;	
+SetPointAdjustmentFB(X := Parameters.Regulation.CompensationTemperature, SetPointAdjustment := AirParameters.SetPointAdjustment);
+AirParameters.Control.CSP := (AirParameters.Control.SP + SetPointAdjustmentFB.Y) * AirParameters.AdjustCSP;
+IF AirParameters.Flow <> 0 THEN
+	AirParameters.SpecificFanPower := AirParameters.Power / AirParameters.Flow;	
 ELSE
-	SpecificFanPower := 0;
+	AirParameters.SpecificFanPower := 0;
 END_IF
-IF PressureRise <> 0 THEN
-	FanEfficiency := SpecificFanPower / (PressureRise / 1000.0);
+IF AirParameters.PressureRise <> 0 THEN
+	AirParameters.FanEfficiency := AirParameters.SpecificFanPower / (AirParameters.PressureRise / 1000.0);
 ELSE
-	FanEfficiency := 0;
+	AirParameters.FanEfficiency := 0;
 END_IF
 ]]></ST>
     </Implementation>

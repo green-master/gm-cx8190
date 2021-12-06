@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ExerciseCirculationPumpsParametersFB" Id="{221f950b-bc06-4040-9983-aa363eb5fa79}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExerciseCirculationPumpsParametersFB
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ExerciseParameters" Id="{6c6dd89b-3170-43bc-9be4-9ffbdc031a7f}">
+    <Declaration><![CDATA[TYPE ExerciseParameters :
+STRUCT
+	CirculationPumps: ExerciseCirculationPumpsParameters;
+	FireBypassDamper: ExerciseFireBypassDamperParameters;
+	//ExternalFireControl: ExerciseExternalFireControlParameters;
+	//Exercising: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

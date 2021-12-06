@@ -62,21 +62,21 @@ END_IF
       <Declaration><![CDATA[METHOD UpdateModuleTags : BOOL
 VAR_INPUT
 	SxDuoInterface: REFERENCE TO SxDuoInterface;
-	SxDuoUnitFB: reference to SxDuoUnitFB;
+	SxDuoUnit: reference to SxDuoUnit;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SxDuoInterface.TEXT_PV := SxDuoUnitFB.Text_CP1252;
-SxDuoInterface.DAMPER1_AL := SxDuoUnitFB.SxDuoStatus.Damper1Alarm;
-SxDuoInterface.DAMPER2_AL := SxDuoUnitFB.SxDuoStatus.Damper2Alarm;
-SxDuoInterface.DAMPER1_V0 := SxDuoUnitFB.SxDuoStatus.Damper1Closed;
-SxDuoInterface.DAMPER2_V0 := SxDuoUnitFB.SxDuoStatus.Damper2Closed;
-SxDuoInterface.DAMPER1_V1 := SxDuoUnitFB.SxDuoStatus.Damper1Open;
-SxDuoInterface.DAMPER2_V1 := SxDuoUnitFB.SxDuoStatus.Damper2Open;
-SxDuoInterface.EXERCISING_V := SxDuoUnitFB.SxDuoStatus.Exercising;
-SxDuoInterface.FIRE_AL := SxDuoUnitFB.SxDuoStatus.FireAlarm;
-SxDuoInterface.FIRE_FAULT := SxDuoUnitFB.SxDuoStatus.ServiceAlarm;
-SxDuoInterface.COMM_FAULT := SxDuoUnitFB.Error;
+        <ST><![CDATA[SxDuoInterface.TEXT_PV := SxDuoUnit.Text_CP1252;
+SxDuoInterface.DAMPER1_AL := SxDuoUnit.SxDuoStatus.Damper1Alarm;
+SxDuoInterface.DAMPER2_AL := SxDuoUnit.SxDuoStatus.Damper2Alarm;
+SxDuoInterface.DAMPER1_V0 := SxDuoUnit.SxDuoStatus.Damper1Closed;
+SxDuoInterface.DAMPER2_V0 := SxDuoUnit.SxDuoStatus.Damper2Closed;
+SxDuoInterface.DAMPER1_V1 := SxDuoUnit.SxDuoStatus.Damper1Open;
+SxDuoInterface.DAMPER2_V1 := SxDuoUnit.SxDuoStatus.Damper2Open;
+SxDuoInterface.EXERCISING_V := SxDuoUnit.SxDuoStatus.Exercising;
+SxDuoInterface.FIRE_AL := SxDuoUnit.SxDuoStatus.FireAlarm;
+SxDuoInterface.FIRE_FAULT := SxDuoUnit.SxDuoStatus.ServiceAlarm;
+SxDuoInterface.COMM_FAULT := SxDuoUnit.Error;
 ]]></ST>
       </Implementation>
     </Method>
