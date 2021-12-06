@@ -24,7 +24,6 @@ VAR
 	MinuteOfDay: WORD; // $(skip)
 	StartMinuteOfDay: WORD; // $(skip)
 	EndMinuteOfDay: WORD; // $(skip)
-	Loop: WORD := 0; // $(skip)
 	OnHour           : UINT;	(* Hour value of the switch-on time on the day $(skip) *)
 	OnMinute         : UINT;	(* Minute value of the switch-on time on the day $(skip) *)
 	OffHour          : UINT;	(* Hour value of the switch-off time on the day $(skip) *)
@@ -32,74 +31,38 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Loop := Loop + 1;
-Error := False;
-IF Loop >= 10 THEN
-	Loop := 0;
-	OnHour := OnTime / 100;
-	OnMinute := OnTime MOD 100;
-	OffHour := OffTime / 100;
-	OffMinute := OffTime MOD 100;
-	LocalSystemTime(bEnable := TRUE);
-	IF EN AND (NOT Error) THEN
-		IF LocalSystemTime.bValid THEN	
-			CurrentDay := F_GetDayOfWeek(in := NowDT()); 
-			DayMatch := Day = TimerDays.AllDays OR (TO_WORD(Day) = CurrentDay - 1);
-			IF OnHour = OffHour AND OnMinute = OffMinute THEN
-				Q := FALSE;
-			ELSE
-				MinuteOfDay := LocalSystemTime.systemTime.wHour * 60 + LocalSystemTime.systemTime.wMinute;
-				StartMinuteOfDay := OnHour * 60 + OnMinute;
-				EndMinuteOfDay := OffHour * 60 + OffMinute;
-				IsOnTime := MinuteOfDay >= StartMinuteOfDay AND MinuteOfDay < EndMinuteOfDay;
-				Q := DayMatch AND IsOnTime;				
-				IF Q AND SingleShot THEN
-					EN := FALSE;
-				END_IF
-			END_IF
-			ENO := TRUE;
-		ELSE
+      <ST><![CDATA[Error := FALSE;
+OnHour := OnTime / 100;
+OnMinute := OnTime MOD 100;
+OffHour := OffTime / 100;
+OffMinute := OffTime MOD 100;
+LocalSystemTime(bEnable := TRUE);
+IF EN AND (NOT Error) THEN
+	IF LocalSystemTime.bValid THEN	
+		CurrentDay := F_GetDayOfWeek(in := NowDT()); 
+		DayMatch := Day = TimerDays.AllDays OR (TO_WORD(Day) = CurrentDay - 1);
+		IF OnHour = OffHour AND OnMinute = OffMinute THEN
 			Q := FALSE;
-			ENO := FALSE;
+		ELSE
+			MinuteOfDay := LocalSystemTime.systemTime.wHour * 60 + LocalSystemTime.systemTime.wMinute;
+			StartMinuteOfDay := OnHour * 60 + OnMinute;
+			EndMinuteOfDay := OffHour * 60 + OffMinute;
+			IsOnTime := MinuteOfDay >= StartMinuteOfDay AND MinuteOfDay < EndMinuteOfDay;
+			Q := DayMatch AND IsOnTime;				
+			IF Q AND SingleShot THEN
+				EN := FALSE;
+			END_IF
 		END_IF
+		ENO := TRUE;
 	ELSE
 		Q := FALSE;
 		ENO := FALSE;
 	END_IF
+ELSE
+	Q := FALSE;
+	ENO := FALSE;
 END_IF
-
 ]]></ST>
     </Implementation>
-    <LineIds Name="TimeChannel1CH">
-      <LineId Id="167" Count="0" />
-      <LineId Id="338" Count="0" />
-      <LineId Id="168" Count="0" />
-      <LineId Id="173" Count="0" />
-      <LineId Id="305" Count="3" />
-      <LineId Id="136" Count="0" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="131" Count="0" />
-      <LineId Id="55" Count="1" />
-      <LineId Id="260" Count="1" />
-      <LineId Id="264" Count="0" />
-      <LineId Id="113" Count="1" />
-      <LineId Id="112" Count="0" />
-      <LineId Id="115" Count="0" />
-      <LineId Id="267" Count="1" />
-      <LineId Id="271" Count="0" />
-      <LineId Id="273" Count="0" />
-      <LineId Id="265" Count="1" />
-      <LineId Id="257" Count="0" />
-      <LineId Id="259" Count="0" />
-      <LineId Id="258" Count="0" />
-      <LineId Id="134" Count="0" />
-      <LineId Id="66" Count="0" />
-      <LineId Id="90" Count="0" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="172" Count="0" />
-      <LineId Id="187" Count="0" />
-      <LineId Id="94" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
