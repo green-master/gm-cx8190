@@ -19,75 +19,62 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	LastSecondsCounter: lint;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[Exercise(Parameters := Parameters);
 Operation.ENO := Operation.State > SystemStates.Idle;
-Operation.TimeChannels.TC01();
-Operation.TimeChannels.TC02();
-Operation.TimeChannels.TC03();
-Operation.TimeChannels.TC04();
-Operation.TimeChannels.TC05();
-Operation.TimeChannels.TC06();
-Operation.TimeChannels.TC07();
-
-Operation.TimeChannels.TC11();
-Operation.TimeChannels.TC12();
-Operation.TimeChannels.TC13();
-Operation.TimeChannels.TC14();
-Operation.TimeChannels.TC15();
-Operation.TimeChannels.TC16();
-Operation.TimeChannels.TC17();
-
-Operation.TimeChannels.TC21();
-Operation.TimeChannels.TC22();
-Operation.TimeChannels.TC23();
-Operation.TimeChannels.TC24();
-Operation.TimeChannels.TC25();
-Operation.TimeChannels.TC26();
-Operation.TimeChannels.TC27();
-
-Operation.TimeChannels.Q :=
-	Operation.TimeChannels.TC01.Q OR
-	Operation.TimeChannels.TC02.Q OR
-	Operation.TimeChannels.TC03.Q OR
-	Operation.TimeChannels.TC04.Q OR
-	Operation.TimeChannels.TC05.Q OR
-	Operation.TimeChannels.TC06.Q OR
-	Operation.TimeChannels.TC07.Q OR
-	Operation.TimeChannels.TC11.Q OR
-	Operation.TimeChannels.TC12.Q OR
-	Operation.TimeChannels.TC13.Q OR
-	Operation.TimeChannels.TC14.Q OR
-	Operation.TimeChannels.TC15.Q OR
-	Operation.TimeChannels.TC16.Q OR
-	Operation.TimeChannels.TC17.Q OR
-	Operation.TimeChannels.TC21.Q OR
-	Operation.TimeChannels.TC22.Q OR
-	Operation.TimeChannels.TC23.Q OR
-	Operation.TimeChannels.TC24.Q OR
-	Operation.TimeChannels.TC25.Q OR
-	Operation.TimeChannels.TC26.Q OR
-	Operation.TimeChannels.TC27.Q;
+IF (Globals.SecondsCounter - LastSecondsCounter) > 10 THEN
+	LastSecondsCounter := Globals.SecondsCounter;
+	Operation.TimeChannels.TC01();
+	Operation.TimeChannels.TC02();
+	Operation.TimeChannels.TC03();
+	Operation.TimeChannels.TC04();
+	Operation.TimeChannels.TC05();
+	Operation.TimeChannels.TC06();
+	Operation.TimeChannels.TC07();
+	
+	Operation.TimeChannels.TC11();
+	Operation.TimeChannels.TC12();
+	Operation.TimeChannels.TC13();
+	Operation.TimeChannels.TC14();
+	Operation.TimeChannels.TC15();
+	Operation.TimeChannels.TC16();
+	Operation.TimeChannels.TC17();
+	
+	Operation.TimeChannels.TC21();
+	Operation.TimeChannels.TC22();
+	Operation.TimeChannels.TC23();
+	Operation.TimeChannels.TC24();
+	Operation.TimeChannels.TC25();
+	Operation.TimeChannels.TC26();
+	Operation.TimeChannels.TC27();
+	
+	Operation.TimeChannels.Q :=
+		Operation.TimeChannels.TC01.Q OR
+		Operation.TimeChannels.TC02.Q OR
+		Operation.TimeChannels.TC03.Q OR
+		Operation.TimeChannels.TC04.Q OR
+		Operation.TimeChannels.TC05.Q OR
+		Operation.TimeChannels.TC06.Q OR
+		Operation.TimeChannels.TC07.Q OR
+		Operation.TimeChannels.TC11.Q OR
+		Operation.TimeChannels.TC12.Q OR
+		Operation.TimeChannels.TC13.Q OR
+		Operation.TimeChannels.TC14.Q OR
+		Operation.TimeChannels.TC15.Q OR
+		Operation.TimeChannels.TC16.Q OR
+		Operation.TimeChannels.TC17.Q OR
+		Operation.TimeChannels.TC21.Q OR
+		Operation.TimeChannels.TC22.Q OR
+		Operation.TimeChannels.TC23.Q OR
+		Operation.TimeChannels.TC24.Q OR
+		Operation.TimeChannels.TC25.Q OR
+		Operation.TimeChannels.TC26.Q OR
+		Operation.TimeChannels.TC27.Q;
+END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="SystemParametersFB">
-      <LineId Id="9" Count="0" />
-      <LineId Id="181" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="141" Count="5" />
-      <LineId Id="140" Count="0" />
-      <LineId Id="147" Count="15" />
-      <LineId Id="110" Count="0" />
-      <LineId Id="113" Count="2" />
-      <LineId Id="117" Count="2" />
-      <LineId Id="121" Count="2" />
-      <LineId Id="125" Count="2" />
-      <LineId Id="129" Count="2" />
-      <LineId Id="133" Count="2" />
-      <LineId Id="137" Count="2" />
-      <LineId Id="111" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

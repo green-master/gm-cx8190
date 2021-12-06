@@ -32,7 +32,6 @@ VAR_INPUT PERSISTENT
 END_VAR
 (* Summalarm *)
 VAR_INPUT
-	{attribute 'OPC.UA.DA' := '0'}
 	_SLPRIO:INT:=3;
 END_VAR
 ]]></Declaration>
@@ -74,10 +73,5 @@ END_VAR
 //		END_CASE
 //	END_IF			]]></ST>
     </Implementation>
-    <LineIds Name="adsValue_AggStat">
-      <LineId Id="147" Count="26" />
-      <LineId Id="203" Count="7" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

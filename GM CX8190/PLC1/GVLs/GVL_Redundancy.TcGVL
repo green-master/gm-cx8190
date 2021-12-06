@@ -3,7 +3,6 @@
   <GVL Name="GVL_Redundancy" Id="{2fc4b88e-b988-4f7a-ac68-f9d0e545a4a6}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	{attribute 'OPC.UA.DA' := '1'}
 	Tags: TagsRedundancy;	
 END_VAR]]></Declaration>
   </GVL>

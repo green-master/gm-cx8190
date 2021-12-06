@@ -12,6 +12,7 @@ VAR_GLOBAL
 	
 	// Counters
 	LifeCounter: LINT;
+	{attribute 'OPC.UA.DA' := '1'}
 	SecondsCounter: LINT;
 	SystemStartTime: DT;
 	SystemUpTime: DWORD;

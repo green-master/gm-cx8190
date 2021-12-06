@@ -123,7 +123,7 @@
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{82E4CE3D-F1C8-48A6-8B3E-0A9139D7EAF6}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x0001" FileArchiveSettings="#x000c" CopyTmcToTarget="true">
+			<Project GUID="{82E4CE3D-F1C8-48A6-8B3E-0A9139D7EAF6}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x000c" CopyTmcToTarget="true">
 				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" TmcPath="PLC1\PLC1.tmc">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
