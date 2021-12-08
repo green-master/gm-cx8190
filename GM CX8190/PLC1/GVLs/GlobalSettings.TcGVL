@@ -4,6 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL CONSTANT
 	MAX_COMPONENTS: INT := 20;
+	MAX_ALARMS: INT := 40;
 END_VAR
 {attribute 'qualified_only'}
 VAR_GLOBAL PERSISTENT
@@ -39,6 +40,10 @@ VAR_GLOBAL PERSISTENT
 		(Name := ComponentNames.REDUNDANCY, EN := FALSE, Path := 'Main.GreenMaster.Redundancy', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.EXTRA_ALARMS, EN := TRUE, Path := 'ADS_ExtraAlarms.Tags', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.None)
+	];
+	AlarmDefs: ARRAY [0..MAX_ALARMS - 1] OF AlarmDef := [
+		(Name := 'FireExtract', Polarity := AlarmPolarity.ActiveLow),
+		(Name := '')
 	];
 END_VAR]]></Declaration>
   </GVL>

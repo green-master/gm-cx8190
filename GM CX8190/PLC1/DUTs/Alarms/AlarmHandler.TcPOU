@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="AlarmHandler" Id="{0c88312e-6bd0-4d9a-ada3-e40727c9445c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AlarmHandler
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Check for alarms
+]]></ST>
+    </Implementation>
+    <Method Name="GetAlarm" Id="{5f5a4aa1-0c6a-4e67-9a38-a507474ec5bb}">
+      <Declaration><![CDATA[METHOD GetAlarm : reference to AlarmDef
+VAR_INPUT
+	{attribute 'TcEncoding':='UTF-8'}
+	Name: string;
+END_VAR
+VAR
+	n: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetAlarm REF= 0;
+FOR n := 0 TO GlobalSettings.MAX_ALARMS - 1 DO
+	IF GlobalSettings.AlarmDefs[n].Name = '' THEN
+		EXIT;
+	END_IF
+	IF GlobalSettings.AlarmDefs[n].Name = Name THEN
+		GetAlarm REF= GlobalSettings.AlarmDefs[n];
+		EXIT;
+	END_IF
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

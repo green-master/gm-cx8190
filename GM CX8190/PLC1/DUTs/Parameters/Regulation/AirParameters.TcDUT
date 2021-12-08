@@ -8,6 +8,12 @@ STRUCT
 	Defaults: DefaultParameters;
 	KFactor: LREAL := 96.7;
 	SlaveOffset: LREAL;
+	Test1: LREAL;
+	Test2: LREAL;
+	Test3: LREAL;
+	Test4: LREAL;
+	Test5: LREAL;
+	Test6: LREAL := 12345;
 	ConstOutput: LREAL; // $(unit %)
 	MinSpeed: LREAL := 0.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
 	MaxSpeed: LREAL := 1.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)

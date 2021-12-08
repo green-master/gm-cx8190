@@ -26,6 +26,18 @@
     <Company>Nibe Airsite</Company>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\Alarms\AlarmDef.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Alarms\AlarmHandler.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Alarms\AlarmPolarity.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Alarms\AlarmPriority.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Custom\Chalmers\CTH_LA02.TcDUT">
       <SubType>Code</SubType>
     </Compile>

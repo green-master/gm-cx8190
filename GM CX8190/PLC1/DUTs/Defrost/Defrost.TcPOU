@@ -64,7 +64,7 @@ IF Parameters.System.Defrost.EN AND Active THEN
 	IF (Pressure >= Parameters.System.Defrost.Stage3.PressureLimit AND 
 			Parameters.System.Defrost.Stage3.EN AND
 			DefrostStage < 3) OR ForceStage3 THEN
-		ForceStage3 := TRUE;		
+		ForceStage3 := FALSE;		
 		SupplyFlowAdjustment := Parameters.System.Defrost.Stage3.SupplyAir;
 		ExtractFlowAdjustment := Parameters.System.Defrost.Stage3.ExtractAir;
 		DefrostStage := 3;
