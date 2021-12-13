@@ -17,7 +17,7 @@ END_VAR
 VAR_INPUT
 	DI: REFERENCE TO GreenMasterDI_Base;
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
-	DIn: DigitalInputParameters;
+	DIn: reference to DigitalInputParameters;
 END_VAR
 ]]></Declaration>
       <Implementation>
