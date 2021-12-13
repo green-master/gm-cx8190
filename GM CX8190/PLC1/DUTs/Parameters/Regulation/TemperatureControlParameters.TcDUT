@@ -3,7 +3,7 @@
   <DUT Name="TemperatureControlParameters" Id="{5faf488e-af33-4ec3-a85a-993aab1d1e55}">
     <Declaration><![CDATA[TYPE TemperatureControlParameters :
 STRUCT
-	EN: BOOL;
+	EN: BOOL := TRUE;
 	TemperatureControlSource: TemperatureControlSources;
 	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.DecreaseToHeat;
 	//SetPointAdjustment: SetPointAdjustment := ( Curve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20));
