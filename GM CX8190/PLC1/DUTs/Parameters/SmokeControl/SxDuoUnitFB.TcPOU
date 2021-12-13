@@ -19,7 +19,7 @@ END_VAR
 VAR_INPUT
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
 	DamperModule: REFERENCE TO DamperModule;
-	SxDuoUnit: SxDuoUnit;
+	SxDuoUnit: REFERENCE TO SxDuoUnit;
 END_VAR
 ]]></Declaration>
       <Implementation>
