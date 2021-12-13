@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE NetLinkParameters :
 STRUCT
 	{attribute 'TcEncoding':='UTF-8'}
-	ModbusTCP_IP: STRING := '10.133.0.23';
+	ModbusTCP_IP: STRING := '192.168.1.235';
 	EN: BOOL := FALSE;
 	Exercise: SmokeControlExerciseParameters;
 	Fire: SmokeControlFireParameters;

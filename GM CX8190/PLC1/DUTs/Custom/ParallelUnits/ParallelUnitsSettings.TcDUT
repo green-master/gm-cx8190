@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ParallelUnitsSettings" Id="{be21b28a-d10a-4ec1-8077-12ca649c2986}">
+    <Declaration><![CDATA[TYPE ParallelUnitsSettings :
+STRUCT
+	PARALLEL_UNIT_AMSID_V: STRING;
+	PRESSURE_SP: REAL := 100;
+	SINGLE_UNIT_FLOW_MAX: REAL := 1000;
+	DOUBLE_UNIT_FLOW_MIN: REAL := 900;
+	SINGLE_UNIT_FAN_MAX: REAL := 0.9;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

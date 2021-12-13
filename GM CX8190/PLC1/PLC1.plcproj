@@ -53,6 +53,18 @@
     <Compile Include="DUTs\Custom\ExtraAlarms\ExtraAlarms_Interface.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\AdsTagsParallelUnits.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnits.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnitsSettings.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnitsStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Custom\SmokeControl\AdsTagsSmokeControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -791,6 +803,10 @@
     <Compile Include="DUTs\Ventilation\VentilationControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\ADS_ParallelUnits.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\ADS_SmokeControl.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -894,6 +910,7 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="DUTs\Custom\ExtraAlarms" />
+    <Folder Include="DUTs\Custom\ParallelUnits" />
     <Folder Include="DUTs\Custom\SmokeControl" />
     <Folder Include="DUTs\Custom\Redundancy" />
     <Folder Include="DUTs\Custom\_Standard" />

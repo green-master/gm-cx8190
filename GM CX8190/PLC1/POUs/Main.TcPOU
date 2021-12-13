@@ -23,6 +23,7 @@ VAR
 	SmokeControl_Interface: SmokeControl_Interface;
 
 	Redundancy:Redundancy;
+	ParallelUnits: ParallelUnits;
 	
 	GreenMasterDI: GreenMasterDI;
 	GreenMasterDO: GreenMasterDO;
@@ -127,6 +128,12 @@ END_VAR
 						_FF_OP:=LREAL_TO_REAL(GreenMaster.Parameters.Regulation.ExtractAir.Control.CV),
 						_FL_GP_PV:=LREAL_TO_REAL(GreenMaster.GetCurrentExtractAirPV()),
 						_SERVICEBRYTARE:=FALSE
+						);
+		END_IF
+		// Parallel units
+		IF GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN THEN
+			ParallelUnits(	EN := GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN,
+							Tags := ADS_ParallelUnits.Tags
 						);
 		END_IF
 		

@@ -3,7 +3,7 @@
   <POU Name="SxDuoUnitFB" Id="{49926ebe-dde7-433d-aac1-b3cd1731de19}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK SxDuoUnitFB
 VAR_INPUT
-	Simulation: SimulationParameters;
+	Simulation: REFERENCE TO SimulationParameters;
 END_VAR
 VAR_OUTPUT
 END_VAR
