@@ -34,7 +34,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[Loop := Loop + 1;
 Error := False;
-IF Loop >= 10 THEN
+//IF Loop >= 10 THEN
 	Loop := 0;
 	OnHour := OnTime / 100;
 	OnMinute := OnTime MOD 100;
@@ -66,7 +66,7 @@ IF Loop >= 10 THEN
 		Q := FALSE;
 		ENO := FALSE;
 	END_IF
-END_IF
+//END_IF
 
 ]]></ST>
     </Implementation>
