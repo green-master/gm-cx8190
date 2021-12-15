@@ -133,7 +133,8 @@ END_VAR
 		// Parallel units
 		IF GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN THEN
 			ParallelUnits(	EN := GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN,
-							Tags := ADS_ParallelUnits.Tags
+							Tags := ADS_ParallelUnits.Tags,
+							Parameters := GreenMaster.Parameters 
 						);
 		END_IF
 		

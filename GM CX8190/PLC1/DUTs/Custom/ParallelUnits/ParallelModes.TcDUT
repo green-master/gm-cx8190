@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ParallelModes" Id="{8e1c2d79-6e46-4358-bedf-dbcb07d9ea82}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE ParallelModes :
+(
+	Unknown := 0, Idle, Standalone, Slave, Master
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

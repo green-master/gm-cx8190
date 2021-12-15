@@ -17,6 +17,7 @@ STRUCT
 	SystemEfficiency: LREAL; // $(scale "0 1 0 100", unit "%")
 	ApplyAbsoluteSetPointCurves: word; // $(skip)
 	LastApplyAbsoluteSetPointCurves: WORD; // $(skip)
+	SaveDefaults: BOOL := TRUE;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

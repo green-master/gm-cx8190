@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="RemoteStatusData" Id="{85605a00-5741-4069-9305-a1af9e5a143f}">
+    <Declaration><![CDATA[TYPE RemoteStatusData :
+STRUCT
+	Valid: BOOL;
+	RemoteStatus: ParallelUnitsStatus;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
