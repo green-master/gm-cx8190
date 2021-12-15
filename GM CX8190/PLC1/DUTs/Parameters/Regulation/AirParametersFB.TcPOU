@@ -30,7 +30,7 @@ END_VAR
 			AirParameters.Control := AirParameters.Defaults.SlaveFlow;
 	END_CASE
 	LastControlMode := AirParameters.ControlMode;
-ELSE
+ELSIF Parameters.Regulation.SaveDefaults THEN
 	CASE AirParameters.ControlMode OF
 		FanControlTypes.Pressure:
 			AirParameters.Defaults.Pressure := AirParameters.Control;

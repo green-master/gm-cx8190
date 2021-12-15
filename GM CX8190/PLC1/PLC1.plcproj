@@ -56,6 +56,12 @@
     <Compile Include="DUTs\Custom\ParallelUnits\AdsTagsParallelUnits.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\ParallelModes.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\ParallelStates.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnits.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -63,6 +69,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnitsStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\RemoteOrder.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\RemoteStatusData.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\SmokeControl\AdsTagsSmokeControl.TcDUT">
