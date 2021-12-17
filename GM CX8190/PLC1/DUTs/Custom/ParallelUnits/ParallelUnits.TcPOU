@@ -12,7 +12,7 @@ END_VAR
 VAR
 	LocalAmsNumber: LINT;
 	RemoteAmsNumber: LINT;
-	RemoteOrder: RemoteOrder;
+	RemoteOrderToSend: RemoteOrder;
 	RemoteStatusData: RemoteStatusData;
 	State: ParallelStates;
 	NextState: ParallelStates;
@@ -24,30 +24,41 @@ VAR
 	LastModeChangeCounter: DINT;
 	Below, LastBelow: BOOL;
 	Week: WORD;
-	RemoteValidTOF: TOF;
-	RemoteValidTON: TON;
+	FirstTime: BOOL;
+	HostName: FB_GetHostName;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF GetAmsNumbers() THEN
+      <ST><![CDATA[IF NOT FirstTime THEN
+	HostName(bExecute := TRUE);
+	IF NOT HostName.bBusy THEN	
+		IF F_ToUCase(HostName.sHostName) = 'CX-503E4D' THEN
+			Tags.Settings.RemoteAmsId := '5.80.62.86.1.1';
+		END_IF
+		IF F_ToUCase(HostName.sHostName) = 'CX-503E56' THEN
+			Tags.Settings.RemoteAmsId := '5.80.62.77.1.1';
+		END_IF
+		FirstTime := TRUE;
+	END_IF
+END_IF
+IF GetAmsNumbers() THEN
 	// First time or remote AMS ID changed
 	NextState := ParallelStates.Idle;
 	EN_TON(IN := FALSE, PT := T#10S);
 END_IF
 Week := F_GetWeekOfTheYear(NowDT());
 EN_TON(IN := EN, PT := T#10S);
-RemoteValidTOF(IN  := RemoteStatusData.Valid, PT := T#30S);
-RemoteValidTON(IN  := RemoteStatusData.Valid, PT := T#30S);
-ModeChangeTON(IN := ModeChangeCounter <> LastModeChangeCounter, PT := T#60S); 
+ModeChangeTON(IN := ModeChangeCounter = LastModeChangeCounter, PT := T#5M); 
 LastModeChangeCounter := ModeChangeCounter;
 SupplyFlowHysteresis(LimitValue := Tags.Settings.StandaloneMaxFlow, Offset := 300);
+ExtractFlowHysteresis(LimitValue := Tags.Settings.StandaloneMaxFlow, Offset := 300);
 IF EN THEN
 
 	RemoteStatusData := ReadFromRemote();
 	Tags.Status.SupplyFlow := Parameters.Regulation.SupplyAir.Flow; 
 	Tags.Status.ExtractFlow := Parameters.Regulation.ExtractAir.Flow; 
-	IF RemoteValidTOF.Q THEN
-		TransferToRemote(sNetId := Tags.Settings.RemoteAmsId, Src := RemoteOrder);	
+	IF RemoteStatusData.Valid THEN
+		TransferToRemote(sNetId := Tags.Settings.RemoteAmsId, Src := RemoteOrderToSend);	
 		Tags.Status.isMaster := LocalAmsNumber >= RemoteAmsNumber;
 		Tags.Status.isSlave := NOT Tags.Status.isMaster;
 		SupplyFlowHysteresis(EN := TRUE, Value := RemoteStatusData.RemoteStatus.SupplyFlow + Parameters.Regulation.SupplyAir.Flow);
@@ -65,10 +76,10 @@ ELSE
 	Tags.Status.isSlave := FALSE;
 	State := ParallelStates.Startup;
 	// Tell remote to run standalone
-	IF (NOT RemoteStatusData.Valid) OR (RemoteOrder.Mode <> ParallelModes.Standalone) THEN
+	IF (NOT RemoteStatusData.Valid) OR (RemoteOrderToSend.Mode <> ParallelModes.Standalone) THEN
 		RemoteStatusData := ReadFromRemote();
-		RemoteOrder.Mode := ParallelModes.Standalone;
-		TransferToRemote(sNetId := Tags.Settings.RemoteAmsId, Src := RemoteOrder);	
+		RemoteOrderToSend.Mode := ParallelModes.Standalone;
+		TransferToRemote(sNetId := Tags.Settings.RemoteAmsId, Src := RemoteOrderToSend);	
 	END_IF  
 END_IF
 
@@ -76,26 +87,30 @@ IF NextState <> State THEN
 	// BEFORE STATE	
 	CASE NextState OF
 		ParallelStates.Idle:
+			Tags.Status.Mode := ParallelModes.Idle;
 			Parameters.System.Operation.EN := FALSE;
-			RemoteOrder.Mode := ParallelModes.Standalone;
+			RemoteOrderToSend.Mode := ParallelModes.Standalone;
 		ParallelStates.Startup:
 			Parameters.Regulation.SaveDefaults := FALSE;
 			Parameters.System.Operation.EN := FALSE;
 		ParallelStates.Standalone:
-			Parameters.System.Operation.EN := FALSE;
+			Tags.Status.Mode := ParallelModes.Standalone;
+			Parameters.System.Operation.EN := TRUE;
 			Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Pressure;
 			Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Pressure;
-			RemoteOrder.Mode := ParallelModes.Idle;
+			RemoteOrderToSend.Mode := ParallelModes.Idle;
 		ParallelStates.Slave:
+			Tags.Status.Mode := ParallelModes.Slave;
 			Parameters.System.Operation.EN := FALSE;
 			Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Const;
 			Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Const;
-			RemoteOrder.Mode := ParallelModes.Master;
+			RemoteOrderToSend.Mode := ParallelModes.Master;
 		ParallelStates.Master:
+			Tags.Status.Mode := ParallelModes.Master;		
 			Parameters.System.Operation.EN := FALSE;
 			Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Const;
 			Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Const;
-			RemoteOrder.Mode := ParallelModes.Idle;
+			RemoteOrderToSend.Mode := ParallelModes.Idle;
 	END_CASE
 	State := NextState;		
 END_IF
@@ -108,15 +123,15 @@ CASE State OF
 	ParallelStates.Standalone:
 		;
 	ParallelStates.Slave:
-		Parameters.System.Operation.EN := RemoteOrder.Mode > ParallelModes.Idle;		
-		IF RemoteOrder.Mode = ParallelModes.Standalone THEN
+		Parameters.System.Operation.EN := Tags.Settings.RemoteOrder.Mode > ParallelModes.Idle;		
+		IF Tags.Settings.RemoteOrder.Mode = ParallelModes.Standalone THEN
 			Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Pressure;
 			Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Pressure;
-		ELSIF RemoteOrder.Mode = ParallelModes.Slave THEN
+		ELSIF Tags.Settings.RemoteOrder.Mode = ParallelModes.Slave THEN
 			Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Const;
 			Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Const;
-			Parameters.Regulation.SupplyAir.Control.SP := RemoteOrder.SupplySP;
-			Parameters.Regulation.ExtractAir.Control.SP := RemoteOrder.ExtractSP;
+			Parameters.Regulation.SupplyAir.Control.SP := Tags.Settings.RemoteOrder.SupplySP;
+			Parameters.Regulation.ExtractAir.Control.SP := Tags.Settings.RemoteOrder.ExtractSP;
 		END_IF
 	ParallelStates.Master:
 		IF ModeChangeTON.Q THEN			
@@ -125,27 +140,29 @@ CASE State OF
 				ModeChangeCounter := ModeChangeCounter + 1;
 			END_IF
 			LastBelow := Below;
-			IF Below THEN
-				IF (Week AND 1) = 0 THEN					
-					RemoteOrder.Mode := ParallelModes.Idle;
-					Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Pressure;
-					Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Pressure;
-					Parameters.System.Operation.EN := TRUE;
-				ELSE
-					RemoteOrder.Mode := ParallelModes.Standalone;
-					Parameters.System.Operation.EN := FALSE;
-				END_IF
-			ELSE
-				RemoteOrder.Mode := ParallelModes.Slave;
-				Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Const;
-				Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Const;
-				Parameters.System.Operation.EN := TRUE;
-			END_IF 
 		END_IF
-		Parameters.Regulation.SupplyAir.Control.SP := PidControlSupplyAir();
-		Parameters.Regulation.ExtractAir.Control.SP := PidControlExtractAir();
-		RemoteOrder.SupplySP := Parameters.Regulation.SupplyAir.Control.SP; 
-		RemoteOrder.ExtractSP := Parameters.Regulation.ExtractAir.Control.SP; 
+		IF Below THEN
+			IF (Week AND 1) = 0 THEN					
+				RemoteOrderToSend.Mode := ParallelModes.Idle;
+				Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Pressure;
+				Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Pressure;
+				Parameters.Regulation.SupplyAir.Control.SP := Tags.Settings.PressureSupplySP;
+				Parameters.Regulation.ExtractAir.Control.SP := Tags.Settings.PressureExtractSP;
+				Parameters.System.Operation.EN := TRUE;
+			ELSE
+				RemoteOrderToSend.Mode := ParallelModes.Standalone;
+				Parameters.System.Operation.EN := FALSE;
+			END_IF
+		ELSE
+			RemoteOrderToSend.Mode := ParallelModes.Slave;
+			Parameters.Regulation.SupplyAir.ControlMode := FanControlTypes.Const;
+			Parameters.Regulation.ExtractAir.ControlMode := FanControlTypes.Const;
+			Parameters.Regulation.SupplyAir.Control.SP := PidControlSupplyAir();
+			Parameters.Regulation.ExtractAir.Control.SP := PidControlExtractAir();
+			RemoteOrderToSend.SupplySP := Parameters.Regulation.SupplyAir.Control.SP; 
+			RemoteOrderToSend.ExtractSP := Parameters.Regulation.ExtractAir.Control.SP; 
+			Parameters.System.Operation.EN := TRUE;
+		END_IF 
 END_CASE
 // TRANSITION TO NEW STATE?	
 CASE State OF
@@ -157,7 +174,7 @@ CASE State OF
 		IF NOT EN THEN
 			NextState := ParallelStates.Idle;
 		END_IF
-		IF RemoteValidTOF.Q THEN
+		IF RemoteStatusData.Valid THEN
 			IF LocalAmsNumber > RemoteAmsNumber THEN
 				NextState := ParallelStates.Master;
 			ELSE		
@@ -170,17 +187,17 @@ CASE State OF
 		IF NOT EN THEN
 			NextState := ParallelStates.Idle;
 		END_IF
-		IF RemoteValidTON.Q AND RemoteOrder.Mode = ParallelModes.Slave THEN
+		IF RemoteStatusData.Valid AND RemoteOrderToSend.Mode = ParallelModes.Slave THEN
 			NextState := ParallelStates.Slave;			
 		END_IF
-		IF RemoteValidTOF.Q THEN
+		IF NOT RemoteStatusData.Valid THEN
 			NextState := ParallelStates.Standalone;			
 		END_IF
 	ParallelStates.Slave:
 		IF NOT EN THEN
 			NextState := ParallelStates.Idle;
 		END_IF
-		IF RemoteValidTOF.Q THEN
+		IF NOT RemoteStatusData.Valid THEN
 			NextState := ParallelStates.Standalone;			
 		END_IF
 	ParallelStates.Master:
@@ -254,8 +271,8 @@ VAR_INST
 	bReset: BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[pid(	fSetpointValue := Tags.Settings.PressureSP, 
-		fActualValue := Tags.Status.SupplyFlow, 
+        <ST><![CDATA[pid(	fSetpointValue := Tags.Settings.PressureExtractSP, 
+		fActualValue := Parameters.IO.AIn.F_BP1, 
 		bReset := bReset, 
 		fCtrlCycleTime := 0.05, 
 		fKp := Tags.Settings.Kp, 
@@ -263,7 +280,7 @@ END_VAR]]></Declaration>
 		fTv := Tags.Settings.fTv, 
 		fTd := Tags.Settings.fTd, 
 		fCtrlOutput => pidOutput);
-PidControlExtractAir := LimitValue(0.5 + pidOutput / 100, 0, 1);
+PidControlExtractAir := LimitValue(50 + pidOutput, 0, 100);
 ]]></ST>
       </Implementation>
     </Method>
@@ -277,8 +294,8 @@ VAR_INST
 	bReset: bool;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[pid(	fSetpointValue := Tags.Settings.PressureSP, 
-		fActualValue := Tags.Status.SupplyFlow, 
+        <ST><![CDATA[pid(	fSetpointValue := Tags.Settings.PressureSupplySP, 
+		fActualValue := Parameters.IO.AIn.T_BP1, 
 		bReset := bReset, 
 		fCtrlCycleTime := 0.05, 
 		fKp := Tags.Settings.Kp, 
@@ -286,7 +303,7 @@ END_VAR]]></Declaration>
 		fTv := Tags.Settings.fTv, 
 		fTd := Tags.Settings.fTd, 
 		fCtrlOutput => pidOutput);
-PidControlSupplyAir := LimitValue(0.5 + pidOutput / 100, 0, 1);
+PidControlSupplyAir := LimitValue(50 + pidOutput, 0, 100);
 ]]></ST>
       </Implementation>
     </Method>
@@ -297,6 +314,7 @@ END_VAR
 VAR_INST
 	ReadAdsSymbol:FB_ReadAdsSymByName;	
 	RemoteStatus: ParallelUnitsStatus;
+	ValidTOF: TOF;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -305,13 +323,15 @@ END_VAR
 					sNetId		:=	Tags.Settings.RemoteAmsId,
 					nPort		:=	851,
 					sVarName	:=	'ADS_ParallelUnits.Tags.Status',
-					nDestAddr	:=	ADR(ReadFromRemote.RemoteStatus),
-					nLen		:=	SIZEOF(ReadFromRemote.RemoteStatus),
+					nDestAddr	:=	ADR(RemoteStatus),
+					nLen		:=	SIZEOF(RemoteStatus),
 					tTimeout	:=	DEFAULT_ADS_TIMEOUT,
 					eComMode	:=	eAdsComModeFastCom);
 END_IF;
 ReadAdsSymbol(bRead := FALSE);
-ReadFromremote.Valid := NOT ReadAdsSymbol.bBusy AND NOT ReadAdsSymbol.bError;
+ValidTOF(IN := NOT ReadAdsSymbol.bBusy AND NOT ReadAdsSymbol.bError, PT := T#1S);
+ReadFromRemote.Valid := ValidTOF.Q;
+ReadFromRemote.RemoteStatus := RemoteStatus;
 ]]></ST>
       </Implementation>
     </Method>

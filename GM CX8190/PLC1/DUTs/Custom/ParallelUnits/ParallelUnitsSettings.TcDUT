@@ -4,12 +4,14 @@
     <Declaration><![CDATA[TYPE ParallelUnitsSettings :
 STRUCT
 	RemoteAmsId: STRING := '5.73.47.143.1.1';
-	PressureSP: LREAL := 100;
-	StandaloneMaxFlow: LREAL := 1000;
+	PressureSupplySP: LREAL := 100;
+	PressureExtractSP: LREAL := 100;
+	StandaloneMaxFlow: LREAL := 5000;
 	Kp: LREAL := 0.25;
 	fTn: LREAL := 30;
 	fTv: LREAL := 1;
 	fTd: LREAL := 0;
+	RemoteOrder: RemoteOrder;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
