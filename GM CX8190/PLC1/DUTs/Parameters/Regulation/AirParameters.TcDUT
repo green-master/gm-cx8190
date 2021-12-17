@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE AirParameters :
 STRUCT
 	ControlMode: FanControlTypes;
-	Control: ControllerParameters;
+	Control: ControllerParameters := ( SP := 50 );
 	Defaults: DefaultParameters;
 	KFactor: LREAL := 96.7;
 	SlaveOffset: LREAL;
