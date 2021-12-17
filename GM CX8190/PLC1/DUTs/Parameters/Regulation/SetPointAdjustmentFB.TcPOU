@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="SetPointAdjustmentFB" Id="{7d7a2182-348a-4012-bfab-4674ef986c07}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SetPointAdjustmentFB
+VAR_IN_OUT
+	SetPointAdjustment: SetPointAdjustment;
+END_VAR
+VAR_INPUT
+	X: LREAL;
+END_VAR
+VAR_OUTPUT
+	Y: LREAL;
+END_VAR
+VAR
+	CurrentY: LREAL;
+	LastY: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CurrentY := 0;
+LastY := SetPointAdjustment.Curve.Y1;
+CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X1, Y1 := SetPointAdjustment.Curve.Y1, X2 := SetPointAdjustment.Curve.X2, Y2 := SetPointAdjustment.Curve.Y2, LastY := LastY);
+CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X2, Y1 := SetPointAdjustment.Curve.Y2, X2 := SetPointAdjustment.Curve.X3, Y2 := SetPointAdjustment.Curve.Y3, LastY := LastY);
+CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X3, Y1 := SetPointAdjustment.Curve.Y3, X2 := SetPointAdjustment.Curve.X4, Y2 := SetPointAdjustment.Curve.Y4, LastY := LastY);
+CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X4, Y1 := SetPointAdjustment.Curve.Y4, X2 := SetPointAdjustment.Curve.X5, Y2 := SetPointAdjustment.Curve.Y5, LastY := LastY);
+CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X5, Y1 := SetPointAdjustment.Curve.Y5, X2 := SetPointAdjustment.Curve.X6, Y2 := SetPointAdjustment.Curve.Y6, LastY := LastY);
+CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X6, Y1 := SetPointAdjustment.Curve.Y6, X2 := SetPointAdjustment.Curve.X7, Y2 := SetPointAdjustment.Curve.Y7, LastY := LastY);
+CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X7, Y1 := SetPointAdjustment.Curve.Y7, X2 := SetPointAdjustment.Curve.X8, Y2 := SetPointAdjustment.Curve.Y8, LastY := LastY);
+CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X8, Y1 := SetPointAdjustment.Curve.Y8, X2 := SetPointAdjustment.Curve.X9, Y2 := SetPointAdjustment.Curve.Y9, LastY := LastY);
+Y := CurrentY;
+SetPointAdjustment.X := X;
+SetPointAdjustment.Y := Y;
+]]></ST>
+    </Implementation>
+    <Method Name="Interpolate" Id="{9dd4eb56-3a90-4507-837d-305fa2aa5f91}">
+      <Declaration><![CDATA[METHOD Interpolate : LREAL
+VAR_IN_OUT
+	LastY: LREAL;
+END_VAR
+VAR_INPUT
+	X: LREAL;
+	Y: LREAL;
+	X1, Y1, X2, Y2: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Interpolate := Y;
+IF X2 > X1 THEN
+	IF X > X2 THEN
+		LastY := Y2;		
+	END_IF
+	IF (X >= X1) AND (X <= X2) THEN
+		Interpolate := Y1 + ((X - X1) / (X2 - X1)) * (Y2 - Y1);
+	ELSE
+		Interpolate := LastY;
+	END_IF
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

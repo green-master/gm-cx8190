@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ParallelUnits" Id="{2de2df00-dc30-47a3-820e-7a0728f9500d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ParallelUnits
+VAR_INPUT
+	EN: BOOL;
+	Tags: REFERENCE TO AdsTagsParallelUnits;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	FB_GetHostName: FB_GetHostName;
+	FB_GetHostAddrByName: FB_GetHostAddrByName;
+	hostName: STRING;
+	pid: FB_BasicPID;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF EN THEN
+	IF Tags.Status.IP_NUMBER_V = 0 THEN	
+		FB_GetHostName(bExecute := TRUE, sHostName => hostName);
+		FB_GetHostAddrByName(bExecute := FB_GetHostName.bExecute AND NOT FB_GetHostName.bBusy, sHostName := hostName);	
+		IF NOT (FB_GetHostAddrByName.bError OR FB_GetHostAddrByName.bBusy) THEN
+			Tags.Status.IP_NUMBER_V := 	SHL(TO_LINT(FB_GetHostAddrByName.arrAddr[0]),  24) + 
+							SHL(TO_LINT(FB_GetHostAddrByName.arrAddr[1]), 16) + 
+							SHL(TO_LINT(FB_GetHostAddrByName.arrAddr[2]), 8) + 
+							TO_LINT(FB_GetHostAddrByName.arrAddr[3]); 
+		END_IF
+	END_IF
+	pid(fSetpointValue := Tags.Settings.PRESSURE_SP, fCtrlCycleTime := 5, fKp := Tags.Settings.Kp, 
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

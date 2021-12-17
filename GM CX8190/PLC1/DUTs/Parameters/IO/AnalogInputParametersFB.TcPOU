@@ -5,56 +5,6 @@
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
-	F_BT1: LREAL; // Frånluftstemperatur $(unit "°C")  
-    T_BT2: LREAL; // Uteluftstemperatur $(unit "°C")
-    T_BT3: LREAL; // Tilluftstemperatur (innan efterbehandling) $(unit "°C")
-    H_BT1: LREAL; // Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat) $(unit "°C")
-    T_BT1: LREAL; // Tilluftstemperatur (efter efterbehandling) $(unit "°C") 
-    BT1: LREAL; // Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard) $(unit "°C")
-    BT2: LREAL; // Rumstemperatur (lokalgivare, används inte i bostadsaggregat) $(unit "°C")
-    F_BT2: LREAL; // Avluftstemperatur (tillval) $(unit "°C")
-	
-    F_BP1: LREAL; // Tryckgivare Frånluftskanal $(unit "Pa")
-    T_BP1: LREAL; // Tryckgivare Tilluftskanal $(unit "Pa")
-    F_BP2: LREAL; // Tryckgivare Frånluftsfilter $(unit "Pa")
-    T_BP2: LREAL; //  Tryckgivare uteluftsfilter $(unit "Pa")
-    F_BP3: LREAL; // Tryckgivare VVX $(unit "Pa")
-    T_BF1: LREAL; // Flödesgivare Tilluftsfläkt $(unit "m³/h")
-    F_BF1: LREAL; // Flödesgivare Frånluftsfläkt $(unit "m³/h")	
-
-	F_BT1_Error: BOOL; 
-    T_BT2_Error: BOOL;
-    T_BT3_Error: BOOL;
-    H_BT1_Error: BOOL;
-    T_BT1_Error: BOOL; 
-    BT1_Error: BOOL;
-    BT2_Error: BOOL;
-    F_BT2_Error: BOOL;
-	
-    F_BP1_Error: BOOL;
-    T_BP1_Error: BOOL;
-    F_BP2_Error: BOOL;
-    T_BP2_Error: BOOL;
-    F_BP3_Error: BOOL;
-    T_BF1_Error: BOOL;
-    F_BF1_Error: BOOL;	
-
-	F_BT1_EN: BOOL := TRUE; 
-    T_BT2_EN: BOOL := TRUE;
-    T_BT3_EN: BOOL := TRUE;
-    H_BT1_EN: BOOL := FALSE;
-    T_BT1_EN: BOOL := TRUE; 
-    BT1_EN: BOOL := FALSE;
-    BT2_EN: BOOL := FALSE;
-    F_BT2_EN: BOOL := TRUE;
-	
-    F_BP1_EN: BOOL := TRUE;
-    T_BP1_EN: BOOL := TRUE;
-    F_BP2_EN: BOOL := TRUE;
-    T_BP2_EN: BOOL := TRUE;
-    F_BP3_EN: BOOL := TRUE;
-    T_BF1_EN: BOOL := TRUE;
-    F_BF1_EN: BOOL := TRUE;	
 END_VAR
 VAR
 END_VAR
@@ -72,108 +22,55 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT Parameters.System.Operation.Simulation THEN
-	F_BT1 := AI.F_BT1;
-	F_BT1_Error := AI.F_BT1_Error AND F_BT1_EN;
-	T_BT2 := AI.T_BT2;
-	T_BT2_Error := AI.T_BT2_Error AND T_BT2_EN;
-	T_BT3 := AI.T_BT3;
-	T_BT3_Error := AI.T_BT3_Error AND T_BT3_EN;
-	H_BT1 := AI.H_BT1;
-	H_BT1_Error := AI.H_BT1_Error AND H_BT1_EN;
-	T_BT1 := AI.T_BT1; 
-	T_BT1_Error := AI.T_BT1_Error AND T_BT1_EN;
-	BT1 := AI.BT1;
-	BT1_Error := AI.BT1_Error AND BT1_EN;
-	BT2 := AI.BT2;
-	BT2_Error := AI.BT2_Error AND BT2_EN;
-	F_BT2 := AI.F_BT2;
-	F_BT2_Error := AI.F_BT2_Error AND F_BT2_EN;
-	F_BP1 := AI2.F_BP1;
-	F_BP1_Error := AI2.F_BP1_Error AND F_BP1_EN;
-	T_BP1 := AI2.T_BP1;
-	T_BP1_Error := AI2.T_BP1_Error AND T_BP1_EN;
-	F_BP2 := AI2.F_BP2;
-	F_BP2_Error := AI2.F_BP2_Error AND F_BP2_EN;
-	T_BP2 := AI2.T_BP2;
-	T_BP2_Error := AI2.T_BP2_Error AND T_BP2_EN;
-	F_BP3 := AI2.F_BP3;
-	F_BP3_Error := AI2.F_BP3_Error AND F_BP3_EN;
-	T_BF1 := AI2.T_BF1;
-	T_BF1_Error := AI2.T_BF1_Error AND T_BF1_EN;
-	F_BF1 := AI2.F_BF1;	
-	F_BF1_Error := AI2.F_BF1_Error AND F_BF1_EN;
+	Parameters.IO.AIn.F_BT1 := AI.F_BT1;
+	Parameters.IO.AIn.F_BT1_Error := AI.F_BT1_Error AND Parameters.IO.AIn.F_BT1_EN;
+	Parameters.IO.AIn.T_BT2 := AI.T_BT2;
+	Parameters.IO.AIn.T_BT2_Error := AI.T_BT2_Error AND Parameters.IO.AIn.T_BT2_EN;
+	Parameters.IO.AIn.T_BT3 := AI.T_BT3;
+	Parameters.IO.AIn.T_BT3_Error := AI.T_BT3_Error AND Parameters.IO.AIn.T_BT3_EN;
+	Parameters.IO.AIn.H_BT1 := AI.H_BT1;
+	Parameters.IO.AIn.H_BT1_Error := AI.H_BT1_Error AND Parameters.IO.AIn.H_BT1_EN;
+	Parameters.IO.AIn.T_BT1 := AI.T_BT1; 
+	Parameters.IO.AIn.T_BT1_Error := AI.T_BT1_Error AND Parameters.IO.AIn.T_BT1_EN;
+	Parameters.IO.AIn.BT1 := AI.BT1;
+	Parameters.IO.AIn.BT1_Error := AI.BT1_Error AND Parameters.IO.AIn.BT1_EN;
+	Parameters.IO.AIn.BT2 := AI.BT2;
+	Parameters.IO.AIn.BT2_Error := AI.BT2_Error AND Parameters.IO.AIn.BT2_EN;
+	Parameters.IO.AIn.F_BT2 := AI.F_BT2;
+	Parameters.IO.AIn.F_BT2_Error := AI.F_BT2_Error AND Parameters.IO.AIn.F_BT2_EN;
+	Parameters.IO.AIn.F_BP1 := AI2.F_BP1;
+	Parameters.IO.AIn.F_BP1_Error := AI2.F_BP1_Error AND Parameters.IO.AIn.F_BP1_EN;
+	Parameters.IO.AIn.T_BP1 := AI2.T_BP1;
+	Parameters.IO.AIn.T_BP1_Error := AI2.T_BP1_Error AND Parameters.IO.AIn.T_BP1_EN;
+	Parameters.IO.AIn.F_BP2 := AI2.F_BP2;
+	Parameters.IO.AIn.F_BP2_Error := AI2.F_BP2_Error AND Parameters.IO.AIn.F_BP2_EN;
+	Parameters.IO.AIn.T_BP2 := AI2.T_BP2;
+	Parameters.IO.AIn.T_BP2_Error := AI2.T_BP2_Error AND Parameters.IO.AIn.T_BP2_EN;
+	Parameters.IO.AIn.F_BP3 := AI2.F_BP3;
+	Parameters.IO.AIn.F_BP3_Error := AI2.F_BP3_Error AND Parameters.IO.AIn.F_BP3_EN;
+	Parameters.IO.AIn.T_BF1 := AI2.T_BF1;
+	Parameters.IO.AIn.T_BF1_Error := AI2.T_BF1_Error AND Parameters.IO.AIn.T_BF1_EN;
+	Parameters.IO.AIn.F_BF1 := AI2.F_BF1;	
+	Parameters.IO.AIn.F_BF1_Error := AI2.F_BF1_Error AND Parameters.IO.AIn.F_BF1_EN;
 ELSE
-	F_BT1_Error := FALSE;
-	T_BT2_Error := FALSE;
-	T_BT3_Error := FALSE;
-	H_BT1_Error := FALSE;
-	T_BT1_Error := FALSE;
-	BT1_Error := FALSE;
-	BT2_Error := FALSE;
-	F_BT2_Error := FALSE;
-	F_BP1_Error := FALSE;
-	T_BP1_Error := FALSE;
-	F_BP2_Error := FALSE;
-	T_BP2_Error := FALSE;
-	F_BP3_Error := FALSE;
-	T_BF1_Error := FALSE;
-	F_BF1_Error := FALSE;
+	Parameters.IO.AIn.F_BT1_Error := FALSE;
+	Parameters.IO.AIn.T_BT2_Error := FALSE;
+	Parameters.IO.AIn.T_BT3_Error := FALSE;
+	Parameters.IO.AIn.H_BT1_Error := FALSE;
+	Parameters.IO.AIn.T_BT1_Error := FALSE;
+	Parameters.IO.AIn.BT1_Error := FALSE;
+	Parameters.IO.AIn.BT2_Error := FALSE;
+	Parameters.IO.AIn.F_BT2_Error := FALSE;
+	Parameters.IO.AIn.F_BP1_Error := FALSE;
+	Parameters.IO.AIn.T_BP1_Error := FALSE;
+	Parameters.IO.AIn.F_BP2_Error := FALSE;
+	Parameters.IO.AIn.T_BP2_Error := FALSE;
+	Parameters.IO.AIn.F_BP3_Error := FALSE;
+	Parameters.IO.AIn.T_BF1_Error := FALSE;
+	Parameters.IO.AIn.F_BF1_Error := FALSE;
 END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="AnalogInputParametersFB">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="AnalogInputParametersFB.Update">
-      <LineId Id="32" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="43" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="45" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="48" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="49" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="55" Count="0" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="56" Count="1" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="63" Count="0" />
-      <LineId Id="65" Count="0" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="69" Count="0" />
-      <LineId Id="71" Count="0" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="81" Count="0" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="85" Count="0" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="35" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

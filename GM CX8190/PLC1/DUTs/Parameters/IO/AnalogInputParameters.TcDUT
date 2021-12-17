@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AnalogInputParameters" Id="{668e4732-fa3f-4133-8f2a-8faeafced3bf}">
+    <Declaration><![CDATA[TYPE AnalogInputParameters :
+STRUCT
+	F_BT1: LREAL; // Frånluftstemperatur $(unit "°C")  
+    T_BT2: LREAL; // Uteluftstemperatur $(unit "°C")
+    T_BT3: LREAL; // Tilluftstemperatur (innan efterbehandling) $(unit "°C")
+    H_BT1: LREAL; // Frysskyddstemperatur (används bara om värmebatteri (av vätsketyp) är installerat) $(unit "°C")
+    T_BT1: LREAL; // Tilluftstemperatur (efter efterbehandling) $(unit "°C") 
+    BT1: LREAL; // Utomhustemperatur (extern utegivare, T.BT2 används som utegivare som standard) $(unit "°C")
+    BT2: LREAL; // Rumstemperatur (lokalgivare, används inte i bostadsaggregat) $(unit "°C")
+    F_BT2: LREAL; // Avluftstemperatur (tillval) $(unit "°C")
+	
+    F_BP1: LREAL; // Tryckgivare Frånluftskanal $(unit "Pa")
+    T_BP1: LREAL; // Tryckgivare Tilluftskanal $(unit "Pa")
+    F_BP2: LREAL; // Tryckgivare Frånluftsfilter $(unit "Pa")
+    T_BP2: LREAL; //  Tryckgivare uteluftsfilter $(unit "Pa")
+    F_BP3: LREAL; // Tryckgivare VVX $(unit "Pa")
+    T_BF1: LREAL; // Flödesgivare Tilluftsfläkt $(unit "m³/h")
+    F_BF1: LREAL; // Flödesgivare Frånluftsfläkt $(unit "m³/h")	
+
+	F_BT1_Error: BOOL; 
+    T_BT2_Error: BOOL;
+    T_BT3_Error: BOOL;
+    H_BT1_Error: BOOL;
+    T_BT1_Error: BOOL; 
+    BT1_Error: BOOL;
+    BT2_Error: BOOL;
+    F_BT2_Error: BOOL;
+	
+    F_BP1_Error: BOOL;
+    T_BP1_Error: BOOL;
+    F_BP2_Error: BOOL;
+    T_BP2_Error: BOOL;
+    F_BP3_Error: BOOL;
+    T_BF1_Error: BOOL;
+    F_BF1_Error: BOOL;	
+
+	F_BT1_EN: BOOL := TRUE; 
+    T_BT2_EN: BOOL := TRUE;
+    T_BT3_EN: BOOL := TRUE;
+    H_BT1_EN: BOOL := FALSE;
+    T_BT1_EN: BOOL := TRUE; 
+    BT1_EN: BOOL := FALSE;
+    BT2_EN: BOOL := FALSE;
+    F_BT2_EN: BOOL := TRUE;
+	
+    F_BP1_EN: BOOL := TRUE;
+    T_BP1_EN: BOOL := TRUE;
+    F_BP2_EN: BOOL := TRUE;
+    T_BP2_EN: BOOL := TRUE;
+    F_BP3_EN: BOOL := TRUE;
+    T_BF1_EN: BOOL := TRUE;
+    F_BF1_EN: BOOL := TRUE;	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

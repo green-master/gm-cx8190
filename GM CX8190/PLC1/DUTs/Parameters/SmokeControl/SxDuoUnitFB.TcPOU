@@ -3,26 +3,15 @@
   <POU Name="SxDuoUnitFB" Id="{49926ebe-dde7-433d-aac1-b3cd1731de19}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK SxDuoUnitFB
 VAR_INPUT
-	EN: BOOL;
-	UnitID: BYTE;
-	CentralFireAlarm: BOOL;
-	CloseOnCentralFireAlarm: BOOL;
-	SxDuoStatus: SxDuoStatus;
+	Simulation: REFERENCE TO SimulationParameters;
 END_VAR
 VAR_OUTPUT
-	ENO: BOOL;
-	Error: BOOL;
-	Fire: BOOL;
-	{attribute 'TcEncoding':='UTF-8'}
-	Text: STRING;
-	Text_CP1252: STRING;
-	SxDuoCommand: SxDuoCommand;
 END_VAR
 VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[ENO := EN;
+      <ST><![CDATA[Simulation.ENO := Simulation.EN;
 ]]></ST>
     </Implementation>
     <Method Name="Update" Id="{13907312-5186-4421-8db6-8b86bba34c66}">
@@ -30,15 +19,16 @@ END_VAR
 VAR_INPUT
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
 	DamperModule: REFERENCE TO DamperModule;
+	SxDuoUnit: REFERENCE TO SxDuoUnit;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Error := DamperModule.Error;
-Fire := DamperModule.Fire;
-SxDuoStatus := DamperModule.SxDuoStatus;
-DamperModule.SxDuoCommand := SxDuoCommand;
-Text := DamperModule.Text;
-Text_CP1252 := DamperModule.Text_CP1252;
+        <ST><![CDATA[SxDuoUnit.Error := DamperModule.Error;
+SxDuoUnit.Fire := DamperModule.Fire;
+SxDuoUnit.SxDuoStatus := DamperModule.SxDuoStatus;
+DamperModule.SxDuoCommand := SxDuoUnit.SxDuoCommand;
+SxDuoUnit.Text := DamperModule.Text;
+SxDuoUnit.Text_CP1252 := DamperModule.Text_CP1252;
 ]]></ST>
       </Implementation>
     </Method>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="IoParameters" Id="{2113da57-fcea-4168-93dc-7baeaaa7e5ab}">
+    <Declaration><![CDATA[TYPE IoParameters :
+STRUCT
+	DIn: DigitalInputParameters;
+	DInLevels: DigitalInputLevels;
+	DOut: DigitalOutputParameters;
+	DOutOverride: DigitalOutputOverrideParameters;
+	AIn: AnalogInputParameters;
+	AOut: AnalogOutputParameters;
+	AOutOverride: AnalogOutputOverrideParameters;
+	AOutCalibration: AnalogOutputCalibration;
+	Status: IoStatus;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

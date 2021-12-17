@@ -2,6 +2,9 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="GreenMasterXXL" Id="{5f0cde82-8a2d-4f75-8383-693037e98205}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK GreenMasterXXL EXTENDS GreenMasterBase
+VAR
+	ParametersXXLFB: GreenMasterParametersXXLFB;
+END_VAR
 VAR PERSISTENT
 	ParametersXXL: GreenMasterParametersXXL;
 END_VAR
@@ -6815,47 +6818,5 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="GreenMasterXXL.ExtractFanOverride">
-      <LineId Id="8" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.Fire">
-      <LineId Id="5" Count="2" />
-      <LineId Id="9" Count="1" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.FireEnd">
-      <LineId Id="6" Count="4" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.FireSupply">
-      <LineId Id="5" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="11" Count="1" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.FireSupplyEnd">
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.GetParametersXXL">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.SetFullHeatRecovery">
-      <LineId Id="5" Count="1" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.Sum">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.SupplyFanOverride">
-      <LineId Id="13" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="GreenMasterXXL.Update">
-      <LineId Id="5" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="10" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

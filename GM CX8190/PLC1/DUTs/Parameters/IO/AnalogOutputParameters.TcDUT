@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AnalogOutputParameters" Id="{6936e404-a57e-49ae-9f32-f7443094be5f}">
+    <Declaration><![CDATA[TYPE AnalogOutputParameters :
+STRUCT
+	F_QN1: LREAL; // VVX-reglering (0-10 V spjäll) $(scale "0 1 0 100", unit "%")
+	T_GQ1: LREAL; // Tilluftsfläkt $(scale "0 1 0 100", unit "%")
+	F_GQ1: LREAL; // Frånluftsfläkt $(scale "0 1 0 100", unit "%")
+	C_QN1: LREAL; // Kylkrets ventil $(scale "0 1 0 100", unit "%")
+	H_QN1: LREAL; // Värmekrets ventil $(scale "0 1 0 100", unit "%")
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -3,6 +3,7 @@
   <GVL Name="ADS_ExtraAlarms" Id="{b8fbe193-c8ef-4590-92ae-2729a01f5fcc}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL PERSISTENT
+	{attribute 'OPC.UA.DA' := '1'}
 	Tags: AdsTagsExtraAlarms;
 END_VAR]]></Declaration>
   </GVL>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AlarmPolarity" Id="{25496942-b5c9-4141-983a-12ed6f7b80a8}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE AlarmPolarity :
+(
+	ActiveHigh := 0, ActiveLow
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

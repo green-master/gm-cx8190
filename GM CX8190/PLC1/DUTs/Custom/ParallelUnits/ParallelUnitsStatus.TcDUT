@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ParallelUnitsStatus" Id="{cc155ffc-f805-41ba-9ea5-38e44e17862e}">
+    <Declaration><![CDATA[TYPE ParallelUnitsStatus :
+STRUCT
+	IS_MASTER_V: BOOL;
+	IP_NUMBER_V: LINT;
+	FLOW_V: REAL;
+	SUPPLY_FAN_SPEED_V: REAL;
+	EXTRACT_FAN_SPEED_V: REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

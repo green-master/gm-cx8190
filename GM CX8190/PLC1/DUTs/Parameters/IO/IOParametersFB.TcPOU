@@ -5,19 +5,20 @@
 VAR_IN_OUT
 	GreenMaster: GreenMasterBase;
 	Parameters: GreenMasterBaseParameters;
+	ParametersFB: GreenMasterBaseParametersFB;
 END_VAR
 VAR_INPUT
-	DIn: DigitalInputParametersFB;
-	DInLevels: DigitalInputLevels;
-	DOut: DigitalOutputParametersFB;
-	DOutOverride: DigitalOutputOverrideParameters;
-	AIn: AnalogInputParametersFB;
-	AOut: AnalogOutputParametersFB;
-	AOutOverride: AnalogOutputOverrideParameters;
-	AOutCalibration: AnalogOutputCalibration;
-	Status: IoStatus;
 END_VAR
 VAR_OUTPUT
+	DIn: DigitalInputParametersFB;
+	//DInLevels: DigitalInputLevelsFB;
+	DOut: DigitalOutputParametersFB;
+	//DOutOverride: DigitalOutputOverrideParametersFB;
+	AIn: AnalogInputParametersFB;
+	AOut: AnalogOutputParametersFB;
+	//AOutOverride: AnalogOutputOverrideParametersFB;
+	//AOutCalibration: AnalogOutputCalibrationFB;
+	//Status: IoStatusFB;
 END_VAR
 VAR
 	AnySensorError: BOOL;
@@ -112,11 +113,5 @@ IF (StartTime.ET > LTIME#20S) and (not Parameters.System.Operation.Simulation) T
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="IOParametersFB">
-      <LineId Id="22" Count="51" />
-      <LineId Id="80" Count="30" />
-      <LineId Id="116" Count="1" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -64,7 +64,7 @@ IF Parameters.System.Defrost.EN AND Active THEN
 	IF (Pressure >= Parameters.System.Defrost.Stage3.PressureLimit AND 
 			Parameters.System.Defrost.Stage3.EN AND
 			DefrostStage < 3) OR ForceStage3 THEN
-		ForceStage3 := TRUE;		
+		ForceStage3 := FALSE;		
 		SupplyFlowAdjustment := Parameters.System.Defrost.Stage3.SupplyAir;
 		ExtractFlowAdjustment := Parameters.System.Defrost.Stage3.ExtractAir;
 		DefrostStage := 3;
@@ -224,92 +224,5 @@ Parameters.IO.DOut.T_QM1_5 := Damper5;
 Parameters.IO.DOut.T_QM1_6 := Damper6;
 ]]></ST>
     </Implementation>
-    <LineIds Name="Defrost">
-      <LineId Id="926" Count="9" />
-      <LineId Id="1084" Count="2" />
-      <LineId Id="1237" Count="0" />
-      <LineId Id="1088" Count="0" />
-      <LineId Id="1087" Count="0" />
-      <LineId Id="1090" Count="2" />
-      <LineId Id="1089" Count="0" />
-      <LineId Id="1093" Count="5" />
-      <LineId Id="1113" Count="0" />
-      <LineId Id="1100" Count="0" />
-      <LineId Id="936" Count="0" />
-      <LineId Id="1196" Count="0" />
-      <LineId Id="1212" Count="0" />
-      <LineId Id="1215" Count="0" />
-      <LineId Id="1278" Count="0" />
-      <LineId Id="1197" Count="4" />
-      <LineId Id="948" Count="0" />
-      <LineId Id="1213" Count="0" />
-      <LineId Id="1216" Count="0" />
-      <LineId Id="1277" Count="0" />
-      <LineId Id="1190" Count="1" />
-      <LineId Id="949" Count="0" />
-      <LineId Id="1146" Count="0" />
-      <LineId Id="950" Count="0" />
-      <LineId Id="1204" Count="0" />
-      <LineId Id="1214" Count="0" />
-      <LineId Id="1217" Count="0" />
-      <LineId Id="1205" Count="4" />
-      <LineId Id="1211" Count="0" />
-      <LineId Id="1315" Count="1" />
-      <LineId Id="1319" Count="1" />
-      <LineId Id="1318" Count="0" />
-      <LineId Id="963" Count="0" />
-      <LineId Id="968" Count="16" />
-      <LineId Id="1285" Count="0" />
-      <LineId Id="985" Count="0" />
-      <LineId Id="1171" Count="1" />
-      <LineId Id="986" Count="1" />
-      <LineId Id="989" Count="2" />
-      <LineId Id="1154" Count="2" />
-      <LineId Id="1240" Count="0" />
-      <LineId Id="1243" Count="0" />
-      <LineId Id="1241" Count="0" />
-      <LineId Id="1244" Count="0" />
-      <LineId Id="1242" Count="0" />
-      <LineId Id="1157" Count="0" />
-      <LineId Id="1245" Count="4" />
-      <LineId Id="1158" Count="0" />
-      <LineId Id="1250" Count="4" />
-      <LineId Id="1159" Count="0" />
-      <LineId Id="1255" Count="4" />
-      <LineId Id="1160" Count="0" />
-      <LineId Id="1260" Count="4" />
-      <LineId Id="1173" Count="1" />
-      <LineId Id="1163" Count="0" />
-      <LineId Id="1279" Count="2" />
-      <LineId Id="992" Count="2" />
-      <LineId Id="1223" Count="4" />
-      <LineId Id="1152" Count="0" />
-      <LineId Id="1219" Count="0" />
-      <LineId Id="1218" Count="0" />
-      <LineId Id="1220" Count="0" />
-      <LineId Id="1222" Count="0" />
-      <LineId Id="1221" Count="0" />
-      <LineId Id="1269" Count="5" />
-      <LineId Id="1233" Count="1" />
-      <LineId Id="998" Count="0" />
-      <LineId Id="1282" Count="2" />
-      <LineId Id="999" Count="0" />
-      <LineId Id="1175" Count="1" />
-      <LineId Id="1229" Count="0" />
-      <LineId Id="1178" Count="2" />
-      <LineId Id="1011" Count="2" />
-      <LineId Id="1116" Count="2" />
-      <LineId Id="1014" Count="0" />
-      <LineId Id="1235" Count="1" />
-      <LineId Id="1015" Count="2" />
-      <LineId Id="1019" Count="3" />
-      <LineId Id="1056" Count="0" />
-      <LineId Id="1101" Count="5" />
-      <LineId Id="1057" Count="0" />
-      <LineId Id="1029" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="1108" Count="4" />
-      <LineId Id="1107" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="SystemParameters" Id="{7f9a91cd-9a6a-4f99-a168-e71b2e0fadb0}">
+    <Declaration><![CDATA[TYPE SystemParameters :
+STRUCT
+	Operation: SystemOperationParameters;
+	Defrost: DefrostParameters;
+	Exercise: ExerciseParameters;
+	SystemTime: string;
+	{attribute 'TcEncoding':='UTF-8'}
+	Diagram: string[80];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

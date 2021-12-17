@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="TemperatureControlParameters" Id="{5faf488e-af33-4ec3-a85a-993aab1d1e55}">
+    <Declaration><![CDATA[TYPE TemperatureControlParameters :
+STRUCT
+	EN: BOOL := TRUE;
+	TemperatureControlSource: TemperatureControlSources;
+	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.DecreaseToHeat;
+	//SetPointAdjustment: SetPointAdjustment := ( Curve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20));
+	SetPointAdjustment: SetPointAdjustment;
+	Control: ControllerParameters := ( P := 10, I := T#2M );
+	FreezeProtectionControl: ControllerParameters;
+	ColdRecycling: ColdRecyclingParameters;
+	Efficiency: LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

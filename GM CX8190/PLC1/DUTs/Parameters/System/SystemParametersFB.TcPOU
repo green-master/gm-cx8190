@@ -7,72 +7,69 @@
 FUNCTION_BLOCK SystemParametersFB
 VAR_IN_OUT
 	Parameters: GreenMasterBaseParameters;
+	ParametersFB: GreenMasterBaseParametersFB;
+	System: SystemParameters;
 END_VAR
 VAR_INPUT
-	Operation: SystemOperationParameters;
-	Defrost: DefrostParameters;
-	Exercise: ExerciseParameters;
-	SystemTime: string;
-	{attribute 'TcEncoding':='UTF-8'}
-	Diagram: string[8000];
 END_VAR
 VAR_OUTPUT
+	Exercise: ExerciseParametersFB;
 END_VAR
 VAR
 	LastSecondsCounter: lint;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Exercise(Parameters := Parameters);
-Operation.ENO := Operation.State > SystemStates.Idle;
+      <ST><![CDATA[Exercise(Parameters := Parameters, ParametersFB := ParametersFB);
+System.Operation.ENO := System.Operation.State > SystemStates.Idle;
 IF (Globals.SecondsCounter - LastSecondsCounter) > 10 THEN
 	LastSecondsCounter := Globals.SecondsCounter;
-	Operation.TimeChannels.TC01();
-	Operation.TimeChannels.TC02();
-	Operation.TimeChannels.TC03();
-	Operation.TimeChannels.TC04();
-	Operation.TimeChannels.TC05();
-	Operation.TimeChannels.TC06();
-	Operation.TimeChannels.TC07();
+	System.Operation.TimeChannels.TC01();
+	System.Operation.TimeChannels.TC02();
+	System.Operation.TimeChannels.TC03();
+	System.Operation.TimeChannels.TC04();
+	System.Operation.TimeChannels.TC05();
+	System.Operation.TimeChannels.TC06();
+	System.Operation.TimeChannels.TC07();
 	
-	Operation.TimeChannels.TC11();
-	Operation.TimeChannels.TC12();
-	Operation.TimeChannels.TC13();
-	Operation.TimeChannels.TC14();
-	Operation.TimeChannels.TC15();
-	Operation.TimeChannels.TC16();
-	Operation.TimeChannels.TC17();
+	System.Operation.TimeChannels.TC11();
+	System.Operation.TimeChannels.TC12();
+	System.Operation.TimeChannels.TC13();
+	System.Operation.TimeChannels.TC14();
+	System.Operation.TimeChannels.TC15();
+	System.Operation.TimeChannels.TC16();
+	System.Operation.TimeChannels.TC17();
 	
-	Operation.TimeChannels.TC21();
-	Operation.TimeChannels.TC22();
-	Operation.TimeChannels.TC23();
-	Operation.TimeChannels.TC24();
-	Operation.TimeChannels.TC25();
-	Operation.TimeChannels.TC26();
-	Operation.TimeChannels.TC27();
+	System.Operation.TimeChannels.TC21();
+	System.Operation.TimeChannels.TC22();
+	System.Operation.TimeChannels.TC23();
+	System.Operation.TimeChannels.TC24();
+	System.Operation.TimeChannels.TC25();
+	System.Operation.TimeChannels.TC26();
+	System.Operation.TimeChannels.TC27();
 	
-	Operation.TimeChannels.Q :=
-		Operation.TimeChannels.TC01.Q OR
-		Operation.TimeChannels.TC02.Q OR
-		Operation.TimeChannels.TC03.Q OR
-		Operation.TimeChannels.TC04.Q OR
-		Operation.TimeChannels.TC05.Q OR
-		Operation.TimeChannels.TC06.Q OR
-		Operation.TimeChannels.TC07.Q OR
-		Operation.TimeChannels.TC11.Q OR
-		Operation.TimeChannels.TC12.Q OR
-		Operation.TimeChannels.TC13.Q OR
-		Operation.TimeChannels.TC14.Q OR
-		Operation.TimeChannels.TC15.Q OR
-		Operation.TimeChannels.TC16.Q OR
-		Operation.TimeChannels.TC17.Q OR
-		Operation.TimeChannels.TC21.Q OR
-		Operation.TimeChannels.TC22.Q OR
-		Operation.TimeChannels.TC23.Q OR
-		Operation.TimeChannels.TC24.Q OR
-		Operation.TimeChannels.TC25.Q OR
-		Operation.TimeChannels.TC26.Q OR
-		Operation.TimeChannels.TC27.Q;
+	System.Operation.TimeChannels.Q :=
+		System.Operation.TimeChannels.TC01.Q OR
+		System.Operation.TimeChannels.TC02.Q OR
+		System.Operation.TimeChannels.TC03.Q OR
+		System.Operation.TimeChannels.TC04.Q OR
+		System.Operation.TimeChannels.TC05.Q OR
+		System.Operation.TimeChannels.TC06.Q OR
+		System.Operation.TimeChannels.TC07.Q OR
+		System.Operation.TimeChannels.TC11.Q OR
+		System.Operation.TimeChannels.TC12.Q OR
+		System.Operation.TimeChannels.TC13.Q OR
+		System.Operation.TimeChannels.TC14.Q OR
+		System.Operation.TimeChannels.TC15.Q OR
+		System.Operation.TimeChannels.TC16.Q OR
+		System.Operation.TimeChannels.TC17.Q OR
+		System.Operation.TimeChannels.TC21.Q OR
+		System.Operation.TimeChannels.TC22.Q OR
+		System.Operation.TimeChannels.TC23.Q OR
+		System.Operation.TimeChannels.TC24.Q OR
+		System.Operation.TimeChannels.TC25.Q OR
+		System.Operation.TimeChannels.TC26.Q OR
+		System.Operation.TimeChannels.TC27.Q;
 END_IF
 ]]></ST>
     </Implementation>

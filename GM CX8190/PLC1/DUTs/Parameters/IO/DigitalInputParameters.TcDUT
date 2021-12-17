@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="DigitalInputParameters" Id="{0975151a-8eb3-4d32-8ce4-21c3895d3992}">
+    <Declaration><![CDATA[TYPE DigitalInputParameters :
+STRUCT
+	Auto: BOOL; // AUTO (Sluten=Aggregat tillåts till drift via överstyrning)
+	FireExtractAlarm: BOOL; // Brandlarm (centralt/rökdetektor frånluft)
+	FuseAlarm: BOOL; // Utlöst automatsäkring, larm
+	Hand: BOOL; // HAND (Sluten=Aggregat i konstant drift)
+	T_GQ1_Alarm: BOOL; // Larm T.GQ1 Tilluftsfläkt
+	F_GQ1_Alarm: BOOL; // Larm F.GQ1 Frånluftsfläkt
+	F_QM2_Closed: BOOL; // F.QM2 brandspjäll ändläge 1 (spjäll stängt/normalläge)
+	F_QM2_Open: BOOL; // F.QM2 brandspjäll ändläge 2 (spjäll öppet/brandläge)
+	ExtendedOperation: BOOL; // Förlängd drift
+	ServiceAlarmCentralAndSmokeExhaustAir: BOOL; // Servicelarm (centralt/rökdetektor frånluft)
+	FireSupplyAlarm: BOOL; // Brandlarm (tilluft)
+	ServiceAlarmSupplyAir: BOOL; // Servicelarm (tilluft)
+	H_GP1_Running: BOOL; // Ingång för pumpdrift, alt. pumplarm H.GP1 (värme)
+	H_GP1_Alarm: BOOL;
+	C_GP1_Running: BOOL; // Ingång för pumpdrift, alt. pumplarm C.GP1 (kyla)
+	C_GP1_Alarm: BOOL;
+	TX1_Running: BOOL; // Ingång för rotationsvakt värmeväxlare (TX1)
+	ResetAlarm: BOOL; // Larmåterställning
+	P2_Running: BOOL;
+	ExpansionVesselAlarm: BOOL;
+	FirePanelSupplyStart: BOOL;
+	FirePanelSupplyStop: BOOL;
+	FirePanelExtractStart: BOOL;
+	FirePanelExtractStop: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -3,21 +3,21 @@
   <DUT Name="SxDuoParameters" Id="{ef2f051f-b548-4f24-87c3-71d5bcdac534}">
     <Declaration><![CDATA[TYPE SxDuoParameters :
 STRUCT
-	Unit01: SxDuoUnitFB := ( EN := TRUE, UnitID := 21 );
-	Unit02: SxDuoUnitFB := ( EN := FALSE, UnitID := 22 );
-	Unit03: SxDuoUnitFB := ( EN := FALSE, UnitID := 23 );
-	Unit04: SxDuoUnitFB := ( EN := FALSE, UnitID := 24 );
-	Unit05: SxDuoUnitFB := ( EN := FALSE, UnitID := 25 );
-	Unit06: SxDuoUnitFB := ( EN := FALSE, UnitID := 26 );
-	Unit07: SxDuoUnitFB := ( EN := FALSE, UnitID := 27 );
-	Unit08: SxDuoUnitFB := ( EN := FALSE, UnitID := 28 );
-	Unit09: SxDuoUnitFB := ( EN := FALSE, UnitID := 29 );
-	Unit10: SxDuoUnitFB := ( EN := FALSE, UnitID := 30 );
-	Unit11: SxDuoUnitFB := ( EN := FALSE, UnitID := 31 );
-	Unit12: SxDuoUnitFB := ( EN := FALSE, UnitID := 32 );
-	Unit13: SxDuoUnitFB := ( EN := FALSE, UnitID := 33 );
-	Unit14: SxDuoUnitFB := ( EN := FALSE, UnitID := 34 );
-	Unit15: SxDuoUnitFB := ( EN := FALSE, UnitID := 35 );
+	Unit01: SxDuoUnit := ( EN := TRUE, UnitID := 21 );
+	Unit02: SxDuoUnit := ( EN := FALSE, UnitID := 22 );
+	Unit03: SxDuoUnit := ( EN := FALSE, UnitID := 23 );
+	Unit04: SxDuoUnit := ( EN := FALSE, UnitID := 24 );
+	Unit05: SxDuoUnit := ( EN := FALSE, UnitID := 25 );
+	Unit06: SxDuoUnit := ( EN := FALSE, UnitID := 26 );
+	Unit07: SxDuoUnit := ( EN := FALSE, UnitID := 27 );
+	Unit08: SxDuoUnit := ( EN := FALSE, UnitID := 28 );
+	Unit09: SxDuoUnit := ( EN := FALSE, UnitID := 29 );
+	Unit10: SxDuoUnit := ( EN := FALSE, UnitID := 30 );
+	Unit11: SxDuoUnit := ( EN := FALSE, UnitID := 31 );
+	Unit12: SxDuoUnit := ( EN := FALSE, UnitID := 32 );
+	Unit13: SxDuoUnit := ( EN := FALSE, UnitID := 33 );
+	Unit14: SxDuoUnit := ( EN := FALSE, UnitID := 34 );
+	Unit15: SxDuoUnit := ( EN := FALSE, UnitID := 35 );
 END_STRUCT
 END_TYPE
 ]]></Declaration>

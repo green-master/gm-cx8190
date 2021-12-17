@@ -26,6 +26,18 @@
     <Company>Nibe Airsite</Company>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\Alarms\AlarmDef.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Alarms\AlarmHandler.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Alarms\AlarmPolarity.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Alarms\AlarmPriority.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Custom\Chalmers\CTH_LA02.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +51,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\ExtraAlarms\ExtraAlarms_Interface.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\AdsTagsParallelUnits.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnits.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnitsSettings.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnitsStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\SmokeControl\AdsTagsSmokeControl.TcDUT">
@@ -135,6 +159,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Alarm\AlarmParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Alarm\AlarmParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Alarm\AlarmsA.TcDUT">
@@ -371,10 +398,19 @@
     <Compile Include="DUTs\ModbusTCP\ModbusTCP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\GreenMasterBaseParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\GreenMasterBaseParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\GreenMasterBaseParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\GreenMasterParametersXXL.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\GreenMasterParametersXXLFB.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\IO\AnalogInputParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\IO\AnalogInputParametersFB.TcPOU">
@@ -389,7 +425,13 @@
     <Compile Include="DUTs\Parameters\IO\AnalogOutputOverrideParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\IO\AnalogOutputParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\IO\AnalogOutputParametersFB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\IO\DigitalInputParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\IO\DigitalInputParametersFB.TcPOU">
@@ -398,10 +440,16 @@
     <Compile Include="DUTs\Parameters\IO\DigitalOutputOverrideParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\IO\DigitalOutputParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\IO\DigitalOutputParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\IO\InputStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\IO\IoParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\IO\IOParametersFB.TcPOU">
@@ -419,6 +467,9 @@
     <Compile Include="DUTs\Parameters\Redundancy\RedundancyParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\AirParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\Regulation\AirParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -428,7 +479,10 @@
     <Compile Include="DUTs\Parameters\Regulation\ControllerParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\Regulation\DefaultParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\Regulation\DefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\DefaultParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Regulation\FanTypes.TcDUT">
@@ -443,16 +497,25 @@
     <Compile Include="DUTs\Parameters\Regulation\RegulationControlParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\RegulationParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\Regulation\RegulationParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\Regulation\SetPointAdjustment.TcPOU">
+    <Compile Include="DUTs\Parameters\Regulation\SetPointAdjustment.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\SetPointAdjustmentFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Regulation\SetPointOffsetCurve.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Regulation\TemperatureCompensationSources.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Regulation\TemperatureControlParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\Regulation\TemperatureControlParametersFB.TcPOU">
@@ -464,10 +527,16 @@
     <Compile Include="DUTs\Parameters\Simulation\SimulateFlow.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\Simulation\Simulation.TcPOU">
+    <Compile Include="DUTs\Parameters\Simulation\SimulationFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\Simulation\SimulationParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\Simulation\SimulationParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\Simulation\SimulationParametersFB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\SmokeControl\NetLinkParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\NetLinkParametersFB.TcPOU">
@@ -482,13 +551,22 @@
     <Compile Include="DUTs\Parameters\SmokeControl\SmokeControlParametersBase.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\SmokeControl\SmokeControlParametersBaseFB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\SxDuoCommand.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\SxDuoParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\SmokeControl\SxDuoParametersFB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\SxDuoStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\SmokeControl\SxDuoUnit.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\SmokeControl\SxDuoUnitFB.TcPOU">
@@ -506,16 +584,28 @@
     <Compile Include="DUTs\Parameters\System\Defrost\WinterShutdownParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseCirculationPumpsParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseCirculationPumpsParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseExternalFireControlParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseCirculationPumpsParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseFireBypassDamperParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseExternalFireControlParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseExternalFireControlParametersFB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseFireBypassDamperParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseFireBypassDamperParametersFB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\System\Exercise\ExerciseParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\System\Operation\AlternativeOperation.TcDUT">
@@ -563,13 +653,22 @@
     <Compile Include="DUTs\Parameters\System\Operation\SystemOperationParametersXXL.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\System\Operation\TimeChannelParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\System\Operation\TimeChannelDayParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Parameters\System\Operation\TimeChannelDayParameters.TcPOU">
+    <Compile Include="DUTs\Parameters\System\Operation\TimeChannelParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\System\Operation\TimeChannelParametersFB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\System\Operation\TimeChannelDayParametersFB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\System\Operation\UnitOperation.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Parameters\System\SystemParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Parameters\System\SystemParametersFB.TcPOU">
@@ -704,6 +803,10 @@
     <Compile Include="DUTs\Ventilation\VentilationControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\ADS_ParallelUnits.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\ADS_SmokeControl.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -807,6 +910,7 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="DUTs\Custom\ExtraAlarms" />
+    <Folder Include="DUTs\Custom\ParallelUnits" />
     <Folder Include="DUTs\Custom\SmokeControl" />
     <Folder Include="DUTs\Custom\Redundancy" />
     <Folder Include="DUTs\Custom\_Standard" />
