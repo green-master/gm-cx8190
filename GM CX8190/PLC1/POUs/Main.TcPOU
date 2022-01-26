@@ -214,7 +214,7 @@ END_VAR
 			LastSecondsCounter := Globals.SecondsCounter;
 			// 2021-11-10-08:08:53.582
 			sTime := SYSTEMTIME_TO_STRING(fbTime.systemTime);
-			sPart1 := Delete(sTime, 4, 19);
+			sPart1 := Delete(sTime, 4, 20);
 			sPart2 := Replace(sPart1, ' ', 1, 11);
 			GreenMaster.GetParameters().System.SystemTime := sPart2;
 		END_IF
