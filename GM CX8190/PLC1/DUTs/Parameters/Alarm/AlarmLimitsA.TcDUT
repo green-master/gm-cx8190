@@ -6,6 +6,7 @@ STRUCT
 	FireExtractTemperature: REAL := 45;
 	FireExtractPressureTemperature: REAL := 38;
 	FireExtractPressure: REAL := 170;
+	Freeze: real := 4;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

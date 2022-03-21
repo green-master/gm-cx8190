@@ -641,6 +641,13 @@ IF EN THEN
 						ADR(SavedParameters.Alarm.Limits.B.ExtractAirPressureDeviation), 
 						ADR(SavedInterface.F_BP1_ADL), 
 						'REAL', ('Parameters.Alarm.Limits.B.ExtractAirPressureDeviation'), ('F_BP1_ADL'));	
+
+		ExchangeData(	ADR(Parameters.Alarm.Limits.A.Freeze), 
+						ADR(ADS_Standard.Tags.Settings.FREEZE_ALL), 
+						SIZEOF(Parameters.Alarm.Limits.A.Freeze), 
+						ADR(SavedParameters.Alarm.Limits.A.Freeze), 
+						ADR(SavedInterface.FREEZE_ALL), 
+						'REAL', ('Parameters.Alarm.Limits.A.Freeze'), ('FREEZE_ALL'));	
 			
 		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
 		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);

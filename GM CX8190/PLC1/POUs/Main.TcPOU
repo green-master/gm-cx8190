@@ -228,10 +228,10 @@ ELSE
 	ExceptionYet := TRUE; 	
 END_IF
 
-IF GreenMaster.GetParameters().IO.AIn.H_BT1 < Rr THEN
+IF GreenMaster.GetParameters().IO.AIn.H_BT1 < GreenMaster.GetParameters().Alarm.Limits.A.Freeze THEN
 	GreenMaster.GetParameters().Alarm.Status.A.Freeze := TRUE;
 END_IF
-IF GreenMaster.GetParameters().IO.AIn.H_BT1 > (Rr + 0.5) THEN
+IF GreenMaster.GetParameters().IO.AIn.H_BT1 > (GreenMaster.GetParameters().Alarm.Limits.A.Freeze + 0.5) THEN
 	GreenMaster.GetParameters().Alarm.Status.A.Freeze := FALSE;
 END_IF
 ]]></ST>

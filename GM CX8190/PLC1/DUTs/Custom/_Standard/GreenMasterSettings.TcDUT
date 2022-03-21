@@ -76,6 +76,8 @@ H_QN1_OPM :  REAL; //  Heat supply control valve manual value $(scale "0 1 0 100
 
 TC: TimeChannel_CT_CF;
 
+FREEZE_ALL: REAL := 4; // Freeze protection alarm level$(unit "%C)
+
 
 END_STRUCT
 END_TYPE
