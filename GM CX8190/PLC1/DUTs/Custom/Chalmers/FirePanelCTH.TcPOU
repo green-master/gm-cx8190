@@ -69,7 +69,7 @@ Parameters.Alarm.Status.A.FirePanelExtractStop := CurrentStopExtractFan;
 IF Parameters.Alarm.Status.A.FirePanelSupplyStart THEN
 	SupplyDamper := TRUE;
 	IF SupplyDamperOpen THEN
-		Main.GreenMaster.SupplyFanOverride(TRUE, 0.75);
+		Main.GreenMaster.SupplyFanOverride(TRUE, ADS_CTH.Tags.Settings.FirePanelSupplyFanSpeed);
 	ELSE
 		Main.GreenMaster.SupplyFanOverride(TRUE, 0);			
 	END_IF
@@ -88,7 +88,7 @@ END_IF
 IF Parameters.Alarm.Status.A.FirePanelExtractStart THEN
 	ExtractDamper := TRUE;
 	IF ExtractDamperOpen THEN
-		Main.GreenMaster.ExtractFanOverride(TRUE, 0.75);
+		Main.GreenMaster.ExtractFanOverride(TRUE, ADS_CTH.Tags.Settings.FirePanelExtractFanSpeed);
 	ELSE
 		Main.GreenMaster.ExtractFanOverride(TRUE, 0);			
 	END_IF

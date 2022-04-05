@@ -4,7 +4,7 @@
     <Declaration><![CDATA[// Settings for GreenMaster
 TYPE GreenMasterSettings :
 STRUCT
-RemoteStart :  INT := 1; //  Remote (WebPort) unit activation (-1=Auto, 0=unit off, 1=normal speed, 2=high speed)
+RemStart :  INT := 1; //  Remote (WebPort) unit activation (-1=Auto, 0=unit off, 1=normal speed, 2=high speed)
 ResetAlarms :  BOOL :=FALSE; //  Reset alarms
 VentilationEN: BOOL := TRUE;
 TemperatureControlEN: BOOL := TRUE;
@@ -82,6 +82,19 @@ TC3_Speed: INT; // Speed (0=normal, 1=alternative) for time channels TC 2x
 TC0_ACTIVATE_HIGHSPEED_SP: BOOL;
 TC1_ACTIVATE_HIGHSPEED_SP: BOOL;
 TC2_ACTIVATE_HIGHSPEED_SP: BOOL;
+
+DOutOverride: DigitalOutputOverrideParameters;
+MAX_OP_TIME_AHL: TIME := T#15H; // High limit operating time
+FREEZE_AD: TIME := T#5S;
+FREEZE_ALL: REAL := 8;
+P1_AD: TIME := T#5S;
+P2_AD: TIME := T#5S;
+T_STARTUP_FAN_SPEED: REAL := 0.3; // Supply fan startup speed $(scale "0 1 0 100", unit "%")
+F_STARTUP_FAN_SPEED: REAL := 0.4; // Extract fan startup speed $(scale "0 1 0 100", unit "%")
+T_STARTUP_DELAY: TIME := T#1M; // Startup heat recovery time
+FreezeControlSP: REAL := 15;
+GP83_AHL: REAL := 310; // VVX larmgräns
+GP83_AD: TIME := T#30S; // VVX Larmfördröjning
 
 END_STRUCT
 END_TYPE

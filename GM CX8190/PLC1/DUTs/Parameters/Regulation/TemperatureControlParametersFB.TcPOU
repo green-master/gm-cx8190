@@ -12,9 +12,12 @@ VAR_INPUT
 	//SetPointAdjustment: SetPointAdjustment := ( Curve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20));
 	SetPointAdjustment: SetPointAdjustment;
 	Control: ControllerParameters := ( P := 10, I := T#2M, SP := 20, SP_HighSpeed := 20 );
-	FreezeProtectionControl: ControllerParameters;
+	FreezeProtectionControl: ControllerParameters := ( P := 10, I := T#20S, SP := 15 );
+	FreezeProtectionControlLimit: REAL := 15;
+	FreezeProtectionControlHysteresis: REAL := 1;
+	FreezeGuard: BOOL;
 	ColdRecycling: ColdRecyclingParameters;
-
+	RunPumpBelowTemperature: REAL;
 END_VAR
 VAR_OUTPUT
 	Efficiency: LREAL;
@@ -27,7 +30,9 @@ END_VAR
 Control.CSP := Control.SP + SetPointAdjustment.Y;
 IF (Main.GreenMaster.GetState() = SystemStates.Run) AND (Main.GreenMaster.StateTime() > LTIME#1M) THEN
 	Efficiency := CalculateEfficiency(Parameters.IO.AIn.T_BT3, Parameters.IO.AIn.T_BT2, Parameters.IO.AIn.F_BT1);
-	Parameters.Alarm.Status.B.HeatExchangerEfficiency := Efficiency < Parameters.Alarm.Limits.B.HeatExchangerEfficiency;
+	Parameters.Alarm.Status.B.HeatExchangerEfficiency := 
+		(Efficiency < Parameters.Alarm.Limits.B.HeatExchangerEfficiency) AND
+		(Parameters.IO.AOut.F_QN1 > 0.99);
 ELSE
 	Efficiency := 0;	
 	Parameters.Alarm.Status.B.HeatExchangerEfficiency := FALSE;

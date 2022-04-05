@@ -14,7 +14,7 @@ VAR_INPUT
 	ConstOutput: LREAL; // $(unit %)
 	MinSpeed: LREAL := 0.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
 	MaxSpeed: LREAL := 1.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
-	StartupFanSpeed: LREAL;
+	StartupFanSpeed: REAL;
 	SetPointAdjustment: SetPointAdjustment;
 	Fire: FireParameters;
 	FanType: FanTypes := FanTypes.EBM;
@@ -24,6 +24,7 @@ VAR_INPUT
 	FanEfficiency: LREAL; // $(scale "0 1 0 100", unit "%")
 	PressureRise: LREAL; // $(unit "Pa")
 	AdjustCSP: LREAL := 1.0; // $(skip) Adjust CSP during defrost
+	Speed: LREAL;
 END_VAR
 VAR_OUTPUT
 	TestOutput: LREAL := 3.14;

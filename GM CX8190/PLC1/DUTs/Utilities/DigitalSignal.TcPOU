@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="DigitalSignal" Id="{479e134f-75f0-4165-808c-efafb9f88e44}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK DigitalSignal
 VAR_INPUT
@@ -11,7 +11,8 @@ END_VAR
 VAR
 	_PosFlank: BOOL;
 	_NegFlank: BOOL;
-	Timer: Timer;
+	OffTimer: Timer;
+	OnTimer: Timer;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -22,8 +23,12 @@ END_VAR
 	ELSE
 	  _NegFlank := TRUE;
 	END_IF;
-	Timer.Restart();
 END_IF;
+IF State THEN
+	OffTimer.Restart();
+ELSE
+	OnTimer.Restart();
+END_IF
 ]]></ST>
     </Implementation>
     <Method Name="NegFlank" Id="{084ad7ff-3517-4efc-bf51-73b1040e8e50}">
@@ -46,11 +51,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT State THEN
-	OffTime := Timer.ElapsedTime();
+        <ST><![CDATA[IF State THEN
+	OffTimer.Restart();
 ELSE
-	OffTime := 0;
-END_IF;
+	OnTimer.Restart();
+END_IF
+OffTime := OffTimer.ElapsedTime();
 ]]></ST>
       </Implementation>
     </Method>
@@ -61,10 +67,11 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF State THEN
-	OnTime := Timer.ElapsedTime();
+	OffTimer.Restart();
 ELSE
-	OnTime := 0;
-END_IF;
+	OnTimer.Restart();
+END_IF
+OnTime := OnTimer.ElapsedTime();
 ]]></ST>
       </Implementation>
     </Method>
@@ -82,25 +89,5 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="DigitalSignal">
-      <LineId Id="3" Count="8" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DigitalSignal.NegFlank">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DigitalSignal.OffTime">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DigitalSignal.OnTime">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="DigitalSignal.PosFlank">
-      <LineId Id="3" Count="3" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

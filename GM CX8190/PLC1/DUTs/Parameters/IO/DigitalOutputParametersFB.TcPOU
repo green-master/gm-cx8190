@@ -7,6 +7,12 @@ VAR_INPUT
     C_GP1: BOOL; // Cirkulationspump kylkrets
     T_QM2: BOOL; // Tilluftsspjäll
     R_QM1: BOOL; // Återluftsspjäll
+    T_QM1_1: BOOL; // Sektionsavfrostning
+    T_QM1_2: BOOL; // Sektionsavfrostning
+    T_QM1_3: BOOL; // Sektionsavfrostning
+    T_QM1_4: BOOL; // Sektionsavfrostning
+    T_QM1_5: BOOL; // Sektionsavfrostning
+    T_QM1_6: BOOL; // Sektionsavfrostning
     F_QM1: BOOL; // Frånluftsspjäll
     F_QM2: BOOL; // Brandspjäll förbigång
 	F_QM2_ActiveWhenStopped: BOOL;
@@ -69,15 +75,5 @@ DO_.AlarmRelayD := AL_D;
 DO_.P2 := P2;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="DigitalOutputParametersFB">
-      <LineId Id="179" Count="3" />
-      <LineId Id="68" Count="0" />
-    </LineIds>
-    <LineIds Name="DigitalOutputParametersFB.Update">
-      <LineId Id="47" Count="8" />
-      <LineId Id="62" Count="7" />
-      <LineId Id="76" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

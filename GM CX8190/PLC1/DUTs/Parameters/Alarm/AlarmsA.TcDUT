@@ -9,7 +9,7 @@ STRUCT
 	FireExtractExternal: BOOL;
 	FireLocal: BOOL;
 	FireSupply: BOOL;
-	Freeze: BOOL;
+	FreezeGuard: BOOL;
 	Fuse: BOOL;
 	Cold: BOOL;
 	Aux: BOOL;
@@ -25,7 +25,8 @@ STRUCT
 	AL06: BOOL;
 	AL07: BOOL;
 	AL08: BOOL;
-	DamperError: BOOL;
+	SupplyDamperError: BOOL;
+	ExtractDamperError: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

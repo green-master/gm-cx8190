@@ -52,7 +52,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="5.80.62.152.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="172.20.10.254.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<IoIdleTask CycleTime="100000"/>
@@ -2406,7 +2406,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Image Id="2" AddrType="1" ImageType="3">
 					<Name>Image</Name>
 				</Image>
-				<Box Id="1" BoxType="9703" AmsPort="28929">
+				<Box Id="1" BoxType="9703" AmsPort="28930">
 					<Name>Box STD (CX-BK)</Name>
 					<ImageId>5</ImageId>
 					<Vars VarGrpType="1">

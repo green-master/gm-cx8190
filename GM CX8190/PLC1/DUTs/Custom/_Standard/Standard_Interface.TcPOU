@@ -46,6 +46,7 @@ VAR
 	SavedParametersSC: SmokeControlParametersBase;
 	TestExchange: BOOL := FALSE;
 	UpdateTON: TON;
+	StartupTransferToADS: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -56,7 +57,10 @@ END_VAR
 	SavedParameters := Parameters;
 	SavedInterface := ADS_Standard.Tags.Settings;
 	SavedParametersSC := ParametersSC;
+	StartupTransferToADS := TRUE;
 	InitDone := TRUE;
+ELSE
+	StartupTransferToADS := FALSE;
 END_IF;
 
 TimeChannelEnabled := FALSE;
@@ -79,9 +83,9 @@ TimeChannelFallback(Settings := ADS_Standard.Tags.ScheduleFallback);
 WatchdogTOF(IN := (NOT ADS_Standard.Tags.Settings.WatchdogEnabled) OR (ADS_Standard.Tags.Settings.Watchdog <> LastWatchDog), PT := T#5M);
 
 IF WatchdogTOF.Q THEN
-	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelEnabled AND TimeChannelActive;
+	ENO := EN AND (ADS_Standard.Tags.Settings.RemStart > 0) AND TimeChannelEnabled AND TimeChannelActive;
 ELSE
-	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelFallback.Q;
+	ENO := EN AND (ADS_Standard.Tags.Settings.RemStart > 0) AND TimeChannelFallback.Q;
 END_IF
 
 IF EN THEN
@@ -89,7 +93,7 @@ IF EN THEN
 	UpdateTON(IN := TRUE, PT := T#1S);
 	// --------------------------------------------------------------------------------
 	// Transfer from Standard tags to settings
-	IF Parameters.System.Operation.RemoteEN AND UpdateTON.Q THEN
+	IF (Parameters.System.Operation.RemoteEN AND UpdateTON.Q) OR StartupTransferToADS THEN
 		UpdateTON(IN := False);
 		ExchangeData(	ADR(Parameters.Alarm.Control.ResetAlarms), 
 						ADR(ADS_Standard.Tags.Settings.ResetAlarms), 
@@ -430,7 +434,48 @@ IF EN THEN
 						ADR(SavedParameters.Alarm.Limits.B.ExtractAirPressureDeviation), 
 						ADR(SavedInterface.F_BP1_ADL), 
 						'REAL', ('Parameters.Alarm.Limits.B.ExtractAirPressureDeviation'), ('F_BP1_ADL'));	
+						
+		ExchangeData(	ADR(Parameters.Alarm.Limits.A.FreezeGuard), 
+						ADR(ADS_Standard.Tags.Settings.FREEZE_ALL), 
+						SIZEOF(Parameters.Alarm.Limits.A.FreezeGuard), 
+						ADR(SavedParameters.Alarm.Limits.A.FreezeGuard), 
+						ADR(SavedInterface.FREEZE_ALL), 
+						'REAL', ('Parameters.Alarm.Limits.A.Freeze'), ('FREEZE_ALL'));							
+						
+		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.StartupFanSpeed),
+						ADR(ADS_Standard.Tags.Settings.F_STARTUP_FAN_SPEED), 
+						SIZEOF(Parameters.Regulation.ExtractAir.StartupFanSpeed), 
+						ADR(SavedParameters.Regulation.ExtractAir.StartupFanSpeed), 
+						ADR(SavedInterface.F_STARTUP_FAN_SPEED), 
+						'REAL', ('Parameters.Regulation.ExtractAir.StartupFanSpeed'), ('F_STARTUP_FAN_SPEED'));	
 			
+		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.StartupFanSpeed),
+						ADR(ADS_Standard.Tags.Settings.T_STARTUP_FAN_SPEED), 
+						SIZEOF(Parameters.Regulation.SupplyAir.StartupFanSpeed), 
+						ADR(SavedParameters.Regulation.SupplyAir.StartupFanSpeed), 
+						ADR(SavedInterface.T_STARTUP_FAN_SPEED), 
+						'REAL', ('Parameters.Regulation.SupplyAir.StartupFanSpeed'), ('T_STARTUP_FAN_SPEED'));	
+			
+		ExchangeData(	ADR(Parameters.System.Operation.SupplyFanStartupDelay),
+						ADR(ADS_Standard.Tags.Settings.T_STARTUP_DELAY), 
+						SIZEOF(Parameters.System.Operation.SupplyFanStartupDelay), 
+						ADR(SavedParameters.System.Operation.SupplyFanStartupDelay), 
+						ADR(SavedInterface.T_STARTUP_DELAY), 
+						'REAL', ('Parameters.System.Operation.SupplyFanStartupDelay'), ('T_STARTUP_DELAY'));	
+
+		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.Temperature.FreezeProtectionControl.SP), 
+						ADR(ADS_Standard.Tags.Settings.FreezeControlSP), 
+						ADR(SavedParameters.Regulation.Temperature.FreezeProtectionControl.SP), 
+						ADR(SavedInterface.FreezeControlSP), 
+						('Parameters.Regulation.Temperature.FreezeProtectionControl.SP'), ('FreezeControlSP'));	
+									
+		ExchangeData(	ADR(Parameters.Alarm.Limits.B.HeatExchangerHighPressure),
+						ADR(ADS_Standard.Tags.Settings.GP83_AHL), 
+						SIZEOF(Parameters.Alarm.Limits.B.HeatExchangerHighPressure), 
+						ADR(SavedParameters.Alarm.Limits.B.HeatExchangerHighPressure), 
+						ADR(SavedInterface.GP83_AHL), 
+						'REAL', ('Parameters.Alarm.Limits.B.HeatExchangerHighPressure'), ('GP83_AHL'));	
+
 		IF SavedInterface.WatchdogEnabled <> ADS_Standard.Tags.Settings.WatchdogEnabled THEN
 			SavedInterface.WatchdogEnabled := ADS_Standard.Tags.Settings.WatchdogEnabled;
 			Parameters.Alarm.Disabled.B.Watchdog := NOT ADS_Standard.Tags.Settings.WatchdogEnabled;
@@ -442,12 +487,24 @@ IF EN THEN
 			SavedInterface.WatchdogEnabled := ADS_Standard.Tags.Settings.WatchdogEnabled;
 		END_IF
 			
-		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
-		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideF_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.TX1_M, OverrideValue := ADS_Standard.Tags.Settings.TX1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideC_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.C_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.C_QN1_OPM / 100.0);
+		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := 32767.0 * ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
+		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := 32767.0 * ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
+		Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := 32767.0 * ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
+		Main.GreenMasterAO.SetOverrideF_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.TX1_M, OverrideValue := 32767.0 * ADS_Standard.Tags.Settings.TX1_OPM / 100.0);
+		Main.GreenMasterAO.SetOverrideC_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.C_QN1_M, OverrideValue := 32767.0 * ADS_Standard.Tags.Settings.C_QN1_OPM / 100.0);
+
+		ExchangeData(	ADR(Parameters.IO.DOutOverride),
+						ADR(ADS_Standard.Tags.Settings.DOutOverride), 
+						SIZEOF(Parameters.IO.DOutOverride), 
+						ADR(SavedParameters.IO.DOutOverride), 
+						ADR(SavedInterface.DOutOverride), 
+						'DigitalOutputOverrideParameters', ('Parameters.IO.DOutOverride'), ('DOutOverride'));	
+		Main.GreenMasterDO.SetOverrides(Parameters.IO.DOutOverride);
 		
+		Parameters.Alarm.Delay.A.Freeze := ADS_Standard.Tags.Settings.FREEZE_AD;
+		Parameters.Alarm.Delay.B.Pump1 := ADS_Standard.Tags.Settings.P1_AD;
+		Parameters.Alarm.Delay.B.Pump2 := ADS_Standard.Tags.Settings.P2_AD;
+		Parameters.Alarm.Limits.A.FreezeGuard := ADS_Standard.Tags.Settings.FREEZE_ALL;
 	END_IF
 	
 	// Status transfers
@@ -458,6 +515,7 @@ IF EN THEN
 	ADS_Standard.Tags.Status.SFP_PV := TO_REAL(Parameters.Regulation.SystemSpecificFanPower);
 	ADS_Standard.Tags.Status.TC_V := Parameters.System.Operation.TimeChannels.Q;
 	ADS_Standard.Tags.Status.F_BR1_AL := Parameters.Alarm.Active.A.FireExtract; // GM_XXL.DI.FireExtractAlarm;
+	ADS_Standard.Tags.Status.DAMPER_AL := Parameters.Alarm.Active.A.SupplyDamperError; // GM_XXL.DI.FireExtractAlarm;
 	ADS_Standard.Tags.Status.F_BRT2_AL := Parameters.Alarm.Active.A.FireExtractTemperature;
 	ADS_Standard.Tags.Status.F_BRT3_AL := Parameters.Alarm.Active.A.FireExtractPressure;
 	ADS_Standard.Tags.Status.T_BR1_AL := Parameters.Alarm.Active.A.FireSupply;
@@ -467,6 +525,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.F_BP1_AL := Parameters.Alarm.Active.B.ExtractAirDeviation;
 	ADS_Standard.Tags.Status.T_BP1_AL := Parameters.Alarm.Active.B.SupplyAirDeviation;
 	ADS_Standard.Tags.Status.T_BT1_AL := Parameters.Alarm.Active.B.RegulationDeviation;
+	
+	ADS_Standard.Tags.Status.H_BT1_LAL := Parameters.Alarm.Active.A.FreezeGuard;
 	
 	ADS_Standard.Tags.Status.BT1_FAULT := Parameters.IO.AIn.BT1_Error;
 	ADS_Standard.Tags.Status.BT2_FAULT := Parameters.IO.AIn.BT2_Error;
@@ -539,11 +599,32 @@ IF EN THEN
 	ADS_Standard.Tags.Status.F_BP2_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP2);
 	ADS_Standard.Tags.Status.F_BP3_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP3);
 	
-	ADS_Standard.Tags.Status.TX1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1);
-	ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1);
-	ADS_Standard.Tags.Status.C_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.C_QN1);
-	ADS_Standard.Tags.Status.T_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1);
-	ADS_Standard.Tags.Status.F_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1);
+	IF NOT Parameters.IO.AOutOverride.F_QN1_Override THEN
+		ADS_Standard.Tags.Status.TX1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1);
+	ELSE	
+		ADS_Standard.Tags.Status.TX1_OP := LREAL_TO_REAL(Parameters.IO.AOutOverride.F_QN1_OverrideValue);
+	END_IF
+	IF NOT Parameters.IO.AOutOverride.H_QN1_Override THEN
+		ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1);
+	ELSE
+		ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOutOverride.H_QN1_OverrideValue);		
+	END_IF
+	IF NOT Parameters.IO.AOutOverride.C_QN1_Override THEN
+		ADS_Standard.Tags.Status.C_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.C_QN1);
+	ELSE
+		ADS_Standard.Tags.Status.C_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOutOverride.C_QN1_OverrideValue);		
+	END_IF
+
+	IF NOT Parameters.IO.AOutOverride.T_GQ1_Override THEN
+		ADS_Standard.Tags.Status.T_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1);
+	ELSE
+		ADS_Standard.Tags.Status.T_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOutOverride.T_GQ1_OverrideValue);		
+	END_IF
+	IF NOT Parameters.IO.AOutOverride.F_GQ1_Override THEN
+		ADS_Standard.Tags.Status.F_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1);
+	ELSE
+		ADS_Standard.Tags.Status.F_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOutOverride.F_GQ1_OverrideValue);		
+	END_IF
 	ADS_Standard.Tags.Status.T_GQ1_V := Parameters.IO.AOut.T_GQ1 > 0.02;
 	ADS_Standard.Tags.Status.F_GQ1_V := Parameters.IO.AOut.F_GQ1 > 0.02;
 	
@@ -551,11 +632,14 @@ IF EN THEN
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.PLC_VERSION_PV := GlobalSettings.PlcVersion;
 	ADS_Standard.Tags.Status.TIMEANDDATE_PV := Parameters.System.SystemTime;
+	ADS_Standard.Tags.Status.SYSTEM_STATE_V := Parameters.System.Operation.State;
 
+	ADS_Standard.Tags.Status.OPTIME_AL := Parameters.Alarm.Active.B.OperatingTime;
+	ADS_Standard.Tags.Status.OPTIME_PV := TO_REAL(LTIME_TO_LINT(Parameters.System.Operation.OperatingTime) / 1000000000);
 	PreEN := TRUE;
 	
-	ModbusSettings();
-	ModbusStatus();
+	//ModbusSettings();.
+	//ModbusStatus();
 END_IF
 ]]></ST>
     </Implementation>
@@ -576,7 +660,7 @@ END_VAR
 VAR
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF MemCmp(PData1, PSavedData1, Size) <> 0 THEN
+        <ST><![CDATA[IF (MemCmp(PData1, PSavedData1, Size) <> 0) OR StartupTransferToADS THEN
 	MemCpy(PData2, PData1, Size);
 	MemCpy(PSavedData2, PData1, Size);
 	MemCpy(PSavedData1, PData1, Size);
@@ -610,7 +694,7 @@ END_VAR
 VAR
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF PData1^ <> PSavedData1^ THEN
+        <ST><![CDATA[IF (PData1^ <> PSavedData1^) or StartupTransferToADS THEN
 	PData2^ := TO_REAL(PData1^);
 	PSavedData2^ := TO_REAL(PData1^);
 	PSavedData1^ := PData1^;

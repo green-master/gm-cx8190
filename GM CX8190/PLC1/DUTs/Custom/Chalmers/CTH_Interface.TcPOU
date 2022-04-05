@@ -41,7 +41,8 @@ VAR
 	P2Hyst: Hysteresis;
 	P2Temp: BOOL;
 	VvXHyst: Hysteresis;
-	Loop: int;
+	Loop: INT;
+	StartupTransferToADS: bool;
 END_VAR
 VAR PERSISTENT
 	SavedSettings: GreenMasterSettingsCTH2;
@@ -51,6 +52,11 @@ END_VAR
       <ST><![CDATA[IF NOT InitDone THEN
 	Parameters REF= Main.GreenMaster.GetParameters();
 	GM_XXL REF= Main.GreenMaster;
+	IF NOT InitDone THEN
+		StartupTransferToADS := TRUE;
+	ELSE
+		StartupTransferToADS := FALSE;
+	END_IF
 	InitDone := TRUE;
 END_IF;
 Loop := Loop + 1;
@@ -95,7 +101,7 @@ IF EN THEN
 						SupplyDamper := Parameters.IO.DOut.T_QM2,
 						ExtractDamper := Parameters.IO.DOut.F_QM1
 		);
-		
+			
 		ADS_CTH.Tags.Settings.POST_RUN_FANS := TO_TIME(Parameters.System.Operation.PostVentilationTime);
 		
 		ADS_CTH.Tags.Status.P2_AL := Parameters.Alarm.Active.B.Pump2; 
@@ -106,13 +112,18 @@ IF EN THEN
 		ADS_CTH.Tags.Status.HANDSTOPPED_TF_AL := Parameters.Alarm.Status.A.FirePanelSupplyStop; 
 		ADS_CTH.Tags.Status.HANDSTARTED_FF_AL := Parameters.Alarm.Status.A.FirePanelExtractStart; 
 		ADS_CTH.Tags.Status.HANDSTOPPED_FF_AL := Parameters.Alarm.Status.A.FirePanelExtractStop; 
-		ADS_CTH.Tags.Status.BAD_DAMPER_POS_AL := Parameters.Alarm.Active.A.DamperError;
+		ADS_CTH.Tags.Status.BAD_SUPPLY_DAMPER_POS_AL := Parameters.Alarm.Active.A.SupplyDamperError;
+		ADS_CTH.Tags.Status.BAD_EXTRACT_DAMPER_POS_AL := Parameters.Alarm.Active.A.ExtractDamperError;
 		
 		ADS_CTH.Tags.Status.GP83_PV := TO_REAL(Parameters.IO.AIn.F_BP3);
-		ADS_CTH.Tags.Status.GP83_AHL := Parameters.Alarm.Limits.B.HeatExchangerHighPressure;
-		ADS_CTH.Tags.Status.GP83_AD := Parameters.Alarm.Delay.B.HeatExchangerHighPressure;
+		//ADS_CTH.Tags.Status.GP83_AHL := Parameters.Alarm.Limits.B.HeatExchangerHighPressure;
+		//ADS_CTH.Tags.Status.GP83_AD := Parameters.Alarm.Delay.B.HeatExchangerHighPressure;
 		ADS_CTH.Tags.Status.GP83_HAL := Parameters.Alarm.Active.B.HeatExchangerHighPressure;
-		ADS_CTH.Tags.Status.SV31_OP := TO_REAL(Parameters.IO.AOut.F_QN1);
+		IF NOT Parameters.IO.AOutOverride.F_QN1_Override THEN
+			ADS_CTH.Tags.Status.SV31_OP := TO_REAL(Parameters.IO.AOut.F_QN1);
+		ELSE
+			ADS_CTH.Tags.Status.SV31_OP := TO_REAL(Parameters.IO.AOutOverride.F_QN1_OverrideValue);
+		END_IF
 		ADS_CTH.Tags.Status.GT21_PV := Globals.IO.AIn.AI09 / 100.0;
 		ADS_CTH.Tags.Status.GT21_FAULT := Globals.IO.AIn.AI09_Error;
 		ADS_CTH.Tags.Status.GT44_PV := Globals.IO.AIn.AI10 / 100.0;
@@ -125,6 +136,46 @@ IF EN THEN
 		ADS_CTH.Tags.Status.T_BT4_FAULT := Globals.IO.AIn.AI13_Error;
 
 		Parameters.Alarm.Status.B.ExpansionTank := Globals.IO.DIn.DI24;
+		
+		//Parameters.IO.AOutOverride.F_QN1_Override := ADS_CTH.Tags.Settings.F_QN1_Override_M;
+		//Parameters.IO.AOutOverride.F_QN1_OverrideValue := ADS_CTH.Tags.Settings.F_QN1_OverrideValue_MCMD;
+		Parameters.IO.AOutOverride.F_QN1_Override := ADS_CTH.Tags.Settings.SV31_M;
+		Parameters.IO.AOutOverride.F_QN1_OverrideValue := ADS_CTH.Tags.Settings.SV31_OPM;
+		Parameters.IO.AOutOverride.F_GQ1_Override := ADS_CTH.Tags.Settings.F_GQ1_Override_M;
+		Parameters.IO.AOutOverride.F_GQ1_OverrideValue := ADS_CTH.Tags.Settings.F_GQ1_OverrideValue_MCMD;
+		Parameters.IO.AOutOverride.T_GQ1_Override := ADS_CTH.Tags.Settings.T_GQ1_Override_M;
+		Parameters.IO.AOutOverride.T_GQ1_OverrideValue := ADS_CTH.Tags.Settings.T_GQ1_OverrideValue_MCMD;
+		Parameters.IO.AOutOverride.C_QN1_Override := ADS_CTH.Tags.Settings.C_QN1_Override_M;
+		Parameters.IO.AOutOverride.C_QN1_OverrideValue := ADS_CTH.Tags.Settings.C_QN1_OverrideValue_MCMD;
+		Parameters.IO.AOutOverride.H_QN1_Override := ADS_CTH.Tags.Settings.H_QN1_Override_M;
+		Parameters.IO.AOutOverride.H_QN1_OverrideValue := ADS_CTH.Tags.Settings.H_QN1_OverrideValue_MCMD;
+
+ADS_CTH.Tags.Status.F_QN1_Override_AL := Parameters.IO.AOutOverride.F_QN1_Override;
+ADS_CTH.Tags.Status.T_GQ1_Override_AL := Parameters.IO.AOutOverride.T_GQ1_Override;
+ADS_CTH.Tags.Status.F_GQ1_Override_AL := Parameters.IO.AOutOverride.F_GQ1_Override;
+ADS_CTH.Tags.Status.C_QN1_Override_AL := Parameters.IO.AOutOverride.C_QN1_Override;
+ADS_CTH.Tags.Status.H_QN1_Override_AL := Parameters.IO.AOutOverride.H_QN1_Override;
+ADS_CTH.Tags.Status.AL_A_Override_AL := Parameters.IO.DOutOverride.AL_A_Override;
+ADS_CTH.Tags.Status.H_GP1_Override_AL := Parameters.IO.DOutOverride.H_GP1_Override;
+ADS_CTH.Tags.Status.C_GP1_Override_AL := Parameters.IO.DOutOverride.C_GP1_Override;
+ADS_CTH.Tags.Status.F_QM1_Override_AL := Parameters.IO.DOutOverride.F_QM1_Override;
+ADS_CTH.Tags.Status.T_QM2_Override_AL := Parameters.IO.DOutOverride.T_QM2_Override;
+ADS_CTH.Tags.Status.R_QM1_Override_AL := Parameters.IO.DOutOverride.R_QM1_Override;
+ADS_CTH.Tags.Status.F_QM2_Override_AL := Parameters.IO.DOutOverride.F_QM2_Override;
+ADS_CTH.Tags.Status.T_QM1_1_Override_AL := Parameters.IO.DOutOverride.T_QM1_1_Override;
+ADS_CTH.Tags.Status.T_QM1_2_Override_AL := Parameters.IO.DOutOverride.T_QM1_2_Override;
+ADS_CTH.Tags.Status.T_QM1_3_Override_AL := Parameters.IO.DOutOverride.T_QM1_3_Override;
+ADS_CTH.Tags.Status.T_QM1_4_Override_AL := Parameters.IO.DOutOverride.T_QM1_4_Override;
+ADS_CTH.Tags.Status.T_QM1_5_Override_AL := Parameters.IO.DOutOverride.T_QM1_5_Override;
+ADS_CTH.Tags.Status.T_QM1_6_Override_AL := Parameters.IO.DOutOverride.T_QM1_6_Override;
+ADS_CTH.Tags.Status.T_RUN_Override_AL := Parameters.IO.DOutOverride.T_RUN_Override;
+ADS_CTH.Tags.Status.F_RUN_Override_AL := Parameters.IO.DOutOverride.F_RUN_Override;
+ADS_CTH.Tags.Status.P2_Override_AL := Parameters.IO.DOutOverride.P2_Override;
+ADS_CTH.Tags.Status.AL_A_Override_AL := Parameters.IO.DOutOverride.AL_A_Override;
+ADS_CTH.Tags.Status.AL_B_Override_AL := Parameters.IO.DOutOverride.AL_B_Override;
+ADS_CTH.Tags.Status.AL_C_Override_AL := Parameters.IO.DOutOverride.AL_C_Override;
+ADS_CTH.Tags.Status.AL_D_Override_AL := Parameters.IO.DOutOverride.AL_D_Override;
+
 			
 		FirePanelActive := FirePanelCTH.ENO;
 		TimeChannelEnabled := FALSE;

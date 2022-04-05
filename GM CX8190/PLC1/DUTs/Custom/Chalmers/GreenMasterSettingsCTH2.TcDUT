@@ -10,6 +10,18 @@ STRUCT
 	SV31_M: BOOL := FALSE; // Handställning  
 	SV31_OPM: REAL; // Handställning utsignal  
 	POST_RUN_FANS: TIME; // Eftergångstid fläktar
+	F_QN1_Override_M: BOOL; // VVX-reglering (0-10 V spjäll)
+	F_QN1_OverrideValue_MCMD: REAL; // VVX-reglering (0-10 V spjäll) $(scale "0 1 0 100", unit "%")
+	T_GQ1_Override_M: BOOL; // Tilluftsfläkt
+	T_GQ1_OverrideValue_MCMD: REAL; // Tilluftsfläkt $(scale "0 1 0 100", unit "%")
+	F_GQ1_Override_M: BOOL; // Frånluftsfläkt
+	F_GQ1_OverrideValue_MCMD: REAL; // Frånluftsfläkt $(scale "0 1 0 100", unit "%")
+	C_QN1_Override_M: BOOL; // Kylkrets ventil
+	C_QN1_OverrideValue_MCMD: REAL; // Kylkrets ventil $(scale "0 1 0 100", unit "%")
+	H_QN1_Override_M: BOOL; // Värmekrets ventil
+	H_QN1_OverrideValue_MCMD: REAL; // Värmekrets ventil $(scale "0 1 0 100", unit "%")
+	FirePanelSupplyFanSpeed: REAL := 0.65; // Brandpanel fläkthasighet tilluft $(scale "0 1 0 100", unit "%")
+	FirePanelExtractFanSpeed: REAL := 0.9; // Brandpanel fläkthasighet frånluft $(scale "0 1 0 100", unit "%")
 END_STRUCT
 END_TYPE
 ]]></Declaration>

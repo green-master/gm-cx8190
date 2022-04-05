@@ -53,6 +53,7 @@ VAR
 	i: INT;
 	w: WORD;
 	Rr: LREAL;
+	ManualAllowed: bool;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -65,6 +66,7 @@ END_VAR
 			Globals.SystemStartTime := NowDT();
 			EventLog.LogEvent(Message := 'Starting up', Kind := EventTypes.Information);
 			//EventLog.LogEventJSON(Message := 'Test data $${KFactor} and $${PressureControl.SP}', Kind := EventTypes.Debug, VarAdr := ADR(GreenMaster.Parameters.Regulation.ExtractAir), VarSize := SIZEOF(GreenMaster.Parameters.Regulation.ExtractAir), VarType := 'AirParameters');	
+			i := -4;
 			StartupDone := TRUE;
 		END_IF
 		SavedParameters := GreenMaster.GetParameters();
@@ -147,7 +149,6 @@ END_VAR
 					DI := GreenMasterDI,
 					AI := GreenMasterAI,
 					AI2 := GreenMasterAIU,
-					TCP_AI := SmokeControl.GreenMasterSmokeControl,  
 					Reverse_C_QN1 := UseReverse_C_QN1,
 					EnableFansAndDampers := Std_Interface.EN OR Stena_Interface.EN OR (CTH_Interface1.EN AND NOT CTH_Interface1.FirePanelActive)
 				);
@@ -174,7 +175,8 @@ END_VAR
 			GreenMaster.Parameters.IO.AIn.T_BP2_Error OR
 			GreenMaster.Parameters.IO.AIn.F_BP3_Error OR
 			GreenMaster.Parameters.IO.AIn.T_BF1_Error OR
-			GreenMaster.Parameters.IO.AIn.F_BF1_Error;	
+			GreenMaster.Parameters.IO.AIn.F_BF1_Error OR
+			GreenMaster.Parameters.IO.AIn.H_BT1_Error;	
 		
 		
 		// Save persistent data on power off or fail
@@ -207,16 +209,44 @@ END_VAR
 		IF Crash THEN
 			PTest^ := 111;
 		END_IF
+		
+		ManualAllowed := (NOT GreenMaster.FireAlarm()) AND 
+			(GreenMaster.GetParameters().System.Operation.State <> SystemStates.FirePanel);
+			
+		GreenMaster.GetParameters().Alarm.Status.B.ManualOverride := GreenMaster.GetParameters().IO.AOutOverride.F_QN1_Override OR
+		GreenMaster.GetParameters().IO.AOutOverride.T_GQ1_Override OR
+		GreenMaster.GetParameters().IO.AOutOverride.F_GQ1_Override OR
+		GreenMaster.GetParameters().IO.AOutOverride.C_QN1_Override OR
+		GreenMaster.GetParameters().IO.AOutOverride.H_QN1_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.AL_A_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.H_GP1_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.C_GP1_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.F_QM1_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.T_QM2_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.R_QM1_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.F_QM2_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.T_QM1_1_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.T_QM1_2_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.T_QM1_3_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.T_QM1_4_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.T_QM1_5_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.T_QM1_6_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.T_RUN_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.F_RUN_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.P2_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.AL_A_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.AL_B_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.AL_C_Override OR
+		GreenMaster.GetParameters().IO.DOutOverride.AL_D_Override;
+		
+		//Globals.IO.DIn.DI21 := Globals.IO.DOut.DO04 and (not Globals.IO.DIn.DI20);
 	//__CATCH
 		//ExceptionYet := TRUE; 			
 	//__ENDTRY
 ELSE
 	ExceptionYet := TRUE; 	
 END_IF
-
-Rr := -4;
-i := TO_INT(Rr);
-i := TO_INT(w);]]></ST>
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

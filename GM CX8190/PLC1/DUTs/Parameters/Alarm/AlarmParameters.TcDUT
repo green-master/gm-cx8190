@@ -19,6 +19,13 @@ STRUCT
 											FirePanelSupplyStop := TRUE, 
 											FirePanelExtractStart := TRUE, 
 											FirePanelExtractStop := TRUE,
+											FireExtract := TRUE,
+											FireExtractExternal := TRUE,
+											FireExtractPressure := TRUE,
+											FireExtractTemperature := TRUE,
+											FireSupply := TRUE,
+											FireLocal := TRUE,
+											
 											Fuse := TRUE,
 											AL01 := TRUE,
 											AL02 := TRUE,

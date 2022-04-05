@@ -4968,5 +4968,63 @@ END_VAR
         </XmlArchive>
       </CFC>
     </Implementation>
+    <Method Name="SetOverrides" Id="{09b97b0e-cefc-4c0c-b961-435325ba9e9d}">
+      <Declaration><![CDATA[METHOD SetOverrides : BOOL
+VAR_INPUT
+	Override: DigitalOutputOverrideParameters;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Main.ManualAllowed THEN
+	IO_DO_01.Override := Override.H_GP1_Override;
+	IO_DO_01.OverrideValue := Override.H_GP1_OverrideValue;
+	IO_DO_02.Override := Override.C_GP1_Override;
+	IO_DO_02.OverrideValue := Override.C_GP1_OverrideValue;
+	IO_DO_03.Override := Override.F_RUN_Override;
+	IO_DO_03.OverrideValue := Override.F_RUN_OverrideValue;
+	IO_DO_04.Override := Override.F_QM1_Override;
+	IO_DO_04.OverrideValue := Override.F_QM1_OverrideValue;
+	IO_DO_05.Override := Override.T_QM2_Override;
+	IO_DO_05.OverrideValue := Override.T_QM2_OverrideValue;
+	IO_DO_06.Override := Override.R_QM1_Override;
+	IO_DO_06.OverrideValue := Override.R_QM1_OverrideValue;
+	IO_DO_07.Override := Override.F_QM2_Override;
+	IO_DO_07.OverrideValue := Override.F_QM2_OverrideValue;
+	IO_DO_08.Override := Override.T_RUN_Override;
+	IO_DO_08.OverrideValue := Override.T_RUN_OverrideValue;
+	IO_DO_09.Override := Override.T_QM1_1_Override;
+	IO_DO_09.OverrideValue := Override.T_QM1_1_OverrideValue;
+	IO_DO_10.Override := Override.T_QM1_2_Override;
+	IO_DO_10.OverrideValue := Override.T_QM1_2_OverrideValue;
+	IO_DO_11.Override := Override.T_QM1_3_Override;
+	IO_DO_11.OverrideValue := Override.T_QM1_3_OverrideValue;
+	IO_DO_12.Override := Override.T_QM1_4_Override;
+	IO_DO_12.OverrideValue := Override.T_QM1_4_OverrideValue;
+	IO_DO_13.Override := Override.T_QM1_5_Override;
+	IO_DO_13.OverrideValue := Override.T_QM1_5_OverrideValue;
+	IO_DO_14.Override := Override.T_QM1_6_Override;
+	IO_DO_14.OverrideValue := Override.T_QM1_6_OverrideValue;
+	IO_DO_16.Override := Override.P2_Override;
+	IO_DO_16.OverrideValue := Override.P2_OverrideValue;
+ELSE	
+	IO_DO_01.Override := FALSE;
+	IO_DO_02.Override := FALSE;
+	IO_DO_03.Override := FALSE;
+	IO_DO_04.Override := FALSE;
+	IO_DO_05.Override := FALSE;
+	IO_DO_06.Override := FALSE;
+	IO_DO_07.Override := FALSE;
+	IO_DO_08.Override := FALSE;
+	IO_DO_09.Override := FALSE;
+	IO_DO_10.Override := FALSE;
+	IO_DO_11.Override := FALSE;
+	IO_DO_12.Override := FALSE;
+	IO_DO_13.Override := FALSE;
+	IO_DO_14.Override := FALSE;
+	IO_DO_16.Override := FALSE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

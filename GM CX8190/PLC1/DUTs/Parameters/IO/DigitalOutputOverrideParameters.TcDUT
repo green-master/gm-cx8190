@@ -31,6 +31,8 @@ STRUCT
     T_RUN_OverrideValue: BOOL; // Supply running (Aktiveras om tilluftsfläkten går)
     F_RUN_Override: BOOL; // Exhaust running (Aktiveras om frånluftsfläkten går)
     F_RUN_OverrideValue: BOOL; // Exhaust running (Aktiveras om frånluftsfläkten går)
+	P2_Override: BOOL;
+	P2_OverrideValue: BOOL;
 	
 	AL_A_Override: BOOL; // A-larm
 	AL_A_OverrideValue: BOOL; // A-larm

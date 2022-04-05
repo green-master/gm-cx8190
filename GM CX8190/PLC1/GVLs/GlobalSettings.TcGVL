@@ -12,7 +12,7 @@ VAR_GLOBAL PERSISTENT
 	WebAdsAccessRoot: STRING := 'Main.GreenMaster';
 	{attribute 'TcEncoding':='UTF-8'}
 	PlcType: STRING := 'CX8190';
-	PlcVersion: string := '1.0.32P4 CTH LA02';
+	PlcVersion: string := '1.0.32P6 CTH LA02';
 	Webname: STRING := 'NIBE AirSite GreenMaster';
 	Users: ARRAY [0..24] OF User := [
 		(Email := 'user', Password := 'user', Name := 'User', Permissions := Permissions.User),

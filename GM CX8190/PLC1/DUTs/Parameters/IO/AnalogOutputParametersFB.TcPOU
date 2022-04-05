@@ -25,20 +25,33 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[AO.F_QN1 := F_QN1;
-AO.T_GQ1 := T_GQ1;
-AO.F_GQ1 := F_GQ1;
-AO.C_QN1 := C_QN1;
-AO.H_QN1 := H_QN1;
+        <ST><![CDATA[IF (NOT Parameters.IO.AOutOverride.F_QN1_Override) OR (NOT Main.ManualAllowed) THEN
+	AO.F_QN1 := F_QN1;
+ELSE
+	AO.F_QN1 := Parameters.IO.AOutOverride.F_QN1_OverrideValue;
+END_IF
+IF (NOT Parameters.IO.AOutOverride.T_GQ1_Override) OR (NOT Main.ManualAllowed) THEN
+	AO.T_GQ1 := T_GQ1;
+ELSE
+	AO.T_GQ1 := Parameters.IO.AOutOverride.T_GQ1_OverrideValue;
+END_IF
+IF (NOT Parameters.IO.AOutOverride.F_GQ1_Override) OR (NOT Main.ManualAllowed) THEN
+	AO.F_GQ1 := F_GQ1;
+ELSE
+	AO.F_GQ1 := Parameters.IO.AOutOverride.F_GQ1_OverrideValue;
+END_IF
+IF (NOT Parameters.IO.AOutOverride.C_QN1_Override) OR (NOT Main.ManualAllowed) THEN
+	AO.C_QN1 := C_QN1;
+ELSE
+	AO.C_QN1 := Parameters.IO.AOutOverride.C_QN1_OverrideValue;
+END_IF
+IF (NOT Parameters.IO.AOutOverride.H_QN1_Override) OR (NOT Main.ManualAllowed) THEN
+	AO.H_QN1 := H_QN1;
+ELSE
+	AO.H_QN1 := Parameters.IO.AOutOverride.H_QN1_OverrideValue;
+END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="AnalogOutputParametersFB">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="AnalogOutputParametersFB.Update">
-      <LineId Id="6" Count="4" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

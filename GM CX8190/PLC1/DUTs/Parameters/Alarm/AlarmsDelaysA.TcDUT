@@ -26,7 +26,8 @@ STRUCT
 	AL06: TIME := T#5S;
 	AL07: TIME := T#5S;
 	AL08: TIME := T#5S;
-	DamperError: TIME := T#5S;
+	SupplyDamperError: TIME := T#5S;
+	ExtractDamperError: TIME := T#5S;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

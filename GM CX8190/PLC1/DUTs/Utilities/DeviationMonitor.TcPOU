@@ -44,34 +44,20 @@ END_IF
 IF TempError THEN
 	CurTimeError := LTIME();
 END_IF
-IF (NOT Error) AND (LTIME() > (CurTimeOk + OnDelay)) THEN
-	Error := TempError;
-END_IF; 
-IF Error AND (LTIME() > (CurTimeError + OffDelay)) THEN
-	Error := TempError;
-END_IF; 
+IF Main.GreenMaster.GetParameters().System.Operation.State <> SystemStates.Run THEN
+	TempError := False;
+END_IF
+IF EN THEN
+	IF (NOT Error) AND (LTIME() > (CurTimeOk + OnDelay)) THEN
+		Error := TempError;
+	END_IF; 
+	IF Error AND (LTIME() > (CurTimeError + OffDelay)) THEN
+		Error := TempError;
+	END_IF;
+ELSE
+	 Error := FALSE;
+END_IF
 ENO := EN;]]></ST>
     </Implementation>
-    <LineIds Name="DeviationMonitor">
-      <LineId Id="55" Count="0" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="52" Count="1" />
-      <LineId Id="60" Count="0" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="28" Count="1" />
-      <LineId Id="45" Count="2" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="41" Count="2" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

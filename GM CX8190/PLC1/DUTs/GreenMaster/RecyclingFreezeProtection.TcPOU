@@ -14,7 +14,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Hysteresis(Value := Main.GreenMaster.Parameters.IO.AIn.F_BP3, LimitValue := Main.GreenMaster.Parameters.Alarm.Limits.B.HeatExchangerHighPressure, Offset := 5);
+      <ST><![CDATA[Hysteresis(Value := Pressure, LimitValue := Main.GreenMaster.Parameters.Alarm.Limits.B.HeatExchangerHighPressure, Offset := 5);
 IF Hysteresis.Above THEN
 	CV_OUT := 0;
 ELSE
@@ -22,13 +22,5 @@ ELSE
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="RecyclingFreezeProtection">
-      <LineId Id="20" Count="0" />
-      <LineId Id="13" Count="1" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="17" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

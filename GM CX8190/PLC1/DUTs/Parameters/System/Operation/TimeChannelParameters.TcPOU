@@ -3,27 +3,27 @@
   <POU Name="TimeChannelParameters" Id="{da56f15f-511d-409e-bbc6-3822c1ef44b4}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TimeChannelParameters
 VAR_INPUT
-	TC01: TimeChannel1CH := ( Day := TimerDays.Monday, OffTime := 2400 );
-	TC02: TimeChannel1CH := ( Day := TimerDays.Tuesday, OffTime := 2400 );
-	TC03: TimeChannel1CH := ( Day := TimerDays.Wednesday, OffTime := 2400 );
-	TC04: TimeChannel1CH := ( Day := TimerDays.Thursday, OffTime := 2400 );
-	TC05: TimeChannel1CH := ( Day := TimerDays.Friday, OffTime := 2400 );
-	TC06: TimeChannel1CH := ( Day := TimerDays.Saturday, OffTime := 2400 );
-	TC07: TimeChannel1CH := ( Day := TimerDays.Sunday, OffTime := 2400 );
-	TC11: TimeChannel1CH := ( Day := TimerDays.Monday );
-	TC12: TimeChannel1CH := ( Day := TimerDays.Tuesday );
-	TC13: TimeChannel1CH := ( Day := TimerDays.Wednesday );
-	TC14: TimeChannel1CH := ( Day := TimerDays.Thursday );
-	TC15: TimeChannel1CH := ( Day := TimerDays.Friday );
-	TC16: TimeChannel1CH := ( Day := TimerDays.Saturday );
-	TC17: TimeChannel1CH := ( Day := TimerDays.Sunday );
-	TC21: TimeChannel1CH := ( Day := TimerDays.Monday );
-	TC22: TimeChannel1CH := ( Day := TimerDays.Tuesday );
-	TC23: TimeChannel1CH := ( Day := TimerDays.Wednesday );
-	TC24: TimeChannel1CH := ( Day := TimerDays.Thursday );
-	TC25: TimeChannel1CH := ( Day := TimerDays.Friday );
-	TC26: TimeChannel1CH := ( Day := TimerDays.Saturday );
-	TC27: TimeChannel1CH := ( Day := TimerDays.Sunday );
+	TC01: TimeChannel1CH := ( Day := TimerDays.Monday, Speed := 0, OnTime := 0530, OffTime := 1100 );
+	TC02: TimeChannel1CH := ( Day := TimerDays.Tuesday, Speed := 0, OnTime := 0530, OffTime := 1100 );
+	TC03: TimeChannel1CH := ( Day := TimerDays.Wednesday, Speed := 0, OnTime := 0530, OffTime := 1100 );
+	TC04: TimeChannel1CH := ( Day := TimerDays.Thursday, Speed := 0, OnTime := 0530, OffTime := 1100 );
+	TC05: TimeChannel1CH := ( Day := TimerDays.Friday, Speed := 0, OnTime := 0530, OffTime := 1100 );
+	TC06: TimeChannel1CH := ( Day := TimerDays.Saturday, Speed := 0, OnTime := 0530, OffTime := 1100 );
+	TC07: TimeChannel1CH := ( Day := TimerDays.Sunday, Speed := 0, OnTime := 0530, OffTime := 1100 );
+	TC11: TimeChannel1CH := ( Day := TimerDays.Monday, Speed := 1, OnTime := 1100, OffTime := 1430 );
+	TC12: TimeChannel1CH := ( Day := TimerDays.Tuesday, Speed := 1, OnTime := 1100, OffTime := 1430 );
+	TC13: TimeChannel1CH := ( Day := TimerDays.Wednesday, Speed := 1, OnTime := 1100, OffTime := 1430 );
+	TC14: TimeChannel1CH := ( Day := TimerDays.Thursday, Speed := 1, OnTime := 1100, OffTime := 1430 );
+	TC15: TimeChannel1CH := ( Day := TimerDays.Friday, Speed := 1, OnTime := 1100, OffTime := 1430 );
+	TC16: TimeChannel1CH := ( Day := TimerDays.Saturday, Speed := 1, OnTime := 1100, OffTime := 1430 );
+	TC17: TimeChannel1CH := ( Day := TimerDays.Sunday, Speed := 1, OnTime := 1100, OffTime := 1430 );
+	TC21: TimeChannel1CH := ( Day := TimerDays.Monday, Speed := 0, OnTime := 1430, OffTime := 2000 );
+	TC22: TimeChannel1CH := ( Day := TimerDays.Tuesday, Speed := 0, OnTime := 1430, OffTime := 2000 );
+	TC23: TimeChannel1CH := ( Day := TimerDays.Wednesday, Speed := 0, OnTime := 1430, OffTime := 2000 );
+	TC24: TimeChannel1CH := ( Day := TimerDays.Thursday, Speed := 0, OnTime := 1430, OffTime := 2000 );
+	TC25: TimeChannel1CH := ( Day := TimerDays.Friday, Speed := 0, OnTime := 1430, OffTime := 2000 );
+	TC26: TimeChannel1CH := ( Day := TimerDays.Saturday, Speed := 0, OnTime := 1430, OffTime := 2000 );
+	TC27: TimeChannel1CH := ( Day := TimerDays.Sunday, Speed := 0, OnTime := 1430, OffTime := 2000 );
 	Q: BOOL; // Result of the time channels
 	TC0_HighSpeed: BOOL := FALSE;
 	TC1_HighSpeed: BOOL := FALSE;
@@ -37,8 +37,5 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <LineIds Name="TimeChannelParameters">
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

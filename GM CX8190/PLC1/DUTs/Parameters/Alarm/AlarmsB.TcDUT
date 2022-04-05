@@ -16,13 +16,15 @@ STRUCT
 	SmokeDetectorServiceExtract: BOOL;
 	Pump1: BOOL;
 	Pump2: BOOL;
-	DamperError: BOOL;
+	//SupplyDamperError: BOOL;
+	//ExtractDamperError: BOOL;
 	CommunicationError: BOOL;
 	DamperModuleService: BOOL;
 	Watchdog: BOOL;
 	ExpansionTank: BOOL;
 	HeatExchangerHighPressure: BOOL;
-	OperatingTime: bool;
+	OperatingTime: BOOL;
+	ManualOverride: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

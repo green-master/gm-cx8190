@@ -4,26 +4,28 @@
     <Declaration><![CDATA[// MUST be in same order and number as AlarmSignals
 TYPE AlarmsDelaysB :
 STRUCT
-	RegulationDeviation: TIME := T#10M;
-	SupplyAirDeviation: TIME := T#10M;
-	ExtractAirDeviation: TIME := T#10M;
-	SupplyFan: TIME := T#5S;
-	ExtractFan: TIME := T#5S;
-	HeatExchangerEfficiency: TIME := T#5M;
+	RegulationDeviation: TIME := T#60M;
+	SupplyAirDeviation: TIME := T#60M;
+	ExtractAirDeviation: TIME := T#60M;
+	SupplyFan: TIME := T#1M;
+	ExtractFan: TIME := T#1M;
+	HeatExchangerEfficiency: TIME := T#60M;
 	Defrost: TIME := T#5S;
-	SupplyFilter: TIME := T#5S;
-	ExtractFilter: TIME := T#5S;
+	SupplyFilter: TIME := T#60M;
+	ExtractFilter: TIME := T#60M;
 	SmokeDetectorServiceSupply: TIME := T#5S;
 	SmokeDetectorServiceExtract: TIME := T#5S;
 	Pump1: TIME := T#5S;
 	Pump2: TIME := T#5S;
-	DamperError: TIME := T#30S;
+	//SupplyDamperError: TIME := T#30S;
+	//ExtractDamperError: TIME := T#30S;
 	CommunicationError: TIME := T#30S;
 	DamperModuleService: TIME := T#5S;
 	Watchdog: time := T#5m;
 	ExpansionTank: TIME := T#5S;
 	HeatExchangerHighPressure: TIME := T#30S;
 	OperatingTime: TIME := T#1S;
+	ManualOverride: TIME := T#1S;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
