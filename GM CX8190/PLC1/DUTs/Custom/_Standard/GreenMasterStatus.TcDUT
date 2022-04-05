@@ -10,9 +10,14 @@ SFP_PV: REAL; // Current SFPv |||| Aktuellt SFPv $(scale "0 5 0 5", unit "kW/(m�
 TX1_EFF_LAL: BOOL; // Larm låg verkningsgrad
 MODE_PV1 : INT; // Driftmod 0=stopp, 1=halvfart, 2=helfart
 F_BR1_AL :  BOOL; // Brandlarm F.BR1
-DAMPER_AL: BOOL; // Spjällarm
+SUPPLY_DAMPER_AL: BOOL; // Spjällarm tilluft
+EXTRACT_DAMPER_AL: BOOL; // Spjällarm frånluft
 OPTIME_AL: BOOL; // Larm hög drifttid
 TC_V : BOOL; // Tidkanal i aggregat är aktiv
+TC1_V: BOOL; // Tidkanal 1 i aggregat är aktiv
+TC2_V: BOOL; // Tidkanal 2 i aggregat är aktiv
+TC3_V: BOOL; // Tidkanal 3 i aggregat är aktiv
+TCLOC_V: BOOL; // Tidkanal lokal i aggregat är aktiv
 F_BR1_FAULT :  BOOL; // Servicelarm F.BR1
 FIRE_AL :  BOOL; // Brandlarm
 F_BRT2_AL :  BOOL; // Brandlarm frånluft temperatur (normalt 45 C)

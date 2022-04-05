@@ -155,11 +155,12 @@ IF EN THEN
 						ADR(SavedInterface.TemperatureControl_P), 
 						('Parameters.Regulation.Temperature.Control.P'), ('TemperatureControl_P'));	
 
-		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.Temperature.Control.I), 
+		ExchangeData(	ADR(Parameters.Regulation.Temperature.Control.I), 
 						ADR(ADS_Standard.Tags.Settings.TemperatureControl_I), 
+						SIZEOF(Parameters.Regulation.Temperature.Control.I),
 						ADR(SavedParameters.Regulation.Temperature.Control.I), 
 						ADR(SavedInterface.TemperatureControl_I), 
-						('Parameters.Regulation.Temperature.Control.I'), ('TemperatureControl_I'));	
+						'TIME', ('Parameters.Regulation.Temperature.Control.I'), ('TemperatureControl_I'));	
 
 
 		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.Temperature.Control.D), 
@@ -240,11 +241,12 @@ IF EN THEN
 						ADR(SavedInterface.SupplyFanControl_P), 
 						('Parameters.Regulation.SupplyAir.Control.P'), ('SupplyFanControl_P'));	
 		
-		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.SupplyAir.Control.I), 
+		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.Control.I), 
 						ADR(ADS_Standard.Tags.Settings.SupplyFanControl_I), 
+						SIZEOF(Parameters.Regulation.SupplyAir.Control.I),
 						ADR(SavedParameters.Regulation.SupplyAir.Control.I), 
 						ADR(SavedInterface.SupplyFanControl_I), 
-						('Parameters.Regulation.SupplyAir.Control.I'), ('SupplyFanControl_I'));	
+						'TIME', ('Parameters.Regulation.SupplyAir.Control.I'), ('SupplyFanControl_I'));	
 		
 		ExchangeData(	ADR(Parameters.Regulation.SupplyAir.SetPointAdjustment.Curve), 
 						ADR(ADS_Standard.Tags.Settings.T_GQ1_CURVE), 
@@ -278,11 +280,12 @@ IF EN THEN
 						ADR(SavedInterface.ExtractFanControl_P), 
 						('Parameters.Regulation.ExtractAir.Control.P'), ('ExtractFanControl_P'));	
 		
-		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.ExtractAir.Control.I), 
+		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.Control.I), 
 						ADR(ADS_Standard.Tags.Settings.ExtractFanControl_I), 
+						SIZEOF(Parameters.Regulation.ExtractAir.Control.I),
 						ADR(SavedParameters.Regulation.ExtractAir.Control.I), 
 						ADR(SavedInterface.ExtractFanControl_I), 
-						('Parameters.Regulation.ExtractAir.Control.I'), ('ExtractFanControl_I'));	
+						'TIME', ('Parameters.Regulation.ExtractAir.Control.I'), ('ExtractFanControl_I'));	
 		
 		ExchangeData(	ADR(Parameters.Regulation.ExtractAir.SetPointAdjustment.Curve), 
 						ADR(ADS_Standard.Tags.Settings.F_GQ1_CURVE), 
@@ -514,8 +517,13 @@ IF EN THEN
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.SFP_PV := TO_REAL(Parameters.Regulation.SystemSpecificFanPower);
 	ADS_Standard.Tags.Status.TC_V := Parameters.System.Operation.TimeChannels.Q;
+	ADS_Standard.Tags.Status.TC1_V := Parameters.System.Operation.TimeChannels.Q0;
+	ADS_Standard.Tags.Status.TC2_V := Parameters.System.Operation.TimeChannels.Q1;
+	ADS_Standard.Tags.Status.TC3_V := Parameters.System.Operation.TimeChannels.Q2;
+	ADS_Standard.Tags.Status.TCLOC_V := Parameters.System.Operation.TimeChannelsLocal.Q AND Parameters.Alarm.Active.B.Watchdog;
 	ADS_Standard.Tags.Status.F_BR1_AL := Parameters.Alarm.Active.A.FireExtract; // GM_XXL.DI.FireExtractAlarm;
-	ADS_Standard.Tags.Status.DAMPER_AL := Parameters.Alarm.Active.A.SupplyDamperError; // GM_XXL.DI.FireExtractAlarm;
+	ADS_Standard.Tags.Status.SUPPLY_DAMPER_AL := Parameters.Alarm.Active.A.SupplyDamperError; // GM_XXL.DI.FireExtractAlarm;
+	ADS_Standard.Tags.Status.EXTRACT_DAMPER_AL := Parameters.Alarm.Active.A.ExtractDamperError; // GM_XXL.DI.FireExtractAlarm;
 	ADS_Standard.Tags.Status.F_BRT2_AL := Parameters.Alarm.Active.A.FireExtractTemperature;
 	ADS_Standard.Tags.Status.F_BRT3_AL := Parameters.Alarm.Active.A.FireExtractPressure;
 	ADS_Standard.Tags.Status.T_BR1_AL := Parameters.Alarm.Active.A.FireSupply;

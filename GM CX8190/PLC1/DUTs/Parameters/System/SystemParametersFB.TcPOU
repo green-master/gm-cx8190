@@ -49,21 +49,23 @@ Operation.TimeChannels.TC25();
 Operation.TimeChannels.TC26();
 Operation.TimeChannels.TC27();
 
-Operation.TimeChannels.Q :=
+Operation.TimeChannels.Q0 :=
 	Operation.TimeChannels.TC01.Q OR
 	Operation.TimeChannels.TC02.Q OR
 	Operation.TimeChannels.TC03.Q OR
 	Operation.TimeChannels.TC04.Q OR
 	Operation.TimeChannels.TC05.Q OR
 	Operation.TimeChannels.TC06.Q OR
-	Operation.TimeChannels.TC07.Q OR
+	Operation.TimeChannels.TC07.Q;
+Operation.TimeChannels.Q1 :=
 	Operation.TimeChannels.TC11.Q OR
 	Operation.TimeChannels.TC12.Q OR
 	Operation.TimeChannels.TC13.Q OR
 	Operation.TimeChannels.TC14.Q OR
 	Operation.TimeChannels.TC15.Q OR
 	Operation.TimeChannels.TC16.Q OR
-	Operation.TimeChannels.TC17.Q OR
+	Operation.TimeChannels.TC17.Q;
+Operation.TimeChannels.Q2 :=
 	Operation.TimeChannels.TC21.Q OR
 	Operation.TimeChannels.TC22.Q OR
 	Operation.TimeChannels.TC23.Q OR
@@ -71,6 +73,8 @@ Operation.TimeChannels.Q :=
 	Operation.TimeChannels.TC25.Q OR
 	Operation.TimeChannels.TC26.Q OR
 	Operation.TimeChannels.TC27.Q;
+Operation.TimeChannels.Q := Operation.TimeChannels.Q0 OR Operation.TimeChannels.Q1 OR Operation.TimeChannels.Q2;
+
 
 Operation.TimeChannelsLocal.TC01();
 Operation.TimeChannelsLocal.TC02();
@@ -96,21 +100,23 @@ Operation.TimeChannelsLocal.TC25();
 Operation.TimeChannelsLocal.TC26();
 Operation.TimeChannelsLocal.TC27();
 
-Operation.TimeChannelsLocal.Q :=
+Operation.TimeChannelsLocal.Q0 :=
 	Operation.TimeChannelsLocal.TC01.Q OR
 	Operation.TimeChannelsLocal.TC02.Q OR
 	Operation.TimeChannelsLocal.TC03.Q OR
 	Operation.TimeChannelsLocal.TC04.Q OR
 	Operation.TimeChannelsLocal.TC05.Q OR
 	Operation.TimeChannelsLocal.TC06.Q OR
-	Operation.TimeChannelsLocal.TC07.Q OR
+	Operation.TimeChannelsLocal.TC07.Q;
+Operation.TimeChannelsLocal.Q1 :=
 	Operation.TimeChannelsLocal.TC11.Q OR
 	Operation.TimeChannelsLocal.TC12.Q OR
 	Operation.TimeChannelsLocal.TC13.Q OR
 	Operation.TimeChannelsLocal.TC14.Q OR
 	Operation.TimeChannelsLocal.TC15.Q OR
 	Operation.TimeChannelsLocal.TC16.Q OR
-	Operation.TimeChannelsLocal.TC17.Q OR
+	Operation.TimeChannelsLocal.TC17.Q;
+Operation.TimeChannelsLocal.Q2 :=
 	Operation.TimeChannelsLocal.TC21.Q OR
 	Operation.TimeChannelsLocal.TC22.Q OR
 	Operation.TimeChannelsLocal.TC23.Q OR
@@ -118,6 +124,7 @@ Operation.TimeChannelsLocal.Q :=
 	Operation.TimeChannelsLocal.TC25.Q OR
 	Operation.TimeChannelsLocal.TC26.Q OR
 	Operation.TimeChannelsLocal.TC27.Q;
+Operation.TimeChannelsLocal.Q := Operation.TimeChannelsLocal.Q0 OR Operation.TimeChannelsLocal.Q1 OR Operation.TimeChannelsLocal.Q2;
 ]]></ST>
     </Implementation>
   </POU>

@@ -22,6 +22,7 @@ STRUCT
 	H_QN1_OverrideValue_MCMD: REAL; // Värmekrets ventil $(scale "0 1 0 100", unit "%")
 	FirePanelSupplyFanSpeed: REAL := 0.65; // Brandpanel fläkthasighet tilluft $(scale "0 1 0 100", unit "%")
 	FirePanelExtractFanSpeed: REAL := 0.9; // Brandpanel fläkthasighet frånluft $(scale "0 1 0 100", unit "%")
+	STARTUP_HEATING_TEMP_LIMIT: REAL := 10; // Starta med eftervärming om kallare
 END_STRUCT
 END_TYPE
 ]]></Declaration>

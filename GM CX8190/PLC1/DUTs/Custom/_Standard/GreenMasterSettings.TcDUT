@@ -49,6 +49,7 @@ F_GQ1_CURVE:  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 SupplyFanControl_P :  REAL :=2; //  Supply air control P
 SupplyFanControl_I :  TIME :=T#2M; //  Supply air control I $(unit "s", scale "0 1000 0 1")
+SupplyControl_D :  TIME :=T#0M; //  Supply air control D (s) $(unit "s", scale "0 1000 0 1")
 ExtractFanControlMode :  FanControlTypes ; //  Control mode (0=Pressure/F.BP1, 1=Flow/F.BF1) for Extract Air
 ExtractFan_SP :  REAL := 275; //  Extract air control Set Point
 ExtractFanHighSpeed_SP :  REAL ; //  Extract air control high speed Set Point
@@ -57,6 +58,7 @@ T_GQ1_CURVE :  SetPointOffsetCurve; // Outdoorcompensation temperature
 
 ExtractFanControl_P :  REAL :=2; //  Extract air control P
 ExtractFanControl_I :  TIME :=T#2M; //  Extract air control I $(unit "s", scale "0 1000 0 1")
+ExtractControl_D :  TIME :=T#0M; //  Extract air control D (s) $(unit "s", scale "0 1000 0 1")
 NightCoolingEN :  BOOL :=FALSE; //  Use Night cooling
 NightCoolingTemperatureSP :  REAL :=18.0; //  Night cooling temperature Set Point, C
 FanStopDelayTime :  TIME :=T#2M; //  Fan stop delay cool down period $(unit "s", scale "0 1000 0 1")
@@ -95,6 +97,15 @@ T_STARTUP_DELAY: TIME := T#1M; // Startup heat recovery time
 FreezeControlSP: REAL := 15;
 GP83_AHL: REAL := 310; // VVX larmgräns
 GP83_AD: TIME := T#30S; // VVX Larmfördröjning
+
+FreezeControl_P :  REAL :=2; // Freeze control P
+FreezeControl_I :  TIME :=T#2M; // Freeze control I $(unit "s", scale "0 1000 0 1")
+FreezeControl_D :  TIME :=T#0M; // Freeze control D (s) $(unit "s", scale "0 1000 0 1")
+
+H_GP1_EX_TIME: TIME := T#60S; // Pump 1 exercise 30 to 120 s
+H_GP1_EX_INTERVAL: TIME := T#24H; // Pump 1 ex interval 24 - 168 h
+P2_EX_TIME: TIME := T#60S; // Pump 2 exercise 30 to 120 s
+P2_EX_INTERVAL: TIME := T#24H; // Pump 2 ex interval 24 - 168 h
 
 END_STRUCT
 END_TYPE

@@ -42,7 +42,8 @@ VAR
 	P2Temp: BOOL;
 	VvXHyst: Hysteresis;
 	Loop: INT;
-	StartupTransferToADS: bool;
+	StartupTransferToADS: BOOL;
+	Exerciser_P2: Exerciser;
 END_VAR
 VAR PERSISTENT
 	SavedSettings: GreenMasterSettingsCTH2;
@@ -89,7 +90,10 @@ IF EN THEN
 		ELSE
 			GM_XXL.Disable := TRUE;
 		END_IF
-		Parameters.IO.DOut.P2 := P2Temp;	
+		Exerciser_P2(Input := P2Temp, 
+			ExerciseTime := ADS_Standard.Tags.Settings.P2_EX_TIME,
+			ExerciseInterval :=  ADS_Standard.Tags.Settings.P2_EX_INTERVAL);
+		Parameters.IO.DOut.P2 := Exerciser_P2.Output;	
 		
 		FirePanelCTH(	Parameters := Parameters,
 						StartSupplyFan := Parameters.IO.DIn.FirePanelSupplyStart,
@@ -150,31 +154,31 @@ IF EN THEN
 		Parameters.IO.AOutOverride.H_QN1_Override := ADS_CTH.Tags.Settings.H_QN1_Override_M;
 		Parameters.IO.AOutOverride.H_QN1_OverrideValue := ADS_CTH.Tags.Settings.H_QN1_OverrideValue_MCMD;
 
-ADS_CTH.Tags.Status.F_QN1_Override_AL := Parameters.IO.AOutOverride.F_QN1_Override;
-ADS_CTH.Tags.Status.T_GQ1_Override_AL := Parameters.IO.AOutOverride.T_GQ1_Override;
-ADS_CTH.Tags.Status.F_GQ1_Override_AL := Parameters.IO.AOutOverride.F_GQ1_Override;
-ADS_CTH.Tags.Status.C_QN1_Override_AL := Parameters.IO.AOutOverride.C_QN1_Override;
-ADS_CTH.Tags.Status.H_QN1_Override_AL := Parameters.IO.AOutOverride.H_QN1_Override;
-ADS_CTH.Tags.Status.AL_A_Override_AL := Parameters.IO.DOutOverride.AL_A_Override;
-ADS_CTH.Tags.Status.H_GP1_Override_AL := Parameters.IO.DOutOverride.H_GP1_Override;
-ADS_CTH.Tags.Status.C_GP1_Override_AL := Parameters.IO.DOutOverride.C_GP1_Override;
-ADS_CTH.Tags.Status.F_QM1_Override_AL := Parameters.IO.DOutOverride.F_QM1_Override;
-ADS_CTH.Tags.Status.T_QM2_Override_AL := Parameters.IO.DOutOverride.T_QM2_Override;
-ADS_CTH.Tags.Status.R_QM1_Override_AL := Parameters.IO.DOutOverride.R_QM1_Override;
-ADS_CTH.Tags.Status.F_QM2_Override_AL := Parameters.IO.DOutOverride.F_QM2_Override;
-ADS_CTH.Tags.Status.T_QM1_1_Override_AL := Parameters.IO.DOutOverride.T_QM1_1_Override;
-ADS_CTH.Tags.Status.T_QM1_2_Override_AL := Parameters.IO.DOutOverride.T_QM1_2_Override;
-ADS_CTH.Tags.Status.T_QM1_3_Override_AL := Parameters.IO.DOutOverride.T_QM1_3_Override;
-ADS_CTH.Tags.Status.T_QM1_4_Override_AL := Parameters.IO.DOutOverride.T_QM1_4_Override;
-ADS_CTH.Tags.Status.T_QM1_5_Override_AL := Parameters.IO.DOutOverride.T_QM1_5_Override;
-ADS_CTH.Tags.Status.T_QM1_6_Override_AL := Parameters.IO.DOutOverride.T_QM1_6_Override;
-ADS_CTH.Tags.Status.T_RUN_Override_AL := Parameters.IO.DOutOverride.T_RUN_Override;
-ADS_CTH.Tags.Status.F_RUN_Override_AL := Parameters.IO.DOutOverride.F_RUN_Override;
-ADS_CTH.Tags.Status.P2_Override_AL := Parameters.IO.DOutOverride.P2_Override;
-ADS_CTH.Tags.Status.AL_A_Override_AL := Parameters.IO.DOutOverride.AL_A_Override;
-ADS_CTH.Tags.Status.AL_B_Override_AL := Parameters.IO.DOutOverride.AL_B_Override;
-ADS_CTH.Tags.Status.AL_C_Override_AL := Parameters.IO.DOutOverride.AL_C_Override;
-ADS_CTH.Tags.Status.AL_D_Override_AL := Parameters.IO.DOutOverride.AL_D_Override;
+		ADS_CTH.Tags.Status.F_QN1_Override_AL := Parameters.IO.AOutOverride.F_QN1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_GQ1_Override_AL := Parameters.IO.AOutOverride.T_GQ1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.F_GQ1_Override_AL := Parameters.IO.AOutOverride.F_GQ1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.C_QN1_Override_AL := Parameters.IO.AOutOverride.C_QN1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.H_QN1_Override_AL := Parameters.IO.AOutOverride.H_QN1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.AL_A_Override_AL := Parameters.IO.DOutOverride.AL_A_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.H_GP1_Override_AL := Parameters.IO.DOutOverride.H_GP1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.C_GP1_Override_AL := Parameters.IO.DOutOverride.C_GP1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.F_QM1_Override_AL := Parameters.IO.DOutOverride.F_QM1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_QM2_Override_AL := Parameters.IO.DOutOverride.T_QM2_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.R_QM1_Override_AL := Parameters.IO.DOutOverride.R_QM1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.F_QM2_Override_AL := Parameters.IO.DOutOverride.F_QM2_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_QM1_1_Override_AL := Parameters.IO.DOutOverride.T_QM1_1_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_QM1_2_Override_AL := Parameters.IO.DOutOverride.T_QM1_2_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_QM1_3_Override_AL := Parameters.IO.DOutOverride.T_QM1_3_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_QM1_4_Override_AL := Parameters.IO.DOutOverride.T_QM1_4_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_QM1_5_Override_AL := Parameters.IO.DOutOverride.T_QM1_5_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_QM1_6_Override_AL := Parameters.IO.DOutOverride.T_QM1_6_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.T_RUN_Override_AL := Parameters.IO.DOutOverride.T_RUN_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.F_RUN_Override_AL := Parameters.IO.DOutOverride.F_RUN_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.P2_Override_AL := Parameters.IO.DOutOverride.P2_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.AL_A_Override_AL := Parameters.IO.DOutOverride.AL_A_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.AL_B_Override_AL := Parameters.IO.DOutOverride.AL_B_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.AL_C_Override_AL := Parameters.IO.DOutOverride.AL_C_Override AND Parameters.Alarm.Active.B.ManualOverride;
+		ADS_CTH.Tags.Status.AL_D_Override_AL := Parameters.IO.DOutOverride.AL_D_Override AND Parameters.Alarm.Active.B.ManualOverride;
 
 			
 		FirePanelActive := FirePanelCTH.ENO;
