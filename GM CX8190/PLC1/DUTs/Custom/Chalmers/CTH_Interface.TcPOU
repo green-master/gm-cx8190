@@ -83,7 +83,9 @@ IF EN THEN
 			Parameters.System.Operation.State = SystemStates.StartupHeatRecovery) THEN
 			P2Temp := FALSE;
 		END_IF
-		VvXHyst(Value := Parameters.IO.AIn.F_BP3, LimitValue := Parameters.Alarm.Limits.B.HeatExchangerHighPressure, Offset := 5);
+		VvXHyst(Value := Parameters.IO.AIn.F_BP3, 
+			LimitValue := Parameters.Alarm.Limits.B.HeatExchangerHighPressure, 
+			Offset := ADS_CTH.Tags.Settings.GP83_Offset);
 		IF VvXHyst.Above THEN
 			P2Temp := TRUE;
 			GM_XXL.Disable := FALSE;

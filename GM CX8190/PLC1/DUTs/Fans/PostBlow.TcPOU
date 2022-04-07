@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="PostBlow" Id="{81880a7e-77e4-4120-9b13-a055d1b14a92}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PostBlow
+VAR_INPUT
+	CV_IN: LREAL;
+	Alarm: BOOL;
+END_VAR
+VAR_OUTPUT
+	CV_OUT: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Alarm OR Main.GreenMaster.GetParameters().System.Operation.State <> SystemStates.PostRun THEN
+	CV_OUT := CV_IN;
+ELSE
+	CV_OUT := 0.5;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

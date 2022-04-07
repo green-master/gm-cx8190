@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="PidController2" Id="{61fa259d-466d-4f50-a199-f0830294c2bb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PidController2
+VAR_INPUT
+	EN: BOOL := TRUE;
+	SP: LREAL;
+	PV: LREAL;
+	PB: LREAL := 1;
+	I: TIME := T#1M;
+	D: TIME;
+	SyncCV: LREAL;
+	Sync: BOOL;
+	Hold: BOOL;
+	MinOutput: LREAL := 0;
+	MaxOutput: LREAL := 1;
+END_VAR
+VAR_OUTPUT
+	CV: LREAL;
+	ENO: BOOL;
+	Error: LREAL;
+END_VAR
+VAR
+	Ctrl: FB_BA_PIDCtrl;
+	TempCV: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF PB > 0 THEN
+	Ctrl(	bEn := EN, 
+			rW := LREAL_TO_REAL(SP), 
+			rX := LREAL_TO_REAL(PV), 
+			rKp := LREAL_TO_REAL(1/PB * 1000), 
+			udiTn_ms := TIME_TO_UDINT(I), 
+			udiTv_ms := 0, 
+			udiTd_ms := TIME_TO_UDINT(D), 
+			rYMax := TO_REAL(MaxOutput * 1000), 
+			rYMin := TO_REAL(MinOutput * 1000), 
+			rSync := LREAL_TO_REAL(SyncCV * 1000), 
+			bSync := Sync, 		
+			rY => TempCV, 
+			rE => Error
+	);
+	CV := TempCV / 1000;
+	ENO := EN;
+ELSE
+	ENO := FALSE;
+	CV := 0;
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

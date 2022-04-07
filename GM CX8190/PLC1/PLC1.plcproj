@@ -26,6 +26,9 @@
     <Company>Nibe Airsite</Company>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\Controllers\PidController2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Custom\Chalmers\CTH_LA02.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +99,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Exercise\Exerciser.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Fans\PostBlow.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\GreenMaster\RecyclingFreezeProtection.TcPOU">

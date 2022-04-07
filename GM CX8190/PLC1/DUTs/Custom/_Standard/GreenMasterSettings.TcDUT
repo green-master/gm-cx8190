@@ -36,7 +36,7 @@ TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1
 //SetPointOffsetCurve :  SetPointOffsetCurve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20); // Outdoorcompensation temperature
 T_BT1_CURVE :  SetPointOffsetCurve; // Outdoorcompensation temperature
 
-TemperatureControl_P :  REAL :=10; //  Temperature control P
+TemperatureControl_P :  REAL :=25; //  Temperature control P
 TemperatureControl_I :  TIME :=T#2M; //  Temperature control I (s) $(unit "s", scale "0 1000 0 1")
 TemperatureControl_D :  TIME :=T#0M; //  Temperature control D (s) $(unit "s", scale "0 1000 0 1")
 StartupHeatRecoveryTime :  TIME :=T#0M; //  Time at startup to recover (s) $(unit "s", scale "0 1000 0 1")
@@ -107,6 +107,7 @@ H_GP1_EX_INTERVAL: TIME := T#24H; // Pump 1 ex interval 24 - 168 h
 P2_EX_TIME: TIME := T#60S; // Pump 2 exercise 30 to 120 s
 P2_EX_INTERVAL: TIME := T#24H; // Pump 2 ex interval 24 - 168 h
 
+ManualOverrideAlarmDelay: TIME := T#5M;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

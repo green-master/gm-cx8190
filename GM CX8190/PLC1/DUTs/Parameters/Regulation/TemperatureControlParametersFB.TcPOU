@@ -11,8 +11,8 @@ VAR_INPUT
 	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.IncreaseToHeat;
 	//SetPointAdjustment: SetPointAdjustment := ( Curve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20));
 	SetPointAdjustment: SetPointAdjustment;
-	Control: ControllerParameters := ( P := 10, I := T#2M, SP := 20, SP_HighSpeed := 20 );
-	FreezeProtectionControl: ControllerParameters := ( P := 10, I := T#20S, SP := 15 );
+	Control: ControllerParameters := ( P := 25, I := T#2M, SP := 20, SP_HighSpeed := 20 );
+	FreezeProtectionControl: ControllerParameters := ( P := 10, I := T#20S, D := T#5S, SP := 15 );
 	FreezeProtectionControlLimit: REAL := 15;
 	FreezeProtectionControlHysteresis: REAL := 1;
 	FreezeGuard: BOOL;

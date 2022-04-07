@@ -23,6 +23,8 @@ STRUCT
 	FirePanelSupplyFanSpeed: REAL := 0.65; // Brandpanel fläkthasighet tilluft $(scale "0 1 0 100", unit "%")
 	FirePanelExtractFanSpeed: REAL := 0.9; // Brandpanel fläkthasighet frånluft $(scale "0 1 0 100", unit "%")
 	STARTUP_HEATING_TEMP_LIMIT: REAL := 10; // Starta med eftervärming om kallare
+	GT21_LIMIT: REAL := 2; // Gräns för begränsning av SV32 mhs GT21
+	GP83_Offset: REAL := 10; // Hysteres för GP83 högt tryck
 END_STRUCT
 END_TYPE
 ]]></Declaration>

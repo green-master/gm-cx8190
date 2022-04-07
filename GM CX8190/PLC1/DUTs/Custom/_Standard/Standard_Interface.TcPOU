@@ -479,6 +479,13 @@ IF EN THEN
 						ADR(SavedInterface.GP83_AHL), 
 						'REAL', ('Parameters.Alarm.Limits.B.HeatExchangerHighPressure'), ('GP83_AHL'));	
 
+		ExchangeData(	ADR(Parameters.Alarm.Delay.B.ManualOverride), 
+						ADR(ADS_Standard.Tags.Settings.ManualOverrideAlarmDelay), 
+						SIZEOF(Parameters.Alarm.Delay.B.ManualOverride), 
+						ADR(SavedParameters.Alarm.Delay.B.ManualOverride), 
+						ADR(SavedInterface.ManualOverrideAlarmDelay), 
+						'TIME', ('Parameters.Alarm.Delay.B.ManualOverride'), ('ManualOverrideAlarmDelay'));	
+						
 		IF SavedInterface.WatchdogEnabled <> ADS_Standard.Tags.Settings.WatchdogEnabled THEN
 			SavedInterface.WatchdogEnabled := ADS_Standard.Tags.Settings.WatchdogEnabled;
 			Parameters.Alarm.Disabled.B.Watchdog := NOT ADS_Standard.Tags.Settings.WatchdogEnabled;
