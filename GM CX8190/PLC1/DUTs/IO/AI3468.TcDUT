@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AI3468" Id="{59e9a7d2-16b1-44c2-94e2-b3d531119133}">
+    <Declaration><![CDATA[TYPE AI3468 :
+STRUCT
+	AI1 AT %I*: INT;
+	AI1_Error AT %I*: BOOL;
+	AI2 AT %I*: INT;
+	AI2_Error AT %I*: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

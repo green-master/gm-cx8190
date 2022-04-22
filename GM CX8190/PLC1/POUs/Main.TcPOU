@@ -54,13 +54,15 @@ VAR
 	i: INT;
 	w: WORD;
 	Rr: LREAL;
+	UseKL3464: BOOL;
+
 END_VAR
 VAR PERSISTENT
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT ExceptionYet THEN
-	__TRY
+	//__TRY
 		EventLog(EventLogData := Globals.EventLog);
 		IF NOT StartupDone THEN
 			Globals.SystemStartTime := NowDT();
@@ -100,6 +102,11 @@ END_VAR
 		ELSE
 			UseReverse_C_QN1 := GreenMaster.Parameters.Io.AOutCalibration.C_QN1.InvertedOutput;
 		END_IF
+		
+		IF F_ToUCase(HostName.sHostName) = 'CX-503E4D' THEN
+			UseKL3464 := TRUE;
+		END_IF
+		
 		
 		IF GreenMaster.Parameters.System.Operation.IoUpdateEN THEN
 			GreenMasterDI(DIn := Globals.IO.DIn, DInLevels := GreenMaster.Parameters.IO.DInLevels);
@@ -219,9 +226,9 @@ END_VAR
 		IF Crash THEN
 			PTest^ := 111;
 		END_IF
-	__CATCH
-		ExceptionYet := TRUE; 			
-	__ENDTRY
+	//__CATCH
+	//	ExceptionYet := TRUE; 			
+	//__ENDTRY
 ELSE
 	ExceptionYet := TRUE; 	
 END_IF

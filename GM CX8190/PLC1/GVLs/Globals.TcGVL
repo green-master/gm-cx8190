@@ -19,6 +19,7 @@ VAR_GLOBAL
 	{attribute 'TcEncoding':='UTF-8'}
 	HostName: STRING;
 	IO: IOTypes;
+	AI3468: AI3468;
 END_VAR
 VAR_GLOBAL PERSISTENT
 	AlarmLog: AlarmLog;

@@ -32,16 +32,29 @@ END_VAR
       <ST><![CDATA[IF NOT FirstTime THEN
 	HostName(bExecute := TRUE);
 	IF NOT HostName.bBusy THEN	
-		IF F_ToUCase(HostName.sHostName) = 'CX-503E4D' THEN
-			Tags.Settings.RemoteAmsId := '5.80.62.86.1.1';
+		// E6
+		IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB01' THEN
+			Tags.Settings.RemoteAmsId := '10.138.21.150.1.1';
+			Tags.Status.isMaster := TRUE;
 		END_IF
-		IF F_ToUCase(HostName.sHostName) = 'CX-503E56' THEN
-			Tags.Settings.RemoteAmsId := '5.80.62.77.1.1';
+		IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB02' THEN
+			Tags.Settings.RemoteAmsId := '10.138.21.151.1.1';
+			Tags.Status.isMaster := FALSE;
 		END_IF
+		// E1
+		IF F_ToUCase(HostName.sHostName) = 'STU_E1-LB01' THEN
+			Tags.Settings.RemoteAmsId := '10.138.21.153.1.1';
+			Tags.Status.isMaster := TRUE;
+		END_IF
+		IF F_ToUCase(HostName.sHostName) = 'STU_E1-LB02' THEN
+			Tags.Settings.RemoteAmsId := '10.138.21.152.1.1';
+			Tags.Status.isMaster := FALSE;
+		END_IF
+		Tags.Status.isSlave := NOT Tags.Status.isMaster;
 		FirstTime := TRUE;
 	END_IF
 END_IF
-IF GetAmsNumbers() THEN
+IF TRUE THEN
 	// First time or remote AMS ID changed
 	NextState := ParallelStates.Idle;
 	EN_TON(IN := FALSE, PT := T#10S);

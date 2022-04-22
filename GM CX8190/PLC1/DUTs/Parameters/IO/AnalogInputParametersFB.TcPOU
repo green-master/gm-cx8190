@@ -19,7 +19,9 @@ VAR_INPUT
 	AI2: REFERENCE TO GreenMasterAIU_Base;
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
 END_VAR
-]]></Declaration>
+
+VAR
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT Parameters.System.Operation.Simulation THEN
 	Parameters.IO.AIn.F_BT1 := AI.F_BT1;
@@ -38,10 +40,17 @@ END_VAR
 	Parameters.IO.AIn.BT2_Error := AI.BT2_Error AND Parameters.IO.AIn.BT2_EN;
 	Parameters.IO.AIn.F_BT2 := AI.F_BT2;
 	Parameters.IO.AIn.F_BT2_Error := AI.F_BT2_Error AND Parameters.IO.AIn.F_BT2_EN;
-	Parameters.IO.AIn.F_BP1 := AI2.F_BP1;
-	Parameters.IO.AIn.F_BP1_Error := AI2.F_BP1_Error AND Parameters.IO.AIn.F_BP1_EN;
-	Parameters.IO.AIn.T_BP1 := AI2.T_BP1;
-	Parameters.IO.AIn.T_BP1_Error := AI2.T_BP1_Error AND Parameters.IO.AIn.T_BP1_EN;
+	IF Main.UseKL3464 THEN
+		Parameters.IO.AIn.T_BP1 := 500 * (TO_LREAL(Globals.AI3468.AI1) / 32767.0);
+		Parameters.IO.AIn.T_BP1_Error := Globals.AI3468.AI2_Error;
+		Parameters.IO.AIn.F_BP1 := 500 * (TO_LREAL(Globals.AI3468.AI2) / 32767.0);
+		Parameters.IO.AIn.F_BP1_Error := Globals.AI3468.AI1_Error;
+	ELSE
+		Parameters.IO.AIn.F_BP1 := AI2.F_BP1;
+		Parameters.IO.AIn.F_BP1_Error := AI2.F_BP1_Error AND Parameters.IO.AIn.F_BP1_EN;
+		Parameters.IO.AIn.T_BP1 := AI2.T_BP1;
+		Parameters.IO.AIn.T_BP1_Error := AI2.T_BP1_Error AND Parameters.IO.AIn.T_BP1_EN;
+	END_IF
 	Parameters.IO.AIn.F_BP2 := AI2.F_BP2;
 	Parameters.IO.AIn.F_BP2_Error := AI2.F_BP2_Error AND Parameters.IO.AIn.F_BP2_EN;
 	Parameters.IO.AIn.T_BP2 := AI2.T_BP2;

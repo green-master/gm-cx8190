@@ -6,7 +6,7 @@ STRUCT
 	Control: RegulationControlParameters;
 	//SupplyAir: AirParameters := (StartupFanSpeed := 0.3, SetPointAdjustment := (Curve := (Y1 := 165, Y2 := 165, Y3 := 165, Y4 := 165, Y5 := 165, Y6 := 165, Y7 := 165, Y8 := 165, Y9 := 165)));
 	//ExtractAir: AirParameters := (StartupFanSpeed := 0.4, SetPointAdjustment := (Curve := (Y1 := 160, Y2 := 160, Y3 := 160, Y4 := 160, Y5 := 160, Y6 := 160, Y7 := 160, Y8 := 160, Y9 := 160)));
-	SupplyAir: AirParameters := (StartupFanSpeed := 0.3);
+	SupplyAir: AirParameters := (StartupFanSpeed := 0.3, Fire := ( EN := FALSE ));
 	ExtractAir: AirParameters := (StartupFanSpeed := 0.4);
 	Temperature: TemperatureControlParameters;
 	NightCoolingLimit: LREAL;
