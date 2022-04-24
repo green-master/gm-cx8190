@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE FireParameters :
 STRUCT
 	EN: BOOL := TRUE; // Run fan when FIRE
-	Speed: LREAL := 0.3; // Speed when in FIRE (0-1)
+	Speed: LREAL := 0.5; // Speed when in FIRE (0-1)
 END_STRUCT
 END_TYPE
 ]]></Declaration>

@@ -13576,48 +13576,24 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147502770L</v>
+                    <v n="ConnectionId">2147501341L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">23</v>
-                      <v n="Y">11</v>
+                      <v n="X">28</v>
+                      <v n="Y">8</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
                     <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147490091L</v>
+                    <v n="CorrespondingPageId">2147483860L</v>
                     <v n="Locked">false</v>
                   </o>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">23</v>
-                        <v n="Y">11</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
                         <v n="X">28</v>
-                        <v n="Y">11</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">3</v>
-                      </o>
-                      <o>
-                        <v n="X">28</v>
-                        <v n="Y">9</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">12</v>
-                      </o>
-                      <o>
-                        <v n="X">34</v>
-                        <v n="Y">9</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">3</v>
-                      </o>
-                      <o>
-                        <v n="X">34</v>
                         <v n="Y">8</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">12</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">46</v>
@@ -14140,6 +14116,7 @@ CASE State OF
 		ADS_Standard.Tags.Settings.H_QN1_M := FALSE;
 		ADS_Standard.Tags.Settings.TX1_M := FALSE;
 		ADS_Standard.Tags.Settings.C_QN1_M := FALSE;
+		Fire();
 			
 	SystemStates.FireSupply:
 		ADS_Standard.Tags.Settings.T_GQ1_M := FALSE;

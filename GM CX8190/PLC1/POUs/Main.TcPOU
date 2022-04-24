@@ -103,7 +103,7 @@ END_VAR
 			UseReverse_C_QN1 := GreenMaster.Parameters.Io.AOutCalibration.C_QN1.InvertedOutput;
 		END_IF
 		
-		IF F_ToUCase(HostName.sHostName) = 'CX-503E4D' THEN
+		IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB02' THEN
 			UseKL3464 := TRUE;
 		END_IF
 		

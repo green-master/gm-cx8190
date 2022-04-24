@@ -18,7 +18,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF AirParameters.ControlMode <> LastControlMode THEN
+      <ST><![CDATA[(*
+IF AirParameters.ControlMode <> LastControlMode THEN
 	CASE AirParameters.ControlMode OF
 		FanControlTypes.Pressure:
 			AirParameters.Control := AirParameters.Defaults.Pressure;
@@ -42,6 +43,7 @@ ELSIF Parameters.Regulation.SaveDefaults THEN
 			AirParameters.Defaults.SlaveFlow := AirParameters.Control;
 	END_CASE	
 END_IF
+*)
 SetPointAdjustmentFB(X := Parameters.Regulation.CompensationTemperature, SetPointAdjustment := AirParameters.SetPointAdjustment);
 AirParameters.Control.CSP := (AirParameters.Control.SP + SetPointAdjustmentFB.Y) * AirParameters.AdjustCSP;
 IF AirParameters.Flow <> 0 THEN
