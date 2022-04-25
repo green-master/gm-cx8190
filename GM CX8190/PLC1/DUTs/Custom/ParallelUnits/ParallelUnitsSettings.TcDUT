@@ -4,12 +4,12 @@
     <Declaration><![CDATA[TYPE ParallelUnitsSettings :
 STRUCT
 	RemoteAmsId: STRING := '5.73.47.143.1.1';
-	PressureSupplySP: LREAL := 100;
-	PressureExtractSP: LREAL := 100;
+	PressureSupplySP: LREAL := 250;
+	PressureExtractSP: LREAL := 250;
 	StandaloneMaxFan: LREAL := 0.7;
 	DualMinFan: LREAL := 0.4;
-	Kp: LREAL := 0.25;
-	fTn: LREAL := 30;
+	Kp: LREAL := 0.1;
+	fTn: LREAL := 120;
 	fTv: LREAL := 1;
 	fTd: LREAL := 0;
 	RemoteOrder: RemoteOrder;
