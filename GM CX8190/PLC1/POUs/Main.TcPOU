@@ -105,6 +105,8 @@ END_VAR
 		
 		IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB02' THEN
 			UseKL3464 := TRUE;
+			//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			GreenMaster.GetParameters().Alarm.Polarity.A.FireSupply := TRUE;
 		END_IF
 		
 		

@@ -6,7 +6,8 @@ STRUCT
 	RemoteAmsId: STRING := '5.73.47.143.1.1';
 	PressureSupplySP: LREAL := 100;
 	PressureExtractSP: LREAL := 100;
-	StandaloneMaxFlow: LREAL := 5000;
+	StandaloneMaxFan: LREAL := 0.7;
+	DualMinFan: LREAL := 0.4;
 	Kp: LREAL := 0.25;
 	fTn: LREAL := 30;
 	fTv: LREAL := 1;

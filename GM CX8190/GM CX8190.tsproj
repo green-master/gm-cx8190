@@ -102,7 +102,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="10.138.21.151.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="10.138.21.150.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<IoIdleTask CycleTime="100000"/>
@@ -5078,6 +5078,8 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL06" VarB="DI 3 (KL1408)^Channel 6^Input"/>
 				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL07" VarB="DI 3 (KL1408)^Channel 7^Input"/>
 				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL08" VarB="DI 3 (KL1408)^Channel 8^Input"/>
+				<Link VarA="PlcTask Inputs^Globals.AI3468.AI1" VarB="AI 2.3 (KL3468-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.AI3468.AI2" VarB="AI 2.3 (KL3468-4)^Channel 2^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
@@ -5094,7 +5096,6 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI07_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 3^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI08_Error" VarB="AI 2.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
-				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI09" VarB="Inputs^State"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI01" VarB="DI 1 (KL1408)^Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI02" VarB="DI 1 (KL1408)^Channel 2^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.DIn.DI03" VarB="DI 1 (KL1408)^Channel 3^Input"/>

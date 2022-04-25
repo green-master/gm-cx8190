@@ -3,13 +3,11 @@
   <DUT Name="ParallelUnitsStatus" Id="{cc155ffc-f805-41ba-9ea5-38e44e17862e}">
     <Declaration><![CDATA[TYPE ParallelUnitsStatus :
 STRUCT
+	MasterActive: BOOL;
 	IsMaster: BOOL;
 	IsSlave: BOOL;
-	SupplyFlow: LREAL;
-	ExtractFlow: LREAL;
 	SupplyFanSpeed: LREAL;
 	ExtractFanSpeed: LREAL;
-	Mode: ParallelModes;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
