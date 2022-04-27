@@ -52,7 +52,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="172.20.10.254.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="10.133.0.22.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<IoIdleTask CycleTime="100000"/>
@@ -682,7 +682,7 @@
 			<Device Id="3" DevType="120">
 				<Name>Device CTH (CX-BK)</Name>
 				<DevData>000000c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000007000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
-				<Image Id="3" AddrType="1" ImageType="3" SizeIn="128" SizeOut="128">
+				<Image Id="3" AddrType="1" ImageType="3" SizeIn="116" SizeOut="116">
 					<Name>Image</Name>
 				</Image>
 				<Box Id="3" BoxType="9703" AmsPort="28929">
@@ -1385,7 +1385,119 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								</Var>
 							</Vars>
 						</Term>
-						<Term Id="34" TermType="#xd8c" Fieldbus="6">
+						<Term Id="29" TermType="#xd88" Fieldbus="6">
+							<Name>AI 4X (KL3464)</Name>
+							<ImageId>33</ImageId>
+							<Vars VarGrpType="3">
+								<Name>Channel 1</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>608</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>616</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>608</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>616</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 2</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>632</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>640</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>632</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>640</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 3</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>656</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>664</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>656</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>664</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 4</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>680</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>688</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>680</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>688</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+						</Term>
+						<Term Id="34" Disabled="true" TermType="#xd8c" Fieldbus="6">
 							<Name>AI 4.1 (KL3468-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
@@ -1497,7 +1609,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								</Var>
 							</Vars>
 						</Term>
-						<Term Id="35" TermType="#xd8c" Fieldbus="6">
+						<Term Id="35" Disabled="true" TermType="#xd8c" Fieldbus="6">
 							<Name>AI 4.2 (KL3468-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
@@ -1505,25 +1617,25 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>USINT</Type>
-									<BitOffs>704</BitOffs>
+									<BitOffs>608</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data In</Name>
 									<Type>INT</Type>
-									<BitOffs>712</BitOffs>
+									<BitOffs>616</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>USINT</Type>
-									<BitOffs>704</BitOffs>
+									<BitOffs>608</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data Out</Name>
 									<Type>INT</Type>
-									<BitOffs>712</BitOffs>
+									<BitOffs>616</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1532,25 +1644,25 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>USINT</Type>
-									<BitOffs>728</BitOffs>
+									<BitOffs>632</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data In</Name>
 									<Type>INT</Type>
-									<BitOffs>736</BitOffs>
+									<BitOffs>640</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>USINT</Type>
-									<BitOffs>728</BitOffs>
+									<BitOffs>632</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data Out</Name>
 									<Type>INT</Type>
-									<BitOffs>736</BitOffs>
+									<BitOffs>640</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1559,25 +1671,25 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>USINT</Type>
-									<BitOffs>752</BitOffs>
+									<BitOffs>656</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data In</Name>
 									<Type>INT</Type>
-									<BitOffs>760</BitOffs>
+									<BitOffs>664</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>USINT</Type>
-									<BitOffs>752</BitOffs>
+									<BitOffs>656</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data Out</Name>
 									<Type>INT</Type>
-									<BitOffs>760</BitOffs>
+									<BitOffs>664</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1586,25 +1698,25 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>USINT</Type>
-									<BitOffs>776</BitOffs>
+									<BitOffs>680</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data In</Name>
 									<Type>INT</Type>
-									<BitOffs>784</BitOffs>
+									<BitOffs>688</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>USINT</Type>
-									<BitOffs>776</BitOffs>
+									<BitOffs>680</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data Out</Name>
 									<Type>INT</Type>
-									<BitOffs>784</BitOffs>
+									<BitOffs>688</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1617,7 +1729,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>992</BitOffs>
+									<BitOffs>896</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1626,7 +1738,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>993</BitOffs>
+									<BitOffs>897</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1635,7 +1747,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>994</BitOffs>
+									<BitOffs>898</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1644,7 +1756,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>995</BitOffs>
+									<BitOffs>899</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1653,7 +1765,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>996</BitOffs>
+									<BitOffs>900</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1662,7 +1774,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>997</BitOffs>
+									<BitOffs>901</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1671,7 +1783,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>998</BitOffs>
+									<BitOffs>902</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1680,7 +1792,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>999</BitOffs>
+									<BitOffs>903</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1693,7 +1805,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1000</BitOffs>
+									<BitOffs>904</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1702,7 +1814,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1001</BitOffs>
+									<BitOffs>905</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1711,7 +1823,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1002</BitOffs>
+									<BitOffs>906</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1720,7 +1832,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1003</BitOffs>
+									<BitOffs>907</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1729,7 +1841,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1004</BitOffs>
+									<BitOffs>908</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1738,7 +1850,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1005</BitOffs>
+									<BitOffs>909</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1747,7 +1859,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1006</BitOffs>
+									<BitOffs>910</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1756,7 +1868,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1007</BitOffs>
+									<BitOffs>911</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1769,7 +1881,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1008</BitOffs>
+									<BitOffs>912</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1778,7 +1890,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1009</BitOffs>
+									<BitOffs>913</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1787,7 +1899,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1010</BitOffs>
+									<BitOffs>914</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1796,7 +1908,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1011</BitOffs>
+									<BitOffs>915</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1805,7 +1917,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1012</BitOffs>
+									<BitOffs>916</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1814,7 +1926,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1013</BitOffs>
+									<BitOffs>917</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1823,7 +1935,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1014</BitOffs>
+									<BitOffs>918</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1832,7 +1944,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1015</BitOffs>
+									<BitOffs>919</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1845,7 +1957,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1016</BitOffs>
+									<BitOffs>920</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1854,7 +1966,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1017</BitOffs>
+									<BitOffs>921</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1863,7 +1975,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1018</BitOffs>
+									<BitOffs>922</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1872,7 +1984,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1019</BitOffs>
+									<BitOffs>923</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1881,7 +1993,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1020</BitOffs>
+									<BitOffs>924</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1890,7 +2002,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1021</BitOffs>
+									<BitOffs>925</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1899,7 +2011,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1022</BitOffs>
+									<BitOffs>926</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1908,7 +2020,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>1023</BitOffs>
+									<BitOffs>927</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -1921,7 +2033,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>992</BitOffs>
+									<BitOffs>896</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1930,7 +2042,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>993</BitOffs>
+									<BitOffs>897</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1939,7 +2051,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>994</BitOffs>
+									<BitOffs>898</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1948,7 +2060,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>995</BitOffs>
+									<BitOffs>899</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1957,7 +2069,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>996</BitOffs>
+									<BitOffs>900</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1966,7 +2078,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>997</BitOffs>
+									<BitOffs>901</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1975,7 +2087,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>998</BitOffs>
+									<BitOffs>902</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1984,7 +2096,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>999</BitOffs>
+									<BitOffs>903</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -1997,7 +2109,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1000</BitOffs>
+									<BitOffs>904</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2006,7 +2118,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1001</BitOffs>
+									<BitOffs>905</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2015,7 +2127,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1002</BitOffs>
+									<BitOffs>906</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2024,7 +2136,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1003</BitOffs>
+									<BitOffs>907</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2033,7 +2145,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1004</BitOffs>
+									<BitOffs>908</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2042,7 +2154,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1005</BitOffs>
+									<BitOffs>909</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2051,7 +2163,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1006</BitOffs>
+									<BitOffs>910</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2060,7 +2172,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1007</BitOffs>
+									<BitOffs>911</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2073,7 +2185,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1008</BitOffs>
+									<BitOffs>912</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2082,7 +2194,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1009</BitOffs>
+									<BitOffs>913</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2095,7 +2207,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1010</BitOffs>
+									<BitOffs>914</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2104,7 +2216,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>1011</BitOffs>
+									<BitOffs>915</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -2117,277 +2229,277 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>UINT</Type>
-									<BitOffs>800</BitOffs>
+									<BitOffs>704</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 0</Name>
 									<Type>USINT</Type>
-									<BitOffs>816</BitOffs>
+									<BitOffs>720</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 1</Name>
 									<Type>USINT</Type>
-									<BitOffs>824</BitOffs>
+									<BitOffs>728</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 2</Name>
 									<Type>USINT</Type>
-									<BitOffs>832</BitOffs>
+									<BitOffs>736</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 3</Name>
 									<Type>USINT</Type>
-									<BitOffs>840</BitOffs>
+									<BitOffs>744</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 4</Name>
 									<Type>USINT</Type>
-									<BitOffs>848</BitOffs>
+									<BitOffs>752</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 5</Name>
 									<Type>USINT</Type>
-									<BitOffs>856</BitOffs>
+									<BitOffs>760</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 6</Name>
 									<Type>USINT</Type>
-									<BitOffs>864</BitOffs>
+									<BitOffs>768</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 7</Name>
 									<Type>USINT</Type>
-									<BitOffs>872</BitOffs>
+									<BitOffs>776</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 8</Name>
 									<Type>USINT</Type>
-									<BitOffs>880</BitOffs>
+									<BitOffs>784</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 9</Name>
 									<Type>USINT</Type>
-									<BitOffs>888</BitOffs>
+									<BitOffs>792</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 10</Name>
 									<Type>USINT</Type>
-									<BitOffs>896</BitOffs>
+									<BitOffs>800</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 11</Name>
 									<Type>USINT</Type>
-									<BitOffs>904</BitOffs>
+									<BitOffs>808</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 12</Name>
 									<Type>USINT</Type>
-									<BitOffs>912</BitOffs>
+									<BitOffs>816</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 13</Name>
 									<Type>USINT</Type>
-									<BitOffs>920</BitOffs>
+									<BitOffs>824</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 14</Name>
 									<Type>USINT</Type>
-									<BitOffs>928</BitOffs>
+									<BitOffs>832</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 15</Name>
 									<Type>USINT</Type>
-									<BitOffs>936</BitOffs>
+									<BitOffs>840</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 16</Name>
 									<Type>USINT</Type>
-									<BitOffs>944</BitOffs>
+									<BitOffs>848</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 17</Name>
 									<Type>USINT</Type>
-									<BitOffs>952</BitOffs>
+									<BitOffs>856</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 18</Name>
 									<Type>USINT</Type>
-									<BitOffs>960</BitOffs>
+									<BitOffs>864</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 19</Name>
 									<Type>USINT</Type>
-									<BitOffs>968</BitOffs>
+									<BitOffs>872</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 20</Name>
 									<Type>USINT</Type>
-									<BitOffs>976</BitOffs>
+									<BitOffs>880</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 21</Name>
 									<Type>USINT</Type>
-									<BitOffs>984</BitOffs>
+									<BitOffs>888</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>UINT</Type>
-									<BitOffs>800</BitOffs>
+									<BitOffs>704</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 0</Name>
 									<Type>USINT</Type>
-									<BitOffs>816</BitOffs>
+									<BitOffs>720</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 1</Name>
 									<Type>USINT</Type>
-									<BitOffs>824</BitOffs>
+									<BitOffs>728</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 2</Name>
 									<Type>USINT</Type>
-									<BitOffs>832</BitOffs>
+									<BitOffs>736</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 3</Name>
 									<Type>USINT</Type>
-									<BitOffs>840</BitOffs>
+									<BitOffs>744</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 4</Name>
 									<Type>USINT</Type>
-									<BitOffs>848</BitOffs>
+									<BitOffs>752</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 5</Name>
 									<Type>USINT</Type>
-									<BitOffs>856</BitOffs>
+									<BitOffs>760</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 6</Name>
 									<Type>USINT</Type>
-									<BitOffs>864</BitOffs>
+									<BitOffs>768</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 7</Name>
 									<Type>USINT</Type>
-									<BitOffs>872</BitOffs>
+									<BitOffs>776</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 8</Name>
 									<Type>USINT</Type>
-									<BitOffs>880</BitOffs>
+									<BitOffs>784</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 9</Name>
 									<Type>USINT</Type>
-									<BitOffs>888</BitOffs>
+									<BitOffs>792</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 10</Name>
 									<Type>USINT</Type>
-									<BitOffs>896</BitOffs>
+									<BitOffs>800</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 11</Name>
 									<Type>USINT</Type>
-									<BitOffs>904</BitOffs>
+									<BitOffs>808</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 12</Name>
 									<Type>USINT</Type>
-									<BitOffs>912</BitOffs>
+									<BitOffs>816</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 13</Name>
 									<Type>USINT</Type>
-									<BitOffs>920</BitOffs>
+									<BitOffs>824</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 14</Name>
 									<Type>USINT</Type>
-									<BitOffs>928</BitOffs>
+									<BitOffs>832</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 15</Name>
 									<Type>USINT</Type>
-									<BitOffs>936</BitOffs>
+									<BitOffs>840</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 16</Name>
 									<Type>USINT</Type>
-									<BitOffs>944</BitOffs>
+									<BitOffs>848</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 17</Name>
 									<Type>USINT</Type>
-									<BitOffs>952</BitOffs>
+									<BitOffs>856</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 18</Name>
 									<Type>USINT</Type>
-									<BitOffs>960</BitOffs>
+									<BitOffs>864</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 19</Name>
 									<Type>USINT</Type>
-									<BitOffs>968</BitOffs>
+									<BitOffs>872</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 20</Name>
 									<Type>USINT</Type>
-									<BitOffs>976</BitOffs>
+									<BitOffs>880</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 21</Name>
 									<Type>USINT</Type>
-									<BitOffs>984</BitOffs>
+									<BitOffs>888</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -4681,12 +4793,16 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI16" VarB="AI 3.2 (KL3208-0010-4)^Channel 4^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI16_Error" VarB="AI 3.2 (KL3208-0010-4)^Channel 4^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17" VarB="AI 4.1 (KL3468-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17" VarB="AI 4X (KL3464)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI17_Error" VarB="AI 4.1 (KL3468-4)^Channel 1^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18" VarB="AI 4.1 (KL3468-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18" VarB="AI 4X (KL3464)^Channel 2^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI18_Error" VarB="AI 4.1 (KL3468-4)^Channel 2^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19" VarB="AI 4.1 (KL3468-4)^Channel 3^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19" VarB="AI 4X (KL3464)^Channel 3^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI19_Error" VarB="AI 4.1 (KL3468-4)^Channel 3^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20" VarB="AI 4.1 (KL3468-4)^Channel 4^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20" VarB="AI 4X (KL3464)^Channel 4^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI20_Error" VarB="AI 4.1 (KL3468-4)^Channel 4^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI21" VarB="AI 4.2 (KL3468-4)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI21_Error" VarB="AI 4.2 (KL3468-4)^Channel 1^State" Size="1" OffsB="6"/>

@@ -514,7 +514,7 @@ IF EN THEN
 		Parameters.Alarm.Delay.A.Freeze := ADS_Standard.Tags.Settings.FREEZE_AD;
 		Parameters.Alarm.Delay.B.Pump1 := ADS_Standard.Tags.Settings.P1_AD;
 		Parameters.Alarm.Delay.B.Pump2 := ADS_Standard.Tags.Settings.P2_AD;
-		Parameters.Alarm.Limits.A.FreezeGuard := ADS_Standard.Tags.Settings.FREEZE_ALL;
+		//Parameters.Alarm.Limits.A.FreezeGuard := ADS_Standard.Tags.Settings.FREEZE_ALL;
 	END_IF
 	
 	// Status transfers

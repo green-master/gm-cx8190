@@ -47,7 +47,7 @@ STRUCT
 											ExtractFilter := TRUE,
 											SmokeDetectorServiceSupply := TRUE,
 											Pump1 := TRUE,
-											Pump2 := TRUE,
+											Pump2 := FALSE,
 											CommunicationError := TRUE,
 											Watchdog := TRUE,
 											ManualOverride := TRUE

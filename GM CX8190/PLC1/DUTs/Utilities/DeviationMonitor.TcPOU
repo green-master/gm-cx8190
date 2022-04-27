@@ -33,21 +33,21 @@ IF Mode = DeviationMonitorMode.Diff THEN
 	UseTargetValue := DiffAllowed;
 END_IF
 Hyst(Value := UseValue, LimitValue := UseTargetValue, Offset := Hysteresis);
-IF (Mode = DeviationMonitorMode.Above) OR (Mode = DeviationMonitorMode.Diff) THEN
-	TempError := Hyst.Above;
-ELSIF Mode = DeviationMonitorMode.Below THEN
-	TempError := Hyst.Below;	
-END_IF
-IF NOT TempError THEN
-	CurTimeOk := LTIME();
-END_IF
-IF TempError THEN
-	CurTimeError := LTIME();
-END_IF
-IF Main.GreenMaster.GetParameters().System.Operation.State <> SystemStates.Run THEN
-	TempError := False;
-END_IF
 IF EN THEN
+	IF (Mode = DeviationMonitorMode.Above) OR (Mode = DeviationMonitorMode.Diff) THEN
+		TempError := Hyst.Above;
+	ELSIF Mode = DeviationMonitorMode.Below THEN
+		TempError := Hyst.Below;	
+	END_IF
+	IF NOT TempError THEN
+		CurTimeOk := LTIME();
+	END_IF
+	IF TempError THEN
+		CurTimeError := LTIME();
+	END_IF
+	IF Main.GreenMaster.GetParameters().System.Operation.State <> SystemStates.Run THEN
+		TempError := False;
+	END_IF
 	IF (NOT Error) AND (LTIME() > (CurTimeOk + OnDelay)) THEN
 		Error := TempError;
 	END_IF; 
@@ -55,7 +55,8 @@ IF EN THEN
 		Error := TempError;
 	END_IF;
 ELSE
-	 Error := FALSE;
+	CurTimeOk := LTIME();
+	Error := FALSE;
 END_IF
 ENO := EN;]]></ST>
     </Implementation>
