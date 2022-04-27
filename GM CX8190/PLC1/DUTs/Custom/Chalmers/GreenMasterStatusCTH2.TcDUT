@@ -27,32 +27,33 @@ STRUCT
 	GT45_FAULT: BOOL; // Givarfel, innan tilluftsbatteri
 	GT46_PV: REAL; // Kallaste punkten
 	GT46_FAULT: BOOL; // Givarfel, kallaste punkten
+	GP61_AL: BOOL; // Larm exp kärl
 	T_BT4_PV: REAL;
 	T_BT4_FAULT: BOOL;
 	F_QN1_Override_AL: BOOL;
-T_GQ1_Override_AL: BOOL;
-F_GQ1_Override_AL: BOOL;
-C_QN1_Override_AL: BOOL;
-H_QN1_Override_AL: BOOL;
-H_GP1_Override_AL: BOOL;
-C_GP1_Override_AL: BOOL;
-F_QM1_Override_AL: BOOL;
-T_QM2_Override_AL: BOOL;
-R_QM1_Override_AL: BOOL;
-F_QM2_Override_AL: BOOL;
-T_QM1_1_Override_AL: BOOL;
-T_QM1_2_Override_AL: BOOL;
-T_QM1_3_Override_AL: BOOL;
-T_QM1_4_Override_AL: BOOL;
-T_QM1_5_Override_AL: BOOL;
-T_QM1_6_Override_AL: BOOL;
-T_RUN_Override_AL: BOOL;
-F_RUN_Override_AL: BOOL;
-P2_Override_AL: BOOL;
-AL_A_Override_AL: BOOL;
-AL_B_Override_AL: BOOL;
-AL_C_Override_AL: BOOL;
-AL_D_Override_AL: BOOL;
+	T_GQ1_Override_AL: BOOL;
+	F_GQ1_Override_AL: BOOL;
+	C_QN1_Override_AL: BOOL;
+	H_QN1_Override_AL: BOOL;
+	H_GP1_Override_AL: BOOL;
+	C_GP1_Override_AL: BOOL;
+	F_QM1_Override_AL: BOOL;
+	T_QM2_Override_AL: BOOL;
+	R_QM1_Override_AL: BOOL;
+	F_QM2_Override_AL: BOOL;
+	T_QM1_1_Override_AL: BOOL;
+	T_QM1_2_Override_AL: BOOL;
+	T_QM1_3_Override_AL: BOOL;
+	T_QM1_4_Override_AL: BOOL;
+	T_QM1_5_Override_AL: BOOL;
+	T_QM1_6_Override_AL: BOOL;
+	T_RUN_Override_AL: BOOL;
+	F_RUN_Override_AL: BOOL;
+	P2_Override_AL: BOOL;
+	AL_A_Override_AL: BOOL;
+	AL_B_Override_AL: BOOL;
+	AL_C_Override_AL: BOOL;
+	AL_D_Override_AL: BOOL;
 
 END_STRUCT
 END_TYPE

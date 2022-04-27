@@ -142,6 +142,7 @@ IF EN THEN
 		ADS_CTH.Tags.Status.T_BT4_FAULT := Globals.IO.AIn.AI13_Error;
 
 		Parameters.Alarm.Status.B.ExpansionTank := Globals.IO.DIn.DI24;
+		ADS_CTH.Tags.Status.GP61_AL := Parameters.Alarm.Active.B.ExpansionTank;
 		
 		//Parameters.IO.AOutOverride.F_QN1_Override := ADS_CTH.Tags.Settings.F_QN1_Override_M;
 		//Parameters.IO.AOutOverride.F_QN1_OverrideValue := ADS_CTH.Tags.Settings.F_QN1_OverrideValue_MCMD;
