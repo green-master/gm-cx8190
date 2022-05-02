@@ -4,13 +4,13 @@
     <Declaration><![CDATA[TYPE ParallelUnitsSettings :
 STRUCT
 	RemoteAmsId: STRING := '5.73.47.143.1.1';
-	PressureSupplySP: LREAL := 250;
-	PressureExtractSP: LREAL := 250;
-	StandaloneMaxFan: LREAL := 0.7;
-	DualMinFan: LREAL := 0.4;
-	Kp: LREAL := 0.1;
-	fTn: LREAL := 120;
-	fTv: LREAL := 1;
+	PressureSupplySP: LREAL := 250; // Set Point for Master/Slave
+	PressureExtractSP: LREAL := 250; // Set Point for Master/Slave
+	StandaloneMaxFan: LREAL := 0.7; // Max fan speed for single unit
+	DualMinFan: LREAL := 0.4; // Min fan speed for dual units
+	Kp: LREAL := 0.1; // P
+	fTn: LREAL := 120; // I time
+	fTv: LREAL := 1; // D time
 	fTd: LREAL := 0;
 	RemoteOrder: RemoteOrder;
 END_STRUCT

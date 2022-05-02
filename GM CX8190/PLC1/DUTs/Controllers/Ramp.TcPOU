@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="Ramp" Id="{7dd2e9f8-290f-485d-b2c5-cf269a01f1a2}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Ramp
 VAR_INPUT
@@ -41,22 +41,19 @@ Elapsed := Timer.ElapsedTime();
 ENO := EN;
 ]]></ST>
     </Implementation>
-    <LineIds Name="Ramp">
-      <LineId Id="136" Count="0" />
-      <LineId Id="152" Count="0" />
-      <LineId Id="145" Count="0" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="146" Count="0" />
-      <LineId Id="149" Count="0" />
-      <LineId Id="148" Count="0" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="137" Count="1" />
-      <LineId Id="144" Count="0" />
-      <LineId Id="156" Count="0" />
-      <LineId Id="159" Count="0" />
-      <LineId Id="139" Count="0" />
-      <LineId Id="151" Count="0" />
-      <LineId Id="141" Count="1" />
-    </LineIds>
+    <Method Name="Restart" Id="{b538ebe1-311c-4e72-bd34-4c2a0ad326b8}">
+      <Declaration><![CDATA[METHOD Restart : BOOL
+VAR_INPUT
+	StartValue: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Value := StartValue;
+Timer.Restart();
+LastElapsed := 0;
+InitDone := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
