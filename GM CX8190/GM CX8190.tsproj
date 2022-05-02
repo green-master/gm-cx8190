@@ -102,7 +102,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="10.138.21.151.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="10.138.21.150.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<IoIdleTask CycleTime="100000"/>
@@ -2474,10 +2474,10 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 					<CxBk/>
 				</Box>
 			</Device>
-			<Device Id="4" Disabled="true" DevType="120">
+			<Device Id="4" DevType="120">
 				<Name>Device STD (CX-BK)</Name>
 				<DevData>000000c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000007000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
-				<Image Id="2" AddrType="1" ImageType="3">
+				<Image Id="2" AddrType="1" ImageType="3" SizeIn="102" SizeOut="102">
 					<Name>Image</Name>
 				</Image>
 				<Box Id="1" BoxType="9703" AmsPort="28929">
@@ -4943,6 +4943,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 		</Io>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{00000000-2002-0850-0120-500820000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^PLC1^PLC1 Instance">
 			<OwnerB Name="TIID^Device CTH (CX-BK)^Box CTH (CX-BK)">
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>

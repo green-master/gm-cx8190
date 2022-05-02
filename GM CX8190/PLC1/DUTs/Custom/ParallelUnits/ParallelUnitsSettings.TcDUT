@@ -5,13 +5,12 @@
 STRUCT
 	RemoteAmsId: STRING := '5.73.47.143.1.1';
 	PressureSupplySP: LREAL := 250; // Set Point for Master/Slave
-	PressureExtractSP: LREAL := 250; // Set Point for Master/Slave
+	PressureExtractSP: LREAL := 280; // Set Point for Master/Slave
 	StandaloneMaxFan: LREAL := 0.7; // Max fan speed for single unit
 	DualMinFan: LREAL := 0.4; // Min fan speed for dual units
-	Kp: LREAL := 0.1; // P
-	fTn: LREAL := 120; // I time
-	fTv: LREAL := 1; // D time
-	fTd: LREAL := 0;
+	Kp: LREAL := 1; // P
+	fTn: TIME := T#6M; // I time
+	fTv: TIME := T#2m; // D time
 	RemoteOrder: RemoteOrder;
 END_STRUCT
 END_TYPE
