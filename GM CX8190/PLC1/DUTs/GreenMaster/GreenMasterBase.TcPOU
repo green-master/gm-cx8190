@@ -9778,34 +9778,6 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147501341L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">28</v>
-                      <v n="Y">8</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147483860L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">28</v>
-                        <v n="Y">8</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
-                        <v n="X">46</v>
-                        <v n="Y">8</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
                     <v n="ConnectionId">2147501861L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">21</v>
@@ -13373,7 +13345,7 @@ END_VAR
                         <v n="X">20</v>
                         <v n="Y">10</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">100</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">31</v>
@@ -13603,6 +13575,34 @@ END_VAR
                       </o>
                     </l2>
                   </o>
+                  <o>
+                    <v n="ConnectionId">2147501341L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">28</v>
+                      <v n="Y">8</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147483860L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">28</v>
+                        <v n="Y">8</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">46</v>
+                        <v n="Y">8</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
                 </d2>
               </o>
             </o>
@@ -13767,9 +13767,9 @@ END_VAR
       <Implementation>
         <ST><![CDATA[
 IF Parameters.Regulation.ExtractAir.ControlMode =  FanControlTypes.Pressure  THEN
-	GetCurrentExtractAirPV := AI2.F_BP1;
+	GetCurrentExtractAirPV := Parameters.IO.AIn.F_BP1;
 ELSE
-	GetCurrentExtractAirPV := AI2.F_BF1;
+	GetCurrentExtractAirPV := Parameters.IO.AIn.F_BF1;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -13829,9 +13829,9 @@ END_VAR
       <Implementation>
         <ST><![CDATA[
 IF Parameters.Regulation.SupplyAir.ControlMode =  FanControlTypes.Pressure  THEN
-	GetCurrentSupplyAirPV := AI2.T_BP1;
+	GetCurrentSupplyAirPV := Parameters.IO.AIn.T_BP1;
 ELSE
-	GetCurrentSupplyAirPV := AI2.T_BF1;
+	GetCurrentSupplyAirPV := Parameters.IO.AIn.T_BF1;
 END_IF]]></ST>
       </Implementation>
     </Method>

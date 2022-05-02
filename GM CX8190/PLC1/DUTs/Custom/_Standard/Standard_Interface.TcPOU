@@ -749,21 +749,21 @@ IF EN THEN
 	ADS_Standard.Tags.Status.GT41_V := LREAL_TO_REAL(GT41.Value);
 
 *)	
-	IF NOT GM_XXL.AI2.T_BF1_Error THEN
-		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BF1);
+	IF NOT Parameters.IO.AIn.T_BF1_Error THEN
+		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL(Parameters.IO.AIn.T_BF1);
 	ELSE	
 		ADS_Standard.Tags.Status.T_BF1_PV := 0;
 	END_IF
-	IF NOT GM_XXL.AI2.F_BF1_Error THEN
-		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BF1);
+	IF NOT Parameters.IO.AIn.F_BF1_Error THEN
+		ADS_Standard.Tags.Status.F_BF1_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BF1);
 	ELSE	
 		ADS_Standard.Tags.Status.F_BF1_PV := 0;
 	END_IF
-	ADS_Standard.Tags.Status.T_BP1_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BP1);
-	ADS_Standard.Tags.Status.F_BP1_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP1);
-	ADS_Standard.Tags.Status.T_BP2_PV := LREAL_TO_REAL(GM_XXL.AI2.T_BP2);
-	ADS_Standard.Tags.Status.F_BP2_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP2);
-	ADS_Standard.Tags.Status.F_BP3_PV := LREAL_TO_REAL(GM_XXL.AI2.F_BP3);
+	ADS_Standard.Tags.Status.T_BP1_PV := LREAL_TO_REAL(Parameters.IO.AIn.T_BP1);
+	ADS_Standard.Tags.Status.F_BP1_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BP1);
+	ADS_Standard.Tags.Status.T_BP2_PV := LREAL_TO_REAL(Parameters.IO.AIn.T_BP2);
+	ADS_Standard.Tags.Status.F_BP2_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BP2);
+	ADS_Standard.Tags.Status.F_BP3_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BP3);
 	
 	ADS_Standard.Tags.Status.TX1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1);
 	ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1);

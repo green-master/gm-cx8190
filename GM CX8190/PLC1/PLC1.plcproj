@@ -137,6 +137,9 @@
     <Compile Include="DUTs\GreenMaster\SystemStatesRunModeExternal.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\IO\AI3468.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ModbusRTU\EBM_Speed.TcPOU">
       <SubType>Code</SubType>
     </Compile>
