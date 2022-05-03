@@ -147,6 +147,24 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
 			END_IF
+			IF F_ToUCase(HostName.sHostName) = 'AIRPLC-DEMO' THEN
+				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
+				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
+				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
+			END_IF
+			IF F_ToUCase(HostName.sHostName) = 'CX-662AA1' THEN
+				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
+				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
+				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
+			END_IF
 			GreenMaster.GetParameters().System.ProjectDefaultSet := TRUE;
 		END_IF
 		
