@@ -6,7 +6,8 @@ STRUCT
 	Operation: SystemOperationParameters;
 	Defrost: DefrostParameters;
 	Exercise: ExerciseParameters;
-	SystemTime: string;
+	SystemTime: STRING;
+	ProjectDefaultSet: BOOL;
 	{attribute 'TcEncoding':='UTF-8'}
 	Diagram: string[80];
 END_STRUCT
