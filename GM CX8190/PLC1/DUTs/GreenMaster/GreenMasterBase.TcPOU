@@ -11091,50 +11091,6 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147502147L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">69</v>
-                      <v n="Y">29</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">69</v>
-                        <v n="Y">29</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">2147502398L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">58</v>
-                      <v n="Y">50</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">58</v>
-                        <v n="Y">50</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
                     <v n="ConnectionId">2147500241L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">11</v>
@@ -13303,24 +13259,48 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147501341L</v>
+                    <v n="ConnectionId">2147502770L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">28</v>
-                      <v n="Y">8</v>
+                      <v n="X">23</v>
+                      <v n="Y">11</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
                     <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147483860L</v>
+                    <v n="CorrespondingPageId">2147490091L</v>
                     <v n="Locked">false</v>
                   </o>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">28</v>
-                        <v n="Y">8</v>
+                        <v n="X">23</v>
+                        <v n="Y">11</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">28</v>
+                        <v n="Y">11</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">3</v>
+                      </o>
+                      <o>
+                        <v n="X">28</v>
+                        <v n="Y">9</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">12</v>
+                      </o>
+                      <o>
+                        <v n="X">34</v>
+                        <v n="Y">9</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">3</v>
+                      </o>
+                      <o>
+                        <v n="X">34</v>
+                        <v n="Y">8</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">12</v>
                       </o>
                       <o>
                         <v n="X">46</v>
@@ -13411,28 +13391,6 @@ END_VAR
                         <v n="Y">24</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">2147502466L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">58</v>
-                      <v n="Y">51</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">58</v>
-                        <v n="Y">51</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
                       </o>
                     </l2>
                   </o>
@@ -13744,7 +13702,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Runnable := ENO AND (NOT (Parameters.Alarm.Active.A.Freeze OR Parameters.Alarm.Active.B.ExtractFan OR Parameters.Alarm.Active.B.SupplyFan)) AND
+        <ST><![CDATA[Runnable := ENO AND (
+	NOT (Parameters.Alarm.Active.A.Freeze OR 
+		Parameters.Alarm.Active.B.ExtractFan OR 
+		Parameters.Alarm.Active.B.SupplyFan OR 
+		Parameters.IO.AIn.F_BP1_Error OR
+		Parameters.IO.AIn.T_BP1_Error)
+	) AND
 	(Parameters.IO.DIn.Hand OR (Parameters.IO.DIn.Auto AND Parameters.System.Operation.TimeChannels.Q)) AND (ADS_Standard.Tags.Settings.RemoteStart > 0);]]></ST>
       </Implementation>
     </Method>
@@ -13764,11 +13728,14 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT FirstTime THEN
-	Parameters.IO.DIn.FireSupplyAlarm := TRUE;
-	Parameters.IO.DIn.FuseAlarm := TRUE;
 	FirstTime := TRUE;
 END_IF
-
+Globals.IO.DIn.DI02 := TRUE;
+Globals.IO.DIn.DI03 := TRUE;
+Globals.IO.DIn.DI11 := TRUE;
+Globals.IO.DIn.DI05 := TRUE;
+Globals.IO.DIn.DI06 := TRUE;
+Parameters.IO.AIn.H_BT1 := 10;
 Parameters.IO.DIn.F_QM2_Closed := ParametersFB.IO.DOut.F_QM2_OnTime < LTIME#5S; 
 Parameters.IO.DIn.F_QM2_Open := ParametersFB.IO.DOut.F_QM2_OnTime > LTIME#30S; 
 ]]></ST>
@@ -13861,7 +13828,7 @@ IF NextState <> State THEN
 			;
 
 		SystemStates.FireHandling:
-			;
+			SystemStateVentilation := FALSE;
 
 		SystemStates.FireExhaust:
 			Parameters.IO.DOut.F_QM1 := FALSE;

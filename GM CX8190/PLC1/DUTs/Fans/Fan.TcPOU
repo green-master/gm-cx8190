@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="Fan" Id="{e2c07891-656f-4991-b517-fea714494f3e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Fan
 VAR_INPUT
@@ -7,6 +7,8 @@ VAR_INPUT
 	SpeedSP: LREAL;
 	Override: BOOL;
 	OverrideCV: LREAL;
+	MaxSpeed: LREAL;
+	MaxSpeedEnabled: BOOL := TRUE;
 END_VAR
 VAR_OUTPUT
 	ENO: BOOL;
@@ -38,11 +40,10 @@ IF NOT Override THEN
 ELSE
 	SpeedCV := OverrideCV;
 END_IF
+IF MaxSpeedEnabled AND (SpeedCV > MaxSpeed) THEN
+	SpeedCV := MaxSpeed;
+END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="Fan">
-      <LineId Id="124" Count="10" />
-      <LineId Id="36" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
