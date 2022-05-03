@@ -675,6 +675,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_BP1_AL := Parameters.Alarm.Active.B.SupplyAirDeviation;
 	ADS_Standard.Tags.Status.T_BT1_AL := Parameters.Alarm.Active.B.RegulationDeviation;
 	
+	ADS_Standard.Tags.Status.H_BT1_LAL := Parameters.Alarm.Active.A.Freeze;
+	
 	ADS_Standard.Tags.Status.BT1_FAULT := Parameters.IO.AIn.BT1_Error;
 	ADS_Standard.Tags.Status.BT2_FAULT := Parameters.IO.AIn.BT2_Error;
 	ADS_Standard.Tags.Status.F_BF1_FAULT := Parameters.IO.AIn.F_BF1_Error;
