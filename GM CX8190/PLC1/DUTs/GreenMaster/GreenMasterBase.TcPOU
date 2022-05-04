@@ -2885,7 +2885,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"GetComponent(Name := ComponentNames.GM_OPT_CTH).EN"</v>
+                      <v n="Text">"TRUE"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147502532L</v>
                     </o>
@@ -3576,7 +3576,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.IO.DIn.H_GP1_Alarm"</v>
+                      <v n="Text">"Parameters.IO.DIn.H_GP1_Running"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147501958L</v>
                     </o>
@@ -9705,7 +9705,7 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147501969L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">30</v>
+                      <v n="X">31</v>
                       <v n="Y">36</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -9717,10 +9717,10 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">30</v>
+                        <v n="X">31</v>
                         <v n="Y">36</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
+                        <v n="Flags">100</v>
                       </o>
                       <o>
                         <v n="X">34</v>
@@ -9979,49 +9979,9 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147502533L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">55</v>
-                      <v n="Y">30</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147490091L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">55</v>
-                        <v n="Y">30</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
-                        <v n="X">56</v>
-                        <v n="Y">30</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">9</v>
-                      </o>
-                      <o>
-                        <v n="X">56</v>
-                        <v n="Y">34</v>
-                        <v n="IsJoint">true</v>
-                        <v n="Flags">30</v>
-                      </o>
-                      <o>
-                        <v n="X">58</v>
-                        <v n="Y">34</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
                     <v n="ConnectionId">2147502546L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">55</v>
+                      <v n="X">36</v>
                       <v n="Y">30</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -10033,25 +9993,31 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">55</v>
+                        <v n="X">36</v>
                         <v n="Y">30</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">56</v>
+                        <v n="X">42</v>
                         <v n="Y">30</v>
+                        <v n="IsJoint">true</v>
+                        <v n="Flags">29</v>
+                      </o>
+                      <o>
+                        <v n="X">42</v>
+                        <v n="Y">37</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
+                        <v n="X">51</v>
+                        <v n="Y">37</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">9</v>
                       </o>
                       <o>
-                        <v n="X">56</v>
-                        <v n="Y">34</v>
-                        <v n="IsJoint">true</v>
-                        <v n="Flags">30</v>
-                      </o>
-                      <o>
-                        <v n="X">56</v>
+                        <v n="X">51</v>
                         <v n="Y">42</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">6</v>
@@ -10059,6 +10025,52 @@ END_VAR
                       <o>
                         <v n="X">58</v>
                         <v n="Y">42</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147502533L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">36</v>
+                      <v n="Y">30</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147490091L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">36</v>
+                        <v n="Y">30</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">42</v>
+                        <v n="Y">30</v>
+                        <v n="IsJoint">true</v>
+                        <v n="Flags">29</v>
+                      </o>
+                      <o>
+                        <v n="X">51</v>
+                        <v n="Y">30</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">9</v>
+                      </o>
+                      <o>
+                        <v n="X">51</v>
+                        <v n="Y">34</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
+                        <v n="X">58</v>
+                        <v n="Y">34</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -13881,7 +13893,8 @@ CASE State OF
 		Parameters.IO.DOut.F_QM1 := TRUE;		
 		Parameters.IO.DOut.F_QM2 := TRUE;
 		Parameters.IO.DOut.R_QM1 := FALSE;
-		;
+		ExtractFanOverride(TRUE, 0);
+		SupplyFanOverride(TRUE, 0);
 
 	SystemStates.StartupHeatRecovery:
 		IF StateTime() > Parameters.System.Operation.ExhaustFanStartupDelay THEN
@@ -13896,8 +13909,7 @@ CASE State OF
 			Parameters.IO.DOut.T_QM1_6 := TRUE;
 		END_IF
 		IF StateTime() > Parameters.System.Operation.SupplyFanStartupDelay THEN
-			SupplyFanOverride(TRUE, Parameters.Regulation.ExtractAir.StartupFanSpeed);
-			//Parameters.IO.AOut.T_GQ1 := Parameters.Regulation.SupplyAir.StartupFanSpeed;			
+			SupplyFanOverride(TRUE, Parameters.Regulation.SupplyAir.StartupFanSpeed);
 		END_IF
 		OvrTemperatureControl := (StateTime() > LTIME#1000MS) AND (StateTime() < LTIME#2000MS);
 		

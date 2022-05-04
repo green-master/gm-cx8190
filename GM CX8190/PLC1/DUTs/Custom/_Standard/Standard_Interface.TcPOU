@@ -702,10 +702,10 @@ IF EN THEN
 											Parameters.Alarm.Active.A.FireExtractTemperature OR
 											Parameters.Alarm.Active.A.FireLocal OR
 											Parameters.Alarm.Active.A.FireSupply;
-	ADS_Standard.Tags.Status.H_GP1_V := GM_XXL.DI.H_GP1_Running;
-	ADS_Standard.Tags.Status.H_GP1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
-	ADS_Standard.Tags.Status.C_GP1_V := Globals.IO.DIn.DI22;
-	ADS_Standard.Tags.Status.C_GP1_AL := Globals.IO.DIn.DI23;
+	ADS_Standard.Tags.Status.H_GP1_V := Parameters.IO.DIn.H_GP1_Running;
+	ADS_Standard.Tags.Status.H_GP1_AL := Parameters.Alarm.Active.B.Pump1;
+	ADS_Standard.Tags.Status.C_GP1_V := Parameters.IO.DIn.C_GP1_Running;
+	ADS_Standard.Tags.Status.C_GP1_AL := Parameters.Alarm.Active.B.Pump2;
 	ADS_Standard.Tags.Status.T_BP2_HAL := Parameters.Alarm.Active.B.SupplyFilter;
 	ADS_Standard.Tags.Status.F_BP2_HAL := Parameters.Alarm.Active.B.ExtractFilter;
 	
