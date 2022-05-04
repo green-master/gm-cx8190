@@ -157,6 +157,8 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'CX-662AA1' THEN
+				GetComponent(Name := ComponentNames.SIMULATION).EN := TRUE;
+				GreenMaster.GetParameters().System.Operation.Simulation := TRUE;
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
