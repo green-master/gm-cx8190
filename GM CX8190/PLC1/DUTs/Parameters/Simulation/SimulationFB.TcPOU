@@ -14,7 +14,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[Main.GreenMaster.Simulate(Parameters := Main.GreenMaster.GetParameters(),
+	ParametersFB := Main.GreenMaster.GetParametersFB());]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

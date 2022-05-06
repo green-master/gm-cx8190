@@ -675,6 +675,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_BP1_AL := Parameters.Alarm.Active.B.SupplyAirDeviation;
 	ADS_Standard.Tags.Status.T_BT1_AL := Parameters.Alarm.Active.B.RegulationDeviation;
 	
+	ADS_Standard.Tags.Status.H_BT1_LAL := Parameters.Alarm.Active.A.Freeze;
+	
 	ADS_Standard.Tags.Status.BT1_FAULT := Parameters.IO.AIn.BT1_Error;
 	ADS_Standard.Tags.Status.BT2_FAULT := Parameters.IO.AIn.BT2_Error;
 	ADS_Standard.Tags.Status.F_BF1_FAULT := Parameters.IO.AIn.F_BF1_Error;
@@ -700,10 +702,10 @@ IF EN THEN
 											Parameters.Alarm.Active.A.FireExtractTemperature OR
 											Parameters.Alarm.Active.A.FireLocal OR
 											Parameters.Alarm.Active.A.FireSupply;
-	ADS_Standard.Tags.Status.H_GP1_V := GM_XXL.DI.H_GP1_Running;
-	ADS_Standard.Tags.Status.H_GP1_AL := FALSE; //GM_XXL.DI.H_GP1_Alarm;
-	ADS_Standard.Tags.Status.C_GP1_V := Globals.IO.DIn.DI22;
-	ADS_Standard.Tags.Status.C_GP1_AL := Globals.IO.DIn.DI23;
+	ADS_Standard.Tags.Status.H_GP1_V := Parameters.IO.DIn.H_GP1_Running;
+	ADS_Standard.Tags.Status.H_GP1_AL := Parameters.Alarm.Active.B.Pump1;
+	ADS_Standard.Tags.Status.C_GP1_V := Parameters.IO.DIn.C_GP1_Running;
+	ADS_Standard.Tags.Status.C_GP1_AL := Parameters.Alarm.Active.B.Pump2;
 	ADS_Standard.Tags.Status.T_BP2_HAL := Parameters.Alarm.Active.B.SupplyFilter;
 	ADS_Standard.Tags.Status.F_BP2_HAL := Parameters.Alarm.Active.B.ExtractFilter;
 	
@@ -729,12 +731,12 @@ IF EN THEN
 	ADS_Standard.Tags.Status.Temperature_CSP := LREAL_TO_REAL(Parameters.Regulation.Temperature.Control.CSP);
 	ADS_Standard.Tags.Status.T_BP1_CSP := LREAL_TO_REAL(Parameters.Regulation.SupplyAir.Control.CSP);
 	ADS_Standard.Tags.Status.F_BP1_CSP := LREAL_TO_REAL(Parameters.Regulation.ExtractAir.Control.CSP);
-	ADS_Standard.Tags.Status.F_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT1);
-	ADS_Standard.Tags.Status.T_BT2_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT2);
-	ADS_Standard.Tags.Status.T_BT3_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT3);
-	ADS_Standard.Tags.Status.H_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.H_BT1);
-	ADS_Standard.Tags.Status.T_BT1_PV := LREAL_TO_REAL(GM_XXL.AI.T_BT1);
-	ADS_Standard.Tags.Status.F_BT2_PV := LREAL_TO_REAL(GM_XXL.AI.F_BT2);
+	ADS_Standard.Tags.Status.F_BT1_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BT1);
+	ADS_Standard.Tags.Status.T_BT2_PV := LREAL_TO_REAL(Parameters.IO.AIn.T_BT2);
+	ADS_Standard.Tags.Status.T_BT3_PV := LREAL_TO_REAL(Parameters.IO.AIn.T_BT3);
+	ADS_Standard.Tags.Status.H_BT1_PV := LREAL_TO_REAL(Parameters.IO.AIn.H_BT1);
+	ADS_Standard.Tags.Status.T_BT1_PV := LREAL_TO_REAL(Parameters.IO.AIn.T_BT1);
+	ADS_Standard.Tags.Status.F_BT2_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BT2);
 	
 (*	Chalmers, egentligen batteriåtervinning...	
 	GT21(ProcessValue := AIn.AI09, ProcessError := AIn.AI09_Error);
