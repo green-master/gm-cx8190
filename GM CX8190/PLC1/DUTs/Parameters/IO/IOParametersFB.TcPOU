@@ -69,8 +69,13 @@ IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
 	Parameters.IO.Status.SensorStatus.T_BF1 := BoolToErrorText(Globals.IO.AIn.AI14_Error);
 	Parameters.IO.Status.SensorStatus.F_BF1 := BoolToErrorText(Globals.IO.AIn.AI15_Error);	
 ELSE
-	Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(GreenMaster.AI2.F_BP1_Error);
-	Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(GreenMaster.AI2.T_BP1_Error);
+	IF NOT Main.UseKL3464 THEN
+		Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(GreenMaster.AI2.F_BP1_Error);
+		Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(GreenMaster.AI2.T_BP1_Error);
+	ELSE
+		Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(Globals.AI3468.AI2_Error);
+		Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(Globals.AI3468.AI1_Error);
+	END_IF
 	Parameters.IO.Status.SensorStatus.F_BP2 := BoolToErrorText(GreenMaster.AI2.F_BP2_Error);
 	Parameters.IO.Status.SensorStatus.T_BP2 := BoolToErrorText(GreenMaster.AI2.T_BP2_Error);
 	Parameters.IO.Status.SensorStatus.F_BP3 := BoolToErrorText(GreenMaster.AI2.F_BP3_Error);

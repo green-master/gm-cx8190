@@ -8,7 +8,7 @@ STRUCT
 	HeaterOutputDirection: HeaterOutputDirections := HeaterOutputDirections.DecreaseToHeat;
 	//SetPointAdjustment: SetPointAdjustment := ( Curve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20));
 	SetPointAdjustment: SetPointAdjustment;
-	Control: ControllerParameters := ( P := 10, I := T#2M );
+	Control: ControllerParameters := ( SP := 20, P := 10, I := T#2M );
 	FreezeProtectionControl: ControllerParameters;
 	ColdRecycling: ColdRecyclingParameters;
 	Efficiency: LREAL;

@@ -3,9 +3,9 @@
   <DUT Name="RemoteOrder" Id="{7f95e125-9837-42c9-b5b2-3701635a9c02}">
     <Declaration><![CDATA[TYPE RemoteOrder :
 STRUCT
-	Mode: ParallelModes;
 	SupplySP: LREAL;
 	ExtractSP: LREAL;
+	Counter: INT;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

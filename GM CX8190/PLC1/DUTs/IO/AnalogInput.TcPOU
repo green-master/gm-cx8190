@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="AnalogInput" Id="{1d1cb0c1-c0d3-4db6-a9bb-1f03a14e198d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK AnalogInput EXTENDS BaseIO
 VAR_INPUT
@@ -60,23 +60,5 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="AnalogInput">
-      <LineId Id="70" Count="0" />
-      <LineId Id="3" Count="5" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="43" Count="2" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="93" Count="1" />
-      <LineId Id="10" Count="1" />
-      <LineId Id="96" Count="1" />
-      <LineId Id="12" Count="2" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="AnalogInput.GetValue">
-      <LineId Id="7" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
