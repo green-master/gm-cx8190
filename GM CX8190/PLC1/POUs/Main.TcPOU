@@ -137,8 +137,6 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB02' THEN
-				// !!!!!!!!!!!!!!!!!!!!
-				GreenMaster.GetParameters().Alarm.Polarity.A.FireSupply := TRUE;
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
