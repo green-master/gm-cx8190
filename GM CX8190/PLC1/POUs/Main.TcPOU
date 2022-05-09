@@ -17,8 +17,6 @@ VAR
 	test1: bool;
 	
 	Std_Interface : Standard_Interface;
-	CTH_Interface: CTH_Interface;
-	Stena_Interface: Stena_Interface;
 	ExtraAlarms_Interface: ExtraAlarms_Interface;
 	SmokeControl_Interface: SmokeControl_Interface;
 
@@ -165,6 +163,17 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
 			END_IF
+			IF (F_ToUCase(HostName.sHostName) = 'DIGINET-1') or (F_ToUCase(HostName.sHostName) = 'DIGINET-2') THEN
+				GetComponent(Name := ComponentNames.SIMULATION).EN := TRUE;
+				GreenMaster.GetParameters().System.Operation.Simulation := TRUE;
+				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
+				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
+				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
+			END_IF
 			GreenMaster.GetParameters().System.ProjectDefaultSet := TRUE;
 		END_IF
 		
@@ -176,11 +185,7 @@ END_VAR
 			GreenMasterAI2_RTU(Parameters:=GreenMaster.GetParameters(), EN:= TRUE);
 		END_IF
 		
-		//_iDbg:=ComponentNames.GM_OPT_STENA;
-		//Std_Interface(EN := GetComponent(Name := ComponentNames.GM_TAGS).EN, AIn := Globals.IO.AIn);
 		Std_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STD).EN, AIn := Globals.IO.AIn);
-		CTH_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_CTH).EN, AIn := Globals.IO.AIn);	
-		Stena_Interface(EN := GetComponent(Name := ComponentNames.GM_OPT_STENA).EN, AIn := Globals.IO.AIn);	
 		
 		// Redundant drift
 		IF GetComponent(Name := ComponentNames.REDUNDANCY).EN THEN
@@ -205,19 +210,6 @@ END_VAR
 						);
 		END_IF
 		
-		IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
-			Globals.IO.DOut.DO15 := GreenMaster.Parameters.Alarm.Active.A.FireExtract;
-			IF GreenMaster.Parameters.System.Operation.RemoteEN THEN
-				IF GreenMaster.Parameters.IO.AIn.T_BT1 > (GreenMaster.Parameters.Regulation.NightCoolingLimit + 0.5) THEN
-					NightCooling := CTH_Interface.NightCooling;	
-				END_IF
-				IF GreenMaster.Parameters.IO.AIn.T_BT1 < GreenMaster.Parameters.Regulation.NightCoolingLimit THEN
-					NightCooling := FALSE;		
-				END_IF
-				GreenMaster.GetParameters().System.Operation.FireDamperUsed := FALSE;		
-			END_IF
-		END_IF
-		
 		IF GetComponent(Name := ComponentNames.GM_BASE).EN THEN
 			GreenMaster.Update(DO_ := GreenMasterDO, AO := GreenMasterAO);
 			GreenMaster(
@@ -229,7 +221,7 @@ END_VAR
 				TCP_AI := SmokeControl.GreenMasterSmokeControl,  
 				Reverse_C_QN1 := UseReverse_C_QN1,
 				NightCooling := NightCooling,
-				EnableFansAndDampers := Std_Interface.EN OR Stena_Interface.EN OR (CTH_Interface.EN AND NOT CTH_Interface.FirePanelActive)
+				EnableFansAndDampers := Std_Interface.EN
 			);
 		END_IF
 		

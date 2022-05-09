@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <GVL Name="GlobalSettings" Id="{ea9bdfda-dc64-4f7f-812b-2ebfec7dc7e4}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
@@ -34,8 +34,6 @@ VAR_GLOBAL PERSISTENT
 		(Name := ComponentNames.GM_SMOKE_CONTROL, EN := TRUE, Path := 'Main.GreenMaster.ParametersSC', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.SMOKE_CONTROL_ADS, EN := TRUE, Path := 'ADS_SmokeControl.Tags', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.GM_OPT_STD, EN := TRUE, Path := 'ADS_Standard.Tags', Resource := 'Parameter', Permissions := Permissions.User),
-		(Name := ComponentNames.GM_OPT_CTH, EN := FALSE, Path := 'ADS_CTH.Tags2', Resource := 'Parameter', Permissions := Permissions.User),
-		(Name := ComponentNames.GM_OPT_STENA, EN := FALSE, Path := 'ADS_STENA.Tags', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.SIMULATION, EN := FALSE, Path := 'Main.GreenMaster.Simulation', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.REDUNDANCY, EN := FALSE, Path := 'Main.GreenMaster.Redundancy', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.EXTRA_ALARMS, EN := TRUE, Path := 'ADS_ExtraAlarms.Tags', Resource := 'Parameter', Permissions := Permissions.User),
