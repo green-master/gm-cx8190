@@ -6,6 +6,13 @@ STRUCT
 	SupplySP: LREAL;
 	ExtractSP: LREAL;
 	Counter: INT;
+	TimeChannels: TimeChannelParameters;
+	TemperatureControl: ControllerParameters;
+	TemperatureSetPointAdjustment: SetPointAdjustment; 
+	SupplyAirControl: ControllerParameters; 
+	SupplyAirSetPointAdjustment: SetPointAdjustment; 
+	ExtractAirControl: ControllerParameters; 
+	ExtractAirSetPointAdjustment: SetPointAdjustment; 
 END_STRUCT
 END_TYPE
 ]]></Declaration>
