@@ -60,28 +60,18 @@ Parameters.IO.Status.SensorStatus.BT1 := BoolToErrorText(Globals.IO.AIn.AI06_Err
 Parameters.IO.Status.SensorStatus.BT2 := BoolToErrorText(Globals.IO.AIn.AI07_Error);
 Parameters.IO.Status.SensorStatus.F_BT2 := BoolToErrorText(Globals.IO.AIn.AI08_Error);
 
-IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
-	Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(Globals.IO.AIn.AI09_Error);
-	Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(Globals.IO.AIn.AI10_Error);
-	Parameters.IO.Status.SensorStatus.F_BP2 := BoolToErrorText(Globals.IO.AIn.AI11_Error);
-	Parameters.IO.Status.SensorStatus.T_BP2 := BoolToErrorText(Globals.IO.AIn.AI12_Error);
-	Parameters.IO.Status.SensorStatus.F_BP3 := BoolToErrorText(Globals.IO.AIn.AI13_Error);
-	Parameters.IO.Status.SensorStatus.T_BF1 := BoolToErrorText(Globals.IO.AIn.AI14_Error);
-	Parameters.IO.Status.SensorStatus.F_BF1 := BoolToErrorText(Globals.IO.AIn.AI15_Error);	
+IF NOT Main.UseKL3464 THEN
+	Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(GreenMaster.AI2.F_BP1_Error);
+	Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(GreenMaster.AI2.T_BP1_Error);
 ELSE
-	IF NOT Main.UseKL3464 THEN
-		Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(GreenMaster.AI2.F_BP1_Error);
-		Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(GreenMaster.AI2.T_BP1_Error);
-	ELSE
-		Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(Globals.AI3468.AI2_Error);
-		Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(Globals.AI3468.AI1_Error);
-	END_IF
-	Parameters.IO.Status.SensorStatus.F_BP2 := BoolToErrorText(GreenMaster.AI2.F_BP2_Error);
-	Parameters.IO.Status.SensorStatus.T_BP2 := BoolToErrorText(GreenMaster.AI2.T_BP2_Error);
-	Parameters.IO.Status.SensorStatus.F_BP3 := BoolToErrorText(GreenMaster.AI2.F_BP3_Error);
-	Parameters.IO.Status.SensorStatus.T_BF1 := BoolToErrorText(GreenMaster.AI2.T_BF1_Error);
-	Parameters.IO.Status.SensorStatus.F_BF1 := BoolToErrorText(GreenMaster.AI2.F_BF1_Error);	
+	Parameters.IO.Status.SensorStatus.F_BP1 := BoolToErrorText(Globals.AI3468.AI2_Error);
+	Parameters.IO.Status.SensorStatus.T_BP1 := BoolToErrorText(Globals.AI3468.AI1_Error);
 END_IF
+Parameters.IO.Status.SensorStatus.F_BP2 := BoolToErrorText(GreenMaster.AI2.F_BP2_Error);
+Parameters.IO.Status.SensorStatus.T_BP2 := BoolToErrorText(GreenMaster.AI2.T_BP2_Error);
+Parameters.IO.Status.SensorStatus.F_BP3 := BoolToErrorText(GreenMaster.AI2.F_BP3_Error);
+Parameters.IO.Status.SensorStatus.T_BF1 := BoolToErrorText(GreenMaster.AI2.T_BF1_Error);
+Parameters.IO.Status.SensorStatus.F_BF1 := BoolToErrorText(GreenMaster.AI2.F_BF1_Error);	
 
 StartTime();
 IF (StartTime.ET > LTIME#20S) and (not Parameters.System.Operation.Simulation) THEN
@@ -96,24 +86,13 @@ IF (StartTime.ET > LTIME#20S) and (not Parameters.System.Operation.Simulation) T
 	AnySensorError := AnySensorError OR Globals.IO.AIn.AI07_Error;
 	AnySensorError := AnySensorError OR Globals.IO.AIn.AI08_Error;
 	
-	IF GetComponent(Name := ComponentNames.GM_OPT_CTH).EN THEN
-		AnySensorError := AnySensorError OR Globals.IO.AIn.AI09_Error;
-		AnySensorError := AnySensorError OR Globals.IO.AIn.AI10_Error;
-		AnySensorError := AnySensorError OR Globals.IO.AIn.AI11_Error;
-		AnySensorError := AnySensorError OR Globals.IO.AIn.AI12_Error;
-		AnySensorError := AnySensorError OR Globals.IO.AIn.AI13_Error;
-		AnySensorError := AnySensorError OR Globals.IO.AIn.AI14_Error;
-		AnySensorError := AnySensorError OR Globals.IO.AIn.AI15_Error;	
-	ELSE
-		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP1_Error;
-		AnySensorError := AnySensorError OR GreenMaster.AI2.T_BP1_Error;
-		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP2_Error;
-		AnySensorError := AnySensorError OR GreenMaster.AI2.T_BP2_Error;
-		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP3_Error;
-		AnySensorError := AnySensorError OR GreenMaster.AI2.T_BF1_Error;
-		AnySensorError := AnySensorError OR GreenMaster.AI2.F_BF1_Error;	
-	END_IF
-	
+	AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP1_Error;
+	AnySensorError := AnySensorError OR GreenMaster.AI2.T_BP1_Error;
+	AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP2_Error;
+	AnySensorError := AnySensorError OR GreenMaster.AI2.T_BP2_Error;
+	AnySensorError := AnySensorError OR GreenMaster.AI2.F_BP3_Error;
+	AnySensorError := AnySensorError OR GreenMaster.AI2.T_BF1_Error;
+	AnySensorError := AnySensorError OR GreenMaster.AI2.F_BF1_Error;	
 	
 END_IF
 ]]></ST>
