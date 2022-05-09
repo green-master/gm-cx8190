@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <GVL Name="GlobalSettings" Id="{ea9bdfda-dc64-4f7f-812b-2ebfec7dc7e4}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
@@ -13,7 +13,7 @@ VAR_GLOBAL PERSISTENT
 	WebAdsAccessRoot: STRING := 'Main.GreenMaster';
 	{attribute 'TcEncoding':='UTF-8'}
 	PlcType: STRING := 'CX8190';
-	PlcVersion: string := '1.0.33P2';
+	PlcVersion: string := '1.0.33P3';
 	Webname: STRING := 'NIBE AirSite GreenMaster';
 	Users: ARRAY [0..24] OF User := [
 		(Email := 'user', Password := 'user', Name := 'User', Permissions := Permissions.User),
