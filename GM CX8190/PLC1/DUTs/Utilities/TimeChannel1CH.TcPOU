@@ -3,18 +3,9 @@
   <POU Name="TimeChannel1CH" Id="{817b1f2b-aa0c-4f9b-9e15-9571de197f24}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TimeChannel1CH
 VAR_INPUT
-	EN: BOOL := TRUE;// Enable the time channel (settings must also be enabled)
-	Speed            : INT;		// 0,1=normal speed, 2=high speed $(skip)
-	OnTime           : UINT;	(* Hour/minute value of the switch-on time on the day *)
-	OffTime          : UINT;	(* Hour/minute value of the switch-off time on the day *)
-	Day: TimerDays;
-	SingleShot       : BOOL;	(* Resets EN after the on/off cycle is complete $(skip) *)   
+	Data: REFERENCE TO TimeChannel1CH_Data;
 END_VAR
 VAR_OUTPUT
-	ENO: BOOL; // Set if enabled and settings are valid $(skip)
-	Q: BOOL; // Result of the time channel
-	Error: BOOL; // Settings error
-	ErrorID: UDINT; // // 1 = Inconsistent weekday settings, 2 = Bad time settings, 3 = on and off times equal $(skip)
 END_VAR
 VAR
 	CurrentDay: WORD; // $(skip)
@@ -31,36 +22,36 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Error := FALSE;
-OnHour := OnTime / 100;
-OnMinute := OnTime MOD 100;
-OffHour := OffTime / 100;
-OffMinute := OffTime MOD 100;
+      <ST><![CDATA[Data.Error := FALSE;
+OnHour := Data.OnTime / 100;
+OnMinute := Data.OnTime MOD 100;
+OffHour := Data.OffTime / 100;
+OffMinute := Data.OffTime MOD 100;
 LocalSystemTime(bEnable := TRUE);
-IF EN AND (NOT Error) THEN
+IF Data.EN AND (NOT Data.Error) THEN
 	IF LocalSystemTime.bValid THEN	
 		CurrentDay := F_GetDayOfWeek(in := NowDT()); 
-		DayMatch := Day = TimerDays.AllDays OR (TO_WORD(Day) = CurrentDay - 1);
+		DayMatch := Data.Day = TimerDays.AllDays OR (TO_WORD(Data.Day) = CurrentDay - 1);
 		IF OnHour = OffHour AND OnMinute = OffMinute THEN
-			Q := FALSE;
+			Data.Q := FALSE;
 		ELSE
 			MinuteOfDay := LocalSystemTime.systemTime.wHour * 60 + LocalSystemTime.systemTime.wMinute;
 			StartMinuteOfDay := OnHour * 60 + OnMinute;
 			EndMinuteOfDay := OffHour * 60 + OffMinute;
 			IsOnTime := MinuteOfDay >= StartMinuteOfDay AND MinuteOfDay < EndMinuteOfDay;
-			Q := DayMatch AND IsOnTime;				
-			IF Q AND SingleShot THEN
-				EN := FALSE;
+			Data.Q := DayMatch AND IsOnTime;				
+			IF Data.Q AND Data.SingleShot THEN
+				Data.EN := FALSE;
 			END_IF
 		END_IF
-		ENO := TRUE;
+		Data.ENO := TRUE;
 	ELSE
-		Q := FALSE;
-		ENO := FALSE;
+		Data.Q := FALSE;
+		Data.ENO := FALSE;
 	END_IF
 ELSE
-	Q := FALSE;
-	ENO := FALSE;
+	Data.Q := FALSE;
+	Data.ENO := FALSE;
 END_IF
 ]]></ST>
     </Implementation>

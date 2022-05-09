@@ -27,10 +27,8 @@ VAR
 	TimeChannelActive: BOOL;
 	TimeChannelEnabled: BOOL;
 	n: UINT;
-	TimeChannel1: TimeChannel1CH;
-	TimeChannel2: TimeChannel1CH;
-	TimeChannel3: TimeChannel1CH;
 	TimeChannelFallback: TimeChannel1CH;
+	TimeChannelFallback_Data: TimeChannel1CH_Data;
 	WatchdogTOF: TOF;
 	LastWatchDog: INT;
 	SetPointAdjustment: SetPointAdjustment;
@@ -61,27 +59,12 @@ END_IF;
 
 TimeChannelEnabled := FALSE;
 TimeChannelActive := FALSE;
-(*
-TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule1.EN;
-TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule1.Q;
-TimeChannel1(Settings := ADS_Standard.Tags.Schedule1);
-
-TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule2.EN;
-TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule2.Q;
-TimeChannel2(Settings := ADS_Standard.Tags.Schedule2);
-
-TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule3.EN;
-TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule3.Q;
-TimeChannel3(Settings := ADS_Standard.Tags.Schedule3);
-
-TimeChannelFallback(Settings := ADS_Standard.Tags.ScheduleFallback);
-*)
 WatchdogTOF(IN := (NOT ADS_Standard.Tags.Settings.WatchdogEnabled) OR (ADS_Standard.Tags.Settings.Watchdog <> LastWatchDog), PT := T#5M);
 
 IF WatchdogTOF.Q THEN
 	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelEnabled AND TimeChannelActive;
 ELSE
-	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelFallback.Q;
+	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelFallback_Data.Q;
 END_IF
 
 IF EN THEN

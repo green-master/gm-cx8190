@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="TimeChannel1CH_Data" Id="{d5553492-0fb5-4ab0-8af4-4474a3588802}">
+    <Declaration><![CDATA[TYPE TimeChannel1CH_Data :
+STRUCT
+	EN: BOOL := TRUE;// Enable the time channel (settings must also be enabled)
+	Speed            : INT;		// 0,1=normal speed, 2=high speed $(skip)
+	OnTime           : UINT;	(* Hour/minute value of the switch-on time on the day *)
+	OffTime          : UINT;	(* Hour/minute value of the switch-off time on the day *)
+	Day: TimerDays;
+	SingleShot       : BOOL;	(* Resets EN after the on/off cycle is complete $(skip) *)   
+
+	ENO: BOOL; // Set if enabled and settings are valid $(skip)
+	Q: BOOL; // Result of the time channel
+	Error: BOOL; // Settings error
+	ErrorID: UDINT; // // 1 = Inconsistent weekday settings, 2 = Bad time settings, 3 = on and off times equal $(skip)
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
