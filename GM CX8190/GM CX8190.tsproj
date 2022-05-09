@@ -102,7 +102,7 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="10.138.21.150.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="5.73.47.143.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<IoIdleTask CycleTime="100000"/>
@@ -121,6 +121,10 @@
 					<Name>Task 4</Name>
 				</Task>
 			</Tasks>
+			<Routes>
+				<Route Name="DIGINET-1" Addr="192.168.2.183" NetId="5.73.47.143.1.1" TransType="1"/>
+				<Route Name="DIGINET-2" Addr="192.168.2.201" NetId="5.102.41.153.1.1" TransType="1"/>
+			</Routes>
 		</System>
 		<Plc>
 			<Project GUID="{82E4CE3D-F1C8-48A6-8B3E-0A9139D7EAF6}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x000c" CopyTmcToTarget="true">
@@ -2474,10 +2478,10 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 					<CxBk/>
 				</Box>
 			</Device>
-			<Device Id="4" DevType="120">
+			<Device Id="4" Disabled="true" DevType="120">
 				<Name>Device STD (CX-BK)</Name>
 				<DevData>000000c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000007000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
-				<Image Id="2" AddrType="1" ImageType="3" SizeIn="102" SizeOut="102">
+				<Image Id="2" AddrType="1" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Box Id="1" BoxType="9703" AmsPort="28929">
@@ -4943,7 +4947,6 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2002-0850-0120-500820000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^PLC1^PLC1 Instance">
 			<OwnerB Name="TIID^Device CTH (CX-BK)^Box CTH (CX-BK)">
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
