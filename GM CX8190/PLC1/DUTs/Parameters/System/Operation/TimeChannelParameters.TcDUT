@@ -25,6 +25,7 @@ STRUCT
 	TC26: TimeChannel1CH_Data := ( Day := TimerDays.Saturday );
 	TC27: TimeChannel1CH_Data := ( Day := TimerDays.Sunday );
 	Q: BOOL; // Result of the time channels
+	HighSpeed: BOOL; // Speed result of the time channels
 END_STRUCT
 END_TYPE
 ]]></Declaration>
