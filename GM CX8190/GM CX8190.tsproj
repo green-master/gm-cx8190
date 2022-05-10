@@ -102,13 +102,13 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="5.73.47.143.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{D63CD02C-0A51-4894-83B6-00C54871755E}" TargetNetId="10.133.0.22.1.1" Utf8Encoding="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings>
 				<IoIdleTask CycleTime="100000"/>
 			</Settings>
 			<Licenses>
-				<Target BkhfOrder="00841210">
+				<Target BkhfOrder="00607878">
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
 					<ManualSelect>{6952449D-F68C-49A2-ADE4-8639D85B33A4}</ManualSelect>
 				</Target>
@@ -121,10 +121,6 @@
 					<Name>Task 4</Name>
 				</Task>
 			</Tasks>
-			<Routes>
-				<Route Name="DIGINET-1" Addr="192.168.2.183" NetId="5.73.47.143.1.1" TransType="1"/>
-				<Route Name="DIGINET-2" Addr="192.168.2.201" NetId="5.102.41.153.1.1" TransType="1"/>
-			</Routes>
 		</System>
 		<Plc>
 			<Project GUID="{82E4CE3D-F1C8-48A6-8B3E-0A9139D7EAF6}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x000c" CopyTmcToTarget="true">
@@ -2960,7 +2956,343 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								</Var>
 							</Vars>
 						</Term>
-						<Term Id="29" TermType="#xd8c" Fieldbus="6">
+						<Term Id="50" TermType="#xd50" Fieldbus="6">
+							<Name>Term 50 (KL3408-4)</Name>
+							<ImageId>33</ImageId>
+							<Vars VarGrpType="3">
+								<Name>Channel 1</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>416</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>424</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>416</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>424</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 2</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>440</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>448</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>440</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>448</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 3</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>464</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>472</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>464</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>472</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 4</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>488</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>496</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>488</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>496</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+						</Term>
+						<Term Id="51" TermType="#xd50" Fieldbus="6">
+							<Name>Term 51 (KL3408-4)</Name>
+							<ImageId>33</ImageId>
+							<Vars VarGrpType="3">
+								<Name>Channel 1</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>512</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>520</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>512</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>520</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 2</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>536</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>544</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>536</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>544</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 3</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>560</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>568</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>560</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>568</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 4</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>584</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>592</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>584</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>592</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+						</Term>
+						<Term Id="31" TermType="#xd88" Fieldbus="6">
+							<Name>Term 31 (KL3464)</Name>
+							<ImageId>33</ImageId>
+							<Vars VarGrpType="3">
+								<Name>Channel 1</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>608</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>616</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>608</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>616</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 2</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>632</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>640</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>632</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>640</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 3</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>656</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>664</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>656</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>664</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 4</Name>
+								<Var>
+									<Name>State</Name>
+									<Type>USINT</Type>
+									<BitOffs>680</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data In</Name>
+									<Type>INT</Type>
+									<BitOffs>688</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+								<Var>
+									<Name>Ctrl</Name>
+									<Type>USINT</Type>
+									<BitOffs>680</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+								<Var DisplayScale="#x1">
+									<Name>Data Out</Name>
+									<Type>INT</Type>
+									<BitOffs>688</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+						</Term>
+						<Term Id="29" Disabled="true" TermType="#xd8c" Fieldbus="6">
 							<Name>AI 2.3 (KL3468-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
@@ -3072,7 +3404,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								</Var>
 							</Vars>
 						</Term>
-						<Term Id="30" TermType="#xd8c" Fieldbus="6">
+						<Term Id="30" Disabled="true" TermType="#xd8c" Fieldbus="6">
 							<Name>AI 2.4 (KL3468-4)</Name>
 							<ImageId>33</ImageId>
 							<Vars VarGrpType="3">
@@ -3080,25 +3412,25 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>USINT</Type>
-									<BitOffs>512</BitOffs>
+									<BitOffs>416</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data In</Name>
 									<Type>INT</Type>
-									<BitOffs>520</BitOffs>
+									<BitOffs>424</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>USINT</Type>
-									<BitOffs>512</BitOffs>
+									<BitOffs>416</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data Out</Name>
 									<Type>INT</Type>
-									<BitOffs>520</BitOffs>
+									<BitOffs>424</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3107,25 +3439,25 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>USINT</Type>
-									<BitOffs>536</BitOffs>
+									<BitOffs>440</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data In</Name>
 									<Type>INT</Type>
-									<BitOffs>544</BitOffs>
+									<BitOffs>448</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>USINT</Type>
-									<BitOffs>536</BitOffs>
+									<BitOffs>440</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data Out</Name>
 									<Type>INT</Type>
-									<BitOffs>544</BitOffs>
+									<BitOffs>448</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3134,25 +3466,25 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>USINT</Type>
-									<BitOffs>560</BitOffs>
+									<BitOffs>464</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data In</Name>
 									<Type>INT</Type>
-									<BitOffs>568</BitOffs>
+									<BitOffs>472</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>USINT</Type>
-									<BitOffs>560</BitOffs>
+									<BitOffs>464</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data Out</Name>
 									<Type>INT</Type>
-									<BitOffs>568</BitOffs>
+									<BitOffs>472</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3161,30 +3493,30 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>USINT</Type>
-									<BitOffs>584</BitOffs>
+									<BitOffs>488</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data In</Name>
 									<Type>INT</Type>
-									<BitOffs>592</BitOffs>
+									<BitOffs>496</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>USINT</Type>
-									<BitOffs>584</BitOffs>
+									<BitOffs>488</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var DisplayScale="#x1">
 									<Name>Data Out</Name>
 									<Type>INT</Type>
-									<BitOffs>592</BitOffs>
+									<BitOffs>496</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
 						</Term>
-						<Term Id="8" TermType="#x968" Fieldbus="6">
+						<Term Id="8" Disabled="true" TermType="#x968" Fieldbus="6">
 							<Name>DO 1 (KL2408)</Name>
 							<ImageId>31</ImageId>
 							<Vars VarGrpType="3">
@@ -3192,7 +3524,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>800</BitOffs>
+									<BitOffs>704</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3201,7 +3533,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>801</BitOffs>
+									<BitOffs>705</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3210,7 +3542,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>802</BitOffs>
+									<BitOffs>706</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3219,7 +3551,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>803</BitOffs>
+									<BitOffs>707</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3228,7 +3560,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>804</BitOffs>
+									<BitOffs>708</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3237,7 +3569,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>805</BitOffs>
+									<BitOffs>709</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3246,7 +3578,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>806</BitOffs>
+									<BitOffs>710</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3255,7 +3587,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>807</BitOffs>
+									<BitOffs>711</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3344,7 +3676,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>800</BitOffs>
+									<BitOffs>896</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3353,7 +3685,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>801</BitOffs>
+									<BitOffs>897</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3362,7 +3694,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>802</BitOffs>
+									<BitOffs>898</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3371,7 +3703,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>803</BitOffs>
+									<BitOffs>899</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3380,7 +3712,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>804</BitOffs>
+									<BitOffs>900</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3389,7 +3721,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>805</BitOffs>
+									<BitOffs>901</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3398,7 +3730,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>806</BitOffs>
+									<BitOffs>902</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3407,7 +3739,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>807</BitOffs>
+									<BitOffs>903</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3420,7 +3752,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>808</BitOffs>
+									<BitOffs>904</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3429,7 +3761,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>809</BitOffs>
+									<BitOffs>905</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3438,7 +3770,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>810</BitOffs>
+									<BitOffs>906</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3447,7 +3779,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>811</BitOffs>
+									<BitOffs>907</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3456,7 +3788,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>812</BitOffs>
+									<BitOffs>908</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3465,7 +3797,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>813</BitOffs>
+									<BitOffs>909</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3474,7 +3806,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>814</BitOffs>
+									<BitOffs>910</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3483,7 +3815,159 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Input</Name>
 									<Type>BIT</Type>
-									<BitOffs>815</BitOffs>
+									<BitOffs>911</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+						</Term>
+						<Term Id="46" TermType="#x580" Fieldbus="6">
+							<Name>Term 46 (KL1408)</Name>
+							<ImageId>7</ImageId>
+							<Vars VarGrpType="3">
+								<Name>Channel 1</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>912</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 2</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>913</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 3</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>914</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 4</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>915</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 5</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>916</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 6</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>917</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 7</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>918</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 8</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>919</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+						</Term>
+						<Term Id="47" TermType="#x580" Fieldbus="6">
+							<Name>Term 47 (KL1408)</Name>
+							<ImageId>7</ImageId>
+							<Vars VarGrpType="3">
+								<Name>Channel 1</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>920</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 2</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>921</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 3</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>922</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 4</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>923</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 5</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>924</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 6</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>925</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 7</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>926</BitOffs>
+									<InOut>0</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 8</Name>
+								<Var>
+									<Name>Input</Name>
+									<Type>BIT</Type>
+									<BitOffs>927</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 							</Vars>
@@ -3564,15 +4048,15 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								</Var>
 							</Vars>
 						</Term>
-						<Term Id="12" TermType="#xa5c" Fieldbus="6">
-							<Name>RDO 1 (KL2652)</Name>
+						<Term Id="48" TermType="#x968" Fieldbus="6">
+							<Name>Term 48 (KL2408)</Name>
 							<ImageId>31</ImageId>
 							<Vars VarGrpType="3">
 								<Name>Channel 1</Name>
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>808</BitOffs>
+									<BitOffs>896</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3581,7 +4065,159 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>809</BitOffs>
+									<BitOffs>897</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 3</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>898</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 4</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>899</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 5</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>900</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 6</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>901</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 7</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>902</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 8</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>903</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+						</Term>
+						<Term Id="49" TermType="#x968" Fieldbus="6">
+							<Name>Term 49 (KL2408)</Name>
+							<ImageId>31</ImageId>
+							<Vars VarGrpType="3">
+								<Name>Channel 1</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>904</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 2</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>905</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 3</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>906</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 4</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>907</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 5</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>908</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 6</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>909</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 7</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>910</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 8</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>911</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+						</Term>
+						<Term Id="12" TermType="#xa5c" Fieldbus="6">
+							<Name>RDO 1 (KL2652)</Name>
+							<ImageId>31</ImageId>
+							<Vars VarGrpType="3">
+								<Name>Channel 1</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>912</BitOffs>
+									<InOut>1</InOut>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="3">
+								<Name>Channel 2</Name>
+								<Var>
+									<Name>Output</Name>
+									<Type>BIT</Type>
+									<BitOffs>913</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3594,7 +4230,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>810</BitOffs>
+									<BitOffs>914</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3603,7 +4239,7 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>Output</Name>
 									<Type>BIT</Type>
-									<BitOffs>811</BitOffs>
+									<BitOffs>915</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -3616,277 +4252,277 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 								<Var>
 									<Name>State</Name>
 									<Type>UINT</Type>
-									<BitOffs>608</BitOffs>
+									<BitOffs>704</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 0</Name>
 									<Type>USINT</Type>
-									<BitOffs>624</BitOffs>
+									<BitOffs>720</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 1</Name>
 									<Type>USINT</Type>
-									<BitOffs>632</BitOffs>
+									<BitOffs>728</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 2</Name>
 									<Type>USINT</Type>
-									<BitOffs>640</BitOffs>
+									<BitOffs>736</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 3</Name>
 									<Type>USINT</Type>
-									<BitOffs>648</BitOffs>
+									<BitOffs>744</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 4</Name>
 									<Type>USINT</Type>
-									<BitOffs>656</BitOffs>
+									<BitOffs>752</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 5</Name>
 									<Type>USINT</Type>
-									<BitOffs>664</BitOffs>
+									<BitOffs>760</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 6</Name>
 									<Type>USINT</Type>
-									<BitOffs>672</BitOffs>
+									<BitOffs>768</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 7</Name>
 									<Type>USINT</Type>
-									<BitOffs>680</BitOffs>
+									<BitOffs>776</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 8</Name>
 									<Type>USINT</Type>
-									<BitOffs>688</BitOffs>
+									<BitOffs>784</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 9</Name>
 									<Type>USINT</Type>
-									<BitOffs>696</BitOffs>
+									<BitOffs>792</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 10</Name>
 									<Type>USINT</Type>
-									<BitOffs>704</BitOffs>
+									<BitOffs>800</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 11</Name>
 									<Type>USINT</Type>
-									<BitOffs>712</BitOffs>
+									<BitOffs>808</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 12</Name>
 									<Type>USINT</Type>
-									<BitOffs>720</BitOffs>
+									<BitOffs>816</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 13</Name>
 									<Type>USINT</Type>
-									<BitOffs>728</BitOffs>
+									<BitOffs>824</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 14</Name>
 									<Type>USINT</Type>
-									<BitOffs>736</BitOffs>
+									<BitOffs>832</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 15</Name>
 									<Type>USINT</Type>
-									<BitOffs>744</BitOffs>
+									<BitOffs>840</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 16</Name>
 									<Type>USINT</Type>
-									<BitOffs>752</BitOffs>
+									<BitOffs>848</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 17</Name>
 									<Type>USINT</Type>
-									<BitOffs>760</BitOffs>
+									<BitOffs>856</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 18</Name>
 									<Type>USINT</Type>
-									<BitOffs>768</BitOffs>
+									<BitOffs>864</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 19</Name>
 									<Type>USINT</Type>
-									<BitOffs>776</BitOffs>
+									<BitOffs>872</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 20</Name>
 									<Type>USINT</Type>
-									<BitOffs>784</BitOffs>
+									<BitOffs>880</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Data In 21</Name>
 									<Type>USINT</Type>
-									<BitOffs>792</BitOffs>
+									<BitOffs>888</BitOffs>
 									<InOut>0</InOut>
 								</Var>
 								<Var>
 									<Name>Ctrl</Name>
 									<Type>UINT</Type>
-									<BitOffs>608</BitOffs>
+									<BitOffs>704</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 0</Name>
 									<Type>USINT</Type>
-									<BitOffs>624</BitOffs>
+									<BitOffs>720</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 1</Name>
 									<Type>USINT</Type>
-									<BitOffs>632</BitOffs>
+									<BitOffs>728</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 2</Name>
 									<Type>USINT</Type>
-									<BitOffs>640</BitOffs>
+									<BitOffs>736</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 3</Name>
 									<Type>USINT</Type>
-									<BitOffs>648</BitOffs>
+									<BitOffs>744</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 4</Name>
 									<Type>USINT</Type>
-									<BitOffs>656</BitOffs>
+									<BitOffs>752</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 5</Name>
 									<Type>USINT</Type>
-									<BitOffs>664</BitOffs>
+									<BitOffs>760</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 6</Name>
 									<Type>USINT</Type>
-									<BitOffs>672</BitOffs>
+									<BitOffs>768</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 7</Name>
 									<Type>USINT</Type>
-									<BitOffs>680</BitOffs>
+									<BitOffs>776</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 8</Name>
 									<Type>USINT</Type>
-									<BitOffs>688</BitOffs>
+									<BitOffs>784</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 9</Name>
 									<Type>USINT</Type>
-									<BitOffs>696</BitOffs>
+									<BitOffs>792</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 10</Name>
 									<Type>USINT</Type>
-									<BitOffs>704</BitOffs>
+									<BitOffs>800</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 11</Name>
 									<Type>USINT</Type>
-									<BitOffs>712</BitOffs>
+									<BitOffs>808</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 12</Name>
 									<Type>USINT</Type>
-									<BitOffs>720</BitOffs>
+									<BitOffs>816</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 13</Name>
 									<Type>USINT</Type>
-									<BitOffs>728</BitOffs>
+									<BitOffs>824</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 14</Name>
 									<Type>USINT</Type>
-									<BitOffs>736</BitOffs>
+									<BitOffs>832</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 15</Name>
 									<Type>USINT</Type>
-									<BitOffs>744</BitOffs>
+									<BitOffs>840</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 16</Name>
 									<Type>USINT</Type>
-									<BitOffs>752</BitOffs>
+									<BitOffs>848</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 17</Name>
 									<Type>USINT</Type>
-									<BitOffs>760</BitOffs>
+									<BitOffs>856</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 18</Name>
 									<Type>USINT</Type>
-									<BitOffs>768</BitOffs>
+									<BitOffs>864</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 19</Name>
 									<Type>USINT</Type>
-									<BitOffs>776</BitOffs>
+									<BitOffs>872</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 20</Name>
 									<Type>USINT</Type>
-									<BitOffs>784</BitOffs>
+									<BitOffs>880</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 								<Var>
 									<Name>Data Out 21</Name>
 									<Type>USINT</Type>
-									<BitOffs>792</BitOffs>
+									<BitOffs>888</BitOffs>
 									<InOut>1</InOut>
 								</Var>
 							</Vars>
@@ -5082,7 +5718,9 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL07" VarB="DI 3 (KL1408)^Channel 7^Input"/>
 				<Link VarA="PlcTask Inputs^ExtraAlarmInputs.AL08" VarB="DI 3 (KL1408)^Channel 8^Input"/>
 				<Link VarA="PlcTask Inputs^Globals.AI3468.AI1" VarB="AI 2.3 (KL3468-4)^Channel 1^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.AI3468.AI1" VarB="Term 31 (KL3464)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.AI3468.AI2" VarB="AI 2.3 (KL3468-4)^Channel 2^Data In"/>
+				<Link VarA="PlcTask Inputs^Globals.AI3468.AI2" VarB="Term 31 (KL3464)^Channel 2^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^Data In"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI01_Error" VarB="AI 2.1 (KL3208-0010-4)^Channel 1^State" Size="1" OffsB="6"/>
 				<Link VarA="PlcTask Inputs^Globals.IO.AIn.AI02" VarB="AI 2.1 (KL3208-0010-4)^Channel 2^Data In"/>
@@ -5148,13 +5786,21 @@ Bit 15 = Acyc. Function atcive (e.g. K-Bus Reset)
 				<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO07" VarB="AO 1.2 (KL4408-4)^Channel 3^Data Out"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.AOut.AO08" VarB="AO 1.2 (KL4408-4)^Channel 4^Data Out"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO01" VarB="DO 1 (KL2408)^Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO01" VarB="Term 48 (KL2408)^Channel 1^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO02" VarB="DO 1 (KL2408)^Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO02" VarB="Term 48 (KL2408)^Channel 2^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO03" VarB="DO 1 (KL2408)^Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO03" VarB="Term 48 (KL2408)^Channel 3^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO04" VarB="DO 1 (KL2408)^Channel 4^Output"/>
+				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO04" VarB="Term 48 (KL2408)^Channel 4^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO05" VarB="DO 1 (KL2408)^Channel 5^Output"/>
+				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO05" VarB="Term 48 (KL2408)^Channel 5^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO06" VarB="DO 1 (KL2408)^Channel 6^Output"/>
+				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO06" VarB="Term 48 (KL2408)^Channel 6^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO07" VarB="DO 1 (KL2408)^Channel 7^Output"/>
+				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO07" VarB="Term 48 (KL2408)^Channel 7^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO08" VarB="DO 1 (KL2408)^Channel 8^Output"/>
+				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO08" VarB="Term 48 (KL2408)^Channel 8^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO09" VarB="DO 2 (KL2408)^Channel 1^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO10" VarB="DO 2 (KL2408)^Channel 2^Output"/>
 				<Link VarA="PlcTask Outputs^Globals.IO.DOut.DO11" VarB="DO 2 (KL2408)^Channel 3^Output"/>
