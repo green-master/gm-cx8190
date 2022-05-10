@@ -16,6 +16,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	CurrentMaxFlow: LREAL;
+	NightCoolingHysteresis: Hysteresis;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -98,6 +99,12 @@ IF Regulation.ApplyAbsoluteSetPointCurves <> Regulation.LastApplyAbsoluteSetPoin
 	Regulation.ExtractAir.Control.SP := 0;
 	Regulation.LastApplyAbsoluteSetPointCurves := Regulation.ApplyAbsoluteSetPointCurves;
 END_IF
+
+NightCoolingHysteresis(Value := Parameters.IO.AIn.T_BT1, LimitValue := 14, Offset := 0.5);
+Parameters.Regulation.NightCooling := 
+	Parameters.Regulation.NightCoolingRequest AND 
+	NightCoolingHysteresis.Above AND 
+	(NOT Parameters.System.Operation.TimeChannels.Q);
 ]]></ST>
     </Implementation>
   </POU>

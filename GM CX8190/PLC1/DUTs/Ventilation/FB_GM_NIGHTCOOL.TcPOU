@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_GM_NIGHTCOOL" Id="{8f28f643-ed63-448d-9df9-1b1088e7ef59}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_GM_NIGHTCOOL
+VAR_INPUT
+	bDayOperation						: BOOL; // Normal daytime operation
+	rNormalSAPressure					: REAL; // Normal daytime operation setpoint for supply air pressure
+	rNormalEAPressure					: REAL; // Normal daytime operation setpoint for extract air pressure
+	rNormalTemperature					: REAL; // Normal daytime operation setpoint for supply air temperature
+END_VAR
+VAR_OUTPUT
+	bStartNightcool						: BOOL; // Starts GreenMaster in nightcool	
+	rSAPressure							: REAL; // Supply air pressure when nightcooling is active
+	rEAPressure							: REAL;	// Extract air pressure when nightcooling is active
+	rSATemperature						: REAL; // Supply air temperature when nightcooling is active
+	bNightCoolActive					: BOOL; // Nightcooling is active
+	rExtractAirTemperature				: REAL;	// Saftey input
+END_VAR
+VAR PERSISTENT
+	rSupplyPressure						: REAL; // Supply air pressure when nightcooling is active
+	rExtractPressure					: REAL; // Extract air pressure when nightcooling is active
+	rSupplyTemperature					: REAL; // Supply air temperature when nightcooling is active
+	bCMD								: BOOL; // Start nightcooling from HMI
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Om vi kör nattkyla så har vi nya börvärden
+IF bStartNightcool THEN
+	rSAPressure := rSupplyPressure;   // New SA Pressure setpoint
+	rEAPressure := rExtractPressure;  // New EA Pressire setpint
+	rSATemperature :=  MAX (13,rSupplyTemperature); // New SA temperature setpoint with limit 
+	bNightCoolActive :=TRUE;
+ELSE
+	rSAPressure := rNormalSAPressure;
+    rEAPressure := rNormalEAPressure;
+    rSATemperature := rNormalTemperature;
+	bNightCoolActive :=FALSE;
+END_IF
+
+// Sätter utgång för att starta aggregat (med säkerhetsfunktion då frånluftstemperatur blir för låg)
+IF NOT bDayOperation AND NOT(rExtractAirTemperature < 17) THEN
+	IF bCMD THEN
+		bStartNightcool := TRUE;
+	ELSE
+		bStartNightcool := FALSE;
+	END_IF
+ELSE 
+	bStartNightcool := FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

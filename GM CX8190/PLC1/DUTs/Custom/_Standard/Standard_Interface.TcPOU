@@ -8,7 +8,6 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	ENO: BOOL;
-	NightCooling: BOOL;
 END_VAR
 VAR
 	InitDone: BOOL;
@@ -70,13 +69,17 @@ END_IF
 IF EN THEN
 	
 	Globals.IO.DOut.DO16 := ADS_Standard.Tags.Status.C_GP1_CMD;
-	
-	NightCooling := ADS_Standard.Tags.Settings.NightCooling_V;
 	UpdateTON(IN := TRUE, PT := T#1S);
 	// --------------------------------------------------------------------------------
 	// Transfer from Standard tags to settings
 	IF Parameters.System.Operation.RemoteEN AND UpdateTON.Q THEN
 		UpdateTON(IN := False);
+		ExchangeData(	ADR(Parameters.Regulation.NightCoolingRequest), 
+						ADR(ADS_Standard.Tags.Settings.NightCooling_V), 
+						SIZEOF(Parameters.Regulation.NightCoolingRequest), 
+						ADR(SavedParameters.Regulation.NightCoolingRequest), 
+						ADR(SavedInterface.NightCooling_V), 
+						'BOOL', ('Parameters.Regulation.NightCoolingRequest'), ('NightCooling_V'));	
 		ExchangeData(	ADR(Parameters.Alarm.Control.ResetAlarms), 
 						ADR(ADS_Standard.Tags.Settings.ResetAlarms), 
 						SIZEOF(Parameters.Alarm.Control.ResetAlarms), 
