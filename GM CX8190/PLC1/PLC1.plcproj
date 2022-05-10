@@ -785,6 +785,9 @@
     <Compile Include="DUTs\Valves\ValveMonitor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Ventilation\FB_GM_NIGHTCOOL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Ventilation\VentilationControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>

@@ -8,6 +8,8 @@ STRUCT
 	PressureExtractSP: LREAL := 280; // Set Point for Master/Slave
 	PressureSupplySP_HighSpeed: LREAL := 275; // Set Point for Master/Slave
 	PressureExtractSP_HighSpeed: LREAL := 295; // Set Point for Master/Slave
+	SupplyAirSetPointAdjustment: SetPointAdjustment;
+	ExtractAirSetPointAdjustment: SetPointAdjustment;
 	StandaloneMaxFan: LREAL := 0.7; // Max fan speed for single unit
 	DualMinFan: LREAL := 0.4; // Min fan speed for dual units
 	Kp: LREAL := 1.5; // P

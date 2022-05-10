@@ -13930,72 +13930,6 @@ END_VAR
                       </o>
                     </l2>
                   </o>
-                  <o>
-                    <v n="ConnectionId">2147502466L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">58</v>
-                      <v n="Y">51</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">58</v>
-                        <v n="Y">51</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">2147502398L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">58</v>
-                      <v n="Y">50</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">58</v>
-                        <v n="Y">50</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">2147502147L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">69</v>
-                      <v n="Y">29</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">69</v>
-                        <v n="Y">29</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
                 </d2>
               </o>
             </o>
@@ -14307,7 +14241,8 @@ END_VAR
 		Parameters.IO.AIn.F_BP1_Error OR
 		Parameters.IO.AIn.T_BP1_Error)
 	) AND
-	(Parameters.IO.DIn.Hand OR (Parameters.IO.DIn.Auto AND Parameters.System.Operation.TimeChannels.Q)) AND (ADS_Standard.Tags.Settings.RemoteStart > 0);]]></ST>
+	(Parameters.IO.DIn.Hand OR (Parameters.IO.DIn.Auto AND (Parameters.System.Operation.TimeChannels.Q or Parameters.Regulation.NightCooling))) AND
+	(ADS_Standard.Tags.Settings.RemoteStart > 0);]]></ST>
       </Implementation>
     </Method>
     <Method Name="Simulate" Id="{2c7e379c-c1c7-4206-9735-f2160708f434}">
