@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ifc_lreal" Id="{485da12d-8dc6-4d9b-9e58-6f284ed3223c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ifc_lreal : LREAL
+VAR_INPUT
+	Condition: BOOL;
+	ValueTrue: LREAL;
+	ValueFalse: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Condition THEN
+	ifc_lreal := ValueTrue;
+ELSE
+	ifc_lreal := ValueFalse;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

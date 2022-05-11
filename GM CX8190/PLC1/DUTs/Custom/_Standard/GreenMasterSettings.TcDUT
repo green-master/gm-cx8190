@@ -77,6 +77,33 @@ TC: TimeChannel_CT_CF;
 
 FREEZE_ALL: REAL := 4; // Freeze protection alarm level$(unit "%C)
 
+// Manual mode
+H_GP1_M :  BOOL; // Manöver pump värme
+C_GP1_M :  BOOL; // Manöver pump kyla
+F_QM1_M :  BOOL; // Frånluftsspjäll manöver
+T_QM1_1_M :  BOOL; // Sektionsavfrostningsspjäll 1 manöver
+T_QM1_2_M :  BOOL; // Sektionsavfrostningsspjäll 2 manöver
+T_QM1_3_M :  BOOL; // Sektionsavfrostningsspjäll 3 manöver
+T_QM1_4_M :  BOOL; // Sektionsavfrostningsspjäll 4 manöver
+T_QM1_5_M :  BOOL; // Sektionsavfrostningsspjäll 5 manöver
+T_QM1_6_M :  BOOL; // Sektionsavfrostningsspjäll 6 manöver
+F_QM2_M :  BOOL; // Brandförbigångsspjäll (FID) manöver
+T_QM2_M :  BOOL; // spjäll manöver
+T_QM3_M :  BOOL; // spjäll manöver
+
+// Manual command
+H_GP1_MCMD :  BOOL; // Manöver pump värme
+C_GP1_MCMD :  BOOL; // Manöver pump kyla
+F_QM1_MCMD :  BOOL; // Frånluftsspjäll manöver
+T_QM1_1_MCMD :  BOOL; // Sektionsavfrostningsspjäll 1 manöver
+T_QM1_2_MCMD :  BOOL; // Sektionsavfrostningsspjäll 2 manöver
+T_QM1_3_MCMD :  BOOL; // Sektionsavfrostningsspjäll 3 manöver
+T_QM1_4_MCMD :  BOOL; // Sektionsavfrostningsspjäll 4 manöver
+T_QM1_5_MCMD :  BOOL; // Sektionsavfrostningsspjäll 5 manöver
+T_QM1_6_MCMD :  BOOL; // Sektionsavfrostningsspjäll 6 manöver
+F_QM2_MCMD :  BOOL; // Brandförbigångsspjäll (FID) manöver
+T_QM2_MCMD :  BOOL; // spjäll manöver
+T_QM3_MCMD :  BOOL; // spjäll manöver
 
 END_STRUCT
 END_TYPE
