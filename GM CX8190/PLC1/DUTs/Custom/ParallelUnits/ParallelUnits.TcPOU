@@ -38,6 +38,8 @@ VAR
 	StandaloneExtractAirSetPointAdjustmentFB: SetPointAdjustmentFB;
 	StandaloneSupplyAirSetPointAdjustmentFB_HighSpeed: SetPointAdjustmentFB;
 	StandaloneExtractAirSetPointAdjustmentFB_HighSpeed: SetPointAdjustmentFB;
+	SupplyAirPressureDeviation: DeviationMonitor;
+	ExtractAirPressureDeviation: DeviationMonitor;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -138,6 +140,29 @@ IF RemoteActive THEN
 ELSE
 	Tags.Status.PressureSupplyCSP := GetStandaloneSetPointSupply();
 	Tags.Status.PressureExtractCSP := GetStandaloneSetPointExtract();
+END_IF
+
+// Check pressure deviation
+SupplyAirPressureDeviation(	EN := Tags.Status.IsMaster AND (Parameters.System.Operation.State = SystemStates.Run),
+							TargetValue := GetSetPointSupply(),
+							DiffAllowed := Parameters.Alarm.Limits.B.SupplyAirPressureDeviation,
+							Mode := DeviationMonitorMode.Diff,
+							Value := Parameters.IO.AIn.F_BP1,
+							OnDelay := LTIME#0S
+);
+IF Parameters.Regulation.SupplyAir.ControlMode = FanControlTypes.Const THEN
+	Parameters.Alarm.Status.B.SupplyAirDeviation := SupplyAirPressureDeviation.Error;	
+END_IF
+
+ExtractAirPressureDeviation(	EN := Tags.Status.IsMaster AND (Parameters.System.Operation.State = SystemStates.Run),
+							TargetValue := GetSetPointExtract(),
+							DiffAllowed := Parameters.Alarm.Limits.B.ExtractAirPressureDeviation,
+							Mode := DeviationMonitorMode.Diff,
+							Value := Parameters.IO.AIn.T_BP1,
+							OnDelay := LTIME#0S
+);
+IF Parameters.Regulation.ExtractAir.ControlMode = FanControlTypes.Const THEN
+	Parameters.Alarm.Status.B.ExtractAirDeviation := ExtractAirPressureDeviation.Error;	
 END_IF
 
 IF FirstTime THEN
