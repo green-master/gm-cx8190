@@ -33,7 +33,6 @@ VAR
 	str: STRING;
 	n: INT;
 	
-	NightCooling: BOOL;
 	DebugStop: BOOL;
 	WritePersistentData: WritePersistentData;
 	StartWritePersistentData: BOOL;
@@ -72,8 +71,6 @@ END_VAR
 		END_IF
 		SavedParameters := GreenMaster.GetParameters();
 		Globals.SystemUpTime := DT_TO_DWORD(NowDT()) - DT_TO_DWORD(Globals.SystemStartTime);
-		
-		NightCooling := FALSE;
 		
 		TestPID();
 		
@@ -151,6 +148,8 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().Regulation.SupplyAir.MaxSpeed := 0.4;
+				GreenMaster.GetParameters().Regulation.ExtractAir.MaxSpeed := 0.4;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'CX-662AA1' THEN
 				GetComponent(Name := ComponentNames.SIMULATION).EN := TRUE;
@@ -162,6 +161,8 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().Regulation.SupplyAir.MaxSpeed := 0.4;
+				GreenMaster.GetParameters().Regulation.ExtractAir.MaxSpeed := 0.4;
 			END_IF
 			IF (F_ToUCase(HostName.sHostName) = 'DIGINET-1') or (F_ToUCase(HostName.sHostName) = 'DIGINET-2') THEN
 				GetComponent(Name := ComponentNames.SIMULATION).EN := TRUE;
@@ -220,7 +221,7 @@ END_VAR
 				AI2 := GreenMasterAI2_RTU,
 				TCP_AI := SmokeControl.GreenMasterSmokeControl,  
 				Reverse_C_QN1 := UseReverse_C_QN1,
-				NightCooling := NightCooling,
+				NightCooling := GreenMaster.Parameters.Regulation.NightCooling,
 				EnableFansAndDampers := Std_Interface.EN
 			);
 		END_IF
@@ -285,10 +286,10 @@ ELSE
 	ExceptionYet := TRUE; 	
 END_IF
 
-IF GreenMaster.GetParameters().IO.AIn.H_BT1 < GreenMaster.GetParameters().Alarm.Limits.A.Freeze THEN
+IF (GreenMaster.GetParameters().IO.AIn.H_BT1 < GreenMaster.GetParameters().Alarm.Limits.A.Freeze) OR GreenMaster.GetParameters().IO.AIn.H_BT1_Error THEN
 	GreenMaster.GetParameters().Alarm.Status.A.Freeze := TRUE;
 END_IF
-IF GreenMaster.GetParameters().IO.AIn.H_BT1 > (GreenMaster.GetParameters().Alarm.Limits.A.Freeze + 0.5) THEN
+IF GreenMaster.GetParameters().IO.AIn.H_BT1 > (GreenMaster.GetParameters().Alarm.Limits.A.Freeze + 0.5) AND (NOT GreenMaster.GetParameters().IO.AIn.H_BT1_Error) THEN
 	GreenMaster.GetParameters().Alarm.Status.A.Freeze := FALSE;
 END_IF
 ]]></ST>

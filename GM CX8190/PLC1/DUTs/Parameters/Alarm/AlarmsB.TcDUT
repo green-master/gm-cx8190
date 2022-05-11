@@ -19,6 +19,7 @@ STRUCT
 	DamperError: BOOL;
 	CommunicationError: BOOL;
 	DamperModuleService: BOOL;
+	Tx1Fail: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

@@ -13,6 +13,7 @@ STRUCT
 	SupplyAirSetPointAdjustment: SetPointAdjustment; 
 	ExtractAirControl: ControllerParameters; 
 	ExtractAirSetPointAdjustment: SetPointAdjustment; 
+	NightCoolingRequest: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

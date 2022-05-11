@@ -4,22 +4,28 @@
     <Declaration><![CDATA[TYPE ParallelUnitsSettings :
 STRUCT
 	RemoteAmsId: STRING := '5.73.47.143.1.1';
-	PressureSupplySP: LREAL := 250; // Set Point for Master/Slave
-	PressureExtractSP: LREAL := 280; // Set Point for Master/Slave
-	PressureSupplySP_HighSpeed: LREAL := 275; // Set Point for Master/Slave
-	PressureExtractSP_HighSpeed: LREAL := 295; // Set Point for Master/Slave
+	PressureSupplySP: REAL := 250; // Set Point for Master/Slave
+	PressureExtractSP: REAL := 280; // Set Point for Master/Slave
+	PressureSupplySP_HighSpeed: REAL := 275; // Set Point for Master/Slave
+	PressureExtractSP_HighSpeed: REAL := 295; // Set Point for Master/Slave
 	SupplyAirSetPointAdjustment: SetPointAdjustment;
 	ExtractAirSetPointAdjustment: SetPointAdjustment;
-	StandaloneMaxFan: LREAL := 0.7; // Max fan speed for single unit
-	DualMinFan: LREAL := 0.4; // Min fan speed for dual units
-	Kp: LREAL := 1.5; // P
+	SupplyAirSetPointAdjustment_HighSpeed: SetPointAdjustment;
+	ExtractAirSetPointAdjustment_HighSpeed: SetPointAdjustment;
+	StandaloneMaxFan: REAL := 0.7; // Max fan speed for single unit
+	DualMinFan: REAL := 0.4; // Min fan speed for dual units
+	Kp: REAL := 1.5; // P
 	fTn: TIME := T#4M; // I time
 	fTv: TIME := T#0M; // D time
 	RemoteOrder: RemoteOrder;
-	StandalonePressureSupplySP: LREAL := 125;
-	StandalonePressureExtractSP: LREAL := 150;
-	StandalonePressureSupplySP_HighSpeed: LREAL := 150;
-	StandalonePressureExtractSP_HighSpeed: LREAL := 175;
+	StandalonePressureSupplySP: REAL := 125;
+	StandalonePressureExtractSP: REAL := 150;
+	StandaloneSupplyAirSetPointAdjustment: SetPointAdjustment;
+	StandaloneExtractAirSetPointAdjustment: SetPointAdjustment;
+	StandalonePressureSupplySP_HighSpeed: REAL := 150;
+	StandalonePressureExtractSP_HighSpeed: REAL := 175;
+	StandaloneSupplyAirSetPointAdjustment_HighSpeed: SetPointAdjustment;
+	StandaloneExtractAirSetPointAdjustment_HighSpeed: SetPointAdjustment;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

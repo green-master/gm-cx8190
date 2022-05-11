@@ -3,6 +3,8 @@
   <DUT Name="ParallelUnitsStatus" Id="{cc155ffc-f805-41ba-9ea5-38e44e17862e}">
     <Declaration><![CDATA[TYPE ParallelUnitsStatus :
 STRUCT
+	PressureSupplyCSP: REAL; // Calculated Set Point for Master/Slave
+	PressureExtractCSP: REAL; // Calculated Set Point for Master/Slave
 	MasterActive: BOOL;
 	IsMaster: BOOL;
 	IsSlave: BOOL;

@@ -31,7 +31,8 @@ STRUCT
 										Pump1 := TRUE,
 										DamperError := TRUE,
 										CommunicationError := TRUE,
-										DamperModuleService := TRUE
+										DamperModuleService := TRUE,
+										TX1Fail := TRUE
 									),
 									C := (	
 										ExternalSmokeControl := TRUE,
@@ -65,7 +66,8 @@ STRUCT
 											SmokeDetectorServiceSupply := TRUE,
 											Pump1 := TRUE,
 											Pump2 := TRUE,
-											CommunicationError := TRUE
+											CommunicationError := TRUE,
+											TX1Fail := TRUE
 									),
 									C := (	ExternalSmokeControl := TRUE,
 											ModbusRTU := TRUE,

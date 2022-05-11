@@ -3,8 +3,8 @@
   <DUT Name="SetPointAdjustment" Id="{66e8ab10-f6e2-4cd9-b9cd-17f787b5ca44}">
     <Declaration><![CDATA[TYPE SetPointAdjustment :
 STRUCT
-	X: LREAL;
-	Y: LREAL;
+	X: REAL;
+	Y: REAL;
 	Curve: SetPointOffsetCurve;
 END_STRUCT
 END_TYPE

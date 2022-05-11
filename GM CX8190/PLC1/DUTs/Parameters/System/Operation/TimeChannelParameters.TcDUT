@@ -17,13 +17,13 @@ STRUCT
 	TC15: TimeChannel1CH_Data := ( Day := TimerDays.Friday );
 	TC16: TimeChannel1CH_Data := ( Day := TimerDays.Saturday );
 	TC17: TimeChannel1CH_Data := ( Day := TimerDays.Sunday );
-	TC21: TimeChannel1CH_Data := ( Day := TimerDays.Monday );
-	TC22: TimeChannel1CH_Data := ( Day := TimerDays.Tuesday );
-	TC23: TimeChannel1CH_Data := ( Day := TimerDays.Wednesday );
-	TC24: TimeChannel1CH_Data := ( Day := TimerDays.Thursday );
-	TC25: TimeChannel1CH_Data := ( Day := TimerDays.Friday );
-	TC26: TimeChannel1CH_Data := ( Day := TimerDays.Saturday );
-	TC27: TimeChannel1CH_Data := ( Day := TimerDays.Sunday );
+	TC21: TimeChannel1CH_Data := ( Day := TimerDays.Monday, Speed := 2 );
+	TC22: TimeChannel1CH_Data := ( Day := TimerDays.Tuesday, Speed := 2 );
+	TC23: TimeChannel1CH_Data := ( Day := TimerDays.Wednesday, Speed := 2 );
+	TC24: TimeChannel1CH_Data := ( Day := TimerDays.Thursday, Speed := 2 );
+	TC25: TimeChannel1CH_Data := ( Day := TimerDays.Friday, Speed := 2 );
+	TC26: TimeChannel1CH_Data := ( Day := TimerDays.Saturday, Speed := 2 );
+	TC27: TimeChannel1CH_Data := ( Day := TimerDays.Sunday, Speed := 2 );
 	Q: BOOL; // Result of the time channels
 	HighSpeed: BOOL; // Speed result of the time channels
 END_STRUCT
