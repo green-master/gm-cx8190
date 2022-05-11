@@ -40,7 +40,7 @@ IF NOT Override THEN
 ELSE
 	SpeedCV := OverrideCV;
 END_IF
-IF MaxSpeedEnabled AND (SpeedCV > MaxSpeed) THEN
+IF MaxSpeedEnabled AND (SpeedCV > MaxSpeed) and (not Main.GreenMaster.FireAlarm()) THEN
 	SpeedCV := MaxSpeed;
 END_IF
 ]]></ST>

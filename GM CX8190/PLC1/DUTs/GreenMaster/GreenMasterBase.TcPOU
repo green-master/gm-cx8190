@@ -15095,18 +15095,10 @@ CASE State OF
 		;
 
 	SystemStates.FireExhaust:
-		ADS_Standard.Tags.Settings.T_GQ1_M := FALSE;
-		ADS_Standard.Tags.Settings.F_GQ1_M := FALSE;
-		ADS_Standard.Tags.Settings.H_QN1_M := FALSE;
-		ADS_Standard.Tags.Settings.TX1_M := FALSE;
-		ADS_Standard.Tags.Settings.C_QN1_M := FALSE;
+		Fire();
 			
 	SystemStates.FireSupply:
-		ADS_Standard.Tags.Settings.T_GQ1_M := FALSE;
-		ADS_Standard.Tags.Settings.F_GQ1_M := FALSE;
-		ADS_Standard.Tags.Settings.H_QN1_M := FALSE;
-		ADS_Standard.Tags.Settings.TX1_M := FALSE;
-		ADS_Standard.Tags.Settings.C_QN1_M := FALSE;
+		FireSupply();
 
 	SystemStates.Ventilate:
 		;
