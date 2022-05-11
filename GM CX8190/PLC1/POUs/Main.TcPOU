@@ -52,7 +52,8 @@ VAR
 	w: WORD;
 	Rr: LREAL;
 	UseKL3464: BOOL;
-
+	FreezeHysteresis: Hysteresis;
+	CurrentFreezeAlarm: BOOL;
 END_VAR
 VAR PERSISTENT
 END_VAR
@@ -222,7 +223,8 @@ END_VAR
 				TCP_AI := SmokeControl.GreenMasterSmokeControl,  
 				Reverse_C_QN1 := UseReverse_C_QN1,
 				NightCooling := GreenMaster.Parameters.Regulation.NightCooling,
-				EnableFansAndDampers := Std_Interface.EN
+				EnableFansAndDampers := Std_Interface.EN,
+				ExtraFireSupplyAlarm := ParallelUnits.FireSupplyAlarm
 			);
 		END_IF
 		
@@ -276,9 +278,6 @@ END_VAR
 			sPart2 := Replace(sPart1, ' ', 1, 11);
 			GreenMaster.GetParameters().System.SystemTime := sPart2;
 		END_IF
-		IF Crash THEN
-			PTest^ := 111;
-		END_IF
 	//__CATCH
 	//	ExceptionYet := TRUE; 			
 	//__ENDTRY
@@ -286,12 +285,9 @@ ELSE
 	ExceptionYet := TRUE; 	
 END_IF
 
-IF (GreenMaster.GetParameters().IO.AIn.H_BT1 < GreenMaster.GetParameters().Alarm.Limits.A.Freeze) OR GreenMaster.GetParameters().IO.AIn.H_BT1_Error THEN
-	GreenMaster.GetParameters().Alarm.Status.A.Freeze := TRUE;
-END_IF
-IF GreenMaster.GetParameters().IO.AIn.H_BT1 > (GreenMaster.GetParameters().Alarm.Limits.A.Freeze + 0.5) AND (NOT GreenMaster.GetParameters().IO.AIn.H_BT1_Error) THEN
-	GreenMaster.GetParameters().Alarm.Status.A.Freeze := FALSE;
-END_IF
+FreezeHysteresis(Value := GreenMaster.GetParameters().IO.AIn.H_BT1, LimitValue := GreenMaster.GetParameters().Alarm.Limits.A.Freeze, Offset := 0.5);
+CurrentFreezeAlarm := FreezeHysteresis.Below OR ParallelUnits.FreezeAlarm OR GreenMaster.GetParameters().IO.AIn.H_BT1_Error;
+GreenMaster.GetParameters().Alarm.Status.A.Freeze := CurrentFreezeAlarm;
 ]]></ST>
     </Implementation>
   </POU>
