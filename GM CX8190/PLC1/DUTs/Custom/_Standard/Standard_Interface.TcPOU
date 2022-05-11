@@ -75,11 +75,11 @@ IF EN THEN
 	IF Parameters.System.Operation.RemoteEN AND UpdateTON.Q THEN
 		UpdateTON(IN := False);
 		ExchangeData(	ADR(Parameters.Regulation.NightCoolingRequest), 
-						ADR(ADS_Standard.Tags.Settings.NightCooling_V), 
+						ADR(ADS_Standard.Tags.Settings.NightCoolingEN), 
 						SIZEOF(Parameters.Regulation.NightCoolingRequest), 
 						ADR(SavedParameters.Regulation.NightCoolingRequest), 
-						ADR(SavedInterface.NightCooling_V), 
-						'BOOL', ('Parameters.Regulation.NightCoolingRequest'), ('NightCooling_V'));	
+						ADR(SavedInterface.NightCoolingEN), 
+						'BOOL', ('Parameters.Regulation.NightCoolingRequest'), ('NightCoolingEN'));	
 		ExchangeData(	ADR(Parameters.Alarm.Control.ResetAlarms), 
 						ADR(ADS_Standard.Tags.Settings.ResetAlarms), 
 						SIZEOF(Parameters.Alarm.Control.ResetAlarms), 
@@ -765,6 +765,8 @@ IF EN THEN
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.PLC_VERSION_PV := GlobalSettings.PlcVersion;
 	ADS_Standard.Tags.Status.TIMEANDDATE_PV := Parameters.System.SystemTime;
+	ADS_Standard.Tags.Status.NightCooling_V := Parameters.Regulation.NightCooling;
+	ADS_Standard.Tags.Status.TX1_AL := Parameters.Alarm.Active.B.Tx1Fail;
 
 	PreEN := TRUE;
 	

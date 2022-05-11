@@ -62,7 +62,6 @@ NightCoolingTemperatureSP :  REAL :=18.0; //  Night cooling temperature Set Poin
 FanStopDelayTime :  TIME :=T#2M; //  Fan stop delay cool down period $(unit "s")
 WatchdogEnabled :  BOOL :=FALSE; //  Watchdog enable - enables unit on watchdog update failure 
 Watchdog :  INT :=0; //  Watchdog counter to be changed at a minimum every 5 minutes (when enabled)  
-NightCooling_V :  BOOL; //  Activate nigh time cooling  
 TX1_M :  BOOL; // Heat exchanger manual override
 T_GQ1_M :  BOOL; //  Supply air fan control manual override
 F_GQ1_M :  BOOL; //  Extract air fan control manual override

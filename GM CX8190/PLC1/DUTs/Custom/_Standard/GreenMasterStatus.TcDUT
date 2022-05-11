@@ -107,6 +107,8 @@ F_BP1_FAULT :  BOOL; // Frånluftstryck givarfel
 F_BP1_AL :  BOOL; // Frånluftstryck Larm
 PLC_VERSION_PV: STRING; // PLC version (major.minor.patch)
 TIMEANDDATE_PV: STRING; // Current time in the PLC unit |||| Aktuell tid i PLC-enheten
+NightCooling_V :  BOOL; //  Active night time cooling  
+TX1_AL: BOOL; // Larm värmeväxlare (rotationsvakt)
 END_STRUCT
 END_TYPE
 ]]></Declaration>
