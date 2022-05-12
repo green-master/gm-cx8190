@@ -37,7 +37,7 @@ VAR_GLOBAL PERSISTENT
 		(Name := ComponentNames.SIMULATION, EN := FALSE, Path := 'Main.GreenMaster.Simulation', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.REDUNDANCY, EN := FALSE, Path := 'Main.GreenMaster.Redundancy', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.EXTRA_ALARMS, EN := TRUE, Path := 'ADS_ExtraAlarms.Tags', Resource := 'Parameter', Permissions := Permissions.User),
-		(Name := ComponentNames.PARALLEL_UNITS, EN := TRUE, Path := 'ADS_ParallelUnits.Tags', Resource := 'Parameter', Permissions := Permissions.User),
+		(Name := ComponentNames.PARALLEL_UNITS, EN := FALSE, Path := 'ADS_ParallelUnits.Tags', Resource := 'Parameter', Permissions := Permissions.User),
 		(Name := ComponentNames.None)
 	];
 	AlarmDefs: ARRAY [0..MAX_ALARMS - 1] OF AlarmDef := [
