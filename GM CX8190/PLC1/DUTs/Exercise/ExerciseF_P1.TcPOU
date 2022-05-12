@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
-  <POU Name="ExerciseF_QM2" Id="{bb8268c0-0fa7-48db-bbc7-f19b5ac9af73}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK ExerciseF_QM2
+  <POU Name="ExerciseF_P1" Id="{6854153b-9837-4cc5-be48-d8ec065b240f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExerciseF_P1
 VAR_IN_OUT
 	Parameters: GreenMasterBaseParameters;
 END_VAR
@@ -32,22 +32,22 @@ IF EN THEN
 	CASE CurrentState OF
 		0:
 			IF EN AND (Parameters.System.Operation.State <> SystemStates.Idle) and LocalTime.bValid THEN
-				IF ((Parameters.System.Exercise.FireBypassDamper.Interval > 0) AND ((ExerciseTimer.ElapsedTime() > (Parameters.System.Exercise.FireBypassDamper.Interval * 3600 * 1000)) OR FirstTime) AND 
+				IF ((Parameters.System.Exercise.CirculationPumps.Interval > 0) AND ((ExerciseTimer.ElapsedTime() > (Parameters.System.Exercise.CirculationPumps.Interval * 3600 * 1000)) OR FirstTime) AND 
 					(
-						(WORD_TO_INT(LocalTime.systemTime.wHour) = Parameters.System.Exercise.FireBypassDamper.Hour) AND (WORD_TO_INT(LocalTime.systemTime.wMinute) = Parameters.System.Exercise.FireBypassDamper.Minute)
+						(WORD_TO_INT(LocalTime.systemTime.wHour) = Parameters.System.Exercise.CirculationPumps.Hour) AND (WORD_TO_INT(LocalTime.systemTime.wMinute) = Parameters.System.Exercise.CirculationPumps.Minute)
 					)) OR ForceExercise THEN
 					FirstTime := FALSE;
 					ForceExercise := FALSE;
 					Exercising := TRUE;
 					StateTimer.Restart();
 					CurrentState := 1;
-					Main.EventLog.LogEvent(EventTypes.Information, 'Exercising F_QM2');
+					Main.EventLog.LogEvent(EventTypes.Information, 'Exercising P1');
 				END_IF			
 			END_IF
 		1:
 			IF StateTimer.ElapsedTime() > 10 * 1000 THEN
 				ExerciseTimer.Restart();
-				Parameters.IO.DOut.F_QM2 := FALSE;
+				Parameters.IO.DOut.H_GP1 := TRUE;
 				CurrentState := 2;
 			END_IF
 		2:
@@ -56,7 +56,7 @@ IF EN THEN
 			END_IF
 		3:
 			IF (StateTimer.ElapsedTime() > 60 * 1000) or Parameters.IO.DIn.F_QM2_Closed THEN
-				Parameters.IO.DOut.F_QM2 := TRUE;
+				Parameters.IO.DOut.H_GP1 := FALSE;
 				Exercising := FALSE;
 				CurrentState := 0;
 			END_IF
