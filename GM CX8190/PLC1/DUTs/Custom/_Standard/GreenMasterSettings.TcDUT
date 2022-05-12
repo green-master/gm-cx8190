@@ -31,7 +31,7 @@ T_BP1_ADL: REAL := 30; //  Alarm limit supply pressure deviation |||| Larmgräns
 F_BP1_AD: TIME := T#10M; //  Alarm delay extract pressure deviation (s) |||| Larmfördröjning avvikelse frånluftstryck (s) $(unit "s")
 F_BP1_ADL: REAL := 30; //  Alarm limit extract pressure deviation |||| Larmgräns avvikelse frånluftstryck $(unit "Pa")
 
-Temperature_SP :  LREAL :=0; //  Temperature Set Point, C
+Temperature_SP :  LREAL :=20; //  Temperature Set Point, C
 TemperatureControlPV :  INT :=0; //  0 = Use T.BT1, 1 = Use F.BT1
 //SetPointOffsetCurve :  SetPointOffsetCurve := (Y1 := 20, Y2 := 20, Y3 := 20, Y4 := 20, Y5 := 20, Y6 := 20, Y7 := 20, Y8 := 20, Y9 := 20); // Outdoorcompensation temperature
 T_BT1_CURVE :  SetPointOffsetCurve; // Outdoorcompensation temperature
