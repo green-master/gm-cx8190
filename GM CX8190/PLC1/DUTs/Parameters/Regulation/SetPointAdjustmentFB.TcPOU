@@ -28,8 +28,8 @@ CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X6
 CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X7, Y1 := SetPointAdjustment.Curve.Y7, X2 := SetPointAdjustment.Curve.X8, Y2 := SetPointAdjustment.Curve.Y8, LastY := LastY);
 CurrentY := Interpolate(X := X, Y := CurrentY, X1 := SetPointAdjustment.Curve.X8, Y1 := SetPointAdjustment.Curve.Y8, X2 := SetPointAdjustment.Curve.X9, Y2 := SetPointAdjustment.Curve.Y9, LastY := LastY);
 Y := CurrentY;
-SetPointAdjustment.X := X;
-SetPointAdjustment.Y := Y;
+SetPointAdjustment.X := TO_REAL(X);
+SetPointAdjustment.Y := TO_REAL(Y);
 ]]></ST>
     </Implementation>
     <Method Name="Interpolate" Id="{9dd4eb56-3a90-4507-837d-305fa2aa5f91}">

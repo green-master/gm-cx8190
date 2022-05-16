@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ifc_bool" Id="{bf0e0917-d0a0-47b5-abde-816a6a4f7611}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ifc_bool : BOOL
+VAR_INPUT
+	Condition: BOOL;
+	ValueTrue: BOOL;
+	ValueFalse: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Condition THEN
+	ifc_bool := ValueTrue;
+ELSE
+	ifc_bool := ValueFalse;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

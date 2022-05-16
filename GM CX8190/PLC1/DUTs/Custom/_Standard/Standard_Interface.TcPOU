@@ -8,7 +8,6 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	ENO: BOOL;
-	NightCooling: BOOL;
 END_VAR
 VAR
 	InitDone: BOOL;
@@ -27,10 +26,8 @@ VAR
 	TimeChannelActive: BOOL;
 	TimeChannelEnabled: BOOL;
 	n: UINT;
-	TimeChannel1: TimeChannel1CH;
-	TimeChannel2: TimeChannel1CH;
-	TimeChannel3: TimeChannel1CH;
 	TimeChannelFallback: TimeChannel1CH;
+	TimeChannelFallback_Data: TimeChannel1CH_Data;
 	WatchdogTOF: TOF;
 	LastWatchDog: INT;
 	SetPointAdjustment: SetPointAdjustment;
@@ -61,39 +58,28 @@ END_IF;
 
 TimeChannelEnabled := FALSE;
 TimeChannelActive := FALSE;
-(*
-TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule1.EN;
-TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule1.Q;
-TimeChannel1(Settings := ADS_Standard.Tags.Schedule1);
-
-TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule2.EN;
-TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule2.Q;
-TimeChannel2(Settings := ADS_Standard.Tags.Schedule2);
-
-TimeChannelEnabled := TimeChannelEnabled OR ADS_Standard.Tags.Schedule3.EN;
-TimeChannelActive := TimeChannelActive OR ADS_Standard.Tags.Schedule3.Q;
-TimeChannel3(Settings := ADS_Standard.Tags.Schedule3);
-
-TimeChannelFallback(Settings := ADS_Standard.Tags.ScheduleFallback);
-*)
 WatchdogTOF(IN := (NOT ADS_Standard.Tags.Settings.WatchdogEnabled) OR (ADS_Standard.Tags.Settings.Watchdog <> LastWatchDog), PT := T#5M);
 
 IF WatchdogTOF.Q THEN
 	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelEnabled AND TimeChannelActive;
 ELSE
-	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelFallback.Q;
+	ENO := EN AND (ADS_Standard.Tags.Settings.RemoteStart > 0) AND TimeChannelFallback_Data.Q;
 END_IF
 
 IF EN THEN
 	
 	Globals.IO.DOut.DO16 := ADS_Standard.Tags.Status.C_GP1_CMD;
-	
-	NightCooling := ADS_Standard.Tags.Settings.NightCooling_V;
 	UpdateTON(IN := TRUE, PT := T#1S);
 	// --------------------------------------------------------------------------------
 	// Transfer from Standard tags to settings
 	IF Parameters.System.Operation.RemoteEN AND UpdateTON.Q THEN
 		UpdateTON(IN := False);
+		ExchangeData(	ADR(Parameters.Regulation.NightCoolingRequest), 
+						ADR(ADS_Standard.Tags.Settings.NightCoolingEN), 
+						SIZEOF(Parameters.Regulation.NightCoolingRequest), 
+						ADR(SavedParameters.Regulation.NightCoolingRequest), 
+						ADR(SavedInterface.NightCoolingEN), 
+						'BOOL', ('Parameters.Regulation.NightCoolingRequest'), ('NightCoolingEN'));	
 		ExchangeData(	ADR(Parameters.Alarm.Control.ResetAlarms), 
 						ADR(ADS_Standard.Tags.Settings.ResetAlarms), 
 						SIZEOF(Parameters.Alarm.Control.ResetAlarms), 
@@ -648,13 +634,41 @@ IF EN THEN
 						ADR(SavedParameters.Alarm.Limits.A.Freeze), 
 						ADR(SavedInterface.FREEZE_ALL), 
 						'REAL', ('Parameters.Alarm.Limits.A.Freeze'), ('FREEZE_ALL'));	
-			
-		Main.GreenMasterAO.SetOverrideT_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.T_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM / 100.0); 
-		Main.GreenMasterAO.SetOverrideF_GQ1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.F_GQ1_M, OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideH_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.H_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideF_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.TX1_M, OverrideValue := ADS_Standard.Tags.Settings.TX1_OPM / 100.0);
-		Main.GreenMasterAO.SetOverrideC_QN1(Parameters := Parameters, Override := ADS_Standard.Tags.Settings.C_QN1_M, OverrideValue := ADS_Standard.Tags.Settings.C_QN1_OPM / 100.0);
+
+		Parameters.IO.AOutOverride.T_GQ1_Override := ADS_Standard.Tags.Settings.T_GQ1_M;
+		Parameters.IO.AOutOverride.T_GQ1_OverrideValue := ADS_Standard.Tags.Settings.T_GQ1_OPM;			
+		Parameters.IO.AOutOverride.F_GQ1_Override := ADS_Standard.Tags.Settings.F_GQ1_M;
+		Parameters.IO.AOutOverride.F_GQ1_OverrideValue := ADS_Standard.Tags.Settings.F_GQ1_OPM;			
+		Parameters.IO.AOutOverride.H_QN1_Override := ADS_Standard.Tags.Settings.H_QN1_M;
+		Parameters.IO.AOutOverride.H_QN1_OverrideValue := ADS_Standard.Tags.Settings.H_QN1_OPM;			
+		Parameters.IO.AOutOverride.F_QN1_Override := ADS_Standard.Tags.Settings.TX1_M;
+		Parameters.IO.AOutOverride.F_QN1_OverrideValue := ADS_Standard.Tags.Settings.TX1_OPM;			
+		Parameters.IO.AOutOverride.C_QN1_Override := ADS_Standard.Tags.Settings.C_QN1_M;
+		Parameters.IO.AOutOverride.C_QN1_OverrideValue := ADS_Standard.Tags.Settings.C_QN1_OPM;		
+
+		Parameters.IO.DOutOverride.H_GP1_Override := ADS_Standard.Tags.Settings.H_GP1_M;	
+		Parameters.IO.DOutOverride.C_GP1_Override := ADS_Standard.Tags.Settings.C_GP1_M;
+		Parameters.IO.DOutOverride.F_QM1_Override := ADS_Standard.Tags.Settings.F_QM1_M;
+		Parameters.IO.DOutOverride.T_QM1_1_Override := ADS_Standard.Tags.Settings.T_QM1_1_M;
+		Parameters.IO.DOutOverride.T_QM1_2_Override := ADS_Standard.Tags.Settings.T_QM1_2_M;
+		Parameters.IO.DOutOverride.T_QM1_3_Override := ADS_Standard.Tags.Settings.T_QM1_3_M;
+		Parameters.IO.DOutOverride.T_QM1_4_Override := ADS_Standard.Tags.Settings.T_QM1_4_M;
+		Parameters.IO.DOutOverride.T_QM1_5_Override := ADS_Standard.Tags.Settings.T_QM1_5_M;
+		Parameters.IO.DOutOverride.T_QM1_6_Override := ADS_Standard.Tags.Settings.T_QM1_6_M;
+		Parameters.IO.DOutOverride.F_QM2_Override := ADS_Standard.Tags.Settings.F_QM2_M;
+		Parameters.IO.DOutOverride.T_QM2_Override := ADS_Standard.Tags.Settings.T_QM2_M;
 		
+		Parameters.IO.DOutOverride.H_GP1_OverrideValue := ADS_Standard.Tags.Settings.H_GP1_MCMD;	
+		Parameters.IO.DOutOverride.C_GP1_OverrideValue := ADS_Standard.Tags.Settings.C_GP1_MCMD;
+		Parameters.IO.DOutOverride.F_QM1_OverrideValue := ADS_Standard.Tags.Settings.F_QM1_MCMD;
+		Parameters.IO.DOutOverride.T_QM1_1_OverrideValue := ADS_Standard.Tags.Settings.T_QM1_1_MCMD;
+		Parameters.IO.DOutOverride.T_QM1_2_OverrideValue := ADS_Standard.Tags.Settings.T_QM1_2_MCMD;
+		Parameters.IO.DOutOverride.T_QM1_3_OverrideValue := ADS_Standard.Tags.Settings.T_QM1_3_MCMD;
+		Parameters.IO.DOutOverride.T_QM1_4_OverrideValue := ADS_Standard.Tags.Settings.T_QM1_4_MCMD;
+		Parameters.IO.DOutOverride.T_QM1_5_OverrideValue := ADS_Standard.Tags.Settings.T_QM1_5_MCMD;
+		Parameters.IO.DOutOverride.T_QM1_6_OverrideValue := ADS_Standard.Tags.Settings.T_QM1_6_MCMD;
+		Parameters.IO.DOutOverride.F_QM2_OverrideValue := ADS_Standard.Tags.Settings.F_QM2_MCMD;
+		Parameters.IO.DOutOverride.T_QM2_OverrideValue := ADS_Standard.Tags.Settings.T_QM2_MCMD;
 	END_IF
 	
 	// Status transfers
@@ -709,24 +723,24 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_BP2_HAL := Parameters.Alarm.Active.B.SupplyFilter;
 	ADS_Standard.Tags.Status.F_BP2_HAL := Parameters.Alarm.Active.B.ExtractFilter;
 	
-	ADS_Standard.Tags.Status.H_GP1_CMD := Parameters.IO.DOut.H_GP1;
-	ADS_Standard.Tags.Status.C_GP1_CMD := Parameters.IO.DOut.C_GP1;	// WHHAATT??? Parameters.System.Operation.EN;
-	ADS_Standard.Tags.Status.F_QM1_CMD := Parameters.IO.DOut.F_QM1;
-	ADS_Standard.Tags.Status.T_QM2_CMD := Parameters.IO.DOut.T_QM2;
-	(*!!!!! BORT !!!! *)ADS_Standard.Tags.Status.T_QM3_CMD := Parameters.IO.DOut.T_QM2;
+	ADS_Standard.Tags.Status.H_GP1_CMD := Main.GreenMasterDO.H_GP1;
+	ADS_Standard.Tags.Status.C_GP1_CMD := Main.GreenMasterDO.C_GP1;
+	ADS_Standard.Tags.Status.F_QM1_CMD := Main.GreenMasterDO.F_QM1;
+	ADS_Standard.Tags.Status.T_QM2_CMD := Main.GreenMasterDO.T_QM2;
+	(*!!!!! BORT !!!! *)ADS_Standard.Tags.Status.T_QM3_CMD := Main.GreenMasterDO.T_QM2;
 		
-	ADS_Standard.Tags.Status.F_QM2_CMD := Parameters.IO.DOut.F_QM2;
+	ADS_Standard.Tags.Status.F_QM2_CMD := Main.GreenMasterDO.F_QM2;
 	ADS_Standard.Tags.Status.F_QM2_V0 := Parameters.IO.DIn.F_QM2_Closed;
 	ADS_Standard.Tags.Status.F_QM2_V1 := Parameters.IO.DIn.F_QM2_Open;
 	
-	ADS_Standard.Tags.Status.T_QM1_1_CMD := Parameters.IO.DOut.T_QM1_1;
-	ADS_Standard.Tags.Status.T_QM1_2_CMD := Parameters.IO.DOut.T_QM1_2;
-	ADS_Standard.Tags.Status.T_QM1_3_CMD := Parameters.IO.DOut.T_QM1_3;
-	ADS_Standard.Tags.Status.T_QM1_4_CMD := Parameters.IO.DOut.T_QM1_4;
-	ADS_Standard.Tags.Status.T_QM1_5_CMD := Parameters.IO.DOut.T_QM1_5;
-	ADS_Standard.Tags.Status.T_QM1_6_CMD := Parameters.IO.DOut.T_QM1_6;
+	ADS_Standard.Tags.Status.T_QM1_1_CMD := Main.GreenMasterDO.T_QM1_1;
+	ADS_Standard.Tags.Status.T_QM1_2_CMD := Main.GreenMasterDO.T_QM1_2;
+	ADS_Standard.Tags.Status.T_QM1_3_CMD := Main.GreenMasterDO.T_QM1_3;
+	ADS_Standard.Tags.Status.T_QM1_4_CMD := Main.GreenMasterDO.T_QM1_4;
+	ADS_Standard.Tags.Status.T_QM1_5_CMD := Main.GreenMasterDO.T_QM1_5;
+	ADS_Standard.Tags.Status.T_QM1_6_CMD := Main.GreenMasterDO.T_QM1_6;
 
-	ADS_Standard.Tags.Status.T_QM1_CMD := Parameters.IO.DOut.T_QM2;
+	ADS_Standard.Tags.Status.T_QM1_CMD := Main.GreenMasterDO.T_QM2;
 
 	ADS_Standard.Tags.Status.Temperature_CSP := LREAL_TO_REAL(Parameters.Regulation.Temperature.Control.CSP);
 	ADS_Standard.Tags.Status.T_BP1_CSP := LREAL_TO_REAL(Parameters.Regulation.SupplyAir.Control.CSP);
@@ -738,19 +752,6 @@ IF EN THEN
 	ADS_Standard.Tags.Status.T_BT1_PV := LREAL_TO_REAL(Parameters.IO.AIn.T_BT1);
 	ADS_Standard.Tags.Status.F_BT2_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BT2);
 	
-(*	Chalmers, egentligen batteriåtervinning...	
-	GT21(ProcessValue := AIn.AI09, ProcessError := AIn.AI09_Error);
-	ADS_Standard.Tags.Status.GT21_V := LREAL_TO_REAL(GT21.Value);
-	GT44(ProcessValue := AIn.AI10, ProcessError := AIn.AI10_Error);
-	ADS_Standard.Tags.Status.GT44_V := LREAL_TO_REAL(GT44.Value);
-	GT45(ProcessValue := AIn.AI11, ProcessError := AIn.AI11_Error);
-	ADS_Standard.Tags.Status.GT45_V := LREAL_TO_REAL(GT45.Value);
-	GT46(ProcessValue := AIn.AI12, ProcessError := AIn.AI12_Error);
-	ADS_Standard.Tags.Status.GT46_V := LREAL_TO_REAL(GT46.Value);
-	GT41(ProcessValue := AIn.AI13, ProcessError := AIn.AI13_Error);
-	ADS_Standard.Tags.Status.GT41_V := LREAL_TO_REAL(GT41.Value);
-
-*)	
 	IF NOT Parameters.IO.AIn.T_BF1_Error THEN
 		ADS_Standard.Tags.Status.T_BF1_PV := LREAL_TO_REAL(Parameters.IO.AIn.T_BF1);
 	ELSE	
@@ -767,11 +768,11 @@ IF EN THEN
 	ADS_Standard.Tags.Status.F_BP2_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BP2);
 	ADS_Standard.Tags.Status.F_BP3_PV := LREAL_TO_REAL(Parameters.IO.AIn.F_BP3);
 	
-	ADS_Standard.Tags.Status.TX1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_QN1);
-	ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.H_QN1);
-	ADS_Standard.Tags.Status.C_QN1_OP := LREAL_TO_REAL(Parameters.IO.AOut.C_QN1);
-	ADS_Standard.Tags.Status.T_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.T_GQ1);
-	ADS_Standard.Tags.Status.F_GQ1_OP := LREAL_TO_REAL(Parameters.IO.AOut.F_GQ1);
+	ADS_Standard.Tags.Status.TX1_OP := TO_REAL(Main.GreenMasterAO.F_QN1); //LREAL_TO_REAL(Parameters.IO.AOut.F_QN1);
+	ADS_Standard.Tags.Status.H_QN1_OP := LREAL_TO_REAL(Main.GreenMasterAO.H_QN1);
+	ADS_Standard.Tags.Status.C_QN1_OP := LREAL_TO_REAL(Main.GreenMasterAO.C_QN1);
+	ADS_Standard.Tags.Status.T_GQ1_OP := LREAL_TO_REAL(Main.GreenMasterAO.T_GQ1);
+	ADS_Standard.Tags.Status.F_GQ1_OP := LREAL_TO_REAL(Main.GreenMasterAO.F_GQ1);
 	ADS_Standard.Tags.Status.T_GQ1_V := Parameters.IO.AOut.T_GQ1 > 0.02;
 	ADS_Standard.Tags.Status.F_GQ1_V := Parameters.IO.AOut.F_GQ1 > 0.02;
 	
@@ -779,7 +780,9 @@ IF EN THEN
 	ADS_Standard.Tags.Status.TX1_EFF_LAL := Parameters.Alarm.Active.B.HeatExchangerEfficiency;
 	ADS_Standard.Tags.Status.PLC_VERSION_PV := GlobalSettings.PlcVersion;
 	ADS_Standard.Tags.Status.TIMEANDDATE_PV := Parameters.System.SystemTime;
-
+	ADS_Standard.Tags.Status.NightCooling_V := Parameters.Regulation.NightCooling;
+	ADS_Standard.Tags.Status.TX1_AL := Parameters.Alarm.Active.B.Tx1Fail;
+	
 	PreEN := TRUE;
 	
 	ModbusSettings();

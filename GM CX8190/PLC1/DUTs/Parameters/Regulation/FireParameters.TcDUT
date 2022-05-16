@@ -3,7 +3,7 @@
   <DUT Name="FireParameters" Id="{6089c3e6-fe52-40a5-ac9e-036d207d68e3}">
     <Declaration><![CDATA[TYPE FireParameters :
 STRUCT
-	EN: BOOL := TRUE; // Run fan when FIRE
+	EN: BOOL := FALSE; // Run fan when FIRE
 	Speed: LREAL := 0.8; // Speed when in FIRE (0-1)
 END_STRUCT
 END_TYPE

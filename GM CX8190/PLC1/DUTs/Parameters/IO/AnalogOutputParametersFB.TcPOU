@@ -19,13 +19,16 @@ VAR_INPUT
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
 	AOut: AnalogOutputParameters;
 END_VAR
-]]></Declaration>
+VAR
+	NotFire: BOOL;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[AO.F_QN1 := AOut.F_QN1;
-AO.T_GQ1 := AOut.T_GQ1;
-AO.F_GQ1 := AOut.F_GQ1;
-AO.C_QN1 := AOut.C_QN1;
-AO.H_QN1 := AOut.H_QN1;
+        <ST><![CDATA[NotFire := NOT Main.GreenMaster.FireAlarm();
+AO.F_QN1 := ifc_lreal(Parameters.IO.AOutOverride.F_QN1_Override AND NotFire, Parameters.IO.AOutOverride.F_QN1_OverrideValue, AOut.F_QN1);
+AO.T_GQ1 := ifc_lreal(Parameters.IO.AOutOverride.T_GQ1_Override AND NotFire, Parameters.IO.AOutOverride.T_GQ1_OverrideValue, AOut.T_GQ1);
+AO.F_GQ1 := ifc_lreal(Parameters.IO.AOutOverride.F_GQ1_Override AND NotFire, Parameters.IO.AOutOverride.F_GQ1_OverrideValue, AOut.F_GQ1);
+AO.C_QN1 := ifc_lreal(Parameters.IO.AOutOverride.C_QN1_Override AND NotFire, Parameters.IO.AOutOverride.C_QN1_OverrideValue, AOut.C_QN1);
+AO.H_QN1 := ifc_lreal(Parameters.IO.AOutOverride.H_QN1_Override AND NotFire, Parameters.IO.AOutOverride.H_QN1_OverrideValue, AOut.H_QN1);
 ]]></ST>
       </Implementation>
     </Method>

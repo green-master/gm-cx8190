@@ -3,14 +3,60 @@
   <POU Name="TimeChannelParametersFB" Id="{da56f15f-511d-409e-bbc6-3822c1ef44b4}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TimeChannelParametersFB
 VAR_INPUT
+	Parameters: REFERENCE TO GreenMasterBaseParameters;
+	ParametersFB: REFERENCE TO GreenMasterBaseParametersFB;
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	TC01: TimeChannel1CH;
+	TC02: TimeChannel1CH;
+	TC03: TimeChannel1CH;
+	TC04: TimeChannel1CH;
+	TC05: TimeChannel1CH;
+	TC06: TimeChannel1CH;
+	TC07: TimeChannel1CH;
+	TC11: TimeChannel1CH;
+	TC12: TimeChannel1CH;
+	TC13: TimeChannel1CH;
+	TC14: TimeChannel1CH;
+	TC15: TimeChannel1CH;
+	TC16: TimeChannel1CH;
+	TC17: TimeChannel1CH;
+	TC21: TimeChannel1CH;
+	TC22: TimeChannel1CH;
+	TC23: TimeChannel1CH;
+	TC24: TimeChannel1CH;
+	TC25: TimeChannel1CH;
+	TC26: TimeChannel1CH;
+	TC27: TimeChannel1CH;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[TC01(Data := Parameters.System.Operation.TimeChannels.TC01);
+TC02(Data := Parameters.System.Operation.TimeChannels.TC02);
+TC03(Data := Parameters.System.Operation.TimeChannels.TC03);
+TC04(Data := Parameters.System.Operation.TimeChannels.TC04);
+TC05(Data := Parameters.System.Operation.TimeChannels.TC05);
+TC06(Data := Parameters.System.Operation.TimeChannels.TC06);
+TC07(Data := Parameters.System.Operation.TimeChannels.TC07);
+
+TC11(Data := Parameters.System.Operation.TimeChannels.TC11);
+TC12(Data := Parameters.System.Operation.TimeChannels.TC12);
+TC13(Data := Parameters.System.Operation.TimeChannels.TC13);
+TC14(Data := Parameters.System.Operation.TimeChannels.TC14);
+TC15(Data := Parameters.System.Operation.TimeChannels.TC15);
+TC16(Data := Parameters.System.Operation.TimeChannels.TC16);
+TC17(Data := Parameters.System.Operation.TimeChannels.TC17);
+
+TC21(Data := Parameters.System.Operation.TimeChannels.TC21);
+TC22(Data := Parameters.System.Operation.TimeChannels.TC22);
+TC23(Data := Parameters.System.Operation.TimeChannels.TC23);
+TC24(Data := Parameters.System.Operation.TimeChannels.TC24);
+TC25(Data := Parameters.System.Operation.TimeChannels.TC25);
+TC26(Data := Parameters.System.Operation.TimeChannels.TC26);
+TC27(Data := Parameters.System.Operation.TimeChannels.TC27);
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

@@ -3,15 +3,20 @@
   <DUT Name="ParallelUnitsStatus" Id="{cc155ffc-f805-41ba-9ea5-38e44e17862e}">
     <Declaration><![CDATA[TYPE ParallelUnitsStatus :
 STRUCT
+	PressureSupplyCSP: REAL; // Calculated Set Point for Master/Slave
+	PressureExtractCSP: REAL; // Calculated Set Point for Master/Slave
 	MasterActive: BOOL;
 	IsMaster: BOOL;
 	IsSlave: BOOL;
 	SupplyFanSpeed: LREAL;
 	ExtractFanSpeed: LREAL;
 	IsRunning: BOOL;
-	ResetAlarm: BOOL;
-	Fire: BOOL;
-	Freeze: BOOL;
+	ResetAlarmMaster: BOOL;
+	FireMaster: BOOL;
+	FreezeMaster: BOOL;
+	ResetAlarmSlave: BOOL;
+	FireSlave: BOOL;
+	FreezeSlave: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

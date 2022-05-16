@@ -20,6 +20,7 @@ STRUCT
 	DamperError: TIME := T#30S;
 	CommunicationError: TIME := T#30S;
 	DamperModuleService: TIME := T#5S;
+	Tx1Fail: TIME := T#1M;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

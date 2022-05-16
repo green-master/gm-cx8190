@@ -40,7 +40,7 @@ STRUCT
 	F_BT1_EN: BOOL := TRUE; 
     T_BT2_EN: BOOL := TRUE;
     T_BT3_EN: BOOL := TRUE;
-    H_BT1_EN: BOOL := FALSE;
+    H_BT1_EN: BOOL := TRUE;
     T_BT1_EN: BOOL := TRUE; 
     BT1_EN: BOOL := FALSE;
     BT2_EN: BOOL := FALSE;

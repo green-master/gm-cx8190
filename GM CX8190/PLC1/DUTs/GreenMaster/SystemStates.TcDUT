@@ -6,7 +6,7 @@
 {attribute 'to_string'}
 TYPE SystemStates :
 (
-	None := 0, Start, Idle, OpenDampers, StartupHeatRecovery, Run, PostRun, FireHandling, FireHandlingExit, FireExhaust, FireSupply, Ventilate, FirePanel, Exercise
+	None := 0, Start, Idle, OpenDampers, StartupHeatRecovery, Run, PostRun, FireHandling, FireHandlingExit, FireExhaust, FireSupply, Ventilate, Exercise
 );
 END_TYPE
 ]]></Declaration>

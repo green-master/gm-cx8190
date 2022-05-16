@@ -14,6 +14,7 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	Exercise: ExerciseParametersFB;
+	Operation: OperationParametersFB;
 END_VAR
 VAR
 	LastSecondsCounter: lint;
@@ -22,31 +23,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[Exercise(Parameters := Parameters, ParametersFB := ParametersFB);
 System.Operation.ENO := System.Operation.State > SystemStates.Idle;
+Operation(Parameters := Parameters, ParametersFB := ParametersFB);
 IF (Globals.SecondsCounter - LastSecondsCounter) > 10 THEN
 	LastSecondsCounter := Globals.SecondsCounter;
-	System.Operation.TimeChannels.TC01();
-	System.Operation.TimeChannels.TC02();
-	System.Operation.TimeChannels.TC03();
-	System.Operation.TimeChannels.TC04();
-	System.Operation.TimeChannels.TC05();
-	System.Operation.TimeChannels.TC06();
-	System.Operation.TimeChannels.TC07();
-	
-	System.Operation.TimeChannels.TC11();
-	System.Operation.TimeChannels.TC12();
-	System.Operation.TimeChannels.TC13();
-	System.Operation.TimeChannels.TC14();
-	System.Operation.TimeChannels.TC15();
-	System.Operation.TimeChannels.TC16();
-	System.Operation.TimeChannels.TC17();
-	
-	System.Operation.TimeChannels.TC21();
-	System.Operation.TimeChannels.TC22();
-	System.Operation.TimeChannels.TC23();
-	System.Operation.TimeChannels.TC24();
-	System.Operation.TimeChannels.TC25();
-	System.Operation.TimeChannels.TC26();
-	System.Operation.TimeChannels.TC27();
 	
 	System.Operation.TimeChannels.Q :=
 		System.Operation.TimeChannels.TC01.Q OR
@@ -70,6 +49,28 @@ IF (Globals.SecondsCounter - LastSecondsCounter) > 10 THEN
 		System.Operation.TimeChannels.TC25.Q OR
 		System.Operation.TimeChannels.TC26.Q OR
 		System.Operation.TimeChannels.TC27.Q;
+	System.Operation.TimeChannels.HighSpeed := 
+		(System.Operation.TimeChannels.TC01.Q AND (System.Operation.TimeChannels.TC01.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC02.Q AND (System.Operation.TimeChannels.TC02.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC03.Q AND (System.Operation.TimeChannels.TC03.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC04.Q AND (System.Operation.TimeChannels.TC04.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC05.Q AND (System.Operation.TimeChannels.TC05.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC06.Q AND (System.Operation.TimeChannels.TC06.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC07.Q AND (System.Operation.TimeChannels.TC07.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC11.Q AND (System.Operation.TimeChannels.TC11.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC12.Q AND (System.Operation.TimeChannels.TC12.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC13.Q AND (System.Operation.TimeChannels.TC13.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC14.Q AND (System.Operation.TimeChannels.TC14.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC15.Q AND (System.Operation.TimeChannels.TC15.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC16.Q AND (System.Operation.TimeChannels.TC16.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC17.Q AND (System.Operation.TimeChannels.TC17.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC21.Q AND (System.Operation.TimeChannels.TC21.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC22.Q AND (System.Operation.TimeChannels.TC22.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC23.Q AND (System.Operation.TimeChannels.TC23.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC24.Q AND (System.Operation.TimeChannels.TC24.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC25.Q AND (System.Operation.TimeChannels.TC25.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC26.Q AND (System.Operation.TimeChannels.TC26.Speed = 2)) OR
+		(System.Operation.TimeChannels.TC27.Q AND (System.Operation.TimeChannels.TC27.Speed = 2));
 END_IF
 ]]></ST>
     </Implementation>

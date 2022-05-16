@@ -32,23 +32,25 @@ VAR_INPUT
 	Parameters: REFERENCE TO GreenMasterBaseParameters;
 	EnableWriteDampers: BOOL := TRUE;
 END_VAR
-]]></Declaration>
+VAR
+	NotFire: BOOL;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[
-DO_.H_GP1 := Parameters.IO.DOut.H_GP1;
-DO_.C_GP1 := Parameters.IO.DOut.C_GP1;
+        <ST><![CDATA[NotFire := NOT Main.GreenMaster.FireAlarm();
+DO_.H_GP1 := ifc_bool(Parameters.IO.DOutOverride.H_GP1_Override AND NotFire, Parameters.IO.DOutOverride.H_GP1_OverrideValue, Parameters.IO.DOut.H_GP1);
+DO_.C_GP1 := ifc_bool(Parameters.IO.DOutOverride.C_GP1_Override AND NotFire, Parameters.IO.DOutOverride.C_GP1_OverrideValue, Parameters.IO.DOut.C_GP1);
 IF EnableWriteDampers THEN
-	DO_.F_QM1 := Parameters.IO.DOut.F_QM1;
-	DO_.T_QM2 := Parameters.IO.DOut.T_QM2;
+	DO_.F_QM1 := ifc_bool(Parameters.IO.DOutOverride.F_QM1_Override AND NotFire, Parameters.IO.DOutOverride.F_QM1_OverrideValue, Parameters.IO.DOut.F_QM1);
+	DO_.T_QM2 := ifc_bool(Parameters.IO.DOutOverride.T_QM2_Override AND NotFire, Parameters.IO.DOutOverride.T_QM2_OverrideValue, Parameters.IO.DOut.T_QM2);
 END_IF
-DO_.R_QM1 := Parameters.IO.DOut.R_QM1;
-DO_.F_QM2 := Parameters.IO.DOut.F_QM2;
-DO_.T_QM1_1 := Parameters.IO.DOut.T_QM1_1;
-DO_.T_QM1_2 := Parameters.IO.DOut.T_QM1_2;
-DO_.T_QM1_3 := Parameters.IO.DOut.T_QM1_3;
-DO_.T_QM1_4 := Parameters.IO.DOut.T_QM1_4;
-DO_.T_QM1_5 := Parameters.IO.DOut.T_QM1_5;
-DO_.T_QM1_6 := Parameters.IO.DOut.T_QM1_6;
+DO_.R_QM1 := ifc_bool(Parameters.IO.DOutOverride.R_QM1_Override AND NotFire, Parameters.IO.DOutOverride.R_QM1_OverrideValue, Parameters.IO.DOut.R_QM1);
+DO_.F_QM2 := ifc_bool(Parameters.IO.DOutOverride.F_QM2_Override AND NotFire, Parameters.IO.DOutOverride.F_QM2_OverrideValue, Parameters.IO.DOut.F_QM2);
+DO_.T_QM1_1 := ifc_bool(Parameters.IO.DOutOverride.T_QM1_1_Override AND NotFire, Parameters.IO.DOutOverride.T_QM1_1_OverrideValue, Parameters.IO.DOut.T_QM1_1);
+DO_.T_QM1_2 := ifc_bool(Parameters.IO.DOutOverride.T_QM1_2_Override AND NotFire, Parameters.IO.DOutOverride.T_QM1_2_OverrideValue, Parameters.IO.DOut.T_QM1_2);
+DO_.T_QM1_3 := ifc_bool(Parameters.IO.DOutOverride.T_QM1_3_Override AND NotFire, Parameters.IO.DOutOverride.T_QM1_3_OverrideValue, Parameters.IO.DOut.T_QM1_3);
+DO_.T_QM1_4 := ifc_bool(Parameters.IO.DOutOverride.T_QM1_4_Override AND NotFire, Parameters.IO.DOutOverride.T_QM1_4_OverrideValue, Parameters.IO.DOut.T_QM1_4);
+DO_.T_QM1_5 := ifc_bool(Parameters.IO.DOutOverride.T_QM1_5_Override AND NotFire, Parameters.IO.DOutOverride.T_QM1_5_OverrideValue, Parameters.IO.DOut.T_QM1_5);
+DO_.T_QM1_6 := ifc_bool(Parameters.IO.DOutOverride.T_QM1_6_Override AND NotFire, Parameters.IO.DOutOverride.T_QM1_6_OverrideValue, Parameters.IO.DOut.T_QM1_6);
 Parameters.IO.DOut.F_QM2_ActiveWhenStopped := FALSE;
 DO_.SupplyRunning := Parameters.IO.DOut.T_RUN;
 DO_.ExhaustRunning := Parameters.IO.DOut.F_RUN;

@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
-  <GVL Name="ADS_Stena" Id="{562f9601-fb3e-460e-9881-e3486615fb95}">
-    <Declaration><![CDATA[{attribute 'qualified_only'}
-VAR_GLOBAL PERSISTENT
-	Tags: AdsTagsStena;
-END_VAR]]></Declaration>
-  </GVL>
-</TcPlcObject>

@@ -38,12 +38,6 @@
     <Compile Include="DUTs\Alarms\AlarmPriority.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Custom\Chalmers\CTH_LA02.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\Chalmers\CTH_Interface.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DUTs\Custom\ExtraAlarms\AdsTagsExtraAlarms.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -54,9 +48,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\ParallelUnits\AdsTagsParallelUnits.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnits.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Custom\ParallelUnits\ParallelUnitsSettings.TcDUT">
@@ -101,9 +92,6 @@
     <Compile Include="DUTs\Custom\SmokeControl\SxDuoInterface.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Custom\Stena\Stena_Interface.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DUTs\Custom\_Standard\AdsTags.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -123,6 +111,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Exercise\ExerciseF_QM2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Exercise\ExerciseF_P1.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\GreenMaster\SystemStatesRunMode.TcDUT">
@@ -228,27 +219,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Controls\ExtractAirControl.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\Chalmers\AdsTagsCTH2.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\Chalmers\FirePanelCTH.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\Chalmers\GreenMasterSettingsCTH2.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\Chalmers\GreenMasterStatusCTH2.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\Stena\AdsTagsStena.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\Stena\GreenMasterSettingsStena.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\Custom\Stena\GreenMasterStatusStena.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Dampers\BaseDamper.TcPOU">
@@ -635,6 +605,9 @@
     <Compile Include="DUTs\Parameters\System\Operation\NightReduction.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Parameters\System\Operation\OperationParametersFB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Parameters\System\Operation\OvkActivation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -725,6 +698,12 @@
     <Compile Include="DUTs\Utilities\ifc_int.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Utilities\ifc_bool.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Utilities\ifc_lreal.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Utilities\LREAL_BMUX.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -782,6 +761,9 @@
     <Compile Include="DUTs\Utilities\TimeChannel1CH.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Utilities\TimeChannel1CH_Data.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Utilities\TimeChannelSettings.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -809,6 +791,9 @@
     <Compile Include="DUTs\Valves\ValveMonitor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Ventilation\FB_GM_NIGHTCOOL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Ventilation\VentilationControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -821,10 +806,6 @@
       <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\ADS_Standard.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\ADS_Stena.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
@@ -872,10 +853,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\GlobalSettings.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\ADS_CTH.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
@@ -931,8 +908,6 @@
     <Folder Include="DUTs\Parameters\SmokeControl" />
     <Folder Include="DUTs\Parameters\System" />
     <Folder Include="DUTs\Parameters\Regulation" />
-    <Folder Include="DUTs\Custom\Chalmers" />
-    <Folder Include="DUTs\Custom\Stena" />
     <Folder Include="DUTs\GreenMaster\IO" />
     <Folder Include="DUTs\IO" />
     <Folder Include="DUTs\Alarms" />
@@ -1009,12 +984,6 @@
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
-    </PlaceholderReference>
-    <PlaceholderReference Include="UML State Chart Types">
-      <DefaultResolution>UML Statechart Types, 4.1.1.0 (3S - Smart Software Solutions GmbH)</DefaultResolution>
-      <Namespace>UML_SC</Namespace>
-      <SystemLibrary>true</SystemLibrary>
-      <ResolverGuid>d9a6b70a-92f0-4827-8ca3-8ce8a61652d9</ResolverGuid>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>

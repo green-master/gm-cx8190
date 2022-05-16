@@ -78,6 +78,7 @@ IF StartupDelay.Q THEN
 		END_FOR
 		Latched := NoAlarms;
 		Parameters.Alarm.Control.ResetAlarms := FALSE;
+		Globals.ResetAlarmsCounter := Globals.ResetAlarmsCounter + 1;
 	END_IF
 	
 	// Transfer from Alarms to Latched according to autoreset and polarity definitions

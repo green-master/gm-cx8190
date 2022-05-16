@@ -16,6 +16,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	CurrentMaxFlow: LREAL;
+	NightCoolingHysteresis: Hysteresis;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -66,38 +67,42 @@ ELSE
 END_IF
 
 IF Regulation.ApplyAbsoluteSetPointCurves <> Regulation.LastApplyAbsoluteSetPointCurves THEN
-	Regulation.Temperature.SetPointAdjustment.Curve.Y1 := Regulation.Temperature.Control.SP; 
-	Regulation.Temperature.SetPointAdjustment.Curve.Y2 := Regulation.Temperature.Control.SP; 
-	Regulation.Temperature.SetPointAdjustment.Curve.Y3 := Regulation.Temperature.Control.SP; 
-	Regulation.Temperature.SetPointAdjustment.Curve.Y4 := Regulation.Temperature.Control.SP; 
-	Regulation.Temperature.SetPointAdjustment.Curve.Y5 := Regulation.Temperature.Control.SP; 
-	Regulation.Temperature.SetPointAdjustment.Curve.Y6 := Regulation.Temperature.Control.SP; 
-	Regulation.Temperature.SetPointAdjustment.Curve.Y7 := Regulation.Temperature.Control.SP; 
-	Regulation.Temperature.SetPointAdjustment.Curve.Y8 := Regulation.Temperature.Control.SP; 
-	Regulation.Temperature.SetPointAdjustment.Curve.Y9 := Regulation.Temperature.Control.SP;
+	Regulation.Temperature.SetPointAdjustment.Curve.Y1 := TO_REAL(Regulation.Temperature.Control.SP); 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y2 := TO_REAL(Regulation.Temperature.Control.SP); 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y3 := TO_REAL(Regulation.Temperature.Control.SP); 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y6 := TO_REAL(Regulation.Temperature.Control.SP); 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y7 := TO_REAL(Regulation.Temperature.Control.SP); 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y8 := TO_REAL(Regulation.Temperature.Control.SP); 
+	Regulation.Temperature.SetPointAdjustment.Curve.Y9 := TO_REAL(Regulation.Temperature.Control.SP);
 	Regulation.Temperature.Control.SP := 0;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y1 := Regulation.SupplyAir.Control.SP;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y2 := Regulation.SupplyAir.Control.SP;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y3 := Regulation.SupplyAir.Control.SP;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y4 := Regulation.SupplyAir.Control.SP;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y5 := Regulation.SupplyAir.Control.SP;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y6 := Regulation.SupplyAir.Control.SP;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y7 := Regulation.SupplyAir.Control.SP;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y8 := Regulation.SupplyAir.Control.SP;
-	Regulation.SupplyAir.SetPointAdjustment.Curve.Y9 := Regulation.SupplyAir.Control.SP;
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y1 := TO_REAL(Regulation.SupplyAir.Control.SP);
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y2 := TO_REAL(Regulation.SupplyAir.Control.SP);
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y3 := TO_REAL(Regulation.SupplyAir.Control.SP);
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y4 := TO_REAL(Regulation.SupplyAir.Control.SP);
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y5 := TO_REAL(Regulation.SupplyAir.Control.SP);
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y6 := TO_REAL(Regulation.SupplyAir.Control.SP);
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y7 := TO_REAL(Regulation.SupplyAir.Control.SP);
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y8 := TO_REAL(Regulation.SupplyAir.Control.SP);
+	Regulation.SupplyAir.SetPointAdjustment.Curve.Y9 := TO_REAL(Regulation.SupplyAir.Control.SP);
 	Regulation.SupplyAir.Control.SP := 0;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y1 := Regulation.ExtractAir.Control.SP;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y2 := Regulation.ExtractAir.Control.SP;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y3 := Regulation.ExtractAir.Control.SP;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y4 := Regulation.ExtractAir.Control.SP;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y5 := Regulation.ExtractAir.Control.SP;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y6 := Regulation.ExtractAir.Control.SP;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y7 := Regulation.ExtractAir.Control.SP;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y8 := Regulation.ExtractAir.Control.SP;
-	Regulation.ExtractAir.SetPointAdjustment.Curve.Y9 := Regulation.ExtractAir.Control.SP;
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y1 := TO_REAL(Regulation.ExtractAir.Control.SP);
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y2 := TO_REAL(Regulation.ExtractAir.Control.SP);
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y3 := TO_REAL(Regulation.ExtractAir.Control.SP);
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y4 := TO_REAL(Regulation.ExtractAir.Control.SP);
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y5 := TO_REAL(Regulation.ExtractAir.Control.SP);
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y6 := TO_REAL(Regulation.ExtractAir.Control.SP);
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y7 := TO_REAL(Regulation.ExtractAir.Control.SP);
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y8 := TO_REAL(Regulation.ExtractAir.Control.SP);
+	Regulation.ExtractAir.SetPointAdjustment.Curve.Y9 := TO_REAL(Regulation.ExtractAir.Control.SP);
 	Regulation.ExtractAir.Control.SP := 0;
 	Regulation.LastApplyAbsoluteSetPointCurves := Regulation.ApplyAbsoluteSetPointCurves;
 END_IF
+
+NightCoolingHysteresis(Value := Parameters.IO.AIn.T_BT1, LimitValue := 14, Offset := 0.5);
+Parameters.Regulation.NightCooling := 
+	Parameters.Regulation.NightCoolingRequest AND 
+	NightCoolingHysteresis.Above AND 
+	(NOT Parameters.System.Operation.TimeChannels.Q);
 ]]></ST>
     </Implementation>
   </POU>

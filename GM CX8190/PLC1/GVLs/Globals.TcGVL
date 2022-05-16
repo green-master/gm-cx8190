@@ -20,6 +20,7 @@ VAR_GLOBAL
 	HostName: STRING;
 	IO: IOTypes;
 	AI3468: AI3468;
+	ResetAlarmsCounter: INT;
 END_VAR
 VAR_GLOBAL PERSISTENT
 	AlarmLog: AlarmLog;
