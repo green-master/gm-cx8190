@@ -5411,7 +5411,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.Regulation.Temperature.CoolingOutputDirection = HeaterOutputDirections.DecreaseToHeat"</v>
+                      <v n="Text">"Parameters.Regulation.Temperature.CoolingOutputDirection = CoolerOutputDirections.DecreaseToCool"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147504331L</v>
                     </o>
@@ -13230,6 +13230,28 @@ END_VAR
                     </l2>
                   </o>
                   <o>
+                    <v n="ConnectionId">2147502147L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">69</v>
+                      <v n="Y">29</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <v n="CorrespondingPageId">2147484866L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">69</v>
+                        <v n="Y">29</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
                     <v n="ConnectionId">2147503789L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">53</v>
@@ -15346,6 +15368,50 @@ END_VAR
                         <v n="Y">21</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147502398L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">58</v>
+                      <v n="Y">50</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <v n="CorrespondingPageId">2147484866L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">58</v>
+                        <v n="Y">50</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147502466L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">58</v>
+                      <v n="Y">51</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <v n="CorrespondingPageId">2147484866L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">58</v>
+                        <v n="Y">51</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
                       </o>
                     </l2>
                   </o>

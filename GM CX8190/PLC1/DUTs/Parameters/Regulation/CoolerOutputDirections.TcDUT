@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="CoolerOutputDirections" Id="{f6151985-5162-454e-a6c2-f620d601db67}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE CoolerOutputDirections :
+(
+	IncreaseToCool := 0, DecreaseToCool
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

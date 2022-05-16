@@ -13,7 +13,7 @@ STRUCT
 	ColdRecycling: ColdRecyclingParameters;
 	Efficiency: LREAL;
 	HeatingBatteryOutputDirection: HeaterOutputDirections := HeaterOutputDirections.IncreaseToHeat;
-	CoolingOutputDirection: HeaterOutputDirections := HeaterOutputDirections.IncreaseToHeat;	
+	CoolingOutputDirection: CoolerOutputDirections := CoolerOutputDirections.IncreaseToCool;	
 END_STRUCT
 END_TYPE
 ]]></Declaration>
