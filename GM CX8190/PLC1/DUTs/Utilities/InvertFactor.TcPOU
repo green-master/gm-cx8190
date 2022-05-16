@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="InvertFactor" Id="{e9cc6063-8859-476f-bc2e-ee3dc412804a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION InvertFactor : LREAL
+VAR_INPUT
+	EN: BOOL;
+	Val: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF EN THEN
+	InvertFactor := LIMIT(0, 1 - LIMIT(0, Val, 1), 1);
+ELSE
+	InvertFactor := Val;
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

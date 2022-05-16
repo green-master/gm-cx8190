@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_EnergyWatch" Id="{cba2b7fe-c37a-46a3-88cb-c449294147c6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EnergyWatch
+VAR_INPUT
+	rkWInput			: REAL;	// kW input (effect)
+	uiDate				: UINT; // Date input
+	uiYear				: UINT; // Year input
+END_VAR
+VAR_OUTPUT
+	rkWhDay				: REAL;
+	rkWhLastDay			: REAL;
+	rkWhMonth			: REAL;
+	rkWhLastMonth		: REAL;
+	rkWhYear			: REAL;
+	rlWhLastYear		: REAL;
+END_VAR
+VAR
+	ltLastTime			: LTIME;	
+	ltCurrentTime		: LTIME;
+	bFirstTime			: BOOL:=TRUE;
+	secondscounter		: INT;
+	iVar				: INT := 120;
+	ltTimefromLast		: REAL;
+	rSavedValue			:REAL;
+	fbTON				:TON;
+	Calc_TON			:TON; // Räknare 	
+	bResetAllEnergy		:BOOL;
+END_VAR
+VAR PERSISTENT
+	uiVarDate			:UINT; // Variable for holding date temporary
+	uiVarYear			:UINT; // Variable for holding year temporary
+	rLastDay			:REAL; // Last day energy kWh
+	rDay				:REAL; // Todays energy kWh
+	rLastMonth			:REAL; // Last months energy kWh
+	rMonth				:REAL; // This months energy kWh
+	rLastYear			:REAL; // Last years energy kWh
+	rYear				:REAL; // This years energy kWh
+	rkWhTotal			:REAL; // Energy total from start 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Resets all energy
+IF bResetAllEnergy THEN
+	rLastDay	:=0.0;	
+    rDay		:=0.0;
+	rLastMonth  :=0.0;
+    rMonth		:=0.0;
+    rLastYear   :=0.0;
+    rYear		:=0.0;
+    rkWhTotal   :=0.0;
+	bResetAllEnergy := FALSE;
+END_IF
+
+
+// Räknare för total effekt
+Calc_TON(IN:=NOT Calc_TON.Q, PT:= T#1S, Q=> , ET=> );
+
+
+IF bFirstTime THEN
+	ltLastTime := LTIME();
+	bFirstTime := FALSE;
+END_IF
+
+ltCurrentTime := LTIME();
+
+IF Calc_TON.Q THEN
+	ltTimefromLast := LTIME_TO_REAL((ltCurrentTime - ltLastTime)) / 1000000000;
+	rkWhTotal := rkWhTotal + (rkWInput * ltTimefromLast) / 3600;
+	secondscounter := secondscounter +1;
+	ltLastTime:=ltCurrentTime;
+END_IF
+
+IF secondscounter = iVar THEN
+	rSavedValue :=rkWhTotal;	
+END_IF
+
+// Räknare för år
+IF Calc_TON.Q THEN
+	rYear := rYear + (rkWInput * ltTimefromLast) / 3600;
+END_IF
+
+// Hanterar månad och föregående månads värde
+IF uiYear > uiVarYear THEN
+	rLastYear := rYear;
+	rYear:= 0.0;
+	uiVarYear := uiYear;	
+END_IF
+
+// Räknare för månad
+IF Calc_TON.Q THEN
+	rMonth := rMonth + (rkWInput * ltTimefromLast) / 3600;
+END_IF
+
+// Hanterar månad och föregående månads värde
+IF uiDate < uiVarDate THEN
+	rLastMonth := rMonth;
+	rMonth:= 0.0;	
+END_IF
+
+// Hanterar dag och gårdagens värde
+IF Calc_TON.Q THEN
+	rDay := rDay + (rkWInput * ltTimefromLast) / 3600;
+END_IF
+
+// Dag och föregående dag
+IF uiDate <> uiVarDate THEN 		(*Om datum blir högre eller lägre än sparat datum*)
+	rLastDay := rDay; 				// Sparar ned gårdagens värde 
+	rDay:= 0.0;						// Återställer dagens räknare
+	uiVarDate := uiDate;			// Sätter dagens datum till variabel
+END_IF
+
+// Writes values to output
+rkWhDay			:= rDay;
+rkWhLastDay		:= rLastDay;
+rkWhMonth		:= rMonth;
+rkWhLastMonth	:= rLastMonth;
+rkWhYear		:= rYear;
+rlWhLastYear	:= rLastYear;
+
+
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

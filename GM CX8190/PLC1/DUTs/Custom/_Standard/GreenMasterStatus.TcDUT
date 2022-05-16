@@ -109,6 +109,18 @@ PLC_VERSION_PV: STRING; // PLC version (major.minor.patch)
 TIMEANDDATE_PV: STRING; // Current time in the PLC unit |||| Aktuell tid i PLC-enheten
 NightCooling_V :  BOOL; //  Active night time cooling  
 TX1_AL: BOOL; // Larm värmeväxlare (rotationsvakt)
+TX1_E1: REAL; // Återvunnen energi från värmeväxlare till tilluft (dag)
+TX1_E2: REAL; // Återvunnen energi från värmeväxlare till tilluft (senaste dag)
+TX1_E3: REAL; // Återvunnen energi från värmeväxlare till tilluft (månad)
+TX1_E4: REAL; // Återvunnen energi från värmeväxlare till tilluft (senaste månad)
+TX1_E5: REAL; // Återvunnen energi från värmeväxlare till tilluft (är)
+TX1_E6: REAL; // Återvunnen energi från värmeväxlare till tilluft (senaste år)
+H_BT1_E1: REAL; // Energi från värmebatteri till tilluft (dag)
+H_BT1_E2: REAL; // Energi från värmebatteri till tilluft (senaste dag)
+H_BT1_E3: REAL; // Energi från värmebatteri till tilluft (månad)
+H_BT1_E4: REAL; // Energi från värmebatteri till tilluft (senaste månad)
+H_BT1_E5: REAL; // Energi från värmebatteri till tilluft (är)
+H_BT1_E6: REAL; // Energi från värmebatteri till tilluft (senaste år)
 END_STRUCT
 END_TYPE
 ]]></Declaration>

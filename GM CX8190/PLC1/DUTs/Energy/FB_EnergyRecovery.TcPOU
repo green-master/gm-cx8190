@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_EnergyRecovery" Id="{94d15842-d3a2-4668-8b05-007ad62ba8ac}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EnergyRecovery
+VAR_INPUT
+	rT_BT3				: REAL;
+	rT_BT2				: REAL;
+	rT_BF1				: REAL; // In m3/s
+	rVVXopen			: REAL; // If this is above 0.5 we start counting added energy
+END_VAR
+VAR_OUTPUT
+	rkWatt				: REAL;
+END_VAR
+VAR
+	rDiffTemp			: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Räknar ut difftemperatur med limit
+rDiffTemp := LIMIT (0,rT_BT3 - rT_BT2,30); 
+
+// Om vi värmer 
+IF (rT_BT3 > rT_BT2) AND (rVVXopen > 0.5) THEN
+	rkWatt:= LIMIT(0,rT_BF1,20) * 1.2 * rDiffTemp; (*Flödet i m3/s * 1.2 * difftemperatur*) // Flödet har limit på 0-20 m3/s
+ELSE
+	rKwatt := 0.0;
+END_IF
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
