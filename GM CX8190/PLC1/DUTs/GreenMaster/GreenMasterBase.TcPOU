@@ -13230,28 +13230,6 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147502147L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">69</v>
-                      <v n="Y">29</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">69</v>
-                        <v n="Y">29</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
                     <v n="ConnectionId">2147503789L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">53</v>
@@ -15371,50 +15349,6 @@ END_VAR
                       </o>
                     </l2>
                   </o>
-                  <o>
-                    <v n="ConnectionId">2147502398L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">58</v>
-                      <v n="Y">50</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">58</v>
-                        <v n="Y">50</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">2147502466L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">58</v>
-                      <v n="Y">51</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147484866L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">58</v>
-                        <v n="Y">51</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
                 </d2>
               </o>
             </o>
@@ -16146,6 +16080,10 @@ END_VAR
 
 VAR_INST
 	FirstTime: BOOL;
+	testDay: UINT;
+	testYear: UINT;
+END_VAR
+VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT FirstTime THEN
@@ -16184,7 +16122,9 @@ ParametersFB(GreenMaster := THIS^);
 
 EnergyHeat(	rT_BT1 := TO_REAL(Parameters.IO.AIn.T_BT1), 
 			rT_BT3 := TO_REAL(Parameters.IO.AIn.T_BT3), 
-			rT_BF1 := TO_REAL(Parameters.Regulation.SupplyAir.Flow / 1000.0));
+			rT_BF1 := TO_REAL(Parameters.Regulation.SupplyAir.Flow / 1000.0),
+			bPump := Parameters.IO.DOut.H_GP1,
+			rValve := TO_REAL(Parameters.IO.AOut.H_QN1 * 100));
 			
 EnergyRecovery(	rT_BT3 := TO_REAL(Parameters.IO.AIn.T_BT3), 
 				rT_BT2 := TO_REAL(Parameters.IO.AIn.T_BT2), 
@@ -16193,8 +16133,8 @@ EnergyRecovery(	rT_BT3 := TO_REAL(Parameters.IO.AIn.T_BT3),
 
 LocalTime(bEnable := TRUE);
 IF LocalTime.bValid THEN
-	EnergyWatch_Heat(rkWInput := EnergyHeat.rkWatt, uiDate := LocalTime.systemTime.wDay, uiYear := LocalTime.systemTime.wYear);
-	EnergyWatch_Recovery(rkWInput := EnergyRecovery.rkWatt, uiDate := LocalTime.systemTime.wDay, uiYear := LocalTime.systemTime.wYear);	
+	EnergyWatch_Heat(rkWInput := EnergyHeat.rkWatt, uiDate := LocalTime.systemTime.wDay + testDay, uiYear := LocalTime.systemTime.wYear + testYear);
+	EnergyWatch_Recovery(rkWInput := EnergyRecovery.rkWatt, uiDate := LocalTime.systemTime.wDay + testDay, uiYear := LocalTime.systemTime.wYear + testYear);	
 END_IF
 ]]></ST>
       </Implementation>
