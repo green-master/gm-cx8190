@@ -15260,13 +15260,15 @@ VAR_INPUT
 END_VAR
 
 VAR
-	
+	CurrentF_Fan: LREAL;
+	CurrentT_Fan: LREAL;
 END_VAR
 
 VAR_INST
 	FirstTime: BOOL;
 	F_Pressure: LREAL;
-	T_Pressure: lreal;
+	T_Pressure: LREAL;
+	LastSecond: LINT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT FirstTime THEN
@@ -15296,13 +15298,21 @@ END_VAR]]></Declaration>
 	Parameters.IO.DIn.F_QM2_Closed := ParametersFB.IO.DOut.F_QM2_OnTime < LTIME#5S; 
 	Parameters.IO.DIn.F_QM2_Open := ParametersFB.IO.DOut.F_QM2_OnTime > LTIME#30S; 
 END_IF
-Parameters.IO.DIn.H_GP1_Running := Parameters.IO.DOut.H_GP1;
-T_Pressure := T_Pressure - 0.1;
-T_Pressure := T_Pressure + Parameters.IO.AOut.T_GQ1 * 1;
-Parameters.IO.AIn.T_BP1 := 0; //T_Pressure;
-F_Pressure := F_Pressure - 0.1;
-F_Pressure := F_Pressure + Parameters.IO.AOut.F_GQ1 * 1;
-Parameters.IO.AIn.F_BP1 := 0; //F_Pressure;]]></ST>
+IF Globals.SecondsCounter <> LastSecond THEN	
+	CurrentT_Fan := Parameters.IO.AOut.T_GQ1;
+	CurrentF_Fan := Parameters.IO.AOut.F_GQ1;
+	IF Main.ParallelUnits.EN THEN
+		CurrentT_Fan := LIMIT(0, CurrentT_Fan + Main.ParallelUnits.RemoteStatusData.RemoteStatus.SupplyFanSpeed, 2); 
+		CurrentF_Fan := LIMIT(0, CurrentF_Fan + Main.ParallelUnits.RemoteStatusData.RemoteStatus.ExtractFanSpeed, 2); 
+	END_IF
+	Parameters.IO.DIn.H_GP1_Running := Parameters.IO.DOut.H_GP1;
+	T_Pressure := ((1 + CurrentT_Fan) * (1 + CurrentT_Fan) - 1) * 150 - 1;
+	Parameters.IO.AIn.T_BP1 := T_Pressure;
+	F_Pressure := ((1 + CurrentF_Fan) * (1 + CurrentF_Fan) - 1) * 150 - 1;
+	Parameters.IO.AIn.F_BP1 := F_Pressure;
+	LastSecond := Globals.SecondsCounter;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="StateTime" Id="{16af60a9-8fdb-41dd-abaf-3111b1142416}">

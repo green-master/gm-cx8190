@@ -9,9 +9,7 @@ STRUCT
 	TimeChannels: TimeChannelParameters;
 	TemperatureControl: ControllerParameters;
 	TemperatureSetPointAdjustment: SetPointAdjustment; 
-	SupplyAirControl: ControllerParameters; 
 	SupplyAirSetPointAdjustment: SetPointAdjustment; 
-	ExtractAirControl: ControllerParameters; 
 	ExtractAirSetPointAdjustment: SetPointAdjustment; 
 	NightCoolingRequest: BOOL;
 END_STRUCT
