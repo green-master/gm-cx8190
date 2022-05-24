@@ -4,24 +4,18 @@
     <Declaration><![CDATA[FUNCTION LREAL_BMUX : LREAL
 VAR_INPUT
 	B: BOOL;
-	X: LREAL;
-	Y: LREAL;
+	F: LREAL;
+	T: LREAL;
 END_VAR
 VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT B THEN
-	LREAL_BMUX := X;
+	LREAL_BMUX := F;
 ELSE
-	LREAL_BMUX := Y;
+	LREAL_BMUX := T;
 END_IF]]></ST>
     </Implementation>
-    <LineIds Name="LREAL_BMUX">
-      <LineId Id="7" Count="0" />
-      <LineId Id="14" Count="1" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="12" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
