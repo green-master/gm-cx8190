@@ -43,7 +43,11 @@ ELSIF Parameters.Regulation.SaveDefaults THEN
 	END_CASE	
 END_IF
 SetPointAdjustmentFB(X := Parameters.Regulation.CompensationTemperature, SetPointAdjustment := AirParameters.SetPointAdjustment);
-AirParameters.Control.CSP := (AirParameters.Control.SP + SetPointAdjustmentFB.Y) * AirParameters.AdjustCSP;
+IF Parameters.IO.DIn.ExtendedOperation OR (Parameters.System.Operation.TimeChannels.Q AND Parameters.System.Operation.TimeChannels.HighSpeed) THEN
+	AirParameters.Control.CSP := (AirParameters.Control.SP_HighSpeed + SetPointAdjustmentFB.Y) * AirParameters.AdjustCSP;
+ELSE
+	AirParameters.Control.CSP := (AirParameters.Control.SP + SetPointAdjustmentFB.Y) * AirParameters.AdjustCSP;
+END_IF
 IF AirParameters.Flow <> 0 THEN
 	AirParameters.SpecificFanPower := AirParameters.Power / AirParameters.Flow;	
 ELSE
