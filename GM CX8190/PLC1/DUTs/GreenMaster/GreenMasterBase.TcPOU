@@ -15368,26 +15368,6 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetCurrentExtractAirSP" Id="{b10f141a-c01e-419f-90fd-692328c8afad}">
-      <Declaration><![CDATA[METHOD GetCurrentExtractAirSP : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[CASE Parameters.System.Operation.Mode OF
-	SystemStatesRunMode.Off:
-		GetCurrentExtractAirSP := 0;
-
-	SystemStatesRunMode.LowSpeed:
-		GetCurrentExtractAirSP := Parameters.Regulation.ExtractAir.Control.SP + Parameters.Regulation.ExtractAir.SetPointAdjustment.Y;
-
-	SystemStatesRunMode.HighSpeed:
-		GetCurrentExtractAirSP := Parameters.Regulation.ExtractAir.Control.SP_HighSpeed + Parameters.Regulation.ExtractAir.SetPointAdjustment.Y;
-
-END_CASE
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="GetCurrentPV" Id="{54dd4c5c-8873-45c5-8a20-5341e8f1cf37}">
       <Declaration><![CDATA[METHOD GetCurrentPV : LREAL
 VAR_INPUT
@@ -15428,15 +15408,6 @@ IF Parameters.Regulation.SupplyAir.ControlMode =  FanControlTypes.Pressure  THEN
 ELSE
 	GetCurrentSupplyAirPV := Parameters.IO.AIn.T_BF1;
 END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetCurrentSupplyAirSP" Id="{e5d65448-6f20-4d77-b2e7-697b7a17cc5a}">
-      <Declaration><![CDATA[METHOD GetCurrentSupplyAirSP : LREAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Method Name="GetFireExtractAlarms" Id="{c1708675-53aa-4624-a947-b3694b3cd0ec}">
