@@ -12,10 +12,12 @@ STRUCT
 	ExtractFanSpeed: LREAL;
 	IsRunning: BOOL;
 	ResetAlarmMaster: BOOL;
-	FireMaster: BOOL;
+	FireSupplyMaster: BOOL;
+	FireExtractMaster: BOOL;
 	FreezeMaster: BOOL;
 	ResetAlarmSlave: BOOL;
-	FireSlave: BOOL;
+	FireSupplySlave: BOOL;
+	FireExtractSlave: BOOL;
 	FreezeSlave: BOOL;
 END_STRUCT
 END_TYPE
