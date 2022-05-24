@@ -108,22 +108,32 @@ END_VAR
 			IF F_ToUCase(HostName.sHostName) = 'STU_E1-LB01' THEN
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Control.I := T#10M;
+				GreenMaster.GetParameters().Regulation.SupplyAir.Control.I := T#10M;
+				ADS_Standard.Tags.Settings.ExtractFanControl_I := GreenMaster.GetParameters().Regulation.ExtractAir.Control.I;
+				ADS_Standard.Tags.Settings.SupplyFanControl_I := GreenMaster.GetParameters().Regulation.SupplyAir.Control.I;
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 151.4;
 				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.Speed := 0;
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 151.4;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := TRUE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0.5;
+				GreenMaster.GetParameters().Alarm.Polarity.B.Tx1Fail := TRUE;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'STU_E1-LB02' THEN
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Control.I := T#10M;
+				GreenMaster.GetParameters().Regulation.SupplyAir.Control.I := T#10M;
+				ADS_Standard.Tags.Settings.ExtractFanControl_I := GreenMaster.GetParameters().Regulation.ExtractAir.Control.I;
+				ADS_Standard.Tags.Settings.SupplyFanControl_I := GreenMaster.GetParameters().Regulation.SupplyAir.Control.I;
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 151.4;
 				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.Speed := 0;
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 151.4;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := TRUE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0.5;
+				GreenMaster.GetParameters().Alarm.Polarity.B.Tx1Fail := TRUE;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB01' THEN
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
@@ -134,6 +144,7 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().Alarm.Polarity.B.Tx1Fail := TRUE;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB02' THEN
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
@@ -144,8 +155,12 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().Alarm.Polarity.B.Tx1Fail := TRUE;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'AIRPLC-DEMO' THEN
+				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
+				GetComponent(Name := ComponentNames.SIMULATION).EN := TRUE;
+				GreenMaster.GetParameters().System.Operation.Simulation := TRUE;
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
@@ -154,8 +169,8 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
-				GreenMaster.GetParameters().Regulation.SupplyAir.MaxSpeed := 0.4;
-				GreenMaster.GetParameters().Regulation.ExtractAir.MaxSpeed := 0.4;
+				//GreenMaster.GetParameters().Regulation.SupplyAir.MaxSpeed := 0.4;
+				//GreenMaster.GetParameters().Regulation.ExtractAir.MaxSpeed := 0.4;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'CX-662AA1' THEN
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
@@ -231,7 +246,8 @@ END_VAR
 				Reverse_C_QN1 := UseReverse_C_QN1,
 				NightCooling := GreenMaster.Parameters.Regulation.NightCooling,
 				EnableFansAndDampers := Std_Interface.EN,
-				ExtraFireSupplyAlarm := ParallelUnits.FireSupplyAlarm
+				ExtraFireSupplyAlarm := ParallelUnits.FireSupplyAlarm,
+				ExtraFireExtractAlarm := ParallelUnits.FireExtractAlarm
 			);
 		END_IF
 		
@@ -293,7 +309,7 @@ ELSE
 END_IF
 
 FreezeHysteresis(Value := GreenMaster.GetParameters().IO.AIn.H_BT1, LimitValue := GreenMaster.GetParameters().Alarm.Limits.A.Freeze, Offset := 0.5);
-CurrentFreezeAlarm := FreezeHysteresis.Below OR ParallelUnits.FreezeAlarm OR GreenMaster.GetParameters().IO.AIn.H_BT1_Error;
+CurrentFreezeAlarm := FreezeHysteresis.Below OR GreenMaster.GetParameters().IO.AIn.H_BT1_Error;
 GreenMaster.GetParameters().Alarm.Status.A.Freeze := CurrentFreezeAlarm;
 ]]></ST>
     </Implementation>
