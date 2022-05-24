@@ -140,18 +140,27 @@ IF EN THEN
 						ADR(SavedInterface.TemperatureControl_P), 
 						('Parameters.Regulation.Temperature.Control.P'), ('TemperatureControl_P'));	
 
-		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.Temperature.Control.I), 
+		ExchangeData(	ADR(Parameters.Regulation.Temperature.Control.I), 
 						ADR(ADS_Standard.Tags.Settings.TemperatureControl_I), 
+						SIZEOF(Parameters.Regulation.Temperature.Control.I),
 						ADR(SavedParameters.Regulation.Temperature.Control.I), 
 						ADR(SavedInterface.TemperatureControl_I), 
-						('Parameters.Regulation.Temperature.Control.I'), ('TemperatureControl_I'));	
+						'TIME', ('Parameters.Regulation.Temperature.Control.I'), ('TemperatureControl_I'));	
 
 
-		ExchangeData_LREAL_REAL(	ADR(Parameters.Regulation.Temperature.Control.D), 
+		ExchangeData(	ADR(Parameters.Regulation.Temperature.Control.D), 
 						ADR(ADS_Standard.Tags.Settings.TemperatureControl_D), 
+						SIZEOF(Parameters.Regulation.Temperature.Control.D),
 						ADR(SavedParameters.Regulation.Temperature.Control.D), 
 						ADR(SavedInterface.TemperatureControl_D), 
-						('Parameters.Regulation.Temperature.Control.D'), ('TemperatureControl_D'));	
+						'TIME', ('Parameters.Regulation.Temperature.Control.D'), ('TemperatureControl_D'));	
+
+		ExchangeData(	ADR(Parameters.System.Operation.StartupHeatRecoveryTime), 
+						ADR(ADS_Standard.Tags.Settings.StartupHeatRecoveryTime), 
+						SIZEOF(Parameters.System.Operation.StartupHeatRecoveryTime),
+						ADR(SavedParameters.System.Operation.StartupHeatRecoveryTime), 
+						ADR(SavedInterface.StartupHeatRecoveryTime), 
+						'TIME', ('Parameters.System.Operation.StartupHeatRecoveryTime'), ('StartupHeatRecoveryTime'));	
 
 
 		//Parameters.System.Operation.StartupHeatRecoveryTime := TIME_TO_LTIME(ADS_Standard.Tags.Settings.StartupHeatRecoveryTime);
