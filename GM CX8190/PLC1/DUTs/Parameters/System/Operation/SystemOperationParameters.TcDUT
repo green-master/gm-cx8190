@@ -14,11 +14,11 @@ STRUCT
 	State: SystemStates; // Operation state
 	{attribute 'TcEncoding':='UTF-8'}
 	SystemName: STRING := 'GM'; // System name |||| Systemnamn
-	StartupHeatRecoveryTime: LTIME := LTIME#1M;
-	ExhaustFanStartupDelay: LTIME := LTIME#20S;
-	SupplyFanStartupDelay: LTIME := LTIME#40S;
-	PostVentilationTime: LTIME := LTIME#2M;
-	PostFireVentilationTime: LTIME := LTIME#0M;
+	StartupHeatRecoveryTime: TIME := TIME#3M;
+	ExhaustFanStartupDelay: TIME := TIME#0S;
+	SupplyFanStartupDelay: TIME := TIME#1M;
+	PostVentilationTime: TIME := TIME#2M;
+	PostFireVentilationTime: TIME := TIME#0M;
 	TimeChannels: TimeChannelParameters;
 END_STRUCT
 END_TYPE
