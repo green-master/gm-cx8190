@@ -20,6 +20,7 @@ STRUCT
 	PostVentilationTime: TIME := TIME#2M;
 	PostFireVentilationTime: TIME := TIME#0M;
 	TimeChannels: TimeChannelParameters;
+	StartupDamperWaitTime: TIME := TIME#1M;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

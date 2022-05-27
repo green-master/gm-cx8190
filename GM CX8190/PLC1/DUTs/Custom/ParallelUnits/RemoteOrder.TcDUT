@@ -5,6 +5,8 @@
 STRUCT
 	SupplySP: LREAL;
 	ExtractSP: LREAL;
+	SupplySP_HighSpeed: LREAL;
+	ExtractSP_HighSpeed: LREAL;
 	Counter: INT;
 	TimeChannels: TimeChannelParameters;
 	TemperatureControl: ControllerParameters;

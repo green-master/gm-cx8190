@@ -161,7 +161,6 @@ END_VAR
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
 				GetComponent(Name := ComponentNames.SIMULATION).EN := TRUE;
 				GreenMaster.GetParameters().System.Operation.Simulation := TRUE;
-				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
@@ -192,11 +191,15 @@ END_VAR
 				GreenMaster.GetParameters().System.Operation.Simulation := TRUE;
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
-				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := FALSE;
-				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.EN := TRUE;
+				GreenMaster.GetParameters().Regulation.ExtractAir.Fire.Speed := 0.5;
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.Fire.Speed := 0;
+				GreenMaster.GetParameters().system.Operation.StartupHeatRecoveryTime := T#30S;
+				GreenMaster.GetParameters().system.Operation.ExhaustFanStartupDelay := T#10S;
+				GreenMaster.GetParameters().system.Operation.SupplyFanStartupDelay := T#20S;
+				GreenMaster.GetParameters().system.Operation.StartupDamperWaitTime := T#5S;
 			END_IF
 			GreenMaster.GetParameters().System.ProjectDefaultSet := TRUE;
 		END_IF
@@ -310,7 +313,7 @@ END_IF
 
 FreezeHysteresis(Value := GreenMaster.GetParameters().IO.AIn.H_BT1, LimitValue := GreenMaster.GetParameters().Alarm.Limits.A.Freeze, Offset := 0.5);
 CurrentFreezeAlarm := FreezeHysteresis.Below OR GreenMaster.GetParameters().IO.AIn.H_BT1_Error;
-GreenMaster.GetParameters().Alarm.Status.A.Freeze := CurrentFreezeAlarm;
+GreenMaster.GetParameters().Alarm.Status.A.Freeze := CurrentFreezeAlarm  OR	ParallelUnits.FreezeAlarm;
 ]]></ST>
     </Implementation>
   </POU>

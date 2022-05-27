@@ -3,8 +3,8 @@
   <DUT Name="ExerciseCirculationPumpsParameters" Id="{f77bbff2-c0d5-4208-9197-de5d53b514f7}">
     <Declaration><![CDATA[TYPE ExerciseCirculationPumpsParameters :
 STRUCT
-	Interval: INT := 48; (* Central exercise interval for all damper modules (set to zero for no exercising) $(unit hour) *)
-	StopVentilation: BOOL := TRUE; (* Stop ventilation during central exercise *)
+	Interval: INT := 24; (* Central exercise interval for all damper modules (set to zero for no exercising) $(unit hour) *)
+	StopVentilation: BOOL := FALSE; (* Stop ventilation during central exercise *)
 	Hour: INT := 10; (* Central exercise at this hour $(unit hour) *)
 	Minute: INT := 30; (* Central exercise at this minute $(unit minute) *)
 	(*

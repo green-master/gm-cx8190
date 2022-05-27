@@ -43,7 +43,9 @@ ELSIF Parameters.Regulation.SaveDefaults THEN
 	END_CASE	
 END_IF
 SetPointAdjustmentFB(X := Parameters.Regulation.CompensationTemperature, SetPointAdjustment := AirParameters.SetPointAdjustment);
-IF Parameters.IO.DIn.ExtendedOperation OR (Parameters.System.Operation.TimeChannels.Q AND Parameters.System.Operation.TimeChannels.HighSpeed) THEN
+IF Parameters.IO.DIn.ExtendedOperation OR 
+	(Parameters.System.Operation.TimeChannels.Q AND Parameters.System.Operation.TimeChannels.HighSpeed) OR
+	(ADS_Standard.Tags.Settings.RemoteStart = 2) THEN
 	AirParameters.Control.CSP := (AirParameters.Control.SP_HighSpeed + SetPointAdjustmentFB.Y) * AirParameters.AdjustCSP;
 ELSE
 	AirParameters.Control.CSP := (AirParameters.Control.SP + SetPointAdjustmentFB.Y) * AirParameters.AdjustCSP;

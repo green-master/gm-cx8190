@@ -103,7 +103,9 @@ Parameters.Regulation.NightCooling :=
 	Parameters.Regulation.NightCoolingRequest AND 
 	NightCoolingHysteresis.Above AND 
 	(NOT Parameters.System.Operation.TimeChannels.Q);
-]]></ST>
+IF Parameters.Regulation.NightCoolingRequest AND NightCoolingHysteresis.Below THEN
+	Parameters.Regulation.NightCoolingRequest := FALSE;
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

@@ -62,6 +62,7 @@ END_VAR]]></Declaration>
 	Parameters.IO.AIn.F_BF1 := AI2.F_BF1;	
 	Parameters.IO.AIn.F_BF1_Error := AI2.F_BF1_Error AND Parameters.IO.AIn.F_BF1_EN;
 ELSE
+	(*
 	Parameters.IO.AIn.F_BT1_Error := FALSE;
 	Parameters.IO.AIn.T_BT2_Error := FALSE;
 	Parameters.IO.AIn.T_BT3_Error := FALSE;
@@ -77,6 +78,7 @@ ELSE
 	Parameters.IO.AIn.F_BP3_Error := FALSE;
 	Parameters.IO.AIn.T_BF1_Error := FALSE;
 	Parameters.IO.AIn.F_BF1_Error := FALSE;
+	*)
 END_IF
 ]]></ST>
       </Implementation>
