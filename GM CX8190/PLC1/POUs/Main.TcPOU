@@ -117,11 +117,17 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.ExtractAir.FireExhaust.Speed := 0.4;
 				GreenMaster.GetParameters().Regulation.ExtractAir.FireSupply.EN := TRUE;
 				GreenMaster.GetParameters().Regulation.ExtractAir.FireSupply.Speed := 0.4;
+				GreenMaster.GetParameters().Regulation.SupplyAir.FireExhaust.EN := TRUE;
+				GreenMaster.GetParameters().Regulation.SupplyAir.FireExhaust.Speed := 0.4;
+				GreenMaster.GetParameters().Regulation.SupplyAir.FireSupply.EN := TRUE;
+				GreenMaster.GetParameters().Regulation.SupplyAir.FireSupply.Speed := 0.4;
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 151.4;
 				GreenMaster.GetParameters().Regulation.SupplyAir.FireExhaust.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.FireExhaust.Speed := 0;
 				GreenMaster.GetParameters().Alarm.Polarity.B.Tx1Fail := TRUE;
 				GreenMaster.GetParameters().Alarm.Enabled.B.Pump1 := FALSE;
+				ADS_ParallelUnits.Tags.Settings.Kp := 1;
+				ADS_ParallelUnits.Tags.Settings.fTn := T#800S;
 				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y1 := 160;
 				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y2 := 160;
 				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y3 := 160;
@@ -141,6 +147,17 @@ END_VAR
 				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y7 := 150;
 				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y8 := 150;
 				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y9 := 150;
+				
+				GreenMaster.GetParameters().Regulation.Temperature.Control.SP := 0;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y1 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y2 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y3 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y4 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y5 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y6 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y7 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y8 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y9 := 20;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB03' THEN
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.DecreaseToHeat;
@@ -160,10 +177,46 @@ END_VAR
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.ExtractAir.FireExhaust.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.ExtractAir.FireExhaust.Speed := 0;
+				GreenMaster.GetParameters().Regulation.ExtractAir.FireSupply.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.ExtractAir.FireSupply.Speed := 0;
+				GreenMaster.GetParameters().Regulation.SupplyAir.FireExhaust.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.SupplyAir.FireExhaust.Speed := 0;
+				GreenMaster.GetParameters().Regulation.SupplyAir.FireSupply.EN := FALSE;
+				GreenMaster.GetParameters().Regulation.SupplyAir.FireSupply.Speed := 0;
 				GreenMaster.GetParameters().Regulation.SupplyAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.SupplyAir.FireExhaust.EN := FALSE;
 				GreenMaster.GetParameters().Regulation.SupplyAir.FireExhaust.Speed := 0;
 				GreenMaster.GetParameters().Alarm.Polarity.B.Tx1Fail := TRUE;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y1 := 250;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y2 := 250;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y3 := 250;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y4 := 250;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y5 := 250;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y6 := 250;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y7 := 250;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y8 := 250;
+				ADS_ParallelUnits.Tags.Settings.SupplyAirSetPointAdjustment.Curve.Y9 := 250;
+				
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y1 := 280;
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y2 := 280;
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y3 := 280;
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y4 := 280;
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y5 := 280;
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y6 := 280;
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y7 := 280;
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y8 := 280;
+				ADS_ParallelUnits.Tags.Settings.ExtractAirSetPointAdjustment.Curve.Y9 := 280;
+				
+				GreenMaster.GetParameters().Regulation.Temperature.Control.SP := 0;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y1 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y2 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y3 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y4 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y5 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y6 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y7 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y8 := 20;
+				GreenMaster.GetParameters().Regulation.Temperature.SetPointAdjustment.Curve.Y9 := 20;
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'AIRPLC-DEMO' THEN
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
