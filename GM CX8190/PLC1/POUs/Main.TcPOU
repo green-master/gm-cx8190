@@ -21,7 +21,7 @@ VAR
 	SmokeControl_Interface: SmokeControl_Interface;
 
 	Redundancy:Redundancy;
-	ParallelUnits: ParallelUnits;
+	//ParallelUnits: ParallelUnits;
 	
 	GreenMasterDI: GreenMasterDI;
 	GreenMasterDO: GreenMasterDO;
@@ -238,13 +238,14 @@ END_VAR
 						);
 		END_IF
 		// Parallel units
+		(*
 		IF GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN THEN
 			ParallelUnits(	EN := GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN,
 							Tags := ADS_ParallelUnits.Tags,
 							Parameters := GreenMaster.Parameters 
 						);
 		END_IF
-		
+		*)
 		IF GetComponent(Name := ComponentNames.GM_BASE).EN THEN
 			GreenMaster.Update(DO_ := GreenMasterDO, AO := GreenMasterAO);
 			GreenMaster(
@@ -257,8 +258,8 @@ END_VAR
 				Reverse_C_QN1 := UseReverse_C_QN1,
 				NightCooling := GreenMaster.Parameters.Regulation.NightCooling,
 				EnableFansAndDampers := Std_Interface.EN,
-				ExtraFireSupplyAlarm := ParallelUnits.FireSupplyAlarm,
-				ExtraFireExtractAlarm := ParallelUnits.FireExtractAlarm
+				ExtraFireSupplyAlarm := FALSE, //ParallelUnits.FireSupplyAlarm,
+				ExtraFireExtractAlarm := FALSE //ParallelUnits.FireExtractAlarm
 			);
 		END_IF
 		
@@ -321,7 +322,7 @@ END_IF
 
 FreezeHysteresis(Value := GreenMaster.GetParameters().IO.AIn.H_BT1, LimitValue := GreenMaster.GetParameters().Alarm.Limits.A.Freeze, Offset := 0.5);
 CurrentFreezeAlarm := FreezeHysteresis.Below OR GreenMaster.GetParameters().IO.AIn.H_BT1_Error;
-GreenMaster.GetParameters().Alarm.Status.A.Freeze := CurrentFreezeAlarm  OR	ParallelUnits.FreezeAlarm;
+GreenMaster.GetParameters().Alarm.Status.A.Freeze := CurrentFreezeAlarm  (*OR	ParallelUnits.FreezeAlarm*);
 ]]></ST>
     </Implementation>
   </POU>
