@@ -1520,6 +1520,18 @@ END_VAR
                           <v n="PretendsToBeConnected">false</v>
                           <v n="Id">2147486115L</v>
                         </o>
+                        <o t="CFCInputPin">
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="IsExtensiblePin">false</v>
+                          <v n="ProcessValue">""</v>
+                          <v n="Access" t="ProcessValueAccess">None</v>
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147486147L</v>
+                        </o>
                       </l2>
                     </o>
                     <o n="Outputs" t="CFCItemList">
@@ -1688,7 +1700,7 @@ END_VAR
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
                           <n n="ElementGroupId" />
-                          <v n="Text">"Fire"</v>
+                          <v n="Text">"FireExhaust"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">2147485446L</v>
                         </o>
@@ -1702,16 +1714,23 @@ END_VAR
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
                           <n n="ElementGroupId" />
-                          <v n="Text">"FireSpeed"</v>
+                          <v n="Text">"FireExhaustPar"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">2147486114L</v>
                         </o>
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
                           <n n="ElementGroupId" />
-                          <v n="Text">"FireRun"</v>
+                          <v n="Text">"FireSupplyPar"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">2147486116L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"FireSupply"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147486148L</v>
                         </o>
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
@@ -1919,6 +1938,29 @@ END_VAR
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">2147483646L</v>
                     <v n="Id">2147483923L</v>
+                  </o>
+                  <o t="CFCInputElement">
+                    <o n="Output" t="CFCOutputPin">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Negated">false</v>
+                      <v n="SetReset" t="SetReset">None</v>
+                      <v n="SetResetRef" t="SetResetRef">None</v>
+                      <v n="PretendsToBeConnected">false</v>
+                      <v n="Id">2147486145L</v>
+                    </o>
+                    <o n="Text" t="CFCText">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Text">"Parameters.Alarm.Active.A.FireSupply"</v>
+                      <v n="Modifiable">true</v>
+                      <v n="Id">2147486146L</v>
+                    </o>
+                    <v n="PageArea">3</v>
+                    <v n="Bounds">"15, 41, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="OwningPageId">2147483646L</v>
+                    <v n="Id">2147486144L</v>
                   </o>
                   <o t="CFCInputElement">
                     <o n="Output" t="CFCOutputPin">
@@ -2233,7 +2275,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.Regulation.SupplyAir.Fire.EN"</v>
+                      <v n="Text">"Parameters.Regulation.SupplyAir.FireSupply"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147486119L</v>
                     </o>
@@ -2256,7 +2298,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.Regulation.SupplyAir.Fire.Speed"</v>
+                      <v n="Text">"Parameters.Regulation.SupplyAir.FireExhaust"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147486122L</v>
                     </o>
@@ -2331,6 +2373,29 @@ END_VAR
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">2147483776L</v>
                     <v n="Id">2147485464L</v>
+                  </o>
+                  <o t="CFCInputElement">
+                    <o n="Output" t="CFCOutputPin">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Negated">false</v>
+                      <v n="SetReset" t="SetReset">None</v>
+                      <v n="SetResetRef" t="SetResetRef">None</v>
+                      <v n="PretendsToBeConnected">false</v>
+                      <v n="Id">2147486141L</v>
+                    </o>
+                    <o n="Text" t="CFCText">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Text">"Parameters.Alarm.Active.A.FireSupply"</v>
+                      <v n="Modifiable">true</v>
+                      <v n="Id">2147486142L</v>
+                    </o>
+                    <v n="PageArea">3</v>
+                    <v n="Bounds">"13, 36, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="OwningPageId">2147483776L</v>
+                    <v n="Id">2147486140L</v>
                   </o>
                   <o t="CFCInputElement">
                     <o n="Output" t="CFCOutputPin">
@@ -3211,6 +3276,18 @@ END_VAR
                           <v n="PretendsToBeConnected">false</v>
                           <v n="Id">2147486133L</v>
                         </o>
+                        <o t="CFCInputPin">
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="IsExtensiblePin">false</v>
+                          <v n="ProcessValue">""</v>
+                          <v n="Access" t="ProcessValueAccess">None</v>
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147486138L</v>
+                        </o>
                       </l2>
                     </o>
                     <o n="Outputs" t="CFCItemList">
@@ -3379,7 +3456,7 @@ END_VAR
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
                           <n n="ElementGroupId" />
-                          <v n="Text">"Fire"</v>
+                          <v n="Text">"FireExhaust"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">2147485452L</v>
                         </o>
@@ -3393,16 +3470,23 @@ END_VAR
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
                           <n n="ElementGroupId" />
-                          <v n="Text">"FireSpeed"</v>
+                          <v n="Text">"FireExhaustPar"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">2147486132L</v>
                         </o>
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
                           <n n="ElementGroupId" />
-                          <v n="Text">"FireRun"</v>
+                          <v n="Text">"FireSupplyPar"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">2147486134L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"FireSupply"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147486139L</v>
                         </o>
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
@@ -3551,7 +3635,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.Regulation.ExtractAir.Fire.Speed"</v>
+                      <v n="Text">"Parameters.Regulation.ExtractAir.FireExhaust"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147486130L</v>
                     </o>
@@ -3841,7 +3925,7 @@ END_VAR
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"Parameters.Regulation.ExtractAir.Fire.EN"</v>
+                      <v n="Text">"Parameters.Regulation.ExtractAir.FireSupply"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">2147486127L</v>
                     </o>
@@ -3931,6 +4015,143 @@ END_VAR
                     <v n="SourcePinId">2147485238L</v>
                     <v n="DestPinId">2147484479L</v>
                     <v n="Id">2147485240L</v>
+                  </o>
+                  <o t="CFCBoxElement">
+                    <o n="Inputs" t="CFCItemList">
+                      <l2 n="InnerList" cet="CFCInputPin">
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="IsExtensiblePin">false</v>
+                          <v n="ProcessValue">""</v>
+                          <v n="Access" t="ProcessValueAccess">None</v>
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147486151L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="IsExtensiblePin">false</v>
+                          <v n="ProcessValue">""</v>
+                          <v n="Access" t="ProcessValueAccess">None</v>
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147486152L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="IsExtensiblePin">false</v>
+                          <v n="ProcessValue">""</v>
+                          <v n="Access" t="ProcessValueAccess">None</v>
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147486165L</v>
+                        </o>
+                      </l2>
+                    </o>
+                    <o n="Outputs" t="CFCItemList">
+                      <l2 n="InnerList" cet="CFCOutputPin">
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Negated">false</v>
+                          <v n="SetReset" t="SetReset">None</v>
+                          <v n="SetResetRef" t="SetResetRef">None</v>
+                          <v n="PretendsToBeConnected">false</v>
+                          <v n="Id">2147486153L</v>
+                        </o>
+                      </l2>
+                    </o>
+                    <o n="Texts" t="CFCItemList">
+                      <l2 n="InnerList" cet="CFCText">
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">""</v>
+                          <v n="Modifiable">false</v>
+                          <v n="Id">2147486154L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">""</v>
+                          <v n="Modifiable">false</v>
+                          <v n="Id">2147486155L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">""</v>
+                          <v n="Modifiable">false</v>
+                          <v n="Id">2147486166L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">""</v>
+                          <v n="Modifiable">false</v>
+                          <v n="Id">2147486156L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">"AND"</v>
+                          <v n="Modifiable">true</v>
+                          <v n="Id">2147486157L</v>
+                        </o>
+                        <o>
+                          <v n="Bounds">"0, 0, 0, 0"</v>
+                          <n n="ElementGroupId" />
+                          <v n="Text">""</v>
+                          <v n="Modifiable">false</v>
+                          <v n="Id">2147486158L</v>
+                        </o>
+                      </l2>
+                    </o>
+                    <o n="Parameters" t="CFCItemList">
+                      <l2 n="InnerList" />
+                    </o>
+                    <n n="PreparedParameters" />
+                    <v n="PageArea">0</v>
+                    <v n="Bounds">"33, 14, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="EnEno">false</v>
+                    <v n="KindOfCall" t="KindOfCall">Operator</v>
+                    <v n="ContainsExtensibleInputs">false</v>
+                    <v n="Forced">false</v>
+                    <v n="OwningPageId">2147484285L</v>
+                    <v n="Id">2147486150L</v>
+                  </o>
+                  <o t="CFCInputElement">
+                    <o n="Output" t="CFCOutputPin">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Negated">true</v>
+                      <v n="SetReset" t="SetReset">None</v>
+                      <v n="SetResetRef" t="SetResetRef">None</v>
+                      <v n="PretendsToBeConnected">false</v>
+                      <v n="Id">2147486160L</v>
+                    </o>
+                    <o n="Text" t="CFCText">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Text">"Parameters.Alarm.Active.A.FireSupply"</v>
+                      <v n="Modifiable">true</v>
+                      <v n="Id">2147486161L</v>
+                    </o>
+                    <v n="PageArea">3</v>
+                    <v n="Bounds">"14, 17, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="OwningPageId">2147484285L</v>
+                    <v n="Id">2147486159L</v>
                   </o>
                   <o t="CFCBoxElement">
                     <o n="Inputs" t="CFCItemList">
@@ -4183,7 +4404,7 @@ END_VAR
                     </o>
                     <n n="PreparedParameters" />
                     <v n="PageArea">0</v>
-                    <v n="Bounds">"40, 9, 0, 0"</v>
+                    <v n="Bounds">"56, 14, 0, 0"</v>
                     <n n="ElementGroupId" />
                     <v n="EnEno">false</v>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
@@ -4210,7 +4431,7 @@ END_VAR
                       <v n="Id">2147485322L</v>
                     </o>
                     <v n="PageArea">3</v>
-                    <v n="Bounds">"16, 11, 0, 0"</v>
+                    <v n="Bounds">"17, 10, 0, 0"</v>
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">2147484285L</v>
                     <v n="Id">2147485320L</v>
@@ -4233,10 +4454,33 @@ END_VAR
                       <v n="Id">2147485369L</v>
                     </o>
                     <v n="PageArea">3</v>
-                    <v n="Bounds">"16, 12, 0, 0"</v>
+                    <v n="Bounds">"14, 16, 0, 0"</v>
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">2147484285L</v>
                     <v n="Id">2147485367L</v>
+                  </o>
+                  <o t="CFCInputElement">
+                    <o n="Output" t="CFCOutputPin">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Negated">true</v>
+                      <v n="SetReset" t="SetReset">None</v>
+                      <v n="SetResetRef" t="SetResetRef">None</v>
+                      <v n="PretendsToBeConnected">false</v>
+                      <v n="Id">2147486168L</v>
+                    </o>
+                    <o n="Text" t="CFCText">
+                      <v n="Bounds">"0, 0, 0, 0"</v>
+                      <n n="ElementGroupId" />
+                      <v n="Text">"GetFireExtractAlarms()"</v>
+                      <v n="Modifiable">true</v>
+                      <v n="Id">2147486169L</v>
+                    </o>
+                    <v n="PageArea">3</v>
+                    <v n="Bounds">"14, 18, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="OwningPageId">2147484285L</v>
+                    <v n="Id">2147486167L</v>
                   </o>
                   <o t="CFCInputElement">
                     <o n="Output" t="CFCOutputPin">
@@ -4256,7 +4500,7 @@ END_VAR
                       <v n="Id">2147485303L</v>
                     </o>
                     <v n="PageArea">3</v>
-                    <v n="Bounds">"16, 13, 0, 0"</v>
+                    <v n="Bounds">"14, 19, 0, 0"</v>
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">2147484285L</v>
                     <v n="Id">2147485301L</v>
@@ -4286,7 +4530,7 @@ END_VAR
                       <v n="Id">2147485315L</v>
                     </o>
                     <v n="PageArea">3</v>
-                    <v n="Bounds">"16, 14, 0, 0"</v>
+                    <v n="Bounds">"14, 20, 0, 0"</v>
                     <n n="ElementGroupId" />
                     <v n="OwningPageId">2147484285L</v>
                     <v n="Id">2147485313L</v>
@@ -4304,13 +4548,6 @@ END_VAR
                     <v n="SourcePinId">2147485321L</v>
                     <v n="DestPinId">2147485354L</v>
                     <v n="Id">2147485358L</v>
-                  </o>
-                  <o t="CFCConnection">
-                    <v n="Bounds">"0, 0, 0, 0"</v>
-                    <n n="ElementGroupId" />
-                    <v n="SourcePinId">2147485368L</v>
-                    <v n="DestPinId">2147485359L</v>
-                    <v n="Id">2147485370L</v>
                   </o>
                   <o t="CFCConnection">
                     <v n="Bounds">"0, 0, 0, 0"</v>
@@ -4613,6 +4850,48 @@ END_VAR
                     <v n="DestPinId">2147485451L</v>
                     <v n="Id">2147486137L</v>
                   </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147486141L</v>
+                    <v n="DestPinId">2147486138L</v>
+                    <v n="Id">2147486143L</v>
+                  </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147486145L</v>
+                    <v n="DestPinId">2147486147L</v>
+                    <v n="Id">2147486149L</v>
+                  </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147486160L</v>
+                    <v n="DestPinId">2147486152L</v>
+                    <v n="Id">2147486162L</v>
+                  </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147486153L</v>
+                    <v n="DestPinId">2147485359L</v>
+                    <v n="Id">2147486163L</v>
+                  </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147485368L</v>
+                    <v n="DestPinId">2147486151L</v>
+                    <v n="Id">2147486164L</v>
+                  </o>
+                  <o t="CFCConnection">
+                    <v n="Bounds">"0, 0, 0, 0"</v>
+                    <n n="ElementGroupId" />
+                    <v n="SourcePinId">2147486168L</v>
+                    <v n="DestPinId">2147486165L</v>
+                    <v n="Id">2147486170L</v>
+                  </o>
                 </l2>
               </o>
               <n n="ParameterInitializationMethodGenerator" />
@@ -4869,34 +5148,6 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147485370L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">29</v>
-                      <v n="Y">12</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">false</v>
-                    <v n="CorrespondingPageId">2147484285L</v>
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">29</v>
-                        <v n="Y">12</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">100</v>
-                      </o>
-                      <o>
-                        <v n="X">39</v>
-                        <v n="Y">12</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
                     <v n="ConnectionId">2147483935L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">19</v>
@@ -4982,7 +5233,7 @@ END_VAR
                         <v n="X">33</v>
                         <v n="Y">11</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
+                        <v n="Flags">64</v>
                       </o>
                       <o>
                         <v n="X">36</v>
@@ -5000,7 +5251,7 @@ END_VAR
                         <v n="X">39</v>
                         <v n="Y">27</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
+                        <v n="Flags">96</v>
                       </o>
                     </l2>
                   </o>
@@ -5218,7 +5469,7 @@ END_VAR
                         <v n="X">33</v>
                         <v n="Y">9</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
+                        <v n="Flags">64</v>
                       </o>
                       <o>
                         <v n="X">37</v>
@@ -5236,7 +5487,7 @@ END_VAR
                         <v n="X">42</v>
                         <v n="Y">27</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
+                        <v n="Flags">96</v>
                       </o>
                     </l2>
                   </o>
@@ -5886,7 +6137,7 @@ END_VAR
                     <v n="ConnectionId">2147485358L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">23</v>
-                      <v n="Y">11</v>
+                      <v n="Y">10</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -5898,13 +6149,25 @@ END_VAR
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
                         <v n="X">23</v>
-                        <v n="Y">11</v>
+                        <v n="Y">10</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">39</v>
-                        <v n="Y">11</v>
+                        <v n="Y">10</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">9</v>
+                      </o>
+                      <o>
+                        <v n="X">39</v>
+                        <v n="Y">16</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
+                        <v n="X">55</v>
+                        <v n="Y">16</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -5913,8 +6176,8 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147485316L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">27</v>
-                      <v n="Y">14</v>
+                      <v n="X">25</v>
+                      <v n="Y">20</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -5925,14 +6188,26 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">27</v>
-                        <v n="Y">14</v>
+                        <v n="X">25</v>
+                        <v n="Y">20</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">39</v>
-                        <v n="Y">14</v>
+                        <v n="X">41</v>
+                        <v n="Y">20</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">3</v>
+                      </o>
+                      <o>
+                        <v n="X">41</v>
+                        <v n="Y">19</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">12</v>
+                      </o>
+                      <o>
+                        <v n="X">55</v>
+                        <v n="Y">19</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -5941,8 +6216,8 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147485304L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">27</v>
-                      <v n="Y">13</v>
+                      <v n="X">25</v>
+                      <v n="Y">19</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -5953,14 +6228,26 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">27</v>
-                        <v n="Y">13</v>
+                        <v n="X">25</v>
+                        <v n="Y">19</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">39</v>
-                        <v n="Y">13</v>
+                        <v n="X">40</v>
+                        <v n="Y">19</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">3</v>
+                      </o>
+                      <o>
+                        <v n="X">40</v>
+                        <v n="Y">18</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">12</v>
+                      </o>
+                      <o>
+                        <v n="X">55</v>
+                        <v n="Y">18</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -6541,14 +6828,14 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147485982L</v>
+                    <v n="ConnectionId">2147486143L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">28</v>
-                      <v n="Y">12</v>
+                      <v n="Y">36</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
-                    <v n="Unroutable">true</v>
+                    <v n="Unroutable">false</v>
                     <v n="CorrespondingPageId">2147483776L</v>
                     <v n="Locked">false</v>
                   </o>
@@ -6556,9 +6843,39 @@ END_VAR
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
                         <v n="X">28</v>
-                        <v n="Y">12</v>
+                        <v n="Y">36</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">33</v>
+                        <v n="Y">36</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">3</v>
+                      </o>
+                      <o>
+                        <v n="X">33</v>
+                        <v n="Y">35</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">12</v>
+                      </o>
+                      <o>
+                        <v n="X">37</v>
+                        <v n="Y">35</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">9</v>
+                      </o>
+                      <o>
+                        <v n="X">37</v>
+                        <v n="Y">38</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
+                        <v n="X">39</v>
+                        <v n="Y">38</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
                       </o>
                     </l2>
                   </o>
@@ -6605,7 +6922,7 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147486124L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">31</v>
+                      <v n="X">32</v>
                       <v n="Y">43</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -6617,19 +6934,19 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">31</v>
+                        <v n="X">32</v>
                         <v n="Y">43</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">36</v>
+                        <v n="X">37</v>
                         <v n="Y">43</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">3</v>
                       </o>
                       <o>
-                        <v n="X">36</v>
+                        <v n="X">37</v>
                         <v n="Y">37</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">12</v>
@@ -6685,7 +7002,7 @@ END_VAR
                   <o>
                     <v n="ConnectionId">2147486136L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">31</v>
+                      <v n="X">32</v>
                       <v n="Y">44</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -6697,19 +7014,19 @@ END_VAR
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">31</v>
+                        <v n="X">32</v>
                         <v n="Y">44</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">37</v>
+                        <v n="X">34</v>
                         <v n="Y">44</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">3</v>
                       </o>
                       <o>
-                        <v n="X">37</v>
+                        <v n="X">34</v>
                         <v n="Y">37</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">12</v>
@@ -6763,24 +7080,166 @@ END_VAR
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">2147485981L</v>
+                    <v n="ConnectionId">2147486149L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">28</v>
-                      <v n="Y">11</v>
+                      <v n="X">30</v>
+                      <v n="Y">41</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
-                    <v n="Unroutable">true</v>
-                    <v n="CorrespondingPageId">2147483776L</v>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147483646L</v>
                     <v n="Locked">false</v>
                   </o>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">28</v>
-                        <v n="Y">11</v>
+                        <v n="X">30</v>
+                        <v n="Y">41</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">36</v>
+                        <v n="Y">41</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">3</v>
+                      </o>
+                      <o>
+                        <v n="X">36</v>
+                        <v n="Y">38</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">12</v>
+                      </o>
+                      <o>
+                        <v n="X">42</v>
+                        <v n="Y">38</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147486163L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">37</v>
+                      <v n="Y">16</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147484285L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">37</v>
+                        <v n="Y">16</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">38</v>
+                        <v n="Y">16</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">9</v>
+                      </o>
+                      <o>
+                        <v n="X">38</v>
+                        <v n="Y">17</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">6</v>
+                      </o>
+                      <o>
+                        <v n="X">55</v>
+                        <v n="Y">17</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147486162L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">29</v>
+                      <v n="Y">17</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147484285L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">29</v>
+                        <v n="Y">17</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">100</v>
+                      </o>
+                      <o>
+                        <v n="X">32</v>
+                        <v n="Y">17</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147486164L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">27</v>
+                      <v n="Y">16</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147484285L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">27</v>
+                        <v n="Y">16</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">32</v>
+                        <v n="Y">16</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">2147486170L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">24</v>
+                      <v n="Y">18</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <v n="CorrespondingPageId">2147484285L</v>
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">24</v>
+                        <v n="Y">18</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">32</v>
+                        <v n="Y">18</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
                       </o>
                     </l2>
                   </o>
@@ -6843,10 +7302,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[SUPER^.Fire();
-SupplyFanControl.Override := Parameters.Regulation.SupplyAir.Fire.EN;
-SupplyFanControl.OverrideCV := Parameters.Regulation.SupplyAir.Fire.Speed;
-ExtractFanControl.Override := Parameters.Regulation.ExtractAir.Fire.EN;
-ExtractFanControl.OverrideCV := Parameters.Regulation.ExtractAir.Fire.Speed;
+SupplyFanControl.Override := Parameters.Regulation.SupplyAir.FireExhaust.EN;
+SupplyFanControl.OverrideCV := Parameters.Regulation.SupplyAir.FireExhaust.Speed;
+ExtractFanControl.Override := Parameters.Regulation.ExtractAir.FireExhaust.EN;
+ExtractFanControl.OverrideCV := Parameters.Regulation.ExtractAir.FireExhaust.Speed;
 ]]></ST>
       </Implementation>
     </Method>

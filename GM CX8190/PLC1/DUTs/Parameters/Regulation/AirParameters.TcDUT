@@ -19,7 +19,8 @@ STRUCT
 	MaxSpeed: LREAL := 1.0; // $(scale "0 1 0 100", unit "%", step 0.5, min 0, max 100)
 	StartupFanSpeed: LREAL;
 	SetPointAdjustment: SetPointAdjustment;
-	Fire: FireParameters;
+	FireExhaust: FireParameters;
+	FireSupply: FireParameters;
 	FanType: FanTypes := FanTypes.EBM;
 	SpecificFanPower: LREAL; // $(unit "kPa")
 	Flow: LREAL; // $(unit "l/s")

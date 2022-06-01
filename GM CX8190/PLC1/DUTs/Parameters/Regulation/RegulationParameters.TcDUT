@@ -9,7 +9,7 @@ STRUCT
 	SupplyAir: AirParameters := (StartupFanSpeed := 0.3);
 	ExtractAir: AirParameters := (StartupFanSpeed := 0.4);
 	Temperature: TemperatureControlParameters;
-	NightCoolingLimit: LREAL;
+	NightCoolingLimit: LREAL := 14;
 	NightCoolingRequest: BOOL;
 	NightCooling: BOOL;
 	TemperatureCompensationSource: TemperatureCompensationSources;

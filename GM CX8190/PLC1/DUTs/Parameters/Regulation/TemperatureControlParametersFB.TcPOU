@@ -18,6 +18,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SetPointAdjustmentFB(X := Parameters.Regulation.CompensationTemperature, SetPointAdjustment := Parameters.Regulation.Temperature.SetPointAdjustment);
 Parameters.Regulation.Temperature.Control.CSP := MAX(Parameters.Regulation.Temperature.Control.SP + Temperature.SetPointAdjustment.Y, 4);
+IF Parameters.Regulation.NightCooling THEN
+	Parameters.Regulation.Temperature.Control.CSP := Parameters.Regulation.NightCoolingLimit;
+END_IF
 IF (Main.GreenMaster.GetState() = SystemStates.Run) AND (Main.GreenMaster.StateTime() > LTIME#1M) THEN
 	Parameters.Regulation.Temperature.Efficiency := CalculateEfficiency(Parameters.IO.AIn.T_BT3, Parameters.IO.AIn.T_BT2, Parameters.IO.AIn.F_BT1);
 	IF ((Parameters.IO.AOut.F_QN1 < 0.001) AND (Parameters.Regulation.Temperature.HeaterOutputDirection = HeaterOutputDirections.DecreaseToHeat)) OR
