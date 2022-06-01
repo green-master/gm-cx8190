@@ -12,6 +12,9 @@ STRUCT
 	FreezeProtectionControl: ControllerParameters;
 	ColdRecycling: ColdRecyclingParameters;
 	Efficiency: LREAL;
+	FreezeGuardLimit: REAL := 15; 
+	FreezeGuardHysteresis: REAL := 1; 
+	FreezeGuardControl: ControllerParameters := ( SP := 15, P := 20, I := T#30s ); 
 END_STRUCT
 END_TYPE
 ]]></Declaration>
