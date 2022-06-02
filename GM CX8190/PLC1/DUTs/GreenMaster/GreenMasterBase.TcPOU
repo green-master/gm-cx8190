@@ -17459,30 +17459,10 @@ IF NextState <> State THEN
 			SystemStateVentilation := FALSE;
 
 		SystemStates.FireExhaust:
-			Parameters.IO.AOut.F_QN1 := 0;
-			Parameters.IO.DOut.F_QM1 := FALSE;
-			Parameters.IO.DOut.F_QM2 := NOT Parameters.Regulation.ExtractAir.FireExhaust.EN;
-			Parameters.IO.DOut.T_QM2 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_1 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_2 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_3 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_4 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_5 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_6 := Parameters.Regulation.SupplyAir.FireSupply.EN;
 			Fire();
 				
 		SystemStates.FireSupply:
 			FireSupply();	
-			Parameters.IO.AOut.F_QN1 := 0;
-			Parameters.IO.DOut.F_QM1 := FALSE;
-			Parameters.IO.DOut.F_QM2 := NOT Parameters.Regulation.ExtractAir.FireExhaust.EN;
-			Parameters.IO.DOut.T_QM2 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_1 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_2 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_3 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_4 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_5 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-			Parameters.IO.DOut.T_QM1_6 := Parameters.Regulation.SupplyAir.FireSupply.EN;
 
 		SystemStates.Ventilate:
 			;
@@ -17546,25 +17526,29 @@ CASE State OF
 
 	SystemStates.FireExhaust:
 		Fire();
-		Parameters.IO.DOut.F_QM2 := NOT Parameters.Regulation.ExtractAir.FireExhaust.EN;
-		Parameters.IO.DOut.T_QM2 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_1 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_2 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_3 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_4 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_5 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_6 := Parameters.Regulation.SupplyAir.FireSupply.EN;
+		Parameters.IO.AOut.F_QN1 := 0;
+		Parameters.IO.DOut.F_QM1 := FALSE;
+		Parameters.IO.DOut.F_QM2 := FALSE;
+		Parameters.IO.DOut.T_QM2 := Parameters.Regulation.SupplyAir.FireExhaust.EN;
+		Parameters.IO.DOut.T_QM1_1 := FALSE;
+		Parameters.IO.DOut.T_QM1_2 := FALSE;
+		Parameters.IO.DOut.T_QM1_3 := FALSE;
+		Parameters.IO.DOut.T_QM1_4 := FALSE;
+		Parameters.IO.DOut.T_QM1_5 := FALSE;
+		Parameters.IO.DOut.T_QM1_6 := FALSE;
 			
 	SystemStates.FireSupply:
 		FireSupply();
-		Parameters.IO.DOut.F_QM2 := NOT Parameters.Regulation.ExtractAir.FireExhaust.EN;
+		Parameters.IO.AOut.F_QN1 := 0;
+		Parameters.IO.DOut.F_QM1 := FALSE;
+		Parameters.IO.DOut.F_QM2 := FALSE;
 		Parameters.IO.DOut.T_QM2 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_1 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_2 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_3 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_4 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_5 := Parameters.Regulation.SupplyAir.FireSupply.EN;
-		Parameters.IO.DOut.T_QM1_6 := Parameters.Regulation.SupplyAir.FireSupply.EN;
+		Parameters.IO.DOut.T_QM1_1 := FALSE;
+		Parameters.IO.DOut.T_QM1_2 := FALSE;
+		Parameters.IO.DOut.T_QM1_3 := FALSE;
+		Parameters.IO.DOut.T_QM1_4 := FALSE;
+		Parameters.IO.DOut.T_QM1_5 := FALSE;
+		Parameters.IO.DOut.T_QM1_6 := FALSE;
 
 	SystemStates.Ventilate:
 		;
