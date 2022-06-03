@@ -9,6 +9,10 @@ VAR_INPUT
 	OverrideCV: LREAL;
 	MaxSpeed: LREAL;
 	MaxSpeedEnabled: BOOL := TRUE;
+	FireExhaust: BOOL;
+	FireSupply: BOOL;
+	FireExhaustPar: FireParameters;
+	FireSupplyPar: FireParameters;
 END_VAR
 VAR_OUTPUT
 	ENO: BOOL;
@@ -43,7 +47,19 @@ END_IF
 IF MaxSpeedEnabled AND (SpeedCV > MaxSpeed) and (not Main.GreenMaster.FireAlarm()) THEN
 	SpeedCV := MaxSpeed;
 END_IF
-]]></ST>
+IF FireExhaust THEN
+	IF FireExhaustPar.EN THEN
+		SpeedCV := FireExhaustPar.Speed;
+	ELSE
+		SpeedCV := 0;
+	END_IF
+ELSif FireSupply then
+	IF FireSupplyPar.EN THEN
+		SpeedCV := FireSupplyPar.Speed;
+	ELSE
+		SpeedCV := 0;
+	END_IF
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

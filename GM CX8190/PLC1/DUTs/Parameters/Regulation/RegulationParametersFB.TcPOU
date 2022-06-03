@@ -98,12 +98,14 @@ IF Regulation.ApplyAbsoluteSetPointCurves <> Regulation.LastApplyAbsoluteSetPoin
 	Regulation.LastApplyAbsoluteSetPointCurves := Regulation.ApplyAbsoluteSetPointCurves;
 END_IF
 
-NightCoolingHysteresis(Value := Parameters.IO.AIn.T_BT1, LimitValue := 14, Offset := 0.5);
+NightCoolingHysteresis(Value := Parameters.IO.AIn.T_BT1, LimitValue := Parameters.Regulation.NightCoolingLimit, Offset := 0.5);
 Parameters.Regulation.NightCooling := 
 	Parameters.Regulation.NightCoolingRequest AND 
 	NightCoolingHysteresis.Above AND 
 	(NOT Parameters.System.Operation.TimeChannels.Q);
-]]></ST>
+IF Parameters.Regulation.NightCoolingRequest AND NightCoolingHysteresis.Below THEN
+	Parameters.Regulation.NightCoolingRequest := FALSE;
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

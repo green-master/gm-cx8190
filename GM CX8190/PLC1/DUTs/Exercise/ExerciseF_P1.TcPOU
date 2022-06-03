@@ -31,7 +31,7 @@ StateTimer();
 IF EN THEN
 	CASE CurrentState OF
 		0:
-			IF EN AND (Parameters.System.Operation.State <> SystemStates.Idle) and LocalTime.bValid THEN
+			IF EN AND LocalTime.bValid THEN
 				IF ((Parameters.System.Exercise.CirculationPumps.Interval > 0) AND ((ExerciseTimer.ElapsedTime() > (Parameters.System.Exercise.CirculationPumps.Interval * 3600 * 1000)) OR FirstTime) AND 
 					(
 						(WORD_TO_INT(LocalTime.systemTime.wHour) = Parameters.System.Exercise.CirculationPumps.Hour) AND (WORD_TO_INT(LocalTime.systemTime.wMinute) = Parameters.System.Exercise.CirculationPumps.Minute)
@@ -45,18 +45,7 @@ IF EN THEN
 				END_IF			
 			END_IF
 		1:
-			IF StateTimer.ElapsedTime() > 10 * 1000 THEN
-				ExerciseTimer.Restart();
-				Parameters.IO.DOut.H_GP1 := TRUE;
-				CurrentState := 2;
-			END_IF
-		2:
-			IF StateTimer.ElapsedTime() > 30 * 1000 THEN
-				CurrentState := 3;
-			END_IF
-		3:
-			IF (StateTimer.ElapsedTime() > 60 * 1000) or Parameters.IO.DIn.F_QM2_Closed THEN
-				Parameters.IO.DOut.H_GP1 := FALSE;
+			IF StateTimer.ElapsedTime() > 60 * 1000 THEN
 				Exercising := FALSE;
 				CurrentState := 0;
 			END_IF

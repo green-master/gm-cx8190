@@ -3,7 +3,7 @@
   <DUT Name="ExerciseFireBypassDamperParameters" Id="{0208af9e-44de-4fad-a2d5-ebf40deab400}">
     <Declaration><![CDATA[TYPE ExerciseFireBypassDamperParameters :
 STRUCT
-	Interval: INT := 48; (* Central exercise interval for all damper modules (set to zero for no exercising) $(unit hour) *)
+	Interval: INT := 336; (* Central exercise interval for all damper modules (set to zero for no exercising) $(unit hour) *)
 	StopVentilation: BOOL := TRUE; (* Stop ventilation during central exercise *)
 	Hour: INT := 10; (* Central exercise at this hour $(unit hour) *)
 	Minute: INT := 30; (* Central exercise at this minute $(unit minute) *)
