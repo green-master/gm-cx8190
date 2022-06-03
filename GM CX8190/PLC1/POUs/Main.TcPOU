@@ -173,6 +173,12 @@ END_VAR
 			END_IF
 			IF F_ToUCase(HostName.sHostName) = 'STU_E6-LB01' OR F_ToUCase(HostName.sHostName) = 'STU_E6-LB02' THEN
 				GetComponent(Name := ComponentNames.PARALLEL_UNITS).EN := TRUE;
+				GreenMaster.GetParameters().Alarm.AutoReset.A.FireExtract := TRUE;
+				GreenMaster.GetParameters().Alarm.AutoReset.A.FireExtractExternal := TRUE;
+				GreenMaster.GetParameters().Alarm.AutoReset.A.FireExtractPressure := TRUE;
+				GreenMaster.GetParameters().Alarm.AutoReset.A.FireExtractTemperature := TRUE;
+				GreenMaster.GetParameters().Alarm.AutoReset.A.FireLocal := TRUE;
+				GreenMaster.GetParameters().Alarm.AutoReset.A.FireSupply := TRUE;
 				GreenMaster.GetParameters().Regulation.Temperature.HeaterOutputDirection := HeaterOutputDirections.IncreaseToHeat;
 				GreenMaster.GetParameters().Regulation.ExtractAir.KFactor := 111;
 				GreenMaster.GetParameters().Regulation.ExtractAir.FireExhaust.EN := FALSE;
